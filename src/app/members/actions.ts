@@ -1,6 +1,7 @@
 "use server";
 
 import { auth } from "@clerk/nextjs/server";
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 import { inviteMember, ROLES, type Role } from "../../modules/identity-org/application";
@@ -22,4 +23,6 @@ export async function inviteMemberAction(formData: FormData): Promise<void> {
     name: String(formData.get("name") ?? ""),
     role: role as Role,
   });
+
+  revalidatePath("/members");
 }
