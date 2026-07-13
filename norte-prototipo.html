@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Norte · Prototipo UX/UI — Vista Dirección</title>
+<style>
+  :root{
+    --ink:#0F1222; --ink-2:#3A3F52; --muted:#6B7186; --line:#E7E9F0;
+    --bg:#F6F7FB; --card:#FFFFFF;
+    --brand:#4F46E5; --brand-2:#6366F1; --brand-soft:#EEF0FE;
+    --deep:#171532;
+    --ok:#10B981; --ok-soft:#E6F7F0;
+    --warn:#F59E0B; --warn-soft:#FEF4E2;
+    --risk:#EF4444; --risk-soft:#FDECEC;
+    --info:#0EA5E9; --info-soft:#E5F5FD;
+    --r:14px; --r-sm:10px;
+    --sh:0 1px 2px rgba(16,18,34,.04), 0 8px 24px rgba(16,18,34,.05);
+    --sh-lg:0 12px 40px rgba(16,18,34,.10);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink); background:var(--bg); -webkit-font-smoothing:antialiased;
+    display:flex; min-height:100vh;
+  }
+  /* ---------- Sidebar ---------- */
+  .sidebar{
+    width:248px; flex-shrink:0; background:var(--deep); color:#C9CBE0;
+    display:flex; flex-direction:column; padding:20px 14px; position:sticky; top:0; height:100vh;
+  }
+  .brand{display:flex;align-items:center;gap:10px;padding:6px 10px 20px}
+  .brand .logo{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--brand),#8B5CF6);position:relative;flex-shrink:0}
+  .brand .logo:after{content:"";position:absolute;inset:0;margin:auto;width:9px;height:9px;border-radius:50%;background:#fff;box-shadow:0 0 0 4px rgba(255,255,255,.18)}
+  .brand b{color:#fff;font-size:18px;letter-spacing:.2px}
+  .brand span{font-size:11px;color:#8A8DAE;display:block;margin-top:-2px}
+  .nav-label{font-size:10.5px;text-transform:uppercase;letter-spacing:.10em;color:#6D708E;padding:12px 12px 6px}
+  .nav-item{
+    display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:10px;
+    cursor:pointer;color:#C9CBE0;font-size:14px;font-weight:500;margin-bottom:2px;transition:.15s;
+  }
+  .nav-item:hover{background:rgba(255,255,255,.05);color:#fff}
+  .nav-item.active{background:var(--brand);color:#fff;box-shadow:0 6px 18px rgba(79,70,229,.4)}
+  .nav-item .ic{width:18px;height:18px;flex-shrink:0}
+  .nav-item .sl{margin-left:auto;font-size:10px;font-weight:700;opacity:.55;background:rgba(255,255,255,.10);padding:2px 6px;border-radius:20px}
+  .nav-item.active .sl{opacity:.9;background:rgba(255,255,255,.18)}
+  .side-foot{margin-top:auto;padding:12px 10px;border-top:1px solid rgba(255,255,255,.08);display:flex;align-items:center;gap:10px}
+  .avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#F59E0B,#EF4444);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0}
+  .side-foot .who{font-size:13px;color:#fff;font-weight:600;line-height:1.2}
+  .side-foot .who small{display:block;color:#8A8DAE;font-weight:500;font-size:11px}
+  /* ---------- Main ---------- */
+  .main{flex:1;min-width:0;display:flex;flex-direction:column}
+  .topbar{
+    height:64px;background:rgba(255,255,255,.86);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);display:flex;align-items:center;gap:16px;padding:0 28px;
+    position:sticky;top:0;z-index:20;
+  }
+  .topbar h1{font-size:17px;font-weight:700}
+  .topbar .crumb{font-size:12px;color:var(--muted);font-weight:600}
+  .pill{
+    display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;
+    padding:6px 11px;border-radius:20px;background:var(--brand-soft);color:var(--brand);
+  }
+  .top-actions{margin-left:auto;display:flex;align-items:center;gap:10px}
+  .btn{
+    font:inherit;font-size:13px;font-weight:600;border:1px solid var(--line);background:#fff;color:var(--ink-2);
+    padding:8px 14px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:.15s;
+  }
+  .btn:hover{border-color:#C9CDDC;background:#FafBff}
+  .btn.primary{background:var(--brand);border-color:var(--brand);color:#fff;box-shadow:0 6px 16px rgba(79,70,229,.28)}
+  .btn.primary:hover{background:#4338CA}
+  .content{padding:26px 28px 60px;max-width:1180px;width:100%}
+  .page{display:none;animation:fade .35s ease}
+  .page.show{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .page-head{margin-bottom:20px}
+  .page-head h2{font-size:23px;font-weight:800;letter-spacing:-.3px}
+  .page-head p{color:var(--muted);font-size:14px;margin-top:4px;max-width:640px}
+  .slice-tag{display:inline-block;font-size:11px;font-weight:700;color:var(--brand);background:var(--brand-soft);padding:3px 9px;border-radius:6px;margin-bottom:10px;letter-spacing:.02em}
+  /* grid + cards */
+  .grid{display:grid;gap:16px}
+  .g4{grid-template-columns:repeat(4,1fr)}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .g2{grid-template-columns:repeat(2,1fr)}
+  .g23{grid-template-columns:1.6fr 1fr}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh);padding:18px}
+  .card h3{font-size:14px;font-weight:700;display:flex;align-items:center;gap:8px}
+  .card h3 .sub{margin-left:auto;font-size:12px;font-weight:600;color:var(--muted)}
+  .card-desc{font-size:12.5px;color:var(--muted);margin-top:2px}
+  .kpi .lab{font-size:12.5px;color:var(--muted);font-weight:600}
+  .kpi .val{font-size:30px;font-weight:800;letter-spacing:-.5px;margin-top:8px;line-height:1}
+  .kpi .delta{font-size:12px;font-weight:700;margin-top:8px;display:inline-flex;gap:5px;align-items:center}
+  .up{color:var(--ok)} .down{color:var(--risk)} .flat{color:var(--muted)}
+  .spark{margin-top:10px;height:34px;width:100%}
+  /* progress */
+  .bar{height:8px;border-radius:20px;background:#EEF0F5;overflow:hidden}
+  .bar > i{display:block;height:100%;border-radius:20px;background:linear-gradient(90deg,var(--brand),var(--brand-2))}
+  .bar.ok>i{background:linear-gradient(90deg,#10B981,#34D399)}
+  .bar.warn>i{background:linear-gradient(90deg,#F59E0B,#FBBF24)}
+  .bar.risk>i{background:linear-gradient(90deg,#EF4444,#F87171)}
+  /* badges */
+  .tag{font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;display:inline-flex;align-items:center;gap:5px}
+  .t-ok{background:var(--ok-soft);color:#0B7A54} .t-warn{background:var(--warn-soft);color:#9A6408}
+  .t-risk{background:var(--risk-soft);color:#B42318} .t-info{background:var(--info-soft);color:#0369A1}
+  .t-ghost{background:#F1F2F7;color:var(--muted)}
+  .dot{width:7px;height:7px;border-radius:50%;display:inline-block}
+  /* OKR objective block */
+  .obj{border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:14px;background:#fff}
+  .obj:last-child{margin-bottom:0}
+  .obj .otop{display:flex;align-items:flex-start;gap:12px}
+  .obj .oico{width:38px;height:38px;border-radius:10px;background:var(--brand-soft);color:var(--brand);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .obj h4{font-size:15px;font-weight:700}
+  .obj .ometa{font-size:12px;color:var(--muted);margin-top:2px;display:flex;gap:12px;flex-wrap:wrap}
+  .obj .opct{margin-left:auto;text-align:right}
+  .obj .opct b{font-size:22px;font-weight:800}
+  .kr{display:flex;align-items:center;gap:12px;padding:11px 0;border-top:1px dashed var(--line)}
+  .kr:first-of-type{margin-top:12px}
+  .kr .kname{font-size:13px;flex:1;min-width:0}
+  .kr .kbar{width:150px}
+  .kr .kval{font-size:12px;font-weight:700;color:var(--ink-2);width:78px;text-align:right}
+  .miniava{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:700;flex-shrink:0}
+  /* team card */
+  .team{border:1px solid var(--line);border-radius:12px;padding:16px;background:#fff;display:flex;flex-direction:column;gap:12px}
+  .team .stop{display:flex;align-items:center;gap:10px}
+  .team .sglyph{width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:15px;flex-shrink:0}
+  .team h4{font-size:15px;font-weight:700}
+  .team .ssub{font-size:12px;color:var(--muted)}
+  .avstack{display:flex}
+  .avstack .miniava{margin-left:-6px;border:2px solid #fff}
+  .avstack .miniava:first-child{margin-left:0}
+  .linkrow{display:flex;align-items:center;gap:8px;font-size:12.5px;padding:8px 10px;background:#FAFAFE;border:1px solid var(--line);border-radius:9px}
+  .cap{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted)}
+  /* ritual timeline */
+  .cadence{display:flex;flex-direction:column;gap:0}
+  .cev{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
+  .cev:last-child{border-bottom:0}
+  .cev .when{width:74px;flex-shrink:0;font-size:12px;font-weight:700;color:var(--ink-2)}
+  .cev .when small{display:block;color:var(--muted);font-weight:600}
+  .cev .cbody{flex:1}
+  .cev .cbody b{font-size:13.5px}
+  .cev .cbody p{font-size:12.5px;color:var(--muted);margin-top:2px}
+  .track{width:2px;background:var(--line);position:relative;margin:0 4px}
+  /* feedback */
+  .feed{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}
+  .feed:last-child{border-bottom:0}
+  .feed .ftext{font-size:13px;color:var(--ink-2);line-height:1.5}
+  .feed .fmeta{font-size:11.5px;color:var(--muted);margin-top:5px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .kudos{background:linear-gradient(135deg,#EEF0FE,#F7F0FF);border:1px solid #E3E4FB}
+  /* alerts */
+  .alert{display:flex;gap:12px;padding:13px;border-radius:11px;border:1px solid var(--line);margin-bottom:10px;align-items:flex-start}
+  .alert:last-child{margin-bottom:0}
+  .alert .aic{width:32px;height:32px;border-radius:9px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+  .alert b{font-size:13.5px} .alert p{font-size:12.5px;color:var(--muted);margin-top:2px}
+  .a-risk{background:#FEF6F6} .a-warn{background:#FFFaf0}
+  .row{display:flex;align-items:center;gap:10px}
+  .sep{height:1px;background:var(--line);margin:14px 0}
+  .heat{display:grid;grid-template-columns:repeat(auto-fill,minmax(0,1fr));gap:6px}
+  .legend{display:flex;gap:14px;font-size:11.5px;color:var(--muted);margin-top:12px;flex-wrap:wrap}
+  .legend i{width:10px;height:10px;border-radius:3px;display:inline-block;margin-right:5px;vertical-align:-1px}
+  .note{font-size:12px;color:var(--muted);font-style:italic}
+  .banner{background:linear-gradient(110deg,#171532,#31285F);color:#fff;border-radius:var(--r);padding:20px 22px;display:flex;align-items:center;gap:20px;box-shadow:var(--sh-lg);margin-bottom:18px}
+  .banner .bico{width:46px;height:46px;border-radius:12px;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .banner h3{font-size:16px;font-weight:700}
+  .banner p{font-size:13px;color:#C9CBE0;margin-top:3px}
+  .banner .bnum{margin-left:auto;text-align:center}
+  .banner .bnum b{font-size:26px;font-weight:800;display:block}
+  .banner .bnum small{font-size:11px;color:#9FA2C4}
+  svg{display:block}
+  .scrolltip{font-size:11.5px;color:var(--muted);text-align:center;padding:24px 0 0}
+  .seg{display:inline-flex;background:#EEF0F5;border-radius:10px;padding:3px;gap:2px}
+  .seg button{border:0;background:transparent;font:inherit;font-size:12.5px;font-weight:600;color:var(--muted);padding:7px 13px;border-radius:8px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:.15s}
+  .seg button.on{background:#fff;color:var(--ink);box-shadow:var(--sh)}
+  body.lead-mode .nav-item,body.colab-mode .nav-item{opacity:.38}
+  .ladder-up{width:2px;height:22px;background:var(--line);margin:0 auto;position:relative}
+  .ladder-up:after{content:"↑ sube a";position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:10.5px;color:var(--muted);white-space:nowrap;font-weight:600}
+  .workrow{display:flex;align-items:center;gap:10px;padding:9px 0;border-top:1px dashed var(--line)}
+  .workrow:first-of-type{border-top:0}
+  .workrow .miniava{width:26px;height:26px}
+  .kanban{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .kcol{background:#F8F9FC;border:1px solid var(--line);border-radius:12px;padding:12px}
+  .kcol h4{font-size:12.5px;font-weight:700;display:flex;align-items:center;gap:7px;margin-bottom:12px}
+  .kcol h4 .cnt{margin-left:auto;font-size:11px;color:var(--muted);background:#fff;border:1px solid var(--line);padding:1px 8px;border-radius:20px}
+  .xcard{background:#fff;border:1px solid var(--line);border-radius:10px;padding:11px;margin-bottom:9px;box-shadow:var(--sh)}
+  .xcard:last-child{margin-bottom:0}
+  .xcard .xh{font-size:12px;font-weight:600;line-height:1.4}
+  .xcard .xm{font-size:10.5px;color:var(--muted);margin-top:8px;display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+  .learn{border:1px solid var(--line);border-radius:12px;padding:16px;background:#fff}
+  .learn .lstep{display:flex;gap:10px;font-size:12.5px;padding:5px 0}
+  .learn .lstep b{width:76px;flex-shrink:0;color:var(--muted);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.03em;padding-top:1px}
+  .smatrix{width:100%;border-collapse:separate;border-spacing:5px}
+  .smatrix th{font-size:10.5px;color:var(--muted);font-weight:700;text-align:center;padding-bottom:4px}
+  .smatrix th.nm,.smatrix td.nm{text-align:left}
+  .smatrix td.nm{font-size:12.5px;font-weight:600;white-space:nowrap;padding-right:10px}
+  .scell{height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800}
+  .stf{border:1px solid var(--line);border-radius:11px;padding:13px;background:#fff;margin-bottom:10px}
+  .chip{font-size:11.5px;font-weight:600;padding:5px 12px;border-radius:20px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer}
+  .chip.on{background:var(--brand-soft);color:var(--brand);border-color:#D9DBFB}
+</style>
+</head>
+<body>
+
+<!-- ================= SIDEBAR ================= -->
+<aside class="sidebar">
+  <div class="brand">
+    <div class="logo"></div>
+    <div><b>Norte</b><span>Alignment OS</span></div>
+  </div>
+
+  <div class="nav-label" id="navLabel">Vista Dirección</div>
+  <div class="nav-item active" data-page="dash">
+    <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
+    Dashboard
+  </div>
+  <div class="nav-item" data-page="north">
+    <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5 11 11l-2.5 4.5L13 13z" fill="currentColor" stroke="none"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2"/></svg>
+    Norte estratégico <span class="sl">S0</span>
+  </div>
+  <div class="nav-item" data-page="okr">
+    <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></svg>
+    OKRs <span class="sl">S1</span>
+  </div>
+  <div class="nav-item" data-page="teams">
+    <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3.5 20a5.5 5.5 0 0 1 11 0M15 20a4.5 4.5 0 0 1 6 0"/></svg>
+    Equipos & Proyectos <span class="sl">S2</span>
+  </div>
+  <div class="nav-item" data-page="rituals">
+    <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4l2.5 2.5"/><circle cx="12" cy="12" r="9"/></svg>
+    Rituales <span class="sl">S3</span>
+  </div>
+  <div class="nav-item" data-page="feedback">
+    <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16v10H9l-4 3z" stroke-linejoin="round"/><path d="M8 10h8M8 13h5"/></svg>
+    Feedback & Carrera <span class="sl">S4</span>
+  </div>
+  <div class="nav-item" data-page="enps">
+    <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21C7 17.5 3 13.9 3 9.2A4.2 4.2 0 0 1 12 6.5 4.2 4.2 0 0 1 21 9.2c0 4.7-4 8.3-9 11.8z"/><path d="M8.5 11.5s1 1.2 3.5 1.2 3.5-1.2 3.5-1.2"/></svg>
+    Clima & eNPS <span class="sl">S5</span>
+  </div>
+  <div class="nav-item" data-page="lean">
+    <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3h6M10 3v6.5L5 18a2 2 0 0 0 1.8 3h10.4A2 2 0 0 0 19 18l-5-8.5V3"/><path d="M7.5 14h9"/></svg>
+    Motor Lean <span class="sl">S6</span>
+  </div>
+  <div class="nav-item" data-page="skills">
+    <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+    Skills & Staffing <span class="sl">S7</span>
+  </div>
+
+  <div class="side-foot">
+    <div class="avatar" id="sideAvatar">MG</div>
+    <div class="who" id="sideWho">Maxi Gómez<small>CEO · Lumen Studio</small></div>
+  </div>
+</aside>
+
+<!-- ================= MAIN ================= -->
+<div class="main">
+  <div class="topbar">
+    <div>
+      <div class="crumb" id="crumb">Inicio</div>
+      <h1 id="ptitle">Dashboard ejecutivo</h1>
+    </div>
+    <span class="pill">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg>
+      Q3 2026 · Semana 6 de 13
+    </span>
+    <div class="seg" style="margin-left:8px">
+      <button class="on" data-role="dir">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 21V9l9-6 9 6v12"/><path d="M9 21v-6h6v6"/></svg>
+        Dirección
+      </button>
+      <button data-role="lead">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="8" r="3.2"/><path d="M5 20a7 7 0 0 1 14 0"/></svg>
+        Líder · Growth
+      </button>
+      <button data-role="colab">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="8" r="3.4"/><path d="M6 20a6 6 0 0 1 12 0"/></svg>
+        Colaborador
+      </button>
+    </div>
+    <div class="top-actions">
+      <button class="btn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+        Nuevo check-in
+      </button>
+      <button class="btn primary">Compartir tablero</button>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- ============ PAGE: NORTE ESTRATÉGICO ============ -->
+    <section class="page" id="page-north">
+      <div class="page-head">
+        <span class="slice-tag">SLICE 0 · Fundamento estratégico</span>
+        <h2>El Norte de la empresa</h2>
+        <p>Antes de los OKRs está el porqué: la visión, la misión y la única métrica que resume si estamos ganando. Todo lo demás —objetivos, equipos, proyectos, cultura— baja de acá. Es la cima de la cascada de alineamiento.</p>
+      </div>
+
+      <!-- NORTH STAR HERO -->
+      <div class="card" style="background:linear-gradient(135deg,#171532,#2E2569);color:#fff;border:0;box-shadow:var(--sh-lg);margin-bottom:16px;display:grid;grid-template-columns:1.2fr 1fr;gap:28px;padding:26px">
+        <div>
+          <div style="display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:.08em;color:#C4B5FD;background:rgba(139,92,246,.18);padding:5px 11px;border-radius:20px;margin-bottom:14px">★ NORTH STAR METRIC</div>
+          <h3 style="font-size:22px;color:#fff;font-weight:800;letter-spacing:-.3px">Pymes activas que renuevan y crecen</h3>
+          <p style="font-size:13px;color:#B9BCE0;margin-top:8px;max-width:420px">Cuentas que usan el producto cada semana y expanden su plan. Si esta sube, el negocio está sano — es la mejor señal de valor entregado.</p>
+          <div style="display:flex;align-items:flex-end;gap:20px;margin-top:22px">
+            <div><div style="font-size:52px;font-weight:800;line-height:1;letter-spacing:-1px">214</div><div style="font-size:12px;color:#9FA2C4;margin-top:6px">meta anual: 300</div></div>
+            <div style="padding-bottom:6px"><span class="tag" style="background:rgba(16,185,129,.2);color:#6EE7B7">▲ +18% YTD</span></div>
+          </div>
+          <div class="bar" style="margin-top:16px;background:rgba(255,255,255,.12)"><i style="width:71%;background:linear-gradient(90deg,#8B5CF6,#C4B5FD)"></i></div>
+          <div style="font-size:11px;color:#9FA2C4;margin-top:6px">71% de la meta anual · faltan 86 cuentas</div>
+        </div>
+        <div style="border-left:1px solid rgba(255,255,255,.1);padding-left:26px">
+          <div style="font-size:12px;font-weight:700;color:#C4B5FD;margin-bottom:14px">Palancas que la mueven → OKR responsable</div>
+          <div style="display:flex;flex-direction:column;gap:13px">
+            <div class="row" style="font-size:12.5px"><span style="width:16px">📈</span><span style="flex:1;color:#E4E5F5">Adquisición de nuevas pymes</span><span class="tag" style="background:rgba(255,255,255,.1);color:#C9CBE0">MRR +40%</span></div>
+            <div class="row" style="font-size:12.5px"><span style="width:16px">💚</span><span style="flex:1;color:#E4E5F5">Activación y retención</span><span class="tag" style="background:rgba(255,255,255,.1);color:#C9CBE0">Retención</span></div>
+            <div class="row" style="font-size:12.5px"><span style="width:16px">⚙️</span><span style="flex:1;color:#E4E5F5">Producto que entrega valor</span><span class="tag" style="background:rgba(255,255,255,.1);color:#C9CBE0">SaaS v2</span></div>
+            <div class="row" style="font-size:12.5px"><span style="width:16px">🌱</span><span style="flex:1;color:#E4E5F5">Equipo alineado y sano</span><span class="tag" style="background:rgba(255,255,255,.1);color:#C9CBE0">Cultura</span></div>
+          </div>
+          <div class="note" style="color:#8A8DAE;margin-top:16px;font-size:11.5px">Cada palanca es un objetivo del trimestre. Los OKRs no son una lista suelta: son las palancas de esta métrica.</div>
+        </div>
+      </div>
+
+      <!-- VISION / MISION / VALORES -->
+      <div class="grid g23" style="margin-bottom:16px">
+        <div class="card">
+          <h3><span class="dot" style="background:var(--brand)"></span> Visión & Misión</h3>
+          <div style="margin-top:16px">
+            <div style="font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--muted)">VISIÓN · a dónde vamos</div>
+            <p style="font-size:16px;font-weight:600;line-height:1.5;margin-top:6px">Que cualquier pyme de LATAM opere con la claridad, el foco y el ritmo de una startup de clase mundial.</p>
+          </div>
+          <div class="sep"></div>
+          <div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--muted)">MISIÓN · por qué existimos</div>
+            <p style="font-size:16px;font-weight:600;line-height:1.5;margin-top:6px">Darle a cada equipo un sistema simple para alinear estrategia, personas y ejecución — y aprender más rápido.</p>
+          </div>
+        </div>
+        <div class="card" style="background:#FCFCFF">
+          <h3><span class="dot" style="background:var(--ok)"></span> Valores</h3>
+          <p class="card-desc" style="margin-bottom:14px">Cómo trabajamos. Se conectan con el feedback y el eNPS.</p>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div class="linkrow"><b>🎯 Foco</b> <span style="color:var(--muted);font-size:12px">Pocas cosas, bien hechas.</span></div>
+            <div class="linkrow"><b>🔍 Transparencia</b> <span style="color:var(--muted);font-size:12px">La info es de todos.</span></div>
+            <div class="linkrow"><b>🔁 Aprendizaje continuo</b> <span style="color:var(--muted);font-size:12px">Iterar sin miedo.</span></div>
+            <div class="linkrow"><b>🙋 Ownership</b> <span style="color:var(--muted);font-size:12px">Dueños del resultado.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MAPA ESTRATÉGICO / CASCADA -->
+      <div class="card">
+        <h3>Mapa estratégico <span class="sub">cómo baja la visión hasta la ejecución</span></h3>
+        <p class="card-desc" style="margin-bottom:20px">La cascada de alineamiento: cada nivel explica al de abajo y se mide con el de arriba.</p>
+
+        <div style="display:flex;flex-direction:column;align-items:center;gap:0">
+          <div style="width:100%;max-width:560px;text-align:center;background:var(--deep);color:#fff;border-radius:12px;padding:14px 18px"><div style="font-size:11px;color:#9FA2C4;font-weight:700">VISIÓN</div><div style="font-size:14px;font-weight:600;margin-top:2px">Pymes de LATAM operando como startups de clase mundial</div></div>
+          <div style="width:2px;height:20px;background:var(--line)"></div>
+          <div style="width:100%;max-width:560px;text-align:center;background:linear-gradient(135deg,#5B21B6,#8B5CF6);color:#fff;border-radius:12px;padding:14px 18px"><div style="font-size:11px;color:#E9D5FF;font-weight:700">★ NORTH STAR</div><div style="font-size:14px;font-weight:600;margin-top:2px">Pymes activas que renuevan y crecen · 214 → 300</div></div>
+          <div style="width:2px;height:20px;background:var(--line)"></div>
+          <div class="grid g3" style="width:100%">
+            <div style="text-align:center;background:var(--brand-soft);border:1px solid #D9DBFB;border-radius:11px;padding:12px"><div style="font-size:10.5px;color:var(--brand);font-weight:700">PILAR 1</div><div style="font-size:13px;font-weight:600;margin-top:2px">Producto que se defiende solo</div></div>
+            <div style="text-align:center;background:var(--brand-soft);border:1px solid #D9DBFB;border-radius:11px;padding:12px"><div style="font-size:10.5px;color:var(--brand);font-weight:700">PILAR 2</div><div style="font-size:13px;font-weight:600;margin-top:2px">Crecimiento eficiente en LATAM</div></div>
+            <div style="text-align:center;background:var(--brand-soft);border:1px solid #D9DBFB;border-radius:11px;padding:12px"><div style="font-size:10.5px;color:var(--brand);font-weight:700">PILAR 3</div><div style="font-size:13px;font-weight:600;margin-top:2px">Equipo de alto rendimiento</div></div>
+          </div>
+          <div style="width:2px;height:20px;background:var(--line)"></div>
+          <div class="grid g4" style="width:100%">
+            <div style="text-align:center;background:#fff;border:1px solid var(--line);border-radius:11px;padding:12px"><div style="font-size:10.5px;color:var(--muted);font-weight:700">OKR</div><div style="font-size:12.5px;font-weight:600;margin-top:3px">Consolidar SaaS v2</div><div class="bar ok" style="margin-top:8px"><i style="width:74%"></i></div></div>
+            <div style="text-align:center;background:#fff;border:1px solid var(--line);border-radius:11px;padding:12px"><div style="font-size:10.5px;color:var(--muted);font-weight:700">OKR</div><div style="font-size:12.5px;font-weight:600;margin-top:3px">MRR +40% LATAM</div><div class="bar warn" style="margin-top:8px"><i style="width:51%"></i></div></div>
+            <div style="text-align:center;background:#fff;border:1px solid var(--line);border-radius:11px;padding:12px"><div style="font-size:10.5px;color:var(--muted);font-weight:700">OKR</div><div style="font-size:12.5px;font-weight:600;margin-top:3px">Retención y experiencia</div><div class="bar ok" style="margin-top:8px"><i style="width:80%"></i></div></div>
+            <div style="text-align:center;background:#fff;border:1px solid var(--line);border-radius:11px;padding:12px"><div style="font-size:10.5px;color:var(--muted);font-weight:700">OKR</div><div style="font-size:12.5px;font-weight:600;margin-top:3px">Cultura y desarrollo</div><div class="bar" style="margin-top:8px"><i style="width:66%"></i></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="scrolltip">Slice 0 · La cima de la cascada. Los OKRs (Slice 1) son las palancas de esta North Star.</div>
+    </section>
+
+    <!-- ============ PAGE: DASHBOARD ============ -->
+    <section class="page show" id="page-dash">
+      <div class="banner">
+        <div class="bico">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 2l2.9 6.3L22 9l-5 4.6L18.2 21 12 17.5 5.8 21 7 13.6 2 9l7.1-.7z"/></svg>
+        </div>
+        <div>
+          <h3>Alineamiento general del trimestre</h3>
+          <p>68% de avance con 7 semanas restantes. 2 objetivos necesitan tu atención esta semana.</p>
+        </div>
+        <div class="bnum"><b>68%</b><small>ritmo esperado: 62%</small></div>
+      </div>
+
+      <div class="grid g4" style="margin-bottom:16px">
+        <div class="card kpi">
+          <div class="lab">Avance OKRs compañía</div>
+          <div class="val">68%</div>
+          <div class="delta up">▲ 9 pts <span class="flat" style="font-weight:600">vs. semana pasada</span></div>
+          <svg class="spark" viewBox="0 0 120 34" preserveAspectRatio="none"><polyline points="0,28 20,26 40,24 60,20 80,17 100,12 120,9" fill="none" stroke="#4F46E5" stroke-width="2.5"/><circle cx="120" cy="9" r="3" fill="#4F46E5"/></svg>
+        </div>
+        <div class="card kpi">
+          <div class="lab">Salud de equipos</div>
+          <div class="val">82<span style="font-size:16px;color:var(--muted)">/100</span></div>
+          <div class="delta up">▲ 3 pts</div>
+          <svg class="spark" viewBox="0 0 120 34" preserveAspectRatio="none"><polyline points="0,18 20,16 40,20 60,14 80,15 100,11 120,10" fill="none" stroke="#10B981" stroke-width="2.5"/><circle cx="120" cy="10" r="3" fill="#10B981"/></svg>
+        </div>
+        <div class="card kpi">
+          <div class="lab">Proyectos en riesgo</div>
+          <div class="val" style="color:var(--risk)">2</div>
+          <div class="delta down">▲ 1 <span class="flat" style="font-weight:600">requiere revisión</span></div>
+          <svg class="spark" viewBox="0 0 120 34" preserveAspectRatio="none"><polyline points="0,24 20,22 40,23 60,20 80,22 100,18 120,14" fill="none" stroke="#EF4444" stroke-width="2.5"/><circle cx="120" cy="14" r="3" fill="#EF4444"/></svg>
+        </div>
+        <div class="card kpi">
+          <div class="lab">Check-ins al día</div>
+          <div class="val">91%</div>
+          <div class="delta up">▲ 6 pts</div>
+          <svg class="spark" viewBox="0 0 120 34" preserveAspectRatio="none"><polyline points="0,20 20,22 40,18 60,16 80,14 100,13 120,8" fill="none" stroke="#0EA5E9" stroke-width="2.5"/><circle cx="120" cy="8" r="3" fill="#0EA5E9"/></svg>
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom:16px;display:grid;grid-template-columns:200px 1fr 1.1fr;gap:24px;align-items:center">
+        <div>
+          <h3 style="margin-bottom:4px"><span class="dot" style="background:#8B5CF6"></span> Clima · eNPS</h3>
+          <div style="font-size:44px;font-weight:800;letter-spacing:-1px;color:#8B5CF6;line-height:1">+42</div>
+          <div class="delta up" style="margin-top:4px">▲ 8 pts vs. Q2 · <span class="flat" style="font-weight:600">participación 88%</span></div>
+        </div>
+        <div>
+          <div class="row" style="justify-content:space-between;font-size:12px;font-weight:600;margin-bottom:7px"><span>Distribución de respuestas</span><span class="flat">n=42</span></div>
+          <div style="display:flex;height:16px;border-radius:8px;overflow:hidden;box-shadow:inset 0 0 0 1px var(--line)">
+            <div style="width:57%;background:#10B981"></div><div style="width:28%;background:#FBBF24"></div><div style="width:15%;background:#EF4444"></div>
+          </div>
+          <div class="legend" style="justify-content:space-between;margin-top:9px">
+            <span><i style="background:#10B981"></i>Promotores 57%</span><span><i style="background:#FBBF24"></i>Pasivos 28%</span><span><i style="background:#EF4444"></i>Detractores 15%</span>
+          </div>
+        </div>
+        <div>
+          <div class="row" style="justify-content:space-between;font-size:12px;font-weight:600;margin-bottom:10px"><span>eNPS por equipo</span><span class="flat">Growth arrastra el promedio</span></div>
+          <div style="display:flex;flex-direction:column;gap:7px">
+            <div class="row"><span style="width:96px;font-size:12px">Producto</span><div class="bar ok" style="flex:1"><i style="width:61%"></i></div><b style="font-size:12px;width:34px;text-align:right">+61</b></div>
+            <div class="row"><span style="width:96px;font-size:12px">Cust. Success</span><div class="bar ok" style="flex:1"><i style="width:55%"></i></div><b style="font-size:12px;width:34px;text-align:right">+55</b></div>
+            <div class="row"><span style="width:96px;font-size:12px">Diseño</span><div class="bar warn" style="flex:1"><i style="width:38%"></i></div><b style="font-size:12px;width:34px;text-align:right">+38</b></div>
+            <div class="row"><span style="width:96px;font-size:12px">Growth</span><div class="bar risk" style="flex:1"><i style="width:9%"></i></div><b style="font-size:12px;width:34px;text-align:right;color:var(--risk)">+9</b></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid g23">
+        <div class="card">
+          <h3>Avance de OKRs de compañía <span class="sub">4 objetivos</span></h3>
+          <p class="card-desc" style="margin-bottom:16px">Cómo progresa cada objetivo estratégico y su nivel de confianza.</p>
+
+          <div style="display:flex;flex-direction:column;gap:15px">
+            <div>
+              <div class="row" style="margin-bottom:7px"><span style="font-size:13.5px;font-weight:600">Consolidar producto SaaS y lanzar v2</span><span class="tag t-ok" style="margin-left:auto">On track</span><b style="font-size:13px;width:38px;text-align:right">74%</b></div>
+              <div class="bar ok"><i style="width:74%"></i></div>
+            </div>
+            <div>
+              <div class="row" style="margin-bottom:7px"><span style="font-size:13.5px;font-weight:600">Crecer MRR un 40% en LATAM</span><span class="tag t-warn" style="margin-left:auto">En riesgo</span><b style="font-size:13px;width:38px;text-align:right">51%</b></div>
+              <div class="bar warn"><i style="width:51%"></i></div>
+            </div>
+            <div>
+              <div class="row" style="margin-bottom:7px"><span style="font-size:13.5px;font-weight:600">Elevar experiencia y retención de clientes</span><span class="tag t-ok" style="margin-left:auto">On track</span><b style="font-size:13px;width:38px;text-align:right">80%</b></div>
+              <div class="bar ok"><i style="width:80%"></i></div>
+            </div>
+            <div>
+              <div class="row" style="margin-bottom:7px"><span style="font-size:13.5px;font-weight:600">Fortalecer cultura y desarrollo del equipo</span><span class="tag t-info" style="margin-left:auto">Al día</span><b style="font-size:13px;width:38px;text-align:right">66%</b></div>
+              <div class="bar"><i style="width:66%"></i></div>
+            </div>
+          </div>
+
+          <div class="sep"></div>
+          <h3 style="margin-bottom:14px">Salud por equipo <span class="sub">últimas 6 semanas</span></h3>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div class="row"><span style="width:120px;font-size:12.5px;font-weight:600">Producto</span>
+              <div class="heat" style="flex:1;grid-template-columns:repeat(6,1fr)">
+                <span style="height:22px;border-radius:4px;background:#A7F3D0"></span><span style="height:22px;border-radius:4px;background:#6EE7B7"></span><span style="height:22px;border-radius:4px;background:#34D399"></span><span style="height:22px;border-radius:4px;background:#34D399"></span><span style="height:22px;border-radius:4px;background:#10B981"></span><span style="height:22px;border-radius:4px;background:#10B981"></span>
+              </div></div>
+            <div class="row"><span style="width:120px;font-size:12.5px;font-weight:600">Growth</span>
+              <div class="heat" style="flex:1;grid-template-columns:repeat(6,1fr)">
+                <span style="height:22px;border-radius:4px;background:#FDE68A"></span><span style="height:22px;border-radius:4px;background:#FCD34D"></span><span style="height:22px;border-radius:4px;background:#FBBF24"></span><span style="height:22px;border-radius:4px;background:#FCD34D"></span><span style="height:22px;border-radius:4px;background:#FBBF24"></span><span style="height:22px;border-radius:4px;background:#F59E0B"></span>
+              </div></div>
+            <div class="row"><span style="width:120px;font-size:12.5px;font-weight:600">Customer Success</span>
+              <div class="heat" style="flex:1;grid-template-columns:repeat(6,1fr)">
+                <span style="height:22px;border-radius:4px;background:#6EE7B7"></span><span style="height:22px;border-radius:4px;background:#34D399"></span><span style="height:22px;border-radius:4px;background:#34D399"></span><span style="height:22px;border-radius:4px;background:#6EE7B7"></span><span style="height:22px;border-radius:4px;background:#34D399"></span><span style="height:22px;border-radius:4px;background:#10B981"></span>
+              </div></div>
+            <div class="row"><span style="width:120px;font-size:12.5px;font-weight:600">Diseño</span>
+              <div class="heat" style="flex:1;grid-template-columns:repeat(6,1fr)">
+                <span style="height:22px;border-radius:4px;background:#34D399"></span><span style="height:22px;border-radius:4px;background:#10B981"></span><span style="height:22px;border-radius:4px;background:#6EE7B7"></span><span style="height:22px;border-radius:4px;background:#FCD34D"></span><span style="height:22px;border-radius:4px;background:#6EE7B7"></span><span style="height:22px;border-radius:4px;background:#34D399"></span>
+              </div></div>
+          </div>
+          <div class="legend"><span><i style="background:#10B981"></i>Saludable</span><span><i style="background:#FBBF24"></i>Atención</span><span><i style="background:#EF4444"></i>Crítico</span></div>
+        </div>
+
+        <div class="card" style="background:#FCFCFF">
+          <h3><span class="dot" style="background:var(--risk)"></span> Riesgos de desalineamiento</h3>
+          <p class="card-desc" style="margin-bottom:14px">Detectados automáticamente cruzando OKRs, proyectos y rituales.</p>
+          <div class="alert a-risk">
+            <div class="aic" style="background:var(--risk-soft)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2.2"><path d="M12 9v4M12 17h.01M10.3 3.9 2.4 18a1.8 1.8 0 0 0 1.6 2.7h16a1.8 1.8 0 0 0 1.6-2.7L13.7 3.9a1.8 1.8 0 0 0-3.4 0z"/></svg></div>
+            <div><b>MRR LATAM sin proyecto que lo mueva</b><p>El KR "+40% MRR" no tiene ninguna iniciativa activa asignada hace 2 semanas.</p></div>
+          </div>
+          <div class="alert a-risk">
+            <div class="aic" style="background:var(--risk-soft)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg></div>
+            <div><b>Growth sobrecargado (118% cap.)</b><p>3 proyectos compiten por las mismas 2 personas. Riesgo de burnout.</p></div>
+          </div>
+          <div class="alert a-warn">
+            <div class="aic" style="background:var(--warn-soft)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2.2"><path d="M12 8v4l3 2"/><circle cx="12" cy="12" r="9"/></svg></div>
+            <div><b>Retro pendiente en Producto</b><p>2 ciclos sin retrospectiva. La cadencia de aprendizaje se está cortando.</p></div>
+          </div>
+          <div class="alert a-warn">
+            <div class="aic" style="background:var(--warn-soft)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2.2"><path d="M4 6h16M4 12h10M4 18h7"/></svg></div>
+            <div><b>Feedback bajo en onboarding</b><p>Los 4 ingresos del trimestre recibieron menos de 2 feedbacks c/u.</p></div>
+          </div>
+          <div class="sep"></div>
+          <div class="note">La IA de Norte revisa estas señales cada mañana y prioriza qué mirar primero.</div>
+        </div>
+      </div>
+      <div class="card" style="margin-top:16px;display:grid;grid-template-columns:200px 1fr 1.2fr;gap:24px;align-items:center">
+        <div>
+          <h3 style="margin-bottom:4px"><span class="dot" style="background:#4F46E5"></span> Motor Lean</h3>
+          <div style="font-size:44px;font-weight:800;letter-spacing:-1px;color:#4F46E5;line-height:1">5</div>
+          <div class="delta up" style="margin-top:4px">▲ 2 aprendizajes validados · <span class="flat" style="font-weight:600">ciclo 12 días</span></div>
+        </div>
+        <div>
+          <div class="row" style="justify-content:space-between;font-size:12px;font-weight:600;margin-bottom:10px"><span>Experimentos por etapa</span><span class="flat">7 activos</span></div>
+          <div style="display:flex;flex-direction:column;gap:7px">
+            <div class="row"><span style="width:92px;font-size:12px"><span class="dot" style="background:#4F46E5"></span> Construir</span><div class="bar" style="flex:1"><i style="width:38%"></i></div><b style="font-size:12px;width:20px;text-align:right">3</b></div>
+            <div class="row"><span style="width:92px;font-size:12px"><span class="dot" style="background:#0EA5E9"></span> Medir</span><div class="bar" style="flex:1"><i style="width:50%;background:linear-gradient(90deg,#0EA5E9,#38BDF8)"></i></div><b style="font-size:12px;width:20px;text-align:right">4</b></div>
+            <div class="row"><span style="width:92px;font-size:12px"><span class="dot" style="background:#10B981"></span> Aprender</span><div class="bar ok" style="flex:1"><i style="width:62%"></i></div><b style="font-size:12px;width:20px;text-align:right">5</b></div>
+          </div>
+        </div>
+        <div>
+          <div class="row" style="justify-content:space-between;font-size:12px;font-weight:600;margin-bottom:10px"><span>Último aprendizaje</span><span class="tag t-ok">tasa validación 58%</span></div>
+          <div class="alert" style="margin-bottom:0;background:#F6F5FF;border-color:#E3E4FB">
+            <div class="aic" style="background:#fff"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4F46E5" stroke-width="2.2"><path d="M9 3h6M10 3v6.5L5 18a2 2 0 0 0 1.8 3h10.4A2 2 0 0 0 19 18l-5-8.5V3"/></svg></div>
+            <div><b>El onboarding humano importa más que el precio</b><p>Validado → decisión: escalar onboarding asistido a toda la base. Explica el foco de CS.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="scrolltip">El dashboard "emerge" sumando el widget de cada slice: OKRs, equipos, rituales, clima y aprendizaje.</div>
+    </section>
+
+    <!-- ============ PAGE: OKR ============ -->
+    <section class="page" id="page-okr">
+      <div class="page-head">
+        <span class="slice-tag">SLICE 1 · OKRs vivos</span>
+        <h2>OKRs de compañía</h2>
+        <p>La cascada de estrategia → objetivos de área → key results medibles, con check-ins semanales y nivel de confianza. Es el corazón del sistema: todo lo demás se conecta a esto.</p>
+      </div>
+
+      <div class="grid g4" style="margin-bottom:18px">
+        <div class="card kpi"><div class="lab">Objetivos activos</div><div class="val">4</div><div class="delta flat" style="font-weight:600">2 compañía · 2 área</div></div>
+        <div class="card kpi"><div class="lab">Key results</div><div class="val">14</div><div class="delta up">10 en ritmo</div></div>
+        <div class="card kpi"><div class="lab">Confianza promedio</div><div class="val">7.2<span style="font-size:16px;color:var(--muted)">/10</span></div><div class="delta down">▼ 0.4</div></div>
+        <div class="card kpi"><div class="lab">Check-in de la semana</div><div class="val">12/14</div><div class="delta up">86% completado</div></div>
+      </div>
+
+      <div class="card">
+        <h3>Objetivos estratégicos <span class="sub">Q3 2026</span></h3>
+        <div style="height:12px"></div>
+
+        <!-- OBJ 1 -->
+        <div class="obj">
+          <div class="otop">
+            <div class="oico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7v4h-4"/></svg></div>
+            <div>
+              <h4>Consolidar el producto SaaS y lanzar la v2</h4>
+              <div class="ometa"><span>👤 Owner: Producto</span><span>🔗 3 proyectos</span><span>💬 Últ. check-in: hoy</span></div>
+            </div>
+            <div class="opct"><b>74%</b><br><span class="tag t-ok">On track</span></div>
+          </div>
+          <div class="kr"><div class="miniava" style="background:#4F46E5">JP</div><div class="kname">Migrar 100% de cuentas a la v2</div><div class="kbar bar ok"><i style="width:82%"></i></div><div class="kval">82 / 100%</div></div>
+          <div class="kr"><div class="miniava" style="background:#0EA5E9">LM</div><div class="kname">Reducir bugs críticos de 30 → 5</div><div class="kbar bar ok"><i style="width:76%"></i></div><div class="kval">11 abiertos</div></div>
+          <div class="kr"><div class="miniava" style="background:#10B981">AR</div><div class="kname">NPS de producto ≥ 45</div><div class="kbar bar warn"><i style="width:64%"></i></div><div class="kval">38 → 45</div></div>
+        </div>
+
+        <!-- OBJ 2 -->
+        <div class="obj">
+          <div class="otop">
+            <div class="oico" style="background:var(--warn-soft);color:var(--warn)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 14l3-4 3 3 4-6"/></svg></div>
+            <div>
+              <h4>Crecer el MRR un 40% en LATAM</h4>
+              <div class="ometa"><span>👤 Owner: Growth</span><span>🔗 1 proyecto</span><span>💬 Últ. check-in: hace 5 días</span></div>
+            </div>
+            <div class="opct"><b>51%</b><br><span class="tag t-warn">En riesgo</span></div>
+          </div>
+          <div class="kr"><div class="miniava" style="background:#F59E0B">SN</div><div class="kname">Sumar 60 nuevas pymes cliente</div><div class="kbar bar warn"><i style="width:48%"></i></div><div class="kval">29 / 60</div></div>
+          <div class="kr"><div class="miniava" style="background:#EF4444">DT</div><div class="kname">Bajar el churn mensual a &lt; 3%</div><div class="kbar bar risk"><i style="width:40%"></i></div><div class="kval">4.6%</div></div>
+          <div class="kr"><div class="miniava" style="background:#6366F1">VC</div><div class="kname">Activar canal de partners (5 firmas)</div><div class="kbar bar warn"><i style="width:60%"></i></div><div class="kval">3 / 5</div></div>
+        </div>
+
+        <!-- OBJ 3 -->
+        <div class="obj">
+          <div class="otop">
+            <div class="oico" style="background:var(--ok-soft);color:var(--ok)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1a5.5 5.5 0 1 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8z"/></svg></div>
+            <div>
+              <h4>Elevar experiencia y retención de clientes</h4>
+              <div class="ometa"><span>👤 Owner: Customer Success</span><span>🔗 2 proyectos</span><span>💬 Últ. check-in: ayer</span></div>
+            </div>
+            <div class="opct"><b>80%</b><br><span class="tag t-ok">On track</span></div>
+          </div>
+          <div class="kr"><div class="miniava" style="background:#10B981">PF</div><div class="kname">Onboarding &lt; 7 días para nuevos clientes</div><div class="kbar bar ok"><i style="width:88%"></i></div><div class="kval">5.4 días</div></div>
+          <div class="kr"><div class="miniava" style="background:#0EA5E9">MK</div><div class="kname">CSAT de soporte ≥ 90%</div><div class="kbar bar ok"><i style="width:79%"></i></div><div class="kval">87%</div></div>
+        </div>
+      </div>
+      <div class="scrolltip">Cada objetivo trae su propio mini-avance → alimenta el widget del Dashboard.</div>
+    </section>
+
+    <!-- ============ PAGE: TEAMS ============ -->
+    <section class="page" id="page-teams">
+      <div class="page-head">
+        <span class="slice-tag">SLICE 2 · Mapa de equipos y proyectos</span>
+        <h2>Equipos, teams y proyectos</h2>
+        <p>Quién trabaja en qué y hacia qué objetivo. Aquí vive el diferencial frente a los competidores de RRHH: cada proyecto está atado a un OKR y cada team muestra su capacidad real.</p>
+      </div>
+
+      <div class="banner" style="background:linear-gradient(110deg,#4F46E5,#7C3AED);margin-bottom:18px">
+        <div class="bico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3.5 20a5.5 5.5 0 0 1 11 0M15 20a4.5 4.5 0 0 1 6 0"/></svg></div>
+        <div><h3>4 teams · 48 personas · 9 proyectos activos</h3><p>Todos los proyectos están conectados a un objetivo. 1 KR quedó sin iniciativa (ver alerta).</p></div>
+        <div class="bnum"><b>94%</b><small>proyectos con OKR</small></div>
+      </div>
+
+      <div class="grid g2">
+        <!-- team 1 -->
+        <div class="team">
+          <div class="stop">
+            <div class="sglyph" style="background:linear-gradient(135deg,#4F46E5,#6366F1)">Pr</div>
+            <div><h4>Producto</h4><div class="ssub">Team de 12 · Lidera: Julia P.</div></div>
+            <span class="tag t-ok" style="margin-left:auto">Sano</span>
+          </div>
+          <div class="avstack">
+            <span class="miniava" style="background:#4F46E5">JP</span><span class="miniava" style="background:#0EA5E9">LM</span><span class="miniava" style="background:#10B981">AR</span><span class="miniava" style="background:#F59E0B">TS</span><span class="miniava" style="background:#8B5CF6">+8</span>
+          </div>
+          <div class="cap"><span>Capacidad</span><div class="bar ok" style="flex:1"><i style="width:84%"></i></div><b style="color:var(--ink-2)">84%</b></div>
+          <div class="linkrow"><span class="dot" style="background:var(--brand)"></span> Proyecto <b>Lanzamiento v2</b> <span style="margin-left:auto" class="tag t-ghost">→ Consolidar SaaS</span></div>
+          <div class="linkrow"><span class="dot" style="background:var(--brand)"></span> Proyecto <b>Rediseño de billing</b> <span style="margin-left:auto" class="tag t-ghost">→ Consolidar SaaS</span></div>
+        </div>
+
+        <!-- team 2 -->
+        <div class="team">
+          <div class="stop">
+            <div class="sglyph" style="background:linear-gradient(135deg,#F59E0B,#EF4444)">Gr</div>
+            <div><h4>Growth</h4><div class="ssub">Team de 8 · Lidera: Sofía N.</div></div>
+            <span class="tag t-risk" style="margin-left:auto">Sobrecargado</span>
+          </div>
+          <div class="avstack">
+            <span class="miniava" style="background:#F59E0B">SN</span><span class="miniava" style="background:#EF4444">DT</span><span class="miniava" style="background:#6366F1">VC</span><span class="miniava" style="background:#0EA5E9">RB</span><span class="miniava" style="background:#8B5CF6">+4</span>
+          </div>
+          <div class="cap"><span>Capacidad</span><div class="bar risk" style="flex:1"><i style="width:100%"></i></div><b style="color:var(--risk)">118%</b></div>
+          <div class="linkrow"><span class="dot" style="background:var(--warn)"></span> Proyecto <b>Expansión LATAM</b> <span style="margin-left:auto" class="tag t-ghost">→ MRR +40%</span></div>
+          <div class="linkrow" style="background:#FEF6F6;border-color:#F8D4D4"><span class="dot" style="background:var(--risk)"></span> <b>Reducción de churn</b> <span style="margin-left:auto" class="tag t-risk">sin owner</span></div>
+        </div>
+
+        <!-- team 3 -->
+        <div class="team">
+          <div class="stop">
+            <div class="sglyph" style="background:linear-gradient(135deg,#10B981,#059669)">CS</div>
+            <div><h4>Customer Success</h4><div class="ssub">Team de 10 · Lidera: Paula F.</div></div>
+            <span class="tag t-ok" style="margin-left:auto">Sano</span>
+          </div>
+          <div class="avstack">
+            <span class="miniava" style="background:#10B981">PF</span><span class="miniava" style="background:#0EA5E9">MK</span><span class="miniava" style="background:#4F46E5">GN</span><span class="miniava" style="background:#F59E0B">LC</span><span class="miniava" style="background:#8B5CF6">+6</span>
+          </div>
+          <div class="cap"><span>Capacidad</span><div class="bar ok" style="flex:1"><i style="width:76%"></i></div><b style="color:var(--ink-2)">76%</b></div>
+          <div class="linkrow"><span class="dot" style="background:var(--ok)"></span> Proyecto <b>Onboarding express</b> <span style="margin-left:auto" class="tag t-ghost">→ Retención</span></div>
+          <div class="linkrow"><span class="dot" style="background:var(--ok)"></span> Proyecto <b>Programa de soporte</b> <span style="margin-left:auto" class="tag t-ghost">→ Retención</span></div>
+        </div>
+
+        <!-- team 4 -->
+        <div class="team">
+          <div class="stop">
+            <div class="sglyph" style="background:linear-gradient(135deg,#0EA5E9,#0369A1)">Ds</div>
+            <div><h4>Diseño & Marca</h4><div class="ssub">Team de 6 · Lidera: Tomás S.</div></div>
+            <span class="tag t-warn" style="margin-left:auto">Atención</span>
+          </div>
+          <div class="avstack">
+            <span class="miniava" style="background:#0EA5E9">TS</span><span class="miniava" style="background:#8B5CF6">EM</span><span class="miniava" style="background:#EF4444">NF</span><span class="miniava" style="background:#10B981">+3</span>
+          </div>
+          <div class="cap"><span>Capacidad</span><div class="bar warn" style="flex:1"><i style="width:92%"></i></div><b style="color:var(--warn)">92%</b></div>
+          <div class="linkrow"><span class="dot" style="background:var(--brand)"></span> Proyecto <b>Design system</b> <span style="margin-left:auto" class="tag t-ghost">→ Consolidar SaaS</span></div>
+          <div class="linkrow"><span class="dot" style="background:var(--ok)"></span> Proyecto <b>Rebrand web</b> <span style="margin-left:auto" class="tag t-ghost">→ MRR +40%</span></div>
+        </div>
+      </div>
+      <div class="scrolltip">La capacidad por team → alimenta "foco/carga por proyecto" del Dashboard.</div>
+    </section>
+
+    <!-- ============ PAGE: RITUALS ============ -->
+    <section class="page" id="page-rituals">
+      <div class="page-head">
+        <span class="slice-tag">SLICE 3 · Rituales de alineamiento</span>
+        <h2>Cadencia de la semana</h2>
+        <p>La rutina operativa que convierte los datos en hábito: check-ins, revisión de OKRs, retros y seguimiento de bloqueos. Es lo que hace que el sistema esté "vivo" y no sea otra planilla que se abandona.</p>
+      </div>
+
+      <div class="grid g23">
+        <div class="card">
+          <h3>Agenda de rituales <span class="sub">Semana 6 · Q3</span></h3>
+          <div style="height:8px"></div>
+          <div class="cadence">
+            <div class="cev"><div class="when">Lun<small>09:00</small></div><div class="track"></div><div class="cbody"><b>Weekly check-in de OKRs</b> <span class="tag t-ok">Completado</span><p>12 de 14 KRs actualizados. Confianza global 7.2/10.</p></div></div>
+            <div class="cev"><div class="when">Mar<small>15:00</small></div><div class="track"></div><div class="cbody"><b>Revisión de bloqueos · Growth</b> <span class="tag t-warn">2 abiertos</span><p>Churn sin owner y dependencia con Producto para tracking.</p></div></div>
+            <div class="cev"><div class="when">Mié<small>11:00</small></div><div class="track"></div><div class="cbody"><b>Retro quincenal · Producto</b> <span class="tag t-risk">Vencida</span><p>2 ciclos sin realizarse. La IA la marcó como riesgo de aprendizaje.</p></div></div>
+            <div class="cev"><div class="when">Jue<small>16:00</small></div><div class="track"></div><div class="cbody"><b>Comité de dirección</b> <span class="tag t-info">Hoy</span><p>Revisión de los 4 objetivos y decisión sobre reasignar Growth.</p></div></div>
+            <div class="cev"><div class="when">Vie<small>10:00</small></div><div class="track"></div><div class="cbody"><b>Demo & aprendizajes de la semana</b> <span class="tag t-ghost">Programado</span><p>Cada team comparte 1 avance y 1 hipótesis validada.</p></div></div>
+          </div>
+        </div>
+
+        <div class="card" style="background:#FCFCFF">
+          <h3><span class="dot" style="background:var(--risk)"></span> Bloqueos abiertos</h3>
+          <p class="card-desc" style="margin-bottom:14px">Impedimentos que frenan objetivos, con dueño y antigüedad.</p>
+          <div class="alert a-risk">
+            <div class="aic" style="background:var(--risk-soft)"><b style="color:#B42318;font-size:13px">7d</b></div>
+            <div><b>KR de churn sin responsable</b><p>Bloquea el objetivo de MRR. Esperando decisión de dirección.</p></div>
+          </div>
+          <div class="alert a-warn">
+            <div class="aic" style="background:var(--warn-soft)"><b style="color:#9A6408;font-size:13px">3d</b></div>
+            <div><b>Dependencia Producto ↔ Growth</b><p>Tracking de conversión frena la campaña de expansión LATAM.</p></div>
+          </div>
+          <div class="alert a-warn">
+            <div class="aic" style="background:var(--warn-soft)"><b style="color:#9A6408;font-size:13px">2d</b></div>
+            <div><b>Diseño al 92% de capacidad</b><p>Rebrand y design system compiten por las mismas personas.</p></div>
+          </div>
+          <div class="sep"></div>
+          <div class="row" style="justify-content:space-between">
+            <div><div style="font-size:12px;color:var(--muted);font-weight:600">Ritmo de rituales</div><b style="font-size:20px">76%</b></div>
+            <div><div style="font-size:12px;color:var(--muted);font-weight:600">Bloqueos resueltos (mes)</div><b style="font-size:20px;color:var(--ok)">14</b></div>
+          </div>
+        </div>
+      </div>
+      <div class="scrolltip">El estado de la cadencia → alimenta "bloqueos y salud del ciclo" del Dashboard.</div>
+    </section>
+
+    <!-- ============ PAGE: FEEDBACK ============ -->
+    <section class="page" id="page-feedback">
+      <div class="page-head">
+        <span class="slice-tag">SLICE 4 · Feedback y aprendizaje</span>
+        <h2>Feedback & desarrollo de carrera</h2>
+        <p>Feedback entre pares y de manager, notas de crecimiento conectadas a los proyectos reales. La carrera se ata al trabajo cotidiano, no queda como un plan desconectado en una planilla aparte.</p>
+      </div>
+
+      <div class="grid g4" style="margin-bottom:18px">
+        <div class="card kpi"><div class="lab">Feedbacks este mes</div><div class="val">64</div><div class="delta up">▲ 22%</div></div>
+        <div class="card kpi"><div class="lab">Cobertura del equipo</div><div class="val">83%</div><div class="delta up">recibió ≥1 feedback</div></div>
+        <div class="card kpi"><div class="lab">Notas de crecimiento</div><div class="val">21</div><div class="delta flat" style="font-weight:600">ligadas a proyectos</div></div>
+        <div class="card kpi"><div class="lab">Reconocimientos</div><div class="val">37</div><div class="delta up">▲ 9 kudos</div></div>
+      </div>
+
+      <div class="grid g23">
+        <div class="card">
+          <h3>Actividad reciente de feedback <span class="sub">esta semana</span></h3>
+          <div style="height:6px"></div>
+          <div class="feed">
+            <div class="miniava" style="background:#4F46E5">JP</div>
+            <div style="flex:1"><div class="ftext"><b>Julia P.</b> → <b>Andrés R.</b>: "Excelente manejo del incidente de la v2, comunicaste con calma y resolviste rápido. Sigamos documentando el runbook."</div><div class="fmeta"><span class="tag t-info">Proyecto: Lanzamiento v2</span><span>👍 Fortaleza: Ownership</span><span>hace 2h</span></div></div>
+          </div>
+          <div class="feed">
+            <div class="miniava" style="background:#F59E0B">SN</div>
+            <div style="flex:1"><div class="ftext"><b>Sofía N.</b> → <b>Valen C.</b>: "El pipeline de partners avanza, pero necesitamos foco. Propongo soltar una de las 3 iniciativas para no dispersarnos."</div><div class="fmeta"><span class="tag t-ghost">Proyecto: Expansión LATAM</span><span>💡 A mejorar: Priorización</span><span>ayer</span></div></div>
+          </div>
+          <div class="feed kudos" style="border-radius:11px;padding:14px;margin-top:4px">
+            <div class="miniava" style="background:#8B5CF6">★</div>
+            <div style="flex:1"><div class="ftext"><b>Kudo del equipo</b> para <b>Paula F.</b>: "El nuevo onboarding bajó el tiempo a 5 días. Impacto directo en retención."</div><div class="fmeta"><span class="tag t-ok">→ Objetivo: Retención</span><span>4 personas reaccionaron</span></div></div>
+          </div>
+          <div class="feed">
+            <div class="miniava" style="background:#0EA5E9">MK</div>
+            <div style="flex:1"><div class="ftext"><b>Martín K.</b> → <b>Paula F.</b>: "Me ayudó tu feedback en el 1:1. Ya apliqué la plantilla de respuestas y el CSAT subió."</div><div class="fmeta"><span class="tag t-ghost">1:1 · Customer Success</span><span>hace 3 días</span></div></div>
+          </div>
+        </div>
+
+        <div class="card" style="background:#FCFCFF">
+          <h3>Desarrollo de carrera <span class="sub">destacados</span></h3>
+          <p class="card-desc" style="margin-bottom:14px">Notas de crecimiento conectadas a skills, feedback y proyectos reales.</p>
+
+          <div style="border:1px solid var(--line);border-radius:11px;padding:14px;margin-bottom:12px;background:#fff">
+            <div class="row"><div class="miniava" style="background:#10B981">AR</div><div><b style="font-size:13.5px">Andrés R.</b><div style="font-size:11.5px;color:var(--muted)">Dev Semi-Sr → Sr · Producto</div></div><span class="tag t-ok" style="margin-left:auto">72%</span></div>
+            <div class="bar ok" style="margin-top:12px"><i style="width:72%"></i></div>
+            <div style="font-size:11.5px;color:var(--muted);margin-top:8px">Próximo hito: liderar un épico end-to-end. Evidencia: incidente v2 ✓</div>
+          </div>
+
+          <div style="border:1px solid var(--line);border-radius:11px;padding:14px;background:#fff">
+            <div class="row"><div class="miniava" style="background:#0EA5E9">MK</div><div><b style="font-size:13.5px">Martín K.</b><div style="font-size:11.5px;color:var(--muted)">CS Rep → Team Lead · Customer Success</div></div><span class="tag t-warn" style="margin-left:auto">45%</span></div>
+            <div class="bar warn" style="margin-top:12px"><i style="width:45%"></i></div>
+            <div style="font-size:11.5px;color:var(--muted);margin-top:8px">Próximo hito: mentorear a 1 ingreso. Gap: experiencia en gestión.</div>
+          </div>
+
+          <div class="sep"></div>
+          <div class="note">Cada avance de carrera se nutre del feedback y los proyectos, no de un formulario anual aparte.</div>
+        </div>
+      </div>
+      <div class="scrolltip">La cobertura de feedback → alimenta la señal de cultura del Dashboard.</div>
+    </section>
+
+    <!-- ============ PAGE: eNPS ============ -->
+    <section class="page" id="page-enps">
+      <div class="page-head">
+        <span class="slice-tag">SLICE 5 · Clima & eNPS</span>
+        <h2>Clima organizacional y eNPS</h2>
+        <p>El pulso de la cultura: qué tan probable es que la gente recomiende trabajar acá, medido de forma continua y cruzado con OKRs, capacidad y feedback. No es una encuesta anual suelta — cada baja se conecta con una causa operativa concreta.</p>
+      </div>
+
+      <div class="banner" style="background:linear-gradient(110deg,#5B21B6,#8B5CF6);margin-bottom:18px">
+        <div class="bico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 21C7 17.5 3 13.9 3 9.2A4.2 4.2 0 0 1 12 6.5 4.2 4.2 0 0 1 21 9.2c0 4.7-4 8.3-9 11.8z"/><path d="M8.5 11.5s1 1.2 3.5 1.2 3.5-1.2 3.5-1.2"/></svg></div>
+        <div><h3>eNPS +42 · zona saludable</h3><p>Pulso trimestral respondido por 42 de 48 personas (88%). Última medición: hace 3 días.</p></div>
+        <div class="bnum"><b>+42</b><small>▲ 8 pts vs. Q2</small></div>
+      </div>
+
+      <div class="grid g4" style="margin-bottom:18px">
+        <div class="card kpi"><div class="lab">eNPS global</div><div class="val" style="color:#8B5CF6">+42</div><div class="delta up">▲ 8 pts vs. Q2</div></div>
+        <div class="card kpi"><div class="lab">Participación</div><div class="val">88%</div><div class="delta up">▲ 5 pts</div></div>
+        <div class="card kpi"><div class="lab">Promotores</div><div class="val" style="color:var(--ok)">57%</div><div class="delta flat" style="font-weight:600">24 personas</div></div>
+        <div class="card kpi"><div class="lab">Detractores</div><div class="val" style="color:var(--risk)">15%</div><div class="delta up">▼ 4 pts (mejora)</div></div>
+      </div>
+
+      <div class="grid g23">
+        <div class="card">
+          <h3>Evolución del eNPS <span class="sub">últimos 5 pulsos</span></h3>
+          <p class="card-desc" style="margin-bottom:14px">Tendencia trimestral con la banda de referencia (&gt; +30 = saludable).</p>
+          <svg viewBox="0 0 520 180" style="width:100%;height:170px">
+            <line x1="40" y1="30" x2="520" y2="30" stroke="#EEF0F5"/><text x="0" y="34" font-size="11" fill="#9AA0B4">+60</text>
+            <line x1="40" y1="75" x2="520" y2="75" stroke="#E6F7F0"/><text x="0" y="79" font-size="11" fill="#9AA0B4">+30</text>
+            <line x1="40" y1="120" x2="520" y2="120" stroke="#EEF0F5"/><text x="6" y="124" font-size="11" fill="#9AA0B4">0</text>
+            <polyline points="70,108 180,96 290,84 400,66 500,52" fill="none" stroke="#8B5CF6" stroke-width="3"/>
+            <polygon points="70,108 180,96 290,84 400,66 500,52 500,150 70,150" fill="#8B5CF6" opacity="0.06"/>
+            <g fill="#8B5CF6"><circle cx="70" cy="108" r="4"/><circle cx="180" cy="96" r="4"/><circle cx="290" cy="84" r="4"/><circle cx="400" cy="66" r="4"/><circle cx="500" cy="52" r="5"/></g>
+            <g font-size="11" fill="#6B7186" text-anchor="middle"><text x="70" y="168">Q3·25</text><text x="180" y="168">Q4·25</text><text x="290" y="168">Q1·26</text><text x="400" y="168">Q2·26</text><text x="500" y="168">Q3·26</text></g>
+            <g font-size="11" font-weight="700" fill="#5B21B6" text-anchor="middle"><text x="70" y="100">+18</text><text x="180" y="88">+26</text><text x="290" y="76">+31</text><text x="400" y="58">+34</text><text x="500" y="44">+42</text></g>
+          </svg>
+          <div class="sep"></div>
+          <h3 style="margin-bottom:12px">Drivers del resultado <span class="sub">qué mueve la aguja</span></h3>
+          <div style="display:flex;flex-direction:column;gap:11px">
+            <div class="row"><span style="flex:1;font-size:13px">🙌 Reconocimiento y kudos</span><span class="tag t-ok">+ sube</span><b style="font-size:12px;width:44px;text-align:right;color:var(--ok)">+0.9</b></div>
+            <div class="row"><span style="flex:1;font-size:13px">🎯 Claridad de objetivos (OKRs)</span><span class="tag t-ok">+ sube</span><b style="font-size:12px;width:44px;text-align:right;color:var(--ok)">+0.7</b></div>
+            <div class="row"><span style="flex:1;font-size:13px">🧭 Desarrollo de carrera</span><span class="tag t-ok">+ sube</span><b style="font-size:12px;width:44px;text-align:right;color:var(--ok)">+0.4</b></div>
+            <div class="row"><span style="flex:1;font-size:13px">🔥 Carga de trabajo / capacidad</span><span class="tag t-risk">− baja</span><b style="font-size:12px;width:44px;text-align:right;color:var(--risk)">−1.2</b></div>
+            <div class="row"><span style="flex:1;font-size:13px">↔️ Coordinación entre áreas</span><span class="tag t-warn">− baja</span><b style="font-size:12px;width:44px;text-align:right;color:var(--warn)">−0.5</b></div>
+          </div>
+        </div>
+
+        <div class="card" style="background:#FCFCFF">
+          <h3><span class="dot" style="background:#8B5CF6"></span> eNPS por equipo</h3>
+          <p class="card-desc" style="margin-bottom:14px">Dónde está fuerte la cultura y dónde encender la alarma.</p>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <div><div class="row" style="margin-bottom:6px"><span style="font-size:13px;font-weight:600">Producto</span><b style="margin-left:auto;color:var(--ok)">+61</b></div><div class="bar ok"><i style="width:80%"></i></div></div>
+            <div><div class="row" style="margin-bottom:6px"><span style="font-size:13px;font-weight:600">Customer Success</span><b style="margin-left:auto;color:var(--ok)">+55</b></div><div class="bar ok"><i style="width:77%"></i></div></div>
+            <div><div class="row" style="margin-bottom:6px"><span style="font-size:13px;font-weight:600">Diseño & Marca</span><b style="margin-left:auto;color:var(--warn)">+38</b></div><div class="bar warn"><i style="width:69%"></i></div></div>
+            <div><div class="row" style="margin-bottom:6px"><span style="font-size:13px;font-weight:600">Growth</span><span class="tag t-risk" style="margin-left:auto">crítico +9</span></div><div class="bar risk"><i style="width:54%"></i></div></div>
+          </div>
+          <div class="alert a-risk" style="margin-top:16px">
+            <div class="aic" style="background:var(--risk-soft)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2.2"><path d="M13 2 3 14h7l-1 8 10-12h-7z"/></svg></div>
+            <div><b>Correlación detectada</b><p>El eNPS de Growth (+9) coincide con su capacidad al 118% y la retro vencida. La sobrecarga es la causa, no la cultura del equipo.</p></div>
+          </div>
+          <div class="sep"></div>
+          <h3 style="margin-bottom:10px">Comentarios anónimos <span class="sub">muestra</span></h3>
+          <div class="feed" style="padding-top:8px"><div class="miniava" style="background:#10B981">+</div><div class="ftext" style="font-size:12.5px">"Se entiende clarísimo hacia dónde vamos y por qué. Los OKRs ayudaron un montón."</div></div>
+          <div class="feed"><div class="miniava" style="background:#EF4444">−</div><div class="ftext" style="font-size:12.5px">"En Growth estamos corriendo detrás de todo. Falta foco y descanso."</div></div>
+          <div class="feed" style="border-bottom:0"><div class="miniava" style="background:#FBBF24">~</div><div class="ftext" style="font-size:12.5px">"Buen clima general, pero la coordinación con Producto a veces traba."</div></div>
+        </div>
+      </div>
+      <div class="scrolltip">El eNPS y sus drivers → alimentan la señal de "Clima" del Dashboard y explican los riesgos.</div>
+    </section>
+
+    <!-- ============ PAGE: MOTOR LEAN ============ -->
+    <section class="page" id="page-lean">
+      <div class="page-head">
+        <span class="slice-tag">SLICE 6 · Motor Lean / Experimentación</span>
+        <h2>Motor Lean — experimentos y aprendizaje</h2>
+        <p>Lo que hace a Norte distinto de "otro software de OKRs": cada objetivo se persigue con hipótesis y experimentos, no con supuestos. El ciclo construir → medir → aprender queda registrado, y cada aprendizaje —lo que funcionó y lo que no— se vuelve conocimiento de la organización.</p>
+      </div>
+
+      <div class="grid g4" style="margin-bottom:18px">
+        <div class="card kpi"><div class="lab">Experimentos activos</div><div class="val">7</div><div class="delta flat" style="font-weight:600">3 construyendo · 4 midiendo</div></div>
+        <div class="card kpi"><div class="lab">Aprendizajes validados</div><div class="val" style="color:var(--ok)">5</div><div class="delta up">▲ 2 vs. trimestre pasado</div></div>
+        <div class="card kpi"><div class="lab">Ciclo promedio (BML)</div><div class="val">12<span style="font-size:16px;color:var(--muted)"> días</span></div><div class="delta up">▼ 4 días (más rápido)</div></div>
+        <div class="card kpi"><div class="lab">Hipótesis en backlog</div><div class="val">5</div><div class="delta flat" style="font-weight:600">priorizadas por impacto</div></div>
+      </div>
+
+      <div class="grid g23" style="margin-bottom:18px">
+        <div class="card">
+          <h3>Ciclo Construir · Medir · Aprender <span class="sub">salud del motor</span></h3>
+          <div class="row" style="gap:24px;margin-top:10px">
+            <svg viewBox="0 0 240 210" style="width:210px;height:190px;flex-shrink:0">
+              <circle cx="120" cy="105" r="72" fill="none" stroke="#EEF0F5" stroke-width="10"/>
+              <path d="M120 33 A72 72 0 0 1 182 141" fill="none" stroke="#4F46E5" stroke-width="4" stroke-linecap="round" marker-end="url(#ah)"/>
+              <path d="M182 141 A72 72 0 0 1 58 141" fill="none" stroke="#0EA5E9" stroke-width="4" stroke-linecap="round" marker-end="url(#ah2)"/>
+              <path d="M58 141 A72 72 0 0 1 120 33" fill="none" stroke="#10B981" stroke-width="4" stroke-linecap="round" marker-end="url(#ah3)"/>
+              <defs>
+                <marker id="ah" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0 0L8 4L0 8z" fill="#4F46E5"/></marker>
+                <marker id="ah2" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0 0L8 4L0 8z" fill="#0EA5E9"/></marker>
+                <marker id="ah3" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0 0L8 4L0 8z" fill="#10B981"/></marker>
+              </defs>
+              <circle cx="120" cy="33" r="22" fill="#4F46E5"/><text x="120" y="38" font-size="16" font-weight="800" fill="#fff" text-anchor="middle">3</text>
+              <circle cx="182" cy="141" r="22" fill="#0EA5E9"/><text x="182" y="146" font-size="16" font-weight="800" fill="#fff" text-anchor="middle">4</text>
+              <circle cx="58" cy="141" r="22" fill="#10B981"/><text x="58" y="146" font-size="16" font-weight="800" fill="#fff" text-anchor="middle">5</text>
+              <text x="120" y="102" font-size="11" fill="#9AA0B4" text-anchor="middle">ciclo prom.</text>
+              <text x="120" y="120" font-size="15" font-weight="800" fill="#171532" text-anchor="middle">12 días</text>
+            </svg>
+            <div style="display:flex;flex-direction:column;gap:14px">
+              <div class="row"><span class="dot" style="background:#4F46E5;width:11px;height:11px"></span><div><b style="font-size:13.5px">Construir</b><div style="font-size:12px;color:var(--muted)">3 experimentos en diseño/desarrollo</div></div></div>
+              <div class="row"><span class="dot" style="background:#0EA5E9;width:11px;height:11px"></span><div><b style="font-size:13.5px">Medir</b><div style="font-size:12px;color:var(--muted)">4 corriendo con métrica y fecha de corte</div></div></div>
+              <div class="row"><span class="dot" style="background:#10B981;width:11px;height:11px"></span><div><b style="font-size:13.5px">Aprender</b><div style="font-size:12px;color:var(--muted)">5 cerrados este trimestre → decisión tomada</div></div></div>
+            </div>
+          </div>
+          <div class="sep"></div>
+          <div class="note">Cada experimento nace de un KR y se revisa en las retros (Slice 3). El aprendizaje vuelve a la estrategia: así se cierra el loop Lean.</div>
+        </div>
+
+        <div class="card" style="background:#FCFCFF">
+          <h3><span class="dot" style="background:var(--brand)"></span> Ritmo de aprendizaje</h3>
+          <p class="card-desc" style="margin-bottom:12px">Experimentos cerrados por trimestre y tasa de validación.</p>
+          <svg viewBox="0 0 320 130" style="width:100%;height:120px">
+            <g font-size="10" fill="#9AA0B4"><text x="0" y="20">8</text><text x="0" y="105">0</text></g>
+            <g transform="translate(28,0)">
+              <rect x="10" y="70" width="40" height="35" rx="4" fill="#C7CBF5"/><rect x="70" y="55" width="40" height="50" rx="4" fill="#A9AEF0"/><rect x="130" y="48" width="40" height="57" rx="4" fill="#8B90E8"/><rect x="190" y="35" width="40" height="70" rx="4" fill="#6366F1"/><rect x="250" y="25" width="40" height="80" rx="4" fill="#4F46E5"/>
+              <g font-size="10" fill="#6B7186" text-anchor="middle"><text x="30" y="120">Q3·25</text><text x="90" y="120">Q4·25</text><text x="150" y="120">Q1·26</text><text x="210" y="120">Q2·26</text><text x="270" y="120">Q3·26</text></g>
+            </g>
+          </svg>
+          <div class="sep"></div>
+          <div class="row" style="justify-content:space-between">
+            <div><div style="font-size:12px;color:var(--muted);font-weight:600">Tasa de validación</div><b style="font-size:20px;color:var(--ok)">58%</b><div style="font-size:11px;color:var(--muted)">saludable: refutar también es aprender</div></div>
+            <div><div style="font-size:12px;color:var(--muted);font-weight:600">Decisiones tomadas</div><b style="font-size:20px">5</b><div style="font-size:11px;color:var(--muted)">3 perseverar · 2 pivotar</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom:18px">
+        <h3>Tablero de experimentos <span class="sub">cada uno atado a un OKR</span></h3>
+        <div style="height:14px"></div>
+        <div class="kanban">
+          <div class="kcol">
+            <h4>💡 Hipótesis <span class="cnt">5</span></h4>
+            <div class="xcard"><div class="xh">Creemos que un check-in async sube la participación de OKRs</div><div class="xm"><span class="tag t-ghost">→ Cultura</span><span>backlog</span></div></div>
+            <div class="xcard"><div class="xh">Empaquetar por industria acelera el ciclo de venta</div><div class="xm"><span class="tag t-ghost">→ MRR</span><span>backlog</span></div></div>
+            <div class="xcard" style="border-style:dashed;box-shadow:none;color:var(--muted);text-align:center;font-size:11.5px;padding:9px">+ 3 hipótesis priorizadas</div>
+          </div>
+          <div class="kcol">
+            <h4>🔨 Construyendo <span class="cnt">3</span></h4>
+            <div class="xcard"><div class="xh">Onboarding in-app guiado sube la activación a &lt; 7 días</div><div class="xm"><span class="miniava" style="background:#0EA5E9;width:20px;height:20px">LM</span><span class="tag t-ghost">→ SaaS v2</span></div></div>
+            <div class="xcard"><div class="xh">Programa de referidos entre clientes</div><div class="xm"><span class="miniava" style="background:#F59E0B;width:20px;height:20px">SN</span><span class="tag t-ghost">→ MRR</span></div></div>
+            <div class="xcard"><div class="xh">Health score para anticipar churn</div><div class="xm"><span class="miniava" style="background:#10B981;width:20px;height:20px">PF</span><span class="tag t-ghost">→ Retención</span></div></div>
+          </div>
+          <div class="kcol">
+            <h4>📊 Midiendo <span class="cnt">4</span></h4>
+            <div class="xcard"><div class="xh">CS asignado en semana 1 reduce el churn</div><div class="xm"><span class="tag t-info">día 9/14</span><span class="tag t-ghost">→ Retención</span></div></div>
+            <div class="xcard"><div class="xh">Canal de partners convierte mejor que outbound</div><div class="xm"><span class="tag t-info">3 activos</span><span class="tag t-ghost">→ MRR</span></div></div>
+            <div class="xcard"><div class="xh">Retro quincenal sube el eNPS del team</div><div class="xm"><span class="tag t-info">2 ciclos</span><span class="tag t-ghost">→ Cultura</span></div></div>
+            <div class="xcard" style="border-style:dashed;box-shadow:none;color:var(--muted);text-align:center;font-size:11.5px;padding:9px">+ 1 en medición</div>
+          </div>
+          <div class="kcol">
+            <h4>✅ Aprendido <span class="cnt">5</span></h4>
+            <div class="xcard" style="border-left:3px solid var(--ok)"><div class="xh">Self-serve billing baja los tickets</div><div class="xm"><span class="tag t-ok">validado · −32%</span></div></div>
+            <div class="xcard" style="border-left:3px solid var(--ok)"><div class="xh">El onboarding humano importa más que el precio</div><div class="xm"><span class="tag t-ok">validado</span></div></div>
+            <div class="xcard" style="border-left:3px solid var(--risk)"><div class="xh">Outbound frío escala en pymes</div><div class="xm"><span class="tag t-risk">refutado · pivot</span></div></div>
+            <div class="xcard" style="border-left:3px solid var(--risk)"><div class="xh">Descuento agresivo reduce churn</div><div class="xm"><span class="tag t-risk">refutado</span></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><span class="dot" style="background:#8B5CF6"></span> Aprendizajes de la organización <span class="sub">el activo que queda</span></h3>
+        <p class="card-desc" style="margin-bottom:16px">Cada experimento cerrado deja una lección estructurada. Esto es lo que Notion o una planilla no capturan: memoria de por qué se decidió lo que se decidió.</p>
+        <div class="grid g3">
+          <div class="learn" style="border-left:3px solid var(--ok)">
+            <div class="row" style="margin-bottom:10px"><span class="tag t-ok">Perseverar</span><span class="tag t-ghost" style="margin-left:auto">→ Retención</span></div>
+            <div class="lstep"><b>Creíamos</b><span>que el precio era el principal driver de churn.</span></div>
+            <div class="lstep"><b>Probamos</b><span>onboarding humano vs. descuento, 6 semanas.</span></div>
+            <div class="lstep"><b>Aprendimos</b><span>que el acompañamiento pesa mucho más que el precio.</span></div>
+            <div class="lstep"><b>Decisión</b><span><b>Escalar</b> el onboarding asistido a toda la base.</span></div>
+          </div>
+          <div class="learn" style="border-left:3px solid var(--risk)">
+            <div class="row" style="margin-bottom:10px"><span class="tag t-risk">Pivotar</span><span class="tag t-ghost" style="margin-left:auto">→ MRR</span></div>
+            <div class="lstep"><b>Creíamos</b><span>que el outbound frío escalaba en pymes.</span></div>
+            <div class="lstep"><b>Probamos</b><span>una campaña outbound durante 6 semanas.</span></div>
+            <div class="lstep"><b>Aprendimos</b><span>que el CAC es 2.4x del target: no cierra.</span></div>
+            <div class="lstep"><b>Decisión</b><span><b>Pivotar</b> al canal de partners.</span></div>
+          </div>
+          <div class="learn" style="border-left:3px solid var(--ok)">
+            <div class="row" style="margin-bottom:10px"><span class="tag t-ok">Perseverar</span><span class="tag t-ghost" style="margin-left:auto">→ SaaS v2</span></div>
+            <div class="lstep"><b>Creíamos</b><span>que el volumen de tickets era inevitable.</span></div>
+            <div class="lstep"><b>Probamos</b><span>self-serve billing en un segmento.</span></div>
+            <div class="lstep"><b>Aprendimos</b><span>que bajó los tickets un 32% sin afectar CSAT.</span></div>
+            <div class="lstep"><b>Decisión</b><span><b>Extender</b> self-serve a más flujos del producto.</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="scrolltip">Slice 6 · El loop Lean cierra la cascada: los aprendizajes vuelven a alimentar la estrategia (Slice 0).</div>
+    </section>
+
+    <!-- ============ PAGE: SKILLS & STAFFING ============ -->
+    <section class="page" id="page-skills">
+      <div class="page-head">
+        <span class="slice-tag">SLICE 7 · Skills & Staffing</span>
+        <h2>Matriz de skills y staffing inteligente</h2>
+        <p>El lenguaje común que conecta personas ↔ proyectos ↔ carrera. Saber quién sabe qué (y a qué nivel) permite armar equipos por competencia real, no por quién está libre — y es lo que los competidores de RRHH no resuelven bien.</p>
+      </div>
+
+      <div class="grid g4" style="margin-bottom:18px">
+        <div class="card kpi"><div class="lab">Skills mapeadas</div><div class="val">24</div><div class="delta flat" style="font-weight:600">en 6 áreas</div></div>
+        <div class="card kpi"><div class="lab">Cobertura de skills críticas</div><div class="val">78%</div><div class="delta up">▲ 6 pts</div></div>
+        <div class="card kpi"><div class="lab">Brechas abiertas</div><div class="val" style="color:var(--warn)">2</div><div class="delta flat" style="font-weight:600">Data · Diseño</div></div>
+        <div class="card kpi"><div class="lab">Con plan de desarrollo</div><div class="val">31<span style="font-size:16px;color:var(--muted)">/48</span></div><div class="delta up">65% del equipo</div></div>
+      </div>
+
+      <div class="card" style="margin-bottom:18px">
+        <div class="row" style="margin-bottom:14px"><h3 style="margin:0">Matriz de competencias</h3>
+          <div style="margin-left:auto;display:flex;gap:6px"><span class="chip on">Todos</span><span class="chip">Producto</span><span class="chip">Growth</span><span class="chip">CS</span><span class="chip">Diseño</span></div>
+        </div>
+        <table class="smatrix">
+          <thead><tr><th class="nm">Persona</th><th>Discovery</th><th>Data</th><th>Growth</th><th>Cust. Ops</th><th>Diseño</th><th>Ing.</th></tr></thead>
+          <tbody>
+            <tr><td class="nm">Julia P. <span style="color:var(--muted);font-weight:500">· Prod</span></td>
+              <td><div class="scell" style="background:#4F46E5;color:#fff">4</div></td><td><div class="scell" style="background:#7C82E6;color:#fff">3</div></td><td><div class="scell" style="background:#DEE0FB;color:#4338CA">1</div></td><td><div class="scell" style="background:#B3B8F0;color:#fff">2</div></td><td><div class="scell" style="background:#B3B8F0;color:#fff">2</div></td><td><div class="scell" style="background:#B3B8F0;color:#fff">2</div></td></tr>
+            <tr><td class="nm">Andrés R. <span style="color:var(--muted);font-weight:500">· Prod</span></td>
+              <td><div class="scell" style="background:#B3B8F0;color:#fff">2</div></td><td><div class="scell" style="background:#B3B8F0;color:#fff">2</div></td><td><div class="scell" style="background:#EEF0F5;color:#A7ADBE">·</div></td><td><div class="scell" style="background:#DEE0FB;color:#4338CA">1</div></td><td><div class="scell" style="background:#DEE0FB;color:#4338CA">1</div></td><td><div class="scell" style="background:#4F46E5;color:#fff">4</div></td></tr>
+            <tr><td class="nm">Sofía N. <span style="color:var(--muted);font-weight:500">· Growth</span></td>
+              <td><div class="scell" style="background:#B3B8F0;color:#fff">2</div></td><td><div class="scell" style="background:#7C82E6;color:#fff">3</div></td><td><div class="scell" style="background:#4F46E5;color:#fff">4</div></td><td><div class="scell" style="background:#B3B8F0;color:#fff">2</div></td><td><div class="scell" style="background:#DEE0FB;color:#4338CA">1</div></td><td><div class="scell" style="background:#DEE0FB;color:#4338CA">1</div></td></tr>
+            <tr><td class="nm">Valentina C. <span style="color:var(--muted);font-weight:500">· Growth</span></td>
+              <td><div class="scell" style="background:#DEE0FB;color:#4338CA">1</div></td><td><div class="scell" style="background:#B3B8F0;color:#fff">2</div></td><td><div class="scell" style="background:#7C82E6;color:#fff">3</div></td><td><div class="scell" style="background:#B3B8F0;color:#fff">2</div></td><td><div class="scell" style="background:#DEE0FB;color:#4338CA">1</div></td><td><div class="scell" style="background:#EEF0F5;color:#A7ADBE">·</div></td></tr>
+            <tr><td class="nm">Rocío B. <span style="color:var(--muted);font-weight:500">· Growth</span></td>
+              <td><div class="scell" style="background:#DEE0FB;color:#4338CA">1</div></td><td><div class="scell" style="background:#B3B8F0;color:#fff">2</div></td><td><div class="scell" style="background:#B3B8F0;color:#fff">2</div></td><td><div class="scell" style="background:#7C82E6;color:#fff">3</div></td><td><div class="scell" style="background:#EEF0F5;color:#A7ADBE">·</div></td><td><div class="scell" style="background:#DEE0FB;color:#4338CA">1</div></td></tr>
+            <tr><td class="nm">Paula F. <span style="color:var(--muted);font-weight:500">· CS</span></td>
+              <td><div class="scell" style="background:#B3B8F0;color:#fff">2</div></td><td><div class="scell" style="background:#B3B8F0;color:#fff">2</div></td><td><div class="scell" style="background:#DEE0FB;color:#4338CA">1</div></td><td><div class="scell" style="background:#4F46E5;color:#fff">4</div></td><td><div class="scell" style="background:#DEE0FB;color:#4338CA">1</div></td><td><div class="scell" style="background:#EEF0F5;color:#A7ADBE">·</div></td></tr>
+            <tr><td class="nm">Tomás S. <span style="color:var(--muted);font-weight:500">· Diseño</span></td>
+              <td><div class="scell" style="background:#7C82E6;color:#fff">3</div></td><td><div class="scell" style="background:#DEE0FB;color:#4338CA">1</div></td><td><div class="scell" style="background:#DEE0FB;color:#4338CA">1</div></td><td><div class="scell" style="background:#DEE0FB;color:#4338CA">1</div></td><td><div class="scell" style="background:#4F46E5;color:#fff">4</div></td><td><div class="scell" style="background:#B3B8F0;color:#fff">2</div></td></tr>
+          </tbody>
+        </table>
+        <div class="legend" style="margin-top:14px"><span>Nivel:</span><span><i style="background:#EEF0F5"></i>0 sin exp.</span><span><i style="background:#DEE0FB"></i>1 básico</span><span><i style="background:#B3B8F0"></i>2 competente</span><span><i style="background:#7C82E6"></i>3 avanzado</span><span><i style="background:#4F46E5"></i>4 experto</span></div>
+      </div>
+
+      <div class="grid g23">
+        <div class="card">
+          <h3><span class="dot" style="background:var(--brand)"></span> Staffing inteligente <span class="sub">quién encaja mejor</span></h3>
+          <p class="card-desc" style="margin-bottom:14px">Norte cruza skills + seniority + disponibilidad + objetivo para sugerir a quién asignar. Resuelve el KR de churn que venía sin dueño.</p>
+          <div style="background:#FEF6F6;border:1px solid #F8D4D4;border-radius:11px;padding:13px;margin-bottom:14px">
+            <div class="row"><span class="tag t-risk">Necesidad abierta · KR sin owner</span><span style="margin-left:auto;font-size:11px;color:var(--muted)">hace 7 días</span></div>
+            <div style="font-size:14px;font-weight:700;margin-top:8px">Bajar el churn mensual a &lt; 3%</div>
+            <div style="font-size:12px;color:var(--muted);margin-top:4px">Requiere: <b>Customer Ops</b> (avanzado) + <b>Data</b> (competente) + margen de capacidad</div>
+          </div>
+          <div style="font-size:11.5px;font-weight:700;color:var(--muted);margin-bottom:8px">SUGERENCIAS ORDENADAS POR MATCH</div>
+          <div class="stf" style="border-color:#C7EAD9;background:#F4FBF7">
+            <div class="row"><div class="miniava" style="background:#0EA5E9">RB</div><div><b style="font-size:13px">Rocío B.</b> <span style="font-size:11.5px;color:var(--muted)">· Growth</span><div style="font-size:11px;color:var(--muted)">Cust. Ops 3 · Data 2 · disponible 6%</div></div><div style="margin-left:auto;text-align:right"><b style="color:var(--ok);font-size:16px">88%</b><div><span class="tag t-ok">Recomendada</span></div></div></div>
+          </div>
+          <div class="stf">
+            <div class="row"><div class="miniava" style="background:#10B981">PF</div><div><b style="font-size:13px">Paula F.</b> <span style="font-size:11.5px;color:var(--muted)">· CS</span><div style="font-size:11px;color:var(--muted)">Cust. Ops 4 · Data 2 · <span style="color:var(--risk)">sin margen (0%)</span></div></div><div style="margin-left:auto;text-align:right"><b style="font-size:16px">82%</b><div><span class="tag t-warn">Sobrecargada</span></div></div></div>
+          </div>
+          <div class="stf" style="margin-bottom:0">
+            <div class="row"><div class="miniava" style="background:#0EA5E9">MK</div><div><b style="font-size:13px">Martín K.</b> <span style="font-size:11.5px;color:var(--muted)">· CS</span><div style="font-size:11px;color:var(--muted)">Cust. Ops 3 · Data 1 · disponible 20%</div></div><div style="margin-left:auto;text-align:right"><b style="font-size:16px">74%</b><div><span class="tag t-ghost">Alternativa</span></div></div></div>
+          </div>
+          <button class="btn primary" style="margin-top:14px;width:100%;justify-content:center">Asignar owner al KR</button>
+        </div>
+
+        <div class="card" style="background:#FCFCFF">
+          <h3><span class="dot" style="background:var(--warn)"></span> Brechas de skills críticas</h3>
+          <p class="card-desc" style="margin-bottom:14px">Dónde la demanda de los OKRs supera a la capacidad instalada.</p>
+          <div class="alert a-risk">
+            <div class="aic" style="background:var(--risk-soft)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2.2"><path d="M3 3v18h18"/><path d="M7 14l3-4 3 3 4-6"/></svg></div>
+            <div><b>Data / Analytics: nadie en nivel experto</b><p>3 KRs dependen de datos y el máximo es nivel 3. Riesgo de cuello de botella. Acción: desarrollar a Sofía/Julia o sumar 1 perfil.</p></div>
+          </div>
+          <div class="alert a-warn">
+            <div class="aic" style="background:var(--warn-soft)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2.2"><path d="M12 2 2 7l10 5 10-5z"/><path d="M2 17l10 5 10-5"/></svg></div>
+            <div><b>Diseño depende de una sola persona</b><p>Solo Tomás está en nivel experto. "Bus factor" alto si se ausenta. Acción: plan de desarrollo para un segundo perfil.</p></div>
+          </div>
+          <div class="alert" style="background:#F1F7FF;border-color:#CFE6FA">
+            <div class="aic" style="background:var(--info-soft)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0EA5E9" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg></div>
+            <div><b>Liderazgo: pipeline sano</b><p>Andrés R. y Martín K. avanzan hacia roles de liderazgo. Sin riesgo.</p></div>
+          </div>
+          <div class="sep"></div>
+          <div class="note">Cada plan de carrera (Slice 4) apunta a subir niveles concretos de esta matriz: skills, staffing y crecimiento son la misma data vista distinto.</div>
+        </div>
+      </div>
+      <div class="scrolltip">Slice 7 · Skills alimenta el staffing de Equipos (S2), la carrera (S4) y las decisiones del líder.</div>
+    </section>
+
+    <!-- ============ PAGE: LEADER (vista líder de team) ============ -->
+    <section class="page" id="page-leader">
+      <div class="page-head">
+        <span class="slice-tag" style="color:#B45309;background:#FEF4E2">VISTA LÍDER · Team Growth</span>
+        <h2>Mi equipo — Growth</h2>
+        <p>El mismo sistema, pero acotado a lo que Sofía puede accionar: su objetivo, su gente, el clima de su equipo y las decisiones que tiene enfrente esta semana. La Dirección ve el bosque; el líder ve —y actúa sobre— su árbol.</p>
+      </div>
+
+      <div class="banner" style="background:linear-gradient(110deg,#B45309,#EF4444);margin-bottom:18px">
+        <div class="bico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 9v4M12 17h.01M10.3 3.9 2.4 18a1.8 1.8 0 0 0 1.6 2.7h16a1.8 1.8 0 0 0 1.6-2.7L13.7 3.9a1.8 1.8 0 0 0-3.4 0z"/></svg></div>
+        <div><h3>Semana tensa, Sofía</h3><p>Tu team está al 118% de capacidad y el clima cayó a +9. Hay 1 KR sin dueño frenando tu objetivo. Tres decisiones te esperan.</p></div>
+        <div class="bnum"><b>3</b><small>acciones para vos</small></div>
+      </div>
+
+      <div class="grid g4" style="margin-bottom:18px">
+        <div class="card kpi"><div class="lab">eNPS de mi equipo</div><div class="val" style="color:var(--risk)">+9</div><div class="delta down">▼ 14 pts vs. Q2</div></div>
+        <div class="card kpi"><div class="lab">Capacidad del team</div><div class="val" style="color:var(--risk)">118%</div><div class="delta down">sobrecarga</div></div>
+        <div class="card kpi"><div class="lab">Avance de mi objetivo</div><div class="val" style="color:var(--warn)">51%</div><div class="delta flat" style="font-weight:600">ritmo esperado 62%</div></div>
+        <div class="card kpi"><div class="lab">Feedback pendiente</div><div class="val">5</div><div class="delta flat" style="font-weight:600">2 x 1:1 esta semana</div></div>
+      </div>
+
+      <div class="grid g23">
+        <div class="card">
+          <h3>Mi objetivo del trimestre <span class="sub">del que soy owner</span></h3>
+          <div style="height:8px"></div>
+          <div class="obj" style="border-color:#F8D9B4;background:#FFFDF9">
+            <div class="otop">
+              <div class="oico" style="background:var(--warn-soft);color:var(--warn)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 14l3-4 3 3 4-6"/></svg></div>
+              <div><h4>Crecer el MRR un 40% en LATAM</h4><div class="ometa"><span>🔗 1 proyecto activo</span><span>💬 Check-in: hace 5 días</span></div></div>
+              <div class="opct"><b>51%</b><br><span class="tag t-warn">En riesgo</span></div>
+            </div>
+            <div class="kr"><div class="miniava" style="background:#F59E0B">SN</div><div class="kname">Sumar 60 nuevas pymes cliente</div><div class="kbar bar warn"><i style="width:48%"></i></div><div class="kval">29 / 60</div></div>
+            <div class="kr" style="background:#FEF6F6;border-radius:8px;margin:0 -6px;padding:11px 6px"><div class="miniava" style="background:#EF4444">?</div><div class="kname"><b>Bajar el churn mensual a &lt; 3%</b> <span class="tag t-risk">sin owner</span></div><div class="kbar bar risk"><i style="width:40%"></i></div><div class="kval">4.6%</div></div>
+            <div class="kr"><div class="miniava" style="background:#6366F1">VC</div><div class="kname">Activar canal de partners (5 firmas)</div><div class="kbar bar warn"><i style="width:60%"></i></div><div class="kval">3 / 5</div></div>
+          </div>
+
+          <div class="sep"></div>
+          <h3 style="margin-bottom:6px">Mi gente <span class="sub">8 personas · carga individual</span></h3>
+          <p class="card-desc" style="margin-bottom:6px">Dos personas están por encima del 100%. Reequilibrar es tu palanca más directa.</p>
+          <div class="workrow"><div class="miniava" style="background:#EF4444">DT</div><div style="width:120px;font-size:13px;font-weight:600">Diego T.</div><div class="bar risk" style="flex:1"><i style="width:100%"></i></div><b style="font-size:12px;width:42px;text-align:right;color:var(--risk)">132%</b></div>
+          <div class="workrow"><div class="miniava" style="background:#6366F1">VC</div><div style="width:120px;font-size:13px;font-weight:600">Valen C.</div><div class="bar risk" style="flex:1"><i style="width:100%"></i></div><b style="font-size:12px;width:42px;text-align:right;color:var(--risk)">121%</b></div>
+          <div class="workrow"><div class="miniava" style="background:#0EA5E9">RB</div><div style="width:120px;font-size:13px;font-weight:600">Rocío B.</div><div class="bar warn" style="flex:1"><i style="width:94%"></i></div><b style="font-size:12px;width:42px;text-align:right;color:var(--warn)">94%</b></div>
+          <div class="workrow"><div class="miniava" style="background:#10B981">FM</div><div style="width:120px;font-size:13px;font-weight:600">Franco M.</div><div class="bar ok" style="flex:1"><i style="width:72%"></i></div><b style="font-size:12px;width:42px;text-align:right;color:var(--ink-2)">72%</b></div>
+        </div>
+
+        <div class="card" style="background:#FCFCFF">
+          <h3><span class="dot" style="background:var(--risk)"></span> Acciones sugeridas para vos</h3>
+          <p class="card-desc" style="margin-bottom:14px">Priorizadas por impacto en tu objetivo y tu equipo.</p>
+          <div class="alert a-risk">
+            <div class="aic" style="background:var(--risk-soft)"><b style="color:#B42318;font-size:12px">1</b></div>
+            <div><b>Asignar dueño al KR de churn</b><p>Lleva 7 días sin owner y bloquea tu objetivo. Sugerencia: Rocío B. (94%, con espacio).</p></div>
+          </div>
+          <div class="alert a-risk">
+            <div class="aic" style="background:var(--risk-soft)"><b style="color:#B42318;font-size:12px">2</b></div>
+            <div><b>Reequilibrar carga: soltar 1 de 3 iniciativas</b><p>Diego y Valen están sobre 120%. Es la causa directa del eNPS +9.</p></div>
+          </div>
+          <div class="alert a-warn">
+            <div class="aic" style="background:var(--warn-soft)"><b style="color:#9A6408;font-size:12px">3</b></div>
+            <div><b>Dar feedback a Valen C.</b><p>Ella misma pidió foco en priorización. Tenés un 1:1 agendado para el jueves.</p></div>
+          </div>
+
+          <div class="sep"></div>
+          <h3 style="margin-bottom:8px"><span class="dot" style="background:#8B5CF6"></span> Clima de mi equipo</h3>
+          <div class="row" style="margin-bottom:10px"><div style="font-size:32px;font-weight:800;color:var(--risk);line-height:1">+9</div><div style="font-size:12px;color:var(--muted)">eNPS de Growth<br><b style="color:var(--risk)">crítico</b> · driver principal: <b>carga de trabajo (−1.2)</b></div></div>
+          <div class="feed" style="padding:10px 0"><div class="miniava" style="background:#EF4444">−</div><div class="ftext" style="font-size:12.5px">"Estamos corriendo detrás de todo. Falta foco y descanso."</div></div>
+          <div class="feed" style="border-bottom:0;padding:10px 0"><div class="miniava" style="background:#FBBF24">~</div><div class="ftext" style="font-size:12.5px">"Me gusta el objetivo, pero somos pocos para tanto frente abierto."</div></div>
+          <div class="note" style="margin-top:10px">Norte conecta tu eNPS con la capacidad real: no es un problema de cultura, es de carga.</div>
+        </div>
+      </div>
+      <div class="scrolltip">Misma data que ve Dirección, pero filtrada a tu team y traducida a decisiones accionables.</div>
+    </section>
+
+    <!-- ============ PAGE: COLABORADOR ============ -->
+    <section class="page" id="page-colab">
+      <div class="page-head">
+        <span class="slice-tag" style="color:#5B21B6;background:#F1EEFE">VISTA COLABORADOR · Valentina C.</span>
+        <h2>Mi Norte</h2>
+        <p>El sistema desde los ojos de quien ejecuta: qué se espera de mí, por qué mi trabajo importa (hacia dónde sube), el feedback que recibo y cómo crezco. Todo en un lugar, sin tener que pedirle contexto a nadie.</p>
+      </div>
+
+      <div class="banner" style="background:linear-gradient(110deg,#4C1D95,#6D28D9);margin-bottom:18px">
+        <div class="bico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="8" r="3.4"/><path d="M6 20a6 6 0 0 1 12 0"/></svg></div>
+        <div><h3>Tenés bastante en el plato, Valen</h3><p>Estás al 121% de capacidad. Sofía dejó feedback sobre priorización y tenés un 1:1 el jueves. Falta tu pulso de la semana.</p></div>
+        <div class="bnum"><b>121%</b><small>tu carga actual</small></div>
+      </div>
+
+      <div class="grid g4" style="margin-bottom:18px">
+        <div class="card kpi"><div class="lab">Avance de mi KR</div><div class="val" style="color:var(--warn)">60%</div><div class="delta flat" style="font-weight:600">3 de 5 partners</div></div>
+        <div class="card kpi"><div class="lab">Mi carga</div><div class="val" style="color:var(--risk)">121%</div><div class="delta down">sobre lo saludable</div></div>
+        <div class="card kpi"><div class="lab">Feedback este mes</div><div class="val">4</div><div class="delta up">▲ 1 nuevo sin leer</div></div>
+        <div class="card kpi"><div class="lab">Mi crecimiento</div><div class="val">58%</div><div class="delta flat" style="font-weight:600">hacia Especialista Sr</div></div>
+      </div>
+
+      <div class="grid g23">
+        <div class="card">
+          <h3>Mi objetivo y por qué importa <span class="sub">alineamiento</span></h3>
+          <p class="card-desc" style="margin-bottom:16px">Tu trabajo no está suelto: subí por la escalera para ver a qué contribuís.</p>
+          <div>
+            <div style="border:2px solid var(--brand);background:var(--brand-soft);border-radius:12px;padding:14px"><div class="row"><span style="font-size:10.5px;font-weight:700;color:var(--brand)">MI KEY RESULT</span><span class="tag t-warn" style="margin-left:auto">60%</span></div><div style="font-size:14px;font-weight:700;margin-top:4px">Activar el canal de partners · 3 de 5 firmas</div><div class="bar warn" style="margin-top:10px"><i style="width:60%"></i></div></div>
+            <div class="ladder-up"></div>
+            <div style="border:1px solid var(--line);border-radius:12px;padding:13px"><div class="row"><span style="font-size:10.5px;font-weight:700;color:var(--muted)">OBJETIVO DE EQUIPO · owner Sofía N.</span><span class="tag t-warn" style="margin-left:auto">51%</span></div><div style="font-size:13.5px;font-weight:600;margin-top:3px">Crecer el MRR un 40% en LATAM</div></div>
+            <div class="ladder-up"></div>
+            <div style="border-radius:12px;padding:13px;background:linear-gradient(135deg,#5B21B6,#8B5CF6);color:#fff"><div style="font-size:10.5px;font-weight:700;color:#E9D5FF">★ NORTH STAR DE LA EMPRESA</div><div style="font-size:13.5px;font-weight:600;margin-top:3px">Pymes activas que renuevan y crecen</div></div>
+          </div>
+          <div class="sep"></div>
+          <h3 style="margin-bottom:6px">Mi semana</h3>
+          <div class="workrow" style="border-top:0"><span class="dot" style="background:var(--brand)"></span><div style="flex:1;font-size:13px">Cerrar 2 firmas partner pendientes</div><span class="tag t-info">en curso</span></div>
+          <div class="workrow"><span class="dot" style="background:var(--warn)"></span><div style="flex:1;font-size:13px">Medir conversión del canal (experimento)</div><span class="tag t-warn">midiendo</span></div>
+          <div class="workrow"><span class="dot" style="background:var(--muted)"></span><div style="flex:1;font-size:13px">Preparar mi 1:1 con Sofía</div><span class="tag t-ghost">jueves</span></div>
+          <button class="btn primary" style="margin-top:14px;width:100%;justify-content:center">✓ Cargar mi check-in semanal</button>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <div class="card" style="background:#FCFCFF">
+            <h3><span class="dot" style="background:var(--ok)"></span> Mi crecimiento</h3>
+            <div class="row" style="margin:12px 0"><div class="miniava" style="background:#6366F1;width:34px;height:34px;font-size:12px">VC</div><div><b style="font-size:13.5px">Especialista Semi-Sr → Sr</b><div style="font-size:11.5px;color:var(--muted)">Growth · plan activo</div></div><b style="margin-left:auto;color:var(--ok)">58%</b></div>
+            <div class="bar ok"><i style="width:58%"></i></div>
+            <div style="font-size:11.5px;color:var(--muted);margin:10px 0 4px;font-weight:700">MIS SKILLS</div>
+            <div style="display:flex;flex-direction:column;gap:7px">
+              <div class="row"><span style="width:100px;font-size:12px">Partnerships</span><div class="bar ok" style="flex:1"><i style="width:85%"></i></div></div>
+              <div class="row"><span style="width:100px;font-size:12px">Analytics</span><div class="bar" style="flex:1"><i style="width:60%"></i></div></div>
+              <div class="row"><span style="width:100px;font-size:12px">Priorización</span><div class="bar warn" style="flex:1"><i style="width:35%"></i></div></div>
+            </div>
+            <div class="note" style="margin-top:10px">Próximo hito: liderar el canal de partners end-to-end. Gap a trabajar: priorización.</div>
+          </div>
+          <div class="card" style="background:linear-gradient(135deg,#F1EEFE,#F7F0FF);border-color:#E3E4FB">
+            <h3><span class="dot" style="background:#8B5CF6"></span> Mi pulso · eNPS</h3>
+            <p style="font-size:13px;font-weight:600;margin:10px 0 12px">¿Qué tan probable es que recomiendes trabajar en Lumen?</p>
+            <div style="display:flex;gap:5px;flex-wrap:wrap">
+              <span style="width:30px;height:30px;border-radius:7px;background:#fff;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:var(--muted)">0</span>
+              <span style="width:30px;height:30px;border-radius:7px;background:#fff;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:var(--muted)">…</span>
+              <span style="width:30px;height:30px;border-radius:7px;background:#fff;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:var(--muted)">5</span>
+              <span style="width:30px;height:30px;border-radius:7px;background:#8B5CF6;border:1px solid #8B5CF6;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#fff;box-shadow:0 4px 10px rgba(139,92,246,.4)">6</span>
+              <span style="width:30px;height:30px;border-radius:7px;background:#fff;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:var(--muted)">…</span>
+              <span style="width:30px;height:30px;border-radius:7px;background:#fff;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:var(--muted)">10</span>
+            </div>
+            <div class="note" style="margin-top:12px">Tu respuesta es <b>anónima</b>. Sofía ve el número del equipo, nunca el tuyo.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid g2" style="margin-top:16px">
+        <div class="card">
+          <h3>Feedback para mí <span class="sub">1 nuevo</span></h3>
+          <div class="feed" style="padding-top:12px"><div class="miniava" style="background:#F59E0B">SN</div><div style="flex:1"><div class="ftext"><b>Sofía N.</b>: "El pipeline de partners avanza bien, pero te veo dispersa entre 3 frentes. Elijamos juntas cuál soltar para que puedas brillar en partners."</div><div class="fmeta"><span class="tag t-warn">💡 A mejorar: Priorización</span><span class="tag t-ghost">Proyecto: Expansión LATAM</span><span>hace 1 día</span></div></div></div>
+          <div class="feed kudos" style="border-radius:11px;padding:14px;border-bottom:0"><div class="miniava" style="background:#8B5CF6">★</div><div style="flex:1"><div class="ftext"><b>Kudo</b> de Diego T.: "Gracias por cubrir la demo con el partner nuevo, la manejaste genial."</div><div class="fmeta"><span class="tag t-ok">Valor: Ownership</span></div></div></div>
+          <button class="btn" style="margin-top:12px;width:100%;justify-content:center">Pedir o dar feedback</button>
+        </div>
+
+        <div class="card" style="background:#FCFCFF">
+          <h3><span class="dot" style="background:var(--brand)"></span> Mi experimento activo <span class="sub">Motor Lean</span></h3>
+          <p class="card-desc" style="margin-bottom:12px">Sos owner de una hipótesis en curso. Así aportás al aprendizaje del equipo.</p>
+          <div style="border:1px solid var(--line);border-radius:11px;padding:14px;background:#fff">
+            <div class="row"><span class="tag t-info">📊 Midiendo · día 8/14</span><span class="tag t-ghost" style="margin-left:auto">→ MRR</span></div>
+            <div style="font-size:14px;font-weight:700;margin-top:10px">Creemos que el canal de partners convierte mejor que el outbound frío</div>
+            <div style="font-size:12px;color:var(--muted);margin-top:8px">Métrica: tasa de conversión partner vs. outbound · Corte: en 6 días</div>
+            <div class="bar" style="margin-top:12px"><i style="width:57%"></i></div>
+          </div>
+          <div class="note" style="margin-top:12px">Cuando cierre, tu aprendizaje queda registrado y sube a la estrategia (Slice 0 → Slice 6).</div>
+        </div>
+      </div>
+      <div class="scrolltip">El mismo sistema, mi porción: entiendo qué se espera, por qué importa, y puedo actuar sin fricción.</div>
+    </section>
+
+  </div>
+</div>
+
+<script>
+  const items = document.querySelectorAll('.nav-item');
+  const pages = document.querySelectorAll('.page');
+  const titles = {
+    dash:['Inicio','Dashboard ejecutivo'],
+    north:['Fundamento','Norte estratégico'],
+    okr:['Slice 1','OKRs vivos'],
+    teams:['Slice 2','Equipos & Proyectos'],
+    rituals:['Slice 3','Rituales de alineamiento'],
+    feedback:['Slice 4','Feedback & Carrera'],
+    enps:['Slice 5','Clima & eNPS'],
+    lean:['Slice 6','Motor Lean · Experimentos'],
+    skills:['Slice 7','Skills & Staffing']
+  };
+  const segBtns = document.querySelectorAll('.seg button');
+  const navLabel = document.getElementById('navLabel');
+  const sideAvatar = document.getElementById('sideAvatar');
+  const sideWho = document.getElementById('sideWho');
+
+  function toDirIdentity(){
+    document.body.classList.remove('lead-mode','colab-mode');
+    navLabel.textContent = 'Vista Dirección';
+    sideAvatar.textContent = 'MG';
+    sideAvatar.style.background = 'linear-gradient(135deg,#F59E0B,#EF4444)';
+    sideWho.innerHTML = 'Maxi Gómez<small>CEO · Lumen Studio</small>';
+    segBtns.forEach(b=>b.classList.toggle('on', b.dataset.role==='dir'));
+  }
+  function toLeadIdentity(){
+    document.body.classList.add('lead-mode');
+    document.body.classList.remove('colab-mode');
+    navLabel.textContent = 'Vista Líder';
+    sideAvatar.textContent = 'SN';
+    sideAvatar.style.background = 'linear-gradient(135deg,#F59E0B,#EF4444)';
+    sideWho.innerHTML = 'Sofía N.<small>Líder · Team Growth</small>';
+    segBtns.forEach(b=>b.classList.toggle('on', b.dataset.role==='lead'));
+  }
+  function toColabIdentity(){
+    document.body.classList.add('colab-mode');
+    document.body.classList.remove('lead-mode');
+    navLabel.textContent = 'Vista Colaborador';
+    sideAvatar.textContent = 'VC';
+    sideAvatar.style.background = 'linear-gradient(135deg,#6366F1,#8B5CF6)';
+    sideWho.innerHTML = 'Valentina C.<small>Growth · Especialista</small>';
+    segBtns.forEach(b=>b.classList.toggle('on', b.dataset.role==='colab'));
+  }
+  function showPage(p, t0, t1){
+    pages.forEach(pg=>pg.classList.remove('show'));
+    document.getElementById('page-'+p).classList.add('show');
+    document.getElementById('crumb').textContent = t0;
+    document.getElementById('ptitle').textContent = t1;
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+
+  items.forEach(it=>{
+    it.addEventListener('click',()=>{
+      const p = it.dataset.page;
+      toDirIdentity();
+      items.forEach(x=>x.classList.remove('active'));
+      it.classList.add('active');
+      showPage(p, titles[p][0], titles[p][1]);
+    });
+  });
+
+  segBtns.forEach(b=>{
+    b.addEventListener('click',()=>{
+      const r = b.dataset.role;
+      items.forEach(x=>x.classList.remove('active'));
+      if(r==='lead'){
+        toLeadIdentity();
+        showPage('leader','Vista Líder','Mi equipo · Growth');
+      } else if(r==='colab'){
+        toColabIdentity();
+        showPage('colab','Vista Colaborador','Mi Norte · Valentina C.');
+      } else {
+        toDirIdentity();
+        items[0].classList.add('active');
+        showPage('dash', titles.dash[0], titles.dash[1]);
+      }
+    });
+  });
+</script>
+</body>
+</html>

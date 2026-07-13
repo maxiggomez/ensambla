@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Norte · Onboarding</title>
+<style>
+  :root{
+    --ink:#0F1222; --ink-2:#3A3F52; --muted:#6B7186; --line:#E7E9F0;
+    --bg:#F6F7FB; --card:#FFFFFF; --deep:#171532;
+    --brand:#4F46E5; --brand-2:#6366F1; --brand-soft:#EEF0FE;
+    --ok:#10B981; --ok-soft:#E6F7F0; --warn:#F59E0B; --warn-soft:#FEF4E2;
+    --risk:#EF4444; --risk-soft:#FDECEC; --info:#0EA5E9; --info-soft:#E5F5FD;
+    --r:14px; --sh:0 1px 2px rgba(16,18,34,.04),0 8px 24px rgba(16,18,34,.05);
+    --sh-lg:0 12px 40px rgba(16,18,34,.10);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;color:var(--ink);
+    background:radial-gradient(1200px 600px at 80% -10%,#ECEBFF 0%,rgba(236,235,255,0) 60%),var(--bg);
+    -webkit-font-smoothing:antialiased;min-height:100vh}
+  .wrap{max-width:1120px;margin:0 auto;padding:26px 26px 48px}
+  /* header */
+  .ohead{display:flex;align-items:center;gap:12px;margin-bottom:22px}
+  .logo{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--brand),#8B5CF6);position:relative;flex-shrink:0}
+  .logo:after{content:"";position:absolute;inset:0;margin:auto;width:9px;height:9px;border-radius:50%;background:#fff;box-shadow:0 0 0 4px rgba(255,255,255,.25)}
+  .ohead b{font-size:18px}
+  .ohead .skip{margin-left:auto;font-size:12.5px;color:var(--muted);font-weight:600;cursor:pointer;text-decoration:none}
+  .ohead .skip:hover{color:var(--ink)}
+  /* progress spine */
+  .obar{display:flex;align-items:center;gap:0;margin-bottom:26px}
+  .ostep-dot{display:flex;align-items:center;gap:10px;flex:1}
+  .ostep-dot:last-child{flex:0}
+  .num{width:28px;height:28px;border-radius:50%;background:#fff;border:2px solid var(--line);color:var(--muted);
+    display:flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:700;flex-shrink:0;transition:.2s}
+  .ostep-dot .lab{font-size:12.5px;font-weight:600;color:var(--muted);white-space:nowrap;transition:.2s}
+  .ostep-dot .line{flex:1;height:2px;background:var(--line);margin:0 12px;border-radius:2px;transition:.2s}
+  .ostep-dot.active .num{background:var(--brand);border-color:var(--brand);color:#fff;box-shadow:0 4px 12px rgba(79,70,229,.35)}
+  .ostep-dot.active .lab{color:var(--ink)}
+  .ostep-dot.done .num{background:var(--ok);border-color:var(--ok);color:#fff}
+  .ostep-dot.done .line,.ostep-dot.active .line{background:var(--brand)}
+  /* stage */
+  .stage{display:grid;grid-template-columns:1.35fr .85fr;gap:20px;align-items:start}
+  .stage.full{grid-template-columns:1fr}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh);padding:26px;min-height:400px}
+  .ostep{display:none;animation:fade .35s ease}
+  .ostep.show{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  h2.t{font-size:23px;font-weight:800;letter-spacing:-.3px}
+  p.s{color:var(--muted);font-size:14px;margin-top:8px;line-height:1.55;max-width:520px}
+  /* assistant bubble */
+  .bubble{display:flex;gap:12px;margin:20px 0}
+  .ai{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--brand),#8B5CF6);flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:13px}
+  .bubble .txt{background:var(--brand-soft);border-radius:4px 14px 14px 14px;padding:12px 15px;font-size:13.5px;line-height:1.5;color:var(--ink-2)}
+  /* form bits */
+  .fld{margin-top:18px}
+  .fld > label{font-size:12.5px;font-weight:700;color:var(--ink-2);display:block;margin-bottom:9px}
+  .inp{width:100%;font:inherit;font-size:14px;padding:11px 13px;border:1px solid var(--line);border-radius:10px;background:#fff}
+  .inp:focus{outline:none;border-color:var(--brand)}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:13px;font-weight:600;padding:9px 14px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--ink-2);cursor:pointer;transition:.15s}
+  .chip:hover{border-color:#C7CBE6}
+  .chip.on{background:var(--brand-soft);color:var(--brand);border-color:#C7CBF5;box-shadow:0 3px 10px rgba(79,70,229,.12)}
+  /* path cards */
+  .paths{display:flex;flex-direction:column;gap:12px;margin-top:20px}
+  .pcard{border:1.5px solid var(--line);border-radius:13px;padding:16px;cursor:pointer;display:flex;gap:14px;align-items:flex-start;transition:.15s;background:#fff}
+  .pcard:hover{border-color:#C7CBE6}
+  .pcard.on{border-color:var(--brand);background:#FBFBFF;box-shadow:0 6px 18px rgba(79,70,229,.10)}
+  .pcard .pico{width:42px;height:42px;border-radius:11px;background:var(--brand-soft);color:var(--brand);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .pcard h4{font-size:15px;font-weight:700;display:flex;align-items:center;gap:8px}
+  .pcard p{font-size:12.5px;color:var(--muted);margin-top:3px;line-height:1.45}
+  .badge{font-size:10.5px;font-weight:700;color:var(--ok);background:var(--ok-soft);padding:2px 8px;border-radius:20px}
+  .radio{width:20px;height:20px;border-radius:50%;border:2px solid var(--line);flex-shrink:0;margin-left:auto;position:relative}
+  .pcard.on .radio{border-color:var(--brand)}
+  .pcard.on .radio:after{content:"";position:absolute;inset:3px;border-radius:50%;background:var(--brand)}
+  /* template options */
+  .subopt{margin-top:14px;padding-left:56px;display:none}
+  .pcard.on + .subopt{display:block}
+  .tpl{border:1px solid var(--line);border-radius:11px;padding:13px;margin-bottom:9px;cursor:pointer;transition:.15s}
+  .tpl:hover{border-color:#C7CBE6}
+  .tpl.on{border-color:var(--brand);background:var(--brand-soft)}
+  .tpl .th{font-size:13.5px;font-weight:700;display:flex;align-items:center;gap:8px}
+  .tpl .td{font-size:11.5px;color:var(--muted);margin-top:4px}
+  /* dropzone */
+  .drop{border:2px dashed #CBCFE6;border-radius:12px;padding:26px;text-align:center;background:#FBFBFF;margin-top:6px}
+  .drop .dz{font-size:14px;font-weight:700}
+  .drop .dsub{font-size:12px;color:var(--muted);margin-top:5px}
+  .file{display:flex;align-items:center;gap:11px;border:1px solid var(--line);border-radius:10px;padding:11px 13px;margin-top:12px;background:#fff}
+  .file .fi{width:34px;height:34px;border-radius:8px;background:var(--ok-soft);color:#0B7A54;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0}
+  /* preview panel */
+  .prev{background:linear-gradient(180deg,#1C1940,#171532);color:#fff;border-radius:var(--r);padding:20px;box-shadow:var(--sh-lg);position:sticky;top:20px}
+  .prev .ph{font-size:11px;font-weight:700;letter-spacing:.08em;color:#9FA2C4;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+  .prev .pcompany{font-size:18px;font-weight:800;margin-top:12px}
+  .prev .pmeta{font-size:12px;color:#B9BCE0;margin-top:2px}
+  .prev .prow{border-top:1px solid rgba(255,255,255,.09);padding:13px 0;display:flex;align-items:flex-start;gap:10px}
+  .prev .prow:last-child{padding-bottom:0}
+  .prev .plab{font-size:11px;color:#8A8DAE;font-weight:600;width:74px;flex-shrink:0;padding-top:2px}
+  .prev .pval{font-size:12.5px;font-weight:600;flex:1}
+  .prev .pval .muted{color:#6D708E;font-weight:500}
+  .sqchip{display:inline-block;font-size:11px;font-weight:600;background:rgba(139,92,246,.22);color:#D6C9FF;padding:3px 9px;border-radius:20px;margin:0 4px 4px 0}
+  .nsbox{background:linear-gradient(135deg,#5B21B6,#8B5CF6);border-radius:9px;padding:9px 11px;font-size:12px;font-weight:600;margin-top:4px}
+  .empty{color:#6D708E;font-style:italic;font-size:12px}
+  /* mapper */
+  .mapbanner{display:flex;gap:12px;align-items:center;background:var(--ok-soft);border:1px solid #C7EAD9;border-radius:11px;padding:12px 14px;margin:16px 0}
+  .mapbanner .mi{width:30px;height:30px;border-radius:8px;background:#fff;color:#0B7A54;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .maptbl{width:100%;border-collapse:separate;border-spacing:0 8px}
+  .maptbl th{font-size:11px;color:var(--muted);font-weight:700;text-align:left;padding:0 12px}
+  .maprow td{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:11px 12px;vertical-align:middle}
+  .maprow td:first-child{border-left:1px solid var(--line);border-radius:10px 0 0 10px}
+  .maprow td:last-child{border-right:1px solid var(--line);border-radius:0 10px 10px 0}
+  .col-name{font-size:13px;font-weight:700}
+  .col-sample{font-size:11px;color:var(--muted);margin-top:2px}
+  .arrow{color:#C7CBE6;font-size:16px;text-align:center}
+  select.msel{font:inherit;font-size:13px;font-weight:600;padding:8px 10px;border:1px solid var(--line);border-radius:9px;background:#fff;min-width:170px;cursor:pointer}
+  select.msel:focus{outline:none;border-color:var(--brand)}
+  .mstat{font-size:11px;font-weight:700}
+  .m-ok{color:var(--ok)} .m-ign{color:var(--muted)} .m-req{color:var(--brand)}
+  .previewtbl{width:100%;border-collapse:collapse;margin-top:8px;font-size:12px}
+  .previewtbl th{text-align:left;color:var(--muted);font-weight:700;font-size:11px;padding:6px 10px;border-bottom:1px solid var(--line)}
+  .previewtbl td{padding:7px 10px;border-bottom:1px solid #F0F1F6}
+  .val-row{display:flex;gap:14px;flex-wrap:wrap;font-size:12.5px;margin-top:14px}
+  .val-row b{font-weight:700}
+  /* finish */
+  .celebrate{text-align:center;padding:8px 0 4px}
+  .celebrate .big{font-size:26px;font-weight:800;letter-spacing:-.4px}
+  .sumchips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:18px 0}
+  .sumchip{background:var(--brand-soft);color:var(--brand);font-weight:700;font-size:13px;padding:9px 15px;border-radius:11px}
+  .hitos{border:1px solid var(--line);border-radius:12px;padding:8px 16px;margin-top:8px}
+  .hito{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid #F0F1F6;font-size:13.5px}
+  .hito:last-child{border-bottom:0}
+  .hcheck{width:24px;height:24px;border-radius:50%;background:var(--ok);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .hcheck.todo{background:#fff;border:2px dashed #CBCFE6}
+  /* footer nav */
+  .foot{display:flex;align-items:center;gap:12px;margin-top:22px}
+  .btn{font:inherit;font-size:14px;font-weight:600;border:1px solid var(--line);background:#fff;color:var(--ink-2);padding:11px 20px;border-radius:11px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:.15s}
+  .btn:hover{border-color:#C7CBE6}
+  .btn.primary{background:var(--brand);border-color:var(--brand);color:#fff;box-shadow:0 6px 16px rgba(79,70,229,.28)}
+  .btn.primary:hover{background:#4338CA}
+  .btn.primary:disabled{opacity:.45;cursor:not-allowed;box-shadow:none}
+  .btn.ghost{border:0;background:transparent}
+  .foot .sp{margin-left:auto}
+  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--deep);color:#fff;padding:13px 20px;border-radius:12px;font-size:13.5px;font-weight:600;box-shadow:var(--sh-lg);opacity:0;pointer-events:none;transition:.3s}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="ohead">
+    <div class="logo"></div><b>Norte</b>
+    <span style="font-size:12.5px;color:var(--muted);font-weight:600">· Configuración inicial</span>
+    <a class="skip" onclick="finish()">Saltar configuración →</a>
+  </div>
+
+  <!-- progress spine -->
+  <div class="obar" id="obar">
+    <div class="ostep-dot" data-i="1"><div class="num">1</div><div class="lab">Bienvenida</div><div class="line"></div></div>
+    <div class="ostep-dot" data-i="2"><div class="num">2</div><div class="lab">Tu empresa</div><div class="line"></div></div>
+    <div class="ostep-dot" data-i="3"><div class="num">3</div><div class="lab">Punto de partida</div><div class="line"></div></div>
+    <div class="ostep-dot" data-i="4"><div class="num">4</div><div class="lab">Importación</div><div class="line"></div></div>
+    <div class="ostep-dot" data-i="5"><div class="num">5</div><div class="lab">Listo</div></div>
+  </div>
+
+  <div class="stage" id="stage">
+    <div class="panel">
+
+      <!-- STEP 1 -->
+      <div class="ostep show" id="s1">
+        <h2 class="t">Bienvenido a Norte 👋</h2>
+        <p class="s">Vamos a dejar tu empresa reflejada y tu primer tablero andando en unos minutos. Nada es definitivo — todo lo que armemos ahora lo podés editar después.</p>
+        <div class="bubble"><div class="ai">N</div><div class="txt">Hola, soy tu asistente de setup. Te hago un par de preguntas y preparo todo a la medida de tu empresa. Podés elegir entre partir de un template, importar tu planilla o simplemente contarme cómo trabajan.</div></div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px">
+          <div class="chip" style="cursor:default"><b>⚡ 3 caminos</b> · describir, importar o template</div>
+          <div class="chip" style="cursor:default"><b>✏️ Todo editable</b> después</div>
+          <div class="chip" style="cursor:default"><b>⏱️ ~5 min</b></div>
+        </div>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="ostep" id="s2">
+        <h2 class="t">Contame de tu empresa</h2>
+        <p class="s">Con esto preparo los templates recomendados y el andamiaje inicial. Pocas preguntas, prometo.</p>
+        <div class="fld"><label>Nombre de la empresa</label>
+          <input class="inp" id="fCompany" value="Lumen Studio" oninput="state.company=this.value;render()"></div>
+        <div class="fld"><label>¿Qué tipo de empresa es?</label>
+          <div class="chips" data-group="type">
+            <div class="chip on" onclick="pick('type','Producto',this)">Producto</div>
+            <div class="chip" onclick="pick('type','Servicios',this)">Servicios</div>
+            <div class="chip" onclick="pick('type','Híbrido',this)">Híbrido</div>
+          </div></div>
+        <div class="fld"><label>Industria</label>
+          <div class="chips" data-group="industry">
+            <div class="chip on" onclick="pick('industry','SaaS / Tech',this)">SaaS / Tech</div>
+            <div class="chip" onclick="pick('industry','Agencia / Marketing',this)">Agencia / Marketing</div>
+            <div class="chip" onclick="pick('industry','Comercio / Retail',this)">Comercio / Retail</div>
+            <div class="chip" onclick="pick('industry','Otra',this)">Otra</div>
+          </div></div>
+        <div class="fld"><label>¿Cuántas personas son?</label>
+          <div class="chips" data-group="size">
+            <div class="chip" onclick="pick('size','1–30',this)">1–30</div>
+            <div class="chip on" onclick="pick('size','30–100',this)">30–100</div>
+            <div class="chip" onclick="pick('size','100–300',this)">100–300</div>
+          </div></div>
+        <div class="fld"><label>¿Cómo se organizan hoy? <span style="color:var(--muted);font-weight:500">(elegí las que apliquen)</span></label>
+          <div class="chips" data-group="tools" data-multi="1">
+            <div class="chip on" onclick="pickMulti(this)">Planillas</div>
+            <div class="chip" onclick="pickMulti(this)">Notion / Docs</div>
+            <div class="chip" onclick="pickMulti(this)">Jira / ClickUp</div>
+            <div class="chip" onclick="pickMulti(this)">Nada formal</div>
+          </div></div>
+      </div>
+
+      <!-- STEP 3 -->
+      <div class="ostep" id="s3">
+        <h2 class="t">Elegí tu punto de partida</h2>
+        <p class="s">Tres caminos hacia el mismo lugar. Podés combinarlos después: por ejemplo, partir de un template y luego importar tu gente.</p>
+        <div class="paths">
+          <div class="pcard" id="pTemplate" onclick="pickPath('template')">
+            <div class="pico">📦</div>
+            <div style="flex:1"><h4>Partí de un template <span class="badge">Recomendado</span></h4>
+              <p>Arrancá con una estructura curada para tu tipo de empresa: teams, North Star, OKRs de ejemplo y taxonomía de skills.</p></div>
+            <div class="radio"></div>
+          </div>
+          <div class="subopt">
+            <div class="tpl on" data-tpl="saas" onclick="pickTpl('saas',this)"><div class="th">🚀 SaaS de Producto <span class="badge">Mejor match</span></div><div class="td">Teams: Producto · Growth · Customer Success · Diseño · North Star de renovación · 4 OKRs modelo</div></div>
+            <div class="tpl" data-tpl="agency" onclick="pickTpl('agency',this)"><div class="th">🎨 Servicios / Agencia</div><div class="td">Teams: Cuentas · Creativo · Delivery · New Business · North Star de retención de clientes</div></div>
+            <div class="tpl" data-tpl="retail" onclick="pickTpl('retail',this)"><div class="th">🛒 Comercio / Retail</div><div class="td">Teams: Comercial · Operaciones · Marketing · Post-venta · North Star de recurrencia</div></div>
+          </div>
+          <div class="pcard" id="pImport" onclick="pickPath('import')">
+            <div class="pico" style="background:var(--info-soft);color:var(--info)">📄</div>
+            <div style="flex:1"><h4>Importá tu planilla</h4>
+              <p>¿Ya tenés tu gente en un Excel o Google Sheets? Subí el CSV/XLSX y mapeás las columnas en un paso simple.</p></div>
+            <div class="radio"></div>
+          </div>
+          <div class="pcard" id="pDescribe" onclick="pickPath('describe')">
+            <div class="pico" style="background:#F1EEFE;color:#8B5CF6">💬</div>
+            <div style="flex:1"><h4>Describilo conversando</h4>
+              <p>Contame en tus palabras cómo está organizada la empresa y lo armo con vos, paso a paso.</p></div>
+            <div class="radio"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 4 -->
+      <div class="ostep" id="s4">
+        <h2 class="t">Mapeá tu planilla</h2>
+        <p class="s">Detecté las columnas automáticamente. Revisá que cada una apunte al campo correcto de Norte — ajustá lo que haga falta.</p>
+        <div class="file"><div class="fi">XLSX</div><div style="flex:1"><b style="font-size:13px">equipo_lumen.xlsx</b><div style="font-size:11.5px;color:var(--muted)">48 filas · 7 columnas · importando <b>Personas</b></div></div><a class="skip" style="text-decoration:none;color:var(--brand);font-weight:600;font-size:12.5px;cursor:pointer">Cambiar archivo</a></div>
+        <div class="mapbanner"><div class="mi">✨</div><div style="font-size:12.5px;color:#0B7A54;font-weight:600">Mapeamos 6 de 7 columnas automáticamente. Solo revisá la última.</div></div>
+        <table class="maptbl">
+          <thead><tr><th>Columna de tu planilla</th><th></th><th>Campo de Norte</th><th>Estado</th></tr></thead>
+          <tbody>
+            <tr class="maprow"><td><div class="col-name">Nombre completo</div><div class="col-sample">Valentina Costa, Diego Torres…</div></td><td class="arrow">→</td><td><select class="msel"><option selected>Nombre *</option><option>Ignorar</option></select></td><td><span class="mstat m-req">requerido ✓</span></td></tr>
+            <tr class="maprow"><td><div class="col-name">Email</div><div class="col-sample">valen@lumen.co, diego@lumen.co…</div></td><td class="arrow">→</td><td><select class="msel"><option selected>Email *</option><option>Ignorar</option></select></td><td><span class="mstat m-req">requerido ✓</span></td></tr>
+            <tr class="maprow"><td><div class="col-name">Área</div><div class="col-sample">Growth, Producto, CS…</div></td><td class="arrow">→</td><td><select class="msel"><option selected>Team / Equipo</option><option>Rol</option><option>Ignorar</option></select></td><td><span class="mstat m-ok">mapeado ✓</span></td></tr>
+            <tr class="maprow"><td><div class="col-name">Puesto</div><div class="col-sample">Especialista, Dev, Lead…</div></td><td class="arrow">→</td><td><select class="msel"><option selected>Rol</option><option>Seniority</option><option>Ignorar</option></select></td><td><span class="mstat m-ok">mapeado ✓</span></td></tr>
+            <tr class="maprow"><td><div class="col-name">Seniority</div><div class="col-sample">Semi-Sr, Sr, Ssr…</div></td><td class="arrow">→</td><td><select class="msel"><option selected>Seniority</option><option>Rol</option><option>Ignorar</option></select></td><td><span class="mstat m-ok">mapeado ✓</span></td></tr>
+            <tr class="maprow"><td><div class="col-name">Skills</div><div class="col-sample">"Partnerships, Analytics"…</div></td><td class="arrow">→</td><td><select class="msel"><option selected>Skills</option><option>Ignorar</option></select></td><td><span class="mstat m-ok">mapeado ✓</span></td></tr>
+            <tr class="maprow"><td><div class="col-name">Fecha ingreso</div><div class="col-sample">2024-03-11, 2023-08-02…</div></td><td class="arrow">→</td><td><select class="msel" onchange="checkIgnore(this)"><option selected>Ignorar</option><option>Fecha de ingreso</option></select></td><td><span class="mstat m-ign">sin usar</span></td></tr>
+          </tbody>
+        </table>
+        <div style="font-size:13px;font-weight:700;margin:18px 0 6px">Vista previa · así van a quedar</div>
+        <table class="previewtbl">
+          <thead><tr><th>Nombre</th><th>Email</th><th>Team</th><th>Rol</th><th>Skills</th></tr></thead>
+          <tbody>
+            <tr><td>Valentina Costa</td><td>valen@lumen.co</td><td>Growth</td><td>Especialista</td><td>Partnerships, Analytics</td></tr>
+            <tr><td>Diego Torres</td><td>diego@lumen.co</td><td>Growth</td><td>Analista</td><td>Data, Growth</td></tr>
+            <tr><td>Paula Fischer</td><td>paula@lumen.co</td><td>Customer Success</td><td>Lead</td><td>Customer Ops</td></tr>
+          </tbody>
+        </table>
+        <div class="val-row">
+          <span><span class="hcheck" style="width:18px;height:18px;display:inline-flex;font-size:11px;vertical-align:-4px">✓</span> <b>45</b> listas para importar</span>
+          <span style="color:var(--warn)">⚠ <b>2</b> con email faltante</span>
+          <span style="color:var(--muted)">⟳ <b>1</b> duplicado (se fusiona)</span>
+          <a class="skip" style="color:var(--brand);font-weight:600;text-decoration:none;cursor:pointer">Revisar las 3 →</a>
+        </div>
+      </div>
+
+      <!-- STEP 5 -->
+      <div class="ostep" id="s5">
+        <div class="celebrate">
+          <div class="big">¡Tu Norte está armado! 🎉</div>
+          <p class="s" style="margin:8px auto 0">Tu empresa ya está reflejada en el sistema. Este es tu punto de partida — de acá en más, todo crece con el uso.</p>
+        </div>
+        <div class="sumchips" id="sumChips"></div>
+        <div class="hitos">
+          <div class="hito"><div class="hcheck">✓</div><div><b>Empresa configurada</b> <span style="color:var(--muted)">· estructura y North Star listas</span></div></div>
+          <div class="hito"><div class="hcheck">✓</div><div><b>45 personas importadas</b> <span style="color:var(--muted)">· en 4 teams</span></div></div>
+          <div class="hito"><div class="hcheck">✓</div><div><b>4 OKRs de ejemplo cargados</b> <span style="color:var(--muted)">· editalos cuando quieras</span></div></div>
+          <div class="hito"><div class="hcheck todo"></div><div><b>Cargá tu primer check-in</b> <span style="color:var(--muted)">· tu próximo paso para que el tablero cobre vida</span></div></div>
+        </div>
+      </div>
+
+      <div class="foot" id="foot">
+        <button class="btn ghost" id="backBtn" onclick="prev()" style="visibility:hidden">← Atrás</button>
+        <button class="btn primary sp" id="nextBtn" onclick="next()">Empecemos →</button>
+      </div>
+    </div>
+
+    <!-- LIVE PREVIEW -->
+    <div class="prev" id="preview">
+      <div class="ph"><span>★</span> Tu organización</div>
+      <div id="prevBody"></div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast">Norte está listo 🚀</div>
+
+<script>
+  const state = {company:'Lumen Studio', type:'Producto', industry:'SaaS / Tech', size:'30–100',
+    tools:['Planillas'], path:null, tpl:'saas', imported:false};
+  let step = 1;
+
+  const TPL = {
+    saas:{name:'SaaS de Producto', teams:['Producto','Growth','Customer Success','Diseño'], ns:'Pymes activas que renuevan y crecen', okrs:4, skills:'Discovery, Data, Growth, Cust. Ops, Diseño, Ing.'},
+    agency:{name:'Servicios / Agencia', teams:['Cuentas','Creativo','Delivery','New Business'], ns:'Clientes que renuevan y recomiendan', okrs:4, skills:'Cuentas, Creatividad, Producción, Estrategia'},
+    retail:{name:'Comercio / Retail', teams:['Comercial','Operaciones','Marketing','Post-venta'], ns:'Clientes recurrentes que crecen en ticket', okrs:4, skills:'Ventas, Operaciones, Marketing, Post-venta'}
+  };
+
+  function pick(group,val,el){
+    state[group]=val;
+    el.parentNode.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));
+    el.classList.add('on');
+    // industry tweaks recommended template
+    if(group==='industry'){
+      state.tpl = val.startsWith('Agencia')?'agency':val.startsWith('Comercio')?'retail':'saas';
+    }
+    render();
+  }
+  function pickMulti(el){
+    el.classList.toggle('on');
+    state.tools=[...el.parentNode.querySelectorAll('.chip.on')].map(c=>c.textContent);
+    render();
+  }
+  function pickPath(p){
+    state.path=p;
+    ['Template','Import','Describe'].forEach(x=>document.getElementById('p'+x).classList.remove('on'));
+    document.getElementById('p'+p.charAt(0).toUpperCase()+p.slice(1)).classList.add('on');
+    if(p==='template'){ state.imported=false; }
+    document.getElementById('nextBtn').disabled=false;
+    render();
+  }
+  function pickTpl(t,el){
+    state.tpl=t;
+    el.parentNode.querySelectorAll('.tpl').forEach(x=>x.classList.remove('on'));
+    el.classList.add('on');
+    render();
+  }
+  function checkIgnore(sel){
+    const stat=sel.closest('tr').querySelector('.mstat');
+    if(sel.value==='Ignorar'){stat.textContent='sin usar';stat.className='mstat m-ign';}
+    else{stat.textContent='mapeado ✓';stat.className='mstat m-ok';}
+  }
+
+  function render(){
+    const b=document.getElementById('prevBody');
+    const t=TPL[state.tpl];
+    let teamsHtml='<span class="empty">se define en el paso 3</span>';
+    let nsHtml='<span class="empty">—</span>';
+    let peopleHtml='<span class="empty">—</span>';
+    let okrHtml='<span class="empty">—</span>';
+
+    if(step>=3 && state.path){
+      if(state.path==='template' || state.tpl){
+        teamsHtml=t.teams.map(s=>`<span class="sqchip">${s}</span>`).join('');
+        nsHtml=`<div class="nsbox">${t.ns}</div>`;
+        okrHtml=`<b>${t.okrs}</b> de ejemplo <span class="muted">· del template</span>`;
+      }
+      if(state.path==='import' || state.imported || step>=5){
+        peopleHtml=`<b>45</b> importadas <span class="muted">· en ${t.teams.length} teams</span>`;
+      } else {
+        peopleHtml=`<span class="muted">se suman al importar / invitar</span>`;
+      }
+    }
+    if(step>=5){
+      teamsHtml=t.teams.map(s=>`<span class="sqchip">${s}</span>`).join('');
+      nsHtml=`<div class="nsbox">${t.ns}</div>`;
+      okrHtml=`<b>${t.okrs}</b> cargados`;
+      peopleHtml=`<b>45</b> personas <span class="muted">· en ${t.teams.length} teams</span>`;
+    }
+
+    b.innerHTML=`
+      <div class="pcompany">${state.company||'—'}</div>
+      <div class="pmeta">${state.type} · ${state.industry} · ${state.size} pers.</div>
+      <div class="prow"><div class="plab">North Star</div><div class="pval">${nsHtml}</div></div>
+      <div class="prow"><div class="plab">Teams</div><div class="pval">${teamsHtml}</div></div>
+      <div class="prow"><div class="plab">Personas</div><div class="pval">${peopleHtml}</div></div>
+      <div class="prow"><div class="plab">OKRs</div><div class="pval">${okrHtml}</div></div>`;
+
+    // sum chips on finish
+    if(step===5){
+      document.getElementById('sumChips').innerHTML=
+        `<span class="sumchip">45 personas</span><span class="sumchip">${t.teams.length} teams</span><span class="sumchip">North Star ✓</span><span class="sumchip">${t.okrs} OKRs</span>`;
+    }
+  }
+
+  function showStep(n){
+    step=n;
+    document.querySelectorAll('.ostep').forEach(s=>s.classList.remove('show'));
+    document.getElementById('s'+n).classList.add('show');
+    // spine
+    document.querySelectorAll('.ostep-dot').forEach(d=>{
+      const i=+d.dataset.i; d.classList.remove('active','done');
+      if(i<n) d.classList.add('done'); else if(i===n) d.classList.add('active');
+      const num=d.querySelector('.num'); num.textContent = i<n ? '✓' : i;
+    });
+    // stage layout: step 4 full width
+    document.getElementById('stage').classList.toggle('full', n===4);
+    document.getElementById('preview').style.display = n===4 ? 'none':'block';
+    // buttons
+    document.getElementById('backBtn').style.visibility = n===1 ? 'hidden':'visible';
+    const nb=document.getElementById('nextBtn');
+    nb.disabled = (n===3 && !state.path);
+    if(n===1) nb.textContent='Empecemos →';
+    else if(n===4) nb.textContent='Importar 45 personas →';
+    else if(n===5){ nb.textContent='Entrar a Norte'; }
+    else nb.textContent='Continuar →';
+    render();
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+
+  function next(){
+    if(step===5){ finish(); return; }
+    if(step===3){
+      if(state.path==='import'){ showStep(4); return; }
+      state.imported = false; showStep(5); return; // template/describe skip import
+    }
+    if(step===4){ state.imported=true; showStep(5); return; }
+    showStep(step+1);
+  }
+  function prev(){
+    if(step===5){ showStep(state.imported?4:3); return; }
+    if(step===4){ showStep(3); return; }
+    if(step>1) showStep(step-1);
+  }
+  function finish(){
+    const t=document.getElementById('toast'); t.classList.add('show');
+    setTimeout(()=>t.classList.remove('show'),2600);
+  }
+
+  showStep(1);
+</script>
+</body>
+</html>

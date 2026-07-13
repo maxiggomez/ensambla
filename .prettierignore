@@ -1,0 +1,7 @@
+.next
+node_modules
+public
+openspec
+docs
+*.html
+package-lock.json
