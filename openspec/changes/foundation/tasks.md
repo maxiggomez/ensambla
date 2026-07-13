@@ -16,11 +16,11 @@
 
 ## 2. Shared kernel
 
-- [ ] 2.1 **Test** de `Measurement`: progreso por tipo (Check 0/100, numéricos por fórmula,
+- [x] 2.1 **Test** de `Measurement`: progreso por tipo (Check 0/100, numéricos por fórmula,
   Texto por estado) y validación de valores inválidos por tipo. (rojo)
-- [ ] 2.2 Implementar `Measurement` (unión discriminada Zod + `progress()`). (verde)
-- [ ] 2.3 Refactor y documentar el value object.
-- [ ] 2.4 Branded types de IDs, errores de dominio/aplicación base.
+- [x] 2.2 Implementar `Measurement` (unión discriminada Zod + `progress()`). (verde)
+- [x] 2.3 Refactor y documentar el value object.
+- [x] 2.4 Branded types de IDs, errores de dominio/aplicación base.
 
 ## 3. Datos y tenancy
 
