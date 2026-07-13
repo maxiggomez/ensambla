@@ -24,12 +24,12 @@
 
 ## 3. Datos y tenancy
 
-- [ ] 3.1 Modelar en Prisma `organization` y `member` (con `organization_id`).
-- [ ] 3.2 **Test de aislamiento RLS**: una query sin tenant / con otro tenant no ve datos
+- [x] 3.1 Modelar en Prisma `organization` y `member` (con `organization_id`).
+- [x] 3.2 **Test de aislamiento RLS**: una query sin tenant / con otro tenant no ve datos
   ajenos. (rojo)
-- [ ] 3.3 Migración con políticas RLS + helper `withTenant(orgId, fn)` que setea
+- [x] 3.3 Migración con políticas RLS + helper `withTenant(orgId, fn)` que setea
   `app.current_org`. (verde)
-- [ ] 3.4 Check de CI: toda tabla de tenant tiene política RLS.
+- [x] 3.4 Check de CI: toda tabla de tenant tiene política RLS.
 
 ## 4. Auth
 
