@@ -29,8 +29,11 @@ model Member {
   email          String
   name           String
   role           MemberRole
+  // Identidad de auth (Clerk). Nullable: un invitado puede no haber logueado aún.
+  clerkUserId    String?      @map("clerk_user_id")
   createdAt      DateTime     @default(now()) @map("created_at") @db.Timestamptz(6)
 
   @@unique([organizationId, email])
+  @@unique([organizationId, clerkUserId])
   @@map("member")
 }

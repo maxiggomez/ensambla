@@ -33,9 +33,9 @@
 
 ## 4. Auth
 
-- [ ] 4.1 Integrar Clerk (login) y middleware que resuelve el usuario autenticado.
-- [ ] 4.2 **Test**: request autenticado deriva el tenant correcto y lo aplica al contexto. (rojo)
-- [ ] 4.3 Mapear usuario ↔ Member y setear el contexto de tenant por request. (verde)
+- [x] 4.1 Integrar Clerk (login) y middleware que resuelve el usuario autenticado.
+- [x] 4.2 **Test**: request autenticado deriva el tenant correcto y lo aplica al contexto. (rojo)
+- [x] 4.3 Mapear usuario ↔ Member y setear el contexto de tenant por request. (verde)
 
 ## 5. Capability `identity-org`
 

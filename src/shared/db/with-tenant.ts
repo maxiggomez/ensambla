@@ -10,6 +10,11 @@ export type TenantClient = Prisma.TransactionClient;
  * transaction and sets the `app.current_org` session variable (local to the
  * transaction) before running `fn`, so the RLS policies filter every query
  * inside it. No repository may query tenant tables without going through it.
+ *
+ * 🔒 Never set `app.current_user` inside `fn`: RLS policies are permissive
+ * (OR-combined) and doing so would additionally expose the user's member rows
+ * from OTHER organizations within this tenant's context. The self-lookup
+ * policy is only for `resolveTenantForUser`, in its own transaction.
  */
 export async function withTenant<T>(
   orgId: OrganizationId,

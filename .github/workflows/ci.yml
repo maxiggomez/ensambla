@@ -9,6 +9,11 @@ jobs:
   ci:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    env:
+      # Keys dummy de Clerk: build/e2e solo necesitan que existan; ningún test
+      # llama a la API de Clerk (el mapeo user→tenant se testea contra Postgres).
+      NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: pk_test_Y2xlcmsuZXhhbXBsZS5jb20k
+      CLERK_SECRET_KEY: sk_test_dummy_ci_only
     steps:
       - uses: actions/checkout@v4
 
