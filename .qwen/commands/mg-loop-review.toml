@@ -1,0 +1,11 @@
+# /mg-loop-review — Revisión read-only (adapter Qwen Code).
+
+description = "Revisión read-only del branch/diff actual con estado final (APPROVED / COMMENTS / BLOCKED)."
+
+prompt = """
+Leé el archivo `.agents/skills/mg-pr-review/SKILL.md` y seguí ese protocolo — revisión read-only.
+
+Scope: {{args}} (si está vacío: branch actual contra `main`).
+
+Sos read-only: no edites, no commitees, no corras comandos que muten estado. Emití exactamente un estado final: APPROVED / APPROVED WITH COMMENTS / BLOCKED.
+"""

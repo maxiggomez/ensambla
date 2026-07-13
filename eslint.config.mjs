@@ -29,6 +29,12 @@ const eslintConfig = defineConfig([
           mode: "folder",
           capture: ["module"],
         },
+        {
+          type: "shared-lib",
+          pattern: "src/shared/*",
+          mode: "folder",
+          capture: ["lib"],
+        },
         { type: "shared", pattern: "src/shared", mode: "folder" },
         { type: "app", pattern: "src/app", mode: "folder" },
         { type: "lib", pattern: "src/lib", mode: "folder" },
@@ -44,40 +50,72 @@ const eslintConfig = defineConfig([
         {
           default: "disallow",
           message:
-            "Los módulos se importan solo por su capa application/ (ADR-0002). Import inválido: ${file.type} → ${dependency.type}.",
+            "Límite de arquitectura violado (ADR-0002 / DDD): cross-módulo solo vía application/; domain/ es puro (solo domain propio + shared measurement/ids/errors). Import inválido: ${file.type} → ${dependency.type}.",
           rules: [
-            // Dentro de un módulo: libre entre sus propias capas.
+            // DDD — domain/ es puro: solo su propio dominio y el kernel puro
+            // (measurement, ids, errors). Nunca ORM, tenancy, otros módulos ni UI.
             {
-              from: [["module-layer", { module: "${from.module}" }]],
+              from: [["module-layer", { layer: "domain" }]],
+              allow: [
+                ["module-layer", { module: "${from.module}", layer: "domain" }],
+                ["shared-lib", { lib: "(measurement|ids|errors)" }],
+              ],
+            },
+            // application/ orquesta: su módulo completo, shared, y otros módulos
+            // solo por su application/.
+            {
+              from: [["module-layer", { layer: "application" }]],
               allow: [
                 ["module-layer", { module: "${from.module}" }],
                 ["module-root", { module: "${from.module}" }],
+                ["module-layer", { layer: "application" }],
                 "shared",
+                "shared-lib",
                 "lib",
               ],
             },
-            // Entre módulos: solo la interfaz pública (application/).
+            // infrastructure/ implementa: su módulo, shared completo (incl. db),
+            // y otros módulos solo por application/.
             {
-              from: ["module-layer", "module-root"],
-              allow: [["module-layer", { layer: "application" }]],
+              from: [["module-layer", { layer: "infrastructure" }]],
+              allow: [
+                ["module-layer", { module: "${from.module}" }],
+                ["module-root", { module: "${from.module}" }],
+                ["module-layer", { layer: "application" }],
+                "shared",
+                "shared-lib",
+                "lib",
+              ],
             },
+            // Archivos en la raíz del módulo (index, barrel).
             {
               from: ["module-root"],
               allow: [
                 ["module-layer", { module: "${from.module}" }],
                 ["module-root", { module: "${from.module}" }],
+                ["module-layer", { layer: "application" }],
                 "shared",
+                "shared-lib",
                 "lib",
               ],
             },
-            // Shared kernel: no depende de módulos ni de la app.
-            { from: ["shared"], allow: ["shared", "lib"] },
+            // Kernel puro: measurement/ids/errors solo se importan entre sí.
+            {
+              from: [["shared-lib", { lib: "(measurement|ids|errors)" }]],
+              allow: [["shared-lib", { lib: "(measurement|ids|errors)" }]],
+            },
+            // Resto de shared (db, tenancy, …): shared completo, nunca módulos.
+            {
+              from: ["shared", ["shared-lib", { lib: "!(measurement|ids|errors)" }]],
+              allow: ["shared", "shared-lib", "lib"],
+            },
             // App y UI compartida: consumen módulos solo por application/.
             {
               from: ["app", "components", "lib"],
               allow: [
                 ["module-layer", { layer: "application" }],
                 "shared",
+                "shared-lib",
                 "lib",
                 "components",
                 "app",

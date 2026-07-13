@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+#
+# Gate determinista cross-tool (git pre-commit).
+#
+# Corre el tier RÁPIDO de verifiers sobre lo staged, igual para todos los
+# runtimes (Claude Code, OpenCode, Codex, Qwen) y para commits manuales.
+# Lo pesado (tests, e2e, build) queda en CI.
+#
+# Habilitar por clon:  scripts/setup-hooks.sh
+# Bypass de emergencia: git commit --no-verify
+
+set -eu
+
+cd "$(git rev-parse --show-toplevel)"
+
+STAGED="$(git diff --cached --name-only --diff-filter=ACM)"
+[ -z "$STAGED" ] && exit 0
+
+fail=0
+
+# --- Anti-drift de skills mg-* ---
+if printf '%s\n' "$STAGED" | grep -qE '^(\.agents|\.claude|\.opencode|\.codex)/skills/'; then
+  echo "▶ sync-skills --check"
+  scripts/sync-skills.sh --check || fail=1
+fi
+
+# --- TypeScript: typecheck + lint si hay .ts/.tsx staged ---
+if printf '%s\n' "$STAGED" | grep -qE '\.(ts|tsx)$'; then
+  echo "▶ typecheck"
+  npm run --silent typecheck || fail=1
+  echo "▶ lint"
+  npm run --silent lint || fail=1
+fi
+
+# --- Formato sobre lo staged ---
+FMT="$(printf '%s\n' "$STAGED" | grep -E '\.(ts|tsx|js|mjs|css|json|md|yml|yaml)$' || true)"
+if [ -n "$FMT" ]; then
+  echo "▶ prettier --check (staged)"
+  # shellcheck disable=SC2086
+  npx --no-install prettier --check --ignore-unknown $FMT || fail=1
+fi
+
+# --- OpenSpec: validar si se tocaron artefactos ---
+if printf '%s\n' "$STAGED" | grep -qE '^openspec/'; then
+  if command -v openspec >/dev/null 2>&1; then
+    echo "▶ openspec validate --all --strict"
+    openspec validate --all --strict || fail=1
+  else
+    echo "⚠ openspec CLI no encontrada — salteo validate (lo cubre quien tenga la CLI)"
+  fi
+fi
+
+if [ "$fail" -ne 0 ]; then
+  echo ""
+  echo "✖ pre-commit falló. Corregí y reintentá (bypass: git commit --no-verify)." >&2
+  exit 1
+fi

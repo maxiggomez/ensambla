@@ -1,0 +1,14 @@
+# /mg-eng-loop — Engineering loop de Ensambla (adapter Qwen Code).
+# Qwen no soporta skills: este comando apunta al protocolo canónico.
+
+description = "Engineering loop de Ensambla (OpenSpec + TDD con plan de tests aprobado + verificación estricta)."
+
+prompt = """
+Leé el archivo `.agents/skills/mg-eng-loop/SKILL.md` y seguí ese protocolo al pie de la letra — es la fuente única del loop (DISCOVER → CAMINO → OpenSpec → PLAN DE TESTS con gate de aprobación → RED → GREEN → REFACTOR → VERIFY → REVIEW → cierre). Leé también `AGENTS.md` si aún no lo hiciste.
+
+Pedido: {{args}}
+
+PRE-CHECK de branch primero: si la branch actual es `main`, FRENÁ y pedí al usuario crear una feature branch. Nunca crees ni pushees branches automáticamente.
+
+Respetá los dos gates de usuario sin excepción: elección de camino (paso 2) y aprobación del plan de tests (paso 4). No improvises un flujo distinto.
+"""

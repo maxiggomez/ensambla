@@ -1,0 +1,10 @@
+# Guardrails de Codex para el loop cross-tool.
+# Codex no tiene deny-list por comando: el guardrail equivalente es el sandbox.
+# network_access=false bloquea `git push` y cualquier egreso de red;
+# approval_policy=on-request hace que pause antes de acciones fuera de lo read-only.
+
+approval_policy = "on-request"
+sandbox_mode = "workspace-write"
+
+[sandbox_workspace_write]
+network_access = false

@@ -1,0 +1,44 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "permission": {
+    "*": "ask",
+    "edit": "ask",
+    "read": "allow",
+    "grep": "allow",
+    "glob": "allow",
+    "todowrite": "allow",
+    "todoread": "allow",
+    "bash": {
+      "*": "ask",
+      "git status*": "allow",
+      "git diff*": "allow",
+      "git log*": "allow",
+      "git branch*": "allow",
+      "npm run lint*": "allow",
+      "npm run typecheck*": "allow",
+      "npm run format:check*": "allow",
+      "npm run test*": "allow",
+      "npm test*": "allow",
+      "npm run build*": "allow",
+      "npx playwright test*": "allow",
+      "openspec list*": "allow",
+      "openspec status*": "allow",
+      "openspec validate*": "allow",
+      "scripts/sync-skills.sh*": "allow",
+      "git push*": "deny",
+      "git reset --hard*": "deny",
+      "git clean*": "deny",
+      "rm *": "deny"
+    },
+    "skill": {
+      "*": "ask",
+      "mg-eng-loop": "allow",
+      "mg-pr-review": "allow",
+      "openspec-propose": "allow",
+      "openspec-explore": "allow",
+      "openspec-apply-change": "allow",
+      "openspec-sync-specs": "allow",
+      "openspec-archive-change": "allow"
+    }
+  }
+}

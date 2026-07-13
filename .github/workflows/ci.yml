@@ -20,6 +20,12 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Skills anti-drift
+        run: scripts/sync-skills.sh --check
+
+      - name: OpenSpec validate
+        run: npx --yes @fission-ai/openspec@latest validate --all --strict
+
       - name: Typecheck
         run: npm run typecheck
 

@@ -1,0 +1,9 @@
+{
+  "contextFileName": "AGENTS.md",
+  "excludeTools": [
+    "run_shell_command(git push)",
+    "run_shell_command(git reset --hard)",
+    "run_shell_command(git clean)",
+    "run_shell_command(rm)"
+  ]
+}
