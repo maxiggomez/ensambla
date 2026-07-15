@@ -52,7 +52,7 @@
 - [x] 6.1 Todos los Scenarios de `identity-org` pasan como tests verdes.
 - [x] 6.2 Tests de invariantes 🔒 (tenancy) verdes y no salteables.
 - [x] 6.3 e2e Playwright: alta de organización + invitación de miembro.
-- [ ] 6.4 CI en verde (typecheck, lint de límites, Vitest, Playwright, build).
+- [x] 6.4 CI en verde (typecheck, lint de límites, Vitest, Playwright, build).
 - [ ] 6.5 Review humano del slice antes de habilitar la paralelización de agentes.
 
 ## Follow-ups (post-review, no bloquean foundation)
