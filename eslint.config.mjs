@@ -13,8 +13,7 @@ const eslintConfig = defineConfig([
     plugins: { boundaries },
     settings: {
       "boundaries/include": ["src/**/*"],
-      // Sintaxis de selectores v5 (estable y verificada); silencia avisos de migración.
-      "boundaries/legacy-templates": true,
+      // Config en sintaxis v7; se omite la detección de sintaxis legacy.
       "boundaries/legacy-warnings": false,
       "boundaries/elements": [
         {
@@ -45,80 +44,147 @@ const eslintConfig = defineConfig([
       },
     },
     rules: {
-      "boundaries/element-types": [
+      "boundaries/dependencies": [
         "error",
         {
           default: "disallow",
           message:
-            "Límite de arquitectura violado (ADR-0002 / DDD): cross-módulo solo vía application/; domain/ es puro (solo domain propio + shared measurement/ids/errors). Import inválido: ${file.type} → ${dependency.type}.",
-          rules: [
+            "Límite de arquitectura violado (ADR-0002 / DDD): cross-módulo solo vía application/; domain/ es puro (solo domain propio + shared measurement/ids/errors). Import inválido: {{ from.element.types.[0] }} → {{ to.element.types.[0] }}.",
+          policies: [
             // DDD — domain/ es puro: solo su propio dominio y el kernel puro
             // (measurement, ids, errors). Nunca ORM, tenancy, otros módulos ni UI.
             {
-              from: [["module-layer", { layer: "domain" }]],
+              from: { element: { type: "module-layer", captured: { layer: "domain" } } },
               allow: [
-                ["module-layer", { module: "${from.module}", layer: "domain" }],
-                ["shared-lib", { lib: "(measurement|ids|errors)" }],
+                {
+                  element: {
+                    type: "module-layer",
+                    captured: { module: "{{ from.element.captured.module }}", layer: "domain" },
+                  },
+                },
+                {
+                  element: {
+                    type: "shared-lib",
+                    captured: { lib: "(measurement|ids|errors)" },
+                  },
+                },
               ],
             },
             // application/ orquesta: su módulo completo, shared, y otros módulos
             // solo por su application/.
             {
-              from: [["module-layer", { layer: "application" }]],
+              from: { element: { type: "module-layer", captured: { layer: "application" } } },
               allow: [
-                ["module-layer", { module: "${from.module}" }],
-                ["module-root", { module: "${from.module}" }],
-                ["module-layer", { layer: "application" }],
-                "shared",
-                "shared-lib",
-                "lib",
+                {
+                  element: {
+                    type: "module-layer",
+                    captured: { module: "{{ from.element.captured.module }}" },
+                  },
+                },
+                {
+                  element: {
+                    type: "module-root",
+                    captured: { module: "{{ from.element.captured.module }}" },
+                  },
+                },
+                { element: { type: "module-layer", captured: { layer: "application" } } },
+                { element: { type: "shared" } },
+                { element: { type: "shared-lib" } },
+                { element: { type: "lib" } },
               ],
             },
             // infrastructure/ implementa: su módulo, shared completo (incl. db),
             // y otros módulos solo por application/.
             {
-              from: [["module-layer", { layer: "infrastructure" }]],
+              from: {
+                element: { type: "module-layer", captured: { layer: "infrastructure" } },
+              },
               allow: [
-                ["module-layer", { module: "${from.module}" }],
-                ["module-root", { module: "${from.module}" }],
-                ["module-layer", { layer: "application" }],
-                "shared",
-                "shared-lib",
-                "lib",
+                {
+                  element: {
+                    type: "module-layer",
+                    captured: { module: "{{ from.element.captured.module }}" },
+                  },
+                },
+                {
+                  element: {
+                    type: "module-root",
+                    captured: { module: "{{ from.element.captured.module }}" },
+                  },
+                },
+                { element: { type: "module-layer", captured: { layer: "application" } } },
+                { element: { type: "shared" } },
+                { element: { type: "shared-lib" } },
+                { element: { type: "lib" } },
               ],
             },
             // Archivos en la raíz del módulo (index, barrel).
             {
-              from: ["module-root"],
+              from: { element: { type: "module-root" } },
               allow: [
-                ["module-layer", { module: "${from.module}" }],
-                ["module-root", { module: "${from.module}" }],
-                ["module-layer", { layer: "application" }],
-                "shared",
-                "shared-lib",
-                "lib",
+                {
+                  element: {
+                    type: "module-layer",
+                    captured: { module: "{{ from.element.captured.module }}" },
+                  },
+                },
+                {
+                  element: {
+                    type: "module-root",
+                    captured: { module: "{{ from.element.captured.module }}" },
+                  },
+                },
+                { element: { type: "module-layer", captured: { layer: "application" } } },
+                { element: { type: "shared" } },
+                { element: { type: "shared-lib" } },
+                { element: { type: "lib" } },
               ],
             },
             // Kernel puro: measurement/ids/errors solo se importan entre sí.
             {
-              from: [["shared-lib", { lib: "(measurement|ids|errors)" }]],
-              allow: [["shared-lib", { lib: "(measurement|ids|errors)" }]],
+              from: {
+                element: { type: "shared-lib", captured: { lib: "(measurement|ids|errors)" } },
+              },
+              allow: [
+                {
+                  element: {
+                    type: "shared-lib",
+                    captured: { lib: "(measurement|ids|errors)" },
+                  },
+                },
+              ],
             },
             // Resto de shared (db, tenancy, …): shared completo, nunca módulos.
             {
-              from: ["shared", ["shared-lib", { lib: "!(measurement|ids|errors)" }]],
-              allow: ["shared", "shared-lib", "lib"],
+              from: [
+                { element: { type: "shared" } },
+                {
+                  element: {
+                    type: "shared-lib",
+                    captured: { lib: "!(measurement|ids|errors)" },
+                  },
+                },
+              ],
+              allow: [
+                { element: { type: "shared" } },
+                { element: { type: "shared-lib" } },
+                { element: { type: "lib" } },
+              ],
             },
             // App y UI compartida: consumen módulos solo por application/.
             {
-              from: ["app", "components", "lib"],
+              from: [
+                { element: { type: "app" } },
+                { element: { type: "components" } },
+                { element: { type: "lib" } },
+              ],
               allow: [
-                ["module-layer", { layer: "application" }],
-                "shared",
-                "shared-lib",
-                "lib",
-                "components",
-                "app",
+                { element: { type: "module-layer", captured: { layer: "application" } } },
+                { element: { type: "shared" } },
+                { element: { type: "shared-lib" } },
+                { element: { type: "lib" } },
+                { element: { type: "components" } },
+                { element: { type: "app" } },
               ],
             },
           ],
@@ -135,6 +201,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Prisma client generado (no se lintea; se regenera con `prisma generate`):
+    "src/shared/db/generated/**",
   ]),
 ]);
 

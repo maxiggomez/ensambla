@@ -9,6 +9,12 @@ jobs:
   ci:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    env:
+      # Con secrets reales (instancia dev de Clerk) corre el e2e completo de
+      # identity-org; sin ellos caen los fallbacks dummy: el build pasa y el
+      # spec de identity-org se saltea (queda pendiente el DoD 6.3).
+      NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${{ secrets.E2E_CLERK_PUBLISHABLE_KEY || 'pk_test_Y2xlcmsuZXhhbXBsZS5jb20k' }}
+      CLERK_SECRET_KEY: ${{ secrets.E2E_CLERK_SECRET_KEY || 'sk_test_dummy_ci_only' }}
     steps:
       - uses: actions/checkout@v4
 

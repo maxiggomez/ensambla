@@ -5,3 +5,4 @@ openspec
 docs
 *.html
 package-lock.json
+src/shared/db/generated

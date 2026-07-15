@@ -5,8 +5,6 @@ export default defineConfig({
   plugins: [tsconfigPaths()],
   test: {
     environment: "node",
-    // El scaffold arranca sin tests; se elimina al escribir el primero (fase 2).
-    passWithNoTests: true,
     projects: [
       {
         extends: true,
