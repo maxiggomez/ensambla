@@ -49,7 +49,7 @@ export default async function MembersPage() {
                   <p className="font-medium">{member.name}</p>
                   <p className="text-sm text-muted-foreground">{member.email}</p>
                 </div>
-                <span className="rounded-full bg-primary/10 px-3 py-1 text-sm text-primary">
+                <span className="rounded-full bg-secondary px-3 py-1 text-sm font-bold text-secondary-foreground">
                   {ROLE_LABELS[member.role] ?? member.role}
                 </span>
               </li>

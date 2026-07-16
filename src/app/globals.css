@@ -7,7 +7,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
+  --font-sans:
+    var(--font-inter), ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-mono: var(--font-geist-mono);
   --font-heading: var(--font-sans);
   --color-sidebar-ring: var(--sidebar-ring);
@@ -47,69 +48,69 @@
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
 
-  /* Ensambla design tokens (docs/design-system.md) */
-  --color-brand: #4f46e5;
-  --color-brand-2: #6366f1;
-  --color-brand-soft: #eef0fe;
+  /* Ensambla design tokens — identidad Radar (docs/design-system.md) */
+  --color-brand: #caff47;
+  --color-brand-2: #a7e419;
+  --color-brand-soft: #edf6dd;
   --color-ok: #10b981;
   --color-ok-soft: #e6f7f0;
   --color-warn: #f59e0b;
   --color-warn-soft: #fef4e2;
-  --color-risk: #ef4444;
-  --color-risk-soft: #fdecec;
+  --color-risk: #a43b32;
+  --color-risk-soft: #fff0ed;
   --color-info: #0ea5e9;
   --color-info-soft: #e5f5fd;
-  --color-ink: #0f1222;
-  --color-ink-2: #3a3f52;
-  --color-line: #e7e9f0;
-  --color-deep: #171532;
+  --color-ink: #18231d;
+  --color-ink-2: #475249;
+  --color-line: #dce3dd;
+  --color-deep: #18231d;
 
-  --shadow-sm: 0 1px 2px rgba(16, 18, 34, 0.04), 0 8px 24px rgba(16, 18, 34, 0.05);
-  --shadow-lg: 0 12px 40px rgba(16, 18, 34, 0.1);
+  --shadow-sm: 0 18px 50px rgb(24 35 29 / 8%);
+  --shadow-lg: 0 24px 70px rgb(24 35 29 / 12%);
 }
 
 :root {
-  --background: #f6f7fb;
-  --foreground: #0f1222;
+  --background: #f7f9f6;
+  --foreground: #18231d;
   --card: #ffffff;
-  --card-foreground: #0f1222;
+  --card-foreground: #18231d;
   --popover: #ffffff;
-  --popover-foreground: #0f1222;
-  --primary: #4f46e5;
-  --primary-foreground: #ffffff;
-  --secondary: #eef0fe;
-  --secondary-foreground: #0f1222;
-  --muted: #eef0f5;
-  --muted-foreground: #6b7186;
-  --accent: #8b5cf6;
-  --accent-foreground: #ffffff;
-  --destructive: #ef4444;
+  --popover-foreground: #18231d;
+  --primary: #caff47;
+  --primary-foreground: #18231d;
+  --secondary: #edf6dd;
+  --secondary-foreground: #18231d;
+  --muted: #eef2ea;
+  --muted-foreground: #647068;
+  --accent: #a7e419;
+  --accent-foreground: #18231d;
+  --destructive: #a43b32;
   --destructive-foreground: #ffffff;
-  --border: #e7e9f0;
-  --input: #e7e9f0;
-  --ring: #4f46e5;
-  --chart-1: #4f46e5;
-  --chart-2: #8b5cf6;
+  --border: #dce3dd;
+  --input: #ccd5ce;
+  --ring: #a7e419;
+  --chart-1: #a7e419;
+  --chart-2: #18231d;
   --chart-3: #10b981;
   --chart-4: #f59e0b;
   --chart-5: #0ea5e9;
-  --radius: 14px;
-  --sidebar: #171532;
+  --radius: 18px;
+  --sidebar: #18231d;
   --sidebar-foreground: #ffffff;
-  --sidebar-primary: #4f46e5;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #6366f1;
-  --sidebar-accent-foreground: #ffffff;
-  --sidebar-border: #3a3f52;
-  --sidebar-ring: #6366f1;
+  --sidebar-primary: #caff47;
+  --sidebar-primary-foreground: #18231d;
+  --sidebar-accent: #a7e419;
+  --sidebar-accent-foreground: #18231d;
+  --sidebar-border: #475249;
+  --sidebar-ring: #a7e419;
 
   /* semánticos extra (no vienen en shadcn) */
   --success: #10b981;
   --success-soft: #e6f7f0;
   --warning: #f59e0b;
   --warning-soft: #fef4e2;
-  --danger: #ef4444;
-  --danger-soft: #fdecec;
+  --danger: #a43b32;
+  --danger-soft: #fff0ed;
   --info: #0ea5e9;
   --info-soft: #e5f5fd;
 }
@@ -153,9 +154,19 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
+    /* Papel con brillo lima sutil arriba a la derecha (identidad Radar). */
+    background:
+      radial-gradient(circle at 90% 1%, rgb(202 255 71 / 25%), transparent 23rem),
+      var(--background);
+    background-color: var(--background);
   }
   html {
     @apply font-sans;
+  }
+  h1,
+  h2,
+  h3 {
+    @apply font-extrabold tracking-tight;
   }
 }
