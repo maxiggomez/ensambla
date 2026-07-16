@@ -1,7 +1,9 @@
 # Ensambla · Design System
 
-Guía viva de UI. Fuente de verdad visual para los agentes. Referencia visual:
-`norte-prototipo.html` y `norte-onboarding.html`. Stack: Tailwind + shadcn/ui + Recharts.
+Guía viva de UI. Fuente de verdad visual para los agentes. Identidad **Radar**
+(2026-07): tinta verde-oscura sobre papel, acento lima, Inter con titulares
+apretados. Los prototipos `norte-*.html` siguen valiendo como referencia de
+**layout e interacción**, no de paleta. Stack: Tailwind v4 + shadcn/ui + Recharts.
 
 > Terminología: la UI usa **Team** (no "squad").
 
@@ -25,22 +27,21 @@ Neutrales:
 
 | Token | Hex | Uso |
 |---|---|---|
-| `ink` | `#0F1222` | texto principal |
-| `ink-2` | `#3A3F52` | texto secundario |
-| `muted` | `#6B7186` | texto terciario / labels |
-| `line` | `#E7E9F0` | bordes / divisores |
-| `bg` | `#F6F7FB` | fondo de app |
+| `ink` | `#18231D` | texto principal (tinta verde-oscura) |
+| `ink-2` | `#475249` | texto secundario / labels de campo |
+| `muted` | `#647068` | texto terciario |
+| `line` | `#DCE3DD` | bordes / divisores |
+| `bg` | `#F7F9F6` | fondo de app (papel) |
 | `card` | `#FFFFFF` | superficies |
-| `deep` | `#171532` | sidebar / superficies oscuras |
+| `deep` | `#18231D` | sidebar / superficies oscuras (misma tinta) |
 
-Marca y acento:
+Marca y acento (la marca es **lima**; los CTAs llevan texto tinta, no blanco):
 
 | Token | Hex | Uso |
 |---|---|---|
-| `brand` | `#4F46E5` | primario (acciones, activos) |
-| `brand-2` | `#6366F1` | gradientes / hover |
-| `brand-soft` | `#EEF0FE` | fondos suaves de marca |
-| `accent` | `#8B5CF6` | acento (clima/eNPS, Lean) |
+| `brand` | `#CAFF47` | primario (acciones); texto siempre `ink` |
+| `brand-2` | `#A7E419` | hover / detalles (guión del eyebrow, ring de foco) |
+| `brand-soft` | `#EDF6DD` | fondos suaves (badges, chips activos, step pills) |
 
 Semánticos (cada uno con variante `-soft` para fondos):
 
@@ -48,71 +49,66 @@ Semánticos (cada uno con variante `-soft` para fondos):
 |---|---|---|---|
 | `success` / `ok` | `#10B981` | `#E6F7F0` | en ritmo / saludable |
 | `warning` / `warn` | `#F59E0B` | `#FEF4E2` | atención / en riesgo leve |
-| `danger` / `risk` | `#EF4444` | `#FDECEC` | crítico / bloqueo |
+| `danger` / `risk` | `#A43B32` | `#FFF0ED` | crítico / bloqueo |
 | `info` | `#0EA5E9` | `#E5F5FD` | informativo / en proceso |
 
-Escala de niveles (matriz de skills, heatmaps): `#EEF0F5` (0) → `#DEE0FB` (1) →
-`#B3B8F0` (2) → `#7C82E6` (3) → `#4F46E5` (4).
+Escala de niveles (matriz de skills, heatmaps): `#EEF2EA` (0) → `#EDF6DD` (1) →
+`#D9EFA0` (2) → `#A7E419` (3) → `#588016` (4).
+
+Fondo de página: papel con brillo lima sutil —
+`radial-gradient(circle at 90% 1%, rgb(202 255 71 / 25%), transparent 23rem)`
+sobre `bg` (ya aplicado globalmente en `globals.css`; no repetir por página).
 
 ### Tipografía
 
-- **Familia:** system stack (`-apple-system, "Segoe UI", Inter, Roboto, …`). Alternativa: Inter.
+- **Familia:** **Inter** (via `next/font`, variable `--font-inter`) con fallback
+  al system stack. Ya cableada a `--font-sans` en el `@theme`.
+- **Titulares:** peso 800 con letter-spacing negativo fuerte; el hero usa
+  `clamp(42px, 6.5vw, 76px)`, tracking `-0.06em`, line-height `0.98`.
+  `h1–h3` llevan `font-extrabold tracking-tight` por regla global.
 - **Escala:**
 
 | Rol | Tamaño | Peso |
 |---|---|---|
-| Display / número KPI grande | 30–52px | 800 |
-| Título de página (h2) | 23px | 800 |
+| Hero / display | 42–76px (clamp) | 800 |
+| Display / número KPI grande | 28–52px | 800 |
+| Título de sección (h2) | 22–30px | 800 |
 | Título de card (h3) | 14px | 700 |
 | Cuerpo | 13–14px | 500 |
-| Small / labels | 11.5–12px | 600 |
+| Small / labels | 11.5–12px | 700 |
 
-- Números y métricas siempre en peso 800 con `letter-spacing` negativo leve (`-0.3px`).
+- Números y métricas siempre en peso 800 con `letter-spacing` negativo (`-0.04em`).
+- **Eyebrow** (kicker sobre títulos): uppercase, 12px, peso 800,
+  `letter-spacing .13em`, precedido por un guión de 28×3px en `brand-2`.
 
 ### Espaciado, radios y sombras
 
-- **Spacing base:** múltiplos de 4. Gaps de grilla 16px; padding de card 18px (compacto)
-  a 26px (destacado).
-- **Radios:** `sm` 10px · `md` (default) 14px · pill 20px · círculo 50%.
-- **Sombras:** `sm` = `0 1px 2px rgba(16,18,34,.04), 0 8px 24px rgba(16,18,34,.05)` ·
-  `lg` = `0 12px 40px rgba(16,18,34,.10)`.
+- **Spacing base:** múltiplos de 4. Gaps de grilla 14–18px; padding de card
+  `clamp(22px, 4vw, 42px)` en paneles principales, 18px en cards internas.
+- **Radios:** `sm` 10px (inputs, botones) · default 18px (cards/paneles) ·
+  12px (cards internas) · pill 100px · círculo 50%.
+- **Sombras:** `sm` = `0 18px 50px rgb(24 35 29 / 8%)` ·
+  `lg` = `0 24px 70px rgb(24 35 29 / 12%)`. Difusas y suaves, nunca duras.
 
-### Snippet — `globals.css` (variables shadcn + extra semánticos)
+### Snippet — `globals.css` (variables shadcn; fuente de verdad real en el repo)
 
 ```css
 :root {
-  --background: #F6F7FB;  --foreground: #0F1222;
-  --card: #FFFFFF;        --card-foreground: #0F1222;
-  --primary: #4F46E5;     --primary-foreground: #FFFFFF;
-  --muted: #EEF0F5;       --muted-foreground: #6B7186;
-  --accent: #8B5CF6;      --border: #E7E9F0;
-  --destructive: #EF4444; --destructive-foreground: #FFFFFF;
-  /* semánticos extra (no vienen en shadcn) */
-  --success: #10B981; --success-soft: #E6F7F0;
-  --warning: #F59E0B; --warning-soft: #FEF4E2;
-  --danger:  #EF4444; --danger-soft:  #FDECEC;
-  --info:    #0EA5E9; --info-soft:    #E5F5FD;
-  --radius: 14px;
+  --background: #F7F9F6;  --foreground: #18231D;
+  --card: #FFFFFF;        --card-foreground: #18231D;
+  --primary: #CAFF47;     --primary-foreground: #18231D;
+  --secondary: #EDF6DD;   --secondary-foreground: #18231D;
+  --muted: #EEF2EA;       --muted-foreground: #647068;
+  --accent: #A7E419;      --accent-foreground: #18231D;
+  --destructive: #A43B32; --destructive-foreground: #FFFFFF;
+  --border: #DCE3DD;      --input: #CCD5CE;
+  --ring: #A7E419;        --radius: 18px;
 }
 ```
 
-### Snippet — `tailwind.config.ts` (extend)
-
-```ts
-theme: { extend: {
-  colors: {
-    brand:   { DEFAULT: "#4F46E5", soft: "#EEF0FE", 2: "#6366F1" },
-    accent:  "#8B5CF6",
-    ok:      { DEFAULT: "#10B981", soft: "#E6F7F0" },
-    warn:    { DEFAULT: "#F59E0B", soft: "#FEF4E2" },
-    risk:    { DEFAULT: "#EF4444", soft: "#FDECEC" },
-    info:    { DEFAULT: "#0EA5E9", soft: "#E5F5FD" },
-    ink:     { DEFAULT: "#0F1222", 2: "#3A3F52" },
-    line:    "#E7E9F0", deep: "#171532",
-  },
-  borderRadius: { md: "14px", sm: "10px" },
-}}
-```
+Los tokens de marca/semánticos viven en el `@theme` del mismo archivo
+(`--color-brand`, `--color-ok`, …). Tailwind v4: no hay `tailwind.config.ts`;
+todo token nuevo se agrega ahí. Ningún componente hardcodea hex.
 
 ---
 
@@ -135,6 +131,22 @@ theme: { extend: {
 | Toast | `Sonner` |
 | Input / textarea | `Input` / `Textarea` |
 | Tooltip | `Tooltip` |
+
+### Patrones de identidad Radar (construir sobre tokens)
+
+- **Eyebrow / kicker** — guión lima + texto uppercase sobre el título principal.
+- **Step pill** — número de sección (`01`, `02`) en pastilla `brand-soft` con
+  texto verde oscuro, junto al h2.
+- **Check chips** — opciones seleccionables como pastillas redondeadas; activa =
+  borde y fondo `brand-soft`.
+- **Stats strip** — grilla de métricas separada por líneas de 1px (`line` como
+  fondo, celdas `card`).
+- **CTA primario** — lima con texto tinta, flecha `↗` a la derecha,
+  `translateY(-1px)` en hover.
+
+> ⚠️ El lima nunca funciona como color de **texto** sobre fondos claros
+> (contraste ~1.2). Links y variantes `link`/ghost de Button van en
+> `text-foreground` o verde oscuro (`#588016`), no `text-primary`.
 
 ### Componentes custom (no existen en shadcn — construir sobre tokens)
 

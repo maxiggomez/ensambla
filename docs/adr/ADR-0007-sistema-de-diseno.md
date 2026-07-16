@@ -1,6 +1,11 @@
 # ADR-0007 · Sistema de diseño
 
-**Estado:** Aceptado · **Fecha:** 2026-07-12
+**Estado:** Aceptado · **Fecha:** 2026-07-12 ·
+**Actualizado:** 2026-07-16 — identidad visual **Radar** (decisión del usuario,
+change `design-system-radar`): paleta tinta/papel/lima e Inter reemplazan a la
+paleta índigo del prototipo. Los prototipos `norte-*.html` quedan como
+referencia de layout e interacción, no de color. La mecánica del ADR (tokens
+como fuente única en `globals.css` + guía viva en `design-system.md`) no cambia.
 
 ## Contexto
 
