@@ -14,10 +14,13 @@ enum MemberRole {
 }
 
 model Organization {
-  id        String   @id @default(uuid()) @db.Uuid
-  name      String
-  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
-  members   Member[]
+  id         String      @id @default(uuid()) @db.Uuid
+  name       String
+  createdAt  DateTime    @default(now()) @map("created_at") @db.Timestamptz(6)
+  members    Member[]
+  northStar  NorthStar?
+  objectives Objective[]
+  keyResults KeyResult[]
 
   @@map("organization")
 }
@@ -32,8 +35,98 @@ model Member {
   // Identidad de auth (Clerk). Nullable: un invitado puede no haber logueado aún.
   clerkUserId    String?      @map("clerk_user_id")
   createdAt      DateTime     @default(now()) @map("created_at") @db.Timestamptz(6)
+  objectives     Objective[]
 
   @@unique([organizationId, email])
   @@unique([organizationId, clerkUserId])
   @@map("member")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// strategy-northstar + okrs (change strategy-okrs-core)
+// Measurement (ADR-0004) persiste como discriminador + columnas tipadas
+// queryables; nunca EAV. `objective` NO tiene columna de progreso: el roll-up
+// 🔒 se deriva siempre de los KRs en lectura.
+// ─────────────────────────────────────────────────────────────────────────────
+
+enum ObjectiveLevel {
+  Company
+  Area
+  Team
+  Person
+}
+
+enum ObjectiveStatus {
+  Draft
+  Published
+}
+
+enum MeasurementType {
+  Check
+  Percentage
+  Integer
+  Currency
+  Text
+}
+
+enum TextState {
+  NotStarted
+  InProgress
+  Done
+}
+
+model NorthStar {
+  id              String          @id @default(uuid()) @db.Uuid
+  // UNIQUE: exactamente una North Star por Organización.
+  organizationId  String          @unique @map("organization_id") @db.Uuid
+  organization    Organization    @relation(fields: [organizationId], references: [id])
+  name            String
+  measurementType MeasurementType @map("measurement_type")
+  startValue      Decimal?        @map("start_value") @db.Decimal(20, 4)
+  targetValue     Decimal?        @map("target_value") @db.Decimal(20, 4)
+  currentValue    Decimal?        @map("current_value") @db.Decimal(20, 4)
+  checkDone       Boolean?        @map("check_done")
+  textState       TextState?      @map("text_state")
+  createdAt       DateTime        @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt       DateTime        @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  @@map("north_star")
+}
+
+model Objective {
+  id             String          @id @default(uuid()) @db.Uuid
+  organizationId String          @map("organization_id") @db.Uuid
+  organization   Organization    @relation(fields: [organizationId], references: [id])
+  title          String
+  level          ObjectiveLevel
+  status         ObjectiveStatus @default(Draft)
+  ownerId        String          @map("owner_id") @db.Uuid
+  owner          Member          @relation(fields: [ownerId], references: [id])
+  keyResults     KeyResult[]
+  createdAt      DateTime        @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  @@index([organizationId])
+  @@map("objective")
+}
+
+model KeyResult {
+  id              String          @id @default(uuid()) @db.Uuid
+  // organization_id propio (además del objective) para que la política RLS
+  // no dependa de joins.
+  organizationId  String          @map("organization_id") @db.Uuid
+  organization    Organization    @relation(fields: [organizationId], references: [id])
+  objectiveId     String          @map("objective_id") @db.Uuid
+  objective       Objective       @relation(fields: [objectiveId], references: [id])
+  title           String
+  measurementType MeasurementType @map("measurement_type")
+  startValue      Decimal?        @map("start_value") @db.Decimal(20, 4)
+  targetValue     Decimal?        @map("target_value") @db.Decimal(20, 4)
+  currentValue    Decimal?        @map("current_value") @db.Decimal(20, 4)
+  checkDone       Boolean?        @map("check_done")
+  textState       TextState?      @map("text_state")
+  createdAt       DateTime        @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  @@index([organizationId])
+  @@index([objectiveId])
+  @@map("key_result")
 }

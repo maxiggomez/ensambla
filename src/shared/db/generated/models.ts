@@ -10,4 +10,7 @@
  */
 export type * from './models/Organization'
 export type * from './models/Member'
+export type * from './models/NorthStar'
+export type * from './models/Objective'
+export type * from './models/KeyResult'
 export type * from './commonInputTypes'

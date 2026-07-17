@@ -52,7 +52,10 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   Organization: 'Organization',
-  Member: 'Member'
+  Member: 'Member',
+  NorthStar: 'NorthStar',
+  Objective: 'Objective',
+  KeyResult: 'KeyResult'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -91,6 +94,53 @@ export const MemberScalarFieldEnum = {
 } as const
 
 export type MemberScalarFieldEnum = (typeof MemberScalarFieldEnum)[keyof typeof MemberScalarFieldEnum]
+
+
+export const NorthStarScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  name: 'name',
+  measurementType: 'measurementType',
+  startValue: 'startValue',
+  targetValue: 'targetValue',
+  currentValue: 'currentValue',
+  checkDone: 'checkDone',
+  textState: 'textState',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type NorthStarScalarFieldEnum = (typeof NorthStarScalarFieldEnum)[keyof typeof NorthStarScalarFieldEnum]
+
+
+export const ObjectiveScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  title: 'title',
+  level: 'level',
+  status: 'status',
+  ownerId: 'ownerId',
+  createdAt: 'createdAt'
+} as const
+
+export type ObjectiveScalarFieldEnum = (typeof ObjectiveScalarFieldEnum)[keyof typeof ObjectiveScalarFieldEnum]
+
+
+export const KeyResultScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  objectiveId: 'objectiveId',
+  title: 'title',
+  measurementType: 'measurementType',
+  startValue: 'startValue',
+  targetValue: 'targetValue',
+  currentValue: 'currentValue',
+  checkDone: 'checkDone',
+  textState: 'textState',
+  createdAt: 'createdAt'
+} as const
+
+export type KeyResultScalarFieldEnum = (typeof KeyResultScalarFieldEnum)[keyof typeof KeyResultScalarFieldEnum]
 
 
 export const SortOrder = {

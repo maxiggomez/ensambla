@@ -16,3 +16,41 @@ export const MemberRole = {
 } as const
 
 export type MemberRole = (typeof MemberRole)[keyof typeof MemberRole]
+
+
+export const ObjectiveLevel = {
+  Company: 'Company',
+  Area: 'Area',
+  Team: 'Team',
+  Person: 'Person'
+} as const
+
+export type ObjectiveLevel = (typeof ObjectiveLevel)[keyof typeof ObjectiveLevel]
+
+
+export const ObjectiveStatus = {
+  Draft: 'Draft',
+  Published: 'Published'
+} as const
+
+export type ObjectiveStatus = (typeof ObjectiveStatus)[keyof typeof ObjectiveStatus]
+
+
+export const MeasurementType = {
+  Check: 'Check',
+  Percentage: 'Percentage',
+  Integer: 'Integer',
+  Currency: 'Currency',
+  Text: 'Text'
+} as const
+
+export type MeasurementType = (typeof MeasurementType)[keyof typeof MeasurementType]
+
+
+export const TextState = {
+  NotStarted: 'NotStarted',
+  InProgress: 'InProgress',
+  Done: 'Done'
+} as const
+
+export type TextState = (typeof TextState)[keyof typeof TextState]
