@@ -55,7 +55,11 @@ export const ModelName = {
   Member: 'Member',
   NorthStar: 'NorthStar',
   Objective: 'Objective',
-  KeyResult: 'KeyResult'
+  KeyResult: 'KeyResult',
+  Team: 'Team',
+  TeamMember: 'TeamMember',
+  Project: 'Project',
+  ProjectObjective: 'ProjectObjective'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -141,6 +145,51 @@ export const KeyResultScalarFieldEnum = {
 } as const
 
 export type KeyResultScalarFieldEnum = (typeof KeyResultScalarFieldEnum)[keyof typeof KeyResultScalarFieldEnum]
+
+
+export const TeamScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  name: 'name',
+  description: 'description',
+  createdAt: 'createdAt'
+} as const
+
+export type TeamScalarFieldEnum = (typeof TeamScalarFieldEnum)[keyof typeof TeamScalarFieldEnum]
+
+
+export const TeamMemberScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  teamId: 'teamId',
+  memberId: 'memberId',
+  role: 'role',
+  capacityPercent: 'capacityPercent',
+  createdAt: 'createdAt'
+} as const
+
+export type TeamMemberScalarFieldEnum = (typeof TeamMemberScalarFieldEnum)[keyof typeof TeamMemberScalarFieldEnum]
+
+
+export const ProjectScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  name: 'name',
+  createdAt: 'createdAt'
+} as const
+
+export type ProjectScalarFieldEnum = (typeof ProjectScalarFieldEnum)[keyof typeof ProjectScalarFieldEnum]
+
+
+export const ProjectObjectiveScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  projectId: 'projectId',
+  objectiveId: 'objectiveId',
+  createdAt: 'createdAt'
+} as const
+
+export type ProjectObjectiveScalarFieldEnum = (typeof ProjectObjectiveScalarFieldEnum)[keyof typeof ProjectObjectiveScalarFieldEnum]
 
 
 export const SortOrder = {

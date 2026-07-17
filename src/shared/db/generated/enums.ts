@@ -54,3 +54,11 @@ export const TextState = {
 } as const
 
 export type TextState = (typeof TextState)[keyof typeof TextState]
+
+
+export const TeamRole = {
+  Lead: 'Lead',
+  Contributor: 'Contributor'
+} as const
+
+export type TeamRole = (typeof TeamRole)[keyof typeof TeamRole]

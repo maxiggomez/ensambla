@@ -7,6 +7,10 @@ export type {
   NorthStarModel as NorthStar,
   ObjectiveModel as Objective,
   OrganizationModel as Organization,
+  ProjectModel as Project,
+  ProjectObjectiveModel as ProjectObjective,
+  TeamMemberModel as TeamMember,
+  TeamModel as Team,
 } from "./generated/models";
 export {
   MeasurementType,
