@@ -65,4 +65,4 @@ Orden test-first (ADR-0006): cada tarea de test va antes que su implementación.
 - [x] 7.1 `npm run typecheck` + `npm run lint` + `npm run format:check` en verde
 - [x] 7.2 `npm run test` en verde (unit + integration)
 - [x] 7.3 `openspec validate --all --strict` en verde
-- [ ] 7.4 Review con `mg-pr-review` (obligatorio: áreas 🔒)
+- [x] 7.4 Review con `mg-pr-review` (obligatorio: áreas 🔒)
