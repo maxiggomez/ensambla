@@ -1,7 +1,6 @@
-import { auth } from "@clerk/nextjs/server";
+import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -9,13 +8,19 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 
-import { listMembers, ROLES } from "../../modules/identity-org/application";
-import { resolveTenantForUser } from "../../shared/tenancy";
+import {
+  canManageMembers,
+  listMembers,
+  ROLES,
+  type Role,
+} from "../../modules/identity-org/application";
+import type { Member } from "../../shared/db";
+import { verifiedEmail } from "../../lib/verified-email";
+import { ApplicationError } from "../../shared/errors";
+import { linkMembershipsForUser } from "../../shared/tenancy";
 
-import { inviteMemberAction } from "./actions";
+import { InviteMemberForm } from "./invite-member-form";
 
 const ROLE_LABELS: Record<string, string> = {
   Direccion: "Dirección",
@@ -23,19 +28,39 @@ const ROLE_LABELS: Record<string, string> = {
   Colaborador: "Colaborador",
 };
 
+function isNoMember(error: unknown): boolean {
+  return error instanceof ApplicationError && error.code === "tenancy/no-member";
+}
+
 export default async function MembersPage() {
-  const { userId } = await auth();
-  if (!userId) {
+  const user = await currentUser();
+  if (!user) {
     redirect("/sign-in");
   }
-  if ((await resolveTenantForUser(userId)) === null) {
-    redirect("/onboarding");
+  const email = verifiedEmail(user);
+
+  // Una sola resolución de tenant por request (F.5b): listMembers resuelve
+  // internamente; si el usuario no tiene membership, se intenta la vinculación
+  // por email verificado (primer login de un invitado, F.1) y se reintenta.
+  let members: Member[];
+  try {
+    members = await listMembers({ actorClerkUserId: user.id });
+  } catch (error) {
+    if (!isNoMember(error)) {
+      throw error;
+    }
+    const linked = await linkMembershipsForUser(user.id, email);
+    if (linked === 0) {
+      redirect("/onboarding");
+    }
+    members = await listMembers({ actorClerkUserId: user.id });
   }
 
-  const members = await listMembers({ actorClerkUserId: userId });
+  const actor = members.find((m) => m.clerkUserId === user.id);
+  const showInviteForm = actor ? canManageMembers(actor.role as Role) : false;
 
   return (
-    <main className="mx-auto flex min-h-screen w-full max-w-3xl flex-col gap-6 bg-background p-6">
+    <main className="mx-auto flex min-h-screen w-full max-w-3xl flex-col gap-6 p-6">
       <Card>
         <CardHeader>
           <CardTitle>Miembros</CardTitle>
@@ -58,48 +83,19 @@ export default async function MembersPage() {
         </CardContent>
       </Card>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>Invitar miembro</CardTitle>
-          <CardDescription>
-            La persona se suma con el rol asignado; si su email ya existe, no se duplica.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <form action={inviteMemberAction} className="flex flex-col gap-4">
-            <div className="flex flex-col gap-2">
-              <Label htmlFor="name">Nombre</Label>
-              <Input id="name" name="name" placeholder="Bruno Díaz" required />
-            </div>
-            <div className="flex flex-col gap-2">
-              <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                name="email"
-                type="email"
-                placeholder="bruno@acme.com"
-                required
-              />
-            </div>
-            <div className="flex flex-col gap-2">
-              <Label htmlFor="role">Rol</Label>
-              <select
-                id="role"
-                name="role"
-                className="h-9 rounded-md border border-input bg-transparent px-3 text-sm"
-                defaultValue="Colaborador"
-              >
-                {ROLES.map((role) => (
-                  <option key={role} value={role}>
-                    {ROLE_LABELS[role]}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <Button type="submit">Invitar</Button>
-          </form>
-        </CardContent>
-      </Card>
+      {showInviteForm ? (
+        <Card>
+          <CardHeader>
+            <CardTitle>Invitar miembro</CardTitle>
+            <CardDescription>
+              La persona se suma con el rol asignado; si su email ya existe, no se duplica.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <InviteMemberForm roles={ROLES} />
+          </CardContent>
+        </Card>
+      ) : null}
     </main>
   );
 }

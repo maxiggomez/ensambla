@@ -72,4 +72,24 @@ test.describe.serial("alta de organización e invitación de miembro", () => {
     // El registro existente no se toca (sigue siendo Líder).
     await expect(page.locator("li", { hasText: "bruno@acme-e2e.test" })).toContainText("Líder");
   });
+
+  test("una invitación inválida muestra un error amigable sin crear member", async ({
+    page,
+  }) => {
+    await signIn(page);
+    await page.goto("/members");
+    const memberCount = await page.locator("li").count();
+
+    // Nombre de solo espacios: pasa el `required` del navegador, lo rechaza
+    // el dominio → el form debe mostrar el mensaje, no la pantalla de error.
+    await page.getByLabel("Nombre").fill("   ");
+    await page.getByLabel("Email").fill("valida@acme-e2e.test");
+    await page.getByRole("button", { name: "Invitar" }).click();
+
+    // .filter: el route-announcer de Next también expone role="alert".
+    await expect(
+      page.getByRole("alert").filter({ hasText: "El nombre no puede estar vacío" }),
+    ).toBeVisible();
+    await expect(page.locator("li")).toHaveCount(memberCount);
+  });
 });

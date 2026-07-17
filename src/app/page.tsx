@@ -1,8 +1,14 @@
+import { auth } from "@clerk/nextjs/server";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 
-export default function Home() {
+export default async function Home() {
+  // Con sesión activa, /sign-in rebota a la home (Clerk no muestra el form a
+  // un usuario logueado): el header y el CTA deben llevar a la app.
+  const { userId } = await auth();
+  const signedIn = userId !== null;
+
   return (
     <div className="mx-auto flex min-h-screen w-full max-w-[1180px] flex-col px-5">
       <header className="flex min-h-[76px] items-center justify-between border-b border-foreground/10">
@@ -13,7 +19,11 @@ export default function Home() {
           Ensambla
         </Link>
         <Button asChild variant="outline" className="border-foreground">
-          <Link href="/sign-in">Ingresar</Link>
+          {signedIn ? (
+            <Link href="/members">Ir a mi organización</Link>
+          ) : (
+            <Link href="/sign-in">Ingresar</Link>
+          )}
         </Button>
       </header>
 
@@ -36,9 +46,15 @@ export default function Home() {
               data-testid="cta-primary"
               className="min-w-[225px] justify-between font-bold"
             >
-              <Link href="/onboarding">
-                Crear mi organización <span aria-hidden>↗</span>
-              </Link>
+              {signedIn ? (
+                <Link href="/members">
+                  Ir a mi organización <span aria-hidden>↗</span>
+                </Link>
+              ) : (
+                <Link href="/onboarding">
+                  Crear mi organización <span aria-hidden>↗</span>
+                </Link>
+              )}
             </Button>
           </div>
         </section>
