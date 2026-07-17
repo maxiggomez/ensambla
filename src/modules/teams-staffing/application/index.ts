@@ -16,3 +16,4 @@ export {
 export { evaluateAlignment, type EvaluateAlignmentInput } from "./evaluate-alignment";
 export type { TeamRole } from "../domain/team-role";
 export type { AlignmentAlerts } from "../domain/alignment";
+export { listTeamAssignments, type TeamAssignmentView } from "./list-team-assignments";

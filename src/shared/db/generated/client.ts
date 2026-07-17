@@ -86,3 +86,18 @@ export type Project = Prisma.ProjectModel
  * 
  */
 export type ProjectObjective = Prisma.ProjectObjectiveModel
+/**
+ * Model Skill
+ * 
+ */
+export type Skill = Prisma.SkillModel
+/**
+ * Model Competency
+ * 
+ */
+export type Competency = Prisma.CompetencyModel
+/**
+ * Model SkillRequirement
+ * 
+ */
+export type SkillRequirement = Prisma.SkillRequirementModel

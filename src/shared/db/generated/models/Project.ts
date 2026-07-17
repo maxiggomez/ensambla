@@ -176,6 +176,7 @@ export type ProjectWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Project"> | Date | string
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
   objectiveLinks?: Prisma.ProjectObjectiveListRelationFilter
+  skillRequirements?: Prisma.SkillRequirementListRelationFilter
 }
 
 export type ProjectOrderByWithRelationInput = {
@@ -185,6 +186,7 @@ export type ProjectOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   organization?: Prisma.OrganizationOrderByWithRelationInput
   objectiveLinks?: Prisma.ProjectObjectiveOrderByRelationAggregateInput
+  skillRequirements?: Prisma.SkillRequirementOrderByRelationAggregateInput
 }
 
 export type ProjectWhereUniqueInput = Prisma.AtLeast<{
@@ -197,6 +199,7 @@ export type ProjectWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"Project"> | Date | string
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
   objectiveLinks?: Prisma.ProjectObjectiveListRelationFilter
+  skillRequirements?: Prisma.SkillRequirementListRelationFilter
 }, "id">
 
 export type ProjectOrderByWithAggregationInput = {
@@ -225,6 +228,7 @@ export type ProjectCreateInput = {
   createdAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutProjectsInput
   objectiveLinks?: Prisma.ProjectObjectiveCreateNestedManyWithoutProjectInput
+  skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectUncheckedCreateInput = {
@@ -233,6 +237,7 @@ export type ProjectUncheckedCreateInput = {
   name: string
   createdAt?: Date | string
   objectiveLinks?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutProjectInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectUpdateInput = {
@@ -241,6 +246,7 @@ export type ProjectUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutProjectsNestedInput
   objectiveLinks?: Prisma.ProjectObjectiveUpdateManyWithoutProjectNestedInput
+  skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateInput = {
@@ -249,6 +255,7 @@ export type ProjectUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   objectiveLinks?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutProjectNestedInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectCreateManyInput = {
@@ -307,6 +314,11 @@ export type ProjectScalarRelationFilter = {
   isNot?: Prisma.ProjectWhereInput
 }
 
+export type ProjectNullableScalarRelationFilter = {
+  is?: Prisma.ProjectWhereInput | null
+  isNot?: Prisma.ProjectWhereInput | null
+}
+
 export type ProjectCreateNestedManyWithoutOrganizationInput = {
   create?: Prisma.XOR<Prisma.ProjectCreateWithoutOrganizationInput, Prisma.ProjectUncheckedCreateWithoutOrganizationInput> | Prisma.ProjectCreateWithoutOrganizationInput[] | Prisma.ProjectUncheckedCreateWithoutOrganizationInput[]
   connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutOrganizationInput | Prisma.ProjectCreateOrConnectWithoutOrganizationInput[]
@@ -363,11 +375,28 @@ export type ProjectUpdateOneRequiredWithoutObjectiveLinksNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ProjectUpdateToOneWithWhereWithoutObjectiveLinksInput, Prisma.ProjectUpdateWithoutObjectiveLinksInput>, Prisma.ProjectUncheckedUpdateWithoutObjectiveLinksInput>
 }
 
+export type ProjectCreateNestedOneWithoutSkillRequirementsInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutSkillRequirementsInput, Prisma.ProjectUncheckedCreateWithoutSkillRequirementsInput>
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutSkillRequirementsInput
+  connect?: Prisma.ProjectWhereUniqueInput
+}
+
+export type ProjectUpdateOneWithoutSkillRequirementsNestedInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutSkillRequirementsInput, Prisma.ProjectUncheckedCreateWithoutSkillRequirementsInput>
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutSkillRequirementsInput
+  upsert?: Prisma.ProjectUpsertWithoutSkillRequirementsInput
+  disconnect?: Prisma.ProjectWhereInput | boolean
+  delete?: Prisma.ProjectWhereInput | boolean
+  connect?: Prisma.ProjectWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProjectUpdateToOneWithWhereWithoutSkillRequirementsInput, Prisma.ProjectUpdateWithoutSkillRequirementsInput>, Prisma.ProjectUncheckedUpdateWithoutSkillRequirementsInput>
+}
+
 export type ProjectCreateWithoutOrganizationInput = {
   id?: string
   name: string
   createdAt?: Date | string
   objectiveLinks?: Prisma.ProjectObjectiveCreateNestedManyWithoutProjectInput
+  skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectUncheckedCreateWithoutOrganizationInput = {
@@ -375,6 +404,7 @@ export type ProjectUncheckedCreateWithoutOrganizationInput = {
   name: string
   createdAt?: Date | string
   objectiveLinks?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutProjectInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectCreateOrConnectWithoutOrganizationInput = {
@@ -418,6 +448,7 @@ export type ProjectCreateWithoutObjectiveLinksInput = {
   name: string
   createdAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutProjectsInput
+  skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectUncheckedCreateWithoutObjectiveLinksInput = {
@@ -425,6 +456,7 @@ export type ProjectUncheckedCreateWithoutObjectiveLinksInput = {
   organizationId: string
   name: string
   createdAt?: Date | string
+  skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectCreateOrConnectWithoutObjectiveLinksInput = {
@@ -448,6 +480,7 @@ export type ProjectUpdateWithoutObjectiveLinksInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutProjectsNestedInput
+  skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateWithoutObjectiveLinksInput = {
@@ -455,6 +488,55 @@ export type ProjectUncheckedUpdateWithoutObjectiveLinksInput = {
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutProjectNestedInput
+}
+
+export type ProjectCreateWithoutSkillRequirementsInput = {
+  id?: string
+  name: string
+  createdAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutProjectsInput
+  objectiveLinks?: Prisma.ProjectObjectiveCreateNestedManyWithoutProjectInput
+}
+
+export type ProjectUncheckedCreateWithoutSkillRequirementsInput = {
+  id?: string
+  organizationId: string
+  name: string
+  createdAt?: Date | string
+  objectiveLinks?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutProjectInput
+}
+
+export type ProjectCreateOrConnectWithoutSkillRequirementsInput = {
+  where: Prisma.ProjectWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutSkillRequirementsInput, Prisma.ProjectUncheckedCreateWithoutSkillRequirementsInput>
+}
+
+export type ProjectUpsertWithoutSkillRequirementsInput = {
+  update: Prisma.XOR<Prisma.ProjectUpdateWithoutSkillRequirementsInput, Prisma.ProjectUncheckedUpdateWithoutSkillRequirementsInput>
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutSkillRequirementsInput, Prisma.ProjectUncheckedCreateWithoutSkillRequirementsInput>
+  where?: Prisma.ProjectWhereInput
+}
+
+export type ProjectUpdateToOneWithWhereWithoutSkillRequirementsInput = {
+  where?: Prisma.ProjectWhereInput
+  data: Prisma.XOR<Prisma.ProjectUpdateWithoutSkillRequirementsInput, Prisma.ProjectUncheckedUpdateWithoutSkillRequirementsInput>
+}
+
+export type ProjectUpdateWithoutSkillRequirementsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutProjectsNestedInput
+  objectiveLinks?: Prisma.ProjectObjectiveUpdateManyWithoutProjectNestedInput
+}
+
+export type ProjectUncheckedUpdateWithoutSkillRequirementsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  objectiveLinks?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectCreateManyOrganizationInput = {
@@ -468,6 +550,7 @@ export type ProjectUpdateWithoutOrganizationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   objectiveLinks?: Prisma.ProjectObjectiveUpdateManyWithoutProjectNestedInput
+  skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateWithoutOrganizationInput = {
@@ -475,6 +558,7 @@ export type ProjectUncheckedUpdateWithoutOrganizationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   objectiveLinks?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutProjectNestedInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateManyWithoutOrganizationInput = {
@@ -490,10 +574,12 @@ export type ProjectUncheckedUpdateManyWithoutOrganizationInput = {
 
 export type ProjectCountOutputType = {
   objectiveLinks: number
+  skillRequirements: number
 }
 
 export type ProjectCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   objectiveLinks?: boolean | ProjectCountOutputTypeCountObjectiveLinksArgs
+  skillRequirements?: boolean | ProjectCountOutputTypeCountSkillRequirementsArgs
 }
 
 /**
@@ -513,6 +599,13 @@ export type ProjectCountOutputTypeCountObjectiveLinksArgs<ExtArgs extends runtim
   where?: Prisma.ProjectObjectiveWhereInput
 }
 
+/**
+ * ProjectCountOutputType without action
+ */
+export type ProjectCountOutputTypeCountSkillRequirementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SkillRequirementWhereInput
+}
+
 
 export type ProjectSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -521,6 +614,7 @@ export type ProjectSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   createdAt?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   objectiveLinks?: boolean | Prisma.Project$objectiveLinksArgs<ExtArgs>
+  skillRequirements?: boolean | Prisma.Project$skillRequirementsArgs<ExtArgs>
   _count?: boolean | Prisma.ProjectCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["project"]>
 
@@ -551,6 +645,7 @@ export type ProjectOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
 export type ProjectInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   objectiveLinks?: boolean | Prisma.Project$objectiveLinksArgs<ExtArgs>
+  skillRequirements?: boolean | Prisma.Project$skillRequirementsArgs<ExtArgs>
   _count?: boolean | Prisma.ProjectCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ProjectIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -565,6 +660,7 @@ export type $ProjectPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   objects: {
     organization: Prisma.$OrganizationPayload<ExtArgs>
     objectiveLinks: Prisma.$ProjectObjectivePayload<ExtArgs>[]
+    skillRequirements: Prisma.$SkillRequirementPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -967,6 +1063,7 @@ export interface Prisma__ProjectClient<T, Null = never, ExtArgs extends runtime.
   readonly [Symbol.toStringTag]: "PrismaPromise"
   organization<T extends Prisma.OrganizationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrganizationDefaultArgs<ExtArgs>>): Prisma.Prisma__OrganizationClient<runtime.Types.Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   objectiveLinks<T extends Prisma.Project$objectiveLinksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$objectiveLinksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProjectObjectivePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  skillRequirements<T extends Prisma.Project$skillRequirementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$skillRequirementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SkillRequirementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1422,6 +1519,30 @@ export type Project$objectiveLinksArgs<ExtArgs extends runtime.Types.Extensions.
   take?: number
   skip?: number
   distinct?: Prisma.ProjectObjectiveScalarFieldEnum | Prisma.ProjectObjectiveScalarFieldEnum[]
+}
+
+/**
+ * Project.skillRequirements
+ */
+export type Project$skillRequirementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SkillRequirement
+   */
+  select?: Prisma.SkillRequirementSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the SkillRequirement
+   */
+  omit?: Prisma.SkillRequirementOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SkillRequirementInclude<ExtArgs> | null
+  where?: Prisma.SkillRequirementWhereInput
+  orderBy?: Prisma.SkillRequirementOrderByWithRelationInput | Prisma.SkillRequirementOrderByWithRelationInput[]
+  cursor?: Prisma.SkillRequirementWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SkillRequirementScalarFieldEnum | Prisma.SkillRequirementScalarFieldEnum[]
 }
 
 /**

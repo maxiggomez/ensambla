@@ -13,34 +13,46 @@ enum MemberRole {
   Colaborador
 }
 
+enum Seniority {
+  Junior
+  SemiSenior
+  Senior
+}
+
 model Organization {
-  id         String      @id @default(uuid()) @db.Uuid
-  name       String
-  createdAt  DateTime    @default(now()) @map("created_at") @db.Timestamptz(6)
-  members    Member[]
-  northStar  NorthStar?
-  objectives Objective[]
-  keyResults KeyResult[]
+  id                String             @id @default(uuid()) @db.Uuid
+  name              String
+  createdAt         DateTime           @default(now()) @map("created_at") @db.Timestamptz(6)
+  members           Member[]
+  northStar         NorthStar?
+  objectives        Objective[]
+  keyResults        KeyResult[]
   teams             Team[]
   teamMembers       TeamMember[]
   projects          Project[]
   projectObjectives ProjectObjective[]
+  skills            Skill[]
+  competencies      Competency[]
+  skillRequirements SkillRequirement[]
 
   @@map("organization")
 }
 
 model Member {
-  id             String       @id @default(uuid()) @db.Uuid
-  organizationId String       @map("organization_id") @db.Uuid
-  organization   Organization @relation(fields: [organizationId], references: [id])
-  email          String
-  name           String
-  role           MemberRole
+  id              String       @id @default(uuid()) @db.Uuid
+  organizationId  String       @map("organization_id") @db.Uuid
+  organization    Organization @relation(fields: [organizationId], references: [id])
+  email           String
+  name            String
+  role            MemberRole
   // Identidad de auth (Clerk). Nullable: un invitado puede no haber logueado aún.
-  clerkUserId    String?      @map("clerk_user_id")
-  createdAt      DateTime     @default(now()) @map("created_at") @db.Timestamptz(6)
-  objectives     Objective[]
+  clerkUserId     String?      @map("clerk_user_id")
+  // Insumo del staffing (skills-matrix); nullable: sin dato rankea último.
+  seniority       Seniority?
+  createdAt       DateTime     @default(now()) @map("created_at") @db.Timestamptz(6)
+  objectives      Objective[]
   teamMemberships TeamMember[]
+  competencies    Competency[]
 
   @@unique([organizationId, email])
   @@unique([organizationId, clerkUserId])
@@ -99,38 +111,39 @@ model NorthStar {
 }
 
 model Objective {
-  id             String          @id @default(uuid()) @db.Uuid
-  organizationId String          @map("organization_id") @db.Uuid
-  organization   Organization    @relation(fields: [organizationId], references: [id])
+  id             String             @id @default(uuid()) @db.Uuid
+  organizationId String             @map("organization_id") @db.Uuid
+  organization   Organization       @relation(fields: [organizationId], references: [id])
   title          String
   level          ObjectiveLevel
-  status         ObjectiveStatus @default(Draft)
-  ownerId        String          @map("owner_id") @db.Uuid
-  owner          Member          @relation(fields: [ownerId], references: [id])
+  status         ObjectiveStatus    @default(Draft)
+  ownerId        String             @map("owner_id") @db.Uuid
+  owner          Member             @relation(fields: [ownerId], references: [id])
   keyResults     KeyResult[]
   projectLinks   ProjectObjective[]
-  createdAt      DateTime        @default(now()) @map("created_at") @db.Timestamptz(6)
+  createdAt      DateTime           @default(now()) @map("created_at") @db.Timestamptz(6)
 
   @@index([organizationId])
   @@map("objective")
 }
 
 model KeyResult {
-  id              String          @id @default(uuid()) @db.Uuid
+  id                String             @id @default(uuid()) @db.Uuid
   // organization_id propio (además del objective) para que la política RLS
   // no dependa de joins.
-  organizationId  String          @map("organization_id") @db.Uuid
-  organization    Organization    @relation(fields: [organizationId], references: [id])
-  objectiveId     String          @map("objective_id") @db.Uuid
-  objective       Objective       @relation(fields: [objectiveId], references: [id])
-  title           String
-  measurementType MeasurementType @map("measurement_type")
-  startValue      Decimal?        @map("start_value") @db.Decimal(20, 4)
-  targetValue     Decimal?        @map("target_value") @db.Decimal(20, 4)
-  currentValue    Decimal?        @map("current_value") @db.Decimal(20, 4)
-  checkDone       Boolean?        @map("check_done")
-  textState       TextState?      @map("text_state")
-  createdAt       DateTime        @default(now()) @map("created_at") @db.Timestamptz(6)
+  organizationId    String             @map("organization_id") @db.Uuid
+  organization      Organization       @relation(fields: [organizationId], references: [id])
+  objectiveId       String             @map("objective_id") @db.Uuid
+  objective         Objective          @relation(fields: [objectiveId], references: [id])
+  title             String
+  measurementType   MeasurementType    @map("measurement_type")
+  startValue        Decimal?           @map("start_value") @db.Decimal(20, 4)
+  targetValue       Decimal?           @map("target_value") @db.Decimal(20, 4)
+  currentValue      Decimal?           @map("current_value") @db.Decimal(20, 4)
+  checkDone         Boolean?           @map("check_done")
+  textState         TextState?         @map("text_state")
+  skillRequirements SkillRequirement[]
+  createdAt         DateTime           @default(now()) @map("created_at") @db.Timestamptz(6)
 
   @@index([organizationId])
   @@index([objectiveId])
@@ -180,12 +193,13 @@ model TeamMember {
 }
 
 model Project {
-  id             String             @id @default(uuid()) @db.Uuid
-  organizationId String             @map("organization_id") @db.Uuid
-  organization   Organization       @relation(fields: [organizationId], references: [id])
-  name           String
-  objectiveLinks ProjectObjective[]
-  createdAt      DateTime           @default(now()) @map("created_at") @db.Timestamptz(6)
+  id                String             @id @default(uuid()) @db.Uuid
+  organizationId    String             @map("organization_id") @db.Uuid
+  organization      Organization       @relation(fields: [organizationId], references: [id])
+  name              String
+  objectiveLinks    ProjectObjective[]
+  skillRequirements SkillRequirement[]
+  createdAt         DateTime           @default(now()) @map("created_at") @db.Timestamptz(6)
 
   @@index([organizationId])
   @@map("project")
@@ -205,4 +219,61 @@ model ProjectObjective {
   @@index([organizationId])
   @@index([objectiveId])
   @@map("project_objective")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// skills-matrix (change skills-matrix-core)
+// Skill por org, Competency (member × skill, level 0–4) y SkillRequirement
+// (skill requerida por un Project XOR un KeyResult). RLS en la misma
+// migración (ADR-0003 🔒). Sin columnas de flags: gaps/match derivados.
+// ─────────────────────────────────────────────────────────────────────────────
+
+model Skill {
+  id             String             @id @default(uuid()) @db.Uuid
+  organizationId String             @map("organization_id") @db.Uuid
+  organization   Organization       @relation(fields: [organizationId], references: [id])
+  name           String
+  competencies   Competency[]
+  requirements   SkillRequirement[]
+  createdAt      DateTime           @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  @@unique([organizationId, name])
+  @@map("skill")
+}
+
+model Competency {
+  id             String       @id @default(uuid()) @db.Uuid
+  organizationId String       @map("organization_id") @db.Uuid
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  memberId       String       @map("member_id") @db.Uuid
+  member         Member       @relation(fields: [memberId], references: [id])
+  skillId        String       @map("skill_id") @db.Uuid
+  skill          Skill        @relation(fields: [skillId], references: [id])
+  level          Int
+  createdAt      DateTime     @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt      DateTime     @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  @@unique([memberId, skillId])
+  @@index([organizationId])
+  @@index([skillId])
+  @@map("competency")
+}
+
+model SkillRequirement {
+  id             String       @id @default(uuid()) @db.Uuid
+  organizationId String       @map("organization_id") @db.Uuid
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  skillId        String       @map("skill_id") @db.Uuid
+  skill          Skill        @relation(fields: [skillId], references: [id])
+  // Exactamente uno de los dos (CHECK en la migración).
+  projectId      String?      @map("project_id") @db.Uuid
+  project        Project?     @relation(fields: [projectId], references: [id])
+  keyResultId    String?      @map("key_result_id") @db.Uuid
+  keyResult      KeyResult?   @relation(fields: [keyResultId], references: [id])
+  createdAt      DateTime     @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  @@unique([skillId, projectId])
+  @@unique([skillId, keyResultId])
+  @@index([organizationId])
+  @@map("skill_requirement")
 }

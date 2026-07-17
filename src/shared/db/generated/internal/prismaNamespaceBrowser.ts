@@ -59,7 +59,10 @@ export const ModelName = {
   Team: 'Team',
   TeamMember: 'TeamMember',
   Project: 'Project',
-  ProjectObjective: 'ProjectObjective'
+  ProjectObjective: 'ProjectObjective',
+  Skill: 'Skill',
+  Competency: 'Competency',
+  SkillRequirement: 'SkillRequirement'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -94,6 +97,7 @@ export const MemberScalarFieldEnum = {
   name: 'name',
   role: 'role',
   clerkUserId: 'clerkUserId',
+  seniority: 'seniority',
   createdAt: 'createdAt'
 } as const
 
@@ -190,6 +194,41 @@ export const ProjectObjectiveScalarFieldEnum = {
 } as const
 
 export type ProjectObjectiveScalarFieldEnum = (typeof ProjectObjectiveScalarFieldEnum)[keyof typeof ProjectObjectiveScalarFieldEnum]
+
+
+export const SkillScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  name: 'name',
+  createdAt: 'createdAt'
+} as const
+
+export type SkillScalarFieldEnum = (typeof SkillScalarFieldEnum)[keyof typeof SkillScalarFieldEnum]
+
+
+export const CompetencyScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  memberId: 'memberId',
+  skillId: 'skillId',
+  level: 'level',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CompetencyScalarFieldEnum = (typeof CompetencyScalarFieldEnum)[keyof typeof CompetencyScalarFieldEnum]
+
+
+export const SkillRequirementScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  skillId: 'skillId',
+  projectId: 'projectId',
+  keyResultId: 'keyResultId',
+  createdAt: 'createdAt'
+} as const
+
+export type SkillRequirementScalarFieldEnum = (typeof SkillRequirementScalarFieldEnum)[keyof typeof SkillRequirementScalarFieldEnum]
 
 
 export const SortOrder = {

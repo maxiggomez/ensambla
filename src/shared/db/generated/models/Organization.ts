@@ -174,6 +174,9 @@ export type OrganizationWhereInput = {
   teamMembers?: Prisma.TeamMemberListRelationFilter
   projects?: Prisma.ProjectListRelationFilter
   projectObjectives?: Prisma.ProjectObjectiveListRelationFilter
+  skills?: Prisma.SkillListRelationFilter
+  competencies?: Prisma.CompetencyListRelationFilter
+  skillRequirements?: Prisma.SkillRequirementListRelationFilter
 }
 
 export type OrganizationOrderByWithRelationInput = {
@@ -188,6 +191,9 @@ export type OrganizationOrderByWithRelationInput = {
   teamMembers?: Prisma.TeamMemberOrderByRelationAggregateInput
   projects?: Prisma.ProjectOrderByRelationAggregateInput
   projectObjectives?: Prisma.ProjectObjectiveOrderByRelationAggregateInput
+  skills?: Prisma.SkillOrderByRelationAggregateInput
+  competencies?: Prisma.CompetencyOrderByRelationAggregateInput
+  skillRequirements?: Prisma.SkillRequirementOrderByRelationAggregateInput
 }
 
 export type OrganizationWhereUniqueInput = Prisma.AtLeast<{
@@ -205,6 +211,9 @@ export type OrganizationWhereUniqueInput = Prisma.AtLeast<{
   teamMembers?: Prisma.TeamMemberListRelationFilter
   projects?: Prisma.ProjectListRelationFilter
   projectObjectives?: Prisma.ProjectObjectiveListRelationFilter
+  skills?: Prisma.SkillListRelationFilter
+  competencies?: Prisma.CompetencyListRelationFilter
+  skillRequirements?: Prisma.SkillRequirementListRelationFilter
 }, "id">
 
 export type OrganizationOrderByWithAggregationInput = {
@@ -237,6 +246,9 @@ export type OrganizationCreateInput = {
   teamMembers?: Prisma.TeamMemberCreateNestedManyWithoutOrganizationInput
   projects?: Prisma.ProjectCreateNestedManyWithoutOrganizationInput
   projectObjectives?: Prisma.ProjectObjectiveCreateNestedManyWithoutOrganizationInput
+  skills?: Prisma.SkillCreateNestedManyWithoutOrganizationInput
+  competencies?: Prisma.CompetencyCreateNestedManyWithoutOrganizationInput
+  skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateInput = {
@@ -251,6 +263,9 @@ export type OrganizationUncheckedCreateInput = {
   teamMembers?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutOrganizationInput
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganizationInput
   projectObjectives?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  skills?: Prisma.SkillUncheckedCreateNestedManyWithoutOrganizationInput
+  competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutOrganizationInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUpdateInput = {
@@ -265,6 +280,9 @@ export type OrganizationUpdateInput = {
   teamMembers?: Prisma.TeamMemberUpdateManyWithoutOrganizationNestedInput
   projects?: Prisma.ProjectUpdateManyWithoutOrganizationNestedInput
   projectObjectives?: Prisma.ProjectObjectiveUpdateManyWithoutOrganizationNestedInput
+  skills?: Prisma.SkillUpdateManyWithoutOrganizationNestedInput
+  competencies?: Prisma.CompetencyUpdateManyWithoutOrganizationNestedInput
+  skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateInput = {
@@ -279,6 +297,9 @@ export type OrganizationUncheckedUpdateInput = {
   teamMembers?: Prisma.TeamMemberUncheckedUpdateManyWithoutOrganizationNestedInput
   projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganizationNestedInput
   projectObjectives?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  skills?: Prisma.SkillUncheckedUpdateManyWithoutOrganizationNestedInput
+  competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutOrganizationNestedInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateManyInput = {
@@ -442,6 +463,48 @@ export type OrganizationUpdateOneRequiredWithoutProjectObjectivesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutProjectObjectivesInput, Prisma.OrganizationUpdateWithoutProjectObjectivesInput>, Prisma.OrganizationUncheckedUpdateWithoutProjectObjectivesInput>
 }
 
+export type OrganizationCreateNestedOneWithoutSkillsInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutSkillsInput, Prisma.OrganizationUncheckedCreateWithoutSkillsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutSkillsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutSkillsNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutSkillsInput, Prisma.OrganizationUncheckedCreateWithoutSkillsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutSkillsInput
+  upsert?: Prisma.OrganizationUpsertWithoutSkillsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutSkillsInput, Prisma.OrganizationUpdateWithoutSkillsInput>, Prisma.OrganizationUncheckedUpdateWithoutSkillsInput>
+}
+
+export type OrganizationCreateNestedOneWithoutCompetenciesInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutCompetenciesInput, Prisma.OrganizationUncheckedCreateWithoutCompetenciesInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutCompetenciesInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutCompetenciesNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutCompetenciesInput, Prisma.OrganizationUncheckedCreateWithoutCompetenciesInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutCompetenciesInput
+  upsert?: Prisma.OrganizationUpsertWithoutCompetenciesInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutCompetenciesInput, Prisma.OrganizationUpdateWithoutCompetenciesInput>, Prisma.OrganizationUncheckedUpdateWithoutCompetenciesInput>
+}
+
+export type OrganizationCreateNestedOneWithoutSkillRequirementsInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutSkillRequirementsInput, Prisma.OrganizationUncheckedCreateWithoutSkillRequirementsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutSkillRequirementsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutSkillRequirementsNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutSkillRequirementsInput, Prisma.OrganizationUncheckedCreateWithoutSkillRequirementsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutSkillRequirementsInput
+  upsert?: Prisma.OrganizationUpsertWithoutSkillRequirementsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutSkillRequirementsInput, Prisma.OrganizationUpdateWithoutSkillRequirementsInput>, Prisma.OrganizationUncheckedUpdateWithoutSkillRequirementsInput>
+}
+
 export type OrganizationCreateWithoutMembersInput = {
   id?: string
   name: string
@@ -453,6 +516,9 @@ export type OrganizationCreateWithoutMembersInput = {
   teamMembers?: Prisma.TeamMemberCreateNestedManyWithoutOrganizationInput
   projects?: Prisma.ProjectCreateNestedManyWithoutOrganizationInput
   projectObjectives?: Prisma.ProjectObjectiveCreateNestedManyWithoutOrganizationInput
+  skills?: Prisma.SkillCreateNestedManyWithoutOrganizationInput
+  competencies?: Prisma.CompetencyCreateNestedManyWithoutOrganizationInput
+  skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutMembersInput = {
@@ -466,6 +532,9 @@ export type OrganizationUncheckedCreateWithoutMembersInput = {
   teamMembers?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutOrganizationInput
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganizationInput
   projectObjectives?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  skills?: Prisma.SkillUncheckedCreateNestedManyWithoutOrganizationInput
+  competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutOrganizationInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutMembersInput = {
@@ -495,6 +564,9 @@ export type OrganizationUpdateWithoutMembersInput = {
   teamMembers?: Prisma.TeamMemberUpdateManyWithoutOrganizationNestedInput
   projects?: Prisma.ProjectUpdateManyWithoutOrganizationNestedInput
   projectObjectives?: Prisma.ProjectObjectiveUpdateManyWithoutOrganizationNestedInput
+  skills?: Prisma.SkillUpdateManyWithoutOrganizationNestedInput
+  competencies?: Prisma.CompetencyUpdateManyWithoutOrganizationNestedInput
+  skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutMembersInput = {
@@ -508,6 +580,9 @@ export type OrganizationUncheckedUpdateWithoutMembersInput = {
   teamMembers?: Prisma.TeamMemberUncheckedUpdateManyWithoutOrganizationNestedInput
   projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganizationNestedInput
   projectObjectives?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  skills?: Prisma.SkillUncheckedUpdateManyWithoutOrganizationNestedInput
+  competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutOrganizationNestedInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutNorthStarInput = {
@@ -521,6 +596,9 @@ export type OrganizationCreateWithoutNorthStarInput = {
   teamMembers?: Prisma.TeamMemberCreateNestedManyWithoutOrganizationInput
   projects?: Prisma.ProjectCreateNestedManyWithoutOrganizationInput
   projectObjectives?: Prisma.ProjectObjectiveCreateNestedManyWithoutOrganizationInput
+  skills?: Prisma.SkillCreateNestedManyWithoutOrganizationInput
+  competencies?: Prisma.CompetencyCreateNestedManyWithoutOrganizationInput
+  skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutNorthStarInput = {
@@ -534,6 +612,9 @@ export type OrganizationUncheckedCreateWithoutNorthStarInput = {
   teamMembers?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutOrganizationInput
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganizationInput
   projectObjectives?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  skills?: Prisma.SkillUncheckedCreateNestedManyWithoutOrganizationInput
+  competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutOrganizationInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutNorthStarInput = {
@@ -563,6 +644,9 @@ export type OrganizationUpdateWithoutNorthStarInput = {
   teamMembers?: Prisma.TeamMemberUpdateManyWithoutOrganizationNestedInput
   projects?: Prisma.ProjectUpdateManyWithoutOrganizationNestedInput
   projectObjectives?: Prisma.ProjectObjectiveUpdateManyWithoutOrganizationNestedInput
+  skills?: Prisma.SkillUpdateManyWithoutOrganizationNestedInput
+  competencies?: Prisma.CompetencyUpdateManyWithoutOrganizationNestedInput
+  skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutNorthStarInput = {
@@ -576,6 +660,9 @@ export type OrganizationUncheckedUpdateWithoutNorthStarInput = {
   teamMembers?: Prisma.TeamMemberUncheckedUpdateManyWithoutOrganizationNestedInput
   projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganizationNestedInput
   projectObjectives?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  skills?: Prisma.SkillUncheckedUpdateManyWithoutOrganizationNestedInput
+  competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutOrganizationNestedInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutObjectivesInput = {
@@ -589,6 +676,9 @@ export type OrganizationCreateWithoutObjectivesInput = {
   teamMembers?: Prisma.TeamMemberCreateNestedManyWithoutOrganizationInput
   projects?: Prisma.ProjectCreateNestedManyWithoutOrganizationInput
   projectObjectives?: Prisma.ProjectObjectiveCreateNestedManyWithoutOrganizationInput
+  skills?: Prisma.SkillCreateNestedManyWithoutOrganizationInput
+  competencies?: Prisma.CompetencyCreateNestedManyWithoutOrganizationInput
+  skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutObjectivesInput = {
@@ -602,6 +692,9 @@ export type OrganizationUncheckedCreateWithoutObjectivesInput = {
   teamMembers?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutOrganizationInput
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganizationInput
   projectObjectives?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  skills?: Prisma.SkillUncheckedCreateNestedManyWithoutOrganizationInput
+  competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutOrganizationInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutObjectivesInput = {
@@ -631,6 +724,9 @@ export type OrganizationUpdateWithoutObjectivesInput = {
   teamMembers?: Prisma.TeamMemberUpdateManyWithoutOrganizationNestedInput
   projects?: Prisma.ProjectUpdateManyWithoutOrganizationNestedInput
   projectObjectives?: Prisma.ProjectObjectiveUpdateManyWithoutOrganizationNestedInput
+  skills?: Prisma.SkillUpdateManyWithoutOrganizationNestedInput
+  competencies?: Prisma.CompetencyUpdateManyWithoutOrganizationNestedInput
+  skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutObjectivesInput = {
@@ -644,6 +740,9 @@ export type OrganizationUncheckedUpdateWithoutObjectivesInput = {
   teamMembers?: Prisma.TeamMemberUncheckedUpdateManyWithoutOrganizationNestedInput
   projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganizationNestedInput
   projectObjectives?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  skills?: Prisma.SkillUncheckedUpdateManyWithoutOrganizationNestedInput
+  competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutOrganizationNestedInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutKeyResultsInput = {
@@ -657,6 +756,9 @@ export type OrganizationCreateWithoutKeyResultsInput = {
   teamMembers?: Prisma.TeamMemberCreateNestedManyWithoutOrganizationInput
   projects?: Prisma.ProjectCreateNestedManyWithoutOrganizationInput
   projectObjectives?: Prisma.ProjectObjectiveCreateNestedManyWithoutOrganizationInput
+  skills?: Prisma.SkillCreateNestedManyWithoutOrganizationInput
+  competencies?: Prisma.CompetencyCreateNestedManyWithoutOrganizationInput
+  skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutKeyResultsInput = {
@@ -670,6 +772,9 @@ export type OrganizationUncheckedCreateWithoutKeyResultsInput = {
   teamMembers?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutOrganizationInput
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganizationInput
   projectObjectives?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  skills?: Prisma.SkillUncheckedCreateNestedManyWithoutOrganizationInput
+  competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutOrganizationInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutKeyResultsInput = {
@@ -699,6 +804,9 @@ export type OrganizationUpdateWithoutKeyResultsInput = {
   teamMembers?: Prisma.TeamMemberUpdateManyWithoutOrganizationNestedInput
   projects?: Prisma.ProjectUpdateManyWithoutOrganizationNestedInput
   projectObjectives?: Prisma.ProjectObjectiveUpdateManyWithoutOrganizationNestedInput
+  skills?: Prisma.SkillUpdateManyWithoutOrganizationNestedInput
+  competencies?: Prisma.CompetencyUpdateManyWithoutOrganizationNestedInput
+  skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutKeyResultsInput = {
@@ -712,6 +820,9 @@ export type OrganizationUncheckedUpdateWithoutKeyResultsInput = {
   teamMembers?: Prisma.TeamMemberUncheckedUpdateManyWithoutOrganizationNestedInput
   projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganizationNestedInput
   projectObjectives?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  skills?: Prisma.SkillUncheckedUpdateManyWithoutOrganizationNestedInput
+  competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutOrganizationNestedInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutTeamsInput = {
@@ -725,6 +836,9 @@ export type OrganizationCreateWithoutTeamsInput = {
   teamMembers?: Prisma.TeamMemberCreateNestedManyWithoutOrganizationInput
   projects?: Prisma.ProjectCreateNestedManyWithoutOrganizationInput
   projectObjectives?: Prisma.ProjectObjectiveCreateNestedManyWithoutOrganizationInput
+  skills?: Prisma.SkillCreateNestedManyWithoutOrganizationInput
+  competencies?: Prisma.CompetencyCreateNestedManyWithoutOrganizationInput
+  skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutTeamsInput = {
@@ -738,6 +852,9 @@ export type OrganizationUncheckedCreateWithoutTeamsInput = {
   teamMembers?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutOrganizationInput
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganizationInput
   projectObjectives?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  skills?: Prisma.SkillUncheckedCreateNestedManyWithoutOrganizationInput
+  competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutOrganizationInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutTeamsInput = {
@@ -767,6 +884,9 @@ export type OrganizationUpdateWithoutTeamsInput = {
   teamMembers?: Prisma.TeamMemberUpdateManyWithoutOrganizationNestedInput
   projects?: Prisma.ProjectUpdateManyWithoutOrganizationNestedInput
   projectObjectives?: Prisma.ProjectObjectiveUpdateManyWithoutOrganizationNestedInput
+  skills?: Prisma.SkillUpdateManyWithoutOrganizationNestedInput
+  competencies?: Prisma.CompetencyUpdateManyWithoutOrganizationNestedInput
+  skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutTeamsInput = {
@@ -780,6 +900,9 @@ export type OrganizationUncheckedUpdateWithoutTeamsInput = {
   teamMembers?: Prisma.TeamMemberUncheckedUpdateManyWithoutOrganizationNestedInput
   projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganizationNestedInput
   projectObjectives?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  skills?: Prisma.SkillUncheckedUpdateManyWithoutOrganizationNestedInput
+  competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutOrganizationNestedInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutTeamMembersInput = {
@@ -793,6 +916,9 @@ export type OrganizationCreateWithoutTeamMembersInput = {
   teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
   projects?: Prisma.ProjectCreateNestedManyWithoutOrganizationInput
   projectObjectives?: Prisma.ProjectObjectiveCreateNestedManyWithoutOrganizationInput
+  skills?: Prisma.SkillCreateNestedManyWithoutOrganizationInput
+  competencies?: Prisma.CompetencyCreateNestedManyWithoutOrganizationInput
+  skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutTeamMembersInput = {
@@ -806,6 +932,9 @@ export type OrganizationUncheckedCreateWithoutTeamMembersInput = {
   teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganizationInput
   projectObjectives?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  skills?: Prisma.SkillUncheckedCreateNestedManyWithoutOrganizationInput
+  competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutOrganizationInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutTeamMembersInput = {
@@ -835,6 +964,9 @@ export type OrganizationUpdateWithoutTeamMembersInput = {
   teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
   projects?: Prisma.ProjectUpdateManyWithoutOrganizationNestedInput
   projectObjectives?: Prisma.ProjectObjectiveUpdateManyWithoutOrganizationNestedInput
+  skills?: Prisma.SkillUpdateManyWithoutOrganizationNestedInput
+  competencies?: Prisma.CompetencyUpdateManyWithoutOrganizationNestedInput
+  skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutTeamMembersInput = {
@@ -848,6 +980,9 @@ export type OrganizationUncheckedUpdateWithoutTeamMembersInput = {
   teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
   projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganizationNestedInput
   projectObjectives?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  skills?: Prisma.SkillUncheckedUpdateManyWithoutOrganizationNestedInput
+  competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutOrganizationNestedInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutProjectsInput = {
@@ -861,6 +996,9 @@ export type OrganizationCreateWithoutProjectsInput = {
   teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
   teamMembers?: Prisma.TeamMemberCreateNestedManyWithoutOrganizationInput
   projectObjectives?: Prisma.ProjectObjectiveCreateNestedManyWithoutOrganizationInput
+  skills?: Prisma.SkillCreateNestedManyWithoutOrganizationInput
+  competencies?: Prisma.CompetencyCreateNestedManyWithoutOrganizationInput
+  skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutProjectsInput = {
@@ -874,6 +1012,9 @@ export type OrganizationUncheckedCreateWithoutProjectsInput = {
   teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
   teamMembers?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutOrganizationInput
   projectObjectives?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  skills?: Prisma.SkillUncheckedCreateNestedManyWithoutOrganizationInput
+  competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutOrganizationInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutProjectsInput = {
@@ -903,6 +1044,9 @@ export type OrganizationUpdateWithoutProjectsInput = {
   teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
   teamMembers?: Prisma.TeamMemberUpdateManyWithoutOrganizationNestedInput
   projectObjectives?: Prisma.ProjectObjectiveUpdateManyWithoutOrganizationNestedInput
+  skills?: Prisma.SkillUpdateManyWithoutOrganizationNestedInput
+  competencies?: Prisma.CompetencyUpdateManyWithoutOrganizationNestedInput
+  skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutProjectsInput = {
@@ -916,6 +1060,9 @@ export type OrganizationUncheckedUpdateWithoutProjectsInput = {
   teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
   teamMembers?: Prisma.TeamMemberUncheckedUpdateManyWithoutOrganizationNestedInput
   projectObjectives?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  skills?: Prisma.SkillUncheckedUpdateManyWithoutOrganizationNestedInput
+  competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutOrganizationNestedInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutProjectObjectivesInput = {
@@ -929,6 +1076,9 @@ export type OrganizationCreateWithoutProjectObjectivesInput = {
   teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
   teamMembers?: Prisma.TeamMemberCreateNestedManyWithoutOrganizationInput
   projects?: Prisma.ProjectCreateNestedManyWithoutOrganizationInput
+  skills?: Prisma.SkillCreateNestedManyWithoutOrganizationInput
+  competencies?: Prisma.CompetencyCreateNestedManyWithoutOrganizationInput
+  skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutProjectObjectivesInput = {
@@ -942,6 +1092,9 @@ export type OrganizationUncheckedCreateWithoutProjectObjectivesInput = {
   teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
   teamMembers?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutOrganizationInput
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganizationInput
+  skills?: Prisma.SkillUncheckedCreateNestedManyWithoutOrganizationInput
+  competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutOrganizationInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutProjectObjectivesInput = {
@@ -971,6 +1124,9 @@ export type OrganizationUpdateWithoutProjectObjectivesInput = {
   teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
   teamMembers?: Prisma.TeamMemberUpdateManyWithoutOrganizationNestedInput
   projects?: Prisma.ProjectUpdateManyWithoutOrganizationNestedInput
+  skills?: Prisma.SkillUpdateManyWithoutOrganizationNestedInput
+  competencies?: Prisma.CompetencyUpdateManyWithoutOrganizationNestedInput
+  skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutProjectObjectivesInput = {
@@ -984,6 +1140,249 @@ export type OrganizationUncheckedUpdateWithoutProjectObjectivesInput = {
   teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
   teamMembers?: Prisma.TeamMemberUncheckedUpdateManyWithoutOrganizationNestedInput
   projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganizationNestedInput
+  skills?: Prisma.SkillUncheckedUpdateManyWithoutOrganizationNestedInput
+  competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutOrganizationNestedInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutSkillsInput = {
+  id?: string
+  name: string
+  createdAt?: Date | string
+  members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
+  northStar?: Prisma.NorthStarCreateNestedOneWithoutOrganizationInput
+  objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
+  keyResults?: Prisma.KeyResultCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
+  teamMembers?: Prisma.TeamMemberCreateNestedManyWithoutOrganizationInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutOrganizationInput
+  projectObjectives?: Prisma.ProjectObjectiveCreateNestedManyWithoutOrganizationInput
+  competencies?: Prisma.CompetencyCreateNestedManyWithoutOrganizationInput
+  skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutSkillsInput = {
+  id?: string
+  name: string
+  createdAt?: Date | string
+  members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
+  northStar?: Prisma.NorthStarUncheckedCreateNestedOneWithoutOrganizationInput
+  objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
+  teamMembers?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutOrganizationInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganizationInput
+  projectObjectives?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutOrganizationInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutSkillsInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutSkillsInput, Prisma.OrganizationUncheckedCreateWithoutSkillsInput>
+}
+
+export type OrganizationUpsertWithoutSkillsInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutSkillsInput, Prisma.OrganizationUncheckedUpdateWithoutSkillsInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutSkillsInput, Prisma.OrganizationUncheckedCreateWithoutSkillsInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutSkillsInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutSkillsInput, Prisma.OrganizationUncheckedUpdateWithoutSkillsInput>
+}
+
+export type OrganizationUpdateWithoutSkillsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
+  northStar?: Prisma.NorthStarUpdateOneWithoutOrganizationNestedInput
+  objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
+  keyResults?: Prisma.KeyResultUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
+  teamMembers?: Prisma.TeamMemberUpdateManyWithoutOrganizationNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutOrganizationNestedInput
+  projectObjectives?: Prisma.ProjectObjectiveUpdateManyWithoutOrganizationNestedInput
+  competencies?: Prisma.CompetencyUpdateManyWithoutOrganizationNestedInput
+  skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutSkillsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
+  northStar?: Prisma.NorthStarUncheckedUpdateOneWithoutOrganizationNestedInput
+  objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
+  teamMembers?: Prisma.TeamMemberUncheckedUpdateManyWithoutOrganizationNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganizationNestedInput
+  projectObjectives?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutOrganizationNestedInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutCompetenciesInput = {
+  id?: string
+  name: string
+  createdAt?: Date | string
+  members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
+  northStar?: Prisma.NorthStarCreateNestedOneWithoutOrganizationInput
+  objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
+  keyResults?: Prisma.KeyResultCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
+  teamMembers?: Prisma.TeamMemberCreateNestedManyWithoutOrganizationInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutOrganizationInput
+  projectObjectives?: Prisma.ProjectObjectiveCreateNestedManyWithoutOrganizationInput
+  skills?: Prisma.SkillCreateNestedManyWithoutOrganizationInput
+  skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutCompetenciesInput = {
+  id?: string
+  name: string
+  createdAt?: Date | string
+  members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
+  northStar?: Prisma.NorthStarUncheckedCreateNestedOneWithoutOrganizationInput
+  objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
+  teamMembers?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutOrganizationInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganizationInput
+  projectObjectives?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  skills?: Prisma.SkillUncheckedCreateNestedManyWithoutOrganizationInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutCompetenciesInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutCompetenciesInput, Prisma.OrganizationUncheckedCreateWithoutCompetenciesInput>
+}
+
+export type OrganizationUpsertWithoutCompetenciesInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutCompetenciesInput, Prisma.OrganizationUncheckedUpdateWithoutCompetenciesInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutCompetenciesInput, Prisma.OrganizationUncheckedCreateWithoutCompetenciesInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutCompetenciesInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutCompetenciesInput, Prisma.OrganizationUncheckedUpdateWithoutCompetenciesInput>
+}
+
+export type OrganizationUpdateWithoutCompetenciesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
+  northStar?: Prisma.NorthStarUpdateOneWithoutOrganizationNestedInput
+  objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
+  keyResults?: Prisma.KeyResultUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
+  teamMembers?: Prisma.TeamMemberUpdateManyWithoutOrganizationNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutOrganizationNestedInput
+  projectObjectives?: Prisma.ProjectObjectiveUpdateManyWithoutOrganizationNestedInput
+  skills?: Prisma.SkillUpdateManyWithoutOrganizationNestedInput
+  skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutCompetenciesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
+  northStar?: Prisma.NorthStarUncheckedUpdateOneWithoutOrganizationNestedInput
+  objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
+  teamMembers?: Prisma.TeamMemberUncheckedUpdateManyWithoutOrganizationNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganizationNestedInput
+  projectObjectives?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  skills?: Prisma.SkillUncheckedUpdateManyWithoutOrganizationNestedInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutSkillRequirementsInput = {
+  id?: string
+  name: string
+  createdAt?: Date | string
+  members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
+  northStar?: Prisma.NorthStarCreateNestedOneWithoutOrganizationInput
+  objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
+  keyResults?: Prisma.KeyResultCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
+  teamMembers?: Prisma.TeamMemberCreateNestedManyWithoutOrganizationInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutOrganizationInput
+  projectObjectives?: Prisma.ProjectObjectiveCreateNestedManyWithoutOrganizationInput
+  skills?: Prisma.SkillCreateNestedManyWithoutOrganizationInput
+  competencies?: Prisma.CompetencyCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutSkillRequirementsInput = {
+  id?: string
+  name: string
+  createdAt?: Date | string
+  members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
+  northStar?: Prisma.NorthStarUncheckedCreateNestedOneWithoutOrganizationInput
+  objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
+  teamMembers?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutOrganizationInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganizationInput
+  projectObjectives?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  skills?: Prisma.SkillUncheckedCreateNestedManyWithoutOrganizationInput
+  competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutSkillRequirementsInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutSkillRequirementsInput, Prisma.OrganizationUncheckedCreateWithoutSkillRequirementsInput>
+}
+
+export type OrganizationUpsertWithoutSkillRequirementsInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutSkillRequirementsInput, Prisma.OrganizationUncheckedUpdateWithoutSkillRequirementsInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutSkillRequirementsInput, Prisma.OrganizationUncheckedCreateWithoutSkillRequirementsInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutSkillRequirementsInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutSkillRequirementsInput, Prisma.OrganizationUncheckedUpdateWithoutSkillRequirementsInput>
+}
+
+export type OrganizationUpdateWithoutSkillRequirementsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
+  northStar?: Prisma.NorthStarUpdateOneWithoutOrganizationNestedInput
+  objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
+  keyResults?: Prisma.KeyResultUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
+  teamMembers?: Prisma.TeamMemberUpdateManyWithoutOrganizationNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutOrganizationNestedInput
+  projectObjectives?: Prisma.ProjectObjectiveUpdateManyWithoutOrganizationNestedInput
+  skills?: Prisma.SkillUpdateManyWithoutOrganizationNestedInput
+  competencies?: Prisma.CompetencyUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutSkillRequirementsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
+  northStar?: Prisma.NorthStarUncheckedUpdateOneWithoutOrganizationNestedInput
+  objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
+  teamMembers?: Prisma.TeamMemberUncheckedUpdateManyWithoutOrganizationNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganizationNestedInput
+  projectObjectives?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  skills?: Prisma.SkillUncheckedUpdateManyWithoutOrganizationNestedInput
+  competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 
@@ -999,6 +1398,9 @@ export type OrganizationCountOutputType = {
   teamMembers: number
   projects: number
   projectObjectives: number
+  skills: number
+  competencies: number
+  skillRequirements: number
 }
 
 export type OrganizationCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1009,6 +1411,9 @@ export type OrganizationCountOutputTypeSelect<ExtArgs extends runtime.Types.Exte
   teamMembers?: boolean | OrganizationCountOutputTypeCountTeamMembersArgs
   projects?: boolean | OrganizationCountOutputTypeCountProjectsArgs
   projectObjectives?: boolean | OrganizationCountOutputTypeCountProjectObjectivesArgs
+  skills?: boolean | OrganizationCountOutputTypeCountSkillsArgs
+  competencies?: boolean | OrganizationCountOutputTypeCountCompetenciesArgs
+  skillRequirements?: boolean | OrganizationCountOutputTypeCountSkillRequirementsArgs
 }
 
 /**
@@ -1070,6 +1475,27 @@ export type OrganizationCountOutputTypeCountProjectObjectivesArgs<ExtArgs extend
   where?: Prisma.ProjectObjectiveWhereInput
 }
 
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountSkillsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SkillWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountCompetenciesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CompetencyWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountSkillRequirementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SkillRequirementWhereInput
+}
+
 
 export type OrganizationSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1083,6 +1509,9 @@ export type OrganizationSelect<ExtArgs extends runtime.Types.Extensions.Internal
   teamMembers?: boolean | Prisma.Organization$teamMembersArgs<ExtArgs>
   projects?: boolean | Prisma.Organization$projectsArgs<ExtArgs>
   projectObjectives?: boolean | Prisma.Organization$projectObjectivesArgs<ExtArgs>
+  skills?: boolean | Prisma.Organization$skillsArgs<ExtArgs>
+  competencies?: boolean | Prisma.Organization$competenciesArgs<ExtArgs>
+  skillRequirements?: boolean | Prisma.Organization$skillRequirementsArgs<ExtArgs>
   _count?: boolean | Prisma.OrganizationCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["organization"]>
 
@@ -1114,6 +1543,9 @@ export type OrganizationInclude<ExtArgs extends runtime.Types.Extensions.Interna
   teamMembers?: boolean | Prisma.Organization$teamMembersArgs<ExtArgs>
   projects?: boolean | Prisma.Organization$projectsArgs<ExtArgs>
   projectObjectives?: boolean | Prisma.Organization$projectObjectivesArgs<ExtArgs>
+  skills?: boolean | Prisma.Organization$skillsArgs<ExtArgs>
+  competencies?: boolean | Prisma.Organization$competenciesArgs<ExtArgs>
+  skillRequirements?: boolean | Prisma.Organization$skillRequirementsArgs<ExtArgs>
   _count?: boolean | Prisma.OrganizationCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type OrganizationIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1130,6 +1562,9 @@ export type $OrganizationPayload<ExtArgs extends runtime.Types.Extensions.Intern
     teamMembers: Prisma.$TeamMemberPayload<ExtArgs>[]
     projects: Prisma.$ProjectPayload<ExtArgs>[]
     projectObjectives: Prisma.$ProjectObjectivePayload<ExtArgs>[]
+    skills: Prisma.$SkillPayload<ExtArgs>[]
+    competencies: Prisma.$CompetencyPayload<ExtArgs>[]
+    skillRequirements: Prisma.$SkillRequirementPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1537,6 +1972,9 @@ export interface Prisma__OrganizationClient<T, Null = never, ExtArgs extends run
   teamMembers<T extends Prisma.Organization$teamMembersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$teamMembersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TeamMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   projects<T extends Prisma.Organization$projectsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$projectsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   projectObjectives<T extends Prisma.Organization$projectObjectivesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$projectObjectivesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProjectObjectivePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  skills<T extends Prisma.Organization$skillsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$skillsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SkillPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  competencies<T extends Prisma.Organization$competenciesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$competenciesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CompetencyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  skillRequirements<T extends Prisma.Organization$skillRequirementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$skillRequirementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SkillRequirementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2146,6 +2584,78 @@ export type Organization$projectObjectivesArgs<ExtArgs extends runtime.Types.Ext
   take?: number
   skip?: number
   distinct?: Prisma.ProjectObjectiveScalarFieldEnum | Prisma.ProjectObjectiveScalarFieldEnum[]
+}
+
+/**
+ * Organization.skills
+ */
+export type Organization$skillsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Skill
+   */
+  select?: Prisma.SkillSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Skill
+   */
+  omit?: Prisma.SkillOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SkillInclude<ExtArgs> | null
+  where?: Prisma.SkillWhereInput
+  orderBy?: Prisma.SkillOrderByWithRelationInput | Prisma.SkillOrderByWithRelationInput[]
+  cursor?: Prisma.SkillWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SkillScalarFieldEnum | Prisma.SkillScalarFieldEnum[]
+}
+
+/**
+ * Organization.competencies
+ */
+export type Organization$competenciesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Competency
+   */
+  select?: Prisma.CompetencySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Competency
+   */
+  omit?: Prisma.CompetencyOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CompetencyInclude<ExtArgs> | null
+  where?: Prisma.CompetencyWhereInput
+  orderBy?: Prisma.CompetencyOrderByWithRelationInput | Prisma.CompetencyOrderByWithRelationInput[]
+  cursor?: Prisma.CompetencyWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CompetencyScalarFieldEnum | Prisma.CompetencyScalarFieldEnum[]
+}
+
+/**
+ * Organization.skillRequirements
+ */
+export type Organization$skillRequirementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SkillRequirement
+   */
+  select?: Prisma.SkillRequirementSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the SkillRequirement
+   */
+  omit?: Prisma.SkillRequirementOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SkillRequirementInclude<ExtArgs> | null
+  where?: Prisma.SkillRequirementWhereInput
+  orderBy?: Prisma.SkillRequirementOrderByWithRelationInput | Prisma.SkillRequirementOrderByWithRelationInput[]
+  cursor?: Prisma.SkillRequirementWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SkillRequirementScalarFieldEnum | Prisma.SkillRequirementScalarFieldEnum[]
 }
 
 /**

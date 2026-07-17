@@ -31,6 +31,7 @@ export type MemberMinAggregateOutputType = {
   name: string | null
   role: $Enums.MemberRole | null
   clerkUserId: string | null
+  seniority: $Enums.Seniority | null
   createdAt: Date | null
 }
 
@@ -41,6 +42,7 @@ export type MemberMaxAggregateOutputType = {
   name: string | null
   role: $Enums.MemberRole | null
   clerkUserId: string | null
+  seniority: $Enums.Seniority | null
   createdAt: Date | null
 }
 
@@ -51,6 +53,7 @@ export type MemberCountAggregateOutputType = {
   name: number
   role: number
   clerkUserId: number
+  seniority: number
   createdAt: number
   _all: number
 }
@@ -63,6 +66,7 @@ export type MemberMinAggregateInputType = {
   name?: true
   role?: true
   clerkUserId?: true
+  seniority?: true
   createdAt?: true
 }
 
@@ -73,6 +77,7 @@ export type MemberMaxAggregateInputType = {
   name?: true
   role?: true
   clerkUserId?: true
+  seniority?: true
   createdAt?: true
 }
 
@@ -83,6 +88,7 @@ export type MemberCountAggregateInputType = {
   name?: true
   role?: true
   clerkUserId?: true
+  seniority?: true
   createdAt?: true
   _all?: true
 }
@@ -166,6 +172,7 @@ export type MemberGroupByOutputType = {
   name: string
   role: $Enums.MemberRole
   clerkUserId: string | null
+  seniority: $Enums.Seniority | null
   createdAt: Date
   _count: MemberCountAggregateOutputType | null
   _min: MemberMinAggregateOutputType | null
@@ -197,10 +204,12 @@ export type MemberWhereInput = {
   name?: Prisma.StringFilter<"Member"> | string
   role?: Prisma.EnumMemberRoleFilter<"Member"> | $Enums.MemberRole
   clerkUserId?: Prisma.StringNullableFilter<"Member"> | string | null
+  seniority?: Prisma.EnumSeniorityNullableFilter<"Member"> | $Enums.Seniority | null
   createdAt?: Prisma.DateTimeFilter<"Member"> | Date | string
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
   objectives?: Prisma.ObjectiveListRelationFilter
   teamMemberships?: Prisma.TeamMemberListRelationFilter
+  competencies?: Prisma.CompetencyListRelationFilter
 }
 
 export type MemberOrderByWithRelationInput = {
@@ -210,10 +219,12 @@ export type MemberOrderByWithRelationInput = {
   name?: Prisma.SortOrder
   role?: Prisma.SortOrder
   clerkUserId?: Prisma.SortOrderInput | Prisma.SortOrder
+  seniority?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   organization?: Prisma.OrganizationOrderByWithRelationInput
   objectives?: Prisma.ObjectiveOrderByRelationAggregateInput
   teamMemberships?: Prisma.TeamMemberOrderByRelationAggregateInput
+  competencies?: Prisma.CompetencyOrderByRelationAggregateInput
 }
 
 export type MemberWhereUniqueInput = Prisma.AtLeast<{
@@ -228,10 +239,12 @@ export type MemberWhereUniqueInput = Prisma.AtLeast<{
   name?: Prisma.StringFilter<"Member"> | string
   role?: Prisma.EnumMemberRoleFilter<"Member"> | $Enums.MemberRole
   clerkUserId?: Prisma.StringNullableFilter<"Member"> | string | null
+  seniority?: Prisma.EnumSeniorityNullableFilter<"Member"> | $Enums.Seniority | null
   createdAt?: Prisma.DateTimeFilter<"Member"> | Date | string
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
   objectives?: Prisma.ObjectiveListRelationFilter
   teamMemberships?: Prisma.TeamMemberListRelationFilter
+  competencies?: Prisma.CompetencyListRelationFilter
 }, "id" | "organizationId_email" | "organizationId_clerkUserId">
 
 export type MemberOrderByWithAggregationInput = {
@@ -241,6 +254,7 @@ export type MemberOrderByWithAggregationInput = {
   name?: Prisma.SortOrder
   role?: Prisma.SortOrder
   clerkUserId?: Prisma.SortOrderInput | Prisma.SortOrder
+  seniority?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.MemberCountOrderByAggregateInput
   _max?: Prisma.MemberMaxOrderByAggregateInput
@@ -257,6 +271,7 @@ export type MemberScalarWhereWithAggregatesInput = {
   name?: Prisma.StringWithAggregatesFilter<"Member"> | string
   role?: Prisma.EnumMemberRoleWithAggregatesFilter<"Member"> | $Enums.MemberRole
   clerkUserId?: Prisma.StringNullableWithAggregatesFilter<"Member"> | string | null
+  seniority?: Prisma.EnumSeniorityNullableWithAggregatesFilter<"Member"> | $Enums.Seniority | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Member"> | Date | string
 }
 
@@ -266,10 +281,12 @@ export type MemberCreateInput = {
   name: string
   role: $Enums.MemberRole
   clerkUserId?: string | null
+  seniority?: $Enums.Seniority | null
   createdAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutMembersInput
   objectives?: Prisma.ObjectiveCreateNestedManyWithoutOwnerInput
   teamMemberships?: Prisma.TeamMemberCreateNestedManyWithoutMemberInput
+  competencies?: Prisma.CompetencyCreateNestedManyWithoutMemberInput
 }
 
 export type MemberUncheckedCreateInput = {
@@ -279,9 +296,11 @@ export type MemberUncheckedCreateInput = {
   name: string
   role: $Enums.MemberRole
   clerkUserId?: string | null
+  seniority?: $Enums.Seniority | null
   createdAt?: Date | string
   objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOwnerInput
   teamMemberships?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutMemberInput
+  competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutMemberInput
 }
 
 export type MemberUpdateInput = {
@@ -290,10 +309,12 @@ export type MemberUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumMemberRoleFieldUpdateOperationsInput | $Enums.MemberRole
   clerkUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seniority?: Prisma.NullableEnumSeniorityFieldUpdateOperationsInput | $Enums.Seniority | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutMembersNestedInput
   objectives?: Prisma.ObjectiveUpdateManyWithoutOwnerNestedInput
   teamMemberships?: Prisma.TeamMemberUpdateManyWithoutMemberNestedInput
+  competencies?: Prisma.CompetencyUpdateManyWithoutMemberNestedInput
 }
 
 export type MemberUncheckedUpdateInput = {
@@ -303,9 +324,11 @@ export type MemberUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumMemberRoleFieldUpdateOperationsInput | $Enums.MemberRole
   clerkUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seniority?: Prisma.NullableEnumSeniorityFieldUpdateOperationsInput | $Enums.Seniority | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOwnerNestedInput
   teamMemberships?: Prisma.TeamMemberUncheckedUpdateManyWithoutMemberNestedInput
+  competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutMemberNestedInput
 }
 
 export type MemberCreateManyInput = {
@@ -315,6 +338,7 @@ export type MemberCreateManyInput = {
   name: string
   role: $Enums.MemberRole
   clerkUserId?: string | null
+  seniority?: $Enums.Seniority | null
   createdAt?: Date | string
 }
 
@@ -324,6 +348,7 @@ export type MemberUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumMemberRoleFieldUpdateOperationsInput | $Enums.MemberRole
   clerkUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seniority?: Prisma.NullableEnumSeniorityFieldUpdateOperationsInput | $Enums.Seniority | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -334,6 +359,7 @@ export type MemberUncheckedUpdateManyInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumMemberRoleFieldUpdateOperationsInput | $Enums.MemberRole
   clerkUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seniority?: Prisma.NullableEnumSeniorityFieldUpdateOperationsInput | $Enums.Seniority | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -364,6 +390,7 @@ export type MemberCountOrderByAggregateInput = {
   name?: Prisma.SortOrder
   role?: Prisma.SortOrder
   clerkUserId?: Prisma.SortOrder
+  seniority?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -374,6 +401,7 @@ export type MemberMaxOrderByAggregateInput = {
   name?: Prisma.SortOrder
   role?: Prisma.SortOrder
   clerkUserId?: Prisma.SortOrder
+  seniority?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -384,6 +412,7 @@ export type MemberMinOrderByAggregateInput = {
   name?: Prisma.SortOrder
   role?: Prisma.SortOrder
   clerkUserId?: Prisma.SortOrder
+  seniority?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -442,6 +471,10 @@ export type NullableStringFieldUpdateOperationsInput = {
   set?: string | null
 }
 
+export type NullableEnumSeniorityFieldUpdateOperationsInput = {
+  set?: $Enums.Seniority | null
+}
+
 export type MemberCreateNestedOneWithoutObjectivesInput = {
   create?: Prisma.XOR<Prisma.MemberCreateWithoutObjectivesInput, Prisma.MemberUncheckedCreateWithoutObjectivesInput>
   connectOrCreate?: Prisma.MemberCreateOrConnectWithoutObjectivesInput
@@ -470,15 +503,31 @@ export type MemberUpdateOneRequiredWithoutTeamMembershipsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.MemberUpdateToOneWithWhereWithoutTeamMembershipsInput, Prisma.MemberUpdateWithoutTeamMembershipsInput>, Prisma.MemberUncheckedUpdateWithoutTeamMembershipsInput>
 }
 
+export type MemberCreateNestedOneWithoutCompetenciesInput = {
+  create?: Prisma.XOR<Prisma.MemberCreateWithoutCompetenciesInput, Prisma.MemberUncheckedCreateWithoutCompetenciesInput>
+  connectOrCreate?: Prisma.MemberCreateOrConnectWithoutCompetenciesInput
+  connect?: Prisma.MemberWhereUniqueInput
+}
+
+export type MemberUpdateOneRequiredWithoutCompetenciesNestedInput = {
+  create?: Prisma.XOR<Prisma.MemberCreateWithoutCompetenciesInput, Prisma.MemberUncheckedCreateWithoutCompetenciesInput>
+  connectOrCreate?: Prisma.MemberCreateOrConnectWithoutCompetenciesInput
+  upsert?: Prisma.MemberUpsertWithoutCompetenciesInput
+  connect?: Prisma.MemberWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.MemberUpdateToOneWithWhereWithoutCompetenciesInput, Prisma.MemberUpdateWithoutCompetenciesInput>, Prisma.MemberUncheckedUpdateWithoutCompetenciesInput>
+}
+
 export type MemberCreateWithoutOrganizationInput = {
   id?: string
   email: string
   name: string
   role: $Enums.MemberRole
   clerkUserId?: string | null
+  seniority?: $Enums.Seniority | null
   createdAt?: Date | string
   objectives?: Prisma.ObjectiveCreateNestedManyWithoutOwnerInput
   teamMemberships?: Prisma.TeamMemberCreateNestedManyWithoutMemberInput
+  competencies?: Prisma.CompetencyCreateNestedManyWithoutMemberInput
 }
 
 export type MemberUncheckedCreateWithoutOrganizationInput = {
@@ -487,9 +536,11 @@ export type MemberUncheckedCreateWithoutOrganizationInput = {
   name: string
   role: $Enums.MemberRole
   clerkUserId?: string | null
+  seniority?: $Enums.Seniority | null
   createdAt?: Date | string
   objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOwnerInput
   teamMemberships?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutMemberInput
+  competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutMemberInput
 }
 
 export type MemberCreateOrConnectWithoutOrganizationInput = {
@@ -528,6 +579,7 @@ export type MemberScalarWhereInput = {
   name?: Prisma.StringFilter<"Member"> | string
   role?: Prisma.EnumMemberRoleFilter<"Member"> | $Enums.MemberRole
   clerkUserId?: Prisma.StringNullableFilter<"Member"> | string | null
+  seniority?: Prisma.EnumSeniorityNullableFilter<"Member"> | $Enums.Seniority | null
   createdAt?: Prisma.DateTimeFilter<"Member"> | Date | string
 }
 
@@ -537,9 +589,11 @@ export type MemberCreateWithoutObjectivesInput = {
   name: string
   role: $Enums.MemberRole
   clerkUserId?: string | null
+  seniority?: $Enums.Seniority | null
   createdAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutMembersInput
   teamMemberships?: Prisma.TeamMemberCreateNestedManyWithoutMemberInput
+  competencies?: Prisma.CompetencyCreateNestedManyWithoutMemberInput
 }
 
 export type MemberUncheckedCreateWithoutObjectivesInput = {
@@ -549,8 +603,10 @@ export type MemberUncheckedCreateWithoutObjectivesInput = {
   name: string
   role: $Enums.MemberRole
   clerkUserId?: string | null
+  seniority?: $Enums.Seniority | null
   createdAt?: Date | string
   teamMemberships?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutMemberInput
+  competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutMemberInput
 }
 
 export type MemberCreateOrConnectWithoutObjectivesInput = {
@@ -575,9 +631,11 @@ export type MemberUpdateWithoutObjectivesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumMemberRoleFieldUpdateOperationsInput | $Enums.MemberRole
   clerkUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seniority?: Prisma.NullableEnumSeniorityFieldUpdateOperationsInput | $Enums.Seniority | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutMembersNestedInput
   teamMemberships?: Prisma.TeamMemberUpdateManyWithoutMemberNestedInput
+  competencies?: Prisma.CompetencyUpdateManyWithoutMemberNestedInput
 }
 
 export type MemberUncheckedUpdateWithoutObjectivesInput = {
@@ -587,8 +645,10 @@ export type MemberUncheckedUpdateWithoutObjectivesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumMemberRoleFieldUpdateOperationsInput | $Enums.MemberRole
   clerkUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seniority?: Prisma.NullableEnumSeniorityFieldUpdateOperationsInput | $Enums.Seniority | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   teamMemberships?: Prisma.TeamMemberUncheckedUpdateManyWithoutMemberNestedInput
+  competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutMemberNestedInput
 }
 
 export type MemberCreateWithoutTeamMembershipsInput = {
@@ -597,9 +657,11 @@ export type MemberCreateWithoutTeamMembershipsInput = {
   name: string
   role: $Enums.MemberRole
   clerkUserId?: string | null
+  seniority?: $Enums.Seniority | null
   createdAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutMembersInput
   objectives?: Prisma.ObjectiveCreateNestedManyWithoutOwnerInput
+  competencies?: Prisma.CompetencyCreateNestedManyWithoutMemberInput
 }
 
 export type MemberUncheckedCreateWithoutTeamMembershipsInput = {
@@ -609,8 +671,10 @@ export type MemberUncheckedCreateWithoutTeamMembershipsInput = {
   name: string
   role: $Enums.MemberRole
   clerkUserId?: string | null
+  seniority?: $Enums.Seniority | null
   createdAt?: Date | string
   objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOwnerInput
+  competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutMemberInput
 }
 
 export type MemberCreateOrConnectWithoutTeamMembershipsInput = {
@@ -635,9 +699,11 @@ export type MemberUpdateWithoutTeamMembershipsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumMemberRoleFieldUpdateOperationsInput | $Enums.MemberRole
   clerkUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seniority?: Prisma.NullableEnumSeniorityFieldUpdateOperationsInput | $Enums.Seniority | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutMembersNestedInput
   objectives?: Prisma.ObjectiveUpdateManyWithoutOwnerNestedInput
+  competencies?: Prisma.CompetencyUpdateManyWithoutMemberNestedInput
 }
 
 export type MemberUncheckedUpdateWithoutTeamMembershipsInput = {
@@ -647,8 +713,78 @@ export type MemberUncheckedUpdateWithoutTeamMembershipsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumMemberRoleFieldUpdateOperationsInput | $Enums.MemberRole
   clerkUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seniority?: Prisma.NullableEnumSeniorityFieldUpdateOperationsInput | $Enums.Seniority | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOwnerNestedInput
+  competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutMemberNestedInput
+}
+
+export type MemberCreateWithoutCompetenciesInput = {
+  id?: string
+  email: string
+  name: string
+  role: $Enums.MemberRole
+  clerkUserId?: string | null
+  seniority?: $Enums.Seniority | null
+  createdAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutMembersInput
+  objectives?: Prisma.ObjectiveCreateNestedManyWithoutOwnerInput
+  teamMemberships?: Prisma.TeamMemberCreateNestedManyWithoutMemberInput
+}
+
+export type MemberUncheckedCreateWithoutCompetenciesInput = {
+  id?: string
+  organizationId: string
+  email: string
+  name: string
+  role: $Enums.MemberRole
+  clerkUserId?: string | null
+  seniority?: $Enums.Seniority | null
+  createdAt?: Date | string
+  objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOwnerInput
+  teamMemberships?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutMemberInput
+}
+
+export type MemberCreateOrConnectWithoutCompetenciesInput = {
+  where: Prisma.MemberWhereUniqueInput
+  create: Prisma.XOR<Prisma.MemberCreateWithoutCompetenciesInput, Prisma.MemberUncheckedCreateWithoutCompetenciesInput>
+}
+
+export type MemberUpsertWithoutCompetenciesInput = {
+  update: Prisma.XOR<Prisma.MemberUpdateWithoutCompetenciesInput, Prisma.MemberUncheckedUpdateWithoutCompetenciesInput>
+  create: Prisma.XOR<Prisma.MemberCreateWithoutCompetenciesInput, Prisma.MemberUncheckedCreateWithoutCompetenciesInput>
+  where?: Prisma.MemberWhereInput
+}
+
+export type MemberUpdateToOneWithWhereWithoutCompetenciesInput = {
+  where?: Prisma.MemberWhereInput
+  data: Prisma.XOR<Prisma.MemberUpdateWithoutCompetenciesInput, Prisma.MemberUncheckedUpdateWithoutCompetenciesInput>
+}
+
+export type MemberUpdateWithoutCompetenciesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumMemberRoleFieldUpdateOperationsInput | $Enums.MemberRole
+  clerkUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seniority?: Prisma.NullableEnumSeniorityFieldUpdateOperationsInput | $Enums.Seniority | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutMembersNestedInput
+  objectives?: Prisma.ObjectiveUpdateManyWithoutOwnerNestedInput
+  teamMemberships?: Prisma.TeamMemberUpdateManyWithoutMemberNestedInput
+}
+
+export type MemberUncheckedUpdateWithoutCompetenciesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumMemberRoleFieldUpdateOperationsInput | $Enums.MemberRole
+  clerkUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seniority?: Prisma.NullableEnumSeniorityFieldUpdateOperationsInput | $Enums.Seniority | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOwnerNestedInput
+  teamMemberships?: Prisma.TeamMemberUncheckedUpdateManyWithoutMemberNestedInput
 }
 
 export type MemberCreateManyOrganizationInput = {
@@ -657,6 +793,7 @@ export type MemberCreateManyOrganizationInput = {
   name: string
   role: $Enums.MemberRole
   clerkUserId?: string | null
+  seniority?: $Enums.Seniority | null
   createdAt?: Date | string
 }
 
@@ -666,9 +803,11 @@ export type MemberUpdateWithoutOrganizationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumMemberRoleFieldUpdateOperationsInput | $Enums.MemberRole
   clerkUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seniority?: Prisma.NullableEnumSeniorityFieldUpdateOperationsInput | $Enums.Seniority | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   objectives?: Prisma.ObjectiveUpdateManyWithoutOwnerNestedInput
   teamMemberships?: Prisma.TeamMemberUpdateManyWithoutMemberNestedInput
+  competencies?: Prisma.CompetencyUpdateManyWithoutMemberNestedInput
 }
 
 export type MemberUncheckedUpdateWithoutOrganizationInput = {
@@ -677,9 +816,11 @@ export type MemberUncheckedUpdateWithoutOrganizationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumMemberRoleFieldUpdateOperationsInput | $Enums.MemberRole
   clerkUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seniority?: Prisma.NullableEnumSeniorityFieldUpdateOperationsInput | $Enums.Seniority | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOwnerNestedInput
   teamMemberships?: Prisma.TeamMemberUncheckedUpdateManyWithoutMemberNestedInput
+  competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutMemberNestedInput
 }
 
 export type MemberUncheckedUpdateManyWithoutOrganizationInput = {
@@ -688,6 +829,7 @@ export type MemberUncheckedUpdateManyWithoutOrganizationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumMemberRoleFieldUpdateOperationsInput | $Enums.MemberRole
   clerkUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seniority?: Prisma.NullableEnumSeniorityFieldUpdateOperationsInput | $Enums.Seniority | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -699,11 +841,13 @@ export type MemberUncheckedUpdateManyWithoutOrganizationInput = {
 export type MemberCountOutputType = {
   objectives: number
   teamMemberships: number
+  competencies: number
 }
 
 export type MemberCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   objectives?: boolean | MemberCountOutputTypeCountObjectivesArgs
   teamMemberships?: boolean | MemberCountOutputTypeCountTeamMembershipsArgs
+  competencies?: boolean | MemberCountOutputTypeCountCompetenciesArgs
 }
 
 /**
@@ -730,6 +874,13 @@ export type MemberCountOutputTypeCountTeamMembershipsArgs<ExtArgs extends runtim
   where?: Prisma.TeamMemberWhereInput
 }
 
+/**
+ * MemberCountOutputType without action
+ */
+export type MemberCountOutputTypeCountCompetenciesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CompetencyWhereInput
+}
+
 
 export type MemberSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -738,10 +889,12 @@ export type MemberSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   name?: boolean
   role?: boolean
   clerkUserId?: boolean
+  seniority?: boolean
   createdAt?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   objectives?: boolean | Prisma.Member$objectivesArgs<ExtArgs>
   teamMemberships?: boolean | Prisma.Member$teamMembershipsArgs<ExtArgs>
+  competencies?: boolean | Prisma.Member$competenciesArgs<ExtArgs>
   _count?: boolean | Prisma.MemberCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["member"]>
 
@@ -752,6 +905,7 @@ export type MemberSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   name?: boolean
   role?: boolean
   clerkUserId?: boolean
+  seniority?: boolean
   createdAt?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["member"]>
@@ -763,6 +917,7 @@ export type MemberSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   name?: boolean
   role?: boolean
   clerkUserId?: boolean
+  seniority?: boolean
   createdAt?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["member"]>
@@ -774,14 +929,16 @@ export type MemberSelectScalar = {
   name?: boolean
   role?: boolean
   clerkUserId?: boolean
+  seniority?: boolean
   createdAt?: boolean
 }
 
-export type MemberOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "email" | "name" | "role" | "clerkUserId" | "createdAt", ExtArgs["result"]["member"]>
+export type MemberOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "email" | "name" | "role" | "clerkUserId" | "seniority" | "createdAt", ExtArgs["result"]["member"]>
 export type MemberInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   objectives?: boolean | Prisma.Member$objectivesArgs<ExtArgs>
   teamMemberships?: boolean | Prisma.Member$teamMembershipsArgs<ExtArgs>
+  competencies?: boolean | Prisma.Member$competenciesArgs<ExtArgs>
   _count?: boolean | Prisma.MemberCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type MemberIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -797,6 +954,7 @@ export type $MemberPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     organization: Prisma.$OrganizationPayload<ExtArgs>
     objectives: Prisma.$ObjectivePayload<ExtArgs>[]
     teamMemberships: Prisma.$TeamMemberPayload<ExtArgs>[]
+    competencies: Prisma.$CompetencyPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -805,6 +963,7 @@ export type $MemberPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     name: string
     role: $Enums.MemberRole
     clerkUserId: string | null
+    seniority: $Enums.Seniority | null
     createdAt: Date
   }, ExtArgs["result"]["member"]>
   composites: {}
@@ -1203,6 +1362,7 @@ export interface Prisma__MemberClient<T, Null = never, ExtArgs extends runtime.T
   organization<T extends Prisma.OrganizationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrganizationDefaultArgs<ExtArgs>>): Prisma.Prisma__OrganizationClient<runtime.Types.Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   objectives<T extends Prisma.Member$objectivesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Member$objectivesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ObjectivePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   teamMemberships<T extends Prisma.Member$teamMembershipsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Member$teamMembershipsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TeamMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  competencies<T extends Prisma.Member$competenciesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Member$competenciesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CompetencyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1238,6 +1398,7 @@ export interface MemberFieldRefs {
   readonly name: Prisma.FieldRef<"Member", 'String'>
   readonly role: Prisma.FieldRef<"Member", 'MemberRole'>
   readonly clerkUserId: Prisma.FieldRef<"Member", 'String'>
+  readonly seniority: Prisma.FieldRef<"Member", 'Seniority'>
   readonly createdAt: Prisma.FieldRef<"Member", 'DateTime'>
 }
     
@@ -1685,6 +1846,30 @@ export type Member$teamMembershipsArgs<ExtArgs extends runtime.Types.Extensions.
   take?: number
   skip?: number
   distinct?: Prisma.TeamMemberScalarFieldEnum | Prisma.TeamMemberScalarFieldEnum[]
+}
+
+/**
+ * Member.competencies
+ */
+export type Member$competenciesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Competency
+   */
+  select?: Prisma.CompetencySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Competency
+   */
+  omit?: Prisma.CompetencyOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CompetencyInclude<ExtArgs> | null
+  where?: Prisma.CompetencyWhereInput
+  orderBy?: Prisma.CompetencyOrderByWithRelationInput | Prisma.CompetencyOrderByWithRelationInput[]
+  cursor?: Prisma.CompetencyWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CompetencyScalarFieldEnum | Prisma.CompetencyScalarFieldEnum[]
 }
 
 /**
