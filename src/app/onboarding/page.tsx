@@ -1,7 +1,6 @@
-import { auth } from "@clerk/nextjs/server";
+import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -9,24 +8,25 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 
-import { resolveTenantForUser } from "../../shared/tenancy";
+import { verifiedEmail } from "../../lib/verified-email";
+import { resolveOrLinkTenantForUser } from "../../shared/tenancy";
 
-import { createOrganizationAction } from "./actions";
+import { CreateOrgForm } from "./create-org-form";
 
 export default async function OnboardingPage() {
-  const { userId } = await auth();
-  if (!userId) {
+  const user = await currentUser();
+  if (!user) {
     redirect("/sign-in");
   }
-  if ((await resolveTenantForUser(userId)) !== null) {
+  // Si el usuario fue invitado y este es su primer login, acá también se
+  // vincula por email verificado (F.1) antes de decidir la redirección.
+  if ((await resolveOrLinkTenantForUser(user.id, verifiedEmail(user))) !== null) {
     redirect("/members");
   }
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-background p-6">
+    <main className="flex min-h-screen items-center justify-center p-6">
       <Card className="w-full max-w-md">
         <CardHeader>
           <CardTitle>Creá tu organización</CardTitle>
@@ -35,13 +35,7 @@ export default async function OnboardingPage() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form action={createOrganizationAction} className="flex flex-col gap-4">
-            <div className="flex flex-col gap-2">
-              <Label htmlFor="name">Nombre de la organización</Label>
-              <Input id="name" name="name" placeholder="Acme SRL" required />
-            </div>
-            <Button type="submit">Crear organización</Button>
-          </form>
+          <CreateOrgForm />
         </CardContent>
       </Card>
     </main>

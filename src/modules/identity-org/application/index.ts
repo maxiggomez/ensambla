@@ -6,3 +6,4 @@ export { listMembers } from "./list-members";
 export { changeMemberRole, type ChangeMemberRoleInput } from "./change-member-role";
 export type { Role } from "../domain/roles";
 export { ROLES } from "../domain/roles";
+export { canManageMembers } from "../domain/permissions";

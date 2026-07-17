@@ -7,6 +7,7 @@ import type { Role } from "../domain/roles";
 import {
   countMembersWithRole,
   findMemberById,
+  lockDireccionRows,
   updateMemberRole,
 } from "../infrastructure/member-repo";
 
@@ -30,6 +31,9 @@ export async function changeMemberRole(
       if (!canManageMembers(actor.role)) {
         throw forbidden("change member roles");
       }
+
+      // Antes de leer target/count: serializa demociones concurrentes (F.3a 🔒).
+      await lockDireccionRows(tx);
 
       const target = await findMemberById(tx, input.memberId);
       if (!target) {

@@ -64,6 +64,17 @@ export async function countMembersWithRole(tx: TenantClient, role: Role): Promis
   return tx.member.count({ where: { role } });
 }
 
+/**
+ * Serializes concurrent role changes over the org's Dirección rows (F.3a 🔒):
+ * a competing demotion blocks here until this transaction commits, so its
+ * subsequent count sees the real state. RLS scopes the lock to the tenant.
+ */
+export async function lockDireccionRows(tx: TenantClient): Promise<void> {
+  // ORDER BY: orden de lock determinista entre transacciones concurrentes
+  // (sin él, dos demociones cruzadas pueden deadlockear y dar error crudo).
+  await tx.$executeRaw`SELECT id FROM "member" WHERE role = 'Direccion' ORDER BY id FOR UPDATE`;
+}
+
 export async function listAllMembers(tx: TenantClient): Promise<Member[]> {
   return tx.member.findMany({ orderBy: [{ createdAt: "asc" }, { id: "asc" }] });
 }

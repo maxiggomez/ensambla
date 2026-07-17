@@ -1,3 +1,4 @@
+import { esES } from "@clerk/localizations";
 import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import { Geist_Mono, Inter } from "next/font/google";
@@ -24,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
+    <ClerkProvider localization={esES}>
       <html lang="es" className={`${inter.variable} ${geistMono.variable} h-full antialiased`}>
         <body className="min-h-full flex flex-col">{children}</body>
       </html>

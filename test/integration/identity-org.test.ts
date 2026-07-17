@@ -278,6 +278,50 @@ describe("identity-org use cases", () => {
       ).rejects.toMatchObject({ code: "identity-org/member-not-found" });
     });
 
+    it("concurrent demotions of two Direcciones keep at least one 🔒", async () => {
+      await createOrganization(
+        {
+          clerkUserId: "user_lola",
+          name: "Org Lola",
+          creatorEmail: "lola@lola.com",
+          creatorName: "Lola",
+        },
+        db.prisma,
+      );
+      await inviteMember(
+        {
+          actorClerkUserId: "user_lola",
+          email: "mario@lola.com",
+          name: "Mario",
+          role: "Direccion",
+        },
+        db.prisma,
+      );
+      const members = await listMembers({ actorClerkUserId: "user_lola" }, db.prisma);
+      const lola = members.find((m) => m.email === "lola@lola.com");
+      const mario = members.find((m) => m.email === "mario@lola.com");
+
+      // Ambas Direcciones se degradan a la vez: el lock serializa y la
+      // segunda debe ver count=1 y fallar con last-direccion.
+      const results = await Promise.allSettled([
+        changeMemberRole(
+          { actorClerkUserId: "user_lola", memberId: lola!.id, role: "Colaborador" },
+          db.prisma,
+        ),
+        changeMemberRole(
+          { actorClerkUserId: "user_lola", memberId: mario!.id, role: "Colaborador" },
+          db.prisma,
+        ),
+      ]);
+
+      const fulfilled = results.filter((r) => r.status === "fulfilled");
+      expect(fulfilled.length).toBeLessThanOrEqual(1);
+
+      const after = await listMembers({ actorClerkUserId: "user_lola" }, db.prisma);
+      const direcciones = after.filter((m) => m.role === "Direccion");
+      expect(direcciones.length).toBeGreaterThanOrEqual(1);
+    });
+
     it("concurrent invitations for the same email merge instead of failing", async () => {
       const before = await listMembers({ actorClerkUserId: "user_ivan" }, db.prisma);
       const input = {
