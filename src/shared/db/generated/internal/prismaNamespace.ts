@@ -392,7 +392,10 @@ export const ModelName = {
   Team: 'Team',
   TeamMember: 'TeamMember',
   Project: 'Project',
-  ProjectObjective: 'ProjectObjective'
+  ProjectObjective: 'ProjectObjective',
+  Skill: 'Skill',
+  Competency: 'Competency',
+  SkillRequirement: 'SkillRequirement'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -408,7 +411,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "organization" | "member" | "northStar" | "objective" | "keyResult" | "team" | "teamMember" | "project" | "projectObjective"
+    modelProps: "organization" | "member" | "northStar" | "objective" | "keyResult" | "team" | "teamMember" | "project" | "projectObjective" | "skill" | "competency" | "skillRequirement"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1078,6 +1081,228 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Skill: {
+      payload: Prisma.$SkillPayload<ExtArgs>
+      fields: Prisma.SkillFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.SkillFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SkillPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.SkillFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SkillPayload>
+        }
+        findFirst: {
+          args: Prisma.SkillFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SkillPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.SkillFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SkillPayload>
+        }
+        findMany: {
+          args: Prisma.SkillFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SkillPayload>[]
+        }
+        create: {
+          args: Prisma.SkillCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SkillPayload>
+        }
+        createMany: {
+          args: Prisma.SkillCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.SkillCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SkillPayload>[]
+        }
+        delete: {
+          args: Prisma.SkillDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SkillPayload>
+        }
+        update: {
+          args: Prisma.SkillUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SkillPayload>
+        }
+        deleteMany: {
+          args: Prisma.SkillDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.SkillUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.SkillUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SkillPayload>[]
+        }
+        upsert: {
+          args: Prisma.SkillUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SkillPayload>
+        }
+        aggregate: {
+          args: Prisma.SkillAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSkill>
+        }
+        groupBy: {
+          args: Prisma.SkillGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SkillGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.SkillCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SkillCountAggregateOutputType> | number
+        }
+      }
+    }
+    Competency: {
+      payload: Prisma.$CompetencyPayload<ExtArgs>
+      fields: Prisma.CompetencyFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CompetencyFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompetencyPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CompetencyFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompetencyPayload>
+        }
+        findFirst: {
+          args: Prisma.CompetencyFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompetencyPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CompetencyFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompetencyPayload>
+        }
+        findMany: {
+          args: Prisma.CompetencyFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompetencyPayload>[]
+        }
+        create: {
+          args: Prisma.CompetencyCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompetencyPayload>
+        }
+        createMany: {
+          args: Prisma.CompetencyCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.CompetencyCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompetencyPayload>[]
+        }
+        delete: {
+          args: Prisma.CompetencyDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompetencyPayload>
+        }
+        update: {
+          args: Prisma.CompetencyUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompetencyPayload>
+        }
+        deleteMany: {
+          args: Prisma.CompetencyDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CompetencyUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.CompetencyUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompetencyPayload>[]
+        }
+        upsert: {
+          args: Prisma.CompetencyUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompetencyPayload>
+        }
+        aggregate: {
+          args: Prisma.CompetencyAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCompetency>
+        }
+        groupBy: {
+          args: Prisma.CompetencyGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CompetencyGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CompetencyCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CompetencyCountAggregateOutputType> | number
+        }
+      }
+    }
+    SkillRequirement: {
+      payload: Prisma.$SkillRequirementPayload<ExtArgs>
+      fields: Prisma.SkillRequirementFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.SkillRequirementFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SkillRequirementPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.SkillRequirementFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SkillRequirementPayload>
+        }
+        findFirst: {
+          args: Prisma.SkillRequirementFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SkillRequirementPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.SkillRequirementFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SkillRequirementPayload>
+        }
+        findMany: {
+          args: Prisma.SkillRequirementFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SkillRequirementPayload>[]
+        }
+        create: {
+          args: Prisma.SkillRequirementCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SkillRequirementPayload>
+        }
+        createMany: {
+          args: Prisma.SkillRequirementCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.SkillRequirementCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SkillRequirementPayload>[]
+        }
+        delete: {
+          args: Prisma.SkillRequirementDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SkillRequirementPayload>
+        }
+        update: {
+          args: Prisma.SkillRequirementUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SkillRequirementPayload>
+        }
+        deleteMany: {
+          args: Prisma.SkillRequirementDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.SkillRequirementUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.SkillRequirementUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SkillRequirementPayload>[]
+        }
+        upsert: {
+          args: Prisma.SkillRequirementUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SkillRequirementPayload>
+        }
+        aggregate: {
+          args: Prisma.SkillRequirementAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSkillRequirement>
+        }
+        groupBy: {
+          args: Prisma.SkillRequirementGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SkillRequirementGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.SkillRequirementCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SkillRequirementCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1133,6 +1358,7 @@ export const MemberScalarFieldEnum = {
   name: 'name',
   role: 'role',
   clerkUserId: 'clerkUserId',
+  seniority: 'seniority',
   createdAt: 'createdAt'
 } as const
 
@@ -1231,6 +1457,41 @@ export const ProjectObjectiveScalarFieldEnum = {
 export type ProjectObjectiveScalarFieldEnum = (typeof ProjectObjectiveScalarFieldEnum)[keyof typeof ProjectObjectiveScalarFieldEnum]
 
 
+export const SkillScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  name: 'name',
+  createdAt: 'createdAt'
+} as const
+
+export type SkillScalarFieldEnum = (typeof SkillScalarFieldEnum)[keyof typeof SkillScalarFieldEnum]
+
+
+export const CompetencyScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  memberId: 'memberId',
+  skillId: 'skillId',
+  level: 'level',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CompetencyScalarFieldEnum = (typeof CompetencyScalarFieldEnum)[keyof typeof CompetencyScalarFieldEnum]
+
+
+export const SkillRequirementScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  skillId: 'skillId',
+  projectId: 'projectId',
+  keyResultId: 'keyResultId',
+  createdAt: 'createdAt'
+} as const
+
+export type SkillRequirementScalarFieldEnum = (typeof SkillRequirementScalarFieldEnum)[keyof typeof SkillRequirementScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -1300,6 +1561,20 @@ export type EnumMemberRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$Prism
  * Reference to a field of type 'MemberRole[]'
  */
 export type ListEnumMemberRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MemberRole[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Seniority'
+ */
+export type EnumSeniorityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Seniority'>
+    
+
+
+/**
+ * Reference to a field of type 'Seniority[]'
+ */
+export type ListEnumSeniorityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Seniority[]'>
     
 
 
@@ -1540,6 +1815,9 @@ export type GlobalOmitConfig = {
   teamMember?: Prisma.TeamMemberOmit
   project?: Prisma.ProjectOmit
   projectObjective?: Prisma.ProjectObjectiveOmit
+  skill?: Prisma.SkillOmit
+  competency?: Prisma.CompetencyOmit
+  skillRequirement?: Prisma.SkillRequirementOmit
 }
 
 /* Types for Logging */

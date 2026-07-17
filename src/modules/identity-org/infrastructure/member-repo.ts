@@ -1,6 +1,7 @@
 import type { Member, TenantClient } from "../../../shared/db";
 import type { OrganizationId } from "../../../shared/ids";
 import type { Role } from "../domain/roles";
+import type { Seniority } from "../domain/seniority";
 
 export async function findMemberByClerkUserId(
   tx: TenantClient,
@@ -85,4 +86,12 @@ export async function updateMemberRole(
   role: Role,
 ): Promise<void> {
   await tx.member.update({ where: { id: memberId }, data: { role } });
+}
+
+export async function updateMemberSeniority(
+  tx: TenantClient,
+  memberId: string,
+  seniority: Seniority,
+): Promise<void> {
+  await tx.member.update({ where: { id: memberId }, data: { seniority } });
 }

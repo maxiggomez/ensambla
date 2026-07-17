@@ -7,8 +7,11 @@ export type {
   NorthStarModel as NorthStar,
   ObjectiveModel as Objective,
   OrganizationModel as Organization,
+  CompetencyModel as Competency,
   ProjectModel as Project,
   ProjectObjectiveModel as ProjectObjective,
+  SkillModel as Skill,
+  SkillRequirementModel as SkillRequirement,
   TeamMemberModel as TeamMember,
   TeamModel as Team,
 } from "./generated/models";

@@ -8,3 +8,5 @@ export type { Role } from "../domain/roles";
 export { ROLES } from "../domain/roles";
 export { canEditOrganization, canManageMembers } from "../domain/permissions";
 export { requireActor } from "./actor";
+export { setMemberSeniority, type SetMemberSeniorityInput } from "./set-member-seniority";
+export { seniorityRank, SENIORITIES, type Seniority } from "../domain/seniority";

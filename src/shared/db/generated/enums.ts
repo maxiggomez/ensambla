@@ -18,6 +18,15 @@ export const MemberRole = {
 export type MemberRole = (typeof MemberRole)[keyof typeof MemberRole]
 
 
+export const Seniority = {
+  Junior: 'Junior',
+  SemiSenior: 'SemiSenior',
+  Senior: 'Senior'
+} as const
+
+export type Seniority = (typeof Seniority)[keyof typeof Seniority]
+
+
 export const ObjectiveLevel = {
   Company: 'Company',
   Area: 'Area',
