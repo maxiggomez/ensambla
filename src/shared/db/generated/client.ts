@@ -66,3 +66,23 @@ export type Objective = Prisma.ObjectiveModel
  * 
  */
 export type KeyResult = Prisma.KeyResultModel
+/**
+ * Model Team
+ * 
+ */
+export type Team = Prisma.TeamModel
+/**
+ * Model TeamMember
+ * 
+ */
+export type TeamMember = Prisma.TeamMemberModel
+/**
+ * Model Project
+ * 
+ */
+export type Project = Prisma.ProjectModel
+/**
+ * Model ProjectObjective
+ * 
+ */
+export type ProjectObjective = Prisma.ProjectObjectiveModel

@@ -170,6 +170,10 @@ export type OrganizationWhereInput = {
   northStar?: Prisma.XOR<Prisma.NorthStarNullableScalarRelationFilter, Prisma.NorthStarWhereInput> | null
   objectives?: Prisma.ObjectiveListRelationFilter
   keyResults?: Prisma.KeyResultListRelationFilter
+  teams?: Prisma.TeamListRelationFilter
+  teamMembers?: Prisma.TeamMemberListRelationFilter
+  projects?: Prisma.ProjectListRelationFilter
+  projectObjectives?: Prisma.ProjectObjectiveListRelationFilter
 }
 
 export type OrganizationOrderByWithRelationInput = {
@@ -180,6 +184,10 @@ export type OrganizationOrderByWithRelationInput = {
   northStar?: Prisma.NorthStarOrderByWithRelationInput
   objectives?: Prisma.ObjectiveOrderByRelationAggregateInput
   keyResults?: Prisma.KeyResultOrderByRelationAggregateInput
+  teams?: Prisma.TeamOrderByRelationAggregateInput
+  teamMembers?: Prisma.TeamMemberOrderByRelationAggregateInput
+  projects?: Prisma.ProjectOrderByRelationAggregateInput
+  projectObjectives?: Prisma.ProjectObjectiveOrderByRelationAggregateInput
 }
 
 export type OrganizationWhereUniqueInput = Prisma.AtLeast<{
@@ -193,6 +201,10 @@ export type OrganizationWhereUniqueInput = Prisma.AtLeast<{
   northStar?: Prisma.XOR<Prisma.NorthStarNullableScalarRelationFilter, Prisma.NorthStarWhereInput> | null
   objectives?: Prisma.ObjectiveListRelationFilter
   keyResults?: Prisma.KeyResultListRelationFilter
+  teams?: Prisma.TeamListRelationFilter
+  teamMembers?: Prisma.TeamMemberListRelationFilter
+  projects?: Prisma.ProjectListRelationFilter
+  projectObjectives?: Prisma.ProjectObjectiveListRelationFilter
 }, "id">
 
 export type OrganizationOrderByWithAggregationInput = {
@@ -221,6 +233,10 @@ export type OrganizationCreateInput = {
   northStar?: Prisma.NorthStarCreateNestedOneWithoutOrganizationInput
   objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
+  teamMembers?: Prisma.TeamMemberCreateNestedManyWithoutOrganizationInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutOrganizationInput
+  projectObjectives?: Prisma.ProjectObjectiveCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateInput = {
@@ -231,6 +247,10 @@ export type OrganizationUncheckedCreateInput = {
   northStar?: Prisma.NorthStarUncheckedCreateNestedOneWithoutOrganizationInput
   objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
+  teamMembers?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutOrganizationInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganizationInput
+  projectObjectives?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUpdateInput = {
@@ -241,6 +261,10 @@ export type OrganizationUpdateInput = {
   northStar?: Prisma.NorthStarUpdateOneWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
+  teamMembers?: Prisma.TeamMemberUpdateManyWithoutOrganizationNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutOrganizationNestedInput
+  projectObjectives?: Prisma.ProjectObjectiveUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateInput = {
@@ -251,6 +275,10 @@ export type OrganizationUncheckedUpdateInput = {
   northStar?: Prisma.NorthStarUncheckedUpdateOneWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
+  teamMembers?: Prisma.TeamMemberUncheckedUpdateManyWithoutOrganizationNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganizationNestedInput
+  projectObjectives?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateManyInput = {
@@ -358,6 +386,62 @@ export type OrganizationUpdateOneRequiredWithoutKeyResultsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutKeyResultsInput, Prisma.OrganizationUpdateWithoutKeyResultsInput>, Prisma.OrganizationUncheckedUpdateWithoutKeyResultsInput>
 }
 
+export type OrganizationCreateNestedOneWithoutTeamsInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutTeamsInput, Prisma.OrganizationUncheckedCreateWithoutTeamsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutTeamsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutTeamsNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutTeamsInput, Prisma.OrganizationUncheckedCreateWithoutTeamsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutTeamsInput
+  upsert?: Prisma.OrganizationUpsertWithoutTeamsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutTeamsInput, Prisma.OrganizationUpdateWithoutTeamsInput>, Prisma.OrganizationUncheckedUpdateWithoutTeamsInput>
+}
+
+export type OrganizationCreateNestedOneWithoutTeamMembersInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutTeamMembersInput, Prisma.OrganizationUncheckedCreateWithoutTeamMembersInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutTeamMembersInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutTeamMembersNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutTeamMembersInput, Prisma.OrganizationUncheckedCreateWithoutTeamMembersInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutTeamMembersInput
+  upsert?: Prisma.OrganizationUpsertWithoutTeamMembersInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutTeamMembersInput, Prisma.OrganizationUpdateWithoutTeamMembersInput>, Prisma.OrganizationUncheckedUpdateWithoutTeamMembersInput>
+}
+
+export type OrganizationCreateNestedOneWithoutProjectsInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutProjectsInput, Prisma.OrganizationUncheckedCreateWithoutProjectsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutProjectsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutProjectsNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutProjectsInput, Prisma.OrganizationUncheckedCreateWithoutProjectsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutProjectsInput
+  upsert?: Prisma.OrganizationUpsertWithoutProjectsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutProjectsInput, Prisma.OrganizationUpdateWithoutProjectsInput>, Prisma.OrganizationUncheckedUpdateWithoutProjectsInput>
+}
+
+export type OrganizationCreateNestedOneWithoutProjectObjectivesInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutProjectObjectivesInput, Prisma.OrganizationUncheckedCreateWithoutProjectObjectivesInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutProjectObjectivesInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutProjectObjectivesNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutProjectObjectivesInput, Prisma.OrganizationUncheckedCreateWithoutProjectObjectivesInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutProjectObjectivesInput
+  upsert?: Prisma.OrganizationUpsertWithoutProjectObjectivesInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutProjectObjectivesInput, Prisma.OrganizationUpdateWithoutProjectObjectivesInput>, Prisma.OrganizationUncheckedUpdateWithoutProjectObjectivesInput>
+}
+
 export type OrganizationCreateWithoutMembersInput = {
   id?: string
   name: string
@@ -365,6 +449,10 @@ export type OrganizationCreateWithoutMembersInput = {
   northStar?: Prisma.NorthStarCreateNestedOneWithoutOrganizationInput
   objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
+  teamMembers?: Prisma.TeamMemberCreateNestedManyWithoutOrganizationInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutOrganizationInput
+  projectObjectives?: Prisma.ProjectObjectiveCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutMembersInput = {
@@ -374,6 +462,10 @@ export type OrganizationUncheckedCreateWithoutMembersInput = {
   northStar?: Prisma.NorthStarUncheckedCreateNestedOneWithoutOrganizationInput
   objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
+  teamMembers?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutOrganizationInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganizationInput
+  projectObjectives?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutMembersInput = {
@@ -399,6 +491,10 @@ export type OrganizationUpdateWithoutMembersInput = {
   northStar?: Prisma.NorthStarUpdateOneWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
+  teamMembers?: Prisma.TeamMemberUpdateManyWithoutOrganizationNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutOrganizationNestedInput
+  projectObjectives?: Prisma.ProjectObjectiveUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutMembersInput = {
@@ -408,6 +504,10 @@ export type OrganizationUncheckedUpdateWithoutMembersInput = {
   northStar?: Prisma.NorthStarUncheckedUpdateOneWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
+  teamMembers?: Prisma.TeamMemberUncheckedUpdateManyWithoutOrganizationNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganizationNestedInput
+  projectObjectives?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutNorthStarInput = {
@@ -417,6 +517,10 @@ export type OrganizationCreateWithoutNorthStarInput = {
   members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
   objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
+  teamMembers?: Prisma.TeamMemberCreateNestedManyWithoutOrganizationInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutOrganizationInput
+  projectObjectives?: Prisma.ProjectObjectiveCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutNorthStarInput = {
@@ -426,6 +530,10 @@ export type OrganizationUncheckedCreateWithoutNorthStarInput = {
   members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
   objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
+  teamMembers?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutOrganizationInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganizationInput
+  projectObjectives?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutNorthStarInput = {
@@ -451,6 +559,10 @@ export type OrganizationUpdateWithoutNorthStarInput = {
   members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
+  teamMembers?: Prisma.TeamMemberUpdateManyWithoutOrganizationNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutOrganizationNestedInput
+  projectObjectives?: Prisma.ProjectObjectiveUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutNorthStarInput = {
@@ -460,6 +572,10 @@ export type OrganizationUncheckedUpdateWithoutNorthStarInput = {
   members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
+  teamMembers?: Prisma.TeamMemberUncheckedUpdateManyWithoutOrganizationNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganizationNestedInput
+  projectObjectives?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutObjectivesInput = {
@@ -469,6 +585,10 @@ export type OrganizationCreateWithoutObjectivesInput = {
   members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
   northStar?: Prisma.NorthStarCreateNestedOneWithoutOrganizationInput
   keyResults?: Prisma.KeyResultCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
+  teamMembers?: Prisma.TeamMemberCreateNestedManyWithoutOrganizationInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutOrganizationInput
+  projectObjectives?: Prisma.ProjectObjectiveCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutObjectivesInput = {
@@ -478,6 +598,10 @@ export type OrganizationUncheckedCreateWithoutObjectivesInput = {
   members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
   northStar?: Prisma.NorthStarUncheckedCreateNestedOneWithoutOrganizationInput
   keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
+  teamMembers?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutOrganizationInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganizationInput
+  projectObjectives?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutObjectivesInput = {
@@ -503,6 +627,10 @@ export type OrganizationUpdateWithoutObjectivesInput = {
   members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
   northStar?: Prisma.NorthStarUpdateOneWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
+  teamMembers?: Prisma.TeamMemberUpdateManyWithoutOrganizationNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutOrganizationNestedInput
+  projectObjectives?: Prisma.ProjectObjectiveUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutObjectivesInput = {
@@ -512,6 +640,10 @@ export type OrganizationUncheckedUpdateWithoutObjectivesInput = {
   members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
   northStar?: Prisma.NorthStarUncheckedUpdateOneWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
+  teamMembers?: Prisma.TeamMemberUncheckedUpdateManyWithoutOrganizationNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganizationNestedInput
+  projectObjectives?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutKeyResultsInput = {
@@ -521,6 +653,10 @@ export type OrganizationCreateWithoutKeyResultsInput = {
   members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
   northStar?: Prisma.NorthStarCreateNestedOneWithoutOrganizationInput
   objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
+  teamMembers?: Prisma.TeamMemberCreateNestedManyWithoutOrganizationInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutOrganizationInput
+  projectObjectives?: Prisma.ProjectObjectiveCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutKeyResultsInput = {
@@ -530,6 +666,10 @@ export type OrganizationUncheckedCreateWithoutKeyResultsInput = {
   members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
   northStar?: Prisma.NorthStarUncheckedCreateNestedOneWithoutOrganizationInput
   objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
+  teamMembers?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutOrganizationInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganizationInput
+  projectObjectives?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutKeyResultsInput = {
@@ -555,6 +695,10 @@ export type OrganizationUpdateWithoutKeyResultsInput = {
   members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
   northStar?: Prisma.NorthStarUpdateOneWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
+  teamMembers?: Prisma.TeamMemberUpdateManyWithoutOrganizationNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutOrganizationNestedInput
+  projectObjectives?: Prisma.ProjectObjectiveUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutKeyResultsInput = {
@@ -564,6 +708,282 @@ export type OrganizationUncheckedUpdateWithoutKeyResultsInput = {
   members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
   northStar?: Prisma.NorthStarUncheckedUpdateOneWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
+  teamMembers?: Prisma.TeamMemberUncheckedUpdateManyWithoutOrganizationNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganizationNestedInput
+  projectObjectives?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutTeamsInput = {
+  id?: string
+  name: string
+  createdAt?: Date | string
+  members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
+  northStar?: Prisma.NorthStarCreateNestedOneWithoutOrganizationInput
+  objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
+  keyResults?: Prisma.KeyResultCreateNestedManyWithoutOrganizationInput
+  teamMembers?: Prisma.TeamMemberCreateNestedManyWithoutOrganizationInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutOrganizationInput
+  projectObjectives?: Prisma.ProjectObjectiveCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutTeamsInput = {
+  id?: string
+  name: string
+  createdAt?: Date | string
+  members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
+  northStar?: Prisma.NorthStarUncheckedCreateNestedOneWithoutOrganizationInput
+  objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutOrganizationInput
+  teamMembers?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutOrganizationInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganizationInput
+  projectObjectives?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutTeamsInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutTeamsInput, Prisma.OrganizationUncheckedCreateWithoutTeamsInput>
+}
+
+export type OrganizationUpsertWithoutTeamsInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutTeamsInput, Prisma.OrganizationUncheckedUpdateWithoutTeamsInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutTeamsInput, Prisma.OrganizationUncheckedCreateWithoutTeamsInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutTeamsInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutTeamsInput, Prisma.OrganizationUncheckedUpdateWithoutTeamsInput>
+}
+
+export type OrganizationUpdateWithoutTeamsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
+  northStar?: Prisma.NorthStarUpdateOneWithoutOrganizationNestedInput
+  objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
+  keyResults?: Prisma.KeyResultUpdateManyWithoutOrganizationNestedInput
+  teamMembers?: Prisma.TeamMemberUpdateManyWithoutOrganizationNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutOrganizationNestedInput
+  projectObjectives?: Prisma.ProjectObjectiveUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutTeamsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
+  northStar?: Prisma.NorthStarUncheckedUpdateOneWithoutOrganizationNestedInput
+  objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutOrganizationNestedInput
+  teamMembers?: Prisma.TeamMemberUncheckedUpdateManyWithoutOrganizationNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganizationNestedInput
+  projectObjectives?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutTeamMembersInput = {
+  id?: string
+  name: string
+  createdAt?: Date | string
+  members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
+  northStar?: Prisma.NorthStarCreateNestedOneWithoutOrganizationInput
+  objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
+  keyResults?: Prisma.KeyResultCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutOrganizationInput
+  projectObjectives?: Prisma.ProjectObjectiveCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutTeamMembersInput = {
+  id?: string
+  name: string
+  createdAt?: Date | string
+  members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
+  northStar?: Prisma.NorthStarUncheckedCreateNestedOneWithoutOrganizationInput
+  objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganizationInput
+  projectObjectives?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutTeamMembersInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutTeamMembersInput, Prisma.OrganizationUncheckedCreateWithoutTeamMembersInput>
+}
+
+export type OrganizationUpsertWithoutTeamMembersInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutTeamMembersInput, Prisma.OrganizationUncheckedUpdateWithoutTeamMembersInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutTeamMembersInput, Prisma.OrganizationUncheckedCreateWithoutTeamMembersInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutTeamMembersInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutTeamMembersInput, Prisma.OrganizationUncheckedUpdateWithoutTeamMembersInput>
+}
+
+export type OrganizationUpdateWithoutTeamMembersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
+  northStar?: Prisma.NorthStarUpdateOneWithoutOrganizationNestedInput
+  objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
+  keyResults?: Prisma.KeyResultUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutOrganizationNestedInput
+  projectObjectives?: Prisma.ProjectObjectiveUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutTeamMembersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
+  northStar?: Prisma.NorthStarUncheckedUpdateOneWithoutOrganizationNestedInput
+  objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganizationNestedInput
+  projectObjectives?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutProjectsInput = {
+  id?: string
+  name: string
+  createdAt?: Date | string
+  members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
+  northStar?: Prisma.NorthStarCreateNestedOneWithoutOrganizationInput
+  objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
+  keyResults?: Prisma.KeyResultCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
+  teamMembers?: Prisma.TeamMemberCreateNestedManyWithoutOrganizationInput
+  projectObjectives?: Prisma.ProjectObjectiveCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutProjectsInput = {
+  id?: string
+  name: string
+  createdAt?: Date | string
+  members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
+  northStar?: Prisma.NorthStarUncheckedCreateNestedOneWithoutOrganizationInput
+  objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
+  teamMembers?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutOrganizationInput
+  projectObjectives?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutProjectsInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutProjectsInput, Prisma.OrganizationUncheckedCreateWithoutProjectsInput>
+}
+
+export type OrganizationUpsertWithoutProjectsInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutProjectsInput, Prisma.OrganizationUncheckedUpdateWithoutProjectsInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutProjectsInput, Prisma.OrganizationUncheckedCreateWithoutProjectsInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutProjectsInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutProjectsInput, Prisma.OrganizationUncheckedUpdateWithoutProjectsInput>
+}
+
+export type OrganizationUpdateWithoutProjectsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
+  northStar?: Prisma.NorthStarUpdateOneWithoutOrganizationNestedInput
+  objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
+  keyResults?: Prisma.KeyResultUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
+  teamMembers?: Prisma.TeamMemberUpdateManyWithoutOrganizationNestedInput
+  projectObjectives?: Prisma.ProjectObjectiveUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutProjectsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
+  northStar?: Prisma.NorthStarUncheckedUpdateOneWithoutOrganizationNestedInput
+  objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
+  teamMembers?: Prisma.TeamMemberUncheckedUpdateManyWithoutOrganizationNestedInput
+  projectObjectives?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutProjectObjectivesInput = {
+  id?: string
+  name: string
+  createdAt?: Date | string
+  members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
+  northStar?: Prisma.NorthStarCreateNestedOneWithoutOrganizationInput
+  objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
+  keyResults?: Prisma.KeyResultCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
+  teamMembers?: Prisma.TeamMemberCreateNestedManyWithoutOrganizationInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutProjectObjectivesInput = {
+  id?: string
+  name: string
+  createdAt?: Date | string
+  members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
+  northStar?: Prisma.NorthStarUncheckedCreateNestedOneWithoutOrganizationInput
+  objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
+  teamMembers?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutOrganizationInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutProjectObjectivesInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutProjectObjectivesInput, Prisma.OrganizationUncheckedCreateWithoutProjectObjectivesInput>
+}
+
+export type OrganizationUpsertWithoutProjectObjectivesInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutProjectObjectivesInput, Prisma.OrganizationUncheckedUpdateWithoutProjectObjectivesInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutProjectObjectivesInput, Prisma.OrganizationUncheckedCreateWithoutProjectObjectivesInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutProjectObjectivesInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutProjectObjectivesInput, Prisma.OrganizationUncheckedUpdateWithoutProjectObjectivesInput>
+}
+
+export type OrganizationUpdateWithoutProjectObjectivesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
+  northStar?: Prisma.NorthStarUpdateOneWithoutOrganizationNestedInput
+  objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
+  keyResults?: Prisma.KeyResultUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
+  teamMembers?: Prisma.TeamMemberUpdateManyWithoutOrganizationNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutProjectObjectivesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
+  northStar?: Prisma.NorthStarUncheckedUpdateOneWithoutOrganizationNestedInput
+  objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
+  teamMembers?: Prisma.TeamMemberUncheckedUpdateManyWithoutOrganizationNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 
@@ -575,12 +995,20 @@ export type OrganizationCountOutputType = {
   members: number
   objectives: number
   keyResults: number
+  teams: number
+  teamMembers: number
+  projects: number
+  projectObjectives: number
 }
 
 export type OrganizationCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   members?: boolean | OrganizationCountOutputTypeCountMembersArgs
   objectives?: boolean | OrganizationCountOutputTypeCountObjectivesArgs
   keyResults?: boolean | OrganizationCountOutputTypeCountKeyResultsArgs
+  teams?: boolean | OrganizationCountOutputTypeCountTeamsArgs
+  teamMembers?: boolean | OrganizationCountOutputTypeCountTeamMembersArgs
+  projects?: boolean | OrganizationCountOutputTypeCountProjectsArgs
+  projectObjectives?: boolean | OrganizationCountOutputTypeCountProjectObjectivesArgs
 }
 
 /**
@@ -614,6 +1042,34 @@ export type OrganizationCountOutputTypeCountKeyResultsArgs<ExtArgs extends runti
   where?: Prisma.KeyResultWhereInput
 }
 
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountTeamsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TeamWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountTeamMembersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TeamMemberWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountProjectsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ProjectWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountProjectObjectivesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ProjectObjectiveWhereInput
+}
+
 
 export type OrganizationSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -623,6 +1079,10 @@ export type OrganizationSelect<ExtArgs extends runtime.Types.Extensions.Internal
   northStar?: boolean | Prisma.Organization$northStarArgs<ExtArgs>
   objectives?: boolean | Prisma.Organization$objectivesArgs<ExtArgs>
   keyResults?: boolean | Prisma.Organization$keyResultsArgs<ExtArgs>
+  teams?: boolean | Prisma.Organization$teamsArgs<ExtArgs>
+  teamMembers?: boolean | Prisma.Organization$teamMembersArgs<ExtArgs>
+  projects?: boolean | Prisma.Organization$projectsArgs<ExtArgs>
+  projectObjectives?: boolean | Prisma.Organization$projectObjectivesArgs<ExtArgs>
   _count?: boolean | Prisma.OrganizationCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["organization"]>
 
@@ -650,6 +1110,10 @@ export type OrganizationInclude<ExtArgs extends runtime.Types.Extensions.Interna
   northStar?: boolean | Prisma.Organization$northStarArgs<ExtArgs>
   objectives?: boolean | Prisma.Organization$objectivesArgs<ExtArgs>
   keyResults?: boolean | Prisma.Organization$keyResultsArgs<ExtArgs>
+  teams?: boolean | Prisma.Organization$teamsArgs<ExtArgs>
+  teamMembers?: boolean | Prisma.Organization$teamMembersArgs<ExtArgs>
+  projects?: boolean | Prisma.Organization$projectsArgs<ExtArgs>
+  projectObjectives?: boolean | Prisma.Organization$projectObjectivesArgs<ExtArgs>
   _count?: boolean | Prisma.OrganizationCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type OrganizationIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -662,6 +1126,10 @@ export type $OrganizationPayload<ExtArgs extends runtime.Types.Extensions.Intern
     northStar: Prisma.$NorthStarPayload<ExtArgs> | null
     objectives: Prisma.$ObjectivePayload<ExtArgs>[]
     keyResults: Prisma.$KeyResultPayload<ExtArgs>[]
+    teams: Prisma.$TeamPayload<ExtArgs>[]
+    teamMembers: Prisma.$TeamMemberPayload<ExtArgs>[]
+    projects: Prisma.$ProjectPayload<ExtArgs>[]
+    projectObjectives: Prisma.$ProjectObjectivePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1065,6 +1533,10 @@ export interface Prisma__OrganizationClient<T, Null = never, ExtArgs extends run
   northStar<T extends Prisma.Organization$northStarArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$northStarArgs<ExtArgs>>): Prisma.Prisma__NorthStarClient<runtime.Types.Result.GetResult<Prisma.$NorthStarPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   objectives<T extends Prisma.Organization$objectivesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$objectivesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ObjectivePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   keyResults<T extends Prisma.Organization$keyResultsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$keyResultsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$KeyResultPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  teams<T extends Prisma.Organization$teamsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$teamsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TeamPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  teamMembers<T extends Prisma.Organization$teamMembersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$teamMembersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TeamMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  projects<T extends Prisma.Organization$projectsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$projectsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  projectObjectives<T extends Prisma.Organization$projectObjectivesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$projectObjectivesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProjectObjectivePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1578,6 +2050,102 @@ export type Organization$keyResultsArgs<ExtArgs extends runtime.Types.Extensions
   take?: number
   skip?: number
   distinct?: Prisma.KeyResultScalarFieldEnum | Prisma.KeyResultScalarFieldEnum[]
+}
+
+/**
+ * Organization.teams
+ */
+export type Organization$teamsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Team
+   */
+  select?: Prisma.TeamSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Team
+   */
+  omit?: Prisma.TeamOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TeamInclude<ExtArgs> | null
+  where?: Prisma.TeamWhereInput
+  orderBy?: Prisma.TeamOrderByWithRelationInput | Prisma.TeamOrderByWithRelationInput[]
+  cursor?: Prisma.TeamWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TeamScalarFieldEnum | Prisma.TeamScalarFieldEnum[]
+}
+
+/**
+ * Organization.teamMembers
+ */
+export type Organization$teamMembersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TeamMember
+   */
+  select?: Prisma.TeamMemberSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the TeamMember
+   */
+  omit?: Prisma.TeamMemberOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TeamMemberInclude<ExtArgs> | null
+  where?: Prisma.TeamMemberWhereInput
+  orderBy?: Prisma.TeamMemberOrderByWithRelationInput | Prisma.TeamMemberOrderByWithRelationInput[]
+  cursor?: Prisma.TeamMemberWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TeamMemberScalarFieldEnum | Prisma.TeamMemberScalarFieldEnum[]
+}
+
+/**
+ * Organization.projects
+ */
+export type Organization$projectsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Project
+   */
+  select?: Prisma.ProjectSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Project
+   */
+  omit?: Prisma.ProjectOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProjectInclude<ExtArgs> | null
+  where?: Prisma.ProjectWhereInput
+  orderBy?: Prisma.ProjectOrderByWithRelationInput | Prisma.ProjectOrderByWithRelationInput[]
+  cursor?: Prisma.ProjectWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ProjectScalarFieldEnum | Prisma.ProjectScalarFieldEnum[]
+}
+
+/**
+ * Organization.projectObjectives
+ */
+export type Organization$projectObjectivesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ProjectObjective
+   */
+  select?: Prisma.ProjectObjectiveSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ProjectObjective
+   */
+  omit?: Prisma.ProjectObjectiveOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProjectObjectiveInclude<ExtArgs> | null
+  where?: Prisma.ProjectObjectiveWhereInput
+  orderBy?: Prisma.ProjectObjectiveOrderByWithRelationInput | Prisma.ProjectObjectiveOrderByWithRelationInput[]
+  cursor?: Prisma.ProjectObjectiveWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ProjectObjectiveScalarFieldEnum | Prisma.ProjectObjectiveScalarFieldEnum[]
 }
 
 /**
