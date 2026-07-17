@@ -51,3 +51,18 @@ export type Organization = Prisma.OrganizationModel
  * 
  */
 export type Member = Prisma.MemberModel
+/**
+ * Model NorthStar
+ * 
+ */
+export type NorthStar = Prisma.NorthStarModel
+/**
+ * Model Objective
+ * 
+ */
+export type Objective = Prisma.ObjectiveModel
+/**
+ * Model KeyResult
+ * 
+ */
+export type KeyResult = Prisma.KeyResultModel

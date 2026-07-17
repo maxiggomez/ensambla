@@ -2,7 +2,15 @@ export { createPrismaClient, prismaClient } from "./client";
 export { withTenant, type TenantClient } from "./with-tenant";
 export type { Prisma, PrismaClient } from "./generated/client";
 export type {
+  KeyResultModel as KeyResult,
   MemberModel as Member,
+  NorthStarModel as NorthStar,
+  ObjectiveModel as Objective,
   OrganizationModel as Organization,
 } from "./generated/models";
-export { MemberRole } from "./generated/enums";
+export {
+  MeasurementType,
+  MemberRole,
+  ObjectiveLevel,
+  ObjectiveStatus,
+} from "./generated/enums";

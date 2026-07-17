@@ -199,6 +199,7 @@ export type MemberWhereInput = {
   clerkUserId?: Prisma.StringNullableFilter<"Member"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Member"> | Date | string
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
+  objectives?: Prisma.ObjectiveListRelationFilter
 }
 
 export type MemberOrderByWithRelationInput = {
@@ -210,6 +211,7 @@ export type MemberOrderByWithRelationInput = {
   clerkUserId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   organization?: Prisma.OrganizationOrderByWithRelationInput
+  objectives?: Prisma.ObjectiveOrderByRelationAggregateInput
 }
 
 export type MemberWhereUniqueInput = Prisma.AtLeast<{
@@ -226,6 +228,7 @@ export type MemberWhereUniqueInput = Prisma.AtLeast<{
   clerkUserId?: Prisma.StringNullableFilter<"Member"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Member"> | Date | string
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
+  objectives?: Prisma.ObjectiveListRelationFilter
 }, "id" | "organizationId_email" | "organizationId_clerkUserId">
 
 export type MemberOrderByWithAggregationInput = {
@@ -262,6 +265,7 @@ export type MemberCreateInput = {
   clerkUserId?: string | null
   createdAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutMembersInput
+  objectives?: Prisma.ObjectiveCreateNestedManyWithoutOwnerInput
 }
 
 export type MemberUncheckedCreateInput = {
@@ -272,6 +276,7 @@ export type MemberUncheckedCreateInput = {
   role: $Enums.MemberRole
   clerkUserId?: string | null
   createdAt?: Date | string
+  objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOwnerInput
 }
 
 export type MemberUpdateInput = {
@@ -282,6 +287,7 @@ export type MemberUpdateInput = {
   clerkUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutMembersNestedInput
+  objectives?: Prisma.ObjectiveUpdateManyWithoutOwnerNestedInput
 }
 
 export type MemberUncheckedUpdateInput = {
@@ -292,6 +298,7 @@ export type MemberUncheckedUpdateInput = {
   role?: Prisma.EnumMemberRoleFieldUpdateOperationsInput | $Enums.MemberRole
   clerkUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOwnerNestedInput
 }
 
 export type MemberCreateManyInput = {
@@ -373,6 +380,11 @@ export type MemberMinOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
 }
 
+export type MemberScalarRelationFilter = {
+  is?: Prisma.MemberWhereInput
+  isNot?: Prisma.MemberWhereInput
+}
+
 export type MemberCreateNestedManyWithoutOrganizationInput = {
   create?: Prisma.XOR<Prisma.MemberCreateWithoutOrganizationInput, Prisma.MemberUncheckedCreateWithoutOrganizationInput> | Prisma.MemberCreateWithoutOrganizationInput[] | Prisma.MemberUncheckedCreateWithoutOrganizationInput[]
   connectOrCreate?: Prisma.MemberCreateOrConnectWithoutOrganizationInput | Prisma.MemberCreateOrConnectWithoutOrganizationInput[]
@@ -423,6 +435,20 @@ export type NullableStringFieldUpdateOperationsInput = {
   set?: string | null
 }
 
+export type MemberCreateNestedOneWithoutObjectivesInput = {
+  create?: Prisma.XOR<Prisma.MemberCreateWithoutObjectivesInput, Prisma.MemberUncheckedCreateWithoutObjectivesInput>
+  connectOrCreate?: Prisma.MemberCreateOrConnectWithoutObjectivesInput
+  connect?: Prisma.MemberWhereUniqueInput
+}
+
+export type MemberUpdateOneRequiredWithoutObjectivesNestedInput = {
+  create?: Prisma.XOR<Prisma.MemberCreateWithoutObjectivesInput, Prisma.MemberUncheckedCreateWithoutObjectivesInput>
+  connectOrCreate?: Prisma.MemberCreateOrConnectWithoutObjectivesInput
+  upsert?: Prisma.MemberUpsertWithoutObjectivesInput
+  connect?: Prisma.MemberWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.MemberUpdateToOneWithWhereWithoutObjectivesInput, Prisma.MemberUpdateWithoutObjectivesInput>, Prisma.MemberUncheckedUpdateWithoutObjectivesInput>
+}
+
 export type MemberCreateWithoutOrganizationInput = {
   id?: string
   email: string
@@ -430,6 +456,7 @@ export type MemberCreateWithoutOrganizationInput = {
   role: $Enums.MemberRole
   clerkUserId?: string | null
   createdAt?: Date | string
+  objectives?: Prisma.ObjectiveCreateNestedManyWithoutOwnerInput
 }
 
 export type MemberUncheckedCreateWithoutOrganizationInput = {
@@ -439,6 +466,7 @@ export type MemberUncheckedCreateWithoutOrganizationInput = {
   role: $Enums.MemberRole
   clerkUserId?: string | null
   createdAt?: Date | string
+  objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOwnerInput
 }
 
 export type MemberCreateOrConnectWithoutOrganizationInput = {
@@ -480,6 +508,62 @@ export type MemberScalarWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Member"> | Date | string
 }
 
+export type MemberCreateWithoutObjectivesInput = {
+  id?: string
+  email: string
+  name: string
+  role: $Enums.MemberRole
+  clerkUserId?: string | null
+  createdAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutMembersInput
+}
+
+export type MemberUncheckedCreateWithoutObjectivesInput = {
+  id?: string
+  organizationId: string
+  email: string
+  name: string
+  role: $Enums.MemberRole
+  clerkUserId?: string | null
+  createdAt?: Date | string
+}
+
+export type MemberCreateOrConnectWithoutObjectivesInput = {
+  where: Prisma.MemberWhereUniqueInput
+  create: Prisma.XOR<Prisma.MemberCreateWithoutObjectivesInput, Prisma.MemberUncheckedCreateWithoutObjectivesInput>
+}
+
+export type MemberUpsertWithoutObjectivesInput = {
+  update: Prisma.XOR<Prisma.MemberUpdateWithoutObjectivesInput, Prisma.MemberUncheckedUpdateWithoutObjectivesInput>
+  create: Prisma.XOR<Prisma.MemberCreateWithoutObjectivesInput, Prisma.MemberUncheckedCreateWithoutObjectivesInput>
+  where?: Prisma.MemberWhereInput
+}
+
+export type MemberUpdateToOneWithWhereWithoutObjectivesInput = {
+  where?: Prisma.MemberWhereInput
+  data: Prisma.XOR<Prisma.MemberUpdateWithoutObjectivesInput, Prisma.MemberUncheckedUpdateWithoutObjectivesInput>
+}
+
+export type MemberUpdateWithoutObjectivesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumMemberRoleFieldUpdateOperationsInput | $Enums.MemberRole
+  clerkUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutMembersNestedInput
+}
+
+export type MemberUncheckedUpdateWithoutObjectivesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumMemberRoleFieldUpdateOperationsInput | $Enums.MemberRole
+  clerkUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
 export type MemberCreateManyOrganizationInput = {
   id?: string
   email: string
@@ -496,6 +580,7 @@ export type MemberUpdateWithoutOrganizationInput = {
   role?: Prisma.EnumMemberRoleFieldUpdateOperationsInput | $Enums.MemberRole
   clerkUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  objectives?: Prisma.ObjectiveUpdateManyWithoutOwnerNestedInput
 }
 
 export type MemberUncheckedUpdateWithoutOrganizationInput = {
@@ -505,6 +590,7 @@ export type MemberUncheckedUpdateWithoutOrganizationInput = {
   role?: Prisma.EnumMemberRoleFieldUpdateOperationsInput | $Enums.MemberRole
   clerkUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOwnerNestedInput
 }
 
 export type MemberUncheckedUpdateManyWithoutOrganizationInput = {
@@ -517,6 +603,35 @@ export type MemberUncheckedUpdateManyWithoutOrganizationInput = {
 }
 
 
+/**
+ * Count Type MemberCountOutputType
+ */
+
+export type MemberCountOutputType = {
+  objectives: number
+}
+
+export type MemberCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  objectives?: boolean | MemberCountOutputTypeCountObjectivesArgs
+}
+
+/**
+ * MemberCountOutputType without action
+ */
+export type MemberCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the MemberCountOutputType
+   */
+  select?: Prisma.MemberCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * MemberCountOutputType without action
+ */
+export type MemberCountOutputTypeCountObjectivesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ObjectiveWhereInput
+}
+
 
 export type MemberSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -527,6 +642,8 @@ export type MemberSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   clerkUserId?: boolean
   createdAt?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
+  objectives?: boolean | Prisma.Member$objectivesArgs<ExtArgs>
+  _count?: boolean | Prisma.MemberCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["member"]>
 
 export type MemberSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -564,6 +681,8 @@ export type MemberSelectScalar = {
 export type MemberOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "email" | "name" | "role" | "clerkUserId" | "createdAt", ExtArgs["result"]["member"]>
 export type MemberInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
+  objectives?: boolean | Prisma.Member$objectivesArgs<ExtArgs>
+  _count?: boolean | Prisma.MemberCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type MemberIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
@@ -576,6 +695,7 @@ export type $MemberPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
   name: "Member"
   objects: {
     organization: Prisma.$OrganizationPayload<ExtArgs>
+    objectives: Prisma.$ObjectivePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -980,6 +1100,7 @@ readonly fields: MemberFieldRefs;
 export interface Prisma__MemberClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   organization<T extends Prisma.OrganizationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrganizationDefaultArgs<ExtArgs>>): Prisma.Prisma__OrganizationClient<runtime.Types.Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  objectives<T extends Prisma.Member$objectivesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Member$objectivesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ObjectivePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1414,6 +1535,30 @@ export type MemberDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
    * Limit how many Members to delete.
    */
   limit?: number
+}
+
+/**
+ * Member.objectives
+ */
+export type Member$objectivesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Objective
+   */
+  select?: Prisma.ObjectiveSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Objective
+   */
+  omit?: Prisma.ObjectiveOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ObjectiveInclude<ExtArgs> | null
+  where?: Prisma.ObjectiveWhereInput
+  orderBy?: Prisma.ObjectiveOrderByWithRelationInput | Prisma.ObjectiveOrderByWithRelationInput[]
+  cursor?: Prisma.ObjectiveWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ObjectiveScalarFieldEnum | Prisma.ObjectiveScalarFieldEnum[]
 }
 
 /**
