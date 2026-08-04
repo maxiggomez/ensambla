@@ -16,3 +16,5 @@ export {
 } from "./list-open-blockers";
 export { resolveBlocker, type ResolveBlockerInput } from "./resolve-blocker";
 export { countResolvedBlockers } from "./count-resolved-blockers";
+export { recordRetrospective, type RecordRetrospectiveInput } from "./record-retrospective";
+export { evaluateLearningRisks, type LearningRiskView } from "./evaluate-learning-risks";
