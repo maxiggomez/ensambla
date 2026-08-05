@@ -45,7 +45,8 @@ pendiente antes de insertar la respuesta dentro de la misma transacción.
 
 ### D2 — Anonimato estructural e inmutabilidad 🔒
 
-`PulseParticipation` contiene `member_id`, `pulse_id` y `responded_at`.
+`PulseParticipation` contiene `member_id`, `pulse_id` y únicamente el booleano
+`responded` (sin timestamp que permita correlacionar envíos).
 `PulseResponse` contiene `organization_id`, `pulse_id`, el `team_id` heredado
 del alcance Team, rating, driver, comentario y `submitted_at`; **no contiene**
 `member_id`, `participation_id`, email, auth id ni otra identidad.
@@ -132,7 +133,7 @@ Modelos tenant-scoped:
 - `Pulse`: scope, `team_id?`, estado, apertura, cierre opcional,
   `schedule_id?`, `scheduled_for?`.
 - `PulseSchedule`: scope, `team_id?`, frecuencia, próxima ejecución, activo.
-- `PulseParticipation`: pulse + member + `responded_at`, única por
+- `PulseParticipation`: pulse + member + booleano `responded`, única por
   `(pulse_id, member_id)`.
 - `PulseResponse`: pulse + team snapshot opcional + columnas `Measurement` +
   driver/comentario + fecha de envío; sin identidad y sin campos mutables.

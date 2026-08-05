@@ -52,6 +52,10 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   Organization: 'Organization',
+  PulseSchedule: 'PulseSchedule',
+  Pulse: 'Pulse',
+  PulseParticipation: 'PulseParticipation',
+  PulseResponse: 'PulseResponse',
   Member: 'Member',
   NorthStar: 'NorthStar',
   Objective: 'Objective',
@@ -84,10 +88,72 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 export const OrganizationScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  enpsMinimumResponses: 'enpsMinimumResponses'
 } as const
 
 export type OrganizationScalarFieldEnum = (typeof OrganizationScalarFieldEnum)[keyof typeof OrganizationScalarFieldEnum]
+
+
+export const PulseScheduleScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  scope: 'scope',
+  teamId: 'teamId',
+  frequency: 'frequency',
+  nextRunAt: 'nextRunAt',
+  active: 'active',
+  createdAt: 'createdAt'
+} as const
+
+export type PulseScheduleScalarFieldEnum = (typeof PulseScheduleScalarFieldEnum)[keyof typeof PulseScheduleScalarFieldEnum]
+
+
+export const PulseScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  scope: 'scope',
+  teamId: 'teamId',
+  status: 'status',
+  openedAt: 'openedAt',
+  closesAt: 'closesAt',
+  scheduleId: 'scheduleId',
+  scheduledFor: 'scheduledFor',
+  createdAt: 'createdAt'
+} as const
+
+export type PulseScalarFieldEnum = (typeof PulseScalarFieldEnum)[keyof typeof PulseScalarFieldEnum]
+
+
+export const PulseParticipationScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  pulseId: 'pulseId',
+  memberId: 'memberId',
+  responded: 'responded',
+  createdAt: 'createdAt'
+} as const
+
+export type PulseParticipationScalarFieldEnum = (typeof PulseParticipationScalarFieldEnum)[keyof typeof PulseParticipationScalarFieldEnum]
+
+
+export const PulseResponseScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  pulseId: 'pulseId',
+  teamId: 'teamId',
+  measurementType: 'measurementType',
+  startValue: 'startValue',
+  targetValue: 'targetValue',
+  currentValue: 'currentValue',
+  checkDone: 'checkDone',
+  textState: 'textState',
+  driver: 'driver',
+  comment: 'comment',
+  submittedAt: 'submittedAt'
+} as const
+
+export type PulseResponseScalarFieldEnum = (typeof PulseResponseScalarFieldEnum)[keyof typeof PulseResponseScalarFieldEnum]
 
 
 export const MemberScalarFieldEnum = {

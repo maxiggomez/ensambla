@@ -32,45 +32,45 @@ verde y no se hace commit sin aprobación explícita.
 
 ## 2. Schema y migración (test-first de invariantes 🔒)
 
-- [ ] 2.1 **Test rojo** `test/integration/culture-enps-schema.test.ts` — Scenarios
+- [x] 2.1 **Test rojo** `test/integration/culture-enps-schema.test.ts` — Scenarios
       **Anonymous immutable response**, **No individual response access** y
       aislamiento transversal: tablas/columna aún no existen; luego verificará
       `organization_id NOT NULL`, ENABLE+FORCE RLS y políticas de las cuatro
       tablas; `pulse_response` sin columnas/FKs de identidad; trigger bloquea
       `UPDATE` y `DELETE`; checks de scope y rating tipado
-- [ ] 2.2 Agregar enums/modelos/relaciones Prisma y migración aditiva
+- [x] 2.2 Agregar enums/modelos/relaciones Prisma y migración aditiva
       `culture_enps` con RLS, constraints, índices y trigger de inmutabilidad;
       regenerar Prisma client
-- [ ] 2.3 Ejecutar 2.1 hasta verde antes de avanzar
+- [x] 2.3 Ejecutar 2.1 hasta verde antes de avanzar
 
 ## 3. Lanzamiento y entrega
 
-- [ ] 3.1 **Test rojo** `test/integration/culture-enps-launch.test.ts` — Scenario
+- [x] 3.1 **Test rojo** `test/integration/culture-enps-launch.test.ts` — Scenario
       **Launch a pulse**: Dirección lanza a Organization y Team, crea una
       participación pendiente por persona del scope; Líder/Colaborador reciben
       forbidden; Organization B no ve ni recibe datos de A
-- [ ] 3.2 Implementar `launch-pulse` + audiencia vía interfaces públicas de
+- [x] 3.2 Implementar `launch-pulse` + audiencia vía interfaces públicas de
       `identity-org/application` y `teams-staffing/application`, repos de pulse
       y participation, y exports públicos
-- [ ] 3.3 Ejecutar 3.1 hasta verde y refactorizar sin cambiar contrato
+- [x] 3.3 Ejecutar 3.1 hasta verde y refactorizar sin cambiar contrato
 
 ## 4. Recurrencia
 
-- [ ] 4.1 **Test rojo** `test/integration/culture-enps-recurrence.test.ts` —
+- [x] 4.1 **Test rojo** `test/integration/culture-enps-recurrence.test.ts` —
       Scenario **Recurring pulses**: schedule vencido genera pulse y audiencia,
       avanza `nextRunAt`, un retry no duplica `(schedule, scheduledFor)` y cada
       tenant procesa solo sus schedules
-- [ ] 4.2 Implementar `configure-pulse-schedule` y `generate-due-pulses` con
+- [x] 4.2 Implementar `configure-pulse-schedule` y `generate-due-pulses` con
       reloj inyectable, lock e idempotencia
-- [ ] 4.3 Ejecutar 4.1 hasta verde y refactorizar
+- [x] 4.3 Ejecutar 4.1 hasta verde y refactorizar
 
 ## 5. Respuesta anónima e inmutable 🔒
 
-- [ ] 5.1 **Test rojo** `test/integration/culture-enps-response.test.ts` — Scenario
+- [x] 5.1 **Test rojo** `test/integration/culture-enps-response.test.ts` — Scenario
       **Anonymous immutable response**: destinatario envía una vez; queda
       `responded` por separado; response persiste `Measurement` y no identidad;
       segundo envío falla; SQL directo no puede actualizar ni borrar
-- [ ] 5.2 Implementar `list-pending-pulses` y `submit-pulse-response` con claim
+- [x] 5.2 Implementar `list-pending-pulses` y `submit-pulse-response` con claim
       atómico de participación + inserción anónima en la misma transacción
 - [ ] 5.3 **Test rojo estructural** `culture-enps-public-api.test.ts` + assertion
       e2e de route inexistente — Scenario **No individual response access**:
@@ -81,28 +81,28 @@ verde y no se hace commit sin aprobación explícita.
 
 ## 6. Umbral configurable y resultados
 
-- [ ] 6.1 **Test rojo** `test/integration/culture-enps-results.test.ts` — Scenarios
+- [x] 6.1 **Test rojo** `test/integration/culture-enps-results.test.ts` — Scenarios
       **Minimum N threshold**, **Configure the minimum N**, **Compute eNPS** y
       **Group comments into drivers**: default 4; con 3 no salen score,
       distribución, conteo ni comentarios; con 4 calcula global/Team y agrupa;
       Dirección configura N=5 solo para su Organization y la visibilidad cambia
-- [ ] 6.2 Implementar `configure-minimum-responses`, queries agregadas en repo y
+- [x] 6.2 Implementar `configure-minimum-responses`, queries agregadas en repo y
       `get-enps-results`; validar threshold antes de materializar el view model
-- [ ] 6.3 Ejecutar 6.1 hasta verde y refactorizar
+- [x] 6.3 Ejecutar 6.1 hasta verde y refactorizar
 
 ## 7. Correlación con capacity
 
-- [ ] 7.1 **Test rojo** `test/integration/culture-enps-correlation.test.ts` —
+- [x] 7.1 **Test rojo** `test/integration/culture-enps-correlation.test.ts` —
       Scenario **Correlate a falling eNPS**: dos pulses Team visibles muestran
       caída; `listTeamCapacities` reporta >100 y el resultado incluye una
       coincidencia operativa sin datos individuales; Team estable no alerta
-- [ ] 7.2 Implementar `analyze-team-enps` consumiendo exclusivamente
+- [x] 7.2 Implementar `analyze-team-enps` consumiendo exclusivamente
       `teams-staffing/application`; no tocar internals ni `rituals`
-- [ ] 7.3 Ejecutar 7.1 hasta verde y refactorizar
+- [x] 7.3 Ejecutar 7.1 hasta verde y refactorizar
 
 ## 8. UI vertical (test-alongside permitido)
 
-- [ ] 8.1 Implementar `/culture-enps` y server actions: estados vacío/carga/error,
+- [x] 8.1 Implementar `/culture-enps` y server actions: estados vacío/carga/error,
       bandeja de pulses, formulario 0–10 + driver/comentario + aviso de
       anonimato; panel Dirección para launch/schedule/N y resultados
       globales/Team suprimidos o visibles, usando shadcn/tokens Radar
@@ -110,18 +110,18 @@ verde y no se hace commit sin aprobación explícita.
       pulse**, **Anonymous immutable response**, **Minimum N threshold** y
       **Compute eNPS**: Dirección lanza, destinatario responde sin recibir id,
       el panel oculta resultados bajo N y los muestra al alcanzar el umbral
-- [ ] 8.3 Test de componentes/acciones para permisos, mensajes en español,
+- [x] 8.3 Test de componentes/acciones para permisos, mensajes en español,
       navegación por teclado, labels/foco y ausencia de estilos hex ad-hoc
 
 ## 9. Verificación y review
 
-- [ ] 9.1 `npm run typecheck`
-- [ ] 9.2 `npm run lint` (incluye límites entre módulos)
-- [ ] 9.3 `npm run format:check`
-- [ ] 9.4 `npm run test` (unit + integración; todos los Scenarios verdes)
+- [x] 9.1 `npm run typecheck`
+- [x] 9.2 `npm run lint` (incluye límites entre módulos)
+- [x] 9.3 `npm run format:check`
+- [x] 9.4 `npm run test` (unit + integración; todos los Scenarios verdes)
 - [ ] 9.5 `npm run test:e2e`
-- [ ] 9.6 `npm run build`
-- [ ] 9.7 `openspec validate --all --strict`
-- [ ] 9.8 Review read-only con `mg-pr-review` (obligatorio por RLS + anonimato 🔒);
+- [x] 9.6 `npm run build`
+- [x] 9.7 `openspec validate --all --strict`
+- [x] 9.8 Review read-only con `mg-pr-review` (obligatorio por RLS + anonimato 🔒);
       corregir y reverificar cualquier hallazgo bloqueante
 - [ ] 9.9 Presentar DoD y pedir aprobación antes de commits atómicos; no push ni PR

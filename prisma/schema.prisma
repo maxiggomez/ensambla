@@ -20,22 +20,122 @@ enum Seniority {
 }
 
 model Organization {
-  id                String             @id @default(uuid()) @db.Uuid
-  name              String
-  createdAt         DateTime           @default(now()) @map("created_at") @db.Timestamptz(6)
-  members           Member[]
-  northStar         NorthStar?
-  objectives        Objective[]
-  keyResults        KeyResult[]
-  teams             Team[]
-  teamMembers       TeamMember[]
-  projects          Project[]
-  projectObjectives ProjectObjective[]
-  skills            Skill[]
-  competencies      Competency[]
-  skillRequirements SkillRequirement[]
+  id                   String             @id @default(uuid()) @db.Uuid
+  name                 String
+  createdAt            DateTime           @default(now()) @map("created_at") @db.Timestamptz(6)
+  members              Member[]
+  northStar            NorthStar?
+  objectives           Objective[]
+  keyResults           KeyResult[]
+  teams                Team[]
+  teamMembers          TeamMember[]
+  projects             Project[]
+  projectObjectives    ProjectObjective[]
+  skills               Skill[]
+  competencies         Competency[]
+  skillRequirements    SkillRequirement[]
+  enpsMinimumResponses Int                @default(4) @map("enps_minimum_responses")
 
   @@map("organization")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// culture-enps (change culture-enps)
+// Participation and response are deliberately disconnected (ADR-0005 🔒).
+// PulseResponse has no member/auth/participation reference and is immutable in DB.
+// ─────────────────────────────────────────────────────────────────────────────
+
+enum PulseScope {
+  Organization
+  Team
+}
+
+enum PulseFrequency {
+  Weekly
+  Monthly
+  Quarterly
+}
+
+enum PulseStatus {
+  Open
+  Closed
+}
+
+enum PulseDriver {
+  Recognition
+  GoalClarity
+  CareerGrowth
+  Workload
+  Coordination
+  Other
+}
+
+model PulseSchedule {
+  id             String         @id @default(uuid()) @db.Uuid
+  organizationId String         @map("organization_id") @db.Uuid
+  scope          PulseScope
+  teamId         String?        @map("team_id") @db.Uuid
+  frequency      PulseFrequency
+  nextRunAt      DateTime       @map("next_run_at") @db.Timestamptz(6)
+  active         Boolean        @default(true)
+  createdAt      DateTime       @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  @@index([organizationId])
+  @@index([nextRunAt, active])
+  @@map("pulse_schedule")
+}
+
+model Pulse {
+  id             String      @id @default(uuid()) @db.Uuid
+  organizationId String      @map("organization_id") @db.Uuid
+  scope          PulseScope
+  teamId         String?     @map("team_id") @db.Uuid
+  status         PulseStatus @default(Open)
+  openedAt       DateTime    @default(now()) @map("opened_at") @db.Timestamptz(6)
+  closesAt       DateTime?   @map("closes_at") @db.Timestamptz(6)
+  scheduleId     String?     @map("schedule_id") @db.Uuid
+  scheduledFor   DateTime?   @map("scheduled_for") @db.Timestamptz(6)
+  createdAt      DateTime    @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  @@unique([scheduleId, scheduledFor])
+  @@index([organizationId])
+  @@index([teamId])
+  @@map("pulse")
+}
+
+model PulseParticipation {
+  id             String   @id @default(uuid()) @db.Uuid
+  organizationId String   @map("organization_id") @db.Uuid
+  pulseId        String   @map("pulse_id") @db.Uuid
+  memberId       String   @map("member_id") @db.Uuid
+  responded      Boolean  @default(false)
+  createdAt      DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  @@unique([pulseId, memberId])
+  @@index([organizationId])
+  @@index([memberId])
+  @@map("pulse_participation")
+}
+
+model PulseResponse {
+  id              String          @id @default(uuid()) @db.Uuid
+  organizationId  String          @map("organization_id") @db.Uuid
+  pulseId         String          @map("pulse_id") @db.Uuid
+  teamId          String?         @map("team_id") @db.Uuid
+  measurementType MeasurementType @map("measurement_type")
+  startValue      Decimal         @map("start_value") @db.Decimal(20, 4)
+  targetValue     Decimal         @map("target_value") @db.Decimal(20, 4)
+  currentValue    Decimal         @map("current_value") @db.Decimal(20, 4)
+  checkDone       Boolean?        @map("check_done")
+  textState       TextState?      @map("text_state")
+  driver          PulseDriver
+  comment         String?
+  submittedAt     DateTime        @default(now()) @map("submitted_at") @db.Timestamptz(6)
+
+  @@index([organizationId])
+  @@index([pulseId])
+  @@index([teamId])
+  @@map("pulse_response")
 }
 
 model Member {
