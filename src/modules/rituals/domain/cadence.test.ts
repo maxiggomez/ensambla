@@ -1,7 +1,5 @@
 import { describe, expect, it } from "vitest";
 
-import { DomainError } from "../../../shared/errors";
-
 import { generateOccurrenceDates, ritualCadence, ritualName } from "./cadence";
 
 const at = (y: number, month: number, d: number): Date => new Date(Date.UTC(y, month - 1, d));
