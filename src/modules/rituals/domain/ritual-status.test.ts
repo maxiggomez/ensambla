@@ -29,6 +29,23 @@ describe("ritual occurrence status", () => {
     ).toBe("Scheduled");
   });
 
+  it("keeps an occurrence scheduled for today as scheduled until its date passes", () => {
+    expect(
+      evaluateRitualOccurrence({
+        status: "Scheduled",
+        scheduledDate: new Date("2026-07-22T00:00:00Z"),
+        now: new Date("2026-07-22T15:30:00Z"),
+      }),
+    ).toBe("Scheduled");
+    expect(
+      evaluateRitualOccurrence({
+        status: "Scheduled",
+        scheduledDate: new Date("2026-07-22T00:00:00Z"),
+        now: new Date("2026-07-23T00:30:00Z"),
+      }),
+    ).toBe("Overdue");
+  });
+
   it("never downgrades a held occurrence (Scenario: Hold a ritual)", () => {
     expect(
       evaluateRitualOccurrence({

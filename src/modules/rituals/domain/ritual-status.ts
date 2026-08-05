@@ -13,10 +13,18 @@ export function ritualOccurrenceStatus(value: string): RitualOccurrenceStatus {
   return value as RitualOccurrenceStatus;
 }
 
+/** Inicio del día (UTC) de una fecha, para comparar por día de calendario. */
+function startOfDay(date: Date): Date {
+  const copy = new Date(date);
+  copy.setUTCHours(0, 0, 0, 0);
+  return copy;
+}
+
 /**
  * Evalúa una ocurrencia (Scenarios "Overdue ritual" / "Hold a ritual"): una
- * ocurrencia celebrada se conserva como `Held`; una programada cuya fecha ya
- * pasó se marca `Overdue`; las futuras quedan `Scheduled`.
+ * ocurrencia celebrada se conserva como `Held`; una programada pasa a
+ * `Overdue` recién cuando su fecha de calendario ya pasó (no el mismo día,
+ * aunque aún no se haya celebrado); las futuras quedan `Scheduled`.
  */
 export function evaluateRitualOccurrence(input: {
   status: RitualOccurrenceStatus;
@@ -26,7 +34,7 @@ export function evaluateRitualOccurrence(input: {
   if (input.status === "Held") {
     return "Held";
   }
-  if (input.scheduledDate.getTime() < input.now.getTime()) {
+  if (startOfDay(input.scheduledDate).getTime() < startOfDay(input.now).getTime()) {
     return "Overdue";
   }
   return "Scheduled";
