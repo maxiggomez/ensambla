@@ -27,14 +27,28 @@ export function findBlockerById(tx: TenantClient, id: string): Promise<Blocker |
   return tx.blocker.findUnique({ where: { id } });
 }
 
-export function listOpenBlockersWithObjective(
+export async function listOpenBlockersWithObjective(
   tx: TenantClient,
 ): Promise<BlockerWithObjective[]> {
-  return tx.blocker.findMany({
+  const blockers = await tx.blocker.findMany({
     where: { status: "Open" },
-    include: { objective: { select: { id: true, title: true } } },
     orderBy: { createdAt: "desc" },
   });
+  const objectiveIds = [
+    ...new Set(blockers.map((b) => b.objectiveId).filter((id): id is string => id !== null)),
+  ];
+  const objectives =
+    objectiveIds.length === 0
+      ? []
+      : await tx.objective.findMany({
+          where: { id: { in: objectiveIds } },
+          select: { id: true, title: true },
+        });
+  const objectiveById = new Map(objectives.map((objective) => [objective.id, objective]));
+  return blockers.map((blocker) => ({
+    ...blocker,
+    objective: blocker.objectiveId ? (objectiveById.get(blocker.objectiveId) ?? null) : null,
+  }));
 }
 
 export function countBlockersByStatus(

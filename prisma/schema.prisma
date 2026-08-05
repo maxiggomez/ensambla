@@ -377,3 +377,79 @@ model SkillRequirement {
   @@index([organizationId])
   @@map("skill_requirement")
 }
+
+enum RitualCadence {
+  Weekly
+  Biweekly
+  Monthly
+}
+
+enum RitualOccurrenceStatus {
+  Scheduled
+  Held
+  Overdue
+}
+
+enum BlockerStatus {
+  Open
+  Resolved
+}
+
+model Ritual {
+  id             String        @id @default(uuid()) @db.Uuid
+  organizationId String        @map("organization_id") @db.Uuid
+  teamId         String        @map("team_id") @db.Uuid
+  name           String
+  cadence        RitualCadence
+  startDate      DateTime      @map("start_date") @db.Date
+  createdAt      DateTime      @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  @@index([organizationId])
+  @@index([teamId])
+  @@map("ritual")
+}
+
+model RitualOccurrence {
+  id             String                 @id @default(uuid()) @db.Uuid
+  organizationId String                 @map("organization_id") @db.Uuid
+  ritualId       String                 @map("ritual_id") @db.Uuid
+  scheduledDate  DateTime               @map("scheduled_date") @db.Date
+  status         RitualOccurrenceStatus @default(Scheduled)
+  heldDate       DateTime?              @map("held_date") @db.Date
+  createdAt      DateTime               @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  @@unique([ritualId, scheduledDate])
+  @@index([organizationId])
+  @@map("ritual_occurrence")
+}
+
+model Blocker {
+  id             String        @id @default(uuid()) @db.Uuid
+  organizationId String        @map("organization_id") @db.Uuid
+  teamId         String        @map("team_id") @db.Uuid
+  memberId       String        @map("member_id") @db.Uuid
+  objectiveId    String?       @map("objective_id") @db.Uuid
+  title          String
+  description    String?
+  status         BlockerStatus @default(Open)
+  createdAt      DateTime      @default(now()) @map("created_at") @db.Timestamptz(6)
+  resolvedAt     DateTime?     @map("resolved_at") @db.Timestamptz(6)
+
+  @@index([organizationId])
+  @@index([teamId])
+  @@index([objectiveId])
+  @@index([status])
+  @@map("blocker")
+}
+
+model Retrospective {
+  id             String   @id @default(uuid()) @db.Uuid
+  organizationId String   @map("organization_id") @db.Uuid
+  teamId         String   @map("team_id") @db.Uuid
+  heldAt         DateTime @map("held_at") @db.Timestamptz(6)
+  createdAt      DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  @@index([organizationId])
+  @@index([teamId])
+  @@map("retrospective")
+}

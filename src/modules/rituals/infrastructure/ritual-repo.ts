@@ -25,11 +25,26 @@ export function findRitualById(tx: TenantClient, id: string): Promise<Ritual | n
   return tx.ritual.findUnique({ where: { id } });
 }
 
-export function listRitualsWithOccurrences(tx: TenantClient): Promise<RitualWithOccurrences[]> {
-  return tx.ritual.findMany({
-    include: { occurrences: true },
-    orderBy: { createdAt: "asc" },
-  });
+export async function listRitualsWithOccurrences(
+  tx: TenantClient,
+): Promise<RitualWithOccurrences[]> {
+  const [rituals, occurrences] = await Promise.all([
+    tx.ritual.findMany({ orderBy: { createdAt: "asc" } }),
+    tx.ritualOccurrence.findMany(),
+  ]);
+  const occurrencesByRitual = new Map<string, RitualOccurrence[]>();
+  for (const occurrence of occurrences) {
+    const list = occurrencesByRitual.get(occurrence.ritualId);
+    if (list) {
+      list.push(occurrence);
+    } else {
+      occurrencesByRitual.set(occurrence.ritualId, [occurrence]);
+    }
+  }
+  return rituals.map((ritual) => ({
+    ...ritual,
+    occurrences: occurrencesByRitual.get(ritual.id) ?? [],
+  }));
 }
 
 export function listOccurrencesByRitual(
