@@ -1,8 +1,9 @@
-import { esES } from "@clerk/localizations";
-import { ClerkProvider } from "@clerk/nextjs";
+import { getAuthMode } from "@/lib/auth";
 import type { Metadata } from "next";
 import { Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
+
+import { AuthProvider } from "./auth-provider";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -25,10 +26,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider localization={esES}>
-      <html lang="es" className={`${inter.variable} ${geistMono.variable} h-full antialiased`}>
-        <body className="min-h-full flex flex-col">{children}</body>
-      </html>
-    </ClerkProvider>
+    <html lang="es" className={`${inter.variable} ${geistMono.variable} h-full antialiased`}>
+      <body className="min-h-full flex flex-col">
+        <AuthProvider mock={getAuthMode() === "mock"}>{children}</AuthProvider>
+      </body>
+    </html>
   );
 }

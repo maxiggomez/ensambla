@@ -1,4 +1,4 @@
-import { currentUser } from "@clerk/nextjs/server";
+import { getCurrentUser } from "@/lib/auth";
 import { redirect } from "next/navigation";
 
 import {
@@ -15,7 +15,7 @@ import { resolveOrLinkTenantForUser } from "../../shared/tenancy";
 import { CreateOrgForm } from "./create-org-form";
 
 export default async function OnboardingPage() {
-  const user = await currentUser();
+  const user = await getCurrentUser();
   if (!user) {
     redirect("/sign-in");
   }
