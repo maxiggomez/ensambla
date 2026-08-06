@@ -1,4 +1,4 @@
-import { auth } from "@clerk/nextjs/server";
+import { getAuthContext } from "@/lib/auth";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 export default async function Home() {
   // Con sesión activa, /sign-in rebota a la home (Clerk no muestra el form a
   // un usuario logueado): el header y el CTA deben llevar a la app.
-  const { userId } = await auth();
+  const { userId } = await getAuthContext();
   const signedIn = userId !== null;
 
   return (

@@ -12,7 +12,9 @@
     "format:check": "prettier --check .",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "test:e2e:dev-auth": "playwright test --config playwright.dev-auth.config.ts",
+    "db:seed": "tsx scripts/seed-dev.ts"
   },
   "dependencies": {
     "@clerk/localizations": "^4.13.5",
@@ -46,6 +48,7 @@
     "prettier": "^3.9.5",
     "prisma": "^7.8.0",
     "tailwindcss": "^4",
+    "tsx": "^4.23.9",
     "typescript": "^5",
     "vite-tsconfig-paths": "^6.1.1",
     "vitest": "^4.1.10"
