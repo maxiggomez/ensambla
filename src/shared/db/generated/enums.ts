@@ -108,3 +108,29 @@ export const TeamRole = {
 } as const
 
 export type TeamRole = (typeof TeamRole)[keyof typeof TeamRole]
+
+
+export const RitualCadence = {
+  Weekly: 'Weekly',
+  Biweekly: 'Biweekly',
+  Monthly: 'Monthly'
+} as const
+
+export type RitualCadence = (typeof RitualCadence)[keyof typeof RitualCadence]
+
+
+export const RitualOccurrenceStatus = {
+  Scheduled: 'Scheduled',
+  Held: 'Held',
+  Overdue: 'Overdue'
+} as const
+
+export type RitualOccurrenceStatus = (typeof RitualOccurrenceStatus)[keyof typeof RitualOccurrenceStatus]
+
+
+export const BlockerStatus = {
+  Open: 'Open',
+  Resolved: 'Resolved'
+} as const
+
+export type BlockerStatus = (typeof BlockerStatus)[keyof typeof BlockerStatus]

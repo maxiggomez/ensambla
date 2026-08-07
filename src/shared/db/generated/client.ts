@@ -121,3 +121,23 @@ export type Competency = Prisma.CompetencyModel
  * 
  */
 export type SkillRequirement = Prisma.SkillRequirementModel
+/**
+ * Model Ritual
+ * 
+ */
+export type Ritual = Prisma.RitualModel
+/**
+ * Model RitualOccurrence
+ * 
+ */
+export type RitualOccurrence = Prisma.RitualOccurrenceModel
+/**
+ * Model Blocker
+ * 
+ */
+export type Blocker = Prisma.BlockerModel
+/**
+ * Model Retrospective
+ * 
+ */
+export type Retrospective = Prisma.RetrospectiveModel

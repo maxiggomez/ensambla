@@ -66,7 +66,11 @@ export const ModelName = {
   ProjectObjective: 'ProjectObjective',
   Skill: 'Skill',
   Competency: 'Competency',
-  SkillRequirement: 'SkillRequirement'
+  SkillRequirement: 'SkillRequirement',
+  Ritual: 'Ritual',
+  RitualOccurrence: 'RitualOccurrence',
+  Blocker: 'Blocker',
+  Retrospective: 'Retrospective'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -295,6 +299,59 @@ export const SkillRequirementScalarFieldEnum = {
 } as const
 
 export type SkillRequirementScalarFieldEnum = (typeof SkillRequirementScalarFieldEnum)[keyof typeof SkillRequirementScalarFieldEnum]
+
+
+export const RitualScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  teamId: 'teamId',
+  name: 'name',
+  cadence: 'cadence',
+  startDate: 'startDate',
+  createdAt: 'createdAt'
+} as const
+
+export type RitualScalarFieldEnum = (typeof RitualScalarFieldEnum)[keyof typeof RitualScalarFieldEnum]
+
+
+export const RitualOccurrenceScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  ritualId: 'ritualId',
+  scheduledDate: 'scheduledDate',
+  status: 'status',
+  heldDate: 'heldDate',
+  createdAt: 'createdAt'
+} as const
+
+export type RitualOccurrenceScalarFieldEnum = (typeof RitualOccurrenceScalarFieldEnum)[keyof typeof RitualOccurrenceScalarFieldEnum]
+
+
+export const BlockerScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  teamId: 'teamId',
+  memberId: 'memberId',
+  objectiveId: 'objectiveId',
+  title: 'title',
+  description: 'description',
+  status: 'status',
+  createdAt: 'createdAt',
+  resolvedAt: 'resolvedAt'
+} as const
+
+export type BlockerScalarFieldEnum = (typeof BlockerScalarFieldEnum)[keyof typeof BlockerScalarFieldEnum]
+
+
+export const RetrospectiveScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  teamId: 'teamId',
+  heldAt: 'heldAt',
+  createdAt: 'createdAt'
+} as const
+
+export type RetrospectiveScalarFieldEnum = (typeof RetrospectiveScalarFieldEnum)[keyof typeof RetrospectiveScalarFieldEnum]
 
 
 export const SortOrder = {

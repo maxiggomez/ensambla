@@ -483,6 +483,57 @@ export type EnumTeamRoleWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumTeamRoleFilter<$PrismaModel>
 }
 
+export type EnumRitualCadenceFilter<$PrismaModel = never> = {
+  equals?: $Enums.RitualCadence | Prisma.EnumRitualCadenceFieldRefInput<$PrismaModel>
+  in?: $Enums.RitualCadence[] | Prisma.ListEnumRitualCadenceFieldRefInput<$PrismaModel>
+  notIn?: $Enums.RitualCadence[] | Prisma.ListEnumRitualCadenceFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumRitualCadenceFilter<$PrismaModel> | $Enums.RitualCadence
+}
+
+export type EnumRitualCadenceWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.RitualCadence | Prisma.EnumRitualCadenceFieldRefInput<$PrismaModel>
+  in?: $Enums.RitualCadence[] | Prisma.ListEnumRitualCadenceFieldRefInput<$PrismaModel>
+  notIn?: $Enums.RitualCadence[] | Prisma.ListEnumRitualCadenceFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumRitualCadenceWithAggregatesFilter<$PrismaModel> | $Enums.RitualCadence
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumRitualCadenceFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumRitualCadenceFilter<$PrismaModel>
+}
+
+export type EnumRitualOccurrenceStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.RitualOccurrenceStatus | Prisma.EnumRitualOccurrenceStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.RitualOccurrenceStatus[] | Prisma.ListEnumRitualOccurrenceStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.RitualOccurrenceStatus[] | Prisma.ListEnumRitualOccurrenceStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumRitualOccurrenceStatusFilter<$PrismaModel> | $Enums.RitualOccurrenceStatus
+}
+
+export type EnumRitualOccurrenceStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.RitualOccurrenceStatus | Prisma.EnumRitualOccurrenceStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.RitualOccurrenceStatus[] | Prisma.ListEnumRitualOccurrenceStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.RitualOccurrenceStatus[] | Prisma.ListEnumRitualOccurrenceStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumRitualOccurrenceStatusWithAggregatesFilter<$PrismaModel> | $Enums.RitualOccurrenceStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumRitualOccurrenceStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumRitualOccurrenceStatusFilter<$PrismaModel>
+}
+
+export type EnumBlockerStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.BlockerStatus | Prisma.EnumBlockerStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.BlockerStatus[] | Prisma.ListEnumBlockerStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.BlockerStatus[] | Prisma.ListEnumBlockerStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumBlockerStatusFilter<$PrismaModel> | $Enums.BlockerStatus
+}
+
+export type EnumBlockerStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.BlockerStatus | Prisma.EnumBlockerStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.BlockerStatus[] | Prisma.ListEnumBlockerStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.BlockerStatus[] | Prisma.ListEnumBlockerStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumBlockerStatusWithAggregatesFilter<$PrismaModel> | $Enums.BlockerStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumBlockerStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumBlockerStatusFilter<$PrismaModel>
+}
+
 export type NestedUuidFilter<$PrismaModel = never> = {
   equals?: string | Prisma.StringFieldRefInput<$PrismaModel>
   in?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
@@ -959,6 +1010,57 @@ export type NestedEnumTeamRoleWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumTeamRoleFilter<$PrismaModel>
   _max?: Prisma.NestedEnumTeamRoleFilter<$PrismaModel>
+}
+
+export type NestedEnumRitualCadenceFilter<$PrismaModel = never> = {
+  equals?: $Enums.RitualCadence | Prisma.EnumRitualCadenceFieldRefInput<$PrismaModel>
+  in?: $Enums.RitualCadence[] | Prisma.ListEnumRitualCadenceFieldRefInput<$PrismaModel>
+  notIn?: $Enums.RitualCadence[] | Prisma.ListEnumRitualCadenceFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumRitualCadenceFilter<$PrismaModel> | $Enums.RitualCadence
+}
+
+export type NestedEnumRitualCadenceWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.RitualCadence | Prisma.EnumRitualCadenceFieldRefInput<$PrismaModel>
+  in?: $Enums.RitualCadence[] | Prisma.ListEnumRitualCadenceFieldRefInput<$PrismaModel>
+  notIn?: $Enums.RitualCadence[] | Prisma.ListEnumRitualCadenceFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumRitualCadenceWithAggregatesFilter<$PrismaModel> | $Enums.RitualCadence
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumRitualCadenceFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumRitualCadenceFilter<$PrismaModel>
+}
+
+export type NestedEnumRitualOccurrenceStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.RitualOccurrenceStatus | Prisma.EnumRitualOccurrenceStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.RitualOccurrenceStatus[] | Prisma.ListEnumRitualOccurrenceStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.RitualOccurrenceStatus[] | Prisma.ListEnumRitualOccurrenceStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumRitualOccurrenceStatusFilter<$PrismaModel> | $Enums.RitualOccurrenceStatus
+}
+
+export type NestedEnumRitualOccurrenceStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.RitualOccurrenceStatus | Prisma.EnumRitualOccurrenceStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.RitualOccurrenceStatus[] | Prisma.ListEnumRitualOccurrenceStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.RitualOccurrenceStatus[] | Prisma.ListEnumRitualOccurrenceStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumRitualOccurrenceStatusWithAggregatesFilter<$PrismaModel> | $Enums.RitualOccurrenceStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumRitualOccurrenceStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumRitualOccurrenceStatusFilter<$PrismaModel>
+}
+
+export type NestedEnumBlockerStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.BlockerStatus | Prisma.EnumBlockerStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.BlockerStatus[] | Prisma.ListEnumBlockerStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.BlockerStatus[] | Prisma.ListEnumBlockerStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumBlockerStatusFilter<$PrismaModel> | $Enums.BlockerStatus
+}
+
+export type NestedEnumBlockerStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.BlockerStatus | Prisma.EnumBlockerStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.BlockerStatus[] | Prisma.ListEnumBlockerStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.BlockerStatus[] | Prisma.ListEnumBlockerStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumBlockerStatusWithAggregatesFilter<$PrismaModel> | $Enums.BlockerStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumBlockerStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumBlockerStatusFilter<$PrismaModel>
 }
 
 
