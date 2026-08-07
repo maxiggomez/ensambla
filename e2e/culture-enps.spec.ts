@@ -43,7 +43,9 @@ test("launch → anonymous response → threshold → visible aggregate", async 
   await expect(responseForm).toBeVisible();
   const pulseId = await responseForm.locator('input[name="pulseId"]').inputValue();
 
-  await responseForm.getByRole("radio", { name: "10" }).check();
+  // El radio es `sr-only` (oculto) y el <label> visible intercepta el click;
+  // `force` marca el radio real sin pelear con el overlay del label.
+  await responseForm.getByRole("radio", { name: "10" }).check({ force: true });
   await responseForm.getByLabel("¿Qué influyó más?").selectOption("Recognition");
   await responseForm
     .getByLabel("Comentario opcional")
