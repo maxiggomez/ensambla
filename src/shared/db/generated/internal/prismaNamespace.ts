@@ -399,7 +399,11 @@ export const ModelName = {
   ProjectObjective: 'ProjectObjective',
   Skill: 'Skill',
   Competency: 'Competency',
-  SkillRequirement: 'SkillRequirement'
+  SkillRequirement: 'SkillRequirement',
+  Ritual: 'Ritual',
+  RitualOccurrence: 'RitualOccurrence',
+  Blocker: 'Blocker',
+  Retrospective: 'Retrospective'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -415,7 +419,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "organization" | "pulseSchedule" | "pulse" | "pulseParticipation" | "pulseResponse" | "member" | "northStar" | "objective" | "keyResult" | "team" | "teamMember" | "project" | "projectObjective" | "skill" | "competency" | "skillRequirement"
+    modelProps: "organization" | "pulseSchedule" | "pulse" | "pulseParticipation" | "pulseResponse" | "member" | "northStar" | "objective" | "keyResult" | "team" | "teamMember" | "project" | "projectObjective" | "skill" | "competency" | "skillRequirement" | "ritual" | "ritualOccurrence" | "blocker" | "retrospective"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1603,6 +1607,302 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Ritual: {
+      payload: Prisma.$RitualPayload<ExtArgs>
+      fields: Prisma.RitualFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.RitualFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RitualPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.RitualFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RitualPayload>
+        }
+        findFirst: {
+          args: Prisma.RitualFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RitualPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.RitualFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RitualPayload>
+        }
+        findMany: {
+          args: Prisma.RitualFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RitualPayload>[]
+        }
+        create: {
+          args: Prisma.RitualCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RitualPayload>
+        }
+        createMany: {
+          args: Prisma.RitualCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.RitualCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RitualPayload>[]
+        }
+        delete: {
+          args: Prisma.RitualDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RitualPayload>
+        }
+        update: {
+          args: Prisma.RitualUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RitualPayload>
+        }
+        deleteMany: {
+          args: Prisma.RitualDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.RitualUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.RitualUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RitualPayload>[]
+        }
+        upsert: {
+          args: Prisma.RitualUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RitualPayload>
+        }
+        aggregate: {
+          args: Prisma.RitualAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateRitual>
+        }
+        groupBy: {
+          args: Prisma.RitualGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RitualGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.RitualCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RitualCountAggregateOutputType> | number
+        }
+      }
+    }
+    RitualOccurrence: {
+      payload: Prisma.$RitualOccurrencePayload<ExtArgs>
+      fields: Prisma.RitualOccurrenceFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.RitualOccurrenceFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RitualOccurrencePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.RitualOccurrenceFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RitualOccurrencePayload>
+        }
+        findFirst: {
+          args: Prisma.RitualOccurrenceFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RitualOccurrencePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.RitualOccurrenceFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RitualOccurrencePayload>
+        }
+        findMany: {
+          args: Prisma.RitualOccurrenceFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RitualOccurrencePayload>[]
+        }
+        create: {
+          args: Prisma.RitualOccurrenceCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RitualOccurrencePayload>
+        }
+        createMany: {
+          args: Prisma.RitualOccurrenceCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.RitualOccurrenceCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RitualOccurrencePayload>[]
+        }
+        delete: {
+          args: Prisma.RitualOccurrenceDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RitualOccurrencePayload>
+        }
+        update: {
+          args: Prisma.RitualOccurrenceUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RitualOccurrencePayload>
+        }
+        deleteMany: {
+          args: Prisma.RitualOccurrenceDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.RitualOccurrenceUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.RitualOccurrenceUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RitualOccurrencePayload>[]
+        }
+        upsert: {
+          args: Prisma.RitualOccurrenceUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RitualOccurrencePayload>
+        }
+        aggregate: {
+          args: Prisma.RitualOccurrenceAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateRitualOccurrence>
+        }
+        groupBy: {
+          args: Prisma.RitualOccurrenceGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RitualOccurrenceGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.RitualOccurrenceCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RitualOccurrenceCountAggregateOutputType> | number
+        }
+      }
+    }
+    Blocker: {
+      payload: Prisma.$BlockerPayload<ExtArgs>
+      fields: Prisma.BlockerFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.BlockerFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlockerPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.BlockerFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlockerPayload>
+        }
+        findFirst: {
+          args: Prisma.BlockerFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlockerPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.BlockerFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlockerPayload>
+        }
+        findMany: {
+          args: Prisma.BlockerFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlockerPayload>[]
+        }
+        create: {
+          args: Prisma.BlockerCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlockerPayload>
+        }
+        createMany: {
+          args: Prisma.BlockerCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.BlockerCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlockerPayload>[]
+        }
+        delete: {
+          args: Prisma.BlockerDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlockerPayload>
+        }
+        update: {
+          args: Prisma.BlockerUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlockerPayload>
+        }
+        deleteMany: {
+          args: Prisma.BlockerDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.BlockerUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.BlockerUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlockerPayload>[]
+        }
+        upsert: {
+          args: Prisma.BlockerUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlockerPayload>
+        }
+        aggregate: {
+          args: Prisma.BlockerAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateBlocker>
+        }
+        groupBy: {
+          args: Prisma.BlockerGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BlockerGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.BlockerCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BlockerCountAggregateOutputType> | number
+        }
+      }
+    }
+    Retrospective: {
+      payload: Prisma.$RetrospectivePayload<ExtArgs>
+      fields: Prisma.RetrospectiveFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.RetrospectiveFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RetrospectivePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.RetrospectiveFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RetrospectivePayload>
+        }
+        findFirst: {
+          args: Prisma.RetrospectiveFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RetrospectivePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.RetrospectiveFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RetrospectivePayload>
+        }
+        findMany: {
+          args: Prisma.RetrospectiveFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RetrospectivePayload>[]
+        }
+        create: {
+          args: Prisma.RetrospectiveCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RetrospectivePayload>
+        }
+        createMany: {
+          args: Prisma.RetrospectiveCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.RetrospectiveCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RetrospectivePayload>[]
+        }
+        delete: {
+          args: Prisma.RetrospectiveDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RetrospectivePayload>
+        }
+        update: {
+          args: Prisma.RetrospectiveUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RetrospectivePayload>
+        }
+        deleteMany: {
+          args: Prisma.RetrospectiveDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.RetrospectiveUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.RetrospectiveUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RetrospectivePayload>[]
+        }
+        upsert: {
+          args: Prisma.RetrospectiveUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RetrospectivePayload>
+        }
+        aggregate: {
+          args: Prisma.RetrospectiveAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateRetrospective>
+        }
+        groupBy: {
+          args: Prisma.RetrospectiveGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RetrospectiveGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.RetrospectiveCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RetrospectiveCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1854,6 +2154,59 @@ export const SkillRequirementScalarFieldEnum = {
 export type SkillRequirementScalarFieldEnum = (typeof SkillRequirementScalarFieldEnum)[keyof typeof SkillRequirementScalarFieldEnum]
 
 
+export const RitualScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  teamId: 'teamId',
+  name: 'name',
+  cadence: 'cadence',
+  startDate: 'startDate',
+  createdAt: 'createdAt'
+} as const
+
+export type RitualScalarFieldEnum = (typeof RitualScalarFieldEnum)[keyof typeof RitualScalarFieldEnum]
+
+
+export const RitualOccurrenceScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  ritualId: 'ritualId',
+  scheduledDate: 'scheduledDate',
+  status: 'status',
+  heldDate: 'heldDate',
+  createdAt: 'createdAt'
+} as const
+
+export type RitualOccurrenceScalarFieldEnum = (typeof RitualOccurrenceScalarFieldEnum)[keyof typeof RitualOccurrenceScalarFieldEnum]
+
+
+export const BlockerScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  teamId: 'teamId',
+  memberId: 'memberId',
+  objectiveId: 'objectiveId',
+  title: 'title',
+  description: 'description',
+  status: 'status',
+  createdAt: 'createdAt',
+  resolvedAt: 'resolvedAt'
+} as const
+
+export type BlockerScalarFieldEnum = (typeof BlockerScalarFieldEnum)[keyof typeof BlockerScalarFieldEnum]
+
+
+export const RetrospectiveScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  teamId: 'teamId',
+  heldAt: 'heldAt',
+  createdAt: 'createdAt'
+} as const
+
+export type RetrospectiveScalarFieldEnum = (typeof RetrospectiveScalarFieldEnum)[keyof typeof RetrospectiveScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -2102,6 +2455,48 @@ export type ListEnumTeamRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$Pri
 
 
 /**
+ * Reference to a field of type 'RitualCadence'
+ */
+export type EnumRitualCadenceFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RitualCadence'>
+    
+
+
+/**
+ * Reference to a field of type 'RitualCadence[]'
+ */
+export type ListEnumRitualCadenceFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RitualCadence[]'>
+    
+
+
+/**
+ * Reference to a field of type 'RitualOccurrenceStatus'
+ */
+export type EnumRitualOccurrenceStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RitualOccurrenceStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'RitualOccurrenceStatus[]'
+ */
+export type ListEnumRitualOccurrenceStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RitualOccurrenceStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'BlockerStatus'
+ */
+export type EnumBlockerStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BlockerStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'BlockerStatus[]'
+ */
+export type ListEnumBlockerStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BlockerStatus[]'>
+    
+
+
+/**
  * Reference to a field of type 'Float'
  */
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -2240,6 +2635,10 @@ export type GlobalOmitConfig = {
   skill?: Prisma.SkillOmit
   competency?: Prisma.CompetencyOmit
   skillRequirement?: Prisma.SkillRequirementOmit
+  ritual?: Prisma.RitualOmit
+  ritualOccurrence?: Prisma.RitualOccurrenceOmit
+  blocker?: Prisma.BlockerOmit
+  retrospective?: Prisma.RetrospectiveOmit
 }
 
 /* Types for Logging */
