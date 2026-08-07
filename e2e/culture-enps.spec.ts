@@ -3,10 +3,12 @@ import { randomUUID } from "node:crypto";
 import { clerk, setupClerkTestingToken } from "@clerk/testing/playwright";
 import { expect, test, type Page } from "@playwright/test";
 
-import { createPrismaClient, withTenant } from "../src/shared/db";
-import { resolveTenantForUser } from "../src/shared/tenancy";
-
 import { E2E_APP_DATABASE_URL, hasRealClerkKeys } from "./env";
+
+// Nota: `src/shared/db` y `src/shared/tenancy` se importan dinámicamente dentro del
+// test (ver más abajo). Importarlos en el tope carga el cliente Prisma generado
+// (ESM, usa `import.meta`), lo que rompe la carga del spec bajo Playwright incluso
+// cuando el test se saltea. Patrón consistente con el resto de los e2e del repo.
 
 test.skip(!hasRealClerkKeys(), "Requiere keys reales de Clerk (ver .env.example)");
 
@@ -56,6 +58,8 @@ test("launch → anonymous response → threshold → visible aggregate", async 
     const clerkWindow = window as typeof window & { Clerk: { user: { id: string } } };
     return clerkWindow.Clerk.user.id;
   });
+  const { createPrismaClient, withTenant } = await import("../src/shared/db");
+  const { resolveTenantForUser } = await import("../src/shared/tenancy");
   const db = createPrismaClient(E2E_APP_DATABASE_URL);
   try {
     const organizationId = await resolveTenantForUser(clerkUserId, db);
