@@ -27,6 +27,43 @@ export const Seniority = {
 export type Seniority = (typeof Seniority)[keyof typeof Seniority]
 
 
+export const PulseScope = {
+  Organization: 'Organization',
+  Team: 'Team'
+} as const
+
+export type PulseScope = (typeof PulseScope)[keyof typeof PulseScope]
+
+
+export const PulseFrequency = {
+  Weekly: 'Weekly',
+  Monthly: 'Monthly',
+  Quarterly: 'Quarterly'
+} as const
+
+export type PulseFrequency = (typeof PulseFrequency)[keyof typeof PulseFrequency]
+
+
+export const PulseStatus = {
+  Open: 'Open',
+  Closed: 'Closed'
+} as const
+
+export type PulseStatus = (typeof PulseStatus)[keyof typeof PulseStatus]
+
+
+export const PulseDriver = {
+  Recognition: 'Recognition',
+  GoalClarity: 'GoalClarity',
+  CareerGrowth: 'CareerGrowth',
+  Workload: 'Workload',
+  Coordination: 'Coordination',
+  Other: 'Other'
+} as const
+
+export type PulseDriver = (typeof PulseDriver)[keyof typeof PulseDriver]
+
+
 export const ObjectiveLevel = {
   Company: 'Company',
   Area: 'Area',

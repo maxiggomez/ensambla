@@ -467,10 +467,6 @@ export type EnumMemberRoleFieldUpdateOperationsInput = {
   set?: $Enums.MemberRole
 }
 
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
-}
-
 export type NullableEnumSeniorityFieldUpdateOperationsInput = {
   set?: $Enums.Seniority | null
 }

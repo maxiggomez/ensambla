@@ -385,6 +385,10 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 export const ModelName = {
   Organization: 'Organization',
+  PulseSchedule: 'PulseSchedule',
+  Pulse: 'Pulse',
+  PulseParticipation: 'PulseParticipation',
+  PulseResponse: 'PulseResponse',
   Member: 'Member',
   NorthStar: 'NorthStar',
   Objective: 'Objective',
@@ -411,7 +415,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "organization" | "member" | "northStar" | "objective" | "keyResult" | "team" | "teamMember" | "project" | "projectObjective" | "skill" | "competency" | "skillRequirement"
+    modelProps: "organization" | "pulseSchedule" | "pulse" | "pulseParticipation" | "pulseResponse" | "member" | "northStar" | "objective" | "keyResult" | "team" | "teamMember" | "project" | "projectObjective" | "skill" | "competency" | "skillRequirement"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -486,6 +490,302 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.OrganizationCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.OrganizationCountAggregateOutputType> | number
+        }
+      }
+    }
+    PulseSchedule: {
+      payload: Prisma.$PulseSchedulePayload<ExtArgs>
+      fields: Prisma.PulseScheduleFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.PulseScheduleFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PulseSchedulePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.PulseScheduleFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PulseSchedulePayload>
+        }
+        findFirst: {
+          args: Prisma.PulseScheduleFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PulseSchedulePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.PulseScheduleFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PulseSchedulePayload>
+        }
+        findMany: {
+          args: Prisma.PulseScheduleFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PulseSchedulePayload>[]
+        }
+        create: {
+          args: Prisma.PulseScheduleCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PulseSchedulePayload>
+        }
+        createMany: {
+          args: Prisma.PulseScheduleCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.PulseScheduleCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PulseSchedulePayload>[]
+        }
+        delete: {
+          args: Prisma.PulseScheduleDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PulseSchedulePayload>
+        }
+        update: {
+          args: Prisma.PulseScheduleUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PulseSchedulePayload>
+        }
+        deleteMany: {
+          args: Prisma.PulseScheduleDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.PulseScheduleUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.PulseScheduleUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PulseSchedulePayload>[]
+        }
+        upsert: {
+          args: Prisma.PulseScheduleUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PulseSchedulePayload>
+        }
+        aggregate: {
+          args: Prisma.PulseScheduleAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePulseSchedule>
+        }
+        groupBy: {
+          args: Prisma.PulseScheduleGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PulseScheduleGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.PulseScheduleCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PulseScheduleCountAggregateOutputType> | number
+        }
+      }
+    }
+    Pulse: {
+      payload: Prisma.$PulsePayload<ExtArgs>
+      fields: Prisma.PulseFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.PulseFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PulsePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.PulseFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PulsePayload>
+        }
+        findFirst: {
+          args: Prisma.PulseFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PulsePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.PulseFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PulsePayload>
+        }
+        findMany: {
+          args: Prisma.PulseFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PulsePayload>[]
+        }
+        create: {
+          args: Prisma.PulseCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PulsePayload>
+        }
+        createMany: {
+          args: Prisma.PulseCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.PulseCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PulsePayload>[]
+        }
+        delete: {
+          args: Prisma.PulseDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PulsePayload>
+        }
+        update: {
+          args: Prisma.PulseUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PulsePayload>
+        }
+        deleteMany: {
+          args: Prisma.PulseDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.PulseUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.PulseUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PulsePayload>[]
+        }
+        upsert: {
+          args: Prisma.PulseUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PulsePayload>
+        }
+        aggregate: {
+          args: Prisma.PulseAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePulse>
+        }
+        groupBy: {
+          args: Prisma.PulseGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PulseGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.PulseCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PulseCountAggregateOutputType> | number
+        }
+      }
+    }
+    PulseParticipation: {
+      payload: Prisma.$PulseParticipationPayload<ExtArgs>
+      fields: Prisma.PulseParticipationFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.PulseParticipationFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PulseParticipationPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.PulseParticipationFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PulseParticipationPayload>
+        }
+        findFirst: {
+          args: Prisma.PulseParticipationFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PulseParticipationPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.PulseParticipationFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PulseParticipationPayload>
+        }
+        findMany: {
+          args: Prisma.PulseParticipationFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PulseParticipationPayload>[]
+        }
+        create: {
+          args: Prisma.PulseParticipationCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PulseParticipationPayload>
+        }
+        createMany: {
+          args: Prisma.PulseParticipationCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.PulseParticipationCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PulseParticipationPayload>[]
+        }
+        delete: {
+          args: Prisma.PulseParticipationDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PulseParticipationPayload>
+        }
+        update: {
+          args: Prisma.PulseParticipationUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PulseParticipationPayload>
+        }
+        deleteMany: {
+          args: Prisma.PulseParticipationDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.PulseParticipationUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.PulseParticipationUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PulseParticipationPayload>[]
+        }
+        upsert: {
+          args: Prisma.PulseParticipationUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PulseParticipationPayload>
+        }
+        aggregate: {
+          args: Prisma.PulseParticipationAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePulseParticipation>
+        }
+        groupBy: {
+          args: Prisma.PulseParticipationGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PulseParticipationGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.PulseParticipationCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PulseParticipationCountAggregateOutputType> | number
+        }
+      }
+    }
+    PulseResponse: {
+      payload: Prisma.$PulseResponsePayload<ExtArgs>
+      fields: Prisma.PulseResponseFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.PulseResponseFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PulseResponsePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.PulseResponseFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PulseResponsePayload>
+        }
+        findFirst: {
+          args: Prisma.PulseResponseFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PulseResponsePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.PulseResponseFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PulseResponsePayload>
+        }
+        findMany: {
+          args: Prisma.PulseResponseFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PulseResponsePayload>[]
+        }
+        create: {
+          args: Prisma.PulseResponseCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PulseResponsePayload>
+        }
+        createMany: {
+          args: Prisma.PulseResponseCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.PulseResponseCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PulseResponsePayload>[]
+        }
+        delete: {
+          args: Prisma.PulseResponseDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PulseResponsePayload>
+        }
+        update: {
+          args: Prisma.PulseResponseUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PulseResponsePayload>
+        }
+        deleteMany: {
+          args: Prisma.PulseResponseDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.PulseResponseUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.PulseResponseUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PulseResponsePayload>[]
+        }
+        upsert: {
+          args: Prisma.PulseResponseUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PulseResponsePayload>
+        }
+        aggregate: {
+          args: Prisma.PulseResponseAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePulseResponse>
+        }
+        groupBy: {
+          args: Prisma.PulseResponseGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PulseResponseGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.PulseResponseCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PulseResponseCountAggregateOutputType> | number
         }
       }
     }
@@ -1345,10 +1645,72 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 export const OrganizationScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  enpsMinimumResponses: 'enpsMinimumResponses'
 } as const
 
 export type OrganizationScalarFieldEnum = (typeof OrganizationScalarFieldEnum)[keyof typeof OrganizationScalarFieldEnum]
+
+
+export const PulseScheduleScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  scope: 'scope',
+  teamId: 'teamId',
+  frequency: 'frequency',
+  nextRunAt: 'nextRunAt',
+  active: 'active',
+  createdAt: 'createdAt'
+} as const
+
+export type PulseScheduleScalarFieldEnum = (typeof PulseScheduleScalarFieldEnum)[keyof typeof PulseScheduleScalarFieldEnum]
+
+
+export const PulseScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  scope: 'scope',
+  teamId: 'teamId',
+  status: 'status',
+  openedAt: 'openedAt',
+  closesAt: 'closesAt',
+  scheduleId: 'scheduleId',
+  scheduledFor: 'scheduledFor',
+  createdAt: 'createdAt'
+} as const
+
+export type PulseScalarFieldEnum = (typeof PulseScalarFieldEnum)[keyof typeof PulseScalarFieldEnum]
+
+
+export const PulseParticipationScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  pulseId: 'pulseId',
+  memberId: 'memberId',
+  responded: 'responded',
+  createdAt: 'createdAt'
+} as const
+
+export type PulseParticipationScalarFieldEnum = (typeof PulseParticipationScalarFieldEnum)[keyof typeof PulseParticipationScalarFieldEnum]
+
+
+export const PulseResponseScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  pulseId: 'pulseId',
+  teamId: 'teamId',
+  measurementType: 'measurementType',
+  startValue: 'startValue',
+  targetValue: 'targetValue',
+  currentValue: 'currentValue',
+  checkDone: 'checkDone',
+  textState: 'textState',
+  driver: 'driver',
+  comment: 'comment',
+  submittedAt: 'submittedAt'
+} as const
+
+export type PulseResponseScalarFieldEnum = (typeof PulseResponseScalarFieldEnum)[keyof typeof PulseResponseScalarFieldEnum]
 
 
 export const MemberScalarFieldEnum = {
@@ -1551,30 +1913,65 @@ export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaM
 
 
 /**
- * Reference to a field of type 'MemberRole'
+ * Reference to a field of type 'Int'
  */
-export type EnumMemberRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MemberRole'>
+export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
     
 
 
 /**
- * Reference to a field of type 'MemberRole[]'
+ * Reference to a field of type 'Int[]'
  */
-export type ListEnumMemberRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MemberRole[]'>
+export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
 
 
 /**
- * Reference to a field of type 'Seniority'
+ * Reference to a field of type 'PulseScope'
  */
-export type EnumSeniorityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Seniority'>
+export type EnumPulseScopeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PulseScope'>
     
 
 
 /**
- * Reference to a field of type 'Seniority[]'
+ * Reference to a field of type 'PulseScope[]'
  */
-export type ListEnumSeniorityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Seniority[]'>
+export type ListEnumPulseScopeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PulseScope[]'>
+    
+
+
+/**
+ * Reference to a field of type 'PulseFrequency'
+ */
+export type EnumPulseFrequencyFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PulseFrequency'>
+    
+
+
+/**
+ * Reference to a field of type 'PulseFrequency[]'
+ */
+export type ListEnumPulseFrequencyFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PulseFrequency[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Boolean'
+ */
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+/**
+ * Reference to a field of type 'PulseStatus'
+ */
+export type EnumPulseStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PulseStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'PulseStatus[]'
+ */
+export type ListEnumPulseStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PulseStatus[]'>
     
 
 
@@ -1607,13 +2004,6 @@ export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMo
 
 
 /**
- * Reference to a field of type 'Boolean'
- */
-export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
-    
-
-
-/**
  * Reference to a field of type 'TextState'
  */
 export type EnumTextStateFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TextState'>
@@ -1624,6 +2014,48 @@ export type EnumTextStateFieldRefInput<$PrismaModel> = FieldRefInputType<$Prisma
  * Reference to a field of type 'TextState[]'
  */
 export type ListEnumTextStateFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TextState[]'>
+    
+
+
+/**
+ * Reference to a field of type 'PulseDriver'
+ */
+export type EnumPulseDriverFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PulseDriver'>
+    
+
+
+/**
+ * Reference to a field of type 'PulseDriver[]'
+ */
+export type ListEnumPulseDriverFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PulseDriver[]'>
+    
+
+
+/**
+ * Reference to a field of type 'MemberRole'
+ */
+export type EnumMemberRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MemberRole'>
+    
+
+
+/**
+ * Reference to a field of type 'MemberRole[]'
+ */
+export type ListEnumMemberRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MemberRole[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Seniority'
+ */
+export type EnumSeniorityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Seniority'>
+    
+
+
+/**
+ * Reference to a field of type 'Seniority[]'
+ */
+export type ListEnumSeniorityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Seniority[]'>
     
 
 
@@ -1666,20 +2098,6 @@ export type EnumTeamRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaM
  * Reference to a field of type 'TeamRole[]'
  */
 export type ListEnumTeamRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TeamRole[]'>
-    
-
-
-/**
- * Reference to a field of type 'Int'
- */
-export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
-    
-
-
-/**
- * Reference to a field of type 'Int[]'
- */
-export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
 
 
@@ -1807,6 +2225,10 @@ export type PrismaClientOptions = ({
 }
 export type GlobalOmitConfig = {
   organization?: Prisma.OrganizationOmit
+  pulseSchedule?: Prisma.PulseScheduleOmit
+  pulse?: Prisma.PulseOmit
+  pulseParticipation?: Prisma.PulseParticipationOmit
+  pulseResponse?: Prisma.PulseResponseOmit
   member?: Prisma.MemberOmit
   northStar?: Prisma.NorthStarOmit
   objective?: Prisma.ObjectiveOmit

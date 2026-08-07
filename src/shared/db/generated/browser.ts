@@ -23,6 +23,26 @@ export * from './enums';
  */
 export type Organization = Prisma.OrganizationModel
 /**
+ * Model PulseSchedule
+ * 
+ */
+export type PulseSchedule = Prisma.PulseScheduleModel
+/**
+ * Model Pulse
+ * 
+ */
+export type Pulse = Prisma.PulseModel
+/**
+ * Model PulseParticipation
+ * 
+ */
+export type PulseParticipation = Prisma.PulseParticipationModel
+/**
+ * Model PulseResponse
+ * 
+ */
+export type PulseResponse = Prisma.PulseResponseModel
+/**
  * Model Member
  * 
  */

@@ -20,46 +20,70 @@ export type OrganizationModel = runtime.Types.Result.DefaultSelection<Prisma.$Or
 
 export type AggregateOrganization = {
   _count: OrganizationCountAggregateOutputType | null
+  _avg: OrganizationAvgAggregateOutputType | null
+  _sum: OrganizationSumAggregateOutputType | null
   _min: OrganizationMinAggregateOutputType | null
   _max: OrganizationMaxAggregateOutputType | null
+}
+
+export type OrganizationAvgAggregateOutputType = {
+  enpsMinimumResponses: number | null
+}
+
+export type OrganizationSumAggregateOutputType = {
+  enpsMinimumResponses: number | null
 }
 
 export type OrganizationMinAggregateOutputType = {
   id: string | null
   name: string | null
   createdAt: Date | null
+  enpsMinimumResponses: number | null
 }
 
 export type OrganizationMaxAggregateOutputType = {
   id: string | null
   name: string | null
   createdAt: Date | null
+  enpsMinimumResponses: number | null
 }
 
 export type OrganizationCountAggregateOutputType = {
   id: number
   name: number
   createdAt: number
+  enpsMinimumResponses: number
   _all: number
 }
 
+
+export type OrganizationAvgAggregateInputType = {
+  enpsMinimumResponses?: true
+}
+
+export type OrganizationSumAggregateInputType = {
+  enpsMinimumResponses?: true
+}
 
 export type OrganizationMinAggregateInputType = {
   id?: true
   name?: true
   createdAt?: true
+  enpsMinimumResponses?: true
 }
 
 export type OrganizationMaxAggregateInputType = {
   id?: true
   name?: true
   createdAt?: true
+  enpsMinimumResponses?: true
 }
 
 export type OrganizationCountAggregateInputType = {
   id?: true
   name?: true
   createdAt?: true
+  enpsMinimumResponses?: true
   _all?: true
 }
 
@@ -101,6 +125,18 @@ export type OrganizationAggregateArgs<ExtArgs extends runtime.Types.Extensions.I
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: OrganizationAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: OrganizationSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: OrganizationMinAggregateInputType
@@ -131,6 +167,8 @@ export type OrganizationGroupByArgs<ExtArgs extends runtime.Types.Extensions.Int
   take?: number
   skip?: number
   _count?: OrganizationCountAggregateInputType | true
+  _avg?: OrganizationAvgAggregateInputType
+  _sum?: OrganizationSumAggregateInputType
   _min?: OrganizationMinAggregateInputType
   _max?: OrganizationMaxAggregateInputType
 }
@@ -139,7 +177,10 @@ export type OrganizationGroupByOutputType = {
   id: string
   name: string
   createdAt: Date
+  enpsMinimumResponses: number
   _count: OrganizationCountAggregateOutputType | null
+  _avg: OrganizationAvgAggregateOutputType | null
+  _sum: OrganizationSumAggregateOutputType | null
   _min: OrganizationMinAggregateOutputType | null
   _max: OrganizationMaxAggregateOutputType | null
 }
@@ -166,6 +207,7 @@ export type OrganizationWhereInput = {
   id?: Prisma.UuidFilter<"Organization"> | string
   name?: Prisma.StringFilter<"Organization"> | string
   createdAt?: Prisma.DateTimeFilter<"Organization"> | Date | string
+  enpsMinimumResponses?: Prisma.IntFilter<"Organization"> | number
   members?: Prisma.MemberListRelationFilter
   northStar?: Prisma.XOR<Prisma.NorthStarNullableScalarRelationFilter, Prisma.NorthStarWhereInput> | null
   objectives?: Prisma.ObjectiveListRelationFilter
@@ -183,6 +225,7 @@ export type OrganizationOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  enpsMinimumResponses?: Prisma.SortOrder
   members?: Prisma.MemberOrderByRelationAggregateInput
   northStar?: Prisma.NorthStarOrderByWithRelationInput
   objectives?: Prisma.ObjectiveOrderByRelationAggregateInput
@@ -203,6 +246,7 @@ export type OrganizationWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.OrganizationWhereInput | Prisma.OrganizationWhereInput[]
   name?: Prisma.StringFilter<"Organization"> | string
   createdAt?: Prisma.DateTimeFilter<"Organization"> | Date | string
+  enpsMinimumResponses?: Prisma.IntFilter<"Organization"> | number
   members?: Prisma.MemberListRelationFilter
   northStar?: Prisma.XOR<Prisma.NorthStarNullableScalarRelationFilter, Prisma.NorthStarWhereInput> | null
   objectives?: Prisma.ObjectiveListRelationFilter
@@ -220,9 +264,12 @@ export type OrganizationOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  enpsMinimumResponses?: Prisma.SortOrder
   _count?: Prisma.OrganizationCountOrderByAggregateInput
+  _avg?: Prisma.OrganizationAvgOrderByAggregateInput
   _max?: Prisma.OrganizationMaxOrderByAggregateInput
   _min?: Prisma.OrganizationMinOrderByAggregateInput
+  _sum?: Prisma.OrganizationSumOrderByAggregateInput
 }
 
 export type OrganizationScalarWhereWithAggregatesInput = {
@@ -232,12 +279,14 @@ export type OrganizationScalarWhereWithAggregatesInput = {
   id?: Prisma.UuidWithAggregatesFilter<"Organization"> | string
   name?: Prisma.StringWithAggregatesFilter<"Organization"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Organization"> | Date | string
+  enpsMinimumResponses?: Prisma.IntWithAggregatesFilter<"Organization"> | number
 }
 
 export type OrganizationCreateInput = {
   id?: string
   name: string
   createdAt?: Date | string
+  enpsMinimumResponses?: number
   members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
   northStar?: Prisma.NorthStarCreateNestedOneWithoutOrganizationInput
   objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
@@ -255,6 +304,7 @@ export type OrganizationUncheckedCreateInput = {
   id?: string
   name: string
   createdAt?: Date | string
+  enpsMinimumResponses?: number
   members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
   northStar?: Prisma.NorthStarUncheckedCreateNestedOneWithoutOrganizationInput
   objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
@@ -272,6 +322,7 @@ export type OrganizationUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
   members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
   northStar?: Prisma.NorthStarUpdateOneWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
@@ -289,6 +340,7 @@ export type OrganizationUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
   members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
   northStar?: Prisma.NorthStarUncheckedUpdateOneWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -306,36 +358,50 @@ export type OrganizationCreateManyInput = {
   id?: string
   name: string
   createdAt?: Date | string
+  enpsMinimumResponses?: number
 }
 
 export type OrganizationUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type OrganizationUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type OrganizationCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  enpsMinimumResponses?: Prisma.SortOrder
+}
+
+export type OrganizationAvgOrderByAggregateInput = {
+  enpsMinimumResponses?: Prisma.SortOrder
 }
 
 export type OrganizationMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  enpsMinimumResponses?: Prisma.SortOrder
 }
 
 export type OrganizationMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  enpsMinimumResponses?: Prisma.SortOrder
+}
+
+export type OrganizationSumOrderByAggregateInput = {
+  enpsMinimumResponses?: Prisma.SortOrder
 }
 
 export type OrganizationScalarRelationFilter = {
@@ -349,6 +415,14 @@ export type StringFieldUpdateOperationsInput = {
 
 export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
+}
+
+export type IntFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
 }
 
 export type OrganizationCreateNestedOneWithoutMembersInput = {
@@ -509,6 +583,7 @@ export type OrganizationCreateWithoutMembersInput = {
   id?: string
   name: string
   createdAt?: Date | string
+  enpsMinimumResponses?: number
   northStar?: Prisma.NorthStarCreateNestedOneWithoutOrganizationInput
   objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultCreateNestedManyWithoutOrganizationInput
@@ -525,6 +600,7 @@ export type OrganizationUncheckedCreateWithoutMembersInput = {
   id?: string
   name: string
   createdAt?: Date | string
+  enpsMinimumResponses?: number
   northStar?: Prisma.NorthStarUncheckedCreateNestedOneWithoutOrganizationInput
   objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutOrganizationInput
@@ -557,6 +633,7 @@ export type OrganizationUpdateWithoutMembersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
   northStar?: Prisma.NorthStarUpdateOneWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUpdateManyWithoutOrganizationNestedInput
@@ -573,6 +650,7 @@ export type OrganizationUncheckedUpdateWithoutMembersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
   northStar?: Prisma.NorthStarUncheckedUpdateOneWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -589,6 +667,7 @@ export type OrganizationCreateWithoutNorthStarInput = {
   id?: string
   name: string
   createdAt?: Date | string
+  enpsMinimumResponses?: number
   members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
   objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultCreateNestedManyWithoutOrganizationInput
@@ -605,6 +684,7 @@ export type OrganizationUncheckedCreateWithoutNorthStarInput = {
   id?: string
   name: string
   createdAt?: Date | string
+  enpsMinimumResponses?: number
   members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
   objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutOrganizationInput
@@ -637,6 +717,7 @@ export type OrganizationUpdateWithoutNorthStarInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
   members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUpdateManyWithoutOrganizationNestedInput
@@ -653,6 +734,7 @@ export type OrganizationUncheckedUpdateWithoutNorthStarInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
   members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -669,6 +751,7 @@ export type OrganizationCreateWithoutObjectivesInput = {
   id?: string
   name: string
   createdAt?: Date | string
+  enpsMinimumResponses?: number
   members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
   northStar?: Prisma.NorthStarCreateNestedOneWithoutOrganizationInput
   keyResults?: Prisma.KeyResultCreateNestedManyWithoutOrganizationInput
@@ -685,6 +768,7 @@ export type OrganizationUncheckedCreateWithoutObjectivesInput = {
   id?: string
   name: string
   createdAt?: Date | string
+  enpsMinimumResponses?: number
   members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
   northStar?: Prisma.NorthStarUncheckedCreateNestedOneWithoutOrganizationInput
   keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutOrganizationInput
@@ -717,6 +801,7 @@ export type OrganizationUpdateWithoutObjectivesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
   members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
   northStar?: Prisma.NorthStarUpdateOneWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUpdateManyWithoutOrganizationNestedInput
@@ -733,6 +818,7 @@ export type OrganizationUncheckedUpdateWithoutObjectivesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
   members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
   northStar?: Prisma.NorthStarUncheckedUpdateOneWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -749,6 +835,7 @@ export type OrganizationCreateWithoutKeyResultsInput = {
   id?: string
   name: string
   createdAt?: Date | string
+  enpsMinimumResponses?: number
   members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
   northStar?: Prisma.NorthStarCreateNestedOneWithoutOrganizationInput
   objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
@@ -765,6 +852,7 @@ export type OrganizationUncheckedCreateWithoutKeyResultsInput = {
   id?: string
   name: string
   createdAt?: Date | string
+  enpsMinimumResponses?: number
   members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
   northStar?: Prisma.NorthStarUncheckedCreateNestedOneWithoutOrganizationInput
   objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
@@ -797,6 +885,7 @@ export type OrganizationUpdateWithoutKeyResultsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
   members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
   northStar?: Prisma.NorthStarUpdateOneWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
@@ -813,6 +902,7 @@ export type OrganizationUncheckedUpdateWithoutKeyResultsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
   members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
   northStar?: Prisma.NorthStarUncheckedUpdateOneWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -829,6 +919,7 @@ export type OrganizationCreateWithoutTeamsInput = {
   id?: string
   name: string
   createdAt?: Date | string
+  enpsMinimumResponses?: number
   members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
   northStar?: Prisma.NorthStarCreateNestedOneWithoutOrganizationInput
   objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
@@ -845,6 +936,7 @@ export type OrganizationUncheckedCreateWithoutTeamsInput = {
   id?: string
   name: string
   createdAt?: Date | string
+  enpsMinimumResponses?: number
   members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
   northStar?: Prisma.NorthStarUncheckedCreateNestedOneWithoutOrganizationInput
   objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
@@ -877,6 +969,7 @@ export type OrganizationUpdateWithoutTeamsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
   members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
   northStar?: Prisma.NorthStarUpdateOneWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
@@ -893,6 +986,7 @@ export type OrganizationUncheckedUpdateWithoutTeamsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
   members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
   northStar?: Prisma.NorthStarUncheckedUpdateOneWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -909,6 +1003,7 @@ export type OrganizationCreateWithoutTeamMembersInput = {
   id?: string
   name: string
   createdAt?: Date | string
+  enpsMinimumResponses?: number
   members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
   northStar?: Prisma.NorthStarCreateNestedOneWithoutOrganizationInput
   objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
@@ -925,6 +1020,7 @@ export type OrganizationUncheckedCreateWithoutTeamMembersInput = {
   id?: string
   name: string
   createdAt?: Date | string
+  enpsMinimumResponses?: number
   members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
   northStar?: Prisma.NorthStarUncheckedCreateNestedOneWithoutOrganizationInput
   objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
@@ -957,6 +1053,7 @@ export type OrganizationUpdateWithoutTeamMembersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
   members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
   northStar?: Prisma.NorthStarUpdateOneWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
@@ -973,6 +1070,7 @@ export type OrganizationUncheckedUpdateWithoutTeamMembersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
   members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
   northStar?: Prisma.NorthStarUncheckedUpdateOneWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -989,6 +1087,7 @@ export type OrganizationCreateWithoutProjectsInput = {
   id?: string
   name: string
   createdAt?: Date | string
+  enpsMinimumResponses?: number
   members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
   northStar?: Prisma.NorthStarCreateNestedOneWithoutOrganizationInput
   objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
@@ -1005,6 +1104,7 @@ export type OrganizationUncheckedCreateWithoutProjectsInput = {
   id?: string
   name: string
   createdAt?: Date | string
+  enpsMinimumResponses?: number
   members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
   northStar?: Prisma.NorthStarUncheckedCreateNestedOneWithoutOrganizationInput
   objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
@@ -1037,6 +1137,7 @@ export type OrganizationUpdateWithoutProjectsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
   members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
   northStar?: Prisma.NorthStarUpdateOneWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
@@ -1053,6 +1154,7 @@ export type OrganizationUncheckedUpdateWithoutProjectsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
   members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
   northStar?: Prisma.NorthStarUncheckedUpdateOneWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -1069,6 +1171,7 @@ export type OrganizationCreateWithoutProjectObjectivesInput = {
   id?: string
   name: string
   createdAt?: Date | string
+  enpsMinimumResponses?: number
   members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
   northStar?: Prisma.NorthStarCreateNestedOneWithoutOrganizationInput
   objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
@@ -1085,6 +1188,7 @@ export type OrganizationUncheckedCreateWithoutProjectObjectivesInput = {
   id?: string
   name: string
   createdAt?: Date | string
+  enpsMinimumResponses?: number
   members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
   northStar?: Prisma.NorthStarUncheckedCreateNestedOneWithoutOrganizationInput
   objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
@@ -1117,6 +1221,7 @@ export type OrganizationUpdateWithoutProjectObjectivesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
   members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
   northStar?: Prisma.NorthStarUpdateOneWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
@@ -1133,6 +1238,7 @@ export type OrganizationUncheckedUpdateWithoutProjectObjectivesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
   members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
   northStar?: Prisma.NorthStarUncheckedUpdateOneWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -1149,6 +1255,7 @@ export type OrganizationCreateWithoutSkillsInput = {
   id?: string
   name: string
   createdAt?: Date | string
+  enpsMinimumResponses?: number
   members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
   northStar?: Prisma.NorthStarCreateNestedOneWithoutOrganizationInput
   objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
@@ -1165,6 +1272,7 @@ export type OrganizationUncheckedCreateWithoutSkillsInput = {
   id?: string
   name: string
   createdAt?: Date | string
+  enpsMinimumResponses?: number
   members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
   northStar?: Prisma.NorthStarUncheckedCreateNestedOneWithoutOrganizationInput
   objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
@@ -1197,6 +1305,7 @@ export type OrganizationUpdateWithoutSkillsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
   members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
   northStar?: Prisma.NorthStarUpdateOneWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
@@ -1213,6 +1322,7 @@ export type OrganizationUncheckedUpdateWithoutSkillsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
   members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
   northStar?: Prisma.NorthStarUncheckedUpdateOneWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -1229,6 +1339,7 @@ export type OrganizationCreateWithoutCompetenciesInput = {
   id?: string
   name: string
   createdAt?: Date | string
+  enpsMinimumResponses?: number
   members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
   northStar?: Prisma.NorthStarCreateNestedOneWithoutOrganizationInput
   objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
@@ -1245,6 +1356,7 @@ export type OrganizationUncheckedCreateWithoutCompetenciesInput = {
   id?: string
   name: string
   createdAt?: Date | string
+  enpsMinimumResponses?: number
   members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
   northStar?: Prisma.NorthStarUncheckedCreateNestedOneWithoutOrganizationInput
   objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
@@ -1277,6 +1389,7 @@ export type OrganizationUpdateWithoutCompetenciesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
   members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
   northStar?: Prisma.NorthStarUpdateOneWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
@@ -1293,6 +1406,7 @@ export type OrganizationUncheckedUpdateWithoutCompetenciesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
   members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
   northStar?: Prisma.NorthStarUncheckedUpdateOneWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -1309,6 +1423,7 @@ export type OrganizationCreateWithoutSkillRequirementsInput = {
   id?: string
   name: string
   createdAt?: Date | string
+  enpsMinimumResponses?: number
   members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
   northStar?: Prisma.NorthStarCreateNestedOneWithoutOrganizationInput
   objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
@@ -1325,6 +1440,7 @@ export type OrganizationUncheckedCreateWithoutSkillRequirementsInput = {
   id?: string
   name: string
   createdAt?: Date | string
+  enpsMinimumResponses?: number
   members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
   northStar?: Prisma.NorthStarUncheckedCreateNestedOneWithoutOrganizationInput
   objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
@@ -1357,6 +1473,7 @@ export type OrganizationUpdateWithoutSkillRequirementsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
   members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
   northStar?: Prisma.NorthStarUpdateOneWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
@@ -1373,6 +1490,7 @@ export type OrganizationUncheckedUpdateWithoutSkillRequirementsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
   members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
   northStar?: Prisma.NorthStarUncheckedUpdateOneWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -1501,6 +1619,7 @@ export type OrganizationSelect<ExtArgs extends runtime.Types.Extensions.Internal
   id?: boolean
   name?: boolean
   createdAt?: boolean
+  enpsMinimumResponses?: boolean
   members?: boolean | Prisma.Organization$membersArgs<ExtArgs>
   northStar?: boolean | Prisma.Organization$northStarArgs<ExtArgs>
   objectives?: boolean | Prisma.Organization$objectivesArgs<ExtArgs>
@@ -1519,21 +1638,24 @@ export type OrganizationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   id?: boolean
   name?: boolean
   createdAt?: boolean
+  enpsMinimumResponses?: boolean
 }, ExtArgs["result"]["organization"]>
 
 export type OrganizationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
   createdAt?: boolean
+  enpsMinimumResponses?: boolean
 }, ExtArgs["result"]["organization"]>
 
 export type OrganizationSelectScalar = {
   id?: boolean
   name?: boolean
   createdAt?: boolean
+  enpsMinimumResponses?: boolean
 }
 
-export type OrganizationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "createdAt", ExtArgs["result"]["organization"]>
+export type OrganizationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "createdAt" | "enpsMinimumResponses", ExtArgs["result"]["organization"]>
 export type OrganizationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   members?: boolean | Prisma.Organization$membersArgs<ExtArgs>
   northStar?: boolean | Prisma.Organization$northStarArgs<ExtArgs>
@@ -1570,6 +1692,7 @@ export type $OrganizationPayload<ExtArgs extends runtime.Types.Extensions.Intern
     id: string
     name: string
     createdAt: Date
+    enpsMinimumResponses: number
   }, ExtArgs["result"]["organization"]>
   composites: {}
 }
@@ -2007,6 +2130,7 @@ export interface OrganizationFieldRefs {
   readonly id: Prisma.FieldRef<"Organization", 'String'>
   readonly name: Prisma.FieldRef<"Organization", 'String'>
   readonly createdAt: Prisma.FieldRef<"Organization", 'DateTime'>
+  readonly enpsMinimumResponses: Prisma.FieldRef<"Organization", 'Int'>
 }
     
 
