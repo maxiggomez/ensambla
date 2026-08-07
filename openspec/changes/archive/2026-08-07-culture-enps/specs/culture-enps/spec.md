@@ -4,7 +4,7 @@ Delta completo de la capability `culture-enps` para el change `culture-enps`.
 Cubre lanzamiento/recurrencia, anonimato estructural, umbral configurable,
 resultados, drivers y correlación operativa.
 
-## ADDED Requirements
+## MODIFIED Requirements
 
 ### Requirement: Launch a pulse
 

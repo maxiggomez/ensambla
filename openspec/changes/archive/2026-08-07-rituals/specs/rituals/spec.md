@@ -6,7 +6,7 @@ Cubre ceremonias recurrentes por cadencia (generación + overdue), Blockers
 aprendizaje). La UI, los recordatorios programados y el reflejo agregado en
 `executive-dashboard`/`culture-enps` quedan para slices posteriores.
 
-## ADDED Requirements
+## MODIFIED Requirements
 
 ### Requirement: Ceremony cadence
 
@@ -71,6 +71,8 @@ when a Team goes two cycles without a retrospective.
 - GIVEN a Team with two cycles without a retrospective
 - WHEN cadence is evaluated
 - THEN a learning risk is flagged
+
+## ADDED Requirements
 
 ### Requirement: Tenant isolation
 
