@@ -4,8 +4,8 @@ import { getAuthContext } from "@/lib/auth";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
-import { inviteMember, ROLES, type Role } from "../../modules/identity-org/application";
-import { ApplicationError, DomainError } from "../../shared/errors";
+import { inviteMember, ROLES, type Role } from "@/modules/identity-org/application";
+import { ApplicationError, DomainError } from "@/shared/errors";
 
 export interface InviteFormState {
   error?: string;

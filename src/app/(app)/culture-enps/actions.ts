@@ -1,6 +1,6 @@
 "use server";
 
-import { auth } from "@clerk/nextjs/server";
+import { getAuthContext } from "@/lib/auth";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
@@ -12,8 +12,8 @@ import {
   submitPulseResponse,
   type Driver,
   type PulseFrequency,
-} from "../../modules/culture-enps/application";
-import { ApplicationError, DomainError } from "../../shared/errors";
+} from "@/modules/culture-enps/application";
+import { ApplicationError, DomainError } from "@/shared/errors";
 
 export interface CultureFormState {
   error?: string;
@@ -21,7 +21,7 @@ export interface CultureFormState {
 }
 
 async function actorId(): Promise<string> {
-  const { userId } = await auth();
+  const { userId } = await getAuthContext();
   if (!userId) redirect("/sign-in");
   return userId;
 }

@@ -1,8 +1,13 @@
-# app-shell (delta)
+# app-shell Specification
 
-Delta de la capability `app-shell` para el change `app-shell`. **IMPLEMENTADO**.
+## Purpose
 
-## ADDED Requirements
+Infraestructura de UI: el shell de la app autenticada (sidebar + topbar) que da
+entrada a todas las capabilities del producto y enruta por rol con los permisos
+existentes de `identity-org`. Las capabilities sin UI todavía responden con una
+página placeholder.
+
+## Requirements
 
 ### Requirement: Authenticated app navigation
 

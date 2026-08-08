@@ -1,7 +1,6 @@
 # Proposal: app-shell
 
-> **ESTADO: PENDIENTE — propuesta registrada, no implementada.** Empezar solo
-> vía el loop mg-eng-loop (plan de tests con aprobación previa).
+> **ESTADO: IMPLEMENTADO — change cerrado.** No se puede modificar. Solo lectura para documentación y referencia.
 
 ## Why
 

@@ -1,8 +1,6 @@
 # Tasks: app-shell
 
-> **PENDIENTE — no implementar aún.** Cuando se tome este change, arrancar por
-> el loop mg-eng-loop: plan de tests con aprobación, luego RED → GREEN.
-> Orden aquí es test-first (ADR-0006).
+> **IMPLEMENTADO — change cerrado.** No se puede modificar. Solo lectura para documentación y referencia.
 
 ## 1. Estructura del shell
 
