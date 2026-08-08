@@ -1,6 +1,6 @@
 "use server";
 
-import { auth } from "@clerk/nextjs/server";
+import { getAuthContext } from "@/lib/auth";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
@@ -21,7 +21,7 @@ export interface CultureFormState {
 }
 
 async function actorId(): Promise<string> {
-  const { userId } = await auth();
+  const { userId } = await getAuthContext();
   if (!userId) redirect("/sign-in");
   return userId;
 }
