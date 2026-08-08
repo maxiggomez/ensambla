@@ -1,4 +1,4 @@
-import { currentUser } from "@clerk/nextjs/server";
+import { getCurrentUser } from "@/lib/auth";
 import { redirect } from "next/navigation";
 
 import {
@@ -13,12 +13,12 @@ import {
   getCultureEnpsSettings,
   listPendingPulses,
   listPulseResults,
-} from "../../modules/culture-enps/application";
-import { listMembers } from "../../modules/identity-org/application";
-import { listTeamCapacities } from "../../modules/teams-staffing/application";
-import { ApplicationError } from "../../shared/errors";
-import { verifiedEmail } from "../../lib/verified-email";
-import { linkMembershipsForUser } from "../../shared/tenancy";
+} from "@/modules/culture-enps/application";
+import { listMembers } from "@/modules/identity-org/application";
+import { listTeamCapacities } from "@/modules/teams-staffing/application";
+import { ApplicationError } from "@/shared/errors";
+import { verifiedEmail } from "@/lib/verified-email";
+import { linkMembershipsForUser } from "@/shared/tenancy";
 
 import { LaunchForm, ScheduleForm, ThresholdForm } from "./management-forms";
 import { ResponseForm } from "./response-form";
@@ -28,7 +28,7 @@ function isNoMember(error: unknown): boolean {
 }
 
 export default async function CultureEnpsPage() {
-  const user = await currentUser();
+  const user = await getCurrentUser();
   if (!user) redirect("/sign-in");
   let members;
   try {

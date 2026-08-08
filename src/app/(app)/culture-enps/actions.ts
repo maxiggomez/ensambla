@@ -12,8 +12,8 @@ import {
   submitPulseResponse,
   type Driver,
   type PulseFrequency,
-} from "../../modules/culture-enps/application";
-import { ApplicationError, DomainError } from "../../shared/errors";
+} from "@/modules/culture-enps/application";
+import { ApplicationError, DomainError } from "@/shared/errors";
 
 export interface CultureFormState {
   error?: string;

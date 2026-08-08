@@ -1,5 +1,4 @@
-import { getAuthMode, getCurrentUser } from "@/lib/auth";
-import Link from "next/link";
+import { getCurrentUser } from "@/lib/auth";
 import { redirect } from "next/navigation";
 
 import {
@@ -15,11 +14,11 @@ import {
   listMembers,
   ROLES,
   type Role,
-} from "../../modules/identity-org/application";
-import type { Member } from "../../shared/db";
-import { verifiedEmail } from "../../lib/verified-email";
-import { ApplicationError } from "../../shared/errors";
-import { linkMembershipsForUser } from "../../shared/tenancy";
+} from "@/modules/identity-org/application";
+import type { Member } from "@/shared/db";
+import { verifiedEmail } from "@/lib/verified-email";
+import { ApplicationError } from "@/shared/errors";
+import { linkMembershipsForUser } from "@/shared/tenancy";
 
 import { InviteMemberForm } from "./invite-member-form";
 
@@ -59,18 +58,9 @@ export default async function MembersPage() {
 
   const actor = members.find((m) => m.clerkUserId === user.id);
   const showInviteForm = actor ? canManageMembers(actor.role as Role) : false;
-  const mockAuth = getAuthMode() === "mock";
 
   return (
     <main className="mx-auto flex min-h-screen w-full max-w-3xl flex-col gap-6 p-6">
-      <div className="flex items-center justify-between">
-        <span className="text-sm font-bold text-foreground">Ensambla</span>
-        {mockAuth ? (
-          <Link href="/sign-in" className="text-sm text-muted-foreground underline">
-            Cambiar usuario (dev)
-          </Link>
-        ) : null}
-      </div>
       <Card>
         <CardHeader>
           <CardTitle>Miembros</CardTitle>
