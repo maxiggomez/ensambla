@@ -273,6 +273,7 @@ export type NorthStarWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"NorthStar"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"NorthStar"> | Date | string
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
+  levers?: Prisma.NorthStarLeverListRelationFilter
 }
 
 export type NorthStarOrderByWithRelationInput = {
@@ -288,6 +289,7 @@ export type NorthStarOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   organization?: Prisma.OrganizationOrderByWithRelationInput
+  levers?: Prisma.NorthStarLeverOrderByRelationAggregateInput
 }
 
 export type NorthStarWhereUniqueInput = Prisma.AtLeast<{
@@ -306,6 +308,7 @@ export type NorthStarWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"NorthStar"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"NorthStar"> | Date | string
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
+  levers?: Prisma.NorthStarLeverListRelationFilter
 }, "id" | "organizationId">
 
 export type NorthStarOrderByWithAggregationInput = {
@@ -356,6 +359,7 @@ export type NorthStarCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutNorthStarInput
+  levers?: Prisma.NorthStarLeverCreateNestedManyWithoutNorthStarInput
 }
 
 export type NorthStarUncheckedCreateInput = {
@@ -370,6 +374,7 @@ export type NorthStarUncheckedCreateInput = {
   textState?: $Enums.TextState | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  levers?: Prisma.NorthStarLeverUncheckedCreateNestedManyWithoutNorthStarInput
 }
 
 export type NorthStarUpdateInput = {
@@ -384,6 +389,7 @@ export type NorthStarUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutNorthStarNestedInput
+  levers?: Prisma.NorthStarLeverUpdateManyWithoutNorthStarNestedInput
 }
 
 export type NorthStarUncheckedUpdateInput = {
@@ -398,6 +404,7 @@ export type NorthStarUncheckedUpdateInput = {
   textState?: Prisma.NullableEnumTextStateFieldUpdateOperationsInput | $Enums.TextState | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  levers?: Prisma.NorthStarLeverUncheckedUpdateManyWithoutNorthStarNestedInput
 }
 
 export type NorthStarCreateManyInput = {
@@ -500,6 +507,11 @@ export type NorthStarSumOrderByAggregateInput = {
   currentValue?: Prisma.SortOrder
 }
 
+export type NorthStarScalarRelationFilter = {
+  is?: Prisma.NorthStarWhereInput
+  isNot?: Prisma.NorthStarWhereInput
+}
+
 export type NorthStarCreateNestedOneWithoutOrganizationInput = {
   create?: Prisma.XOR<Prisma.NorthStarCreateWithoutOrganizationInput, Prisma.NorthStarUncheckedCreateWithoutOrganizationInput>
   connectOrCreate?: Prisma.NorthStarCreateOrConnectWithoutOrganizationInput
@@ -540,6 +552,20 @@ export type NullableDecimalFieldUpdateOperationsInput = {
   divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
+export type NorthStarCreateNestedOneWithoutLeversInput = {
+  create?: Prisma.XOR<Prisma.NorthStarCreateWithoutLeversInput, Prisma.NorthStarUncheckedCreateWithoutLeversInput>
+  connectOrCreate?: Prisma.NorthStarCreateOrConnectWithoutLeversInput
+  connect?: Prisma.NorthStarWhereUniqueInput
+}
+
+export type NorthStarUpdateOneRequiredWithoutLeversNestedInput = {
+  create?: Prisma.XOR<Prisma.NorthStarCreateWithoutLeversInput, Prisma.NorthStarUncheckedCreateWithoutLeversInput>
+  connectOrCreate?: Prisma.NorthStarCreateOrConnectWithoutLeversInput
+  upsert?: Prisma.NorthStarUpsertWithoutLeversInput
+  connect?: Prisma.NorthStarWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.NorthStarUpdateToOneWithWhereWithoutLeversInput, Prisma.NorthStarUpdateWithoutLeversInput>, Prisma.NorthStarUncheckedUpdateWithoutLeversInput>
+}
+
 export type NorthStarCreateWithoutOrganizationInput = {
   id?: string
   name: string
@@ -551,6 +577,7 @@ export type NorthStarCreateWithoutOrganizationInput = {
   textState?: $Enums.TextState | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  levers?: Prisma.NorthStarLeverCreateNestedManyWithoutNorthStarInput
 }
 
 export type NorthStarUncheckedCreateWithoutOrganizationInput = {
@@ -564,6 +591,7 @@ export type NorthStarUncheckedCreateWithoutOrganizationInput = {
   textState?: $Enums.TextState | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  levers?: Prisma.NorthStarLeverUncheckedCreateNestedManyWithoutNorthStarInput
 }
 
 export type NorthStarCreateOrConnectWithoutOrganizationInput = {
@@ -593,6 +621,7 @@ export type NorthStarUpdateWithoutOrganizationInput = {
   textState?: Prisma.NullableEnumTextStateFieldUpdateOperationsInput | $Enums.TextState | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  levers?: Prisma.NorthStarLeverUpdateManyWithoutNorthStarNestedInput
 }
 
 export type NorthStarUncheckedUpdateWithoutOrganizationInput = {
@@ -606,8 +635,110 @@ export type NorthStarUncheckedUpdateWithoutOrganizationInput = {
   textState?: Prisma.NullableEnumTextStateFieldUpdateOperationsInput | $Enums.TextState | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  levers?: Prisma.NorthStarLeverUncheckedUpdateManyWithoutNorthStarNestedInput
 }
 
+export type NorthStarCreateWithoutLeversInput = {
+  id?: string
+  name: string
+  measurementType: $Enums.MeasurementType
+  startValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  currentValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  checkDone?: boolean | null
+  textState?: $Enums.TextState | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutNorthStarInput
+}
+
+export type NorthStarUncheckedCreateWithoutLeversInput = {
+  id?: string
+  organizationId: string
+  name: string
+  measurementType: $Enums.MeasurementType
+  startValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  currentValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  checkDone?: boolean | null
+  textState?: $Enums.TextState | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type NorthStarCreateOrConnectWithoutLeversInput = {
+  where: Prisma.NorthStarWhereUniqueInput
+  create: Prisma.XOR<Prisma.NorthStarCreateWithoutLeversInput, Prisma.NorthStarUncheckedCreateWithoutLeversInput>
+}
+
+export type NorthStarUpsertWithoutLeversInput = {
+  update: Prisma.XOR<Prisma.NorthStarUpdateWithoutLeversInput, Prisma.NorthStarUncheckedUpdateWithoutLeversInput>
+  create: Prisma.XOR<Prisma.NorthStarCreateWithoutLeversInput, Prisma.NorthStarUncheckedCreateWithoutLeversInput>
+  where?: Prisma.NorthStarWhereInput
+}
+
+export type NorthStarUpdateToOneWithWhereWithoutLeversInput = {
+  where?: Prisma.NorthStarWhereInput
+  data: Prisma.XOR<Prisma.NorthStarUpdateWithoutLeversInput, Prisma.NorthStarUncheckedUpdateWithoutLeversInput>
+}
+
+export type NorthStarUpdateWithoutLeversInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  measurementType?: Prisma.EnumMeasurementTypeFieldUpdateOperationsInput | $Enums.MeasurementType
+  startValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  currentValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  checkDone?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  textState?: Prisma.NullableEnumTextStateFieldUpdateOperationsInput | $Enums.TextState | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutNorthStarNestedInput
+}
+
+export type NorthStarUncheckedUpdateWithoutLeversInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  measurementType?: Prisma.EnumMeasurementTypeFieldUpdateOperationsInput | $Enums.MeasurementType
+  startValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  currentValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  checkDone?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  textState?: Prisma.NullableEnumTextStateFieldUpdateOperationsInput | $Enums.TextState | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+
+/**
+ * Count Type NorthStarCountOutputType
+ */
+
+export type NorthStarCountOutputType = {
+  levers: number
+}
+
+export type NorthStarCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  levers?: boolean | NorthStarCountOutputTypeCountLeversArgs
+}
+
+/**
+ * NorthStarCountOutputType without action
+ */
+export type NorthStarCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the NorthStarCountOutputType
+   */
+  select?: Prisma.NorthStarCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * NorthStarCountOutputType without action
+ */
+export type NorthStarCountOutputTypeCountLeversArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.NorthStarLeverWhereInput
+}
 
 
 export type NorthStarSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -623,6 +754,8 @@ export type NorthStarSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   createdAt?: boolean
   updatedAt?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
+  levers?: boolean | Prisma.NorthStar$leversArgs<ExtArgs>
+  _count?: boolean | Prisma.NorthStarCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["northStar"]>
 
 export type NorthStarSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -672,6 +805,8 @@ export type NorthStarSelectScalar = {
 export type NorthStarOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "name" | "measurementType" | "startValue" | "targetValue" | "currentValue" | "checkDone" | "textState" | "createdAt" | "updatedAt", ExtArgs["result"]["northStar"]>
 export type NorthStarInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
+  levers?: boolean | Prisma.NorthStar$leversArgs<ExtArgs>
+  _count?: boolean | Prisma.NorthStarCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type NorthStarIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
@@ -684,6 +819,7 @@ export type $NorthStarPayload<ExtArgs extends runtime.Types.Extensions.InternalA
   name: "NorthStar"
   objects: {
     organization: Prisma.$OrganizationPayload<ExtArgs>
+    levers: Prisma.$NorthStarLeverPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1092,6 +1228,7 @@ readonly fields: NorthStarFieldRefs;
 export interface Prisma__NorthStarClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   organization<T extends Prisma.OrganizationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrganizationDefaultArgs<ExtArgs>>): Prisma.Prisma__OrganizationClient<runtime.Types.Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  levers<T extends Prisma.NorthStar$leversArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.NorthStar$leversArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NorthStarLeverPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1530,6 +1667,30 @@ export type NorthStarDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Int
    * Limit how many NorthStars to delete.
    */
   limit?: number
+}
+
+/**
+ * NorthStar.levers
+ */
+export type NorthStar$leversArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the NorthStarLever
+   */
+  select?: Prisma.NorthStarLeverSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the NorthStarLever
+   */
+  omit?: Prisma.NorthStarLeverOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.NorthStarLeverInclude<ExtArgs> | null
+  where?: Prisma.NorthStarLeverWhereInput
+  orderBy?: Prisma.NorthStarLeverOrderByWithRelationInput | Prisma.NorthStarLeverOrderByWithRelationInput[]
+  cursor?: Prisma.NorthStarLeverWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.NorthStarLeverScalarFieldEnum | Prisma.NorthStarLeverScalarFieldEnum[]
 }
 
 /**

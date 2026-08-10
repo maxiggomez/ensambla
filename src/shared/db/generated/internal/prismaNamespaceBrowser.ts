@@ -58,6 +58,9 @@ export const ModelName = {
   PulseResponse: 'PulseResponse',
   Member: 'Member',
   NorthStar: 'NorthStar',
+  NorthStarLever: 'NorthStarLever',
+  StrategicPillar: 'StrategicPillar',
+  PillarObjective: 'PillarObjective',
   Objective: 'Objective',
   KeyResult: 'KeyResult',
   Team: 'Team',
@@ -92,6 +95,9 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 export const OrganizationScalarFieldEnum = {
   id: 'id',
   name: 'name',
+  vision: 'vision',
+  mission: 'mission',
+  values: 'values',
   createdAt: 'createdAt',
   enpsMinimumResponses: 'enpsMinimumResponses'
 } as const
@@ -189,6 +195,40 @@ export const NorthStarScalarFieldEnum = {
 } as const
 
 export type NorthStarScalarFieldEnum = (typeof NorthStarScalarFieldEnum)[keyof typeof NorthStarScalarFieldEnum]
+
+
+export const NorthStarLeverScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  northStarId: 'northStarId',
+  name: 'name',
+  objectiveId: 'objectiveId',
+  createdAt: 'createdAt'
+} as const
+
+export type NorthStarLeverScalarFieldEnum = (typeof NorthStarLeverScalarFieldEnum)[keyof typeof NorthStarLeverScalarFieldEnum]
+
+
+export const StrategicPillarScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  name: 'name',
+  description: 'description',
+  createdAt: 'createdAt'
+} as const
+
+export type StrategicPillarScalarFieldEnum = (typeof StrategicPillarScalarFieldEnum)[keyof typeof StrategicPillarScalarFieldEnum]
+
+
+export const PillarObjectiveScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  pillarId: 'pillarId',
+  objectiveId: 'objectiveId',
+  createdAt: 'createdAt'
+} as const
+
+export type PillarObjectiveScalarFieldEnum = (typeof PillarObjectiveScalarFieldEnum)[keyof typeof PillarObjectiveScalarFieldEnum]
 
 
 export const ObjectiveScalarFieldEnum = {
