@@ -1,4 +1,4 @@
-import { currentUser } from "@clerk/nextjs/server";
+import { getCurrentUser } from "@/lib/auth";
 import { redirect } from "next/navigation";
 
 import {
@@ -13,12 +13,12 @@ import {
   getCultureEnpsSettings,
   listPendingPulses,
   listPulseResults,
-} from "../../modules/culture-enps/application";
-import { listMembers } from "../../modules/identity-org/application";
-import { listTeamCapacities } from "../../modules/teams-staffing/application";
-import { ApplicationError } from "../../shared/errors";
-import { verifiedEmail } from "../../lib/verified-email";
-import { linkMembershipsForUser } from "../../shared/tenancy";
+} from "../../../modules/culture-enps/application";
+import { listMembers } from "../../../modules/identity-org/application";
+import { listTeamCapacities } from "../../../modules/teams-staffing/application";
+import { ApplicationError } from "../../../shared/errors";
+import { verifiedEmail } from "../../../lib/verified-email";
+import { linkMembershipsForUser } from "../../../shared/tenancy";
 
 import { LaunchForm, ScheduleForm, ThresholdForm } from "./management-forms";
 import { ResponseForm } from "./response-form";
@@ -28,7 +28,7 @@ function isNoMember(error: unknown): boolean {
 }
 
 export default async function CultureEnpsPage() {
-  const user = await currentUser();
+  const user = await getCurrentUser();
   if (!user) redirect("/sign-in");
   let members;
   try {
@@ -51,7 +51,7 @@ export default async function CultureEnpsPage() {
     : [[], null, []];
 
   return (
-    <main className="mx-auto flex min-h-screen w-full max-w-6xl flex-col gap-6 p-6 md:p-10">
+    <div className="flex flex-col gap-6">
       <header className="max-w-3xl space-y-3">
         <p className="flex items-center gap-3 text-xs font-extrabold tracking-[0.13em] uppercase before:h-1 before:w-7 before:bg-brand-2">
           Clima &amp; eNPS
@@ -208,6 +208,6 @@ export default async function CultureEnpsPage() {
           </section>
         </>
       ) : null}
-    </main>
+    </div>
   );
 }

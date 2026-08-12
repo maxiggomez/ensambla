@@ -39,5 +39,5 @@ export async function createOrganizationAction(
     throw error;
   }
 
-  redirect("/members");
+  redirect("/dashboard");
 }

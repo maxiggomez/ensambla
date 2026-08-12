@@ -1,7 +1,7 @@
 # Proposal: app-shell
 
-> **ESTADO: PENDIENTE — propuesta registrada, no implementada.** Empezar solo
-> vía el loop mg-eng-loop (plan de tests con aprobación previa).
+> **ESTADO: ACTIVO — en implementación vía mg-eng-loop (plan de tests
+> aprobado).**
 
 ## Why
 
@@ -28,6 +28,17 @@ las secciones del producto, topbar y avatar con rol.
   `canEditOrganization`/permisos de `identity-org`.
 - **Identidad en el shell**: avatar + nombre + rol del usuario, y en modo mock
   el acceso a "Cambiar usuario (dev)".
+- **Landing post-login**: el mock picker y los CTAs de la home aterrizan en
+  `/dashboard` (home del shell con el menú). Decisión de producto aprobada en el
+  loop.
+
+## Decisiones del loop (aprobadas)
+
+- **Regla de secciones por rol** (política existente de `identity-org`, no
+  nueva): Dirección ve las 10 secciones; Líder y Colaborador ven todas excepto
+  "Miembros" (gestión = Dirección vía `canManageMembers`).
+- **Landing**: `/dashboard` como home post-login.
+- Las secciones sin UI propia renderizan el placeholder "En construcción".
 
 ## Capabilities
 

@@ -1,4 +1,4 @@
-import type { StrategicMapView } from "../../modules/strategy-northstar/application";
+import type { StrategicMapView } from "../../../modules/strategy-northstar/application";
 
 function Progress({ value }: { value: number }) {
   return (

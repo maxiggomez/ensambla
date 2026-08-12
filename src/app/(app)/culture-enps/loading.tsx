@@ -2,10 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 
 export default function LoadingCultureEnps() {
   return (
-    <main
-      className="mx-auto min-h-screen w-full max-w-6xl space-y-6 p-6 md:p-10"
-      aria-busy="true"
-    >
+    <div className="mx-auto w-full max-w-6xl space-y-6" aria-busy="true">
       <div className="h-12 w-2/3 animate-pulse rounded-sm bg-muted" />
       <div className="grid gap-4 md:grid-cols-2">
         {[0, 1].map((item) => (
@@ -16,6 +13,6 @@ export default function LoadingCultureEnps() {
           </Card>
         ))}
       </div>
-    </main>
+    </div>
   );
 }

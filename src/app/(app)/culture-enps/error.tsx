@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function CultureEnpsError({ reset }: { error: Error; reset: () => void }) {
   return (
-    <main className="mx-auto min-h-screen w-full max-w-3xl p-6">
+    <div className="mx-auto w-full max-w-3xl">
       <Card>
         <CardHeader>
           <CardTitle>No pudimos cargar Clima &amp; eNPS</CardTitle>
@@ -17,6 +17,6 @@ export default function CultureEnpsError({ reset }: { error: Error; reset: () =>
           <Button onClick={reset}>Reintentar</Button>
         </CardContent>
       </Card>
-    </main>
+    </div>
   );
 }

@@ -13,6 +13,8 @@ export interface MockDevUser {
   email: string;
   name: string;
   role: DevRole;
+  /** `false`: el user no se siembra como member (primer-login / onboarding). */
+  seeded?: boolean;
 }
 
 export const DEV_USERS: readonly MockDevUser[] = [
@@ -33,6 +35,13 @@ export const DEV_USERS: readonly MockDevUser[] = [
     email: "colaborador@ensambla.dev",
     name: "Colaborador Dev",
     role: "Colaborador",
+  },
+  {
+    id: "dev_invitado",
+    email: "invitada@ensambla.dev",
+    name: "Invitada Dev",
+    role: "Colaborador",
+    seeded: false,
   },
 ];
 

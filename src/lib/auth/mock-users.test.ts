@@ -11,7 +11,7 @@ import {
 
 describe("mock dev users registry (1.1)", () => {
   it("exposes the preset users with dev ids, verified emails and full names", () => {
-    expect(DEV_USERS).toHaveLength(3);
+    expect(DEV_USERS).toHaveLength(4);
     for (const user of DEV_USERS) {
       expect(user.id).toMatch(/^dev_/);
       expect(mockUserAsClerkUser(user).id).toBe(user.id);
@@ -20,9 +20,12 @@ describe("mock dev users registry (1.1)", () => {
     }
   });
 
-  it("covers the three roles once each", () => {
+  it("covers the three roles, con el invitado sin seedear", () => {
     const roles = DEV_USERS.map((user: MockDevUser) => user.role).sort();
-    expect(roles).toEqual(["Colaborador", "Direccion", "Lider"]);
+    expect(roles).toEqual(["Colaborador", "Colaborador", "Direccion", "Lider"]);
+    const seeded = DEV_USERS.filter((user: MockDevUser) => user.seeded === false);
+    expect(seeded).toHaveLength(1);
+    expect(seeded[0].id).toBe("dev_invitado");
   });
 
   it("resolves a preset user by id and returns undefined for unknown ids", () => {

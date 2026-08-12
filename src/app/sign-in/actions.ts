@@ -21,7 +21,7 @@ export async function selectDevUserAction(
     return { error: "Usuario de desarrollo inválido." };
   }
   revalidatePath("/");
-  redirect("/members");
+  redirect("/dashboard");
 }
 
 export async function signOutDevAction(): Promise<void> {

@@ -11,9 +11,9 @@ import {
   createStrategicPillar,
   defineNorthStar,
   defineStrategy,
-} from "../../modules/strategy-northstar/application";
-import { ApplicationError, DomainError } from "../../shared/errors";
-import type { Measurement } from "../../shared/measurement";
+} from "../../../modules/strategy-northstar/application";
+import { ApplicationError, DomainError } from "../../../shared/errors";
+import type { Measurement } from "../../../shared/measurement";
 
 export interface StrategyFormState {
   error?: string;

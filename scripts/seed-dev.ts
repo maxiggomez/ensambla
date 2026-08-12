@@ -28,7 +28,12 @@ export async function seedDevData(prisma: PrismaClient): Promise<void> {
     prisma,
   );
 
+  // Los users con `seeded: false` (dev_invitado) no reciben membership: cubren
+  // el primer-login (F.1) y el redirect a /onboarding.
   for (const member of rest) {
+    if (member.seeded === false) {
+      continue;
+    }
     await inviteMember(
       {
         actorClerkUserId: direccion.id,

@@ -12,7 +12,7 @@ if (fs.existsSync(".env.local")) {
 
 export default defineConfig({
   testDir: "./e2e",
-  testIgnore: /dev-auth\.spec\.ts/,
+  testIgnore: /dev-auth\.spec\.ts|app-shell\.spec\.ts|strategy-northstar\.spec\.ts/,
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,

@@ -20,7 +20,7 @@ export default async function Home() {
         </Link>
         <Button asChild variant="outline" className="border-foreground">
           {signedIn ? (
-            <Link href="/members">Ir a mi organización</Link>
+            <Link href="/dashboard">Ir a mi organización</Link>
           ) : (
             <Link href="/sign-in">Ingresar</Link>
           )}
@@ -47,7 +47,7 @@ export default async function Home() {
               className="min-w-[225px] justify-between font-bold"
             >
               {signedIn ? (
-                <Link href="/members">
+                <Link href="/dashboard">
                   Ir a mi organización <span aria-hidden>↗</span>
                 </Link>
               ) : (

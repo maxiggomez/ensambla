@@ -11,15 +11,15 @@ async function signInAs(page: Page, devUserId: string): Promise<void> {
   await page.goto("/sign-in");
   await expect(page.getByText("Usuarios de desarrollo")).toBeVisible();
   await page.getByTestId(`dev-user-${devUserId}`).click();
-  await page.waitForURL("**/members");
+  await page.waitForURL("**/dashboard");
 }
 
 async function switchUser(page: Page, devUserId: string): Promise<void> {
-  await page.goto("/members");
+  await page.goto("/dashboard");
   await page.getByRole("link", { name: "Cambiar usuario (dev)" }).click();
   await expect(page.getByText("Usuarios de desarrollo")).toBeVisible();
   await page.getByTestId(`dev-user-${devUserId}`).click();
-  await page.waitForURL("**/members");
+  await page.waitForURL("**/dashboard");
 }
 
 const strategyForm = (page: Page) => page.locator("form", { hasText: "Visión" });

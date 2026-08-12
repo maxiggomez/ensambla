@@ -39,11 +39,11 @@ test("launch → anonymous response → threshold → visible aggregate", async 
   test.fixme();
   await signIn(page);
   await page.goto("/onboarding");
-  await page.waitForURL(/\/(onboarding|members)/);
+  await page.waitForURL(/\/(onboarding|dashboard)/);
   if (page.url().includes("/onboarding")) {
     await page.getByLabel("Nombre de la organización").fill("Culture E2E");
     await page.getByRole("button", { name: "Crear organización" }).click();
-    await page.waitForURL("**/members");
+    await page.waitForURL("**/dashboard");
   }
 
   await page.goto("/culture-enps");

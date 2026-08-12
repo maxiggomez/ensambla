@@ -34,14 +34,15 @@ test.describe.serial("alta de organización e invitación de miembro", () => {
 
     await page.goto("/onboarding");
     // Retry-safe: si un retry llega con la org ya creada, /onboarding
-    // redirige a /members y la creación se da por cumplida.
-    await page.waitForURL(/\/(onboarding|members)/);
+    // redirige a /dashboard y la creación se da por cumplida.
+    await page.waitForURL(/\/(onboarding|dashboard)/);
     if (page.url().includes("/onboarding")) {
       await page.getByLabel("Nombre de la organización").fill("Acme E2E");
       await page.getByRole("button", { name: "Crear organización" }).click();
     }
 
-    await page.waitForURL("**/members");
+    await page.waitForURL("**/dashboard");
+    await page.goto("/members");
     const row = page.locator("li", { hasText: process.env.E2E_CLERK_USER_EMAIL! });
     await expect(row).toBeVisible();
     await expect(row).toContainText("Dirección");

@@ -22,7 +22,7 @@ export default async function OnboardingPage() {
   // Si el usuario fue invitado y este es su primer login, acá también se
   // vincula por email verificado (F.1) antes de decidir la redirección.
   if ((await resolveOrLinkTenantForUser(user.id, verifiedEmail(user))) !== null) {
-    redirect("/members");
+    redirect("/dashboard");
   }
 
   return (

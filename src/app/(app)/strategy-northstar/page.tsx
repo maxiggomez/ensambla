@@ -9,14 +9,14 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-import { listObjectives } from "../../modules/okrs/application";
-import { getStrategicMap, getStrategy } from "../../modules/strategy-northstar/application";
-import { listMembers } from "../../modules/identity-org/application";
-import type { Member } from "../../shared/db";
-import { ApplicationError } from "../../shared/errors";
-import { verifiedEmail } from "../../lib/verified-email";
-import { linkMembershipsForUser } from "../../shared/tenancy";
-import type { Measurement } from "../../shared/measurement";
+import { listObjectives } from "../../../modules/okrs/application";
+import { getStrategicMap, getStrategy } from "../../../modules/strategy-northstar/application";
+import { listMembers } from "../../../modules/identity-org/application";
+import type { Member } from "../../../shared/db";
+import { ApplicationError } from "../../../shared/errors";
+import { verifiedEmail } from "../../../lib/verified-email";
+import { linkMembershipsForUser } from "../../../shared/tenancy";
+import type { Measurement } from "../../../shared/measurement";
 
 import { NorthStarForm } from "./north-star-form";
 import { StrategyForm } from "./strategy-form";
@@ -54,7 +54,7 @@ export default async function StrategyNorthStarPage() {
   const northStar = map.northStar;
 
   return (
-    <main className="mx-auto flex min-h-screen w-full max-w-6xl flex-col gap-6 p-6 md:p-10">
+    <div className="flex flex-col gap-6">
       <header className="max-w-3xl space-y-3">
         <p className="flex items-center gap-3 text-xs font-extrabold tracking-[0.13em] uppercase before:h-1 before:w-7 before:bg-brand-2">
           Norte estratégico
@@ -222,7 +222,7 @@ export default async function StrategyNorthStarPage() {
         </div>
         <StrategicMap map={map} />
       </section>
-    </main>
+    </div>
   );
 }
 
