@@ -53,6 +53,21 @@ export type Member = Prisma.MemberModel
  */
 export type NorthStar = Prisma.NorthStarModel
 /**
+ * Model NorthStarLever
+ * 
+ */
+export type NorthStarLever = Prisma.NorthStarLeverModel
+/**
+ * Model StrategicPillar
+ * 
+ */
+export type StrategicPillar = Prisma.StrategicPillarModel
+/**
+ * Model PillarObjective
+ * 
+ */
+export type PillarObjective = Prisma.PillarObjectiveModel
+/**
  * Model Objective
  * 
  */

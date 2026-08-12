@@ -37,6 +37,8 @@ export type OrganizationSumAggregateOutputType = {
 export type OrganizationMinAggregateOutputType = {
   id: string | null
   name: string | null
+  vision: string | null
+  mission: string | null
   createdAt: Date | null
   enpsMinimumResponses: number | null
 }
@@ -44,6 +46,8 @@ export type OrganizationMinAggregateOutputType = {
 export type OrganizationMaxAggregateOutputType = {
   id: string | null
   name: string | null
+  vision: string | null
+  mission: string | null
   createdAt: Date | null
   enpsMinimumResponses: number | null
 }
@@ -51,6 +55,9 @@ export type OrganizationMaxAggregateOutputType = {
 export type OrganizationCountAggregateOutputType = {
   id: number
   name: number
+  vision: number
+  mission: number
+  values: number
   createdAt: number
   enpsMinimumResponses: number
   _all: number
@@ -68,6 +75,8 @@ export type OrganizationSumAggregateInputType = {
 export type OrganizationMinAggregateInputType = {
   id?: true
   name?: true
+  vision?: true
+  mission?: true
   createdAt?: true
   enpsMinimumResponses?: true
 }
@@ -75,6 +84,8 @@ export type OrganizationMinAggregateInputType = {
 export type OrganizationMaxAggregateInputType = {
   id?: true
   name?: true
+  vision?: true
+  mission?: true
   createdAt?: true
   enpsMinimumResponses?: true
 }
@@ -82,6 +93,9 @@ export type OrganizationMaxAggregateInputType = {
 export type OrganizationCountAggregateInputType = {
   id?: true
   name?: true
+  vision?: true
+  mission?: true
+  values?: true
   createdAt?: true
   enpsMinimumResponses?: true
   _all?: true
@@ -176,6 +190,9 @@ export type OrganizationGroupByArgs<ExtArgs extends runtime.Types.Extensions.Int
 export type OrganizationGroupByOutputType = {
   id: string
   name: string
+  vision: string | null
+  mission: string | null
+  values: string[]
   createdAt: Date
   enpsMinimumResponses: number
   _count: OrganizationCountAggregateOutputType | null
@@ -206,10 +223,16 @@ export type OrganizationWhereInput = {
   NOT?: Prisma.OrganizationWhereInput | Prisma.OrganizationWhereInput[]
   id?: Prisma.UuidFilter<"Organization"> | string
   name?: Prisma.StringFilter<"Organization"> | string
+  vision?: Prisma.StringNullableFilter<"Organization"> | string | null
+  mission?: Prisma.StringNullableFilter<"Organization"> | string | null
+  values?: Prisma.StringNullableListFilter<"Organization">
   createdAt?: Prisma.DateTimeFilter<"Organization"> | Date | string
   enpsMinimumResponses?: Prisma.IntFilter<"Organization"> | number
   members?: Prisma.MemberListRelationFilter
   northStar?: Prisma.XOR<Prisma.NorthStarNullableScalarRelationFilter, Prisma.NorthStarWhereInput> | null
+  leverLinks?: Prisma.NorthStarLeverListRelationFilter
+  pillars?: Prisma.StrategicPillarListRelationFilter
+  pillarObjectiveLinks?: Prisma.PillarObjectiveListRelationFilter
   objectives?: Prisma.ObjectiveListRelationFilter
   keyResults?: Prisma.KeyResultListRelationFilter
   teams?: Prisma.TeamListRelationFilter
@@ -224,10 +247,16 @@ export type OrganizationWhereInput = {
 export type OrganizationOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  vision?: Prisma.SortOrderInput | Prisma.SortOrder
+  mission?: Prisma.SortOrderInput | Prisma.SortOrder
+  values?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   enpsMinimumResponses?: Prisma.SortOrder
   members?: Prisma.MemberOrderByRelationAggregateInput
   northStar?: Prisma.NorthStarOrderByWithRelationInput
+  leverLinks?: Prisma.NorthStarLeverOrderByRelationAggregateInput
+  pillars?: Prisma.StrategicPillarOrderByRelationAggregateInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveOrderByRelationAggregateInput
   objectives?: Prisma.ObjectiveOrderByRelationAggregateInput
   keyResults?: Prisma.KeyResultOrderByRelationAggregateInput
   teams?: Prisma.TeamOrderByRelationAggregateInput
@@ -245,10 +274,16 @@ export type OrganizationWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.OrganizationWhereInput[]
   NOT?: Prisma.OrganizationWhereInput | Prisma.OrganizationWhereInput[]
   name?: Prisma.StringFilter<"Organization"> | string
+  vision?: Prisma.StringNullableFilter<"Organization"> | string | null
+  mission?: Prisma.StringNullableFilter<"Organization"> | string | null
+  values?: Prisma.StringNullableListFilter<"Organization">
   createdAt?: Prisma.DateTimeFilter<"Organization"> | Date | string
   enpsMinimumResponses?: Prisma.IntFilter<"Organization"> | number
   members?: Prisma.MemberListRelationFilter
   northStar?: Prisma.XOR<Prisma.NorthStarNullableScalarRelationFilter, Prisma.NorthStarWhereInput> | null
+  leverLinks?: Prisma.NorthStarLeverListRelationFilter
+  pillars?: Prisma.StrategicPillarListRelationFilter
+  pillarObjectiveLinks?: Prisma.PillarObjectiveListRelationFilter
   objectives?: Prisma.ObjectiveListRelationFilter
   keyResults?: Prisma.KeyResultListRelationFilter
   teams?: Prisma.TeamListRelationFilter
@@ -263,6 +298,9 @@ export type OrganizationWhereUniqueInput = Prisma.AtLeast<{
 export type OrganizationOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  vision?: Prisma.SortOrderInput | Prisma.SortOrder
+  mission?: Prisma.SortOrderInput | Prisma.SortOrder
+  values?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   enpsMinimumResponses?: Prisma.SortOrder
   _count?: Prisma.OrganizationCountOrderByAggregateInput
@@ -278,6 +316,9 @@ export type OrganizationScalarWhereWithAggregatesInput = {
   NOT?: Prisma.OrganizationScalarWhereWithAggregatesInput | Prisma.OrganizationScalarWhereWithAggregatesInput[]
   id?: Prisma.UuidWithAggregatesFilter<"Organization"> | string
   name?: Prisma.StringWithAggregatesFilter<"Organization"> | string
+  vision?: Prisma.StringNullableWithAggregatesFilter<"Organization"> | string | null
+  mission?: Prisma.StringNullableWithAggregatesFilter<"Organization"> | string | null
+  values?: Prisma.StringNullableListFilter<"Organization">
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Organization"> | Date | string
   enpsMinimumResponses?: Prisma.IntWithAggregatesFilter<"Organization"> | number
 }
@@ -285,10 +326,16 @@ export type OrganizationScalarWhereWithAggregatesInput = {
 export type OrganizationCreateInput = {
   id?: string
   name: string
+  vision?: string | null
+  mission?: string | null
+  values?: Prisma.OrganizationCreatevaluesInput | string[]
   createdAt?: Date | string
   enpsMinimumResponses?: number
   members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
   northStar?: Prisma.NorthStarCreateNestedOneWithoutOrganizationInput
+  leverLinks?: Prisma.NorthStarLeverCreateNestedManyWithoutOrganizationInput
+  pillars?: Prisma.StrategicPillarCreateNestedManyWithoutOrganizationInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutOrganizationInput
   objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
@@ -303,10 +350,16 @@ export type OrganizationCreateInput = {
 export type OrganizationUncheckedCreateInput = {
   id?: string
   name: string
+  vision?: string | null
+  mission?: string | null
+  values?: Prisma.OrganizationCreatevaluesInput | string[]
   createdAt?: Date | string
   enpsMinimumResponses?: number
   members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
   northStar?: Prisma.NorthStarUncheckedCreateNestedOneWithoutOrganizationInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedCreateNestedManyWithoutOrganizationInput
+  pillars?: Prisma.StrategicPillarUncheckedCreateNestedManyWithoutOrganizationInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
@@ -321,10 +374,16 @@ export type OrganizationUncheckedCreateInput = {
 export type OrganizationUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mission?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  values?: Prisma.OrganizationUpdatevaluesInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
   members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
   northStar?: Prisma.NorthStarUpdateOneWithoutOrganizationNestedInput
+  leverLinks?: Prisma.NorthStarLeverUpdateManyWithoutOrganizationNestedInput
+  pillars?: Prisma.StrategicPillarUpdateManyWithoutOrganizationNestedInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUpdateManyWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
@@ -339,10 +398,16 @@ export type OrganizationUpdateInput = {
 export type OrganizationUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mission?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  values?: Prisma.OrganizationUpdatevaluesInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
   members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
   northStar?: Prisma.NorthStarUncheckedUpdateOneWithoutOrganizationNestedInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedUpdateManyWithoutOrganizationNestedInput
+  pillars?: Prisma.StrategicPillarUncheckedUpdateManyWithoutOrganizationNestedInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -357,6 +422,9 @@ export type OrganizationUncheckedUpdateInput = {
 export type OrganizationCreateManyInput = {
   id?: string
   name: string
+  vision?: string | null
+  mission?: string | null
+  values?: Prisma.OrganizationCreatevaluesInput | string[]
   createdAt?: Date | string
   enpsMinimumResponses?: number
 }
@@ -364,6 +432,9 @@ export type OrganizationCreateManyInput = {
 export type OrganizationUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mission?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  values?: Prisma.OrganizationUpdatevaluesInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
 }
@@ -371,13 +442,27 @@ export type OrganizationUpdateManyMutationInput = {
 export type OrganizationUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mission?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  values?: Prisma.OrganizationUpdatevaluesInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
+}
+
+export type StringNullableListFilter<$PrismaModel = never> = {
+  equals?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel> | null
+  has?: string | Prisma.StringFieldRefInput<$PrismaModel> | null
+  hasEvery?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
+  hasSome?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
+  isEmpty?: boolean
 }
 
 export type OrganizationCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  vision?: Prisma.SortOrder
+  mission?: Prisma.SortOrder
+  values?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   enpsMinimumResponses?: Prisma.SortOrder
 }
@@ -389,6 +474,8 @@ export type OrganizationAvgOrderByAggregateInput = {
 export type OrganizationMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  vision?: Prisma.SortOrder
+  mission?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   enpsMinimumResponses?: Prisma.SortOrder
 }
@@ -396,6 +483,8 @@ export type OrganizationMaxOrderByAggregateInput = {
 export type OrganizationMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  vision?: Prisma.SortOrder
+  mission?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   enpsMinimumResponses?: Prisma.SortOrder
 }
@@ -409,8 +498,21 @@ export type OrganizationScalarRelationFilter = {
   isNot?: Prisma.OrganizationWhereInput
 }
 
+export type OrganizationCreatevaluesInput = {
+  set: string[]
+}
+
 export type StringFieldUpdateOperationsInput = {
   set?: string
+}
+
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
+}
+
+export type OrganizationUpdatevaluesInput = {
+  set?: string[]
+  push?: string | string[]
 }
 
 export type DateTimeFieldUpdateOperationsInput = {
@@ -451,6 +553,48 @@ export type OrganizationUpdateOneRequiredWithoutNorthStarNestedInput = {
   upsert?: Prisma.OrganizationUpsertWithoutNorthStarInput
   connect?: Prisma.OrganizationWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutNorthStarInput, Prisma.OrganizationUpdateWithoutNorthStarInput>, Prisma.OrganizationUncheckedUpdateWithoutNorthStarInput>
+}
+
+export type OrganizationCreateNestedOneWithoutLeverLinksInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutLeverLinksInput, Prisma.OrganizationUncheckedCreateWithoutLeverLinksInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutLeverLinksInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutLeverLinksNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutLeverLinksInput, Prisma.OrganizationUncheckedCreateWithoutLeverLinksInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutLeverLinksInput
+  upsert?: Prisma.OrganizationUpsertWithoutLeverLinksInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutLeverLinksInput, Prisma.OrganizationUpdateWithoutLeverLinksInput>, Prisma.OrganizationUncheckedUpdateWithoutLeverLinksInput>
+}
+
+export type OrganizationCreateNestedOneWithoutPillarsInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutPillarsInput, Prisma.OrganizationUncheckedCreateWithoutPillarsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutPillarsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutPillarsNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutPillarsInput, Prisma.OrganizationUncheckedCreateWithoutPillarsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutPillarsInput
+  upsert?: Prisma.OrganizationUpsertWithoutPillarsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutPillarsInput, Prisma.OrganizationUpdateWithoutPillarsInput>, Prisma.OrganizationUncheckedUpdateWithoutPillarsInput>
+}
+
+export type OrganizationCreateNestedOneWithoutPillarObjectiveLinksInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutPillarObjectiveLinksInput, Prisma.OrganizationUncheckedCreateWithoutPillarObjectiveLinksInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutPillarObjectiveLinksInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutPillarObjectiveLinksNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutPillarObjectiveLinksInput, Prisma.OrganizationUncheckedCreateWithoutPillarObjectiveLinksInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutPillarObjectiveLinksInput
+  upsert?: Prisma.OrganizationUpsertWithoutPillarObjectiveLinksInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutPillarObjectiveLinksInput, Prisma.OrganizationUpdateWithoutPillarObjectiveLinksInput>, Prisma.OrganizationUncheckedUpdateWithoutPillarObjectiveLinksInput>
 }
 
 export type OrganizationCreateNestedOneWithoutObjectivesInput = {
@@ -582,9 +726,15 @@ export type OrganizationUpdateOneRequiredWithoutSkillRequirementsNestedInput = {
 export type OrganizationCreateWithoutMembersInput = {
   id?: string
   name: string
+  vision?: string | null
+  mission?: string | null
+  values?: Prisma.OrganizationCreatevaluesInput | string[]
   createdAt?: Date | string
   enpsMinimumResponses?: number
   northStar?: Prisma.NorthStarCreateNestedOneWithoutOrganizationInput
+  leverLinks?: Prisma.NorthStarLeverCreateNestedManyWithoutOrganizationInput
+  pillars?: Prisma.StrategicPillarCreateNestedManyWithoutOrganizationInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutOrganizationInput
   objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
@@ -599,9 +749,15 @@ export type OrganizationCreateWithoutMembersInput = {
 export type OrganizationUncheckedCreateWithoutMembersInput = {
   id?: string
   name: string
+  vision?: string | null
+  mission?: string | null
+  values?: Prisma.OrganizationCreatevaluesInput | string[]
   createdAt?: Date | string
   enpsMinimumResponses?: number
   northStar?: Prisma.NorthStarUncheckedCreateNestedOneWithoutOrganizationInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedCreateNestedManyWithoutOrganizationInput
+  pillars?: Prisma.StrategicPillarUncheckedCreateNestedManyWithoutOrganizationInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
@@ -632,9 +788,15 @@ export type OrganizationUpdateToOneWithWhereWithoutMembersInput = {
 export type OrganizationUpdateWithoutMembersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mission?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  values?: Prisma.OrganizationUpdatevaluesInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
   northStar?: Prisma.NorthStarUpdateOneWithoutOrganizationNestedInput
+  leverLinks?: Prisma.NorthStarLeverUpdateManyWithoutOrganizationNestedInput
+  pillars?: Prisma.StrategicPillarUpdateManyWithoutOrganizationNestedInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUpdateManyWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
@@ -649,9 +811,15 @@ export type OrganizationUpdateWithoutMembersInput = {
 export type OrganizationUncheckedUpdateWithoutMembersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mission?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  values?: Prisma.OrganizationUpdatevaluesInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
   northStar?: Prisma.NorthStarUncheckedUpdateOneWithoutOrganizationNestedInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedUpdateManyWithoutOrganizationNestedInput
+  pillars?: Prisma.StrategicPillarUncheckedUpdateManyWithoutOrganizationNestedInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -666,9 +834,15 @@ export type OrganizationUncheckedUpdateWithoutMembersInput = {
 export type OrganizationCreateWithoutNorthStarInput = {
   id?: string
   name: string
+  vision?: string | null
+  mission?: string | null
+  values?: Prisma.OrganizationCreatevaluesInput | string[]
   createdAt?: Date | string
   enpsMinimumResponses?: number
   members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
+  leverLinks?: Prisma.NorthStarLeverCreateNestedManyWithoutOrganizationInput
+  pillars?: Prisma.StrategicPillarCreateNestedManyWithoutOrganizationInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutOrganizationInput
   objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
@@ -683,9 +857,15 @@ export type OrganizationCreateWithoutNorthStarInput = {
 export type OrganizationUncheckedCreateWithoutNorthStarInput = {
   id?: string
   name: string
+  vision?: string | null
+  mission?: string | null
+  values?: Prisma.OrganizationCreatevaluesInput | string[]
   createdAt?: Date | string
   enpsMinimumResponses?: number
   members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedCreateNestedManyWithoutOrganizationInput
+  pillars?: Prisma.StrategicPillarUncheckedCreateNestedManyWithoutOrganizationInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
@@ -716,9 +896,15 @@ export type OrganizationUpdateToOneWithWhereWithoutNorthStarInput = {
 export type OrganizationUpdateWithoutNorthStarInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mission?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  values?: Prisma.OrganizationUpdatevaluesInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
   members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
+  leverLinks?: Prisma.NorthStarLeverUpdateManyWithoutOrganizationNestedInput
+  pillars?: Prisma.StrategicPillarUpdateManyWithoutOrganizationNestedInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUpdateManyWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
@@ -733,9 +919,339 @@ export type OrganizationUpdateWithoutNorthStarInput = {
 export type OrganizationUncheckedUpdateWithoutNorthStarInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mission?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  values?: Prisma.OrganizationUpdatevaluesInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
   members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedUpdateManyWithoutOrganizationNestedInput
+  pillars?: Prisma.StrategicPillarUncheckedUpdateManyWithoutOrganizationNestedInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
+  teamMembers?: Prisma.TeamMemberUncheckedUpdateManyWithoutOrganizationNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganizationNestedInput
+  projectObjectives?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  skills?: Prisma.SkillUncheckedUpdateManyWithoutOrganizationNestedInput
+  competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutOrganizationNestedInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutLeverLinksInput = {
+  id?: string
+  name: string
+  vision?: string | null
+  mission?: string | null
+  values?: Prisma.OrganizationCreatevaluesInput | string[]
+  createdAt?: Date | string
+  enpsMinimumResponses?: number
+  members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
+  northStar?: Prisma.NorthStarCreateNestedOneWithoutOrganizationInput
+  pillars?: Prisma.StrategicPillarCreateNestedManyWithoutOrganizationInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutOrganizationInput
+  objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
+  keyResults?: Prisma.KeyResultCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
+  teamMembers?: Prisma.TeamMemberCreateNestedManyWithoutOrganizationInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutOrganizationInput
+  projectObjectives?: Prisma.ProjectObjectiveCreateNestedManyWithoutOrganizationInput
+  skills?: Prisma.SkillCreateNestedManyWithoutOrganizationInput
+  competencies?: Prisma.CompetencyCreateNestedManyWithoutOrganizationInput
+  skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutLeverLinksInput = {
+  id?: string
+  name: string
+  vision?: string | null
+  mission?: string | null
+  values?: Prisma.OrganizationCreatevaluesInput | string[]
+  createdAt?: Date | string
+  enpsMinimumResponses?: number
+  members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
+  northStar?: Prisma.NorthStarUncheckedCreateNestedOneWithoutOrganizationInput
+  pillars?: Prisma.StrategicPillarUncheckedCreateNestedManyWithoutOrganizationInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
+  teamMembers?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutOrganizationInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganizationInput
+  projectObjectives?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  skills?: Prisma.SkillUncheckedCreateNestedManyWithoutOrganizationInput
+  competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutOrganizationInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutLeverLinksInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutLeverLinksInput, Prisma.OrganizationUncheckedCreateWithoutLeverLinksInput>
+}
+
+export type OrganizationUpsertWithoutLeverLinksInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutLeverLinksInput, Prisma.OrganizationUncheckedUpdateWithoutLeverLinksInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutLeverLinksInput, Prisma.OrganizationUncheckedCreateWithoutLeverLinksInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutLeverLinksInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutLeverLinksInput, Prisma.OrganizationUncheckedUpdateWithoutLeverLinksInput>
+}
+
+export type OrganizationUpdateWithoutLeverLinksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mission?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  values?: Prisma.OrganizationUpdatevaluesInput | string[]
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
+  members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
+  northStar?: Prisma.NorthStarUpdateOneWithoutOrganizationNestedInput
+  pillars?: Prisma.StrategicPillarUpdateManyWithoutOrganizationNestedInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUpdateManyWithoutOrganizationNestedInput
+  objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
+  keyResults?: Prisma.KeyResultUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
+  teamMembers?: Prisma.TeamMemberUpdateManyWithoutOrganizationNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutOrganizationNestedInput
+  projectObjectives?: Prisma.ProjectObjectiveUpdateManyWithoutOrganizationNestedInput
+  skills?: Prisma.SkillUpdateManyWithoutOrganizationNestedInput
+  competencies?: Prisma.CompetencyUpdateManyWithoutOrganizationNestedInput
+  skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutLeverLinksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mission?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  values?: Prisma.OrganizationUpdatevaluesInput | string[]
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
+  members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
+  northStar?: Prisma.NorthStarUncheckedUpdateOneWithoutOrganizationNestedInput
+  pillars?: Prisma.StrategicPillarUncheckedUpdateManyWithoutOrganizationNestedInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
+  teamMembers?: Prisma.TeamMemberUncheckedUpdateManyWithoutOrganizationNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganizationNestedInput
+  projectObjectives?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  skills?: Prisma.SkillUncheckedUpdateManyWithoutOrganizationNestedInput
+  competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutOrganizationNestedInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutPillarsInput = {
+  id?: string
+  name: string
+  vision?: string | null
+  mission?: string | null
+  values?: Prisma.OrganizationCreatevaluesInput | string[]
+  createdAt?: Date | string
+  enpsMinimumResponses?: number
+  members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
+  northStar?: Prisma.NorthStarCreateNestedOneWithoutOrganizationInput
+  leverLinks?: Prisma.NorthStarLeverCreateNestedManyWithoutOrganizationInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutOrganizationInput
+  objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
+  keyResults?: Prisma.KeyResultCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
+  teamMembers?: Prisma.TeamMemberCreateNestedManyWithoutOrganizationInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutOrganizationInput
+  projectObjectives?: Prisma.ProjectObjectiveCreateNestedManyWithoutOrganizationInput
+  skills?: Prisma.SkillCreateNestedManyWithoutOrganizationInput
+  competencies?: Prisma.CompetencyCreateNestedManyWithoutOrganizationInput
+  skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutPillarsInput = {
+  id?: string
+  name: string
+  vision?: string | null
+  mission?: string | null
+  values?: Prisma.OrganizationCreatevaluesInput | string[]
+  createdAt?: Date | string
+  enpsMinimumResponses?: number
+  members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
+  northStar?: Prisma.NorthStarUncheckedCreateNestedOneWithoutOrganizationInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedCreateNestedManyWithoutOrganizationInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
+  teamMembers?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutOrganizationInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganizationInput
+  projectObjectives?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  skills?: Prisma.SkillUncheckedCreateNestedManyWithoutOrganizationInput
+  competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutOrganizationInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutPillarsInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutPillarsInput, Prisma.OrganizationUncheckedCreateWithoutPillarsInput>
+}
+
+export type OrganizationUpsertWithoutPillarsInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutPillarsInput, Prisma.OrganizationUncheckedUpdateWithoutPillarsInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutPillarsInput, Prisma.OrganizationUncheckedCreateWithoutPillarsInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutPillarsInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutPillarsInput, Prisma.OrganizationUncheckedUpdateWithoutPillarsInput>
+}
+
+export type OrganizationUpdateWithoutPillarsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mission?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  values?: Prisma.OrganizationUpdatevaluesInput | string[]
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
+  members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
+  northStar?: Prisma.NorthStarUpdateOneWithoutOrganizationNestedInput
+  leverLinks?: Prisma.NorthStarLeverUpdateManyWithoutOrganizationNestedInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUpdateManyWithoutOrganizationNestedInput
+  objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
+  keyResults?: Prisma.KeyResultUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
+  teamMembers?: Prisma.TeamMemberUpdateManyWithoutOrganizationNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutOrganizationNestedInput
+  projectObjectives?: Prisma.ProjectObjectiveUpdateManyWithoutOrganizationNestedInput
+  skills?: Prisma.SkillUpdateManyWithoutOrganizationNestedInput
+  competencies?: Prisma.CompetencyUpdateManyWithoutOrganizationNestedInput
+  skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutPillarsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mission?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  values?: Prisma.OrganizationUpdatevaluesInput | string[]
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
+  members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
+  northStar?: Prisma.NorthStarUncheckedUpdateOneWithoutOrganizationNestedInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedUpdateManyWithoutOrganizationNestedInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
+  teamMembers?: Prisma.TeamMemberUncheckedUpdateManyWithoutOrganizationNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganizationNestedInput
+  projectObjectives?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  skills?: Prisma.SkillUncheckedUpdateManyWithoutOrganizationNestedInput
+  competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutOrganizationNestedInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutPillarObjectiveLinksInput = {
+  id?: string
+  name: string
+  vision?: string | null
+  mission?: string | null
+  values?: Prisma.OrganizationCreatevaluesInput | string[]
+  createdAt?: Date | string
+  enpsMinimumResponses?: number
+  members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
+  northStar?: Prisma.NorthStarCreateNestedOneWithoutOrganizationInput
+  leverLinks?: Prisma.NorthStarLeverCreateNestedManyWithoutOrganizationInput
+  pillars?: Prisma.StrategicPillarCreateNestedManyWithoutOrganizationInput
+  objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
+  keyResults?: Prisma.KeyResultCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
+  teamMembers?: Prisma.TeamMemberCreateNestedManyWithoutOrganizationInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutOrganizationInput
+  projectObjectives?: Prisma.ProjectObjectiveCreateNestedManyWithoutOrganizationInput
+  skills?: Prisma.SkillCreateNestedManyWithoutOrganizationInput
+  competencies?: Prisma.CompetencyCreateNestedManyWithoutOrganizationInput
+  skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutPillarObjectiveLinksInput = {
+  id?: string
+  name: string
+  vision?: string | null
+  mission?: string | null
+  values?: Prisma.OrganizationCreatevaluesInput | string[]
+  createdAt?: Date | string
+  enpsMinimumResponses?: number
+  members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
+  northStar?: Prisma.NorthStarUncheckedCreateNestedOneWithoutOrganizationInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedCreateNestedManyWithoutOrganizationInput
+  pillars?: Prisma.StrategicPillarUncheckedCreateNestedManyWithoutOrganizationInput
+  objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
+  teamMembers?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutOrganizationInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganizationInput
+  projectObjectives?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  skills?: Prisma.SkillUncheckedCreateNestedManyWithoutOrganizationInput
+  competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutOrganizationInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutPillarObjectiveLinksInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutPillarObjectiveLinksInput, Prisma.OrganizationUncheckedCreateWithoutPillarObjectiveLinksInput>
+}
+
+export type OrganizationUpsertWithoutPillarObjectiveLinksInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutPillarObjectiveLinksInput, Prisma.OrganizationUncheckedUpdateWithoutPillarObjectiveLinksInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutPillarObjectiveLinksInput, Prisma.OrganizationUncheckedCreateWithoutPillarObjectiveLinksInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutPillarObjectiveLinksInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutPillarObjectiveLinksInput, Prisma.OrganizationUncheckedUpdateWithoutPillarObjectiveLinksInput>
+}
+
+export type OrganizationUpdateWithoutPillarObjectiveLinksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mission?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  values?: Prisma.OrganizationUpdatevaluesInput | string[]
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
+  members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
+  northStar?: Prisma.NorthStarUpdateOneWithoutOrganizationNestedInput
+  leverLinks?: Prisma.NorthStarLeverUpdateManyWithoutOrganizationNestedInput
+  pillars?: Prisma.StrategicPillarUpdateManyWithoutOrganizationNestedInput
+  objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
+  keyResults?: Prisma.KeyResultUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
+  teamMembers?: Prisma.TeamMemberUpdateManyWithoutOrganizationNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutOrganizationNestedInput
+  projectObjectives?: Prisma.ProjectObjectiveUpdateManyWithoutOrganizationNestedInput
+  skills?: Prisma.SkillUpdateManyWithoutOrganizationNestedInput
+  competencies?: Prisma.CompetencyUpdateManyWithoutOrganizationNestedInput
+  skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutPillarObjectiveLinksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mission?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  values?: Prisma.OrganizationUpdatevaluesInput | string[]
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
+  members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
+  northStar?: Prisma.NorthStarUncheckedUpdateOneWithoutOrganizationNestedInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedUpdateManyWithoutOrganizationNestedInput
+  pillars?: Prisma.StrategicPillarUncheckedUpdateManyWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -750,10 +1266,16 @@ export type OrganizationUncheckedUpdateWithoutNorthStarInput = {
 export type OrganizationCreateWithoutObjectivesInput = {
   id?: string
   name: string
+  vision?: string | null
+  mission?: string | null
+  values?: Prisma.OrganizationCreatevaluesInput | string[]
   createdAt?: Date | string
   enpsMinimumResponses?: number
   members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
   northStar?: Prisma.NorthStarCreateNestedOneWithoutOrganizationInput
+  leverLinks?: Prisma.NorthStarLeverCreateNestedManyWithoutOrganizationInput
+  pillars?: Prisma.StrategicPillarCreateNestedManyWithoutOrganizationInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
   teamMembers?: Prisma.TeamMemberCreateNestedManyWithoutOrganizationInput
@@ -767,10 +1289,16 @@ export type OrganizationCreateWithoutObjectivesInput = {
 export type OrganizationUncheckedCreateWithoutObjectivesInput = {
   id?: string
   name: string
+  vision?: string | null
+  mission?: string | null
+  values?: Prisma.OrganizationCreatevaluesInput | string[]
   createdAt?: Date | string
   enpsMinimumResponses?: number
   members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
   northStar?: Prisma.NorthStarUncheckedCreateNestedOneWithoutOrganizationInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedCreateNestedManyWithoutOrganizationInput
+  pillars?: Prisma.StrategicPillarUncheckedCreateNestedManyWithoutOrganizationInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
   teamMembers?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutOrganizationInput
@@ -800,10 +1328,16 @@ export type OrganizationUpdateToOneWithWhereWithoutObjectivesInput = {
 export type OrganizationUpdateWithoutObjectivesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mission?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  values?: Prisma.OrganizationUpdatevaluesInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
   members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
   northStar?: Prisma.NorthStarUpdateOneWithoutOrganizationNestedInput
+  leverLinks?: Prisma.NorthStarLeverUpdateManyWithoutOrganizationNestedInput
+  pillars?: Prisma.StrategicPillarUpdateManyWithoutOrganizationNestedInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
   teamMembers?: Prisma.TeamMemberUpdateManyWithoutOrganizationNestedInput
@@ -817,10 +1351,16 @@ export type OrganizationUpdateWithoutObjectivesInput = {
 export type OrganizationUncheckedUpdateWithoutObjectivesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mission?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  values?: Prisma.OrganizationUpdatevaluesInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
   members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
   northStar?: Prisma.NorthStarUncheckedUpdateOneWithoutOrganizationNestedInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedUpdateManyWithoutOrganizationNestedInput
+  pillars?: Prisma.StrategicPillarUncheckedUpdateManyWithoutOrganizationNestedInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
   teamMembers?: Prisma.TeamMemberUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -834,10 +1374,16 @@ export type OrganizationUncheckedUpdateWithoutObjectivesInput = {
 export type OrganizationCreateWithoutKeyResultsInput = {
   id?: string
   name: string
+  vision?: string | null
+  mission?: string | null
+  values?: Prisma.OrganizationCreatevaluesInput | string[]
   createdAt?: Date | string
   enpsMinimumResponses?: number
   members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
   northStar?: Prisma.NorthStarCreateNestedOneWithoutOrganizationInput
+  leverLinks?: Prisma.NorthStarLeverCreateNestedManyWithoutOrganizationInput
+  pillars?: Prisma.StrategicPillarCreateNestedManyWithoutOrganizationInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutOrganizationInput
   objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
   teamMembers?: Prisma.TeamMemberCreateNestedManyWithoutOrganizationInput
@@ -851,10 +1397,16 @@ export type OrganizationCreateWithoutKeyResultsInput = {
 export type OrganizationUncheckedCreateWithoutKeyResultsInput = {
   id?: string
   name: string
+  vision?: string | null
+  mission?: string | null
+  values?: Prisma.OrganizationCreatevaluesInput | string[]
   createdAt?: Date | string
   enpsMinimumResponses?: number
   members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
   northStar?: Prisma.NorthStarUncheckedCreateNestedOneWithoutOrganizationInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedCreateNestedManyWithoutOrganizationInput
+  pillars?: Prisma.StrategicPillarUncheckedCreateNestedManyWithoutOrganizationInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
   teamMembers?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutOrganizationInput
@@ -884,10 +1436,16 @@ export type OrganizationUpdateToOneWithWhereWithoutKeyResultsInput = {
 export type OrganizationUpdateWithoutKeyResultsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mission?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  values?: Prisma.OrganizationUpdatevaluesInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
   members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
   northStar?: Prisma.NorthStarUpdateOneWithoutOrganizationNestedInput
+  leverLinks?: Prisma.NorthStarLeverUpdateManyWithoutOrganizationNestedInput
+  pillars?: Prisma.StrategicPillarUpdateManyWithoutOrganizationNestedInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUpdateManyWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
   teamMembers?: Prisma.TeamMemberUpdateManyWithoutOrganizationNestedInput
@@ -901,10 +1459,16 @@ export type OrganizationUpdateWithoutKeyResultsInput = {
 export type OrganizationUncheckedUpdateWithoutKeyResultsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mission?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  values?: Prisma.OrganizationUpdatevaluesInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
   members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
   northStar?: Prisma.NorthStarUncheckedUpdateOneWithoutOrganizationNestedInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedUpdateManyWithoutOrganizationNestedInput
+  pillars?: Prisma.StrategicPillarUncheckedUpdateManyWithoutOrganizationNestedInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
   teamMembers?: Prisma.TeamMemberUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -918,10 +1482,16 @@ export type OrganizationUncheckedUpdateWithoutKeyResultsInput = {
 export type OrganizationCreateWithoutTeamsInput = {
   id?: string
   name: string
+  vision?: string | null
+  mission?: string | null
+  values?: Prisma.OrganizationCreatevaluesInput | string[]
   createdAt?: Date | string
   enpsMinimumResponses?: number
   members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
   northStar?: Prisma.NorthStarCreateNestedOneWithoutOrganizationInput
+  leverLinks?: Prisma.NorthStarLeverCreateNestedManyWithoutOrganizationInput
+  pillars?: Prisma.StrategicPillarCreateNestedManyWithoutOrganizationInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutOrganizationInput
   objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultCreateNestedManyWithoutOrganizationInput
   teamMembers?: Prisma.TeamMemberCreateNestedManyWithoutOrganizationInput
@@ -935,10 +1505,16 @@ export type OrganizationCreateWithoutTeamsInput = {
 export type OrganizationUncheckedCreateWithoutTeamsInput = {
   id?: string
   name: string
+  vision?: string | null
+  mission?: string | null
+  values?: Prisma.OrganizationCreatevaluesInput | string[]
   createdAt?: Date | string
   enpsMinimumResponses?: number
   members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
   northStar?: Prisma.NorthStarUncheckedCreateNestedOneWithoutOrganizationInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedCreateNestedManyWithoutOrganizationInput
+  pillars?: Prisma.StrategicPillarUncheckedCreateNestedManyWithoutOrganizationInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutOrganizationInput
   teamMembers?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutOrganizationInput
@@ -968,10 +1544,16 @@ export type OrganizationUpdateToOneWithWhereWithoutTeamsInput = {
 export type OrganizationUpdateWithoutTeamsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mission?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  values?: Prisma.OrganizationUpdatevaluesInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
   members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
   northStar?: Prisma.NorthStarUpdateOneWithoutOrganizationNestedInput
+  leverLinks?: Prisma.NorthStarLeverUpdateManyWithoutOrganizationNestedInput
+  pillars?: Prisma.StrategicPillarUpdateManyWithoutOrganizationNestedInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUpdateManyWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUpdateManyWithoutOrganizationNestedInput
   teamMembers?: Prisma.TeamMemberUpdateManyWithoutOrganizationNestedInput
@@ -985,10 +1567,16 @@ export type OrganizationUpdateWithoutTeamsInput = {
 export type OrganizationUncheckedUpdateWithoutTeamsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mission?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  values?: Prisma.OrganizationUpdatevaluesInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
   members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
   northStar?: Prisma.NorthStarUncheckedUpdateOneWithoutOrganizationNestedInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedUpdateManyWithoutOrganizationNestedInput
+  pillars?: Prisma.StrategicPillarUncheckedUpdateManyWithoutOrganizationNestedInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutOrganizationNestedInput
   teamMembers?: Prisma.TeamMemberUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -1002,10 +1590,16 @@ export type OrganizationUncheckedUpdateWithoutTeamsInput = {
 export type OrganizationCreateWithoutTeamMembersInput = {
   id?: string
   name: string
+  vision?: string | null
+  mission?: string | null
+  values?: Prisma.OrganizationCreatevaluesInput | string[]
   createdAt?: Date | string
   enpsMinimumResponses?: number
   members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
   northStar?: Prisma.NorthStarCreateNestedOneWithoutOrganizationInput
+  leverLinks?: Prisma.NorthStarLeverCreateNestedManyWithoutOrganizationInput
+  pillars?: Prisma.StrategicPillarCreateNestedManyWithoutOrganizationInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutOrganizationInput
   objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
@@ -1019,10 +1613,16 @@ export type OrganizationCreateWithoutTeamMembersInput = {
 export type OrganizationUncheckedCreateWithoutTeamMembersInput = {
   id?: string
   name: string
+  vision?: string | null
+  mission?: string | null
+  values?: Prisma.OrganizationCreatevaluesInput | string[]
   createdAt?: Date | string
   enpsMinimumResponses?: number
   members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
   northStar?: Prisma.NorthStarUncheckedCreateNestedOneWithoutOrganizationInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedCreateNestedManyWithoutOrganizationInput
+  pillars?: Prisma.StrategicPillarUncheckedCreateNestedManyWithoutOrganizationInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
@@ -1052,10 +1652,16 @@ export type OrganizationUpdateToOneWithWhereWithoutTeamMembersInput = {
 export type OrganizationUpdateWithoutTeamMembersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mission?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  values?: Prisma.OrganizationUpdatevaluesInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
   members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
   northStar?: Prisma.NorthStarUpdateOneWithoutOrganizationNestedInput
+  leverLinks?: Prisma.NorthStarLeverUpdateManyWithoutOrganizationNestedInput
+  pillars?: Prisma.StrategicPillarUpdateManyWithoutOrganizationNestedInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUpdateManyWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
@@ -1069,10 +1675,16 @@ export type OrganizationUpdateWithoutTeamMembersInput = {
 export type OrganizationUncheckedUpdateWithoutTeamMembersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mission?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  values?: Prisma.OrganizationUpdatevaluesInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
   members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
   northStar?: Prisma.NorthStarUncheckedUpdateOneWithoutOrganizationNestedInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedUpdateManyWithoutOrganizationNestedInput
+  pillars?: Prisma.StrategicPillarUncheckedUpdateManyWithoutOrganizationNestedInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -1086,10 +1698,16 @@ export type OrganizationUncheckedUpdateWithoutTeamMembersInput = {
 export type OrganizationCreateWithoutProjectsInput = {
   id?: string
   name: string
+  vision?: string | null
+  mission?: string | null
+  values?: Prisma.OrganizationCreatevaluesInput | string[]
   createdAt?: Date | string
   enpsMinimumResponses?: number
   members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
   northStar?: Prisma.NorthStarCreateNestedOneWithoutOrganizationInput
+  leverLinks?: Prisma.NorthStarLeverCreateNestedManyWithoutOrganizationInput
+  pillars?: Prisma.StrategicPillarCreateNestedManyWithoutOrganizationInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutOrganizationInput
   objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
@@ -1103,10 +1721,16 @@ export type OrganizationCreateWithoutProjectsInput = {
 export type OrganizationUncheckedCreateWithoutProjectsInput = {
   id?: string
   name: string
+  vision?: string | null
+  mission?: string | null
+  values?: Prisma.OrganizationCreatevaluesInput | string[]
   createdAt?: Date | string
   enpsMinimumResponses?: number
   members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
   northStar?: Prisma.NorthStarUncheckedCreateNestedOneWithoutOrganizationInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedCreateNestedManyWithoutOrganizationInput
+  pillars?: Prisma.StrategicPillarUncheckedCreateNestedManyWithoutOrganizationInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
@@ -1136,10 +1760,16 @@ export type OrganizationUpdateToOneWithWhereWithoutProjectsInput = {
 export type OrganizationUpdateWithoutProjectsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mission?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  values?: Prisma.OrganizationUpdatevaluesInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
   members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
   northStar?: Prisma.NorthStarUpdateOneWithoutOrganizationNestedInput
+  leverLinks?: Prisma.NorthStarLeverUpdateManyWithoutOrganizationNestedInput
+  pillars?: Prisma.StrategicPillarUpdateManyWithoutOrganizationNestedInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUpdateManyWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
@@ -1153,10 +1783,16 @@ export type OrganizationUpdateWithoutProjectsInput = {
 export type OrganizationUncheckedUpdateWithoutProjectsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mission?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  values?: Prisma.OrganizationUpdatevaluesInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
   members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
   northStar?: Prisma.NorthStarUncheckedUpdateOneWithoutOrganizationNestedInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedUpdateManyWithoutOrganizationNestedInput
+  pillars?: Prisma.StrategicPillarUncheckedUpdateManyWithoutOrganizationNestedInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -1170,10 +1806,16 @@ export type OrganizationUncheckedUpdateWithoutProjectsInput = {
 export type OrganizationCreateWithoutProjectObjectivesInput = {
   id?: string
   name: string
+  vision?: string | null
+  mission?: string | null
+  values?: Prisma.OrganizationCreatevaluesInput | string[]
   createdAt?: Date | string
   enpsMinimumResponses?: number
   members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
   northStar?: Prisma.NorthStarCreateNestedOneWithoutOrganizationInput
+  leverLinks?: Prisma.NorthStarLeverCreateNestedManyWithoutOrganizationInput
+  pillars?: Prisma.StrategicPillarCreateNestedManyWithoutOrganizationInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutOrganizationInput
   objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
@@ -1187,10 +1829,16 @@ export type OrganizationCreateWithoutProjectObjectivesInput = {
 export type OrganizationUncheckedCreateWithoutProjectObjectivesInput = {
   id?: string
   name: string
+  vision?: string | null
+  mission?: string | null
+  values?: Prisma.OrganizationCreatevaluesInput | string[]
   createdAt?: Date | string
   enpsMinimumResponses?: number
   members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
   northStar?: Prisma.NorthStarUncheckedCreateNestedOneWithoutOrganizationInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedCreateNestedManyWithoutOrganizationInput
+  pillars?: Prisma.StrategicPillarUncheckedCreateNestedManyWithoutOrganizationInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
@@ -1220,10 +1868,16 @@ export type OrganizationUpdateToOneWithWhereWithoutProjectObjectivesInput = {
 export type OrganizationUpdateWithoutProjectObjectivesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mission?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  values?: Prisma.OrganizationUpdatevaluesInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
   members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
   northStar?: Prisma.NorthStarUpdateOneWithoutOrganizationNestedInput
+  leverLinks?: Prisma.NorthStarLeverUpdateManyWithoutOrganizationNestedInput
+  pillars?: Prisma.StrategicPillarUpdateManyWithoutOrganizationNestedInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUpdateManyWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
@@ -1237,10 +1891,16 @@ export type OrganizationUpdateWithoutProjectObjectivesInput = {
 export type OrganizationUncheckedUpdateWithoutProjectObjectivesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mission?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  values?: Prisma.OrganizationUpdatevaluesInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
   members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
   northStar?: Prisma.NorthStarUncheckedUpdateOneWithoutOrganizationNestedInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedUpdateManyWithoutOrganizationNestedInput
+  pillars?: Prisma.StrategicPillarUncheckedUpdateManyWithoutOrganizationNestedInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -1254,10 +1914,16 @@ export type OrganizationUncheckedUpdateWithoutProjectObjectivesInput = {
 export type OrganizationCreateWithoutSkillsInput = {
   id?: string
   name: string
+  vision?: string | null
+  mission?: string | null
+  values?: Prisma.OrganizationCreatevaluesInput | string[]
   createdAt?: Date | string
   enpsMinimumResponses?: number
   members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
   northStar?: Prisma.NorthStarCreateNestedOneWithoutOrganizationInput
+  leverLinks?: Prisma.NorthStarLeverCreateNestedManyWithoutOrganizationInput
+  pillars?: Prisma.StrategicPillarCreateNestedManyWithoutOrganizationInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutOrganizationInput
   objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
@@ -1271,10 +1937,16 @@ export type OrganizationCreateWithoutSkillsInput = {
 export type OrganizationUncheckedCreateWithoutSkillsInput = {
   id?: string
   name: string
+  vision?: string | null
+  mission?: string | null
+  values?: Prisma.OrganizationCreatevaluesInput | string[]
   createdAt?: Date | string
   enpsMinimumResponses?: number
   members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
   northStar?: Prisma.NorthStarUncheckedCreateNestedOneWithoutOrganizationInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedCreateNestedManyWithoutOrganizationInput
+  pillars?: Prisma.StrategicPillarUncheckedCreateNestedManyWithoutOrganizationInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
@@ -1304,10 +1976,16 @@ export type OrganizationUpdateToOneWithWhereWithoutSkillsInput = {
 export type OrganizationUpdateWithoutSkillsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mission?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  values?: Prisma.OrganizationUpdatevaluesInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
   members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
   northStar?: Prisma.NorthStarUpdateOneWithoutOrganizationNestedInput
+  leverLinks?: Prisma.NorthStarLeverUpdateManyWithoutOrganizationNestedInput
+  pillars?: Prisma.StrategicPillarUpdateManyWithoutOrganizationNestedInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUpdateManyWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
@@ -1321,10 +1999,16 @@ export type OrganizationUpdateWithoutSkillsInput = {
 export type OrganizationUncheckedUpdateWithoutSkillsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mission?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  values?: Prisma.OrganizationUpdatevaluesInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
   members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
   northStar?: Prisma.NorthStarUncheckedUpdateOneWithoutOrganizationNestedInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedUpdateManyWithoutOrganizationNestedInput
+  pillars?: Prisma.StrategicPillarUncheckedUpdateManyWithoutOrganizationNestedInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -1338,10 +2022,16 @@ export type OrganizationUncheckedUpdateWithoutSkillsInput = {
 export type OrganizationCreateWithoutCompetenciesInput = {
   id?: string
   name: string
+  vision?: string | null
+  mission?: string | null
+  values?: Prisma.OrganizationCreatevaluesInput | string[]
   createdAt?: Date | string
   enpsMinimumResponses?: number
   members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
   northStar?: Prisma.NorthStarCreateNestedOneWithoutOrganizationInput
+  leverLinks?: Prisma.NorthStarLeverCreateNestedManyWithoutOrganizationInput
+  pillars?: Prisma.StrategicPillarCreateNestedManyWithoutOrganizationInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutOrganizationInput
   objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
@@ -1355,10 +2045,16 @@ export type OrganizationCreateWithoutCompetenciesInput = {
 export type OrganizationUncheckedCreateWithoutCompetenciesInput = {
   id?: string
   name: string
+  vision?: string | null
+  mission?: string | null
+  values?: Prisma.OrganizationCreatevaluesInput | string[]
   createdAt?: Date | string
   enpsMinimumResponses?: number
   members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
   northStar?: Prisma.NorthStarUncheckedCreateNestedOneWithoutOrganizationInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedCreateNestedManyWithoutOrganizationInput
+  pillars?: Prisma.StrategicPillarUncheckedCreateNestedManyWithoutOrganizationInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
@@ -1388,10 +2084,16 @@ export type OrganizationUpdateToOneWithWhereWithoutCompetenciesInput = {
 export type OrganizationUpdateWithoutCompetenciesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mission?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  values?: Prisma.OrganizationUpdatevaluesInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
   members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
   northStar?: Prisma.NorthStarUpdateOneWithoutOrganizationNestedInput
+  leverLinks?: Prisma.NorthStarLeverUpdateManyWithoutOrganizationNestedInput
+  pillars?: Prisma.StrategicPillarUpdateManyWithoutOrganizationNestedInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUpdateManyWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
@@ -1405,10 +2107,16 @@ export type OrganizationUpdateWithoutCompetenciesInput = {
 export type OrganizationUncheckedUpdateWithoutCompetenciesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mission?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  values?: Prisma.OrganizationUpdatevaluesInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
   members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
   northStar?: Prisma.NorthStarUncheckedUpdateOneWithoutOrganizationNestedInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedUpdateManyWithoutOrganizationNestedInput
+  pillars?: Prisma.StrategicPillarUncheckedUpdateManyWithoutOrganizationNestedInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -1422,10 +2130,16 @@ export type OrganizationUncheckedUpdateWithoutCompetenciesInput = {
 export type OrganizationCreateWithoutSkillRequirementsInput = {
   id?: string
   name: string
+  vision?: string | null
+  mission?: string | null
+  values?: Prisma.OrganizationCreatevaluesInput | string[]
   createdAt?: Date | string
   enpsMinimumResponses?: number
   members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
   northStar?: Prisma.NorthStarCreateNestedOneWithoutOrganizationInput
+  leverLinks?: Prisma.NorthStarLeverCreateNestedManyWithoutOrganizationInput
+  pillars?: Prisma.StrategicPillarCreateNestedManyWithoutOrganizationInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutOrganizationInput
   objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
@@ -1439,10 +2153,16 @@ export type OrganizationCreateWithoutSkillRequirementsInput = {
 export type OrganizationUncheckedCreateWithoutSkillRequirementsInput = {
   id?: string
   name: string
+  vision?: string | null
+  mission?: string | null
+  values?: Prisma.OrganizationCreatevaluesInput | string[]
   createdAt?: Date | string
   enpsMinimumResponses?: number
   members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
   northStar?: Prisma.NorthStarUncheckedCreateNestedOneWithoutOrganizationInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedCreateNestedManyWithoutOrganizationInput
+  pillars?: Prisma.StrategicPillarUncheckedCreateNestedManyWithoutOrganizationInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
@@ -1472,10 +2192,16 @@ export type OrganizationUpdateToOneWithWhereWithoutSkillRequirementsInput = {
 export type OrganizationUpdateWithoutSkillRequirementsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mission?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  values?: Prisma.OrganizationUpdatevaluesInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
   members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
   northStar?: Prisma.NorthStarUpdateOneWithoutOrganizationNestedInput
+  leverLinks?: Prisma.NorthStarLeverUpdateManyWithoutOrganizationNestedInput
+  pillars?: Prisma.StrategicPillarUpdateManyWithoutOrganizationNestedInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUpdateManyWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
@@ -1489,10 +2215,16 @@ export type OrganizationUpdateWithoutSkillRequirementsInput = {
 export type OrganizationUncheckedUpdateWithoutSkillRequirementsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mission?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  values?: Prisma.OrganizationUpdatevaluesInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
   members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
   northStar?: Prisma.NorthStarUncheckedUpdateOneWithoutOrganizationNestedInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedUpdateManyWithoutOrganizationNestedInput
+  pillars?: Prisma.StrategicPillarUncheckedUpdateManyWithoutOrganizationNestedInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -1510,6 +2242,9 @@ export type OrganizationUncheckedUpdateWithoutSkillRequirementsInput = {
 
 export type OrganizationCountOutputType = {
   members: number
+  leverLinks: number
+  pillars: number
+  pillarObjectiveLinks: number
   objectives: number
   keyResults: number
   teams: number
@@ -1523,6 +2258,9 @@ export type OrganizationCountOutputType = {
 
 export type OrganizationCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   members?: boolean | OrganizationCountOutputTypeCountMembersArgs
+  leverLinks?: boolean | OrganizationCountOutputTypeCountLeverLinksArgs
+  pillars?: boolean | OrganizationCountOutputTypeCountPillarsArgs
+  pillarObjectiveLinks?: boolean | OrganizationCountOutputTypeCountPillarObjectiveLinksArgs
   objectives?: boolean | OrganizationCountOutputTypeCountObjectivesArgs
   keyResults?: boolean | OrganizationCountOutputTypeCountKeyResultsArgs
   teams?: boolean | OrganizationCountOutputTypeCountTeamsArgs
@@ -1549,6 +2287,27 @@ export type OrganizationCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types
  */
 export type OrganizationCountOutputTypeCountMembersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.MemberWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountLeverLinksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.NorthStarLeverWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountPillarsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.StrategicPillarWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountPillarObjectiveLinksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PillarObjectiveWhereInput
 }
 
 /**
@@ -1618,10 +2377,16 @@ export type OrganizationCountOutputTypeCountSkillRequirementsArgs<ExtArgs extend
 export type OrganizationSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
+  vision?: boolean
+  mission?: boolean
+  values?: boolean
   createdAt?: boolean
   enpsMinimumResponses?: boolean
   members?: boolean | Prisma.Organization$membersArgs<ExtArgs>
   northStar?: boolean | Prisma.Organization$northStarArgs<ExtArgs>
+  leverLinks?: boolean | Prisma.Organization$leverLinksArgs<ExtArgs>
+  pillars?: boolean | Prisma.Organization$pillarsArgs<ExtArgs>
+  pillarObjectiveLinks?: boolean | Prisma.Organization$pillarObjectiveLinksArgs<ExtArgs>
   objectives?: boolean | Prisma.Organization$objectivesArgs<ExtArgs>
   keyResults?: boolean | Prisma.Organization$keyResultsArgs<ExtArgs>
   teams?: boolean | Prisma.Organization$teamsArgs<ExtArgs>
@@ -1637,6 +2402,9 @@ export type OrganizationSelect<ExtArgs extends runtime.Types.Extensions.Internal
 export type OrganizationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
+  vision?: boolean
+  mission?: boolean
+  values?: boolean
   createdAt?: boolean
   enpsMinimumResponses?: boolean
 }, ExtArgs["result"]["organization"]>
@@ -1644,6 +2412,9 @@ export type OrganizationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
 export type OrganizationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
+  vision?: boolean
+  mission?: boolean
+  values?: boolean
   createdAt?: boolean
   enpsMinimumResponses?: boolean
 }, ExtArgs["result"]["organization"]>
@@ -1651,14 +2422,20 @@ export type OrganizationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
 export type OrganizationSelectScalar = {
   id?: boolean
   name?: boolean
+  vision?: boolean
+  mission?: boolean
+  values?: boolean
   createdAt?: boolean
   enpsMinimumResponses?: boolean
 }
 
-export type OrganizationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "createdAt" | "enpsMinimumResponses", ExtArgs["result"]["organization"]>
+export type OrganizationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "vision" | "mission" | "values" | "createdAt" | "enpsMinimumResponses", ExtArgs["result"]["organization"]>
 export type OrganizationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   members?: boolean | Prisma.Organization$membersArgs<ExtArgs>
   northStar?: boolean | Prisma.Organization$northStarArgs<ExtArgs>
+  leverLinks?: boolean | Prisma.Organization$leverLinksArgs<ExtArgs>
+  pillars?: boolean | Prisma.Organization$pillarsArgs<ExtArgs>
+  pillarObjectiveLinks?: boolean | Prisma.Organization$pillarObjectiveLinksArgs<ExtArgs>
   objectives?: boolean | Prisma.Organization$objectivesArgs<ExtArgs>
   keyResults?: boolean | Prisma.Organization$keyResultsArgs<ExtArgs>
   teams?: boolean | Prisma.Organization$teamsArgs<ExtArgs>
@@ -1678,6 +2455,9 @@ export type $OrganizationPayload<ExtArgs extends runtime.Types.Extensions.Intern
   objects: {
     members: Prisma.$MemberPayload<ExtArgs>[]
     northStar: Prisma.$NorthStarPayload<ExtArgs> | null
+    leverLinks: Prisma.$NorthStarLeverPayload<ExtArgs>[]
+    pillars: Prisma.$StrategicPillarPayload<ExtArgs>[]
+    pillarObjectiveLinks: Prisma.$PillarObjectivePayload<ExtArgs>[]
     objectives: Prisma.$ObjectivePayload<ExtArgs>[]
     keyResults: Prisma.$KeyResultPayload<ExtArgs>[]
     teams: Prisma.$TeamPayload<ExtArgs>[]
@@ -1691,6 +2471,9 @@ export type $OrganizationPayload<ExtArgs extends runtime.Types.Extensions.Intern
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     name: string
+    vision: string | null
+    mission: string | null
+    values: string[]
     createdAt: Date
     enpsMinimumResponses: number
   }, ExtArgs["result"]["organization"]>
@@ -2089,6 +2872,9 @@ export interface Prisma__OrganizationClient<T, Null = never, ExtArgs extends run
   readonly [Symbol.toStringTag]: "PrismaPromise"
   members<T extends Prisma.Organization$membersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$membersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   northStar<T extends Prisma.Organization$northStarArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$northStarArgs<ExtArgs>>): Prisma.Prisma__NorthStarClient<runtime.Types.Result.GetResult<Prisma.$NorthStarPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  leverLinks<T extends Prisma.Organization$leverLinksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$leverLinksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NorthStarLeverPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  pillars<T extends Prisma.Organization$pillarsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$pillarsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StrategicPillarPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  pillarObjectiveLinks<T extends Prisma.Organization$pillarObjectiveLinksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$pillarObjectiveLinksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PillarObjectivePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   objectives<T extends Prisma.Organization$objectivesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$objectivesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ObjectivePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   keyResults<T extends Prisma.Organization$keyResultsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$keyResultsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$KeyResultPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   teams<T extends Prisma.Organization$teamsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$teamsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TeamPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -2129,6 +2915,9 @@ export interface Prisma__OrganizationClient<T, Null = never, ExtArgs extends run
 export interface OrganizationFieldRefs {
   readonly id: Prisma.FieldRef<"Organization", 'String'>
   readonly name: Prisma.FieldRef<"Organization", 'String'>
+  readonly vision: Prisma.FieldRef<"Organization", 'String'>
+  readonly mission: Prisma.FieldRef<"Organization", 'String'>
+  readonly values: Prisma.FieldRef<"Organization", 'String[]'>
   readonly createdAt: Prisma.FieldRef<"Organization", 'DateTime'>
   readonly enpsMinimumResponses: Prisma.FieldRef<"Organization", 'Int'>
 }
@@ -2564,6 +3353,78 @@ export type Organization$northStarArgs<ExtArgs extends runtime.Types.Extensions.
    */
   include?: Prisma.NorthStarInclude<ExtArgs> | null
   where?: Prisma.NorthStarWhereInput
+}
+
+/**
+ * Organization.leverLinks
+ */
+export type Organization$leverLinksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the NorthStarLever
+   */
+  select?: Prisma.NorthStarLeverSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the NorthStarLever
+   */
+  omit?: Prisma.NorthStarLeverOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.NorthStarLeverInclude<ExtArgs> | null
+  where?: Prisma.NorthStarLeverWhereInput
+  orderBy?: Prisma.NorthStarLeverOrderByWithRelationInput | Prisma.NorthStarLeverOrderByWithRelationInput[]
+  cursor?: Prisma.NorthStarLeverWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.NorthStarLeverScalarFieldEnum | Prisma.NorthStarLeverScalarFieldEnum[]
+}
+
+/**
+ * Organization.pillars
+ */
+export type Organization$pillarsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the StrategicPillar
+   */
+  select?: Prisma.StrategicPillarSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the StrategicPillar
+   */
+  omit?: Prisma.StrategicPillarOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.StrategicPillarInclude<ExtArgs> | null
+  where?: Prisma.StrategicPillarWhereInput
+  orderBy?: Prisma.StrategicPillarOrderByWithRelationInput | Prisma.StrategicPillarOrderByWithRelationInput[]
+  cursor?: Prisma.StrategicPillarWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.StrategicPillarScalarFieldEnum | Prisma.StrategicPillarScalarFieldEnum[]
+}
+
+/**
+ * Organization.pillarObjectiveLinks
+ */
+export type Organization$pillarObjectiveLinksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PillarObjective
+   */
+  select?: Prisma.PillarObjectiveSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PillarObjective
+   */
+  omit?: Prisma.PillarObjectiveOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PillarObjectiveInclude<ExtArgs> | null
+  where?: Prisma.PillarObjectiveWhereInput
+  orderBy?: Prisma.PillarObjectiveOrderByWithRelationInput | Prisma.PillarObjectiveOrderByWithRelationInput[]
+  cursor?: Prisma.PillarObjectiveWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PillarObjectiveScalarFieldEnum | Prisma.PillarObjectiveScalarFieldEnum[]
 }
 
 /**

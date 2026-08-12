@@ -375,10 +375,6 @@ export type EnumPulseScopeFieldUpdateOperationsInput = {
   set?: $Enums.PulseScope
 }
 
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
-}
-
 export type EnumPulseFrequencyFieldUpdateOperationsInput = {
   set?: $Enums.PulseFrequency
 }

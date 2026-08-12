@@ -21,7 +21,6 @@ const ALL_SECTIONS = [
 
 const PLACEHOLDER_ROUTES: ReadonlyArray<readonly [string, string]> = [
   ["Dashboard", "/dashboard"],
-  ["Norte estratégico", "/norte-estrategico"],
   ["OKRs", "/okrs"],
   ["Equipos & Proyectos", "/equipos-y-proyectos"],
   ["Rituales", "/rituales"],
@@ -64,6 +63,17 @@ test.describe.serial("app shell", () => {
       await expect(page.getByTestId("under-construction")).toBeVisible();
       await expect(page.getByRole("heading", { name: label })).toBeVisible();
     }
+  });
+
+  test("Norte estratégico muestra la UI real dentro del shell", async ({ page }) => {
+    await signInAs(page, "dev_direccion");
+
+    await sidebar(page).getByRole("link", { name: "Norte estratégico" }).click();
+    await page.waitForURL("**/norte-estrategico");
+    await expect(
+      page.getByRole("heading", { name: "De dónde baja todo lo demás" }),
+    ).toBeVisible();
+    await expect(page.getByText("Visión, misión y valores")).toBeVisible();
   });
 
   test("Clima & eNPS y Miembros mantienen sus páginas live dentro del shell", async ({

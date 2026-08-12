@@ -18,6 +18,9 @@ export type {
   RitualOccurrenceModel as RitualOccurrence,
   BlockerModel as Blocker,
   RetrospectiveModel as Retrospective,
+  NorthStarLeverModel as NorthStarLever,
+  StrategicPillarModel as StrategicPillar,
+  PillarObjectiveModel as PillarObjective,
 } from "./generated/models";
 export {
   MeasurementType,
