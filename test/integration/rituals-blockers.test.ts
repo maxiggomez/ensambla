@@ -97,6 +97,7 @@ describe("rituals blockers", () => {
         actorClerkUserId: "user_ana",
         title: "Cumplir con el sprint",
         level: "Team",
+        teamId,
         ownerMemberId: anaMemberId,
       },
       db.prisma,

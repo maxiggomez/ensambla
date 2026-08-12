@@ -208,6 +208,8 @@ export type MemberWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Member"> | Date | string
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
   objectives?: Prisma.ObjectiveListRelationFilter
+  checkIns?: Prisma.CheckInListRelationFilter
+  okrAuditEvents?: Prisma.OkrAuditEventListRelationFilter
   teamMemberships?: Prisma.TeamMemberListRelationFilter
   competencies?: Prisma.CompetencyListRelationFilter
 }
@@ -223,6 +225,8 @@ export type MemberOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   organization?: Prisma.OrganizationOrderByWithRelationInput
   objectives?: Prisma.ObjectiveOrderByRelationAggregateInput
+  checkIns?: Prisma.CheckInOrderByRelationAggregateInput
+  okrAuditEvents?: Prisma.OkrAuditEventOrderByRelationAggregateInput
   teamMemberships?: Prisma.TeamMemberOrderByRelationAggregateInput
   competencies?: Prisma.CompetencyOrderByRelationAggregateInput
 }
@@ -243,6 +247,8 @@ export type MemberWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"Member"> | Date | string
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
   objectives?: Prisma.ObjectiveListRelationFilter
+  checkIns?: Prisma.CheckInListRelationFilter
+  okrAuditEvents?: Prisma.OkrAuditEventListRelationFilter
   teamMemberships?: Prisma.TeamMemberListRelationFilter
   competencies?: Prisma.CompetencyListRelationFilter
 }, "id" | "organizationId_email" | "organizationId_clerkUserId">
@@ -285,6 +291,8 @@ export type MemberCreateInput = {
   createdAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutMembersInput
   objectives?: Prisma.ObjectiveCreateNestedManyWithoutOwnerInput
+  checkIns?: Prisma.CheckInCreateNestedManyWithoutActorMemberInput
+  okrAuditEvents?: Prisma.OkrAuditEventCreateNestedManyWithoutActorMemberInput
   teamMemberships?: Prisma.TeamMemberCreateNestedManyWithoutMemberInput
   competencies?: Prisma.CompetencyCreateNestedManyWithoutMemberInput
 }
@@ -299,6 +307,8 @@ export type MemberUncheckedCreateInput = {
   seniority?: $Enums.Seniority | null
   createdAt?: Date | string
   objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOwnerInput
+  checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutActorMemberInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedCreateNestedManyWithoutActorMemberInput
   teamMemberships?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutMemberInput
   competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutMemberInput
 }
@@ -313,6 +323,8 @@ export type MemberUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutMembersNestedInput
   objectives?: Prisma.ObjectiveUpdateManyWithoutOwnerNestedInput
+  checkIns?: Prisma.CheckInUpdateManyWithoutActorMemberNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUpdateManyWithoutActorMemberNestedInput
   teamMemberships?: Prisma.TeamMemberUpdateManyWithoutMemberNestedInput
   competencies?: Prisma.CompetencyUpdateManyWithoutMemberNestedInput
 }
@@ -327,6 +339,8 @@ export type MemberUncheckedUpdateInput = {
   seniority?: Prisma.NullableEnumSeniorityFieldUpdateOperationsInput | $Enums.Seniority | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOwnerNestedInput
+  checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutActorMemberNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedUpdateManyWithoutActorMemberNestedInput
   teamMemberships?: Prisma.TeamMemberUncheckedUpdateManyWithoutMemberNestedInput
   competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutMemberNestedInput
 }
@@ -485,6 +499,34 @@ export type MemberUpdateOneRequiredWithoutObjectivesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.MemberUpdateToOneWithWhereWithoutObjectivesInput, Prisma.MemberUpdateWithoutObjectivesInput>, Prisma.MemberUncheckedUpdateWithoutObjectivesInput>
 }
 
+export type MemberCreateNestedOneWithoutCheckInsInput = {
+  create?: Prisma.XOR<Prisma.MemberCreateWithoutCheckInsInput, Prisma.MemberUncheckedCreateWithoutCheckInsInput>
+  connectOrCreate?: Prisma.MemberCreateOrConnectWithoutCheckInsInput
+  connect?: Prisma.MemberWhereUniqueInput
+}
+
+export type MemberUpdateOneRequiredWithoutCheckInsNestedInput = {
+  create?: Prisma.XOR<Prisma.MemberCreateWithoutCheckInsInput, Prisma.MemberUncheckedCreateWithoutCheckInsInput>
+  connectOrCreate?: Prisma.MemberCreateOrConnectWithoutCheckInsInput
+  upsert?: Prisma.MemberUpsertWithoutCheckInsInput
+  connect?: Prisma.MemberWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.MemberUpdateToOneWithWhereWithoutCheckInsInput, Prisma.MemberUpdateWithoutCheckInsInput>, Prisma.MemberUncheckedUpdateWithoutCheckInsInput>
+}
+
+export type MemberCreateNestedOneWithoutOkrAuditEventsInput = {
+  create?: Prisma.XOR<Prisma.MemberCreateWithoutOkrAuditEventsInput, Prisma.MemberUncheckedCreateWithoutOkrAuditEventsInput>
+  connectOrCreate?: Prisma.MemberCreateOrConnectWithoutOkrAuditEventsInput
+  connect?: Prisma.MemberWhereUniqueInput
+}
+
+export type MemberUpdateOneRequiredWithoutOkrAuditEventsNestedInput = {
+  create?: Prisma.XOR<Prisma.MemberCreateWithoutOkrAuditEventsInput, Prisma.MemberUncheckedCreateWithoutOkrAuditEventsInput>
+  connectOrCreate?: Prisma.MemberCreateOrConnectWithoutOkrAuditEventsInput
+  upsert?: Prisma.MemberUpsertWithoutOkrAuditEventsInput
+  connect?: Prisma.MemberWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.MemberUpdateToOneWithWhereWithoutOkrAuditEventsInput, Prisma.MemberUpdateWithoutOkrAuditEventsInput>, Prisma.MemberUncheckedUpdateWithoutOkrAuditEventsInput>
+}
+
 export type MemberCreateNestedOneWithoutTeamMembershipsInput = {
   create?: Prisma.XOR<Prisma.MemberCreateWithoutTeamMembershipsInput, Prisma.MemberUncheckedCreateWithoutTeamMembershipsInput>
   connectOrCreate?: Prisma.MemberCreateOrConnectWithoutTeamMembershipsInput
@@ -522,6 +564,8 @@ export type MemberCreateWithoutOrganizationInput = {
   seniority?: $Enums.Seniority | null
   createdAt?: Date | string
   objectives?: Prisma.ObjectiveCreateNestedManyWithoutOwnerInput
+  checkIns?: Prisma.CheckInCreateNestedManyWithoutActorMemberInput
+  okrAuditEvents?: Prisma.OkrAuditEventCreateNestedManyWithoutActorMemberInput
   teamMemberships?: Prisma.TeamMemberCreateNestedManyWithoutMemberInput
   competencies?: Prisma.CompetencyCreateNestedManyWithoutMemberInput
 }
@@ -535,6 +579,8 @@ export type MemberUncheckedCreateWithoutOrganizationInput = {
   seniority?: $Enums.Seniority | null
   createdAt?: Date | string
   objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOwnerInput
+  checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutActorMemberInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedCreateNestedManyWithoutActorMemberInput
   teamMemberships?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutMemberInput
   competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutMemberInput
 }
@@ -588,6 +634,8 @@ export type MemberCreateWithoutObjectivesInput = {
   seniority?: $Enums.Seniority | null
   createdAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutMembersInput
+  checkIns?: Prisma.CheckInCreateNestedManyWithoutActorMemberInput
+  okrAuditEvents?: Prisma.OkrAuditEventCreateNestedManyWithoutActorMemberInput
   teamMemberships?: Prisma.TeamMemberCreateNestedManyWithoutMemberInput
   competencies?: Prisma.CompetencyCreateNestedManyWithoutMemberInput
 }
@@ -601,6 +649,8 @@ export type MemberUncheckedCreateWithoutObjectivesInput = {
   clerkUserId?: string | null
   seniority?: $Enums.Seniority | null
   createdAt?: Date | string
+  checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutActorMemberInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedCreateNestedManyWithoutActorMemberInput
   teamMemberships?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutMemberInput
   competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutMemberInput
 }
@@ -630,6 +680,8 @@ export type MemberUpdateWithoutObjectivesInput = {
   seniority?: Prisma.NullableEnumSeniorityFieldUpdateOperationsInput | $Enums.Seniority | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutMembersNestedInput
+  checkIns?: Prisma.CheckInUpdateManyWithoutActorMemberNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUpdateManyWithoutActorMemberNestedInput
   teamMemberships?: Prisma.TeamMemberUpdateManyWithoutMemberNestedInput
   competencies?: Prisma.CompetencyUpdateManyWithoutMemberNestedInput
 }
@@ -643,6 +695,160 @@ export type MemberUncheckedUpdateWithoutObjectivesInput = {
   clerkUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   seniority?: Prisma.NullableEnumSeniorityFieldUpdateOperationsInput | $Enums.Seniority | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutActorMemberNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedUpdateManyWithoutActorMemberNestedInput
+  teamMemberships?: Prisma.TeamMemberUncheckedUpdateManyWithoutMemberNestedInput
+  competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutMemberNestedInput
+}
+
+export type MemberCreateWithoutCheckInsInput = {
+  id?: string
+  email: string
+  name: string
+  role: $Enums.MemberRole
+  clerkUserId?: string | null
+  seniority?: $Enums.Seniority | null
+  createdAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutMembersInput
+  objectives?: Prisma.ObjectiveCreateNestedManyWithoutOwnerInput
+  okrAuditEvents?: Prisma.OkrAuditEventCreateNestedManyWithoutActorMemberInput
+  teamMemberships?: Prisma.TeamMemberCreateNestedManyWithoutMemberInput
+  competencies?: Prisma.CompetencyCreateNestedManyWithoutMemberInput
+}
+
+export type MemberUncheckedCreateWithoutCheckInsInput = {
+  id?: string
+  organizationId: string
+  email: string
+  name: string
+  role: $Enums.MemberRole
+  clerkUserId?: string | null
+  seniority?: $Enums.Seniority | null
+  createdAt?: Date | string
+  objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOwnerInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedCreateNestedManyWithoutActorMemberInput
+  teamMemberships?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutMemberInput
+  competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutMemberInput
+}
+
+export type MemberCreateOrConnectWithoutCheckInsInput = {
+  where: Prisma.MemberWhereUniqueInput
+  create: Prisma.XOR<Prisma.MemberCreateWithoutCheckInsInput, Prisma.MemberUncheckedCreateWithoutCheckInsInput>
+}
+
+export type MemberUpsertWithoutCheckInsInput = {
+  update: Prisma.XOR<Prisma.MemberUpdateWithoutCheckInsInput, Prisma.MemberUncheckedUpdateWithoutCheckInsInput>
+  create: Prisma.XOR<Prisma.MemberCreateWithoutCheckInsInput, Prisma.MemberUncheckedCreateWithoutCheckInsInput>
+  where?: Prisma.MemberWhereInput
+}
+
+export type MemberUpdateToOneWithWhereWithoutCheckInsInput = {
+  where?: Prisma.MemberWhereInput
+  data: Prisma.XOR<Prisma.MemberUpdateWithoutCheckInsInput, Prisma.MemberUncheckedUpdateWithoutCheckInsInput>
+}
+
+export type MemberUpdateWithoutCheckInsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumMemberRoleFieldUpdateOperationsInput | $Enums.MemberRole
+  clerkUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seniority?: Prisma.NullableEnumSeniorityFieldUpdateOperationsInput | $Enums.Seniority | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutMembersNestedInput
+  objectives?: Prisma.ObjectiveUpdateManyWithoutOwnerNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUpdateManyWithoutActorMemberNestedInput
+  teamMemberships?: Prisma.TeamMemberUpdateManyWithoutMemberNestedInput
+  competencies?: Prisma.CompetencyUpdateManyWithoutMemberNestedInput
+}
+
+export type MemberUncheckedUpdateWithoutCheckInsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumMemberRoleFieldUpdateOperationsInput | $Enums.MemberRole
+  clerkUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seniority?: Prisma.NullableEnumSeniorityFieldUpdateOperationsInput | $Enums.Seniority | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOwnerNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedUpdateManyWithoutActorMemberNestedInput
+  teamMemberships?: Prisma.TeamMemberUncheckedUpdateManyWithoutMemberNestedInput
+  competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutMemberNestedInput
+}
+
+export type MemberCreateWithoutOkrAuditEventsInput = {
+  id?: string
+  email: string
+  name: string
+  role: $Enums.MemberRole
+  clerkUserId?: string | null
+  seniority?: $Enums.Seniority | null
+  createdAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutMembersInput
+  objectives?: Prisma.ObjectiveCreateNestedManyWithoutOwnerInput
+  checkIns?: Prisma.CheckInCreateNestedManyWithoutActorMemberInput
+  teamMemberships?: Prisma.TeamMemberCreateNestedManyWithoutMemberInput
+  competencies?: Prisma.CompetencyCreateNestedManyWithoutMemberInput
+}
+
+export type MemberUncheckedCreateWithoutOkrAuditEventsInput = {
+  id?: string
+  organizationId: string
+  email: string
+  name: string
+  role: $Enums.MemberRole
+  clerkUserId?: string | null
+  seniority?: $Enums.Seniority | null
+  createdAt?: Date | string
+  objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOwnerInput
+  checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutActorMemberInput
+  teamMemberships?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutMemberInput
+  competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutMemberInput
+}
+
+export type MemberCreateOrConnectWithoutOkrAuditEventsInput = {
+  where: Prisma.MemberWhereUniqueInput
+  create: Prisma.XOR<Prisma.MemberCreateWithoutOkrAuditEventsInput, Prisma.MemberUncheckedCreateWithoutOkrAuditEventsInput>
+}
+
+export type MemberUpsertWithoutOkrAuditEventsInput = {
+  update: Prisma.XOR<Prisma.MemberUpdateWithoutOkrAuditEventsInput, Prisma.MemberUncheckedUpdateWithoutOkrAuditEventsInput>
+  create: Prisma.XOR<Prisma.MemberCreateWithoutOkrAuditEventsInput, Prisma.MemberUncheckedCreateWithoutOkrAuditEventsInput>
+  where?: Prisma.MemberWhereInput
+}
+
+export type MemberUpdateToOneWithWhereWithoutOkrAuditEventsInput = {
+  where?: Prisma.MemberWhereInput
+  data: Prisma.XOR<Prisma.MemberUpdateWithoutOkrAuditEventsInput, Prisma.MemberUncheckedUpdateWithoutOkrAuditEventsInput>
+}
+
+export type MemberUpdateWithoutOkrAuditEventsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumMemberRoleFieldUpdateOperationsInput | $Enums.MemberRole
+  clerkUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seniority?: Prisma.NullableEnumSeniorityFieldUpdateOperationsInput | $Enums.Seniority | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutMembersNestedInput
+  objectives?: Prisma.ObjectiveUpdateManyWithoutOwnerNestedInput
+  checkIns?: Prisma.CheckInUpdateManyWithoutActorMemberNestedInput
+  teamMemberships?: Prisma.TeamMemberUpdateManyWithoutMemberNestedInput
+  competencies?: Prisma.CompetencyUpdateManyWithoutMemberNestedInput
+}
+
+export type MemberUncheckedUpdateWithoutOkrAuditEventsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumMemberRoleFieldUpdateOperationsInput | $Enums.MemberRole
+  clerkUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seniority?: Prisma.NullableEnumSeniorityFieldUpdateOperationsInput | $Enums.Seniority | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOwnerNestedInput
+  checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutActorMemberNestedInput
   teamMemberships?: Prisma.TeamMemberUncheckedUpdateManyWithoutMemberNestedInput
   competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutMemberNestedInput
 }
@@ -657,6 +863,8 @@ export type MemberCreateWithoutTeamMembershipsInput = {
   createdAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutMembersInput
   objectives?: Prisma.ObjectiveCreateNestedManyWithoutOwnerInput
+  checkIns?: Prisma.CheckInCreateNestedManyWithoutActorMemberInput
+  okrAuditEvents?: Prisma.OkrAuditEventCreateNestedManyWithoutActorMemberInput
   competencies?: Prisma.CompetencyCreateNestedManyWithoutMemberInput
 }
 
@@ -670,6 +878,8 @@ export type MemberUncheckedCreateWithoutTeamMembershipsInput = {
   seniority?: $Enums.Seniority | null
   createdAt?: Date | string
   objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOwnerInput
+  checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutActorMemberInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedCreateNestedManyWithoutActorMemberInput
   competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutMemberInput
 }
 
@@ -699,6 +909,8 @@ export type MemberUpdateWithoutTeamMembershipsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutMembersNestedInput
   objectives?: Prisma.ObjectiveUpdateManyWithoutOwnerNestedInput
+  checkIns?: Prisma.CheckInUpdateManyWithoutActorMemberNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUpdateManyWithoutActorMemberNestedInput
   competencies?: Prisma.CompetencyUpdateManyWithoutMemberNestedInput
 }
 
@@ -712,6 +924,8 @@ export type MemberUncheckedUpdateWithoutTeamMembershipsInput = {
   seniority?: Prisma.NullableEnumSeniorityFieldUpdateOperationsInput | $Enums.Seniority | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOwnerNestedInput
+  checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutActorMemberNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedUpdateManyWithoutActorMemberNestedInput
   competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutMemberNestedInput
 }
 
@@ -725,6 +939,8 @@ export type MemberCreateWithoutCompetenciesInput = {
   createdAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutMembersInput
   objectives?: Prisma.ObjectiveCreateNestedManyWithoutOwnerInput
+  checkIns?: Prisma.CheckInCreateNestedManyWithoutActorMemberInput
+  okrAuditEvents?: Prisma.OkrAuditEventCreateNestedManyWithoutActorMemberInput
   teamMemberships?: Prisma.TeamMemberCreateNestedManyWithoutMemberInput
 }
 
@@ -738,6 +954,8 @@ export type MemberUncheckedCreateWithoutCompetenciesInput = {
   seniority?: $Enums.Seniority | null
   createdAt?: Date | string
   objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOwnerInput
+  checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutActorMemberInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedCreateNestedManyWithoutActorMemberInput
   teamMemberships?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutMemberInput
 }
 
@@ -767,6 +985,8 @@ export type MemberUpdateWithoutCompetenciesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutMembersNestedInput
   objectives?: Prisma.ObjectiveUpdateManyWithoutOwnerNestedInput
+  checkIns?: Prisma.CheckInUpdateManyWithoutActorMemberNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUpdateManyWithoutActorMemberNestedInput
   teamMemberships?: Prisma.TeamMemberUpdateManyWithoutMemberNestedInput
 }
 
@@ -780,6 +1000,8 @@ export type MemberUncheckedUpdateWithoutCompetenciesInput = {
   seniority?: Prisma.NullableEnumSeniorityFieldUpdateOperationsInput | $Enums.Seniority | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOwnerNestedInput
+  checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutActorMemberNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedUpdateManyWithoutActorMemberNestedInput
   teamMemberships?: Prisma.TeamMemberUncheckedUpdateManyWithoutMemberNestedInput
 }
 
@@ -802,6 +1024,8 @@ export type MemberUpdateWithoutOrganizationInput = {
   seniority?: Prisma.NullableEnumSeniorityFieldUpdateOperationsInput | $Enums.Seniority | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   objectives?: Prisma.ObjectiveUpdateManyWithoutOwnerNestedInput
+  checkIns?: Prisma.CheckInUpdateManyWithoutActorMemberNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUpdateManyWithoutActorMemberNestedInput
   teamMemberships?: Prisma.TeamMemberUpdateManyWithoutMemberNestedInput
   competencies?: Prisma.CompetencyUpdateManyWithoutMemberNestedInput
 }
@@ -815,6 +1039,8 @@ export type MemberUncheckedUpdateWithoutOrganizationInput = {
   seniority?: Prisma.NullableEnumSeniorityFieldUpdateOperationsInput | $Enums.Seniority | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOwnerNestedInput
+  checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutActorMemberNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedUpdateManyWithoutActorMemberNestedInput
   teamMemberships?: Prisma.TeamMemberUncheckedUpdateManyWithoutMemberNestedInput
   competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutMemberNestedInput
 }
@@ -836,12 +1062,16 @@ export type MemberUncheckedUpdateManyWithoutOrganizationInput = {
 
 export type MemberCountOutputType = {
   objectives: number
+  checkIns: number
+  okrAuditEvents: number
   teamMemberships: number
   competencies: number
 }
 
 export type MemberCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   objectives?: boolean | MemberCountOutputTypeCountObjectivesArgs
+  checkIns?: boolean | MemberCountOutputTypeCountCheckInsArgs
+  okrAuditEvents?: boolean | MemberCountOutputTypeCountOkrAuditEventsArgs
   teamMemberships?: boolean | MemberCountOutputTypeCountTeamMembershipsArgs
   competencies?: boolean | MemberCountOutputTypeCountCompetenciesArgs
 }
@@ -861,6 +1091,20 @@ export type MemberCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Exten
  */
 export type MemberCountOutputTypeCountObjectivesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.ObjectiveWhereInput
+}
+
+/**
+ * MemberCountOutputType without action
+ */
+export type MemberCountOutputTypeCountCheckInsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CheckInWhereInput
+}
+
+/**
+ * MemberCountOutputType without action
+ */
+export type MemberCountOutputTypeCountOkrAuditEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.OkrAuditEventWhereInput
 }
 
 /**
@@ -889,6 +1133,8 @@ export type MemberSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   createdAt?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   objectives?: boolean | Prisma.Member$objectivesArgs<ExtArgs>
+  checkIns?: boolean | Prisma.Member$checkInsArgs<ExtArgs>
+  okrAuditEvents?: boolean | Prisma.Member$okrAuditEventsArgs<ExtArgs>
   teamMemberships?: boolean | Prisma.Member$teamMembershipsArgs<ExtArgs>
   competencies?: boolean | Prisma.Member$competenciesArgs<ExtArgs>
   _count?: boolean | Prisma.MemberCountOutputTypeDefaultArgs<ExtArgs>
@@ -933,6 +1179,8 @@ export type MemberOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
 export type MemberInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   objectives?: boolean | Prisma.Member$objectivesArgs<ExtArgs>
+  checkIns?: boolean | Prisma.Member$checkInsArgs<ExtArgs>
+  okrAuditEvents?: boolean | Prisma.Member$okrAuditEventsArgs<ExtArgs>
   teamMemberships?: boolean | Prisma.Member$teamMembershipsArgs<ExtArgs>
   competencies?: boolean | Prisma.Member$competenciesArgs<ExtArgs>
   _count?: boolean | Prisma.MemberCountOutputTypeDefaultArgs<ExtArgs>
@@ -949,6 +1197,8 @@ export type $MemberPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
   objects: {
     organization: Prisma.$OrganizationPayload<ExtArgs>
     objectives: Prisma.$ObjectivePayload<ExtArgs>[]
+    checkIns: Prisma.$CheckInPayload<ExtArgs>[]
+    okrAuditEvents: Prisma.$OkrAuditEventPayload<ExtArgs>[]
     teamMemberships: Prisma.$TeamMemberPayload<ExtArgs>[]
     competencies: Prisma.$CompetencyPayload<ExtArgs>[]
   }
@@ -1357,6 +1607,8 @@ export interface Prisma__MemberClient<T, Null = never, ExtArgs extends runtime.T
   readonly [Symbol.toStringTag]: "PrismaPromise"
   organization<T extends Prisma.OrganizationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrganizationDefaultArgs<ExtArgs>>): Prisma.Prisma__OrganizationClient<runtime.Types.Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   objectives<T extends Prisma.Member$objectivesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Member$objectivesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ObjectivePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  checkIns<T extends Prisma.Member$checkInsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Member$checkInsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CheckInPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  okrAuditEvents<T extends Prisma.Member$okrAuditEventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Member$okrAuditEventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OkrAuditEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   teamMemberships<T extends Prisma.Member$teamMembershipsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Member$teamMembershipsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TeamMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   competencies<T extends Prisma.Member$competenciesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Member$competenciesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CompetencyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
@@ -1818,6 +2070,54 @@ export type Member$objectivesArgs<ExtArgs extends runtime.Types.Extensions.Inter
   take?: number
   skip?: number
   distinct?: Prisma.ObjectiveScalarFieldEnum | Prisma.ObjectiveScalarFieldEnum[]
+}
+
+/**
+ * Member.checkIns
+ */
+export type Member$checkInsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CheckIn
+   */
+  select?: Prisma.CheckInSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CheckIn
+   */
+  omit?: Prisma.CheckInOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CheckInInclude<ExtArgs> | null
+  where?: Prisma.CheckInWhereInput
+  orderBy?: Prisma.CheckInOrderByWithRelationInput | Prisma.CheckInOrderByWithRelationInput[]
+  cursor?: Prisma.CheckInWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CheckInScalarFieldEnum | Prisma.CheckInScalarFieldEnum[]
+}
+
+/**
+ * Member.okrAuditEvents
+ */
+export type Member$okrAuditEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the OkrAuditEvent
+   */
+  select?: Prisma.OkrAuditEventSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the OkrAuditEvent
+   */
+  omit?: Prisma.OkrAuditEventOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OkrAuditEventInclude<ExtArgs> | null
+  where?: Prisma.OkrAuditEventWhereInput
+  orderBy?: Prisma.OkrAuditEventOrderByWithRelationInput | Prisma.OkrAuditEventOrderByWithRelationInput[]
+  cursor?: Prisma.OkrAuditEventWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.OkrAuditEventScalarFieldEnum | Prisma.OkrAuditEventScalarFieldEnum[]
 }
 
 /**

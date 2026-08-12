@@ -31,6 +31,13 @@ export type ObjectiveMinAggregateOutputType = {
   level: $Enums.ObjectiveLevel | null
   status: $Enums.ObjectiveStatus | null
   ownerId: string | null
+  teamId: string | null
+  parentObjectiveId: string | null
+  cycleId: string | null
+  sourceObjectiveId: string | null
+  publishedAt: Date | null
+  closedAt: Date | null
+  archivedAt: Date | null
   createdAt: Date | null
 }
 
@@ -41,6 +48,13 @@ export type ObjectiveMaxAggregateOutputType = {
   level: $Enums.ObjectiveLevel | null
   status: $Enums.ObjectiveStatus | null
   ownerId: string | null
+  teamId: string | null
+  parentObjectiveId: string | null
+  cycleId: string | null
+  sourceObjectiveId: string | null
+  publishedAt: Date | null
+  closedAt: Date | null
+  archivedAt: Date | null
   createdAt: Date | null
 }
 
@@ -51,6 +65,13 @@ export type ObjectiveCountAggregateOutputType = {
   level: number
   status: number
   ownerId: number
+  teamId: number
+  parentObjectiveId: number
+  cycleId: number
+  sourceObjectiveId: number
+  publishedAt: number
+  closedAt: number
+  archivedAt: number
   createdAt: number
   _all: number
 }
@@ -63,6 +84,13 @@ export type ObjectiveMinAggregateInputType = {
   level?: true
   status?: true
   ownerId?: true
+  teamId?: true
+  parentObjectiveId?: true
+  cycleId?: true
+  sourceObjectiveId?: true
+  publishedAt?: true
+  closedAt?: true
+  archivedAt?: true
   createdAt?: true
 }
 
@@ -73,6 +101,13 @@ export type ObjectiveMaxAggregateInputType = {
   level?: true
   status?: true
   ownerId?: true
+  teamId?: true
+  parentObjectiveId?: true
+  cycleId?: true
+  sourceObjectiveId?: true
+  publishedAt?: true
+  closedAt?: true
+  archivedAt?: true
   createdAt?: true
 }
 
@@ -83,6 +118,13 @@ export type ObjectiveCountAggregateInputType = {
   level?: true
   status?: true
   ownerId?: true
+  teamId?: true
+  parentObjectiveId?: true
+  cycleId?: true
+  sourceObjectiveId?: true
+  publishedAt?: true
+  closedAt?: true
+  archivedAt?: true
   createdAt?: true
   _all?: true
 }
@@ -166,6 +208,13 @@ export type ObjectiveGroupByOutputType = {
   level: $Enums.ObjectiveLevel
   status: $Enums.ObjectiveStatus
   ownerId: string
+  teamId: string | null
+  parentObjectiveId: string | null
+  cycleId: string | null
+  sourceObjectiveId: string | null
+  publishedAt: Date | null
+  closedAt: Date | null
+  archivedAt: Date | null
   createdAt: Date
   _count: ObjectiveCountAggregateOutputType | null
   _min: ObjectiveMinAggregateOutputType | null
@@ -197,10 +246,24 @@ export type ObjectiveWhereInput = {
   level?: Prisma.EnumObjectiveLevelFilter<"Objective"> | $Enums.ObjectiveLevel
   status?: Prisma.EnumObjectiveStatusFilter<"Objective"> | $Enums.ObjectiveStatus
   ownerId?: Prisma.UuidFilter<"Objective"> | string
+  teamId?: Prisma.UuidNullableFilter<"Objective"> | string | null
+  parentObjectiveId?: Prisma.UuidNullableFilter<"Objective"> | string | null
+  cycleId?: Prisma.UuidNullableFilter<"Objective"> | string | null
+  sourceObjectiveId?: Prisma.UuidNullableFilter<"Objective"> | string | null
+  publishedAt?: Prisma.DateTimeNullableFilter<"Objective"> | Date | string | null
+  closedAt?: Prisma.DateTimeNullableFilter<"Objective"> | Date | string | null
+  archivedAt?: Prisma.DateTimeNullableFilter<"Objective"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Objective"> | Date | string
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
   owner?: Prisma.XOR<Prisma.MemberScalarRelationFilter, Prisma.MemberWhereInput>
+  team?: Prisma.XOR<Prisma.TeamNullableScalarRelationFilter, Prisma.TeamWhereInput> | null
+  parentObjective?: Prisma.XOR<Prisma.ObjectiveNullableScalarRelationFilter, Prisma.ObjectiveWhereInput> | null
+  childObjectives?: Prisma.ObjectiveListRelationFilter
+  cycle?: Prisma.XOR<Prisma.OkrCycleNullableScalarRelationFilter, Prisma.OkrCycleWhereInput> | null
+  sourceObjective?: Prisma.XOR<Prisma.ObjectiveNullableScalarRelationFilter, Prisma.ObjectiveWhereInput> | null
+  carriedObjectives?: Prisma.ObjectiveListRelationFilter
   keyResults?: Prisma.KeyResultListRelationFilter
+  cadenceConfigs?: Prisma.OkrCadenceConfigListRelationFilter
   projectLinks?: Prisma.ProjectObjectiveListRelationFilter
   leverLinks?: Prisma.NorthStarLeverListRelationFilter
   pillarLinks?: Prisma.PillarObjectiveListRelationFilter
@@ -213,10 +276,24 @@ export type ObjectiveOrderByWithRelationInput = {
   level?: Prisma.SortOrder
   status?: Prisma.SortOrder
   ownerId?: Prisma.SortOrder
+  teamId?: Prisma.SortOrderInput | Prisma.SortOrder
+  parentObjectiveId?: Prisma.SortOrderInput | Prisma.SortOrder
+  cycleId?: Prisma.SortOrderInput | Prisma.SortOrder
+  sourceObjectiveId?: Prisma.SortOrderInput | Prisma.SortOrder
+  publishedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  closedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  archivedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   organization?: Prisma.OrganizationOrderByWithRelationInput
   owner?: Prisma.MemberOrderByWithRelationInput
+  team?: Prisma.TeamOrderByWithRelationInput
+  parentObjective?: Prisma.ObjectiveOrderByWithRelationInput
+  childObjectives?: Prisma.ObjectiveOrderByRelationAggregateInput
+  cycle?: Prisma.OkrCycleOrderByWithRelationInput
+  sourceObjective?: Prisma.ObjectiveOrderByWithRelationInput
+  carriedObjectives?: Prisma.ObjectiveOrderByRelationAggregateInput
   keyResults?: Prisma.KeyResultOrderByRelationAggregateInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigOrderByRelationAggregateInput
   projectLinks?: Prisma.ProjectObjectiveOrderByRelationAggregateInput
   leverLinks?: Prisma.NorthStarLeverOrderByRelationAggregateInput
   pillarLinks?: Prisma.PillarObjectiveOrderByRelationAggregateInput
@@ -232,10 +309,24 @@ export type ObjectiveWhereUniqueInput = Prisma.AtLeast<{
   level?: Prisma.EnumObjectiveLevelFilter<"Objective"> | $Enums.ObjectiveLevel
   status?: Prisma.EnumObjectiveStatusFilter<"Objective"> | $Enums.ObjectiveStatus
   ownerId?: Prisma.UuidFilter<"Objective"> | string
+  teamId?: Prisma.UuidNullableFilter<"Objective"> | string | null
+  parentObjectiveId?: Prisma.UuidNullableFilter<"Objective"> | string | null
+  cycleId?: Prisma.UuidNullableFilter<"Objective"> | string | null
+  sourceObjectiveId?: Prisma.UuidNullableFilter<"Objective"> | string | null
+  publishedAt?: Prisma.DateTimeNullableFilter<"Objective"> | Date | string | null
+  closedAt?: Prisma.DateTimeNullableFilter<"Objective"> | Date | string | null
+  archivedAt?: Prisma.DateTimeNullableFilter<"Objective"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Objective"> | Date | string
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
   owner?: Prisma.XOR<Prisma.MemberScalarRelationFilter, Prisma.MemberWhereInput>
+  team?: Prisma.XOR<Prisma.TeamNullableScalarRelationFilter, Prisma.TeamWhereInput> | null
+  parentObjective?: Prisma.XOR<Prisma.ObjectiveNullableScalarRelationFilter, Prisma.ObjectiveWhereInput> | null
+  childObjectives?: Prisma.ObjectiveListRelationFilter
+  cycle?: Prisma.XOR<Prisma.OkrCycleNullableScalarRelationFilter, Prisma.OkrCycleWhereInput> | null
+  sourceObjective?: Prisma.XOR<Prisma.ObjectiveNullableScalarRelationFilter, Prisma.ObjectiveWhereInput> | null
+  carriedObjectives?: Prisma.ObjectiveListRelationFilter
   keyResults?: Prisma.KeyResultListRelationFilter
+  cadenceConfigs?: Prisma.OkrCadenceConfigListRelationFilter
   projectLinks?: Prisma.ProjectObjectiveListRelationFilter
   leverLinks?: Prisma.NorthStarLeverListRelationFilter
   pillarLinks?: Prisma.PillarObjectiveListRelationFilter
@@ -248,6 +339,13 @@ export type ObjectiveOrderByWithAggregationInput = {
   level?: Prisma.SortOrder
   status?: Prisma.SortOrder
   ownerId?: Prisma.SortOrder
+  teamId?: Prisma.SortOrderInput | Prisma.SortOrder
+  parentObjectiveId?: Prisma.SortOrderInput | Prisma.SortOrder
+  cycleId?: Prisma.SortOrderInput | Prisma.SortOrder
+  sourceObjectiveId?: Prisma.SortOrderInput | Prisma.SortOrder
+  publishedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  closedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  archivedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.ObjectiveCountOrderByAggregateInput
   _max?: Prisma.ObjectiveMaxOrderByAggregateInput
@@ -264,6 +362,13 @@ export type ObjectiveScalarWhereWithAggregatesInput = {
   level?: Prisma.EnumObjectiveLevelWithAggregatesFilter<"Objective"> | $Enums.ObjectiveLevel
   status?: Prisma.EnumObjectiveStatusWithAggregatesFilter<"Objective"> | $Enums.ObjectiveStatus
   ownerId?: Prisma.UuidWithAggregatesFilter<"Objective"> | string
+  teamId?: Prisma.UuidNullableWithAggregatesFilter<"Objective"> | string | null
+  parentObjectiveId?: Prisma.UuidNullableWithAggregatesFilter<"Objective"> | string | null
+  cycleId?: Prisma.UuidNullableWithAggregatesFilter<"Objective"> | string | null
+  sourceObjectiveId?: Prisma.UuidNullableWithAggregatesFilter<"Objective"> | string | null
+  publishedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Objective"> | Date | string | null
+  closedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Objective"> | Date | string | null
+  archivedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Objective"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Objective"> | Date | string
 }
 
@@ -272,10 +377,20 @@ export type ObjectiveCreateInput = {
   title: string
   level: $Enums.ObjectiveLevel
   status?: $Enums.ObjectiveStatus
+  publishedAt?: Date | string | null
+  closedAt?: Date | string | null
+  archivedAt?: Date | string | null
   createdAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutObjectivesInput
   owner: Prisma.MemberCreateNestedOneWithoutObjectivesInput
+  team?: Prisma.TeamCreateNestedOneWithoutObjectivesInput
+  parentObjective?: Prisma.ObjectiveCreateNestedOneWithoutChildObjectivesInput
+  childObjectives?: Prisma.ObjectiveCreateNestedManyWithoutParentObjectiveInput
+  cycle?: Prisma.OkrCycleCreateNestedOneWithoutObjectivesInput
+  sourceObjective?: Prisma.ObjectiveCreateNestedOneWithoutCarriedObjectivesInput
+  carriedObjectives?: Prisma.ObjectiveCreateNestedManyWithoutSourceObjectiveInput
   keyResults?: Prisma.KeyResultCreateNestedManyWithoutObjectiveInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigCreateNestedManyWithoutObjectiveInput
   projectLinks?: Prisma.ProjectObjectiveCreateNestedManyWithoutObjectiveInput
   leverLinks?: Prisma.NorthStarLeverCreateNestedManyWithoutObjectiveInput
   pillarLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutObjectiveInput
@@ -288,8 +403,18 @@ export type ObjectiveUncheckedCreateInput = {
   level: $Enums.ObjectiveLevel
   status?: $Enums.ObjectiveStatus
   ownerId: string
+  teamId?: string | null
+  parentObjectiveId?: string | null
+  cycleId?: string | null
+  sourceObjectiveId?: string | null
+  publishedAt?: Date | string | null
+  closedAt?: Date | string | null
+  archivedAt?: Date | string | null
   createdAt?: Date | string
+  childObjectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutParentObjectiveInput
+  carriedObjectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutSourceObjectiveInput
   keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutObjectiveInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigUncheckedCreateNestedManyWithoutObjectiveInput
   projectLinks?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutObjectiveInput
   leverLinks?: Prisma.NorthStarLeverUncheckedCreateNestedManyWithoutObjectiveInput
   pillarLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutObjectiveInput
@@ -300,10 +425,20 @@ export type ObjectiveUpdateInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   level?: Prisma.EnumObjectiveLevelFieldUpdateOperationsInput | $Enums.ObjectiveLevel
   status?: Prisma.EnumObjectiveStatusFieldUpdateOperationsInput | $Enums.ObjectiveStatus
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutObjectivesNestedInput
   owner?: Prisma.MemberUpdateOneRequiredWithoutObjectivesNestedInput
+  team?: Prisma.TeamUpdateOneWithoutObjectivesNestedInput
+  parentObjective?: Prisma.ObjectiveUpdateOneWithoutChildObjectivesNestedInput
+  childObjectives?: Prisma.ObjectiveUpdateManyWithoutParentObjectiveNestedInput
+  cycle?: Prisma.OkrCycleUpdateOneWithoutObjectivesNestedInput
+  sourceObjective?: Prisma.ObjectiveUpdateOneWithoutCarriedObjectivesNestedInput
+  carriedObjectives?: Prisma.ObjectiveUpdateManyWithoutSourceObjectiveNestedInput
   keyResults?: Prisma.KeyResultUpdateManyWithoutObjectiveNestedInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigUpdateManyWithoutObjectiveNestedInput
   projectLinks?: Prisma.ProjectObjectiveUpdateManyWithoutObjectiveNestedInput
   leverLinks?: Prisma.NorthStarLeverUpdateManyWithoutObjectiveNestedInput
   pillarLinks?: Prisma.PillarObjectiveUpdateManyWithoutObjectiveNestedInput
@@ -316,8 +451,18 @@ export type ObjectiveUncheckedUpdateInput = {
   level?: Prisma.EnumObjectiveLevelFieldUpdateOperationsInput | $Enums.ObjectiveLevel
   status?: Prisma.EnumObjectiveStatusFieldUpdateOperationsInput | $Enums.ObjectiveStatus
   ownerId?: Prisma.StringFieldUpdateOperationsInput | string
+  teamId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentObjectiveId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cycleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceObjectiveId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  childObjectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutParentObjectiveNestedInput
+  carriedObjectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutSourceObjectiveNestedInput
   keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutObjectiveNestedInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigUncheckedUpdateManyWithoutObjectiveNestedInput
   projectLinks?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutObjectiveNestedInput
   leverLinks?: Prisma.NorthStarLeverUncheckedUpdateManyWithoutObjectiveNestedInput
   pillarLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutObjectiveNestedInput
@@ -330,6 +475,13 @@ export type ObjectiveCreateManyInput = {
   level: $Enums.ObjectiveLevel
   status?: $Enums.ObjectiveStatus
   ownerId: string
+  teamId?: string | null
+  parentObjectiveId?: string | null
+  cycleId?: string | null
+  sourceObjectiveId?: string | null
+  publishedAt?: Date | string | null
+  closedAt?: Date | string | null
+  archivedAt?: Date | string | null
   createdAt?: Date | string
 }
 
@@ -338,6 +490,9 @@ export type ObjectiveUpdateManyMutationInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   level?: Prisma.EnumObjectiveLevelFieldUpdateOperationsInput | $Enums.ObjectiveLevel
   status?: Prisma.EnumObjectiveStatusFieldUpdateOperationsInput | $Enums.ObjectiveStatus
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -348,6 +503,13 @@ export type ObjectiveUncheckedUpdateManyInput = {
   level?: Prisma.EnumObjectiveLevelFieldUpdateOperationsInput | $Enums.ObjectiveLevel
   status?: Prisma.EnumObjectiveStatusFieldUpdateOperationsInput | $Enums.ObjectiveStatus
   ownerId?: Prisma.StringFieldUpdateOperationsInput | string
+  teamId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentObjectiveId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cycleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceObjectiveId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -378,6 +540,13 @@ export type ObjectiveCountOrderByAggregateInput = {
   level?: Prisma.SortOrder
   status?: Prisma.SortOrder
   ownerId?: Prisma.SortOrder
+  teamId?: Prisma.SortOrder
+  parentObjectiveId?: Prisma.SortOrder
+  cycleId?: Prisma.SortOrder
+  sourceObjectiveId?: Prisma.SortOrder
+  publishedAt?: Prisma.SortOrder
+  closedAt?: Prisma.SortOrder
+  archivedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -388,6 +557,13 @@ export type ObjectiveMaxOrderByAggregateInput = {
   level?: Prisma.SortOrder
   status?: Prisma.SortOrder
   ownerId?: Prisma.SortOrder
+  teamId?: Prisma.SortOrder
+  parentObjectiveId?: Prisma.SortOrder
+  cycleId?: Prisma.SortOrder
+  sourceObjectiveId?: Prisma.SortOrder
+  publishedAt?: Prisma.SortOrder
+  closedAt?: Prisma.SortOrder
+  archivedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -398,6 +574,13 @@ export type ObjectiveMinOrderByAggregateInput = {
   level?: Prisma.SortOrder
   status?: Prisma.SortOrder
   ownerId?: Prisma.SortOrder
+  teamId?: Prisma.SortOrder
+  parentObjectiveId?: Prisma.SortOrder
+  cycleId?: Prisma.SortOrder
+  sourceObjectiveId?: Prisma.SortOrder
+  publishedAt?: Prisma.SortOrder
+  closedAt?: Prisma.SortOrder
+  archivedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -515,12 +698,128 @@ export type ObjectiveUpdateOneRequiredWithoutPillarLinksNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ObjectiveUpdateToOneWithWhereWithoutPillarLinksInput, Prisma.ObjectiveUpdateWithoutPillarLinksInput>, Prisma.ObjectiveUncheckedUpdateWithoutPillarLinksInput>
 }
 
+export type ObjectiveCreateNestedOneWithoutChildObjectivesInput = {
+  create?: Prisma.XOR<Prisma.ObjectiveCreateWithoutChildObjectivesInput, Prisma.ObjectiveUncheckedCreateWithoutChildObjectivesInput>
+  connectOrCreate?: Prisma.ObjectiveCreateOrConnectWithoutChildObjectivesInput
+  connect?: Prisma.ObjectiveWhereUniqueInput
+}
+
+export type ObjectiveCreateNestedManyWithoutParentObjectiveInput = {
+  create?: Prisma.XOR<Prisma.ObjectiveCreateWithoutParentObjectiveInput, Prisma.ObjectiveUncheckedCreateWithoutParentObjectiveInput> | Prisma.ObjectiveCreateWithoutParentObjectiveInput[] | Prisma.ObjectiveUncheckedCreateWithoutParentObjectiveInput[]
+  connectOrCreate?: Prisma.ObjectiveCreateOrConnectWithoutParentObjectiveInput | Prisma.ObjectiveCreateOrConnectWithoutParentObjectiveInput[]
+  createMany?: Prisma.ObjectiveCreateManyParentObjectiveInputEnvelope
+  connect?: Prisma.ObjectiveWhereUniqueInput | Prisma.ObjectiveWhereUniqueInput[]
+}
+
+export type ObjectiveCreateNestedOneWithoutCarriedObjectivesInput = {
+  create?: Prisma.XOR<Prisma.ObjectiveCreateWithoutCarriedObjectivesInput, Prisma.ObjectiveUncheckedCreateWithoutCarriedObjectivesInput>
+  connectOrCreate?: Prisma.ObjectiveCreateOrConnectWithoutCarriedObjectivesInput
+  connect?: Prisma.ObjectiveWhereUniqueInput
+}
+
+export type ObjectiveCreateNestedManyWithoutSourceObjectiveInput = {
+  create?: Prisma.XOR<Prisma.ObjectiveCreateWithoutSourceObjectiveInput, Prisma.ObjectiveUncheckedCreateWithoutSourceObjectiveInput> | Prisma.ObjectiveCreateWithoutSourceObjectiveInput[] | Prisma.ObjectiveUncheckedCreateWithoutSourceObjectiveInput[]
+  connectOrCreate?: Prisma.ObjectiveCreateOrConnectWithoutSourceObjectiveInput | Prisma.ObjectiveCreateOrConnectWithoutSourceObjectiveInput[]
+  createMany?: Prisma.ObjectiveCreateManySourceObjectiveInputEnvelope
+  connect?: Prisma.ObjectiveWhereUniqueInput | Prisma.ObjectiveWhereUniqueInput[]
+}
+
+export type ObjectiveUncheckedCreateNestedManyWithoutParentObjectiveInput = {
+  create?: Prisma.XOR<Prisma.ObjectiveCreateWithoutParentObjectiveInput, Prisma.ObjectiveUncheckedCreateWithoutParentObjectiveInput> | Prisma.ObjectiveCreateWithoutParentObjectiveInput[] | Prisma.ObjectiveUncheckedCreateWithoutParentObjectiveInput[]
+  connectOrCreate?: Prisma.ObjectiveCreateOrConnectWithoutParentObjectiveInput | Prisma.ObjectiveCreateOrConnectWithoutParentObjectiveInput[]
+  createMany?: Prisma.ObjectiveCreateManyParentObjectiveInputEnvelope
+  connect?: Prisma.ObjectiveWhereUniqueInput | Prisma.ObjectiveWhereUniqueInput[]
+}
+
+export type ObjectiveUncheckedCreateNestedManyWithoutSourceObjectiveInput = {
+  create?: Prisma.XOR<Prisma.ObjectiveCreateWithoutSourceObjectiveInput, Prisma.ObjectiveUncheckedCreateWithoutSourceObjectiveInput> | Prisma.ObjectiveCreateWithoutSourceObjectiveInput[] | Prisma.ObjectiveUncheckedCreateWithoutSourceObjectiveInput[]
+  connectOrCreate?: Prisma.ObjectiveCreateOrConnectWithoutSourceObjectiveInput | Prisma.ObjectiveCreateOrConnectWithoutSourceObjectiveInput[]
+  createMany?: Prisma.ObjectiveCreateManySourceObjectiveInputEnvelope
+  connect?: Prisma.ObjectiveWhereUniqueInput | Prisma.ObjectiveWhereUniqueInput[]
+}
+
 export type EnumObjectiveLevelFieldUpdateOperationsInput = {
   set?: $Enums.ObjectiveLevel
 }
 
 export type EnumObjectiveStatusFieldUpdateOperationsInput = {
   set?: $Enums.ObjectiveStatus
+}
+
+export type ObjectiveUpdateOneWithoutChildObjectivesNestedInput = {
+  create?: Prisma.XOR<Prisma.ObjectiveCreateWithoutChildObjectivesInput, Prisma.ObjectiveUncheckedCreateWithoutChildObjectivesInput>
+  connectOrCreate?: Prisma.ObjectiveCreateOrConnectWithoutChildObjectivesInput
+  upsert?: Prisma.ObjectiveUpsertWithoutChildObjectivesInput
+  disconnect?: Prisma.ObjectiveWhereInput | boolean
+  delete?: Prisma.ObjectiveWhereInput | boolean
+  connect?: Prisma.ObjectiveWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ObjectiveUpdateToOneWithWhereWithoutChildObjectivesInput, Prisma.ObjectiveUpdateWithoutChildObjectivesInput>, Prisma.ObjectiveUncheckedUpdateWithoutChildObjectivesInput>
+}
+
+export type ObjectiveUpdateManyWithoutParentObjectiveNestedInput = {
+  create?: Prisma.XOR<Prisma.ObjectiveCreateWithoutParentObjectiveInput, Prisma.ObjectiveUncheckedCreateWithoutParentObjectiveInput> | Prisma.ObjectiveCreateWithoutParentObjectiveInput[] | Prisma.ObjectiveUncheckedCreateWithoutParentObjectiveInput[]
+  connectOrCreate?: Prisma.ObjectiveCreateOrConnectWithoutParentObjectiveInput | Prisma.ObjectiveCreateOrConnectWithoutParentObjectiveInput[]
+  upsert?: Prisma.ObjectiveUpsertWithWhereUniqueWithoutParentObjectiveInput | Prisma.ObjectiveUpsertWithWhereUniqueWithoutParentObjectiveInput[]
+  createMany?: Prisma.ObjectiveCreateManyParentObjectiveInputEnvelope
+  set?: Prisma.ObjectiveWhereUniqueInput | Prisma.ObjectiveWhereUniqueInput[]
+  disconnect?: Prisma.ObjectiveWhereUniqueInput | Prisma.ObjectiveWhereUniqueInput[]
+  delete?: Prisma.ObjectiveWhereUniqueInput | Prisma.ObjectiveWhereUniqueInput[]
+  connect?: Prisma.ObjectiveWhereUniqueInput | Prisma.ObjectiveWhereUniqueInput[]
+  update?: Prisma.ObjectiveUpdateWithWhereUniqueWithoutParentObjectiveInput | Prisma.ObjectiveUpdateWithWhereUniqueWithoutParentObjectiveInput[]
+  updateMany?: Prisma.ObjectiveUpdateManyWithWhereWithoutParentObjectiveInput | Prisma.ObjectiveUpdateManyWithWhereWithoutParentObjectiveInput[]
+  deleteMany?: Prisma.ObjectiveScalarWhereInput | Prisma.ObjectiveScalarWhereInput[]
+}
+
+export type ObjectiveUpdateOneWithoutCarriedObjectivesNestedInput = {
+  create?: Prisma.XOR<Prisma.ObjectiveCreateWithoutCarriedObjectivesInput, Prisma.ObjectiveUncheckedCreateWithoutCarriedObjectivesInput>
+  connectOrCreate?: Prisma.ObjectiveCreateOrConnectWithoutCarriedObjectivesInput
+  upsert?: Prisma.ObjectiveUpsertWithoutCarriedObjectivesInput
+  disconnect?: Prisma.ObjectiveWhereInput | boolean
+  delete?: Prisma.ObjectiveWhereInput | boolean
+  connect?: Prisma.ObjectiveWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ObjectiveUpdateToOneWithWhereWithoutCarriedObjectivesInput, Prisma.ObjectiveUpdateWithoutCarriedObjectivesInput>, Prisma.ObjectiveUncheckedUpdateWithoutCarriedObjectivesInput>
+}
+
+export type ObjectiveUpdateManyWithoutSourceObjectiveNestedInput = {
+  create?: Prisma.XOR<Prisma.ObjectiveCreateWithoutSourceObjectiveInput, Prisma.ObjectiveUncheckedCreateWithoutSourceObjectiveInput> | Prisma.ObjectiveCreateWithoutSourceObjectiveInput[] | Prisma.ObjectiveUncheckedCreateWithoutSourceObjectiveInput[]
+  connectOrCreate?: Prisma.ObjectiveCreateOrConnectWithoutSourceObjectiveInput | Prisma.ObjectiveCreateOrConnectWithoutSourceObjectiveInput[]
+  upsert?: Prisma.ObjectiveUpsertWithWhereUniqueWithoutSourceObjectiveInput | Prisma.ObjectiveUpsertWithWhereUniqueWithoutSourceObjectiveInput[]
+  createMany?: Prisma.ObjectiveCreateManySourceObjectiveInputEnvelope
+  set?: Prisma.ObjectiveWhereUniqueInput | Prisma.ObjectiveWhereUniqueInput[]
+  disconnect?: Prisma.ObjectiveWhereUniqueInput | Prisma.ObjectiveWhereUniqueInput[]
+  delete?: Prisma.ObjectiveWhereUniqueInput | Prisma.ObjectiveWhereUniqueInput[]
+  connect?: Prisma.ObjectiveWhereUniqueInput | Prisma.ObjectiveWhereUniqueInput[]
+  update?: Prisma.ObjectiveUpdateWithWhereUniqueWithoutSourceObjectiveInput | Prisma.ObjectiveUpdateWithWhereUniqueWithoutSourceObjectiveInput[]
+  updateMany?: Prisma.ObjectiveUpdateManyWithWhereWithoutSourceObjectiveInput | Prisma.ObjectiveUpdateManyWithWhereWithoutSourceObjectiveInput[]
+  deleteMany?: Prisma.ObjectiveScalarWhereInput | Prisma.ObjectiveScalarWhereInput[]
+}
+
+export type ObjectiveUncheckedUpdateManyWithoutParentObjectiveNestedInput = {
+  create?: Prisma.XOR<Prisma.ObjectiveCreateWithoutParentObjectiveInput, Prisma.ObjectiveUncheckedCreateWithoutParentObjectiveInput> | Prisma.ObjectiveCreateWithoutParentObjectiveInput[] | Prisma.ObjectiveUncheckedCreateWithoutParentObjectiveInput[]
+  connectOrCreate?: Prisma.ObjectiveCreateOrConnectWithoutParentObjectiveInput | Prisma.ObjectiveCreateOrConnectWithoutParentObjectiveInput[]
+  upsert?: Prisma.ObjectiveUpsertWithWhereUniqueWithoutParentObjectiveInput | Prisma.ObjectiveUpsertWithWhereUniqueWithoutParentObjectiveInput[]
+  createMany?: Prisma.ObjectiveCreateManyParentObjectiveInputEnvelope
+  set?: Prisma.ObjectiveWhereUniqueInput | Prisma.ObjectiveWhereUniqueInput[]
+  disconnect?: Prisma.ObjectiveWhereUniqueInput | Prisma.ObjectiveWhereUniqueInput[]
+  delete?: Prisma.ObjectiveWhereUniqueInput | Prisma.ObjectiveWhereUniqueInput[]
+  connect?: Prisma.ObjectiveWhereUniqueInput | Prisma.ObjectiveWhereUniqueInput[]
+  update?: Prisma.ObjectiveUpdateWithWhereUniqueWithoutParentObjectiveInput | Prisma.ObjectiveUpdateWithWhereUniqueWithoutParentObjectiveInput[]
+  updateMany?: Prisma.ObjectiveUpdateManyWithWhereWithoutParentObjectiveInput | Prisma.ObjectiveUpdateManyWithWhereWithoutParentObjectiveInput[]
+  deleteMany?: Prisma.ObjectiveScalarWhereInput | Prisma.ObjectiveScalarWhereInput[]
+}
+
+export type ObjectiveUncheckedUpdateManyWithoutSourceObjectiveNestedInput = {
+  create?: Prisma.XOR<Prisma.ObjectiveCreateWithoutSourceObjectiveInput, Prisma.ObjectiveUncheckedCreateWithoutSourceObjectiveInput> | Prisma.ObjectiveCreateWithoutSourceObjectiveInput[] | Prisma.ObjectiveUncheckedCreateWithoutSourceObjectiveInput[]
+  connectOrCreate?: Prisma.ObjectiveCreateOrConnectWithoutSourceObjectiveInput | Prisma.ObjectiveCreateOrConnectWithoutSourceObjectiveInput[]
+  upsert?: Prisma.ObjectiveUpsertWithWhereUniqueWithoutSourceObjectiveInput | Prisma.ObjectiveUpsertWithWhereUniqueWithoutSourceObjectiveInput[]
+  createMany?: Prisma.ObjectiveCreateManySourceObjectiveInputEnvelope
+  set?: Prisma.ObjectiveWhereUniqueInput | Prisma.ObjectiveWhereUniqueInput[]
+  disconnect?: Prisma.ObjectiveWhereUniqueInput | Prisma.ObjectiveWhereUniqueInput[]
+  delete?: Prisma.ObjectiveWhereUniqueInput | Prisma.ObjectiveWhereUniqueInput[]
+  connect?: Prisma.ObjectiveWhereUniqueInput | Prisma.ObjectiveWhereUniqueInput[]
+  update?: Prisma.ObjectiveUpdateWithWhereUniqueWithoutSourceObjectiveInput | Prisma.ObjectiveUpdateWithWhereUniqueWithoutSourceObjectiveInput[]
+  updateMany?: Prisma.ObjectiveUpdateManyWithWhereWithoutSourceObjectiveInput | Prisma.ObjectiveUpdateManyWithWhereWithoutSourceObjectiveInput[]
+  deleteMany?: Prisma.ObjectiveScalarWhereInput | Prisma.ObjectiveScalarWhereInput[]
 }
 
 export type ObjectiveCreateNestedOneWithoutKeyResultsInput = {
@@ -535,6 +834,106 @@ export type ObjectiveUpdateOneRequiredWithoutKeyResultsNestedInput = {
   upsert?: Prisma.ObjectiveUpsertWithoutKeyResultsInput
   connect?: Prisma.ObjectiveWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.ObjectiveUpdateToOneWithWhereWithoutKeyResultsInput, Prisma.ObjectiveUpdateWithoutKeyResultsInput>, Prisma.ObjectiveUncheckedUpdateWithoutKeyResultsInput>
+}
+
+export type ObjectiveCreateNestedManyWithoutCycleInput = {
+  create?: Prisma.XOR<Prisma.ObjectiveCreateWithoutCycleInput, Prisma.ObjectiveUncheckedCreateWithoutCycleInput> | Prisma.ObjectiveCreateWithoutCycleInput[] | Prisma.ObjectiveUncheckedCreateWithoutCycleInput[]
+  connectOrCreate?: Prisma.ObjectiveCreateOrConnectWithoutCycleInput | Prisma.ObjectiveCreateOrConnectWithoutCycleInput[]
+  createMany?: Prisma.ObjectiveCreateManyCycleInputEnvelope
+  connect?: Prisma.ObjectiveWhereUniqueInput | Prisma.ObjectiveWhereUniqueInput[]
+}
+
+export type ObjectiveUncheckedCreateNestedManyWithoutCycleInput = {
+  create?: Prisma.XOR<Prisma.ObjectiveCreateWithoutCycleInput, Prisma.ObjectiveUncheckedCreateWithoutCycleInput> | Prisma.ObjectiveCreateWithoutCycleInput[] | Prisma.ObjectiveUncheckedCreateWithoutCycleInput[]
+  connectOrCreate?: Prisma.ObjectiveCreateOrConnectWithoutCycleInput | Prisma.ObjectiveCreateOrConnectWithoutCycleInput[]
+  createMany?: Prisma.ObjectiveCreateManyCycleInputEnvelope
+  connect?: Prisma.ObjectiveWhereUniqueInput | Prisma.ObjectiveWhereUniqueInput[]
+}
+
+export type ObjectiveUpdateManyWithoutCycleNestedInput = {
+  create?: Prisma.XOR<Prisma.ObjectiveCreateWithoutCycleInput, Prisma.ObjectiveUncheckedCreateWithoutCycleInput> | Prisma.ObjectiveCreateWithoutCycleInput[] | Prisma.ObjectiveUncheckedCreateWithoutCycleInput[]
+  connectOrCreate?: Prisma.ObjectiveCreateOrConnectWithoutCycleInput | Prisma.ObjectiveCreateOrConnectWithoutCycleInput[]
+  upsert?: Prisma.ObjectiveUpsertWithWhereUniqueWithoutCycleInput | Prisma.ObjectiveUpsertWithWhereUniqueWithoutCycleInput[]
+  createMany?: Prisma.ObjectiveCreateManyCycleInputEnvelope
+  set?: Prisma.ObjectiveWhereUniqueInput | Prisma.ObjectiveWhereUniqueInput[]
+  disconnect?: Prisma.ObjectiveWhereUniqueInput | Prisma.ObjectiveWhereUniqueInput[]
+  delete?: Prisma.ObjectiveWhereUniqueInput | Prisma.ObjectiveWhereUniqueInput[]
+  connect?: Prisma.ObjectiveWhereUniqueInput | Prisma.ObjectiveWhereUniqueInput[]
+  update?: Prisma.ObjectiveUpdateWithWhereUniqueWithoutCycleInput | Prisma.ObjectiveUpdateWithWhereUniqueWithoutCycleInput[]
+  updateMany?: Prisma.ObjectiveUpdateManyWithWhereWithoutCycleInput | Prisma.ObjectiveUpdateManyWithWhereWithoutCycleInput[]
+  deleteMany?: Prisma.ObjectiveScalarWhereInput | Prisma.ObjectiveScalarWhereInput[]
+}
+
+export type ObjectiveUncheckedUpdateManyWithoutCycleNestedInput = {
+  create?: Prisma.XOR<Prisma.ObjectiveCreateWithoutCycleInput, Prisma.ObjectiveUncheckedCreateWithoutCycleInput> | Prisma.ObjectiveCreateWithoutCycleInput[] | Prisma.ObjectiveUncheckedCreateWithoutCycleInput[]
+  connectOrCreate?: Prisma.ObjectiveCreateOrConnectWithoutCycleInput | Prisma.ObjectiveCreateOrConnectWithoutCycleInput[]
+  upsert?: Prisma.ObjectiveUpsertWithWhereUniqueWithoutCycleInput | Prisma.ObjectiveUpsertWithWhereUniqueWithoutCycleInput[]
+  createMany?: Prisma.ObjectiveCreateManyCycleInputEnvelope
+  set?: Prisma.ObjectiveWhereUniqueInput | Prisma.ObjectiveWhereUniqueInput[]
+  disconnect?: Prisma.ObjectiveWhereUniqueInput | Prisma.ObjectiveWhereUniqueInput[]
+  delete?: Prisma.ObjectiveWhereUniqueInput | Prisma.ObjectiveWhereUniqueInput[]
+  connect?: Prisma.ObjectiveWhereUniqueInput | Prisma.ObjectiveWhereUniqueInput[]
+  update?: Prisma.ObjectiveUpdateWithWhereUniqueWithoutCycleInput | Prisma.ObjectiveUpdateWithWhereUniqueWithoutCycleInput[]
+  updateMany?: Prisma.ObjectiveUpdateManyWithWhereWithoutCycleInput | Prisma.ObjectiveUpdateManyWithWhereWithoutCycleInput[]
+  deleteMany?: Prisma.ObjectiveScalarWhereInput | Prisma.ObjectiveScalarWhereInput[]
+}
+
+export type ObjectiveCreateNestedOneWithoutCadenceConfigsInput = {
+  create?: Prisma.XOR<Prisma.ObjectiveCreateWithoutCadenceConfigsInput, Prisma.ObjectiveUncheckedCreateWithoutCadenceConfigsInput>
+  connectOrCreate?: Prisma.ObjectiveCreateOrConnectWithoutCadenceConfigsInput
+  connect?: Prisma.ObjectiveWhereUniqueInput
+}
+
+export type ObjectiveUpdateOneWithoutCadenceConfigsNestedInput = {
+  create?: Prisma.XOR<Prisma.ObjectiveCreateWithoutCadenceConfigsInput, Prisma.ObjectiveUncheckedCreateWithoutCadenceConfigsInput>
+  connectOrCreate?: Prisma.ObjectiveCreateOrConnectWithoutCadenceConfigsInput
+  upsert?: Prisma.ObjectiveUpsertWithoutCadenceConfigsInput
+  disconnect?: Prisma.ObjectiveWhereInput | boolean
+  delete?: Prisma.ObjectiveWhereInput | boolean
+  connect?: Prisma.ObjectiveWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ObjectiveUpdateToOneWithWhereWithoutCadenceConfigsInput, Prisma.ObjectiveUpdateWithoutCadenceConfigsInput>, Prisma.ObjectiveUncheckedUpdateWithoutCadenceConfigsInput>
+}
+
+export type ObjectiveCreateNestedManyWithoutTeamInput = {
+  create?: Prisma.XOR<Prisma.ObjectiveCreateWithoutTeamInput, Prisma.ObjectiveUncheckedCreateWithoutTeamInput> | Prisma.ObjectiveCreateWithoutTeamInput[] | Prisma.ObjectiveUncheckedCreateWithoutTeamInput[]
+  connectOrCreate?: Prisma.ObjectiveCreateOrConnectWithoutTeamInput | Prisma.ObjectiveCreateOrConnectWithoutTeamInput[]
+  createMany?: Prisma.ObjectiveCreateManyTeamInputEnvelope
+  connect?: Prisma.ObjectiveWhereUniqueInput | Prisma.ObjectiveWhereUniqueInput[]
+}
+
+export type ObjectiveUncheckedCreateNestedManyWithoutTeamInput = {
+  create?: Prisma.XOR<Prisma.ObjectiveCreateWithoutTeamInput, Prisma.ObjectiveUncheckedCreateWithoutTeamInput> | Prisma.ObjectiveCreateWithoutTeamInput[] | Prisma.ObjectiveUncheckedCreateWithoutTeamInput[]
+  connectOrCreate?: Prisma.ObjectiveCreateOrConnectWithoutTeamInput | Prisma.ObjectiveCreateOrConnectWithoutTeamInput[]
+  createMany?: Prisma.ObjectiveCreateManyTeamInputEnvelope
+  connect?: Prisma.ObjectiveWhereUniqueInput | Prisma.ObjectiveWhereUniqueInput[]
+}
+
+export type ObjectiveUpdateManyWithoutTeamNestedInput = {
+  create?: Prisma.XOR<Prisma.ObjectiveCreateWithoutTeamInput, Prisma.ObjectiveUncheckedCreateWithoutTeamInput> | Prisma.ObjectiveCreateWithoutTeamInput[] | Prisma.ObjectiveUncheckedCreateWithoutTeamInput[]
+  connectOrCreate?: Prisma.ObjectiveCreateOrConnectWithoutTeamInput | Prisma.ObjectiveCreateOrConnectWithoutTeamInput[]
+  upsert?: Prisma.ObjectiveUpsertWithWhereUniqueWithoutTeamInput | Prisma.ObjectiveUpsertWithWhereUniqueWithoutTeamInput[]
+  createMany?: Prisma.ObjectiveCreateManyTeamInputEnvelope
+  set?: Prisma.ObjectiveWhereUniqueInput | Prisma.ObjectiveWhereUniqueInput[]
+  disconnect?: Prisma.ObjectiveWhereUniqueInput | Prisma.ObjectiveWhereUniqueInput[]
+  delete?: Prisma.ObjectiveWhereUniqueInput | Prisma.ObjectiveWhereUniqueInput[]
+  connect?: Prisma.ObjectiveWhereUniqueInput | Prisma.ObjectiveWhereUniqueInput[]
+  update?: Prisma.ObjectiveUpdateWithWhereUniqueWithoutTeamInput | Prisma.ObjectiveUpdateWithWhereUniqueWithoutTeamInput[]
+  updateMany?: Prisma.ObjectiveUpdateManyWithWhereWithoutTeamInput | Prisma.ObjectiveUpdateManyWithWhereWithoutTeamInput[]
+  deleteMany?: Prisma.ObjectiveScalarWhereInput | Prisma.ObjectiveScalarWhereInput[]
+}
+
+export type ObjectiveUncheckedUpdateManyWithoutTeamNestedInput = {
+  create?: Prisma.XOR<Prisma.ObjectiveCreateWithoutTeamInput, Prisma.ObjectiveUncheckedCreateWithoutTeamInput> | Prisma.ObjectiveCreateWithoutTeamInput[] | Prisma.ObjectiveUncheckedCreateWithoutTeamInput[]
+  connectOrCreate?: Prisma.ObjectiveCreateOrConnectWithoutTeamInput | Prisma.ObjectiveCreateOrConnectWithoutTeamInput[]
+  upsert?: Prisma.ObjectiveUpsertWithWhereUniqueWithoutTeamInput | Prisma.ObjectiveUpsertWithWhereUniqueWithoutTeamInput[]
+  createMany?: Prisma.ObjectiveCreateManyTeamInputEnvelope
+  set?: Prisma.ObjectiveWhereUniqueInput | Prisma.ObjectiveWhereUniqueInput[]
+  disconnect?: Prisma.ObjectiveWhereUniqueInput | Prisma.ObjectiveWhereUniqueInput[]
+  delete?: Prisma.ObjectiveWhereUniqueInput | Prisma.ObjectiveWhereUniqueInput[]
+  connect?: Prisma.ObjectiveWhereUniqueInput | Prisma.ObjectiveWhereUniqueInput[]
+  update?: Prisma.ObjectiveUpdateWithWhereUniqueWithoutTeamInput | Prisma.ObjectiveUpdateWithWhereUniqueWithoutTeamInput[]
+  updateMany?: Prisma.ObjectiveUpdateManyWithWhereWithoutTeamInput | Prisma.ObjectiveUpdateManyWithWhereWithoutTeamInput[]
+  deleteMany?: Prisma.ObjectiveScalarWhereInput | Prisma.ObjectiveScalarWhereInput[]
 }
 
 export type ObjectiveCreateNestedOneWithoutProjectLinksInput = {
@@ -556,9 +955,19 @@ export type ObjectiveCreateWithoutOrganizationInput = {
   title: string
   level: $Enums.ObjectiveLevel
   status?: $Enums.ObjectiveStatus
+  publishedAt?: Date | string | null
+  closedAt?: Date | string | null
+  archivedAt?: Date | string | null
   createdAt?: Date | string
   owner: Prisma.MemberCreateNestedOneWithoutObjectivesInput
+  team?: Prisma.TeamCreateNestedOneWithoutObjectivesInput
+  parentObjective?: Prisma.ObjectiveCreateNestedOneWithoutChildObjectivesInput
+  childObjectives?: Prisma.ObjectiveCreateNestedManyWithoutParentObjectiveInput
+  cycle?: Prisma.OkrCycleCreateNestedOneWithoutObjectivesInput
+  sourceObjective?: Prisma.ObjectiveCreateNestedOneWithoutCarriedObjectivesInput
+  carriedObjectives?: Prisma.ObjectiveCreateNestedManyWithoutSourceObjectiveInput
   keyResults?: Prisma.KeyResultCreateNestedManyWithoutObjectiveInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigCreateNestedManyWithoutObjectiveInput
   projectLinks?: Prisma.ProjectObjectiveCreateNestedManyWithoutObjectiveInput
   leverLinks?: Prisma.NorthStarLeverCreateNestedManyWithoutObjectiveInput
   pillarLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutObjectiveInput
@@ -570,8 +979,18 @@ export type ObjectiveUncheckedCreateWithoutOrganizationInput = {
   level: $Enums.ObjectiveLevel
   status?: $Enums.ObjectiveStatus
   ownerId: string
+  teamId?: string | null
+  parentObjectiveId?: string | null
+  cycleId?: string | null
+  sourceObjectiveId?: string | null
+  publishedAt?: Date | string | null
+  closedAt?: Date | string | null
+  archivedAt?: Date | string | null
   createdAt?: Date | string
+  childObjectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutParentObjectiveInput
+  carriedObjectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutSourceObjectiveInput
   keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutObjectiveInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigUncheckedCreateNestedManyWithoutObjectiveInput
   projectLinks?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutObjectiveInput
   leverLinks?: Prisma.NorthStarLeverUncheckedCreateNestedManyWithoutObjectiveInput
   pillarLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutObjectiveInput
@@ -613,6 +1032,13 @@ export type ObjectiveScalarWhereInput = {
   level?: Prisma.EnumObjectiveLevelFilter<"Objective"> | $Enums.ObjectiveLevel
   status?: Prisma.EnumObjectiveStatusFilter<"Objective"> | $Enums.ObjectiveStatus
   ownerId?: Prisma.UuidFilter<"Objective"> | string
+  teamId?: Prisma.UuidNullableFilter<"Objective"> | string | null
+  parentObjectiveId?: Prisma.UuidNullableFilter<"Objective"> | string | null
+  cycleId?: Prisma.UuidNullableFilter<"Objective"> | string | null
+  sourceObjectiveId?: Prisma.UuidNullableFilter<"Objective"> | string | null
+  publishedAt?: Prisma.DateTimeNullableFilter<"Objective"> | Date | string | null
+  closedAt?: Prisma.DateTimeNullableFilter<"Objective"> | Date | string | null
+  archivedAt?: Prisma.DateTimeNullableFilter<"Objective"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Objective"> | Date | string
 }
 
@@ -621,9 +1047,19 @@ export type ObjectiveCreateWithoutOwnerInput = {
   title: string
   level: $Enums.ObjectiveLevel
   status?: $Enums.ObjectiveStatus
+  publishedAt?: Date | string | null
+  closedAt?: Date | string | null
+  archivedAt?: Date | string | null
   createdAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutObjectivesInput
+  team?: Prisma.TeamCreateNestedOneWithoutObjectivesInput
+  parentObjective?: Prisma.ObjectiveCreateNestedOneWithoutChildObjectivesInput
+  childObjectives?: Prisma.ObjectiveCreateNestedManyWithoutParentObjectiveInput
+  cycle?: Prisma.OkrCycleCreateNestedOneWithoutObjectivesInput
+  sourceObjective?: Prisma.ObjectiveCreateNestedOneWithoutCarriedObjectivesInput
+  carriedObjectives?: Prisma.ObjectiveCreateNestedManyWithoutSourceObjectiveInput
   keyResults?: Prisma.KeyResultCreateNestedManyWithoutObjectiveInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigCreateNestedManyWithoutObjectiveInput
   projectLinks?: Prisma.ProjectObjectiveCreateNestedManyWithoutObjectiveInput
   leverLinks?: Prisma.NorthStarLeverCreateNestedManyWithoutObjectiveInput
   pillarLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutObjectiveInput
@@ -635,8 +1071,18 @@ export type ObjectiveUncheckedCreateWithoutOwnerInput = {
   title: string
   level: $Enums.ObjectiveLevel
   status?: $Enums.ObjectiveStatus
+  teamId?: string | null
+  parentObjectiveId?: string | null
+  cycleId?: string | null
+  sourceObjectiveId?: string | null
+  publishedAt?: Date | string | null
+  closedAt?: Date | string | null
+  archivedAt?: Date | string | null
   createdAt?: Date | string
+  childObjectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutParentObjectiveInput
+  carriedObjectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutSourceObjectiveInput
   keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutObjectiveInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigUncheckedCreateNestedManyWithoutObjectiveInput
   projectLinks?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutObjectiveInput
   leverLinks?: Prisma.NorthStarLeverUncheckedCreateNestedManyWithoutObjectiveInput
   pillarLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutObjectiveInput
@@ -673,10 +1119,20 @@ export type ObjectiveCreateWithoutLeverLinksInput = {
   title: string
   level: $Enums.ObjectiveLevel
   status?: $Enums.ObjectiveStatus
+  publishedAt?: Date | string | null
+  closedAt?: Date | string | null
+  archivedAt?: Date | string | null
   createdAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutObjectivesInput
   owner: Prisma.MemberCreateNestedOneWithoutObjectivesInput
+  team?: Prisma.TeamCreateNestedOneWithoutObjectivesInput
+  parentObjective?: Prisma.ObjectiveCreateNestedOneWithoutChildObjectivesInput
+  childObjectives?: Prisma.ObjectiveCreateNestedManyWithoutParentObjectiveInput
+  cycle?: Prisma.OkrCycleCreateNestedOneWithoutObjectivesInput
+  sourceObjective?: Prisma.ObjectiveCreateNestedOneWithoutCarriedObjectivesInput
+  carriedObjectives?: Prisma.ObjectiveCreateNestedManyWithoutSourceObjectiveInput
   keyResults?: Prisma.KeyResultCreateNestedManyWithoutObjectiveInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigCreateNestedManyWithoutObjectiveInput
   projectLinks?: Prisma.ProjectObjectiveCreateNestedManyWithoutObjectiveInput
   pillarLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutObjectiveInput
 }
@@ -688,8 +1144,18 @@ export type ObjectiveUncheckedCreateWithoutLeverLinksInput = {
   level: $Enums.ObjectiveLevel
   status?: $Enums.ObjectiveStatus
   ownerId: string
+  teamId?: string | null
+  parentObjectiveId?: string | null
+  cycleId?: string | null
+  sourceObjectiveId?: string | null
+  publishedAt?: Date | string | null
+  closedAt?: Date | string | null
+  archivedAt?: Date | string | null
   createdAt?: Date | string
+  childObjectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutParentObjectiveInput
+  carriedObjectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutSourceObjectiveInput
   keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutObjectiveInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigUncheckedCreateNestedManyWithoutObjectiveInput
   projectLinks?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutObjectiveInput
   pillarLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutObjectiveInput
 }
@@ -715,10 +1181,20 @@ export type ObjectiveUpdateWithoutLeverLinksInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   level?: Prisma.EnumObjectiveLevelFieldUpdateOperationsInput | $Enums.ObjectiveLevel
   status?: Prisma.EnumObjectiveStatusFieldUpdateOperationsInput | $Enums.ObjectiveStatus
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutObjectivesNestedInput
   owner?: Prisma.MemberUpdateOneRequiredWithoutObjectivesNestedInput
+  team?: Prisma.TeamUpdateOneWithoutObjectivesNestedInput
+  parentObjective?: Prisma.ObjectiveUpdateOneWithoutChildObjectivesNestedInput
+  childObjectives?: Prisma.ObjectiveUpdateManyWithoutParentObjectiveNestedInput
+  cycle?: Prisma.OkrCycleUpdateOneWithoutObjectivesNestedInput
+  sourceObjective?: Prisma.ObjectiveUpdateOneWithoutCarriedObjectivesNestedInput
+  carriedObjectives?: Prisma.ObjectiveUpdateManyWithoutSourceObjectiveNestedInput
   keyResults?: Prisma.KeyResultUpdateManyWithoutObjectiveNestedInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigUpdateManyWithoutObjectiveNestedInput
   projectLinks?: Prisma.ProjectObjectiveUpdateManyWithoutObjectiveNestedInput
   pillarLinks?: Prisma.PillarObjectiveUpdateManyWithoutObjectiveNestedInput
 }
@@ -730,8 +1206,18 @@ export type ObjectiveUncheckedUpdateWithoutLeverLinksInput = {
   level?: Prisma.EnumObjectiveLevelFieldUpdateOperationsInput | $Enums.ObjectiveLevel
   status?: Prisma.EnumObjectiveStatusFieldUpdateOperationsInput | $Enums.ObjectiveStatus
   ownerId?: Prisma.StringFieldUpdateOperationsInput | string
+  teamId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentObjectiveId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cycleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceObjectiveId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  childObjectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutParentObjectiveNestedInput
+  carriedObjectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutSourceObjectiveNestedInput
   keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutObjectiveNestedInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigUncheckedUpdateManyWithoutObjectiveNestedInput
   projectLinks?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutObjectiveNestedInput
   pillarLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutObjectiveNestedInput
 }
@@ -741,10 +1227,20 @@ export type ObjectiveCreateWithoutPillarLinksInput = {
   title: string
   level: $Enums.ObjectiveLevel
   status?: $Enums.ObjectiveStatus
+  publishedAt?: Date | string | null
+  closedAt?: Date | string | null
+  archivedAt?: Date | string | null
   createdAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutObjectivesInput
   owner: Prisma.MemberCreateNestedOneWithoutObjectivesInput
+  team?: Prisma.TeamCreateNestedOneWithoutObjectivesInput
+  parentObjective?: Prisma.ObjectiveCreateNestedOneWithoutChildObjectivesInput
+  childObjectives?: Prisma.ObjectiveCreateNestedManyWithoutParentObjectiveInput
+  cycle?: Prisma.OkrCycleCreateNestedOneWithoutObjectivesInput
+  sourceObjective?: Prisma.ObjectiveCreateNestedOneWithoutCarriedObjectivesInput
+  carriedObjectives?: Prisma.ObjectiveCreateNestedManyWithoutSourceObjectiveInput
   keyResults?: Prisma.KeyResultCreateNestedManyWithoutObjectiveInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigCreateNestedManyWithoutObjectiveInput
   projectLinks?: Prisma.ProjectObjectiveCreateNestedManyWithoutObjectiveInput
   leverLinks?: Prisma.NorthStarLeverCreateNestedManyWithoutObjectiveInput
 }
@@ -756,8 +1252,18 @@ export type ObjectiveUncheckedCreateWithoutPillarLinksInput = {
   level: $Enums.ObjectiveLevel
   status?: $Enums.ObjectiveStatus
   ownerId: string
+  teamId?: string | null
+  parentObjectiveId?: string | null
+  cycleId?: string | null
+  sourceObjectiveId?: string | null
+  publishedAt?: Date | string | null
+  closedAt?: Date | string | null
+  archivedAt?: Date | string | null
   createdAt?: Date | string
+  childObjectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutParentObjectiveInput
+  carriedObjectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutSourceObjectiveInput
   keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutObjectiveInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigUncheckedCreateNestedManyWithoutObjectiveInput
   projectLinks?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutObjectiveInput
   leverLinks?: Prisma.NorthStarLeverUncheckedCreateNestedManyWithoutObjectiveInput
 }
@@ -783,10 +1289,20 @@ export type ObjectiveUpdateWithoutPillarLinksInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   level?: Prisma.EnumObjectiveLevelFieldUpdateOperationsInput | $Enums.ObjectiveLevel
   status?: Prisma.EnumObjectiveStatusFieldUpdateOperationsInput | $Enums.ObjectiveStatus
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutObjectivesNestedInput
   owner?: Prisma.MemberUpdateOneRequiredWithoutObjectivesNestedInput
+  team?: Prisma.TeamUpdateOneWithoutObjectivesNestedInput
+  parentObjective?: Prisma.ObjectiveUpdateOneWithoutChildObjectivesNestedInput
+  childObjectives?: Prisma.ObjectiveUpdateManyWithoutParentObjectiveNestedInput
+  cycle?: Prisma.OkrCycleUpdateOneWithoutObjectivesNestedInput
+  sourceObjective?: Prisma.ObjectiveUpdateOneWithoutCarriedObjectivesNestedInput
+  carriedObjectives?: Prisma.ObjectiveUpdateManyWithoutSourceObjectiveNestedInput
   keyResults?: Prisma.KeyResultUpdateManyWithoutObjectiveNestedInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigUpdateManyWithoutObjectiveNestedInput
   projectLinks?: Prisma.ProjectObjectiveUpdateManyWithoutObjectiveNestedInput
   leverLinks?: Prisma.NorthStarLeverUpdateManyWithoutObjectiveNestedInput
 }
@@ -798,10 +1314,380 @@ export type ObjectiveUncheckedUpdateWithoutPillarLinksInput = {
   level?: Prisma.EnumObjectiveLevelFieldUpdateOperationsInput | $Enums.ObjectiveLevel
   status?: Prisma.EnumObjectiveStatusFieldUpdateOperationsInput | $Enums.ObjectiveStatus
   ownerId?: Prisma.StringFieldUpdateOperationsInput | string
+  teamId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentObjectiveId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cycleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceObjectiveId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  childObjectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutParentObjectiveNestedInput
+  carriedObjectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutSourceObjectiveNestedInput
   keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutObjectiveNestedInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigUncheckedUpdateManyWithoutObjectiveNestedInput
   projectLinks?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutObjectiveNestedInput
   leverLinks?: Prisma.NorthStarLeverUncheckedUpdateManyWithoutObjectiveNestedInput
+}
+
+export type ObjectiveCreateWithoutChildObjectivesInput = {
+  id?: string
+  title: string
+  level: $Enums.ObjectiveLevel
+  status?: $Enums.ObjectiveStatus
+  publishedAt?: Date | string | null
+  closedAt?: Date | string | null
+  archivedAt?: Date | string | null
+  createdAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutObjectivesInput
+  owner: Prisma.MemberCreateNestedOneWithoutObjectivesInput
+  team?: Prisma.TeamCreateNestedOneWithoutObjectivesInput
+  parentObjective?: Prisma.ObjectiveCreateNestedOneWithoutChildObjectivesInput
+  cycle?: Prisma.OkrCycleCreateNestedOneWithoutObjectivesInput
+  sourceObjective?: Prisma.ObjectiveCreateNestedOneWithoutCarriedObjectivesInput
+  carriedObjectives?: Prisma.ObjectiveCreateNestedManyWithoutSourceObjectiveInput
+  keyResults?: Prisma.KeyResultCreateNestedManyWithoutObjectiveInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigCreateNestedManyWithoutObjectiveInput
+  projectLinks?: Prisma.ProjectObjectiveCreateNestedManyWithoutObjectiveInput
+  leverLinks?: Prisma.NorthStarLeverCreateNestedManyWithoutObjectiveInput
+  pillarLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutObjectiveInput
+}
+
+export type ObjectiveUncheckedCreateWithoutChildObjectivesInput = {
+  id?: string
+  organizationId: string
+  title: string
+  level: $Enums.ObjectiveLevel
+  status?: $Enums.ObjectiveStatus
+  ownerId: string
+  teamId?: string | null
+  parentObjectiveId?: string | null
+  cycleId?: string | null
+  sourceObjectiveId?: string | null
+  publishedAt?: Date | string | null
+  closedAt?: Date | string | null
+  archivedAt?: Date | string | null
+  createdAt?: Date | string
+  carriedObjectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutSourceObjectiveInput
+  keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutObjectiveInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigUncheckedCreateNestedManyWithoutObjectiveInput
+  projectLinks?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutObjectiveInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedCreateNestedManyWithoutObjectiveInput
+  pillarLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutObjectiveInput
+}
+
+export type ObjectiveCreateOrConnectWithoutChildObjectivesInput = {
+  where: Prisma.ObjectiveWhereUniqueInput
+  create: Prisma.XOR<Prisma.ObjectiveCreateWithoutChildObjectivesInput, Prisma.ObjectiveUncheckedCreateWithoutChildObjectivesInput>
+}
+
+export type ObjectiveCreateWithoutParentObjectiveInput = {
+  id?: string
+  title: string
+  level: $Enums.ObjectiveLevel
+  status?: $Enums.ObjectiveStatus
+  publishedAt?: Date | string | null
+  closedAt?: Date | string | null
+  archivedAt?: Date | string | null
+  createdAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutObjectivesInput
+  owner: Prisma.MemberCreateNestedOneWithoutObjectivesInput
+  team?: Prisma.TeamCreateNestedOneWithoutObjectivesInput
+  childObjectives?: Prisma.ObjectiveCreateNestedManyWithoutParentObjectiveInput
+  cycle?: Prisma.OkrCycleCreateNestedOneWithoutObjectivesInput
+  sourceObjective?: Prisma.ObjectiveCreateNestedOneWithoutCarriedObjectivesInput
+  carriedObjectives?: Prisma.ObjectiveCreateNestedManyWithoutSourceObjectiveInput
+  keyResults?: Prisma.KeyResultCreateNestedManyWithoutObjectiveInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigCreateNestedManyWithoutObjectiveInput
+  projectLinks?: Prisma.ProjectObjectiveCreateNestedManyWithoutObjectiveInput
+  leverLinks?: Prisma.NorthStarLeverCreateNestedManyWithoutObjectiveInput
+  pillarLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutObjectiveInput
+}
+
+export type ObjectiveUncheckedCreateWithoutParentObjectiveInput = {
+  id?: string
+  organizationId: string
+  title: string
+  level: $Enums.ObjectiveLevel
+  status?: $Enums.ObjectiveStatus
+  ownerId: string
+  teamId?: string | null
+  cycleId?: string | null
+  sourceObjectiveId?: string | null
+  publishedAt?: Date | string | null
+  closedAt?: Date | string | null
+  archivedAt?: Date | string | null
+  createdAt?: Date | string
+  childObjectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutParentObjectiveInput
+  carriedObjectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutSourceObjectiveInput
+  keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutObjectiveInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigUncheckedCreateNestedManyWithoutObjectiveInput
+  projectLinks?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutObjectiveInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedCreateNestedManyWithoutObjectiveInput
+  pillarLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutObjectiveInput
+}
+
+export type ObjectiveCreateOrConnectWithoutParentObjectiveInput = {
+  where: Prisma.ObjectiveWhereUniqueInput
+  create: Prisma.XOR<Prisma.ObjectiveCreateWithoutParentObjectiveInput, Prisma.ObjectiveUncheckedCreateWithoutParentObjectiveInput>
+}
+
+export type ObjectiveCreateManyParentObjectiveInputEnvelope = {
+  data: Prisma.ObjectiveCreateManyParentObjectiveInput | Prisma.ObjectiveCreateManyParentObjectiveInput[]
+  skipDuplicates?: boolean
+}
+
+export type ObjectiveCreateWithoutCarriedObjectivesInput = {
+  id?: string
+  title: string
+  level: $Enums.ObjectiveLevel
+  status?: $Enums.ObjectiveStatus
+  publishedAt?: Date | string | null
+  closedAt?: Date | string | null
+  archivedAt?: Date | string | null
+  createdAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutObjectivesInput
+  owner: Prisma.MemberCreateNestedOneWithoutObjectivesInput
+  team?: Prisma.TeamCreateNestedOneWithoutObjectivesInput
+  parentObjective?: Prisma.ObjectiveCreateNestedOneWithoutChildObjectivesInput
+  childObjectives?: Prisma.ObjectiveCreateNestedManyWithoutParentObjectiveInput
+  cycle?: Prisma.OkrCycleCreateNestedOneWithoutObjectivesInput
+  sourceObjective?: Prisma.ObjectiveCreateNestedOneWithoutCarriedObjectivesInput
+  keyResults?: Prisma.KeyResultCreateNestedManyWithoutObjectiveInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigCreateNestedManyWithoutObjectiveInput
+  projectLinks?: Prisma.ProjectObjectiveCreateNestedManyWithoutObjectiveInput
+  leverLinks?: Prisma.NorthStarLeverCreateNestedManyWithoutObjectiveInput
+  pillarLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutObjectiveInput
+}
+
+export type ObjectiveUncheckedCreateWithoutCarriedObjectivesInput = {
+  id?: string
+  organizationId: string
+  title: string
+  level: $Enums.ObjectiveLevel
+  status?: $Enums.ObjectiveStatus
+  ownerId: string
+  teamId?: string | null
+  parentObjectiveId?: string | null
+  cycleId?: string | null
+  sourceObjectiveId?: string | null
+  publishedAt?: Date | string | null
+  closedAt?: Date | string | null
+  archivedAt?: Date | string | null
+  createdAt?: Date | string
+  childObjectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutParentObjectiveInput
+  keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutObjectiveInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigUncheckedCreateNestedManyWithoutObjectiveInput
+  projectLinks?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutObjectiveInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedCreateNestedManyWithoutObjectiveInput
+  pillarLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutObjectiveInput
+}
+
+export type ObjectiveCreateOrConnectWithoutCarriedObjectivesInput = {
+  where: Prisma.ObjectiveWhereUniqueInput
+  create: Prisma.XOR<Prisma.ObjectiveCreateWithoutCarriedObjectivesInput, Prisma.ObjectiveUncheckedCreateWithoutCarriedObjectivesInput>
+}
+
+export type ObjectiveCreateWithoutSourceObjectiveInput = {
+  id?: string
+  title: string
+  level: $Enums.ObjectiveLevel
+  status?: $Enums.ObjectiveStatus
+  publishedAt?: Date | string | null
+  closedAt?: Date | string | null
+  archivedAt?: Date | string | null
+  createdAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutObjectivesInput
+  owner: Prisma.MemberCreateNestedOneWithoutObjectivesInput
+  team?: Prisma.TeamCreateNestedOneWithoutObjectivesInput
+  parentObjective?: Prisma.ObjectiveCreateNestedOneWithoutChildObjectivesInput
+  childObjectives?: Prisma.ObjectiveCreateNestedManyWithoutParentObjectiveInput
+  cycle?: Prisma.OkrCycleCreateNestedOneWithoutObjectivesInput
+  carriedObjectives?: Prisma.ObjectiveCreateNestedManyWithoutSourceObjectiveInput
+  keyResults?: Prisma.KeyResultCreateNestedManyWithoutObjectiveInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigCreateNestedManyWithoutObjectiveInput
+  projectLinks?: Prisma.ProjectObjectiveCreateNestedManyWithoutObjectiveInput
+  leverLinks?: Prisma.NorthStarLeverCreateNestedManyWithoutObjectiveInput
+  pillarLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutObjectiveInput
+}
+
+export type ObjectiveUncheckedCreateWithoutSourceObjectiveInput = {
+  id?: string
+  organizationId: string
+  title: string
+  level: $Enums.ObjectiveLevel
+  status?: $Enums.ObjectiveStatus
+  ownerId: string
+  teamId?: string | null
+  parentObjectiveId?: string | null
+  cycleId?: string | null
+  publishedAt?: Date | string | null
+  closedAt?: Date | string | null
+  archivedAt?: Date | string | null
+  createdAt?: Date | string
+  childObjectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutParentObjectiveInput
+  carriedObjectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutSourceObjectiveInput
+  keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutObjectiveInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigUncheckedCreateNestedManyWithoutObjectiveInput
+  projectLinks?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutObjectiveInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedCreateNestedManyWithoutObjectiveInput
+  pillarLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutObjectiveInput
+}
+
+export type ObjectiveCreateOrConnectWithoutSourceObjectiveInput = {
+  where: Prisma.ObjectiveWhereUniqueInput
+  create: Prisma.XOR<Prisma.ObjectiveCreateWithoutSourceObjectiveInput, Prisma.ObjectiveUncheckedCreateWithoutSourceObjectiveInput>
+}
+
+export type ObjectiveCreateManySourceObjectiveInputEnvelope = {
+  data: Prisma.ObjectiveCreateManySourceObjectiveInput | Prisma.ObjectiveCreateManySourceObjectiveInput[]
+  skipDuplicates?: boolean
+}
+
+export type ObjectiveUpsertWithoutChildObjectivesInput = {
+  update: Prisma.XOR<Prisma.ObjectiveUpdateWithoutChildObjectivesInput, Prisma.ObjectiveUncheckedUpdateWithoutChildObjectivesInput>
+  create: Prisma.XOR<Prisma.ObjectiveCreateWithoutChildObjectivesInput, Prisma.ObjectiveUncheckedCreateWithoutChildObjectivesInput>
+  where?: Prisma.ObjectiveWhereInput
+}
+
+export type ObjectiveUpdateToOneWithWhereWithoutChildObjectivesInput = {
+  where?: Prisma.ObjectiveWhereInput
+  data: Prisma.XOR<Prisma.ObjectiveUpdateWithoutChildObjectivesInput, Prisma.ObjectiveUncheckedUpdateWithoutChildObjectivesInput>
+}
+
+export type ObjectiveUpdateWithoutChildObjectivesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  level?: Prisma.EnumObjectiveLevelFieldUpdateOperationsInput | $Enums.ObjectiveLevel
+  status?: Prisma.EnumObjectiveStatusFieldUpdateOperationsInput | $Enums.ObjectiveStatus
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutObjectivesNestedInput
+  owner?: Prisma.MemberUpdateOneRequiredWithoutObjectivesNestedInput
+  team?: Prisma.TeamUpdateOneWithoutObjectivesNestedInput
+  parentObjective?: Prisma.ObjectiveUpdateOneWithoutChildObjectivesNestedInput
+  cycle?: Prisma.OkrCycleUpdateOneWithoutObjectivesNestedInput
+  sourceObjective?: Prisma.ObjectiveUpdateOneWithoutCarriedObjectivesNestedInput
+  carriedObjectives?: Prisma.ObjectiveUpdateManyWithoutSourceObjectiveNestedInput
+  keyResults?: Prisma.KeyResultUpdateManyWithoutObjectiveNestedInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigUpdateManyWithoutObjectiveNestedInput
+  projectLinks?: Prisma.ProjectObjectiveUpdateManyWithoutObjectiveNestedInput
+  leverLinks?: Prisma.NorthStarLeverUpdateManyWithoutObjectiveNestedInput
+  pillarLinks?: Prisma.PillarObjectiveUpdateManyWithoutObjectiveNestedInput
+}
+
+export type ObjectiveUncheckedUpdateWithoutChildObjectivesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  level?: Prisma.EnumObjectiveLevelFieldUpdateOperationsInput | $Enums.ObjectiveLevel
+  status?: Prisma.EnumObjectiveStatusFieldUpdateOperationsInput | $Enums.ObjectiveStatus
+  ownerId?: Prisma.StringFieldUpdateOperationsInput | string
+  teamId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentObjectiveId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cycleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceObjectiveId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  carriedObjectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutSourceObjectiveNestedInput
+  keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutObjectiveNestedInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigUncheckedUpdateManyWithoutObjectiveNestedInput
+  projectLinks?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutObjectiveNestedInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedUpdateManyWithoutObjectiveNestedInput
+  pillarLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutObjectiveNestedInput
+}
+
+export type ObjectiveUpsertWithWhereUniqueWithoutParentObjectiveInput = {
+  where: Prisma.ObjectiveWhereUniqueInput
+  update: Prisma.XOR<Prisma.ObjectiveUpdateWithoutParentObjectiveInput, Prisma.ObjectiveUncheckedUpdateWithoutParentObjectiveInput>
+  create: Prisma.XOR<Prisma.ObjectiveCreateWithoutParentObjectiveInput, Prisma.ObjectiveUncheckedCreateWithoutParentObjectiveInput>
+}
+
+export type ObjectiveUpdateWithWhereUniqueWithoutParentObjectiveInput = {
+  where: Prisma.ObjectiveWhereUniqueInput
+  data: Prisma.XOR<Prisma.ObjectiveUpdateWithoutParentObjectiveInput, Prisma.ObjectiveUncheckedUpdateWithoutParentObjectiveInput>
+}
+
+export type ObjectiveUpdateManyWithWhereWithoutParentObjectiveInput = {
+  where: Prisma.ObjectiveScalarWhereInput
+  data: Prisma.XOR<Prisma.ObjectiveUpdateManyMutationInput, Prisma.ObjectiveUncheckedUpdateManyWithoutParentObjectiveInput>
+}
+
+export type ObjectiveUpsertWithoutCarriedObjectivesInput = {
+  update: Prisma.XOR<Prisma.ObjectiveUpdateWithoutCarriedObjectivesInput, Prisma.ObjectiveUncheckedUpdateWithoutCarriedObjectivesInput>
+  create: Prisma.XOR<Prisma.ObjectiveCreateWithoutCarriedObjectivesInput, Prisma.ObjectiveUncheckedCreateWithoutCarriedObjectivesInput>
+  where?: Prisma.ObjectiveWhereInput
+}
+
+export type ObjectiveUpdateToOneWithWhereWithoutCarriedObjectivesInput = {
+  where?: Prisma.ObjectiveWhereInput
+  data: Prisma.XOR<Prisma.ObjectiveUpdateWithoutCarriedObjectivesInput, Prisma.ObjectiveUncheckedUpdateWithoutCarriedObjectivesInput>
+}
+
+export type ObjectiveUpdateWithoutCarriedObjectivesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  level?: Prisma.EnumObjectiveLevelFieldUpdateOperationsInput | $Enums.ObjectiveLevel
+  status?: Prisma.EnumObjectiveStatusFieldUpdateOperationsInput | $Enums.ObjectiveStatus
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutObjectivesNestedInput
+  owner?: Prisma.MemberUpdateOneRequiredWithoutObjectivesNestedInput
+  team?: Prisma.TeamUpdateOneWithoutObjectivesNestedInput
+  parentObjective?: Prisma.ObjectiveUpdateOneWithoutChildObjectivesNestedInput
+  childObjectives?: Prisma.ObjectiveUpdateManyWithoutParentObjectiveNestedInput
+  cycle?: Prisma.OkrCycleUpdateOneWithoutObjectivesNestedInput
+  sourceObjective?: Prisma.ObjectiveUpdateOneWithoutCarriedObjectivesNestedInput
+  keyResults?: Prisma.KeyResultUpdateManyWithoutObjectiveNestedInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigUpdateManyWithoutObjectiveNestedInput
+  projectLinks?: Prisma.ProjectObjectiveUpdateManyWithoutObjectiveNestedInput
+  leverLinks?: Prisma.NorthStarLeverUpdateManyWithoutObjectiveNestedInput
+  pillarLinks?: Prisma.PillarObjectiveUpdateManyWithoutObjectiveNestedInput
+}
+
+export type ObjectiveUncheckedUpdateWithoutCarriedObjectivesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  level?: Prisma.EnumObjectiveLevelFieldUpdateOperationsInput | $Enums.ObjectiveLevel
+  status?: Prisma.EnumObjectiveStatusFieldUpdateOperationsInput | $Enums.ObjectiveStatus
+  ownerId?: Prisma.StringFieldUpdateOperationsInput | string
+  teamId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentObjectiveId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cycleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceObjectiveId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  childObjectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutParentObjectiveNestedInput
+  keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutObjectiveNestedInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigUncheckedUpdateManyWithoutObjectiveNestedInput
+  projectLinks?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutObjectiveNestedInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedUpdateManyWithoutObjectiveNestedInput
+  pillarLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutObjectiveNestedInput
+}
+
+export type ObjectiveUpsertWithWhereUniqueWithoutSourceObjectiveInput = {
+  where: Prisma.ObjectiveWhereUniqueInput
+  update: Prisma.XOR<Prisma.ObjectiveUpdateWithoutSourceObjectiveInput, Prisma.ObjectiveUncheckedUpdateWithoutSourceObjectiveInput>
+  create: Prisma.XOR<Prisma.ObjectiveCreateWithoutSourceObjectiveInput, Prisma.ObjectiveUncheckedCreateWithoutSourceObjectiveInput>
+}
+
+export type ObjectiveUpdateWithWhereUniqueWithoutSourceObjectiveInput = {
+  where: Prisma.ObjectiveWhereUniqueInput
+  data: Prisma.XOR<Prisma.ObjectiveUpdateWithoutSourceObjectiveInput, Prisma.ObjectiveUncheckedUpdateWithoutSourceObjectiveInput>
+}
+
+export type ObjectiveUpdateManyWithWhereWithoutSourceObjectiveInput = {
+  where: Prisma.ObjectiveScalarWhereInput
+  data: Prisma.XOR<Prisma.ObjectiveUpdateManyMutationInput, Prisma.ObjectiveUncheckedUpdateManyWithoutSourceObjectiveInput>
 }
 
 export type ObjectiveCreateWithoutKeyResultsInput = {
@@ -809,9 +1695,19 @@ export type ObjectiveCreateWithoutKeyResultsInput = {
   title: string
   level: $Enums.ObjectiveLevel
   status?: $Enums.ObjectiveStatus
+  publishedAt?: Date | string | null
+  closedAt?: Date | string | null
+  archivedAt?: Date | string | null
   createdAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutObjectivesInput
   owner: Prisma.MemberCreateNestedOneWithoutObjectivesInput
+  team?: Prisma.TeamCreateNestedOneWithoutObjectivesInput
+  parentObjective?: Prisma.ObjectiveCreateNestedOneWithoutChildObjectivesInput
+  childObjectives?: Prisma.ObjectiveCreateNestedManyWithoutParentObjectiveInput
+  cycle?: Prisma.OkrCycleCreateNestedOneWithoutObjectivesInput
+  sourceObjective?: Prisma.ObjectiveCreateNestedOneWithoutCarriedObjectivesInput
+  carriedObjectives?: Prisma.ObjectiveCreateNestedManyWithoutSourceObjectiveInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigCreateNestedManyWithoutObjectiveInput
   projectLinks?: Prisma.ProjectObjectiveCreateNestedManyWithoutObjectiveInput
   leverLinks?: Prisma.NorthStarLeverCreateNestedManyWithoutObjectiveInput
   pillarLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutObjectiveInput
@@ -824,7 +1720,17 @@ export type ObjectiveUncheckedCreateWithoutKeyResultsInput = {
   level: $Enums.ObjectiveLevel
   status?: $Enums.ObjectiveStatus
   ownerId: string
+  teamId?: string | null
+  parentObjectiveId?: string | null
+  cycleId?: string | null
+  sourceObjectiveId?: string | null
+  publishedAt?: Date | string | null
+  closedAt?: Date | string | null
+  archivedAt?: Date | string | null
   createdAt?: Date | string
+  childObjectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutParentObjectiveInput
+  carriedObjectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutSourceObjectiveInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigUncheckedCreateNestedManyWithoutObjectiveInput
   projectLinks?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutObjectiveInput
   leverLinks?: Prisma.NorthStarLeverUncheckedCreateNestedManyWithoutObjectiveInput
   pillarLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutObjectiveInput
@@ -851,9 +1757,19 @@ export type ObjectiveUpdateWithoutKeyResultsInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   level?: Prisma.EnumObjectiveLevelFieldUpdateOperationsInput | $Enums.ObjectiveLevel
   status?: Prisma.EnumObjectiveStatusFieldUpdateOperationsInput | $Enums.ObjectiveStatus
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutObjectivesNestedInput
   owner?: Prisma.MemberUpdateOneRequiredWithoutObjectivesNestedInput
+  team?: Prisma.TeamUpdateOneWithoutObjectivesNestedInput
+  parentObjective?: Prisma.ObjectiveUpdateOneWithoutChildObjectivesNestedInput
+  childObjectives?: Prisma.ObjectiveUpdateManyWithoutParentObjectiveNestedInput
+  cycle?: Prisma.OkrCycleUpdateOneWithoutObjectivesNestedInput
+  sourceObjective?: Prisma.ObjectiveUpdateOneWithoutCarriedObjectivesNestedInput
+  carriedObjectives?: Prisma.ObjectiveUpdateManyWithoutSourceObjectiveNestedInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigUpdateManyWithoutObjectiveNestedInput
   projectLinks?: Prisma.ProjectObjectiveUpdateManyWithoutObjectiveNestedInput
   leverLinks?: Prisma.NorthStarLeverUpdateManyWithoutObjectiveNestedInput
   pillarLinks?: Prisma.PillarObjectiveUpdateManyWithoutObjectiveNestedInput
@@ -866,10 +1782,272 @@ export type ObjectiveUncheckedUpdateWithoutKeyResultsInput = {
   level?: Prisma.EnumObjectiveLevelFieldUpdateOperationsInput | $Enums.ObjectiveLevel
   status?: Prisma.EnumObjectiveStatusFieldUpdateOperationsInput | $Enums.ObjectiveStatus
   ownerId?: Prisma.StringFieldUpdateOperationsInput | string
+  teamId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentObjectiveId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cycleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceObjectiveId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  childObjectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutParentObjectiveNestedInput
+  carriedObjectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutSourceObjectiveNestedInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigUncheckedUpdateManyWithoutObjectiveNestedInput
   projectLinks?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutObjectiveNestedInput
   leverLinks?: Prisma.NorthStarLeverUncheckedUpdateManyWithoutObjectiveNestedInput
   pillarLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutObjectiveNestedInput
+}
+
+export type ObjectiveCreateWithoutCycleInput = {
+  id?: string
+  title: string
+  level: $Enums.ObjectiveLevel
+  status?: $Enums.ObjectiveStatus
+  publishedAt?: Date | string | null
+  closedAt?: Date | string | null
+  archivedAt?: Date | string | null
+  createdAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutObjectivesInput
+  owner: Prisma.MemberCreateNestedOneWithoutObjectivesInput
+  team?: Prisma.TeamCreateNestedOneWithoutObjectivesInput
+  parentObjective?: Prisma.ObjectiveCreateNestedOneWithoutChildObjectivesInput
+  childObjectives?: Prisma.ObjectiveCreateNestedManyWithoutParentObjectiveInput
+  sourceObjective?: Prisma.ObjectiveCreateNestedOneWithoutCarriedObjectivesInput
+  carriedObjectives?: Prisma.ObjectiveCreateNestedManyWithoutSourceObjectiveInput
+  keyResults?: Prisma.KeyResultCreateNestedManyWithoutObjectiveInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigCreateNestedManyWithoutObjectiveInput
+  projectLinks?: Prisma.ProjectObjectiveCreateNestedManyWithoutObjectiveInput
+  leverLinks?: Prisma.NorthStarLeverCreateNestedManyWithoutObjectiveInput
+  pillarLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutObjectiveInput
+}
+
+export type ObjectiveUncheckedCreateWithoutCycleInput = {
+  id?: string
+  organizationId: string
+  title: string
+  level: $Enums.ObjectiveLevel
+  status?: $Enums.ObjectiveStatus
+  ownerId: string
+  teamId?: string | null
+  parentObjectiveId?: string | null
+  sourceObjectiveId?: string | null
+  publishedAt?: Date | string | null
+  closedAt?: Date | string | null
+  archivedAt?: Date | string | null
+  createdAt?: Date | string
+  childObjectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutParentObjectiveInput
+  carriedObjectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutSourceObjectiveInput
+  keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutObjectiveInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigUncheckedCreateNestedManyWithoutObjectiveInput
+  projectLinks?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutObjectiveInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedCreateNestedManyWithoutObjectiveInput
+  pillarLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutObjectiveInput
+}
+
+export type ObjectiveCreateOrConnectWithoutCycleInput = {
+  where: Prisma.ObjectiveWhereUniqueInput
+  create: Prisma.XOR<Prisma.ObjectiveCreateWithoutCycleInput, Prisma.ObjectiveUncheckedCreateWithoutCycleInput>
+}
+
+export type ObjectiveCreateManyCycleInputEnvelope = {
+  data: Prisma.ObjectiveCreateManyCycleInput | Prisma.ObjectiveCreateManyCycleInput[]
+  skipDuplicates?: boolean
+}
+
+export type ObjectiveUpsertWithWhereUniqueWithoutCycleInput = {
+  where: Prisma.ObjectiveWhereUniqueInput
+  update: Prisma.XOR<Prisma.ObjectiveUpdateWithoutCycleInput, Prisma.ObjectiveUncheckedUpdateWithoutCycleInput>
+  create: Prisma.XOR<Prisma.ObjectiveCreateWithoutCycleInput, Prisma.ObjectiveUncheckedCreateWithoutCycleInput>
+}
+
+export type ObjectiveUpdateWithWhereUniqueWithoutCycleInput = {
+  where: Prisma.ObjectiveWhereUniqueInput
+  data: Prisma.XOR<Prisma.ObjectiveUpdateWithoutCycleInput, Prisma.ObjectiveUncheckedUpdateWithoutCycleInput>
+}
+
+export type ObjectiveUpdateManyWithWhereWithoutCycleInput = {
+  where: Prisma.ObjectiveScalarWhereInput
+  data: Prisma.XOR<Prisma.ObjectiveUpdateManyMutationInput, Prisma.ObjectiveUncheckedUpdateManyWithoutCycleInput>
+}
+
+export type ObjectiveCreateWithoutCadenceConfigsInput = {
+  id?: string
+  title: string
+  level: $Enums.ObjectiveLevel
+  status?: $Enums.ObjectiveStatus
+  publishedAt?: Date | string | null
+  closedAt?: Date | string | null
+  archivedAt?: Date | string | null
+  createdAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutObjectivesInput
+  owner: Prisma.MemberCreateNestedOneWithoutObjectivesInput
+  team?: Prisma.TeamCreateNestedOneWithoutObjectivesInput
+  parentObjective?: Prisma.ObjectiveCreateNestedOneWithoutChildObjectivesInput
+  childObjectives?: Prisma.ObjectiveCreateNestedManyWithoutParentObjectiveInput
+  cycle?: Prisma.OkrCycleCreateNestedOneWithoutObjectivesInput
+  sourceObjective?: Prisma.ObjectiveCreateNestedOneWithoutCarriedObjectivesInput
+  carriedObjectives?: Prisma.ObjectiveCreateNestedManyWithoutSourceObjectiveInput
+  keyResults?: Prisma.KeyResultCreateNestedManyWithoutObjectiveInput
+  projectLinks?: Prisma.ProjectObjectiveCreateNestedManyWithoutObjectiveInput
+  leverLinks?: Prisma.NorthStarLeverCreateNestedManyWithoutObjectiveInput
+  pillarLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutObjectiveInput
+}
+
+export type ObjectiveUncheckedCreateWithoutCadenceConfigsInput = {
+  id?: string
+  organizationId: string
+  title: string
+  level: $Enums.ObjectiveLevel
+  status?: $Enums.ObjectiveStatus
+  ownerId: string
+  teamId?: string | null
+  parentObjectiveId?: string | null
+  cycleId?: string | null
+  sourceObjectiveId?: string | null
+  publishedAt?: Date | string | null
+  closedAt?: Date | string | null
+  archivedAt?: Date | string | null
+  createdAt?: Date | string
+  childObjectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutParentObjectiveInput
+  carriedObjectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutSourceObjectiveInput
+  keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutObjectiveInput
+  projectLinks?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutObjectiveInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedCreateNestedManyWithoutObjectiveInput
+  pillarLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutObjectiveInput
+}
+
+export type ObjectiveCreateOrConnectWithoutCadenceConfigsInput = {
+  where: Prisma.ObjectiveWhereUniqueInput
+  create: Prisma.XOR<Prisma.ObjectiveCreateWithoutCadenceConfigsInput, Prisma.ObjectiveUncheckedCreateWithoutCadenceConfigsInput>
+}
+
+export type ObjectiveUpsertWithoutCadenceConfigsInput = {
+  update: Prisma.XOR<Prisma.ObjectiveUpdateWithoutCadenceConfigsInput, Prisma.ObjectiveUncheckedUpdateWithoutCadenceConfigsInput>
+  create: Prisma.XOR<Prisma.ObjectiveCreateWithoutCadenceConfigsInput, Prisma.ObjectiveUncheckedCreateWithoutCadenceConfigsInput>
+  where?: Prisma.ObjectiveWhereInput
+}
+
+export type ObjectiveUpdateToOneWithWhereWithoutCadenceConfigsInput = {
+  where?: Prisma.ObjectiveWhereInput
+  data: Prisma.XOR<Prisma.ObjectiveUpdateWithoutCadenceConfigsInput, Prisma.ObjectiveUncheckedUpdateWithoutCadenceConfigsInput>
+}
+
+export type ObjectiveUpdateWithoutCadenceConfigsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  level?: Prisma.EnumObjectiveLevelFieldUpdateOperationsInput | $Enums.ObjectiveLevel
+  status?: Prisma.EnumObjectiveStatusFieldUpdateOperationsInput | $Enums.ObjectiveStatus
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutObjectivesNestedInput
+  owner?: Prisma.MemberUpdateOneRequiredWithoutObjectivesNestedInput
+  team?: Prisma.TeamUpdateOneWithoutObjectivesNestedInput
+  parentObjective?: Prisma.ObjectiveUpdateOneWithoutChildObjectivesNestedInput
+  childObjectives?: Prisma.ObjectiveUpdateManyWithoutParentObjectiveNestedInput
+  cycle?: Prisma.OkrCycleUpdateOneWithoutObjectivesNestedInput
+  sourceObjective?: Prisma.ObjectiveUpdateOneWithoutCarriedObjectivesNestedInput
+  carriedObjectives?: Prisma.ObjectiveUpdateManyWithoutSourceObjectiveNestedInput
+  keyResults?: Prisma.KeyResultUpdateManyWithoutObjectiveNestedInput
+  projectLinks?: Prisma.ProjectObjectiveUpdateManyWithoutObjectiveNestedInput
+  leverLinks?: Prisma.NorthStarLeverUpdateManyWithoutObjectiveNestedInput
+  pillarLinks?: Prisma.PillarObjectiveUpdateManyWithoutObjectiveNestedInput
+}
+
+export type ObjectiveUncheckedUpdateWithoutCadenceConfigsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  level?: Prisma.EnumObjectiveLevelFieldUpdateOperationsInput | $Enums.ObjectiveLevel
+  status?: Prisma.EnumObjectiveStatusFieldUpdateOperationsInput | $Enums.ObjectiveStatus
+  ownerId?: Prisma.StringFieldUpdateOperationsInput | string
+  teamId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentObjectiveId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cycleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceObjectiveId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  childObjectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutParentObjectiveNestedInput
+  carriedObjectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutSourceObjectiveNestedInput
+  keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutObjectiveNestedInput
+  projectLinks?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutObjectiveNestedInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedUpdateManyWithoutObjectiveNestedInput
+  pillarLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutObjectiveNestedInput
+}
+
+export type ObjectiveCreateWithoutTeamInput = {
+  id?: string
+  title: string
+  level: $Enums.ObjectiveLevel
+  status?: $Enums.ObjectiveStatus
+  publishedAt?: Date | string | null
+  closedAt?: Date | string | null
+  archivedAt?: Date | string | null
+  createdAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutObjectivesInput
+  owner: Prisma.MemberCreateNestedOneWithoutObjectivesInput
+  parentObjective?: Prisma.ObjectiveCreateNestedOneWithoutChildObjectivesInput
+  childObjectives?: Prisma.ObjectiveCreateNestedManyWithoutParentObjectiveInput
+  cycle?: Prisma.OkrCycleCreateNestedOneWithoutObjectivesInput
+  sourceObjective?: Prisma.ObjectiveCreateNestedOneWithoutCarriedObjectivesInput
+  carriedObjectives?: Prisma.ObjectiveCreateNestedManyWithoutSourceObjectiveInput
+  keyResults?: Prisma.KeyResultCreateNestedManyWithoutObjectiveInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigCreateNestedManyWithoutObjectiveInput
+  projectLinks?: Prisma.ProjectObjectiveCreateNestedManyWithoutObjectiveInput
+  leverLinks?: Prisma.NorthStarLeverCreateNestedManyWithoutObjectiveInput
+  pillarLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutObjectiveInput
+}
+
+export type ObjectiveUncheckedCreateWithoutTeamInput = {
+  id?: string
+  organizationId: string
+  title: string
+  level: $Enums.ObjectiveLevel
+  status?: $Enums.ObjectiveStatus
+  ownerId: string
+  parentObjectiveId?: string | null
+  cycleId?: string | null
+  sourceObjectiveId?: string | null
+  publishedAt?: Date | string | null
+  closedAt?: Date | string | null
+  archivedAt?: Date | string | null
+  createdAt?: Date | string
+  childObjectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutParentObjectiveInput
+  carriedObjectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutSourceObjectiveInput
+  keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutObjectiveInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigUncheckedCreateNestedManyWithoutObjectiveInput
+  projectLinks?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutObjectiveInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedCreateNestedManyWithoutObjectiveInput
+  pillarLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutObjectiveInput
+}
+
+export type ObjectiveCreateOrConnectWithoutTeamInput = {
+  where: Prisma.ObjectiveWhereUniqueInput
+  create: Prisma.XOR<Prisma.ObjectiveCreateWithoutTeamInput, Prisma.ObjectiveUncheckedCreateWithoutTeamInput>
+}
+
+export type ObjectiveCreateManyTeamInputEnvelope = {
+  data: Prisma.ObjectiveCreateManyTeamInput | Prisma.ObjectiveCreateManyTeamInput[]
+  skipDuplicates?: boolean
+}
+
+export type ObjectiveUpsertWithWhereUniqueWithoutTeamInput = {
+  where: Prisma.ObjectiveWhereUniqueInput
+  update: Prisma.XOR<Prisma.ObjectiveUpdateWithoutTeamInput, Prisma.ObjectiveUncheckedUpdateWithoutTeamInput>
+  create: Prisma.XOR<Prisma.ObjectiveCreateWithoutTeamInput, Prisma.ObjectiveUncheckedCreateWithoutTeamInput>
+}
+
+export type ObjectiveUpdateWithWhereUniqueWithoutTeamInput = {
+  where: Prisma.ObjectiveWhereUniqueInput
+  data: Prisma.XOR<Prisma.ObjectiveUpdateWithoutTeamInput, Prisma.ObjectiveUncheckedUpdateWithoutTeamInput>
+}
+
+export type ObjectiveUpdateManyWithWhereWithoutTeamInput = {
+  where: Prisma.ObjectiveScalarWhereInput
+  data: Prisma.XOR<Prisma.ObjectiveUpdateManyMutationInput, Prisma.ObjectiveUncheckedUpdateManyWithoutTeamInput>
 }
 
 export type ObjectiveCreateWithoutProjectLinksInput = {
@@ -877,10 +2055,20 @@ export type ObjectiveCreateWithoutProjectLinksInput = {
   title: string
   level: $Enums.ObjectiveLevel
   status?: $Enums.ObjectiveStatus
+  publishedAt?: Date | string | null
+  closedAt?: Date | string | null
+  archivedAt?: Date | string | null
   createdAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutObjectivesInput
   owner: Prisma.MemberCreateNestedOneWithoutObjectivesInput
+  team?: Prisma.TeamCreateNestedOneWithoutObjectivesInput
+  parentObjective?: Prisma.ObjectiveCreateNestedOneWithoutChildObjectivesInput
+  childObjectives?: Prisma.ObjectiveCreateNestedManyWithoutParentObjectiveInput
+  cycle?: Prisma.OkrCycleCreateNestedOneWithoutObjectivesInput
+  sourceObjective?: Prisma.ObjectiveCreateNestedOneWithoutCarriedObjectivesInput
+  carriedObjectives?: Prisma.ObjectiveCreateNestedManyWithoutSourceObjectiveInput
   keyResults?: Prisma.KeyResultCreateNestedManyWithoutObjectiveInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigCreateNestedManyWithoutObjectiveInput
   leverLinks?: Prisma.NorthStarLeverCreateNestedManyWithoutObjectiveInput
   pillarLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutObjectiveInput
 }
@@ -892,8 +2080,18 @@ export type ObjectiveUncheckedCreateWithoutProjectLinksInput = {
   level: $Enums.ObjectiveLevel
   status?: $Enums.ObjectiveStatus
   ownerId: string
+  teamId?: string | null
+  parentObjectiveId?: string | null
+  cycleId?: string | null
+  sourceObjectiveId?: string | null
+  publishedAt?: Date | string | null
+  closedAt?: Date | string | null
+  archivedAt?: Date | string | null
   createdAt?: Date | string
+  childObjectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutParentObjectiveInput
+  carriedObjectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutSourceObjectiveInput
   keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutObjectiveInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigUncheckedCreateNestedManyWithoutObjectiveInput
   leverLinks?: Prisma.NorthStarLeverUncheckedCreateNestedManyWithoutObjectiveInput
   pillarLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutObjectiveInput
 }
@@ -919,10 +2117,20 @@ export type ObjectiveUpdateWithoutProjectLinksInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   level?: Prisma.EnumObjectiveLevelFieldUpdateOperationsInput | $Enums.ObjectiveLevel
   status?: Prisma.EnumObjectiveStatusFieldUpdateOperationsInput | $Enums.ObjectiveStatus
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutObjectivesNestedInput
   owner?: Prisma.MemberUpdateOneRequiredWithoutObjectivesNestedInput
+  team?: Prisma.TeamUpdateOneWithoutObjectivesNestedInput
+  parentObjective?: Prisma.ObjectiveUpdateOneWithoutChildObjectivesNestedInput
+  childObjectives?: Prisma.ObjectiveUpdateManyWithoutParentObjectiveNestedInput
+  cycle?: Prisma.OkrCycleUpdateOneWithoutObjectivesNestedInput
+  sourceObjective?: Prisma.ObjectiveUpdateOneWithoutCarriedObjectivesNestedInput
+  carriedObjectives?: Prisma.ObjectiveUpdateManyWithoutSourceObjectiveNestedInput
   keyResults?: Prisma.KeyResultUpdateManyWithoutObjectiveNestedInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigUpdateManyWithoutObjectiveNestedInput
   leverLinks?: Prisma.NorthStarLeverUpdateManyWithoutObjectiveNestedInput
   pillarLinks?: Prisma.PillarObjectiveUpdateManyWithoutObjectiveNestedInput
 }
@@ -934,8 +2142,18 @@ export type ObjectiveUncheckedUpdateWithoutProjectLinksInput = {
   level?: Prisma.EnumObjectiveLevelFieldUpdateOperationsInput | $Enums.ObjectiveLevel
   status?: Prisma.EnumObjectiveStatusFieldUpdateOperationsInput | $Enums.ObjectiveStatus
   ownerId?: Prisma.StringFieldUpdateOperationsInput | string
+  teamId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentObjectiveId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cycleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceObjectiveId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  childObjectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutParentObjectiveNestedInput
+  carriedObjectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutSourceObjectiveNestedInput
   keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutObjectiveNestedInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigUncheckedUpdateManyWithoutObjectiveNestedInput
   leverLinks?: Prisma.NorthStarLeverUncheckedUpdateManyWithoutObjectiveNestedInput
   pillarLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutObjectiveNestedInput
 }
@@ -946,6 +2164,13 @@ export type ObjectiveCreateManyOrganizationInput = {
   level: $Enums.ObjectiveLevel
   status?: $Enums.ObjectiveStatus
   ownerId: string
+  teamId?: string | null
+  parentObjectiveId?: string | null
+  cycleId?: string | null
+  sourceObjectiveId?: string | null
+  publishedAt?: Date | string | null
+  closedAt?: Date | string | null
+  archivedAt?: Date | string | null
   createdAt?: Date | string
 }
 
@@ -954,9 +2179,19 @@ export type ObjectiveUpdateWithoutOrganizationInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   level?: Prisma.EnumObjectiveLevelFieldUpdateOperationsInput | $Enums.ObjectiveLevel
   status?: Prisma.EnumObjectiveStatusFieldUpdateOperationsInput | $Enums.ObjectiveStatus
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   owner?: Prisma.MemberUpdateOneRequiredWithoutObjectivesNestedInput
+  team?: Prisma.TeamUpdateOneWithoutObjectivesNestedInput
+  parentObjective?: Prisma.ObjectiveUpdateOneWithoutChildObjectivesNestedInput
+  childObjectives?: Prisma.ObjectiveUpdateManyWithoutParentObjectiveNestedInput
+  cycle?: Prisma.OkrCycleUpdateOneWithoutObjectivesNestedInput
+  sourceObjective?: Prisma.ObjectiveUpdateOneWithoutCarriedObjectivesNestedInput
+  carriedObjectives?: Prisma.ObjectiveUpdateManyWithoutSourceObjectiveNestedInput
   keyResults?: Prisma.KeyResultUpdateManyWithoutObjectiveNestedInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigUpdateManyWithoutObjectiveNestedInput
   projectLinks?: Prisma.ProjectObjectiveUpdateManyWithoutObjectiveNestedInput
   leverLinks?: Prisma.NorthStarLeverUpdateManyWithoutObjectiveNestedInput
   pillarLinks?: Prisma.PillarObjectiveUpdateManyWithoutObjectiveNestedInput
@@ -968,8 +2203,18 @@ export type ObjectiveUncheckedUpdateWithoutOrganizationInput = {
   level?: Prisma.EnumObjectiveLevelFieldUpdateOperationsInput | $Enums.ObjectiveLevel
   status?: Prisma.EnumObjectiveStatusFieldUpdateOperationsInput | $Enums.ObjectiveStatus
   ownerId?: Prisma.StringFieldUpdateOperationsInput | string
+  teamId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentObjectiveId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cycleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceObjectiveId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  childObjectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutParentObjectiveNestedInput
+  carriedObjectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutSourceObjectiveNestedInput
   keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutObjectiveNestedInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigUncheckedUpdateManyWithoutObjectiveNestedInput
   projectLinks?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutObjectiveNestedInput
   leverLinks?: Prisma.NorthStarLeverUncheckedUpdateManyWithoutObjectiveNestedInput
   pillarLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutObjectiveNestedInput
@@ -981,6 +2226,13 @@ export type ObjectiveUncheckedUpdateManyWithoutOrganizationInput = {
   level?: Prisma.EnumObjectiveLevelFieldUpdateOperationsInput | $Enums.ObjectiveLevel
   status?: Prisma.EnumObjectiveStatusFieldUpdateOperationsInput | $Enums.ObjectiveStatus
   ownerId?: Prisma.StringFieldUpdateOperationsInput | string
+  teamId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentObjectiveId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cycleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceObjectiveId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -990,6 +2242,13 @@ export type ObjectiveCreateManyOwnerInput = {
   title: string
   level: $Enums.ObjectiveLevel
   status?: $Enums.ObjectiveStatus
+  teamId?: string | null
+  parentObjectiveId?: string | null
+  cycleId?: string | null
+  sourceObjectiveId?: string | null
+  publishedAt?: Date | string | null
+  closedAt?: Date | string | null
+  archivedAt?: Date | string | null
   createdAt?: Date | string
 }
 
@@ -998,9 +2257,19 @@ export type ObjectiveUpdateWithoutOwnerInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   level?: Prisma.EnumObjectiveLevelFieldUpdateOperationsInput | $Enums.ObjectiveLevel
   status?: Prisma.EnumObjectiveStatusFieldUpdateOperationsInput | $Enums.ObjectiveStatus
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutObjectivesNestedInput
+  team?: Prisma.TeamUpdateOneWithoutObjectivesNestedInput
+  parentObjective?: Prisma.ObjectiveUpdateOneWithoutChildObjectivesNestedInput
+  childObjectives?: Prisma.ObjectiveUpdateManyWithoutParentObjectiveNestedInput
+  cycle?: Prisma.OkrCycleUpdateOneWithoutObjectivesNestedInput
+  sourceObjective?: Prisma.ObjectiveUpdateOneWithoutCarriedObjectivesNestedInput
+  carriedObjectives?: Prisma.ObjectiveUpdateManyWithoutSourceObjectiveNestedInput
   keyResults?: Prisma.KeyResultUpdateManyWithoutObjectiveNestedInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigUpdateManyWithoutObjectiveNestedInput
   projectLinks?: Prisma.ProjectObjectiveUpdateManyWithoutObjectiveNestedInput
   leverLinks?: Prisma.NorthStarLeverUpdateManyWithoutObjectiveNestedInput
   pillarLinks?: Prisma.PillarObjectiveUpdateManyWithoutObjectiveNestedInput
@@ -1012,8 +2281,18 @@ export type ObjectiveUncheckedUpdateWithoutOwnerInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   level?: Prisma.EnumObjectiveLevelFieldUpdateOperationsInput | $Enums.ObjectiveLevel
   status?: Prisma.EnumObjectiveStatusFieldUpdateOperationsInput | $Enums.ObjectiveStatus
+  teamId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentObjectiveId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cycleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceObjectiveId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  childObjectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutParentObjectiveNestedInput
+  carriedObjectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutSourceObjectiveNestedInput
   keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutObjectiveNestedInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigUncheckedUpdateManyWithoutObjectiveNestedInput
   projectLinks?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutObjectiveNestedInput
   leverLinks?: Prisma.NorthStarLeverUncheckedUpdateManyWithoutObjectiveNestedInput
   pillarLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutObjectiveNestedInput
@@ -1025,6 +2304,325 @@ export type ObjectiveUncheckedUpdateManyWithoutOwnerInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   level?: Prisma.EnumObjectiveLevelFieldUpdateOperationsInput | $Enums.ObjectiveLevel
   status?: Prisma.EnumObjectiveStatusFieldUpdateOperationsInput | $Enums.ObjectiveStatus
+  teamId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentObjectiveId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cycleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceObjectiveId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type ObjectiveCreateManyParentObjectiveInput = {
+  id?: string
+  organizationId: string
+  title: string
+  level: $Enums.ObjectiveLevel
+  status?: $Enums.ObjectiveStatus
+  ownerId: string
+  teamId?: string | null
+  cycleId?: string | null
+  sourceObjectiveId?: string | null
+  publishedAt?: Date | string | null
+  closedAt?: Date | string | null
+  archivedAt?: Date | string | null
+  createdAt?: Date | string
+}
+
+export type ObjectiveCreateManySourceObjectiveInput = {
+  id?: string
+  organizationId: string
+  title: string
+  level: $Enums.ObjectiveLevel
+  status?: $Enums.ObjectiveStatus
+  ownerId: string
+  teamId?: string | null
+  parentObjectiveId?: string | null
+  cycleId?: string | null
+  publishedAt?: Date | string | null
+  closedAt?: Date | string | null
+  archivedAt?: Date | string | null
+  createdAt?: Date | string
+}
+
+export type ObjectiveUpdateWithoutParentObjectiveInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  level?: Prisma.EnumObjectiveLevelFieldUpdateOperationsInput | $Enums.ObjectiveLevel
+  status?: Prisma.EnumObjectiveStatusFieldUpdateOperationsInput | $Enums.ObjectiveStatus
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutObjectivesNestedInput
+  owner?: Prisma.MemberUpdateOneRequiredWithoutObjectivesNestedInput
+  team?: Prisma.TeamUpdateOneWithoutObjectivesNestedInput
+  childObjectives?: Prisma.ObjectiveUpdateManyWithoutParentObjectiveNestedInput
+  cycle?: Prisma.OkrCycleUpdateOneWithoutObjectivesNestedInput
+  sourceObjective?: Prisma.ObjectiveUpdateOneWithoutCarriedObjectivesNestedInput
+  carriedObjectives?: Prisma.ObjectiveUpdateManyWithoutSourceObjectiveNestedInput
+  keyResults?: Prisma.KeyResultUpdateManyWithoutObjectiveNestedInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigUpdateManyWithoutObjectiveNestedInput
+  projectLinks?: Prisma.ProjectObjectiveUpdateManyWithoutObjectiveNestedInput
+  leverLinks?: Prisma.NorthStarLeverUpdateManyWithoutObjectiveNestedInput
+  pillarLinks?: Prisma.PillarObjectiveUpdateManyWithoutObjectiveNestedInput
+}
+
+export type ObjectiveUncheckedUpdateWithoutParentObjectiveInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  level?: Prisma.EnumObjectiveLevelFieldUpdateOperationsInput | $Enums.ObjectiveLevel
+  status?: Prisma.EnumObjectiveStatusFieldUpdateOperationsInput | $Enums.ObjectiveStatus
+  ownerId?: Prisma.StringFieldUpdateOperationsInput | string
+  teamId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cycleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceObjectiveId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  childObjectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutParentObjectiveNestedInput
+  carriedObjectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutSourceObjectiveNestedInput
+  keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutObjectiveNestedInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigUncheckedUpdateManyWithoutObjectiveNestedInput
+  projectLinks?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutObjectiveNestedInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedUpdateManyWithoutObjectiveNestedInput
+  pillarLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutObjectiveNestedInput
+}
+
+export type ObjectiveUncheckedUpdateManyWithoutParentObjectiveInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  level?: Prisma.EnumObjectiveLevelFieldUpdateOperationsInput | $Enums.ObjectiveLevel
+  status?: Prisma.EnumObjectiveStatusFieldUpdateOperationsInput | $Enums.ObjectiveStatus
+  ownerId?: Prisma.StringFieldUpdateOperationsInput | string
+  teamId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cycleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceObjectiveId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type ObjectiveUpdateWithoutSourceObjectiveInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  level?: Prisma.EnumObjectiveLevelFieldUpdateOperationsInput | $Enums.ObjectiveLevel
+  status?: Prisma.EnumObjectiveStatusFieldUpdateOperationsInput | $Enums.ObjectiveStatus
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutObjectivesNestedInput
+  owner?: Prisma.MemberUpdateOneRequiredWithoutObjectivesNestedInput
+  team?: Prisma.TeamUpdateOneWithoutObjectivesNestedInput
+  parentObjective?: Prisma.ObjectiveUpdateOneWithoutChildObjectivesNestedInput
+  childObjectives?: Prisma.ObjectiveUpdateManyWithoutParentObjectiveNestedInput
+  cycle?: Prisma.OkrCycleUpdateOneWithoutObjectivesNestedInput
+  carriedObjectives?: Prisma.ObjectiveUpdateManyWithoutSourceObjectiveNestedInput
+  keyResults?: Prisma.KeyResultUpdateManyWithoutObjectiveNestedInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigUpdateManyWithoutObjectiveNestedInput
+  projectLinks?: Prisma.ProjectObjectiveUpdateManyWithoutObjectiveNestedInput
+  leverLinks?: Prisma.NorthStarLeverUpdateManyWithoutObjectiveNestedInput
+  pillarLinks?: Prisma.PillarObjectiveUpdateManyWithoutObjectiveNestedInput
+}
+
+export type ObjectiveUncheckedUpdateWithoutSourceObjectiveInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  level?: Prisma.EnumObjectiveLevelFieldUpdateOperationsInput | $Enums.ObjectiveLevel
+  status?: Prisma.EnumObjectiveStatusFieldUpdateOperationsInput | $Enums.ObjectiveStatus
+  ownerId?: Prisma.StringFieldUpdateOperationsInput | string
+  teamId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentObjectiveId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cycleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  childObjectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutParentObjectiveNestedInput
+  carriedObjectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutSourceObjectiveNestedInput
+  keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutObjectiveNestedInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigUncheckedUpdateManyWithoutObjectiveNestedInput
+  projectLinks?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutObjectiveNestedInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedUpdateManyWithoutObjectiveNestedInput
+  pillarLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutObjectiveNestedInput
+}
+
+export type ObjectiveUncheckedUpdateManyWithoutSourceObjectiveInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  level?: Prisma.EnumObjectiveLevelFieldUpdateOperationsInput | $Enums.ObjectiveLevel
+  status?: Prisma.EnumObjectiveStatusFieldUpdateOperationsInput | $Enums.ObjectiveStatus
+  ownerId?: Prisma.StringFieldUpdateOperationsInput | string
+  teamId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentObjectiveId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cycleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type ObjectiveCreateManyCycleInput = {
+  id?: string
+  organizationId: string
+  title: string
+  level: $Enums.ObjectiveLevel
+  status?: $Enums.ObjectiveStatus
+  ownerId: string
+  teamId?: string | null
+  parentObjectiveId?: string | null
+  sourceObjectiveId?: string | null
+  publishedAt?: Date | string | null
+  closedAt?: Date | string | null
+  archivedAt?: Date | string | null
+  createdAt?: Date | string
+}
+
+export type ObjectiveUpdateWithoutCycleInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  level?: Prisma.EnumObjectiveLevelFieldUpdateOperationsInput | $Enums.ObjectiveLevel
+  status?: Prisma.EnumObjectiveStatusFieldUpdateOperationsInput | $Enums.ObjectiveStatus
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutObjectivesNestedInput
+  owner?: Prisma.MemberUpdateOneRequiredWithoutObjectivesNestedInput
+  team?: Prisma.TeamUpdateOneWithoutObjectivesNestedInput
+  parentObjective?: Prisma.ObjectiveUpdateOneWithoutChildObjectivesNestedInput
+  childObjectives?: Prisma.ObjectiveUpdateManyWithoutParentObjectiveNestedInput
+  sourceObjective?: Prisma.ObjectiveUpdateOneWithoutCarriedObjectivesNestedInput
+  carriedObjectives?: Prisma.ObjectiveUpdateManyWithoutSourceObjectiveNestedInput
+  keyResults?: Prisma.KeyResultUpdateManyWithoutObjectiveNestedInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigUpdateManyWithoutObjectiveNestedInput
+  projectLinks?: Prisma.ProjectObjectiveUpdateManyWithoutObjectiveNestedInput
+  leverLinks?: Prisma.NorthStarLeverUpdateManyWithoutObjectiveNestedInput
+  pillarLinks?: Prisma.PillarObjectiveUpdateManyWithoutObjectiveNestedInput
+}
+
+export type ObjectiveUncheckedUpdateWithoutCycleInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  level?: Prisma.EnumObjectiveLevelFieldUpdateOperationsInput | $Enums.ObjectiveLevel
+  status?: Prisma.EnumObjectiveStatusFieldUpdateOperationsInput | $Enums.ObjectiveStatus
+  ownerId?: Prisma.StringFieldUpdateOperationsInput | string
+  teamId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentObjectiveId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceObjectiveId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  childObjectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutParentObjectiveNestedInput
+  carriedObjectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutSourceObjectiveNestedInput
+  keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutObjectiveNestedInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigUncheckedUpdateManyWithoutObjectiveNestedInput
+  projectLinks?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutObjectiveNestedInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedUpdateManyWithoutObjectiveNestedInput
+  pillarLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutObjectiveNestedInput
+}
+
+export type ObjectiveUncheckedUpdateManyWithoutCycleInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  level?: Prisma.EnumObjectiveLevelFieldUpdateOperationsInput | $Enums.ObjectiveLevel
+  status?: Prisma.EnumObjectiveStatusFieldUpdateOperationsInput | $Enums.ObjectiveStatus
+  ownerId?: Prisma.StringFieldUpdateOperationsInput | string
+  teamId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentObjectiveId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceObjectiveId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type ObjectiveCreateManyTeamInput = {
+  id?: string
+  organizationId: string
+  title: string
+  level: $Enums.ObjectiveLevel
+  status?: $Enums.ObjectiveStatus
+  ownerId: string
+  parentObjectiveId?: string | null
+  cycleId?: string | null
+  sourceObjectiveId?: string | null
+  publishedAt?: Date | string | null
+  closedAt?: Date | string | null
+  archivedAt?: Date | string | null
+  createdAt?: Date | string
+}
+
+export type ObjectiveUpdateWithoutTeamInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  level?: Prisma.EnumObjectiveLevelFieldUpdateOperationsInput | $Enums.ObjectiveLevel
+  status?: Prisma.EnumObjectiveStatusFieldUpdateOperationsInput | $Enums.ObjectiveStatus
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutObjectivesNestedInput
+  owner?: Prisma.MemberUpdateOneRequiredWithoutObjectivesNestedInput
+  parentObjective?: Prisma.ObjectiveUpdateOneWithoutChildObjectivesNestedInput
+  childObjectives?: Prisma.ObjectiveUpdateManyWithoutParentObjectiveNestedInput
+  cycle?: Prisma.OkrCycleUpdateOneWithoutObjectivesNestedInput
+  sourceObjective?: Prisma.ObjectiveUpdateOneWithoutCarriedObjectivesNestedInput
+  carriedObjectives?: Prisma.ObjectiveUpdateManyWithoutSourceObjectiveNestedInput
+  keyResults?: Prisma.KeyResultUpdateManyWithoutObjectiveNestedInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigUpdateManyWithoutObjectiveNestedInput
+  projectLinks?: Prisma.ProjectObjectiveUpdateManyWithoutObjectiveNestedInput
+  leverLinks?: Prisma.NorthStarLeverUpdateManyWithoutObjectiveNestedInput
+  pillarLinks?: Prisma.PillarObjectiveUpdateManyWithoutObjectiveNestedInput
+}
+
+export type ObjectiveUncheckedUpdateWithoutTeamInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  level?: Prisma.EnumObjectiveLevelFieldUpdateOperationsInput | $Enums.ObjectiveLevel
+  status?: Prisma.EnumObjectiveStatusFieldUpdateOperationsInput | $Enums.ObjectiveStatus
+  ownerId?: Prisma.StringFieldUpdateOperationsInput | string
+  parentObjectiveId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cycleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceObjectiveId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  childObjectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutParentObjectiveNestedInput
+  carriedObjectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutSourceObjectiveNestedInput
+  keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutObjectiveNestedInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigUncheckedUpdateManyWithoutObjectiveNestedInput
+  projectLinks?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutObjectiveNestedInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedUpdateManyWithoutObjectiveNestedInput
+  pillarLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutObjectiveNestedInput
+}
+
+export type ObjectiveUncheckedUpdateManyWithoutTeamInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  level?: Prisma.EnumObjectiveLevelFieldUpdateOperationsInput | $Enums.ObjectiveLevel
+  status?: Prisma.EnumObjectiveStatusFieldUpdateOperationsInput | $Enums.ObjectiveStatus
+  ownerId?: Prisma.StringFieldUpdateOperationsInput | string
+  parentObjectiveId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cycleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceObjectiveId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -1034,14 +2632,20 @@ export type ObjectiveUncheckedUpdateManyWithoutOwnerInput = {
  */
 
 export type ObjectiveCountOutputType = {
+  childObjectives: number
+  carriedObjectives: number
   keyResults: number
+  cadenceConfigs: number
   projectLinks: number
   leverLinks: number
   pillarLinks: number
 }
 
 export type ObjectiveCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  childObjectives?: boolean | ObjectiveCountOutputTypeCountChildObjectivesArgs
+  carriedObjectives?: boolean | ObjectiveCountOutputTypeCountCarriedObjectivesArgs
   keyResults?: boolean | ObjectiveCountOutputTypeCountKeyResultsArgs
+  cadenceConfigs?: boolean | ObjectiveCountOutputTypeCountCadenceConfigsArgs
   projectLinks?: boolean | ObjectiveCountOutputTypeCountProjectLinksArgs
   leverLinks?: boolean | ObjectiveCountOutputTypeCountLeverLinksArgs
   pillarLinks?: boolean | ObjectiveCountOutputTypeCountPillarLinksArgs
@@ -1060,8 +2664,29 @@ export type ObjectiveCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Ex
 /**
  * ObjectiveCountOutputType without action
  */
+export type ObjectiveCountOutputTypeCountChildObjectivesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ObjectiveWhereInput
+}
+
+/**
+ * ObjectiveCountOutputType without action
+ */
+export type ObjectiveCountOutputTypeCountCarriedObjectivesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ObjectiveWhereInput
+}
+
+/**
+ * ObjectiveCountOutputType without action
+ */
 export type ObjectiveCountOutputTypeCountKeyResultsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.KeyResultWhereInput
+}
+
+/**
+ * ObjectiveCountOutputType without action
+ */
+export type ObjectiveCountOutputTypeCountCadenceConfigsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.OkrCadenceConfigWhereInput
 }
 
 /**
@@ -1093,10 +2718,24 @@ export type ObjectiveSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   level?: boolean
   status?: boolean
   ownerId?: boolean
+  teamId?: boolean
+  parentObjectiveId?: boolean
+  cycleId?: boolean
+  sourceObjectiveId?: boolean
+  publishedAt?: boolean
+  closedAt?: boolean
+  archivedAt?: boolean
   createdAt?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   owner?: boolean | Prisma.MemberDefaultArgs<ExtArgs>
+  team?: boolean | Prisma.Objective$teamArgs<ExtArgs>
+  parentObjective?: boolean | Prisma.Objective$parentObjectiveArgs<ExtArgs>
+  childObjectives?: boolean | Prisma.Objective$childObjectivesArgs<ExtArgs>
+  cycle?: boolean | Prisma.Objective$cycleArgs<ExtArgs>
+  sourceObjective?: boolean | Prisma.Objective$sourceObjectiveArgs<ExtArgs>
+  carriedObjectives?: boolean | Prisma.Objective$carriedObjectivesArgs<ExtArgs>
   keyResults?: boolean | Prisma.Objective$keyResultsArgs<ExtArgs>
+  cadenceConfigs?: boolean | Prisma.Objective$cadenceConfigsArgs<ExtArgs>
   projectLinks?: boolean | Prisma.Objective$projectLinksArgs<ExtArgs>
   leverLinks?: boolean | Prisma.Objective$leverLinksArgs<ExtArgs>
   pillarLinks?: boolean | Prisma.Objective$pillarLinksArgs<ExtArgs>
@@ -1110,9 +2749,20 @@ export type ObjectiveSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
   level?: boolean
   status?: boolean
   ownerId?: boolean
+  teamId?: boolean
+  parentObjectiveId?: boolean
+  cycleId?: boolean
+  sourceObjectiveId?: boolean
+  publishedAt?: boolean
+  closedAt?: boolean
+  archivedAt?: boolean
   createdAt?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   owner?: boolean | Prisma.MemberDefaultArgs<ExtArgs>
+  team?: boolean | Prisma.Objective$teamArgs<ExtArgs>
+  parentObjective?: boolean | Prisma.Objective$parentObjectiveArgs<ExtArgs>
+  cycle?: boolean | Prisma.Objective$cycleArgs<ExtArgs>
+  sourceObjective?: boolean | Prisma.Objective$sourceObjectiveArgs<ExtArgs>
 }, ExtArgs["result"]["objective"]>
 
 export type ObjectiveSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1122,9 +2772,20 @@ export type ObjectiveSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
   level?: boolean
   status?: boolean
   ownerId?: boolean
+  teamId?: boolean
+  parentObjectiveId?: boolean
+  cycleId?: boolean
+  sourceObjectiveId?: boolean
+  publishedAt?: boolean
+  closedAt?: boolean
+  archivedAt?: boolean
   createdAt?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   owner?: boolean | Prisma.MemberDefaultArgs<ExtArgs>
+  team?: boolean | Prisma.Objective$teamArgs<ExtArgs>
+  parentObjective?: boolean | Prisma.Objective$parentObjectiveArgs<ExtArgs>
+  cycle?: boolean | Prisma.Objective$cycleArgs<ExtArgs>
+  sourceObjective?: boolean | Prisma.Objective$sourceObjectiveArgs<ExtArgs>
 }, ExtArgs["result"]["objective"]>
 
 export type ObjectiveSelectScalar = {
@@ -1134,14 +2795,28 @@ export type ObjectiveSelectScalar = {
   level?: boolean
   status?: boolean
   ownerId?: boolean
+  teamId?: boolean
+  parentObjectiveId?: boolean
+  cycleId?: boolean
+  sourceObjectiveId?: boolean
+  publishedAt?: boolean
+  closedAt?: boolean
+  archivedAt?: boolean
   createdAt?: boolean
 }
 
-export type ObjectiveOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "title" | "level" | "status" | "ownerId" | "createdAt", ExtArgs["result"]["objective"]>
+export type ObjectiveOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "title" | "level" | "status" | "ownerId" | "teamId" | "parentObjectiveId" | "cycleId" | "sourceObjectiveId" | "publishedAt" | "closedAt" | "archivedAt" | "createdAt", ExtArgs["result"]["objective"]>
 export type ObjectiveInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   owner?: boolean | Prisma.MemberDefaultArgs<ExtArgs>
+  team?: boolean | Prisma.Objective$teamArgs<ExtArgs>
+  parentObjective?: boolean | Prisma.Objective$parentObjectiveArgs<ExtArgs>
+  childObjectives?: boolean | Prisma.Objective$childObjectivesArgs<ExtArgs>
+  cycle?: boolean | Prisma.Objective$cycleArgs<ExtArgs>
+  sourceObjective?: boolean | Prisma.Objective$sourceObjectiveArgs<ExtArgs>
+  carriedObjectives?: boolean | Prisma.Objective$carriedObjectivesArgs<ExtArgs>
   keyResults?: boolean | Prisma.Objective$keyResultsArgs<ExtArgs>
+  cadenceConfigs?: boolean | Prisma.Objective$cadenceConfigsArgs<ExtArgs>
   projectLinks?: boolean | Prisma.Objective$projectLinksArgs<ExtArgs>
   leverLinks?: boolean | Prisma.Objective$leverLinksArgs<ExtArgs>
   pillarLinks?: boolean | Prisma.Objective$pillarLinksArgs<ExtArgs>
@@ -1150,10 +2825,18 @@ export type ObjectiveInclude<ExtArgs extends runtime.Types.Extensions.InternalAr
 export type ObjectiveIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   owner?: boolean | Prisma.MemberDefaultArgs<ExtArgs>
+  team?: boolean | Prisma.Objective$teamArgs<ExtArgs>
+  parentObjective?: boolean | Prisma.Objective$parentObjectiveArgs<ExtArgs>
+  cycle?: boolean | Prisma.Objective$cycleArgs<ExtArgs>
+  sourceObjective?: boolean | Prisma.Objective$sourceObjectiveArgs<ExtArgs>
 }
 export type ObjectiveIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   owner?: boolean | Prisma.MemberDefaultArgs<ExtArgs>
+  team?: boolean | Prisma.Objective$teamArgs<ExtArgs>
+  parentObjective?: boolean | Prisma.Objective$parentObjectiveArgs<ExtArgs>
+  cycle?: boolean | Prisma.Objective$cycleArgs<ExtArgs>
+  sourceObjective?: boolean | Prisma.Objective$sourceObjectiveArgs<ExtArgs>
 }
 
 export type $ObjectivePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1161,7 +2844,14 @@ export type $ObjectivePayload<ExtArgs extends runtime.Types.Extensions.InternalA
   objects: {
     organization: Prisma.$OrganizationPayload<ExtArgs>
     owner: Prisma.$MemberPayload<ExtArgs>
+    team: Prisma.$TeamPayload<ExtArgs> | null
+    parentObjective: Prisma.$ObjectivePayload<ExtArgs> | null
+    childObjectives: Prisma.$ObjectivePayload<ExtArgs>[]
+    cycle: Prisma.$OkrCyclePayload<ExtArgs> | null
+    sourceObjective: Prisma.$ObjectivePayload<ExtArgs> | null
+    carriedObjectives: Prisma.$ObjectivePayload<ExtArgs>[]
     keyResults: Prisma.$KeyResultPayload<ExtArgs>[]
+    cadenceConfigs: Prisma.$OkrCadenceConfigPayload<ExtArgs>[]
     projectLinks: Prisma.$ProjectObjectivePayload<ExtArgs>[]
     leverLinks: Prisma.$NorthStarLeverPayload<ExtArgs>[]
     pillarLinks: Prisma.$PillarObjectivePayload<ExtArgs>[]
@@ -1173,6 +2863,13 @@ export type $ObjectivePayload<ExtArgs extends runtime.Types.Extensions.InternalA
     level: $Enums.ObjectiveLevel
     status: $Enums.ObjectiveStatus
     ownerId: string
+    teamId: string | null
+    parentObjectiveId: string | null
+    cycleId: string | null
+    sourceObjectiveId: string | null
+    publishedAt: Date | null
+    closedAt: Date | null
+    archivedAt: Date | null
     createdAt: Date
   }, ExtArgs["result"]["objective"]>
   composites: {}
@@ -1570,7 +3267,14 @@ export interface Prisma__ObjectiveClient<T, Null = never, ExtArgs extends runtim
   readonly [Symbol.toStringTag]: "PrismaPromise"
   organization<T extends Prisma.OrganizationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrganizationDefaultArgs<ExtArgs>>): Prisma.Prisma__OrganizationClient<runtime.Types.Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   owner<T extends Prisma.MemberDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MemberDefaultArgs<ExtArgs>>): Prisma.Prisma__MemberClient<runtime.Types.Result.GetResult<Prisma.$MemberPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  team<T extends Prisma.Objective$teamArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Objective$teamArgs<ExtArgs>>): Prisma.Prisma__TeamClient<runtime.Types.Result.GetResult<Prisma.$TeamPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  parentObjective<T extends Prisma.Objective$parentObjectiveArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Objective$parentObjectiveArgs<ExtArgs>>): Prisma.Prisma__ObjectiveClient<runtime.Types.Result.GetResult<Prisma.$ObjectivePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  childObjectives<T extends Prisma.Objective$childObjectivesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Objective$childObjectivesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ObjectivePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  cycle<T extends Prisma.Objective$cycleArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Objective$cycleArgs<ExtArgs>>): Prisma.Prisma__OkrCycleClient<runtime.Types.Result.GetResult<Prisma.$OkrCyclePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  sourceObjective<T extends Prisma.Objective$sourceObjectiveArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Objective$sourceObjectiveArgs<ExtArgs>>): Prisma.Prisma__ObjectiveClient<runtime.Types.Result.GetResult<Prisma.$ObjectivePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  carriedObjectives<T extends Prisma.Objective$carriedObjectivesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Objective$carriedObjectivesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ObjectivePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   keyResults<T extends Prisma.Objective$keyResultsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Objective$keyResultsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$KeyResultPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  cadenceConfigs<T extends Prisma.Objective$cadenceConfigsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Objective$cadenceConfigsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OkrCadenceConfigPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   projectLinks<T extends Prisma.Objective$projectLinksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Objective$projectLinksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProjectObjectivePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   leverLinks<T extends Prisma.Objective$leverLinksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Objective$leverLinksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NorthStarLeverPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   pillarLinks<T extends Prisma.Objective$pillarLinksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Objective$pillarLinksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PillarObjectivePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -1609,6 +3313,13 @@ export interface ObjectiveFieldRefs {
   readonly level: Prisma.FieldRef<"Objective", 'ObjectiveLevel'>
   readonly status: Prisma.FieldRef<"Objective", 'ObjectiveStatus'>
   readonly ownerId: Prisma.FieldRef<"Objective", 'String'>
+  readonly teamId: Prisma.FieldRef<"Objective", 'String'>
+  readonly parentObjectiveId: Prisma.FieldRef<"Objective", 'String'>
+  readonly cycleId: Prisma.FieldRef<"Objective", 'String'>
+  readonly sourceObjectiveId: Prisma.FieldRef<"Objective", 'String'>
+  readonly publishedAt: Prisma.FieldRef<"Objective", 'DateTime'>
+  readonly closedAt: Prisma.FieldRef<"Objective", 'DateTime'>
+  readonly archivedAt: Prisma.FieldRef<"Objective", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"Objective", 'DateTime'>
 }
     
@@ -2011,6 +3722,130 @@ export type ObjectiveDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Int
 }
 
 /**
+ * Objective.team
+ */
+export type Objective$teamArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Team
+   */
+  select?: Prisma.TeamSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Team
+   */
+  omit?: Prisma.TeamOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TeamInclude<ExtArgs> | null
+  where?: Prisma.TeamWhereInput
+}
+
+/**
+ * Objective.parentObjective
+ */
+export type Objective$parentObjectiveArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Objective
+   */
+  select?: Prisma.ObjectiveSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Objective
+   */
+  omit?: Prisma.ObjectiveOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ObjectiveInclude<ExtArgs> | null
+  where?: Prisma.ObjectiveWhereInput
+}
+
+/**
+ * Objective.childObjectives
+ */
+export type Objective$childObjectivesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Objective
+   */
+  select?: Prisma.ObjectiveSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Objective
+   */
+  omit?: Prisma.ObjectiveOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ObjectiveInclude<ExtArgs> | null
+  where?: Prisma.ObjectiveWhereInput
+  orderBy?: Prisma.ObjectiveOrderByWithRelationInput | Prisma.ObjectiveOrderByWithRelationInput[]
+  cursor?: Prisma.ObjectiveWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ObjectiveScalarFieldEnum | Prisma.ObjectiveScalarFieldEnum[]
+}
+
+/**
+ * Objective.cycle
+ */
+export type Objective$cycleArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the OkrCycle
+   */
+  select?: Prisma.OkrCycleSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the OkrCycle
+   */
+  omit?: Prisma.OkrCycleOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OkrCycleInclude<ExtArgs> | null
+  where?: Prisma.OkrCycleWhereInput
+}
+
+/**
+ * Objective.sourceObjective
+ */
+export type Objective$sourceObjectiveArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Objective
+   */
+  select?: Prisma.ObjectiveSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Objective
+   */
+  omit?: Prisma.ObjectiveOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ObjectiveInclude<ExtArgs> | null
+  where?: Prisma.ObjectiveWhereInput
+}
+
+/**
+ * Objective.carriedObjectives
+ */
+export type Objective$carriedObjectivesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Objective
+   */
+  select?: Prisma.ObjectiveSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Objective
+   */
+  omit?: Prisma.ObjectiveOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ObjectiveInclude<ExtArgs> | null
+  where?: Prisma.ObjectiveWhereInput
+  orderBy?: Prisma.ObjectiveOrderByWithRelationInput | Prisma.ObjectiveOrderByWithRelationInput[]
+  cursor?: Prisma.ObjectiveWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ObjectiveScalarFieldEnum | Prisma.ObjectiveScalarFieldEnum[]
+}
+
+/**
  * Objective.keyResults
  */
 export type Objective$keyResultsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2032,6 +3867,30 @@ export type Objective$keyResultsArgs<ExtArgs extends runtime.Types.Extensions.In
   take?: number
   skip?: number
   distinct?: Prisma.KeyResultScalarFieldEnum | Prisma.KeyResultScalarFieldEnum[]
+}
+
+/**
+ * Objective.cadenceConfigs
+ */
+export type Objective$cadenceConfigsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the OkrCadenceConfig
+   */
+  select?: Prisma.OkrCadenceConfigSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the OkrCadenceConfig
+   */
+  omit?: Prisma.OkrCadenceConfigOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OkrCadenceConfigInclude<ExtArgs> | null
+  where?: Prisma.OkrCadenceConfigWhereInput
+  orderBy?: Prisma.OkrCadenceConfigOrderByWithRelationInput | Prisma.OkrCadenceConfigOrderByWithRelationInput[]
+  cursor?: Prisma.OkrCadenceConfigWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.OkrCadenceConfigScalarFieldEnum | Prisma.OkrCadenceConfigScalarFieldEnum[]
 }
 
 /**

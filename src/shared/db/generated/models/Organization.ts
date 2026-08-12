@@ -235,6 +235,11 @@ export type OrganizationWhereInput = {
   pillarObjectiveLinks?: Prisma.PillarObjectiveListRelationFilter
   objectives?: Prisma.ObjectiveListRelationFilter
   keyResults?: Prisma.KeyResultListRelationFilter
+  okrCycles?: Prisma.OkrCycleListRelationFilter
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigListRelationFilter
+  checkIns?: Prisma.CheckInListRelationFilter
+  checkInEvidence?: Prisma.CheckInEvidenceListRelationFilter
+  okrAuditEvents?: Prisma.OkrAuditEventListRelationFilter
   teams?: Prisma.TeamListRelationFilter
   teamMembers?: Prisma.TeamMemberListRelationFilter
   projects?: Prisma.ProjectListRelationFilter
@@ -259,6 +264,11 @@ export type OrganizationOrderByWithRelationInput = {
   pillarObjectiveLinks?: Prisma.PillarObjectiveOrderByRelationAggregateInput
   objectives?: Prisma.ObjectiveOrderByRelationAggregateInput
   keyResults?: Prisma.KeyResultOrderByRelationAggregateInput
+  okrCycles?: Prisma.OkrCycleOrderByRelationAggregateInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigOrderByRelationAggregateInput
+  checkIns?: Prisma.CheckInOrderByRelationAggregateInput
+  checkInEvidence?: Prisma.CheckInEvidenceOrderByRelationAggregateInput
+  okrAuditEvents?: Prisma.OkrAuditEventOrderByRelationAggregateInput
   teams?: Prisma.TeamOrderByRelationAggregateInput
   teamMembers?: Prisma.TeamMemberOrderByRelationAggregateInput
   projects?: Prisma.ProjectOrderByRelationAggregateInput
@@ -286,6 +296,11 @@ export type OrganizationWhereUniqueInput = Prisma.AtLeast<{
   pillarObjectiveLinks?: Prisma.PillarObjectiveListRelationFilter
   objectives?: Prisma.ObjectiveListRelationFilter
   keyResults?: Prisma.KeyResultListRelationFilter
+  okrCycles?: Prisma.OkrCycleListRelationFilter
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigListRelationFilter
+  checkIns?: Prisma.CheckInListRelationFilter
+  checkInEvidence?: Prisma.CheckInEvidenceListRelationFilter
+  okrAuditEvents?: Prisma.OkrAuditEventListRelationFilter
   teams?: Prisma.TeamListRelationFilter
   teamMembers?: Prisma.TeamMemberListRelationFilter
   projects?: Prisma.ProjectListRelationFilter
@@ -338,6 +353,11 @@ export type OrganizationCreateInput = {
   pillarObjectiveLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutOrganizationInput
   objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultCreateNestedManyWithoutOrganizationInput
+  okrCycles?: Prisma.OkrCycleCreateNestedManyWithoutOrganizationInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigCreateNestedManyWithoutOrganizationInput
+  checkIns?: Prisma.CheckInCreateNestedManyWithoutOrganizationInput
+  checkInEvidence?: Prisma.CheckInEvidenceCreateNestedManyWithoutOrganizationInput
+  okrAuditEvents?: Prisma.OkrAuditEventCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
   teamMembers?: Prisma.TeamMemberCreateNestedManyWithoutOrganizationInput
   projects?: Prisma.ProjectCreateNestedManyWithoutOrganizationInput
@@ -362,6 +382,11 @@ export type OrganizationUncheckedCreateInput = {
   pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutOrganizationInput
+  okrCycles?: Prisma.OkrCycleUncheckedCreateNestedManyWithoutOrganizationInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUncheckedCreateNestedManyWithoutOrganizationInput
+  checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutOrganizationInput
+  checkInEvidence?: Prisma.CheckInEvidenceUncheckedCreateNestedManyWithoutOrganizationInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
   teamMembers?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutOrganizationInput
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganizationInput
@@ -386,6 +411,11 @@ export type OrganizationUpdateInput = {
   pillarObjectiveLinks?: Prisma.PillarObjectiveUpdateManyWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUpdateManyWithoutOrganizationNestedInput
+  okrCycles?: Prisma.OkrCycleUpdateManyWithoutOrganizationNestedInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUpdateManyWithoutOrganizationNestedInput
+  checkIns?: Prisma.CheckInUpdateManyWithoutOrganizationNestedInput
+  checkInEvidence?: Prisma.CheckInEvidenceUpdateManyWithoutOrganizationNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
   teamMembers?: Prisma.TeamMemberUpdateManyWithoutOrganizationNestedInput
   projects?: Prisma.ProjectUpdateManyWithoutOrganizationNestedInput
@@ -410,6 +440,11 @@ export type OrganizationUncheckedUpdateInput = {
   pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrCycles?: Prisma.OkrCycleUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUncheckedUpdateManyWithoutOrganizationNestedInput
+  checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutOrganizationNestedInput
+  checkInEvidence?: Prisma.CheckInEvidenceUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
   teamMembers?: Prisma.TeamMemberUncheckedUpdateManyWithoutOrganizationNestedInput
   projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -625,6 +660,76 @@ export type OrganizationUpdateOneRequiredWithoutKeyResultsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutKeyResultsInput, Prisma.OrganizationUpdateWithoutKeyResultsInput>, Prisma.OrganizationUncheckedUpdateWithoutKeyResultsInput>
 }
 
+export type OrganizationCreateNestedOneWithoutOkrCyclesInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutOkrCyclesInput, Prisma.OrganizationUncheckedCreateWithoutOkrCyclesInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutOkrCyclesInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutOkrCyclesNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutOkrCyclesInput, Prisma.OrganizationUncheckedCreateWithoutOkrCyclesInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutOkrCyclesInput
+  upsert?: Prisma.OrganizationUpsertWithoutOkrCyclesInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutOkrCyclesInput, Prisma.OrganizationUpdateWithoutOkrCyclesInput>, Prisma.OrganizationUncheckedUpdateWithoutOkrCyclesInput>
+}
+
+export type OrganizationCreateNestedOneWithoutOkrCadenceConfigsInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutOkrCadenceConfigsInput, Prisma.OrganizationUncheckedCreateWithoutOkrCadenceConfigsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutOkrCadenceConfigsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutOkrCadenceConfigsNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutOkrCadenceConfigsInput, Prisma.OrganizationUncheckedCreateWithoutOkrCadenceConfigsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutOkrCadenceConfigsInput
+  upsert?: Prisma.OrganizationUpsertWithoutOkrCadenceConfigsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutOkrCadenceConfigsInput, Prisma.OrganizationUpdateWithoutOkrCadenceConfigsInput>, Prisma.OrganizationUncheckedUpdateWithoutOkrCadenceConfigsInput>
+}
+
+export type OrganizationCreateNestedOneWithoutCheckInsInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutCheckInsInput, Prisma.OrganizationUncheckedCreateWithoutCheckInsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutCheckInsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutCheckInsNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutCheckInsInput, Prisma.OrganizationUncheckedCreateWithoutCheckInsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutCheckInsInput
+  upsert?: Prisma.OrganizationUpsertWithoutCheckInsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutCheckInsInput, Prisma.OrganizationUpdateWithoutCheckInsInput>, Prisma.OrganizationUncheckedUpdateWithoutCheckInsInput>
+}
+
+export type OrganizationCreateNestedOneWithoutCheckInEvidenceInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutCheckInEvidenceInput, Prisma.OrganizationUncheckedCreateWithoutCheckInEvidenceInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutCheckInEvidenceInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutCheckInEvidenceNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutCheckInEvidenceInput, Prisma.OrganizationUncheckedCreateWithoutCheckInEvidenceInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutCheckInEvidenceInput
+  upsert?: Prisma.OrganizationUpsertWithoutCheckInEvidenceInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutCheckInEvidenceInput, Prisma.OrganizationUpdateWithoutCheckInEvidenceInput>, Prisma.OrganizationUncheckedUpdateWithoutCheckInEvidenceInput>
+}
+
+export type OrganizationCreateNestedOneWithoutOkrAuditEventsInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutOkrAuditEventsInput, Prisma.OrganizationUncheckedCreateWithoutOkrAuditEventsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutOkrAuditEventsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutOkrAuditEventsNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutOkrAuditEventsInput, Prisma.OrganizationUncheckedCreateWithoutOkrAuditEventsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutOkrAuditEventsInput
+  upsert?: Prisma.OrganizationUpsertWithoutOkrAuditEventsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutOkrAuditEventsInput, Prisma.OrganizationUpdateWithoutOkrAuditEventsInput>, Prisma.OrganizationUncheckedUpdateWithoutOkrAuditEventsInput>
+}
+
 export type OrganizationCreateNestedOneWithoutTeamsInput = {
   create?: Prisma.XOR<Prisma.OrganizationCreateWithoutTeamsInput, Prisma.OrganizationUncheckedCreateWithoutTeamsInput>
   connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutTeamsInput
@@ -737,6 +842,11 @@ export type OrganizationCreateWithoutMembersInput = {
   pillarObjectiveLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutOrganizationInput
   objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultCreateNestedManyWithoutOrganizationInput
+  okrCycles?: Prisma.OkrCycleCreateNestedManyWithoutOrganizationInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigCreateNestedManyWithoutOrganizationInput
+  checkIns?: Prisma.CheckInCreateNestedManyWithoutOrganizationInput
+  checkInEvidence?: Prisma.CheckInEvidenceCreateNestedManyWithoutOrganizationInput
+  okrAuditEvents?: Prisma.OkrAuditEventCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
   teamMembers?: Prisma.TeamMemberCreateNestedManyWithoutOrganizationInput
   projects?: Prisma.ProjectCreateNestedManyWithoutOrganizationInput
@@ -760,6 +870,11 @@ export type OrganizationUncheckedCreateWithoutMembersInput = {
   pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutOrganizationInput
+  okrCycles?: Prisma.OkrCycleUncheckedCreateNestedManyWithoutOrganizationInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUncheckedCreateNestedManyWithoutOrganizationInput
+  checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutOrganizationInput
+  checkInEvidence?: Prisma.CheckInEvidenceUncheckedCreateNestedManyWithoutOrganizationInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
   teamMembers?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutOrganizationInput
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganizationInput
@@ -799,6 +914,11 @@ export type OrganizationUpdateWithoutMembersInput = {
   pillarObjectiveLinks?: Prisma.PillarObjectiveUpdateManyWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUpdateManyWithoutOrganizationNestedInput
+  okrCycles?: Prisma.OkrCycleUpdateManyWithoutOrganizationNestedInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUpdateManyWithoutOrganizationNestedInput
+  checkIns?: Prisma.CheckInUpdateManyWithoutOrganizationNestedInput
+  checkInEvidence?: Prisma.CheckInEvidenceUpdateManyWithoutOrganizationNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
   teamMembers?: Prisma.TeamMemberUpdateManyWithoutOrganizationNestedInput
   projects?: Prisma.ProjectUpdateManyWithoutOrganizationNestedInput
@@ -822,6 +942,11 @@ export type OrganizationUncheckedUpdateWithoutMembersInput = {
   pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrCycles?: Prisma.OkrCycleUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUncheckedUpdateManyWithoutOrganizationNestedInput
+  checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutOrganizationNestedInput
+  checkInEvidence?: Prisma.CheckInEvidenceUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
   teamMembers?: Prisma.TeamMemberUncheckedUpdateManyWithoutOrganizationNestedInput
   projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -845,6 +970,11 @@ export type OrganizationCreateWithoutNorthStarInput = {
   pillarObjectiveLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutOrganizationInput
   objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultCreateNestedManyWithoutOrganizationInput
+  okrCycles?: Prisma.OkrCycleCreateNestedManyWithoutOrganizationInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigCreateNestedManyWithoutOrganizationInput
+  checkIns?: Prisma.CheckInCreateNestedManyWithoutOrganizationInput
+  checkInEvidence?: Prisma.CheckInEvidenceCreateNestedManyWithoutOrganizationInput
+  okrAuditEvents?: Prisma.OkrAuditEventCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
   teamMembers?: Prisma.TeamMemberCreateNestedManyWithoutOrganizationInput
   projects?: Prisma.ProjectCreateNestedManyWithoutOrganizationInput
@@ -868,6 +998,11 @@ export type OrganizationUncheckedCreateWithoutNorthStarInput = {
   pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutOrganizationInput
+  okrCycles?: Prisma.OkrCycleUncheckedCreateNestedManyWithoutOrganizationInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUncheckedCreateNestedManyWithoutOrganizationInput
+  checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutOrganizationInput
+  checkInEvidence?: Prisma.CheckInEvidenceUncheckedCreateNestedManyWithoutOrganizationInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
   teamMembers?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutOrganizationInput
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganizationInput
@@ -907,6 +1042,11 @@ export type OrganizationUpdateWithoutNorthStarInput = {
   pillarObjectiveLinks?: Prisma.PillarObjectiveUpdateManyWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUpdateManyWithoutOrganizationNestedInput
+  okrCycles?: Prisma.OkrCycleUpdateManyWithoutOrganizationNestedInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUpdateManyWithoutOrganizationNestedInput
+  checkIns?: Prisma.CheckInUpdateManyWithoutOrganizationNestedInput
+  checkInEvidence?: Prisma.CheckInEvidenceUpdateManyWithoutOrganizationNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
   teamMembers?: Prisma.TeamMemberUpdateManyWithoutOrganizationNestedInput
   projects?: Prisma.ProjectUpdateManyWithoutOrganizationNestedInput
@@ -930,6 +1070,11 @@ export type OrganizationUncheckedUpdateWithoutNorthStarInput = {
   pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrCycles?: Prisma.OkrCycleUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUncheckedUpdateManyWithoutOrganizationNestedInput
+  checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutOrganizationNestedInput
+  checkInEvidence?: Prisma.CheckInEvidenceUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
   teamMembers?: Prisma.TeamMemberUncheckedUpdateManyWithoutOrganizationNestedInput
   projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -953,6 +1098,11 @@ export type OrganizationCreateWithoutLeverLinksInput = {
   pillarObjectiveLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutOrganizationInput
   objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultCreateNestedManyWithoutOrganizationInput
+  okrCycles?: Prisma.OkrCycleCreateNestedManyWithoutOrganizationInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigCreateNestedManyWithoutOrganizationInput
+  checkIns?: Prisma.CheckInCreateNestedManyWithoutOrganizationInput
+  checkInEvidence?: Prisma.CheckInEvidenceCreateNestedManyWithoutOrganizationInput
+  okrAuditEvents?: Prisma.OkrAuditEventCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
   teamMembers?: Prisma.TeamMemberCreateNestedManyWithoutOrganizationInput
   projects?: Prisma.ProjectCreateNestedManyWithoutOrganizationInput
@@ -976,6 +1126,11 @@ export type OrganizationUncheckedCreateWithoutLeverLinksInput = {
   pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutOrganizationInput
+  okrCycles?: Prisma.OkrCycleUncheckedCreateNestedManyWithoutOrganizationInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUncheckedCreateNestedManyWithoutOrganizationInput
+  checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutOrganizationInput
+  checkInEvidence?: Prisma.CheckInEvidenceUncheckedCreateNestedManyWithoutOrganizationInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
   teamMembers?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutOrganizationInput
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganizationInput
@@ -1015,6 +1170,11 @@ export type OrganizationUpdateWithoutLeverLinksInput = {
   pillarObjectiveLinks?: Prisma.PillarObjectiveUpdateManyWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUpdateManyWithoutOrganizationNestedInput
+  okrCycles?: Prisma.OkrCycleUpdateManyWithoutOrganizationNestedInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUpdateManyWithoutOrganizationNestedInput
+  checkIns?: Prisma.CheckInUpdateManyWithoutOrganizationNestedInput
+  checkInEvidence?: Prisma.CheckInEvidenceUpdateManyWithoutOrganizationNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
   teamMembers?: Prisma.TeamMemberUpdateManyWithoutOrganizationNestedInput
   projects?: Prisma.ProjectUpdateManyWithoutOrganizationNestedInput
@@ -1038,6 +1198,11 @@ export type OrganizationUncheckedUpdateWithoutLeverLinksInput = {
   pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrCycles?: Prisma.OkrCycleUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUncheckedUpdateManyWithoutOrganizationNestedInput
+  checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutOrganizationNestedInput
+  checkInEvidence?: Prisma.CheckInEvidenceUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
   teamMembers?: Prisma.TeamMemberUncheckedUpdateManyWithoutOrganizationNestedInput
   projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -1061,6 +1226,11 @@ export type OrganizationCreateWithoutPillarsInput = {
   pillarObjectiveLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutOrganizationInput
   objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultCreateNestedManyWithoutOrganizationInput
+  okrCycles?: Prisma.OkrCycleCreateNestedManyWithoutOrganizationInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigCreateNestedManyWithoutOrganizationInput
+  checkIns?: Prisma.CheckInCreateNestedManyWithoutOrganizationInput
+  checkInEvidence?: Prisma.CheckInEvidenceCreateNestedManyWithoutOrganizationInput
+  okrAuditEvents?: Prisma.OkrAuditEventCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
   teamMembers?: Prisma.TeamMemberCreateNestedManyWithoutOrganizationInput
   projects?: Prisma.ProjectCreateNestedManyWithoutOrganizationInput
@@ -1084,6 +1254,11 @@ export type OrganizationUncheckedCreateWithoutPillarsInput = {
   pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutOrganizationInput
+  okrCycles?: Prisma.OkrCycleUncheckedCreateNestedManyWithoutOrganizationInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUncheckedCreateNestedManyWithoutOrganizationInput
+  checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutOrganizationInput
+  checkInEvidence?: Prisma.CheckInEvidenceUncheckedCreateNestedManyWithoutOrganizationInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
   teamMembers?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutOrganizationInput
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganizationInput
@@ -1123,6 +1298,11 @@ export type OrganizationUpdateWithoutPillarsInput = {
   pillarObjectiveLinks?: Prisma.PillarObjectiveUpdateManyWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUpdateManyWithoutOrganizationNestedInput
+  okrCycles?: Prisma.OkrCycleUpdateManyWithoutOrganizationNestedInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUpdateManyWithoutOrganizationNestedInput
+  checkIns?: Prisma.CheckInUpdateManyWithoutOrganizationNestedInput
+  checkInEvidence?: Prisma.CheckInEvidenceUpdateManyWithoutOrganizationNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
   teamMembers?: Prisma.TeamMemberUpdateManyWithoutOrganizationNestedInput
   projects?: Prisma.ProjectUpdateManyWithoutOrganizationNestedInput
@@ -1146,6 +1326,11 @@ export type OrganizationUncheckedUpdateWithoutPillarsInput = {
   pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrCycles?: Prisma.OkrCycleUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUncheckedUpdateManyWithoutOrganizationNestedInput
+  checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutOrganizationNestedInput
+  checkInEvidence?: Prisma.CheckInEvidenceUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
   teamMembers?: Prisma.TeamMemberUncheckedUpdateManyWithoutOrganizationNestedInput
   projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -1169,6 +1354,11 @@ export type OrganizationCreateWithoutPillarObjectiveLinksInput = {
   pillars?: Prisma.StrategicPillarCreateNestedManyWithoutOrganizationInput
   objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultCreateNestedManyWithoutOrganizationInput
+  okrCycles?: Prisma.OkrCycleCreateNestedManyWithoutOrganizationInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigCreateNestedManyWithoutOrganizationInput
+  checkIns?: Prisma.CheckInCreateNestedManyWithoutOrganizationInput
+  checkInEvidence?: Prisma.CheckInEvidenceCreateNestedManyWithoutOrganizationInput
+  okrAuditEvents?: Prisma.OkrAuditEventCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
   teamMembers?: Prisma.TeamMemberCreateNestedManyWithoutOrganizationInput
   projects?: Prisma.ProjectCreateNestedManyWithoutOrganizationInput
@@ -1192,6 +1382,11 @@ export type OrganizationUncheckedCreateWithoutPillarObjectiveLinksInput = {
   pillars?: Prisma.StrategicPillarUncheckedCreateNestedManyWithoutOrganizationInput
   objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutOrganizationInput
+  okrCycles?: Prisma.OkrCycleUncheckedCreateNestedManyWithoutOrganizationInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUncheckedCreateNestedManyWithoutOrganizationInput
+  checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutOrganizationInput
+  checkInEvidence?: Prisma.CheckInEvidenceUncheckedCreateNestedManyWithoutOrganizationInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
   teamMembers?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutOrganizationInput
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganizationInput
@@ -1231,6 +1426,11 @@ export type OrganizationUpdateWithoutPillarObjectiveLinksInput = {
   pillars?: Prisma.StrategicPillarUpdateManyWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUpdateManyWithoutOrganizationNestedInput
+  okrCycles?: Prisma.OkrCycleUpdateManyWithoutOrganizationNestedInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUpdateManyWithoutOrganizationNestedInput
+  checkIns?: Prisma.CheckInUpdateManyWithoutOrganizationNestedInput
+  checkInEvidence?: Prisma.CheckInEvidenceUpdateManyWithoutOrganizationNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
   teamMembers?: Prisma.TeamMemberUpdateManyWithoutOrganizationNestedInput
   projects?: Prisma.ProjectUpdateManyWithoutOrganizationNestedInput
@@ -1254,6 +1454,11 @@ export type OrganizationUncheckedUpdateWithoutPillarObjectiveLinksInput = {
   pillars?: Prisma.StrategicPillarUncheckedUpdateManyWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrCycles?: Prisma.OkrCycleUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUncheckedUpdateManyWithoutOrganizationNestedInput
+  checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutOrganizationNestedInput
+  checkInEvidence?: Prisma.CheckInEvidenceUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
   teamMembers?: Prisma.TeamMemberUncheckedUpdateManyWithoutOrganizationNestedInput
   projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -1277,6 +1482,11 @@ export type OrganizationCreateWithoutObjectivesInput = {
   pillars?: Prisma.StrategicPillarCreateNestedManyWithoutOrganizationInput
   pillarObjectiveLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultCreateNestedManyWithoutOrganizationInput
+  okrCycles?: Prisma.OkrCycleCreateNestedManyWithoutOrganizationInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigCreateNestedManyWithoutOrganizationInput
+  checkIns?: Prisma.CheckInCreateNestedManyWithoutOrganizationInput
+  checkInEvidence?: Prisma.CheckInEvidenceCreateNestedManyWithoutOrganizationInput
+  okrAuditEvents?: Prisma.OkrAuditEventCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
   teamMembers?: Prisma.TeamMemberCreateNestedManyWithoutOrganizationInput
   projects?: Prisma.ProjectCreateNestedManyWithoutOrganizationInput
@@ -1300,6 +1510,11 @@ export type OrganizationUncheckedCreateWithoutObjectivesInput = {
   pillars?: Prisma.StrategicPillarUncheckedCreateNestedManyWithoutOrganizationInput
   pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutOrganizationInput
+  okrCycles?: Prisma.OkrCycleUncheckedCreateNestedManyWithoutOrganizationInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUncheckedCreateNestedManyWithoutOrganizationInput
+  checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutOrganizationInput
+  checkInEvidence?: Prisma.CheckInEvidenceUncheckedCreateNestedManyWithoutOrganizationInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
   teamMembers?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutOrganizationInput
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganizationInput
@@ -1339,6 +1554,11 @@ export type OrganizationUpdateWithoutObjectivesInput = {
   pillars?: Prisma.StrategicPillarUpdateManyWithoutOrganizationNestedInput
   pillarObjectiveLinks?: Prisma.PillarObjectiveUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUpdateManyWithoutOrganizationNestedInput
+  okrCycles?: Prisma.OkrCycleUpdateManyWithoutOrganizationNestedInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUpdateManyWithoutOrganizationNestedInput
+  checkIns?: Prisma.CheckInUpdateManyWithoutOrganizationNestedInput
+  checkInEvidence?: Prisma.CheckInEvidenceUpdateManyWithoutOrganizationNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
   teamMembers?: Prisma.TeamMemberUpdateManyWithoutOrganizationNestedInput
   projects?: Prisma.ProjectUpdateManyWithoutOrganizationNestedInput
@@ -1362,6 +1582,11 @@ export type OrganizationUncheckedUpdateWithoutObjectivesInput = {
   pillars?: Prisma.StrategicPillarUncheckedUpdateManyWithoutOrganizationNestedInput
   pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrCycles?: Prisma.OkrCycleUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUncheckedUpdateManyWithoutOrganizationNestedInput
+  checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutOrganizationNestedInput
+  checkInEvidence?: Prisma.CheckInEvidenceUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
   teamMembers?: Prisma.TeamMemberUncheckedUpdateManyWithoutOrganizationNestedInput
   projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -1385,6 +1610,11 @@ export type OrganizationCreateWithoutKeyResultsInput = {
   pillars?: Prisma.StrategicPillarCreateNestedManyWithoutOrganizationInput
   pillarObjectiveLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutOrganizationInput
   objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
+  okrCycles?: Prisma.OkrCycleCreateNestedManyWithoutOrganizationInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigCreateNestedManyWithoutOrganizationInput
+  checkIns?: Prisma.CheckInCreateNestedManyWithoutOrganizationInput
+  checkInEvidence?: Prisma.CheckInEvidenceCreateNestedManyWithoutOrganizationInput
+  okrAuditEvents?: Prisma.OkrAuditEventCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
   teamMembers?: Prisma.TeamMemberCreateNestedManyWithoutOrganizationInput
   projects?: Prisma.ProjectCreateNestedManyWithoutOrganizationInput
@@ -1408,6 +1638,11 @@ export type OrganizationUncheckedCreateWithoutKeyResultsInput = {
   pillars?: Prisma.StrategicPillarUncheckedCreateNestedManyWithoutOrganizationInput
   pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  okrCycles?: Prisma.OkrCycleUncheckedCreateNestedManyWithoutOrganizationInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUncheckedCreateNestedManyWithoutOrganizationInput
+  checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutOrganizationInput
+  checkInEvidence?: Prisma.CheckInEvidenceUncheckedCreateNestedManyWithoutOrganizationInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
   teamMembers?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutOrganizationInput
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganizationInput
@@ -1447,6 +1682,11 @@ export type OrganizationUpdateWithoutKeyResultsInput = {
   pillars?: Prisma.StrategicPillarUpdateManyWithoutOrganizationNestedInput
   pillarObjectiveLinks?: Prisma.PillarObjectiveUpdateManyWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
+  okrCycles?: Prisma.OkrCycleUpdateManyWithoutOrganizationNestedInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUpdateManyWithoutOrganizationNestedInput
+  checkIns?: Prisma.CheckInUpdateManyWithoutOrganizationNestedInput
+  checkInEvidence?: Prisma.CheckInEvidenceUpdateManyWithoutOrganizationNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
   teamMembers?: Prisma.TeamMemberUpdateManyWithoutOrganizationNestedInput
   projects?: Prisma.ProjectUpdateManyWithoutOrganizationNestedInput
@@ -1470,6 +1710,651 @@ export type OrganizationUncheckedUpdateWithoutKeyResultsInput = {
   pillars?: Prisma.StrategicPillarUncheckedUpdateManyWithoutOrganizationNestedInput
   pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrCycles?: Prisma.OkrCycleUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUncheckedUpdateManyWithoutOrganizationNestedInput
+  checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutOrganizationNestedInput
+  checkInEvidence?: Prisma.CheckInEvidenceUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
+  teamMembers?: Prisma.TeamMemberUncheckedUpdateManyWithoutOrganizationNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganizationNestedInput
+  projectObjectives?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  skills?: Prisma.SkillUncheckedUpdateManyWithoutOrganizationNestedInput
+  competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutOrganizationNestedInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutOkrCyclesInput = {
+  id?: string
+  name: string
+  vision?: string | null
+  mission?: string | null
+  values?: Prisma.OrganizationCreatevaluesInput | string[]
+  createdAt?: Date | string
+  enpsMinimumResponses?: number
+  members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
+  northStar?: Prisma.NorthStarCreateNestedOneWithoutOrganizationInput
+  leverLinks?: Prisma.NorthStarLeverCreateNestedManyWithoutOrganizationInput
+  pillars?: Prisma.StrategicPillarCreateNestedManyWithoutOrganizationInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutOrganizationInput
+  objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
+  keyResults?: Prisma.KeyResultCreateNestedManyWithoutOrganizationInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigCreateNestedManyWithoutOrganizationInput
+  checkIns?: Prisma.CheckInCreateNestedManyWithoutOrganizationInput
+  checkInEvidence?: Prisma.CheckInEvidenceCreateNestedManyWithoutOrganizationInput
+  okrAuditEvents?: Prisma.OkrAuditEventCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
+  teamMembers?: Prisma.TeamMemberCreateNestedManyWithoutOrganizationInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutOrganizationInput
+  projectObjectives?: Prisma.ProjectObjectiveCreateNestedManyWithoutOrganizationInput
+  skills?: Prisma.SkillCreateNestedManyWithoutOrganizationInput
+  competencies?: Prisma.CompetencyCreateNestedManyWithoutOrganizationInput
+  skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutOkrCyclesInput = {
+  id?: string
+  name: string
+  vision?: string | null
+  mission?: string | null
+  values?: Prisma.OrganizationCreatevaluesInput | string[]
+  createdAt?: Date | string
+  enpsMinimumResponses?: number
+  members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
+  northStar?: Prisma.NorthStarUncheckedCreateNestedOneWithoutOrganizationInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedCreateNestedManyWithoutOrganizationInput
+  pillars?: Prisma.StrategicPillarUncheckedCreateNestedManyWithoutOrganizationInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutOrganizationInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUncheckedCreateNestedManyWithoutOrganizationInput
+  checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutOrganizationInput
+  checkInEvidence?: Prisma.CheckInEvidenceUncheckedCreateNestedManyWithoutOrganizationInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
+  teamMembers?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutOrganizationInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganizationInput
+  projectObjectives?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  skills?: Prisma.SkillUncheckedCreateNestedManyWithoutOrganizationInput
+  competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutOrganizationInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutOkrCyclesInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutOkrCyclesInput, Prisma.OrganizationUncheckedCreateWithoutOkrCyclesInput>
+}
+
+export type OrganizationUpsertWithoutOkrCyclesInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutOkrCyclesInput, Prisma.OrganizationUncheckedUpdateWithoutOkrCyclesInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutOkrCyclesInput, Prisma.OrganizationUncheckedCreateWithoutOkrCyclesInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutOkrCyclesInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutOkrCyclesInput, Prisma.OrganizationUncheckedUpdateWithoutOkrCyclesInput>
+}
+
+export type OrganizationUpdateWithoutOkrCyclesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mission?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  values?: Prisma.OrganizationUpdatevaluesInput | string[]
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
+  members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
+  northStar?: Prisma.NorthStarUpdateOneWithoutOrganizationNestedInput
+  leverLinks?: Prisma.NorthStarLeverUpdateManyWithoutOrganizationNestedInput
+  pillars?: Prisma.StrategicPillarUpdateManyWithoutOrganizationNestedInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUpdateManyWithoutOrganizationNestedInput
+  objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
+  keyResults?: Prisma.KeyResultUpdateManyWithoutOrganizationNestedInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUpdateManyWithoutOrganizationNestedInput
+  checkIns?: Prisma.CheckInUpdateManyWithoutOrganizationNestedInput
+  checkInEvidence?: Prisma.CheckInEvidenceUpdateManyWithoutOrganizationNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
+  teamMembers?: Prisma.TeamMemberUpdateManyWithoutOrganizationNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutOrganizationNestedInput
+  projectObjectives?: Prisma.ProjectObjectiveUpdateManyWithoutOrganizationNestedInput
+  skills?: Prisma.SkillUpdateManyWithoutOrganizationNestedInput
+  competencies?: Prisma.CompetencyUpdateManyWithoutOrganizationNestedInput
+  skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutOkrCyclesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mission?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  values?: Prisma.OrganizationUpdatevaluesInput | string[]
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
+  members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
+  northStar?: Prisma.NorthStarUncheckedUpdateOneWithoutOrganizationNestedInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedUpdateManyWithoutOrganizationNestedInput
+  pillars?: Prisma.StrategicPillarUncheckedUpdateManyWithoutOrganizationNestedInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUncheckedUpdateManyWithoutOrganizationNestedInput
+  checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutOrganizationNestedInput
+  checkInEvidence?: Prisma.CheckInEvidenceUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
+  teamMembers?: Prisma.TeamMemberUncheckedUpdateManyWithoutOrganizationNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganizationNestedInput
+  projectObjectives?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  skills?: Prisma.SkillUncheckedUpdateManyWithoutOrganizationNestedInput
+  competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutOrganizationNestedInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutOkrCadenceConfigsInput = {
+  id?: string
+  name: string
+  vision?: string | null
+  mission?: string | null
+  values?: Prisma.OrganizationCreatevaluesInput | string[]
+  createdAt?: Date | string
+  enpsMinimumResponses?: number
+  members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
+  northStar?: Prisma.NorthStarCreateNestedOneWithoutOrganizationInput
+  leverLinks?: Prisma.NorthStarLeverCreateNestedManyWithoutOrganizationInput
+  pillars?: Prisma.StrategicPillarCreateNestedManyWithoutOrganizationInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutOrganizationInput
+  objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
+  keyResults?: Prisma.KeyResultCreateNestedManyWithoutOrganizationInput
+  okrCycles?: Prisma.OkrCycleCreateNestedManyWithoutOrganizationInput
+  checkIns?: Prisma.CheckInCreateNestedManyWithoutOrganizationInput
+  checkInEvidence?: Prisma.CheckInEvidenceCreateNestedManyWithoutOrganizationInput
+  okrAuditEvents?: Prisma.OkrAuditEventCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
+  teamMembers?: Prisma.TeamMemberCreateNestedManyWithoutOrganizationInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutOrganizationInput
+  projectObjectives?: Prisma.ProjectObjectiveCreateNestedManyWithoutOrganizationInput
+  skills?: Prisma.SkillCreateNestedManyWithoutOrganizationInput
+  competencies?: Prisma.CompetencyCreateNestedManyWithoutOrganizationInput
+  skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutOkrCadenceConfigsInput = {
+  id?: string
+  name: string
+  vision?: string | null
+  mission?: string | null
+  values?: Prisma.OrganizationCreatevaluesInput | string[]
+  createdAt?: Date | string
+  enpsMinimumResponses?: number
+  members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
+  northStar?: Prisma.NorthStarUncheckedCreateNestedOneWithoutOrganizationInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedCreateNestedManyWithoutOrganizationInput
+  pillars?: Prisma.StrategicPillarUncheckedCreateNestedManyWithoutOrganizationInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutOrganizationInput
+  okrCycles?: Prisma.OkrCycleUncheckedCreateNestedManyWithoutOrganizationInput
+  checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutOrganizationInput
+  checkInEvidence?: Prisma.CheckInEvidenceUncheckedCreateNestedManyWithoutOrganizationInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
+  teamMembers?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutOrganizationInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganizationInput
+  projectObjectives?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  skills?: Prisma.SkillUncheckedCreateNestedManyWithoutOrganizationInput
+  competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutOrganizationInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutOkrCadenceConfigsInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutOkrCadenceConfigsInput, Prisma.OrganizationUncheckedCreateWithoutOkrCadenceConfigsInput>
+}
+
+export type OrganizationUpsertWithoutOkrCadenceConfigsInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutOkrCadenceConfigsInput, Prisma.OrganizationUncheckedUpdateWithoutOkrCadenceConfigsInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutOkrCadenceConfigsInput, Prisma.OrganizationUncheckedCreateWithoutOkrCadenceConfigsInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutOkrCadenceConfigsInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutOkrCadenceConfigsInput, Prisma.OrganizationUncheckedUpdateWithoutOkrCadenceConfigsInput>
+}
+
+export type OrganizationUpdateWithoutOkrCadenceConfigsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mission?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  values?: Prisma.OrganizationUpdatevaluesInput | string[]
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
+  members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
+  northStar?: Prisma.NorthStarUpdateOneWithoutOrganizationNestedInput
+  leverLinks?: Prisma.NorthStarLeverUpdateManyWithoutOrganizationNestedInput
+  pillars?: Prisma.StrategicPillarUpdateManyWithoutOrganizationNestedInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUpdateManyWithoutOrganizationNestedInput
+  objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
+  keyResults?: Prisma.KeyResultUpdateManyWithoutOrganizationNestedInput
+  okrCycles?: Prisma.OkrCycleUpdateManyWithoutOrganizationNestedInput
+  checkIns?: Prisma.CheckInUpdateManyWithoutOrganizationNestedInput
+  checkInEvidence?: Prisma.CheckInEvidenceUpdateManyWithoutOrganizationNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
+  teamMembers?: Prisma.TeamMemberUpdateManyWithoutOrganizationNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutOrganizationNestedInput
+  projectObjectives?: Prisma.ProjectObjectiveUpdateManyWithoutOrganizationNestedInput
+  skills?: Prisma.SkillUpdateManyWithoutOrganizationNestedInput
+  competencies?: Prisma.CompetencyUpdateManyWithoutOrganizationNestedInput
+  skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutOkrCadenceConfigsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mission?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  values?: Prisma.OrganizationUpdatevaluesInput | string[]
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
+  members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
+  northStar?: Prisma.NorthStarUncheckedUpdateOneWithoutOrganizationNestedInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedUpdateManyWithoutOrganizationNestedInput
+  pillars?: Prisma.StrategicPillarUncheckedUpdateManyWithoutOrganizationNestedInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrCycles?: Prisma.OkrCycleUncheckedUpdateManyWithoutOrganizationNestedInput
+  checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutOrganizationNestedInput
+  checkInEvidence?: Prisma.CheckInEvidenceUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
+  teamMembers?: Prisma.TeamMemberUncheckedUpdateManyWithoutOrganizationNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganizationNestedInput
+  projectObjectives?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  skills?: Prisma.SkillUncheckedUpdateManyWithoutOrganizationNestedInput
+  competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutOrganizationNestedInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutCheckInsInput = {
+  id?: string
+  name: string
+  vision?: string | null
+  mission?: string | null
+  values?: Prisma.OrganizationCreatevaluesInput | string[]
+  createdAt?: Date | string
+  enpsMinimumResponses?: number
+  members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
+  northStar?: Prisma.NorthStarCreateNestedOneWithoutOrganizationInput
+  leverLinks?: Prisma.NorthStarLeverCreateNestedManyWithoutOrganizationInput
+  pillars?: Prisma.StrategicPillarCreateNestedManyWithoutOrganizationInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutOrganizationInput
+  objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
+  keyResults?: Prisma.KeyResultCreateNestedManyWithoutOrganizationInput
+  okrCycles?: Prisma.OkrCycleCreateNestedManyWithoutOrganizationInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigCreateNestedManyWithoutOrganizationInput
+  checkInEvidence?: Prisma.CheckInEvidenceCreateNestedManyWithoutOrganizationInput
+  okrAuditEvents?: Prisma.OkrAuditEventCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
+  teamMembers?: Prisma.TeamMemberCreateNestedManyWithoutOrganizationInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutOrganizationInput
+  projectObjectives?: Prisma.ProjectObjectiveCreateNestedManyWithoutOrganizationInput
+  skills?: Prisma.SkillCreateNestedManyWithoutOrganizationInput
+  competencies?: Prisma.CompetencyCreateNestedManyWithoutOrganizationInput
+  skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutCheckInsInput = {
+  id?: string
+  name: string
+  vision?: string | null
+  mission?: string | null
+  values?: Prisma.OrganizationCreatevaluesInput | string[]
+  createdAt?: Date | string
+  enpsMinimumResponses?: number
+  members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
+  northStar?: Prisma.NorthStarUncheckedCreateNestedOneWithoutOrganizationInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedCreateNestedManyWithoutOrganizationInput
+  pillars?: Prisma.StrategicPillarUncheckedCreateNestedManyWithoutOrganizationInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutOrganizationInput
+  okrCycles?: Prisma.OkrCycleUncheckedCreateNestedManyWithoutOrganizationInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUncheckedCreateNestedManyWithoutOrganizationInput
+  checkInEvidence?: Prisma.CheckInEvidenceUncheckedCreateNestedManyWithoutOrganizationInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
+  teamMembers?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutOrganizationInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganizationInput
+  projectObjectives?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  skills?: Prisma.SkillUncheckedCreateNestedManyWithoutOrganizationInput
+  competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutOrganizationInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutCheckInsInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutCheckInsInput, Prisma.OrganizationUncheckedCreateWithoutCheckInsInput>
+}
+
+export type OrganizationUpsertWithoutCheckInsInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutCheckInsInput, Prisma.OrganizationUncheckedUpdateWithoutCheckInsInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutCheckInsInput, Prisma.OrganizationUncheckedCreateWithoutCheckInsInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutCheckInsInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutCheckInsInput, Prisma.OrganizationUncheckedUpdateWithoutCheckInsInput>
+}
+
+export type OrganizationUpdateWithoutCheckInsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mission?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  values?: Prisma.OrganizationUpdatevaluesInput | string[]
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
+  members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
+  northStar?: Prisma.NorthStarUpdateOneWithoutOrganizationNestedInput
+  leverLinks?: Prisma.NorthStarLeverUpdateManyWithoutOrganizationNestedInput
+  pillars?: Prisma.StrategicPillarUpdateManyWithoutOrganizationNestedInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUpdateManyWithoutOrganizationNestedInput
+  objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
+  keyResults?: Prisma.KeyResultUpdateManyWithoutOrganizationNestedInput
+  okrCycles?: Prisma.OkrCycleUpdateManyWithoutOrganizationNestedInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUpdateManyWithoutOrganizationNestedInput
+  checkInEvidence?: Prisma.CheckInEvidenceUpdateManyWithoutOrganizationNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
+  teamMembers?: Prisma.TeamMemberUpdateManyWithoutOrganizationNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutOrganizationNestedInput
+  projectObjectives?: Prisma.ProjectObjectiveUpdateManyWithoutOrganizationNestedInput
+  skills?: Prisma.SkillUpdateManyWithoutOrganizationNestedInput
+  competencies?: Prisma.CompetencyUpdateManyWithoutOrganizationNestedInput
+  skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutCheckInsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mission?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  values?: Prisma.OrganizationUpdatevaluesInput | string[]
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
+  members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
+  northStar?: Prisma.NorthStarUncheckedUpdateOneWithoutOrganizationNestedInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedUpdateManyWithoutOrganizationNestedInput
+  pillars?: Prisma.StrategicPillarUncheckedUpdateManyWithoutOrganizationNestedInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrCycles?: Prisma.OkrCycleUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUncheckedUpdateManyWithoutOrganizationNestedInput
+  checkInEvidence?: Prisma.CheckInEvidenceUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
+  teamMembers?: Prisma.TeamMemberUncheckedUpdateManyWithoutOrganizationNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganizationNestedInput
+  projectObjectives?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  skills?: Prisma.SkillUncheckedUpdateManyWithoutOrganizationNestedInput
+  competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutOrganizationNestedInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutCheckInEvidenceInput = {
+  id?: string
+  name: string
+  vision?: string | null
+  mission?: string | null
+  values?: Prisma.OrganizationCreatevaluesInput | string[]
+  createdAt?: Date | string
+  enpsMinimumResponses?: number
+  members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
+  northStar?: Prisma.NorthStarCreateNestedOneWithoutOrganizationInput
+  leverLinks?: Prisma.NorthStarLeverCreateNestedManyWithoutOrganizationInput
+  pillars?: Prisma.StrategicPillarCreateNestedManyWithoutOrganizationInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutOrganizationInput
+  objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
+  keyResults?: Prisma.KeyResultCreateNestedManyWithoutOrganizationInput
+  okrCycles?: Prisma.OkrCycleCreateNestedManyWithoutOrganizationInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigCreateNestedManyWithoutOrganizationInput
+  checkIns?: Prisma.CheckInCreateNestedManyWithoutOrganizationInput
+  okrAuditEvents?: Prisma.OkrAuditEventCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
+  teamMembers?: Prisma.TeamMemberCreateNestedManyWithoutOrganizationInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutOrganizationInput
+  projectObjectives?: Prisma.ProjectObjectiveCreateNestedManyWithoutOrganizationInput
+  skills?: Prisma.SkillCreateNestedManyWithoutOrganizationInput
+  competencies?: Prisma.CompetencyCreateNestedManyWithoutOrganizationInput
+  skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutCheckInEvidenceInput = {
+  id?: string
+  name: string
+  vision?: string | null
+  mission?: string | null
+  values?: Prisma.OrganizationCreatevaluesInput | string[]
+  createdAt?: Date | string
+  enpsMinimumResponses?: number
+  members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
+  northStar?: Prisma.NorthStarUncheckedCreateNestedOneWithoutOrganizationInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedCreateNestedManyWithoutOrganizationInput
+  pillars?: Prisma.StrategicPillarUncheckedCreateNestedManyWithoutOrganizationInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutOrganizationInput
+  okrCycles?: Prisma.OkrCycleUncheckedCreateNestedManyWithoutOrganizationInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUncheckedCreateNestedManyWithoutOrganizationInput
+  checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutOrganizationInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
+  teamMembers?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutOrganizationInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganizationInput
+  projectObjectives?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  skills?: Prisma.SkillUncheckedCreateNestedManyWithoutOrganizationInput
+  competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutOrganizationInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutCheckInEvidenceInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutCheckInEvidenceInput, Prisma.OrganizationUncheckedCreateWithoutCheckInEvidenceInput>
+}
+
+export type OrganizationUpsertWithoutCheckInEvidenceInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutCheckInEvidenceInput, Prisma.OrganizationUncheckedUpdateWithoutCheckInEvidenceInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutCheckInEvidenceInput, Prisma.OrganizationUncheckedCreateWithoutCheckInEvidenceInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutCheckInEvidenceInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutCheckInEvidenceInput, Prisma.OrganizationUncheckedUpdateWithoutCheckInEvidenceInput>
+}
+
+export type OrganizationUpdateWithoutCheckInEvidenceInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mission?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  values?: Prisma.OrganizationUpdatevaluesInput | string[]
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
+  members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
+  northStar?: Prisma.NorthStarUpdateOneWithoutOrganizationNestedInput
+  leverLinks?: Prisma.NorthStarLeverUpdateManyWithoutOrganizationNestedInput
+  pillars?: Prisma.StrategicPillarUpdateManyWithoutOrganizationNestedInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUpdateManyWithoutOrganizationNestedInput
+  objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
+  keyResults?: Prisma.KeyResultUpdateManyWithoutOrganizationNestedInput
+  okrCycles?: Prisma.OkrCycleUpdateManyWithoutOrganizationNestedInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUpdateManyWithoutOrganizationNestedInput
+  checkIns?: Prisma.CheckInUpdateManyWithoutOrganizationNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
+  teamMembers?: Prisma.TeamMemberUpdateManyWithoutOrganizationNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutOrganizationNestedInput
+  projectObjectives?: Prisma.ProjectObjectiveUpdateManyWithoutOrganizationNestedInput
+  skills?: Prisma.SkillUpdateManyWithoutOrganizationNestedInput
+  competencies?: Prisma.CompetencyUpdateManyWithoutOrganizationNestedInput
+  skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutCheckInEvidenceInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mission?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  values?: Prisma.OrganizationUpdatevaluesInput | string[]
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
+  members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
+  northStar?: Prisma.NorthStarUncheckedUpdateOneWithoutOrganizationNestedInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedUpdateManyWithoutOrganizationNestedInput
+  pillars?: Prisma.StrategicPillarUncheckedUpdateManyWithoutOrganizationNestedInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrCycles?: Prisma.OkrCycleUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUncheckedUpdateManyWithoutOrganizationNestedInput
+  checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
+  teamMembers?: Prisma.TeamMemberUncheckedUpdateManyWithoutOrganizationNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganizationNestedInput
+  projectObjectives?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  skills?: Prisma.SkillUncheckedUpdateManyWithoutOrganizationNestedInput
+  competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutOrganizationNestedInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutOkrAuditEventsInput = {
+  id?: string
+  name: string
+  vision?: string | null
+  mission?: string | null
+  values?: Prisma.OrganizationCreatevaluesInput | string[]
+  createdAt?: Date | string
+  enpsMinimumResponses?: number
+  members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
+  northStar?: Prisma.NorthStarCreateNestedOneWithoutOrganizationInput
+  leverLinks?: Prisma.NorthStarLeverCreateNestedManyWithoutOrganizationInput
+  pillars?: Prisma.StrategicPillarCreateNestedManyWithoutOrganizationInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutOrganizationInput
+  objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
+  keyResults?: Prisma.KeyResultCreateNestedManyWithoutOrganizationInput
+  okrCycles?: Prisma.OkrCycleCreateNestedManyWithoutOrganizationInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigCreateNestedManyWithoutOrganizationInput
+  checkIns?: Prisma.CheckInCreateNestedManyWithoutOrganizationInput
+  checkInEvidence?: Prisma.CheckInEvidenceCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
+  teamMembers?: Prisma.TeamMemberCreateNestedManyWithoutOrganizationInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutOrganizationInput
+  projectObjectives?: Prisma.ProjectObjectiveCreateNestedManyWithoutOrganizationInput
+  skills?: Prisma.SkillCreateNestedManyWithoutOrganizationInput
+  competencies?: Prisma.CompetencyCreateNestedManyWithoutOrganizationInput
+  skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutOkrAuditEventsInput = {
+  id?: string
+  name: string
+  vision?: string | null
+  mission?: string | null
+  values?: Prisma.OrganizationCreatevaluesInput | string[]
+  createdAt?: Date | string
+  enpsMinimumResponses?: number
+  members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
+  northStar?: Prisma.NorthStarUncheckedCreateNestedOneWithoutOrganizationInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedCreateNestedManyWithoutOrganizationInput
+  pillars?: Prisma.StrategicPillarUncheckedCreateNestedManyWithoutOrganizationInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutOrganizationInput
+  okrCycles?: Prisma.OkrCycleUncheckedCreateNestedManyWithoutOrganizationInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUncheckedCreateNestedManyWithoutOrganizationInput
+  checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutOrganizationInput
+  checkInEvidence?: Prisma.CheckInEvidenceUncheckedCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
+  teamMembers?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutOrganizationInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganizationInput
+  projectObjectives?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  skills?: Prisma.SkillUncheckedCreateNestedManyWithoutOrganizationInput
+  competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutOrganizationInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutOkrAuditEventsInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutOkrAuditEventsInput, Prisma.OrganizationUncheckedCreateWithoutOkrAuditEventsInput>
+}
+
+export type OrganizationUpsertWithoutOkrAuditEventsInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutOkrAuditEventsInput, Prisma.OrganizationUncheckedUpdateWithoutOkrAuditEventsInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutOkrAuditEventsInput, Prisma.OrganizationUncheckedCreateWithoutOkrAuditEventsInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutOkrAuditEventsInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutOkrAuditEventsInput, Prisma.OrganizationUncheckedUpdateWithoutOkrAuditEventsInput>
+}
+
+export type OrganizationUpdateWithoutOkrAuditEventsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mission?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  values?: Prisma.OrganizationUpdatevaluesInput | string[]
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
+  members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
+  northStar?: Prisma.NorthStarUpdateOneWithoutOrganizationNestedInput
+  leverLinks?: Prisma.NorthStarLeverUpdateManyWithoutOrganizationNestedInput
+  pillars?: Prisma.StrategicPillarUpdateManyWithoutOrganizationNestedInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUpdateManyWithoutOrganizationNestedInput
+  objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
+  keyResults?: Prisma.KeyResultUpdateManyWithoutOrganizationNestedInput
+  okrCycles?: Prisma.OkrCycleUpdateManyWithoutOrganizationNestedInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUpdateManyWithoutOrganizationNestedInput
+  checkIns?: Prisma.CheckInUpdateManyWithoutOrganizationNestedInput
+  checkInEvidence?: Prisma.CheckInEvidenceUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
+  teamMembers?: Prisma.TeamMemberUpdateManyWithoutOrganizationNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutOrganizationNestedInput
+  projectObjectives?: Prisma.ProjectObjectiveUpdateManyWithoutOrganizationNestedInput
+  skills?: Prisma.SkillUpdateManyWithoutOrganizationNestedInput
+  competencies?: Prisma.CompetencyUpdateManyWithoutOrganizationNestedInput
+  skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutOkrAuditEventsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mission?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  values?: Prisma.OrganizationUpdatevaluesInput | string[]
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
+  members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
+  northStar?: Prisma.NorthStarUncheckedUpdateOneWithoutOrganizationNestedInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedUpdateManyWithoutOrganizationNestedInput
+  pillars?: Prisma.StrategicPillarUncheckedUpdateManyWithoutOrganizationNestedInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrCycles?: Prisma.OkrCycleUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUncheckedUpdateManyWithoutOrganizationNestedInput
+  checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutOrganizationNestedInput
+  checkInEvidence?: Prisma.CheckInEvidenceUncheckedUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
   teamMembers?: Prisma.TeamMemberUncheckedUpdateManyWithoutOrganizationNestedInput
   projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -1494,6 +2379,11 @@ export type OrganizationCreateWithoutTeamsInput = {
   pillarObjectiveLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutOrganizationInput
   objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultCreateNestedManyWithoutOrganizationInput
+  okrCycles?: Prisma.OkrCycleCreateNestedManyWithoutOrganizationInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigCreateNestedManyWithoutOrganizationInput
+  checkIns?: Prisma.CheckInCreateNestedManyWithoutOrganizationInput
+  checkInEvidence?: Prisma.CheckInEvidenceCreateNestedManyWithoutOrganizationInput
+  okrAuditEvents?: Prisma.OkrAuditEventCreateNestedManyWithoutOrganizationInput
   teamMembers?: Prisma.TeamMemberCreateNestedManyWithoutOrganizationInput
   projects?: Prisma.ProjectCreateNestedManyWithoutOrganizationInput
   projectObjectives?: Prisma.ProjectObjectiveCreateNestedManyWithoutOrganizationInput
@@ -1517,6 +2407,11 @@ export type OrganizationUncheckedCreateWithoutTeamsInput = {
   pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutOrganizationInput
+  okrCycles?: Prisma.OkrCycleUncheckedCreateNestedManyWithoutOrganizationInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUncheckedCreateNestedManyWithoutOrganizationInput
+  checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutOrganizationInput
+  checkInEvidence?: Prisma.CheckInEvidenceUncheckedCreateNestedManyWithoutOrganizationInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedCreateNestedManyWithoutOrganizationInput
   teamMembers?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutOrganizationInput
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganizationInput
   projectObjectives?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
@@ -1556,6 +2451,11 @@ export type OrganizationUpdateWithoutTeamsInput = {
   pillarObjectiveLinks?: Prisma.PillarObjectiveUpdateManyWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUpdateManyWithoutOrganizationNestedInput
+  okrCycles?: Prisma.OkrCycleUpdateManyWithoutOrganizationNestedInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUpdateManyWithoutOrganizationNestedInput
+  checkIns?: Prisma.CheckInUpdateManyWithoutOrganizationNestedInput
+  checkInEvidence?: Prisma.CheckInEvidenceUpdateManyWithoutOrganizationNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUpdateManyWithoutOrganizationNestedInput
   teamMembers?: Prisma.TeamMemberUpdateManyWithoutOrganizationNestedInput
   projects?: Prisma.ProjectUpdateManyWithoutOrganizationNestedInput
   projectObjectives?: Prisma.ProjectObjectiveUpdateManyWithoutOrganizationNestedInput
@@ -1579,6 +2479,11 @@ export type OrganizationUncheckedUpdateWithoutTeamsInput = {
   pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrCycles?: Prisma.OkrCycleUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUncheckedUpdateManyWithoutOrganizationNestedInput
+  checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutOrganizationNestedInput
+  checkInEvidence?: Prisma.CheckInEvidenceUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedUpdateManyWithoutOrganizationNestedInput
   teamMembers?: Prisma.TeamMemberUncheckedUpdateManyWithoutOrganizationNestedInput
   projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganizationNestedInput
   projectObjectives?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -1602,6 +2507,11 @@ export type OrganizationCreateWithoutTeamMembersInput = {
   pillarObjectiveLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutOrganizationInput
   objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultCreateNestedManyWithoutOrganizationInput
+  okrCycles?: Prisma.OkrCycleCreateNestedManyWithoutOrganizationInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigCreateNestedManyWithoutOrganizationInput
+  checkIns?: Prisma.CheckInCreateNestedManyWithoutOrganizationInput
+  checkInEvidence?: Prisma.CheckInEvidenceCreateNestedManyWithoutOrganizationInput
+  okrAuditEvents?: Prisma.OkrAuditEventCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
   projects?: Prisma.ProjectCreateNestedManyWithoutOrganizationInput
   projectObjectives?: Prisma.ProjectObjectiveCreateNestedManyWithoutOrganizationInput
@@ -1625,6 +2535,11 @@ export type OrganizationUncheckedCreateWithoutTeamMembersInput = {
   pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutOrganizationInput
+  okrCycles?: Prisma.OkrCycleUncheckedCreateNestedManyWithoutOrganizationInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUncheckedCreateNestedManyWithoutOrganizationInput
+  checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutOrganizationInput
+  checkInEvidence?: Prisma.CheckInEvidenceUncheckedCreateNestedManyWithoutOrganizationInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganizationInput
   projectObjectives?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
@@ -1664,6 +2579,11 @@ export type OrganizationUpdateWithoutTeamMembersInput = {
   pillarObjectiveLinks?: Prisma.PillarObjectiveUpdateManyWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUpdateManyWithoutOrganizationNestedInput
+  okrCycles?: Prisma.OkrCycleUpdateManyWithoutOrganizationNestedInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUpdateManyWithoutOrganizationNestedInput
+  checkIns?: Prisma.CheckInUpdateManyWithoutOrganizationNestedInput
+  checkInEvidence?: Prisma.CheckInEvidenceUpdateManyWithoutOrganizationNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
   projects?: Prisma.ProjectUpdateManyWithoutOrganizationNestedInput
   projectObjectives?: Prisma.ProjectObjectiveUpdateManyWithoutOrganizationNestedInput
@@ -1687,6 +2607,11 @@ export type OrganizationUncheckedUpdateWithoutTeamMembersInput = {
   pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrCycles?: Prisma.OkrCycleUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUncheckedUpdateManyWithoutOrganizationNestedInput
+  checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutOrganizationNestedInput
+  checkInEvidence?: Prisma.CheckInEvidenceUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
   projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganizationNestedInput
   projectObjectives?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -1710,6 +2635,11 @@ export type OrganizationCreateWithoutProjectsInput = {
   pillarObjectiveLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutOrganizationInput
   objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultCreateNestedManyWithoutOrganizationInput
+  okrCycles?: Prisma.OkrCycleCreateNestedManyWithoutOrganizationInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigCreateNestedManyWithoutOrganizationInput
+  checkIns?: Prisma.CheckInCreateNestedManyWithoutOrganizationInput
+  checkInEvidence?: Prisma.CheckInEvidenceCreateNestedManyWithoutOrganizationInput
+  okrAuditEvents?: Prisma.OkrAuditEventCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
   teamMembers?: Prisma.TeamMemberCreateNestedManyWithoutOrganizationInput
   projectObjectives?: Prisma.ProjectObjectiveCreateNestedManyWithoutOrganizationInput
@@ -1733,6 +2663,11 @@ export type OrganizationUncheckedCreateWithoutProjectsInput = {
   pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutOrganizationInput
+  okrCycles?: Prisma.OkrCycleUncheckedCreateNestedManyWithoutOrganizationInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUncheckedCreateNestedManyWithoutOrganizationInput
+  checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutOrganizationInput
+  checkInEvidence?: Prisma.CheckInEvidenceUncheckedCreateNestedManyWithoutOrganizationInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
   teamMembers?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutOrganizationInput
   projectObjectives?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
@@ -1772,6 +2707,11 @@ export type OrganizationUpdateWithoutProjectsInput = {
   pillarObjectiveLinks?: Prisma.PillarObjectiveUpdateManyWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUpdateManyWithoutOrganizationNestedInput
+  okrCycles?: Prisma.OkrCycleUpdateManyWithoutOrganizationNestedInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUpdateManyWithoutOrganizationNestedInput
+  checkIns?: Prisma.CheckInUpdateManyWithoutOrganizationNestedInput
+  checkInEvidence?: Prisma.CheckInEvidenceUpdateManyWithoutOrganizationNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
   teamMembers?: Prisma.TeamMemberUpdateManyWithoutOrganizationNestedInput
   projectObjectives?: Prisma.ProjectObjectiveUpdateManyWithoutOrganizationNestedInput
@@ -1795,6 +2735,11 @@ export type OrganizationUncheckedUpdateWithoutProjectsInput = {
   pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrCycles?: Prisma.OkrCycleUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUncheckedUpdateManyWithoutOrganizationNestedInput
+  checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutOrganizationNestedInput
+  checkInEvidence?: Prisma.CheckInEvidenceUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
   teamMembers?: Prisma.TeamMemberUncheckedUpdateManyWithoutOrganizationNestedInput
   projectObjectives?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -1818,6 +2763,11 @@ export type OrganizationCreateWithoutProjectObjectivesInput = {
   pillarObjectiveLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutOrganizationInput
   objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultCreateNestedManyWithoutOrganizationInput
+  okrCycles?: Prisma.OkrCycleCreateNestedManyWithoutOrganizationInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigCreateNestedManyWithoutOrganizationInput
+  checkIns?: Prisma.CheckInCreateNestedManyWithoutOrganizationInput
+  checkInEvidence?: Prisma.CheckInEvidenceCreateNestedManyWithoutOrganizationInput
+  okrAuditEvents?: Prisma.OkrAuditEventCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
   teamMembers?: Prisma.TeamMemberCreateNestedManyWithoutOrganizationInput
   projects?: Prisma.ProjectCreateNestedManyWithoutOrganizationInput
@@ -1841,6 +2791,11 @@ export type OrganizationUncheckedCreateWithoutProjectObjectivesInput = {
   pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutOrganizationInput
+  okrCycles?: Prisma.OkrCycleUncheckedCreateNestedManyWithoutOrganizationInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUncheckedCreateNestedManyWithoutOrganizationInput
+  checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutOrganizationInput
+  checkInEvidence?: Prisma.CheckInEvidenceUncheckedCreateNestedManyWithoutOrganizationInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
   teamMembers?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutOrganizationInput
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganizationInput
@@ -1880,6 +2835,11 @@ export type OrganizationUpdateWithoutProjectObjectivesInput = {
   pillarObjectiveLinks?: Prisma.PillarObjectiveUpdateManyWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUpdateManyWithoutOrganizationNestedInput
+  okrCycles?: Prisma.OkrCycleUpdateManyWithoutOrganizationNestedInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUpdateManyWithoutOrganizationNestedInput
+  checkIns?: Prisma.CheckInUpdateManyWithoutOrganizationNestedInput
+  checkInEvidence?: Prisma.CheckInEvidenceUpdateManyWithoutOrganizationNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
   teamMembers?: Prisma.TeamMemberUpdateManyWithoutOrganizationNestedInput
   projects?: Prisma.ProjectUpdateManyWithoutOrganizationNestedInput
@@ -1903,6 +2863,11 @@ export type OrganizationUncheckedUpdateWithoutProjectObjectivesInput = {
   pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrCycles?: Prisma.OkrCycleUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUncheckedUpdateManyWithoutOrganizationNestedInput
+  checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutOrganizationNestedInput
+  checkInEvidence?: Prisma.CheckInEvidenceUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
   teamMembers?: Prisma.TeamMemberUncheckedUpdateManyWithoutOrganizationNestedInput
   projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -1926,6 +2891,11 @@ export type OrganizationCreateWithoutSkillsInput = {
   pillarObjectiveLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutOrganizationInput
   objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultCreateNestedManyWithoutOrganizationInput
+  okrCycles?: Prisma.OkrCycleCreateNestedManyWithoutOrganizationInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigCreateNestedManyWithoutOrganizationInput
+  checkIns?: Prisma.CheckInCreateNestedManyWithoutOrganizationInput
+  checkInEvidence?: Prisma.CheckInEvidenceCreateNestedManyWithoutOrganizationInput
+  okrAuditEvents?: Prisma.OkrAuditEventCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
   teamMembers?: Prisma.TeamMemberCreateNestedManyWithoutOrganizationInput
   projects?: Prisma.ProjectCreateNestedManyWithoutOrganizationInput
@@ -1949,6 +2919,11 @@ export type OrganizationUncheckedCreateWithoutSkillsInput = {
   pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutOrganizationInput
+  okrCycles?: Prisma.OkrCycleUncheckedCreateNestedManyWithoutOrganizationInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUncheckedCreateNestedManyWithoutOrganizationInput
+  checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutOrganizationInput
+  checkInEvidence?: Prisma.CheckInEvidenceUncheckedCreateNestedManyWithoutOrganizationInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
   teamMembers?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutOrganizationInput
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganizationInput
@@ -1988,6 +2963,11 @@ export type OrganizationUpdateWithoutSkillsInput = {
   pillarObjectiveLinks?: Prisma.PillarObjectiveUpdateManyWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUpdateManyWithoutOrganizationNestedInput
+  okrCycles?: Prisma.OkrCycleUpdateManyWithoutOrganizationNestedInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUpdateManyWithoutOrganizationNestedInput
+  checkIns?: Prisma.CheckInUpdateManyWithoutOrganizationNestedInput
+  checkInEvidence?: Prisma.CheckInEvidenceUpdateManyWithoutOrganizationNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
   teamMembers?: Prisma.TeamMemberUpdateManyWithoutOrganizationNestedInput
   projects?: Prisma.ProjectUpdateManyWithoutOrganizationNestedInput
@@ -2011,6 +2991,11 @@ export type OrganizationUncheckedUpdateWithoutSkillsInput = {
   pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrCycles?: Prisma.OkrCycleUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUncheckedUpdateManyWithoutOrganizationNestedInput
+  checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutOrganizationNestedInput
+  checkInEvidence?: Prisma.CheckInEvidenceUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
   teamMembers?: Prisma.TeamMemberUncheckedUpdateManyWithoutOrganizationNestedInput
   projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -2034,6 +3019,11 @@ export type OrganizationCreateWithoutCompetenciesInput = {
   pillarObjectiveLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutOrganizationInput
   objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultCreateNestedManyWithoutOrganizationInput
+  okrCycles?: Prisma.OkrCycleCreateNestedManyWithoutOrganizationInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigCreateNestedManyWithoutOrganizationInput
+  checkIns?: Prisma.CheckInCreateNestedManyWithoutOrganizationInput
+  checkInEvidence?: Prisma.CheckInEvidenceCreateNestedManyWithoutOrganizationInput
+  okrAuditEvents?: Prisma.OkrAuditEventCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
   teamMembers?: Prisma.TeamMemberCreateNestedManyWithoutOrganizationInput
   projects?: Prisma.ProjectCreateNestedManyWithoutOrganizationInput
@@ -2057,6 +3047,11 @@ export type OrganizationUncheckedCreateWithoutCompetenciesInput = {
   pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutOrganizationInput
+  okrCycles?: Prisma.OkrCycleUncheckedCreateNestedManyWithoutOrganizationInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUncheckedCreateNestedManyWithoutOrganizationInput
+  checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutOrganizationInput
+  checkInEvidence?: Prisma.CheckInEvidenceUncheckedCreateNestedManyWithoutOrganizationInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
   teamMembers?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutOrganizationInput
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganizationInput
@@ -2096,6 +3091,11 @@ export type OrganizationUpdateWithoutCompetenciesInput = {
   pillarObjectiveLinks?: Prisma.PillarObjectiveUpdateManyWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUpdateManyWithoutOrganizationNestedInput
+  okrCycles?: Prisma.OkrCycleUpdateManyWithoutOrganizationNestedInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUpdateManyWithoutOrganizationNestedInput
+  checkIns?: Prisma.CheckInUpdateManyWithoutOrganizationNestedInput
+  checkInEvidence?: Prisma.CheckInEvidenceUpdateManyWithoutOrganizationNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
   teamMembers?: Prisma.TeamMemberUpdateManyWithoutOrganizationNestedInput
   projects?: Prisma.ProjectUpdateManyWithoutOrganizationNestedInput
@@ -2119,6 +3119,11 @@ export type OrganizationUncheckedUpdateWithoutCompetenciesInput = {
   pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrCycles?: Prisma.OkrCycleUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUncheckedUpdateManyWithoutOrganizationNestedInput
+  checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutOrganizationNestedInput
+  checkInEvidence?: Prisma.CheckInEvidenceUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
   teamMembers?: Prisma.TeamMemberUncheckedUpdateManyWithoutOrganizationNestedInput
   projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -2142,6 +3147,11 @@ export type OrganizationCreateWithoutSkillRequirementsInput = {
   pillarObjectiveLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutOrganizationInput
   objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultCreateNestedManyWithoutOrganizationInput
+  okrCycles?: Prisma.OkrCycleCreateNestedManyWithoutOrganizationInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigCreateNestedManyWithoutOrganizationInput
+  checkIns?: Prisma.CheckInCreateNestedManyWithoutOrganizationInput
+  checkInEvidence?: Prisma.CheckInEvidenceCreateNestedManyWithoutOrganizationInput
+  okrAuditEvents?: Prisma.OkrAuditEventCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
   teamMembers?: Prisma.TeamMemberCreateNestedManyWithoutOrganizationInput
   projects?: Prisma.ProjectCreateNestedManyWithoutOrganizationInput
@@ -2165,6 +3175,11 @@ export type OrganizationUncheckedCreateWithoutSkillRequirementsInput = {
   pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutOrganizationInput
+  okrCycles?: Prisma.OkrCycleUncheckedCreateNestedManyWithoutOrganizationInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUncheckedCreateNestedManyWithoutOrganizationInput
+  checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutOrganizationInput
+  checkInEvidence?: Prisma.CheckInEvidenceUncheckedCreateNestedManyWithoutOrganizationInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
   teamMembers?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutOrganizationInput
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganizationInput
@@ -2204,6 +3219,11 @@ export type OrganizationUpdateWithoutSkillRequirementsInput = {
   pillarObjectiveLinks?: Prisma.PillarObjectiveUpdateManyWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUpdateManyWithoutOrganizationNestedInput
+  okrCycles?: Prisma.OkrCycleUpdateManyWithoutOrganizationNestedInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUpdateManyWithoutOrganizationNestedInput
+  checkIns?: Prisma.CheckInUpdateManyWithoutOrganizationNestedInput
+  checkInEvidence?: Prisma.CheckInEvidenceUpdateManyWithoutOrganizationNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
   teamMembers?: Prisma.TeamMemberUpdateManyWithoutOrganizationNestedInput
   projects?: Prisma.ProjectUpdateManyWithoutOrganizationNestedInput
@@ -2227,6 +3247,11 @@ export type OrganizationUncheckedUpdateWithoutSkillRequirementsInput = {
   pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrCycles?: Prisma.OkrCycleUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUncheckedUpdateManyWithoutOrganizationNestedInput
+  checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutOrganizationNestedInput
+  checkInEvidence?: Prisma.CheckInEvidenceUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
   teamMembers?: Prisma.TeamMemberUncheckedUpdateManyWithoutOrganizationNestedInput
   projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -2247,6 +3272,11 @@ export type OrganizationCountOutputType = {
   pillarObjectiveLinks: number
   objectives: number
   keyResults: number
+  okrCycles: number
+  okrCadenceConfigs: number
+  checkIns: number
+  checkInEvidence: number
+  okrAuditEvents: number
   teams: number
   teamMembers: number
   projects: number
@@ -2263,6 +3293,11 @@ export type OrganizationCountOutputTypeSelect<ExtArgs extends runtime.Types.Exte
   pillarObjectiveLinks?: boolean | OrganizationCountOutputTypeCountPillarObjectiveLinksArgs
   objectives?: boolean | OrganizationCountOutputTypeCountObjectivesArgs
   keyResults?: boolean | OrganizationCountOutputTypeCountKeyResultsArgs
+  okrCycles?: boolean | OrganizationCountOutputTypeCountOkrCyclesArgs
+  okrCadenceConfigs?: boolean | OrganizationCountOutputTypeCountOkrCadenceConfigsArgs
+  checkIns?: boolean | OrganizationCountOutputTypeCountCheckInsArgs
+  checkInEvidence?: boolean | OrganizationCountOutputTypeCountCheckInEvidenceArgs
+  okrAuditEvents?: boolean | OrganizationCountOutputTypeCountOkrAuditEventsArgs
   teams?: boolean | OrganizationCountOutputTypeCountTeamsArgs
   teamMembers?: boolean | OrganizationCountOutputTypeCountTeamMembersArgs
   projects?: boolean | OrganizationCountOutputTypeCountProjectsArgs
@@ -2322,6 +3357,41 @@ export type OrganizationCountOutputTypeCountObjectivesArgs<ExtArgs extends runti
  */
 export type OrganizationCountOutputTypeCountKeyResultsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.KeyResultWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountOkrCyclesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.OkrCycleWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountOkrCadenceConfigsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.OkrCadenceConfigWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountCheckInsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CheckInWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountCheckInEvidenceArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CheckInEvidenceWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountOkrAuditEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.OkrAuditEventWhereInput
 }
 
 /**
@@ -2389,6 +3459,11 @@ export type OrganizationSelect<ExtArgs extends runtime.Types.Extensions.Internal
   pillarObjectiveLinks?: boolean | Prisma.Organization$pillarObjectiveLinksArgs<ExtArgs>
   objectives?: boolean | Prisma.Organization$objectivesArgs<ExtArgs>
   keyResults?: boolean | Prisma.Organization$keyResultsArgs<ExtArgs>
+  okrCycles?: boolean | Prisma.Organization$okrCyclesArgs<ExtArgs>
+  okrCadenceConfigs?: boolean | Prisma.Organization$okrCadenceConfigsArgs<ExtArgs>
+  checkIns?: boolean | Prisma.Organization$checkInsArgs<ExtArgs>
+  checkInEvidence?: boolean | Prisma.Organization$checkInEvidenceArgs<ExtArgs>
+  okrAuditEvents?: boolean | Prisma.Organization$okrAuditEventsArgs<ExtArgs>
   teams?: boolean | Prisma.Organization$teamsArgs<ExtArgs>
   teamMembers?: boolean | Prisma.Organization$teamMembersArgs<ExtArgs>
   projects?: boolean | Prisma.Organization$projectsArgs<ExtArgs>
@@ -2438,6 +3513,11 @@ export type OrganizationInclude<ExtArgs extends runtime.Types.Extensions.Interna
   pillarObjectiveLinks?: boolean | Prisma.Organization$pillarObjectiveLinksArgs<ExtArgs>
   objectives?: boolean | Prisma.Organization$objectivesArgs<ExtArgs>
   keyResults?: boolean | Prisma.Organization$keyResultsArgs<ExtArgs>
+  okrCycles?: boolean | Prisma.Organization$okrCyclesArgs<ExtArgs>
+  okrCadenceConfigs?: boolean | Prisma.Organization$okrCadenceConfigsArgs<ExtArgs>
+  checkIns?: boolean | Prisma.Organization$checkInsArgs<ExtArgs>
+  checkInEvidence?: boolean | Prisma.Organization$checkInEvidenceArgs<ExtArgs>
+  okrAuditEvents?: boolean | Prisma.Organization$okrAuditEventsArgs<ExtArgs>
   teams?: boolean | Prisma.Organization$teamsArgs<ExtArgs>
   teamMembers?: boolean | Prisma.Organization$teamMembersArgs<ExtArgs>
   projects?: boolean | Prisma.Organization$projectsArgs<ExtArgs>
@@ -2460,6 +3540,11 @@ export type $OrganizationPayload<ExtArgs extends runtime.Types.Extensions.Intern
     pillarObjectiveLinks: Prisma.$PillarObjectivePayload<ExtArgs>[]
     objectives: Prisma.$ObjectivePayload<ExtArgs>[]
     keyResults: Prisma.$KeyResultPayload<ExtArgs>[]
+    okrCycles: Prisma.$OkrCyclePayload<ExtArgs>[]
+    okrCadenceConfigs: Prisma.$OkrCadenceConfigPayload<ExtArgs>[]
+    checkIns: Prisma.$CheckInPayload<ExtArgs>[]
+    checkInEvidence: Prisma.$CheckInEvidencePayload<ExtArgs>[]
+    okrAuditEvents: Prisma.$OkrAuditEventPayload<ExtArgs>[]
     teams: Prisma.$TeamPayload<ExtArgs>[]
     teamMembers: Prisma.$TeamMemberPayload<ExtArgs>[]
     projects: Prisma.$ProjectPayload<ExtArgs>[]
@@ -2877,6 +3962,11 @@ export interface Prisma__OrganizationClient<T, Null = never, ExtArgs extends run
   pillarObjectiveLinks<T extends Prisma.Organization$pillarObjectiveLinksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$pillarObjectiveLinksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PillarObjectivePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   objectives<T extends Prisma.Organization$objectivesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$objectivesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ObjectivePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   keyResults<T extends Prisma.Organization$keyResultsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$keyResultsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$KeyResultPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  okrCycles<T extends Prisma.Organization$okrCyclesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$okrCyclesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OkrCyclePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  okrCadenceConfigs<T extends Prisma.Organization$okrCadenceConfigsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$okrCadenceConfigsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OkrCadenceConfigPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  checkIns<T extends Prisma.Organization$checkInsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$checkInsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CheckInPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  checkInEvidence<T extends Prisma.Organization$checkInEvidenceArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$checkInEvidenceArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CheckInEvidencePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  okrAuditEvents<T extends Prisma.Organization$okrAuditEventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$okrAuditEventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OkrAuditEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   teams<T extends Prisma.Organization$teamsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$teamsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TeamPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   teamMembers<T extends Prisma.Organization$teamMembersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$teamMembersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TeamMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   projects<T extends Prisma.Organization$projectsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$projectsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -3473,6 +4563,126 @@ export type Organization$keyResultsArgs<ExtArgs extends runtime.Types.Extensions
   take?: number
   skip?: number
   distinct?: Prisma.KeyResultScalarFieldEnum | Prisma.KeyResultScalarFieldEnum[]
+}
+
+/**
+ * Organization.okrCycles
+ */
+export type Organization$okrCyclesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the OkrCycle
+   */
+  select?: Prisma.OkrCycleSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the OkrCycle
+   */
+  omit?: Prisma.OkrCycleOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OkrCycleInclude<ExtArgs> | null
+  where?: Prisma.OkrCycleWhereInput
+  orderBy?: Prisma.OkrCycleOrderByWithRelationInput | Prisma.OkrCycleOrderByWithRelationInput[]
+  cursor?: Prisma.OkrCycleWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.OkrCycleScalarFieldEnum | Prisma.OkrCycleScalarFieldEnum[]
+}
+
+/**
+ * Organization.okrCadenceConfigs
+ */
+export type Organization$okrCadenceConfigsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the OkrCadenceConfig
+   */
+  select?: Prisma.OkrCadenceConfigSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the OkrCadenceConfig
+   */
+  omit?: Prisma.OkrCadenceConfigOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OkrCadenceConfigInclude<ExtArgs> | null
+  where?: Prisma.OkrCadenceConfigWhereInput
+  orderBy?: Prisma.OkrCadenceConfigOrderByWithRelationInput | Prisma.OkrCadenceConfigOrderByWithRelationInput[]
+  cursor?: Prisma.OkrCadenceConfigWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.OkrCadenceConfigScalarFieldEnum | Prisma.OkrCadenceConfigScalarFieldEnum[]
+}
+
+/**
+ * Organization.checkIns
+ */
+export type Organization$checkInsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CheckIn
+   */
+  select?: Prisma.CheckInSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CheckIn
+   */
+  omit?: Prisma.CheckInOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CheckInInclude<ExtArgs> | null
+  where?: Prisma.CheckInWhereInput
+  orderBy?: Prisma.CheckInOrderByWithRelationInput | Prisma.CheckInOrderByWithRelationInput[]
+  cursor?: Prisma.CheckInWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CheckInScalarFieldEnum | Prisma.CheckInScalarFieldEnum[]
+}
+
+/**
+ * Organization.checkInEvidence
+ */
+export type Organization$checkInEvidenceArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CheckInEvidence
+   */
+  select?: Prisma.CheckInEvidenceSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CheckInEvidence
+   */
+  omit?: Prisma.CheckInEvidenceOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CheckInEvidenceInclude<ExtArgs> | null
+  where?: Prisma.CheckInEvidenceWhereInput
+  orderBy?: Prisma.CheckInEvidenceOrderByWithRelationInput | Prisma.CheckInEvidenceOrderByWithRelationInput[]
+  cursor?: Prisma.CheckInEvidenceWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CheckInEvidenceScalarFieldEnum | Prisma.CheckInEvidenceScalarFieldEnum[]
+}
+
+/**
+ * Organization.okrAuditEvents
+ */
+export type Organization$okrAuditEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the OkrAuditEvent
+   */
+  select?: Prisma.OkrAuditEventSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the OkrAuditEvent
+   */
+  omit?: Prisma.OkrAuditEventOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OkrAuditEventInclude<ExtArgs> | null
+  where?: Prisma.OkrAuditEventWhereInput
+  orderBy?: Prisma.OkrAuditEventOrderByWithRelationInput | Prisma.OkrAuditEventOrderByWithRelationInput[]
+  cursor?: Prisma.OkrAuditEventWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.OkrAuditEventScalarFieldEnum | Prisma.OkrAuditEventScalarFieldEnum[]
 }
 
 /**

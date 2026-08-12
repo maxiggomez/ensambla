@@ -76,10 +76,38 @@ export type ObjectiveLevel = (typeof ObjectiveLevel)[keyof typeof ObjectiveLevel
 
 export const ObjectiveStatus = {
   Draft: 'Draft',
-  Published: 'Published'
+  Published: 'Published',
+  Closed: 'Closed',
+  Archived: 'Archived'
 } as const
 
 export type ObjectiveStatus = (typeof ObjectiveStatus)[keyof typeof ObjectiveStatus]
+
+
+export const CheckInCadence = {
+  Weekly: 'Weekly',
+  Biweekly: 'Biweekly',
+  Monthly: 'Monthly'
+} as const
+
+export type CheckInCadence = (typeof CheckInCadence)[keyof typeof CheckInCadence]
+
+
+export const EvidenceKind = {
+  Link: 'Link',
+  File: 'File'
+} as const
+
+export type EvidenceKind = (typeof EvidenceKind)[keyof typeof EvidenceKind]
+
+
+export const KeyResultGrade = {
+  Achieved: 'Achieved',
+  Partial: 'Partial',
+  NotAchieved: 'NotAchieved'
+} as const
+
+export type KeyResultGrade = (typeof KeyResultGrade)[keyof typeof KeyResultGrade]
 
 
 export const MeasurementType = {

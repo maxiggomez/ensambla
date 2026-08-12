@@ -184,6 +184,8 @@ export type TeamWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Team"> | Date | string
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
   members?: Prisma.TeamMemberListRelationFilter
+  objectives?: Prisma.ObjectiveListRelationFilter
+  cadenceConfigs?: Prisma.OkrCadenceConfigListRelationFilter
 }
 
 export type TeamOrderByWithRelationInput = {
@@ -194,6 +196,8 @@ export type TeamOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   organization?: Prisma.OrganizationOrderByWithRelationInput
   members?: Prisma.TeamMemberOrderByRelationAggregateInput
+  objectives?: Prisma.ObjectiveOrderByRelationAggregateInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigOrderByRelationAggregateInput
 }
 
 export type TeamWhereUniqueInput = Prisma.AtLeast<{
@@ -207,6 +211,8 @@ export type TeamWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"Team"> | Date | string
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
   members?: Prisma.TeamMemberListRelationFilter
+  objectives?: Prisma.ObjectiveListRelationFilter
+  cadenceConfigs?: Prisma.OkrCadenceConfigListRelationFilter
 }, "id">
 
 export type TeamOrderByWithAggregationInput = {
@@ -238,6 +244,8 @@ export type TeamCreateInput = {
   createdAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutTeamsInput
   members?: Prisma.TeamMemberCreateNestedManyWithoutTeamInput
+  objectives?: Prisma.ObjectiveCreateNestedManyWithoutTeamInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigCreateNestedManyWithoutTeamInput
 }
 
 export type TeamUncheckedCreateInput = {
@@ -247,6 +255,8 @@ export type TeamUncheckedCreateInput = {
   description?: string | null
   createdAt?: Date | string
   members?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutTeamInput
+  objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutTeamInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigUncheckedCreateNestedManyWithoutTeamInput
 }
 
 export type TeamUpdateInput = {
@@ -256,6 +266,8 @@ export type TeamUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutTeamsNestedInput
   members?: Prisma.TeamMemberUpdateManyWithoutTeamNestedInput
+  objectives?: Prisma.ObjectiveUpdateManyWithoutTeamNestedInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigUpdateManyWithoutTeamNestedInput
 }
 
 export type TeamUncheckedUpdateInput = {
@@ -265,6 +277,8 @@ export type TeamUncheckedUpdateInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   members?: Prisma.TeamMemberUncheckedUpdateManyWithoutTeamNestedInput
+  objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutTeamNestedInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigUncheckedUpdateManyWithoutTeamNestedInput
 }
 
 export type TeamCreateManyInput = {
@@ -298,6 +312,11 @@ export type TeamListRelationFilter = {
 
 export type TeamOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
+}
+
+export type TeamNullableScalarRelationFilter = {
+  is?: Prisma.TeamWhereInput | null
+  isNot?: Prisma.TeamWhereInput | null
 }
 
 export type TeamCountOrderByAggregateInput = {
@@ -371,6 +390,38 @@ export type TeamUncheckedUpdateManyWithoutOrganizationNestedInput = {
   deleteMany?: Prisma.TeamScalarWhereInput | Prisma.TeamScalarWhereInput[]
 }
 
+export type TeamCreateNestedOneWithoutObjectivesInput = {
+  create?: Prisma.XOR<Prisma.TeamCreateWithoutObjectivesInput, Prisma.TeamUncheckedCreateWithoutObjectivesInput>
+  connectOrCreate?: Prisma.TeamCreateOrConnectWithoutObjectivesInput
+  connect?: Prisma.TeamWhereUniqueInput
+}
+
+export type TeamUpdateOneWithoutObjectivesNestedInput = {
+  create?: Prisma.XOR<Prisma.TeamCreateWithoutObjectivesInput, Prisma.TeamUncheckedCreateWithoutObjectivesInput>
+  connectOrCreate?: Prisma.TeamCreateOrConnectWithoutObjectivesInput
+  upsert?: Prisma.TeamUpsertWithoutObjectivesInput
+  disconnect?: Prisma.TeamWhereInput | boolean
+  delete?: Prisma.TeamWhereInput | boolean
+  connect?: Prisma.TeamWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TeamUpdateToOneWithWhereWithoutObjectivesInput, Prisma.TeamUpdateWithoutObjectivesInput>, Prisma.TeamUncheckedUpdateWithoutObjectivesInput>
+}
+
+export type TeamCreateNestedOneWithoutCadenceConfigsInput = {
+  create?: Prisma.XOR<Prisma.TeamCreateWithoutCadenceConfigsInput, Prisma.TeamUncheckedCreateWithoutCadenceConfigsInput>
+  connectOrCreate?: Prisma.TeamCreateOrConnectWithoutCadenceConfigsInput
+  connect?: Prisma.TeamWhereUniqueInput
+}
+
+export type TeamUpdateOneWithoutCadenceConfigsNestedInput = {
+  create?: Prisma.XOR<Prisma.TeamCreateWithoutCadenceConfigsInput, Prisma.TeamUncheckedCreateWithoutCadenceConfigsInput>
+  connectOrCreate?: Prisma.TeamCreateOrConnectWithoutCadenceConfigsInput
+  upsert?: Prisma.TeamUpsertWithoutCadenceConfigsInput
+  disconnect?: Prisma.TeamWhereInput | boolean
+  delete?: Prisma.TeamWhereInput | boolean
+  connect?: Prisma.TeamWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TeamUpdateToOneWithWhereWithoutCadenceConfigsInput, Prisma.TeamUpdateWithoutCadenceConfigsInput>, Prisma.TeamUncheckedUpdateWithoutCadenceConfigsInput>
+}
+
 export type TeamCreateNestedOneWithoutMembersInput = {
   create?: Prisma.XOR<Prisma.TeamCreateWithoutMembersInput, Prisma.TeamUncheckedCreateWithoutMembersInput>
   connectOrCreate?: Prisma.TeamCreateOrConnectWithoutMembersInput
@@ -391,6 +442,8 @@ export type TeamCreateWithoutOrganizationInput = {
   description?: string | null
   createdAt?: Date | string
   members?: Prisma.TeamMemberCreateNestedManyWithoutTeamInput
+  objectives?: Prisma.ObjectiveCreateNestedManyWithoutTeamInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigCreateNestedManyWithoutTeamInput
 }
 
 export type TeamUncheckedCreateWithoutOrganizationInput = {
@@ -399,6 +452,8 @@ export type TeamUncheckedCreateWithoutOrganizationInput = {
   description?: string | null
   createdAt?: Date | string
   members?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutTeamInput
+  objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutTeamInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigUncheckedCreateNestedManyWithoutTeamInput
 }
 
 export type TeamCreateOrConnectWithoutOrganizationInput = {
@@ -438,12 +493,126 @@ export type TeamScalarWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Team"> | Date | string
 }
 
+export type TeamCreateWithoutObjectivesInput = {
+  id?: string
+  name: string
+  description?: string | null
+  createdAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutTeamsInput
+  members?: Prisma.TeamMemberCreateNestedManyWithoutTeamInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigCreateNestedManyWithoutTeamInput
+}
+
+export type TeamUncheckedCreateWithoutObjectivesInput = {
+  id?: string
+  organizationId: string
+  name: string
+  description?: string | null
+  createdAt?: Date | string
+  members?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutTeamInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigUncheckedCreateNestedManyWithoutTeamInput
+}
+
+export type TeamCreateOrConnectWithoutObjectivesInput = {
+  where: Prisma.TeamWhereUniqueInput
+  create: Prisma.XOR<Prisma.TeamCreateWithoutObjectivesInput, Prisma.TeamUncheckedCreateWithoutObjectivesInput>
+}
+
+export type TeamUpsertWithoutObjectivesInput = {
+  update: Prisma.XOR<Prisma.TeamUpdateWithoutObjectivesInput, Prisma.TeamUncheckedUpdateWithoutObjectivesInput>
+  create: Prisma.XOR<Prisma.TeamCreateWithoutObjectivesInput, Prisma.TeamUncheckedCreateWithoutObjectivesInput>
+  where?: Prisma.TeamWhereInput
+}
+
+export type TeamUpdateToOneWithWhereWithoutObjectivesInput = {
+  where?: Prisma.TeamWhereInput
+  data: Prisma.XOR<Prisma.TeamUpdateWithoutObjectivesInput, Prisma.TeamUncheckedUpdateWithoutObjectivesInput>
+}
+
+export type TeamUpdateWithoutObjectivesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutTeamsNestedInput
+  members?: Prisma.TeamMemberUpdateManyWithoutTeamNestedInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigUpdateManyWithoutTeamNestedInput
+}
+
+export type TeamUncheckedUpdateWithoutObjectivesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  members?: Prisma.TeamMemberUncheckedUpdateManyWithoutTeamNestedInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigUncheckedUpdateManyWithoutTeamNestedInput
+}
+
+export type TeamCreateWithoutCadenceConfigsInput = {
+  id?: string
+  name: string
+  description?: string | null
+  createdAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutTeamsInput
+  members?: Prisma.TeamMemberCreateNestedManyWithoutTeamInput
+  objectives?: Prisma.ObjectiveCreateNestedManyWithoutTeamInput
+}
+
+export type TeamUncheckedCreateWithoutCadenceConfigsInput = {
+  id?: string
+  organizationId: string
+  name: string
+  description?: string | null
+  createdAt?: Date | string
+  members?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutTeamInput
+  objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutTeamInput
+}
+
+export type TeamCreateOrConnectWithoutCadenceConfigsInput = {
+  where: Prisma.TeamWhereUniqueInput
+  create: Prisma.XOR<Prisma.TeamCreateWithoutCadenceConfigsInput, Prisma.TeamUncheckedCreateWithoutCadenceConfigsInput>
+}
+
+export type TeamUpsertWithoutCadenceConfigsInput = {
+  update: Prisma.XOR<Prisma.TeamUpdateWithoutCadenceConfigsInput, Prisma.TeamUncheckedUpdateWithoutCadenceConfigsInput>
+  create: Prisma.XOR<Prisma.TeamCreateWithoutCadenceConfigsInput, Prisma.TeamUncheckedCreateWithoutCadenceConfigsInput>
+  where?: Prisma.TeamWhereInput
+}
+
+export type TeamUpdateToOneWithWhereWithoutCadenceConfigsInput = {
+  where?: Prisma.TeamWhereInput
+  data: Prisma.XOR<Prisma.TeamUpdateWithoutCadenceConfigsInput, Prisma.TeamUncheckedUpdateWithoutCadenceConfigsInput>
+}
+
+export type TeamUpdateWithoutCadenceConfigsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutTeamsNestedInput
+  members?: Prisma.TeamMemberUpdateManyWithoutTeamNestedInput
+  objectives?: Prisma.ObjectiveUpdateManyWithoutTeamNestedInput
+}
+
+export type TeamUncheckedUpdateWithoutCadenceConfigsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  members?: Prisma.TeamMemberUncheckedUpdateManyWithoutTeamNestedInput
+  objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutTeamNestedInput
+}
+
 export type TeamCreateWithoutMembersInput = {
   id?: string
   name: string
   description?: string | null
   createdAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutTeamsInput
+  objectives?: Prisma.ObjectiveCreateNestedManyWithoutTeamInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigCreateNestedManyWithoutTeamInput
 }
 
 export type TeamUncheckedCreateWithoutMembersInput = {
@@ -452,6 +621,8 @@ export type TeamUncheckedCreateWithoutMembersInput = {
   name: string
   description?: string | null
   createdAt?: Date | string
+  objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutTeamInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigUncheckedCreateNestedManyWithoutTeamInput
 }
 
 export type TeamCreateOrConnectWithoutMembersInput = {
@@ -476,6 +647,8 @@ export type TeamUpdateWithoutMembersInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutTeamsNestedInput
+  objectives?: Prisma.ObjectiveUpdateManyWithoutTeamNestedInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigUpdateManyWithoutTeamNestedInput
 }
 
 export type TeamUncheckedUpdateWithoutMembersInput = {
@@ -484,6 +657,8 @@ export type TeamUncheckedUpdateWithoutMembersInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutTeamNestedInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigUncheckedUpdateManyWithoutTeamNestedInput
 }
 
 export type TeamCreateManyOrganizationInput = {
@@ -499,6 +674,8 @@ export type TeamUpdateWithoutOrganizationInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   members?: Prisma.TeamMemberUpdateManyWithoutTeamNestedInput
+  objectives?: Prisma.ObjectiveUpdateManyWithoutTeamNestedInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigUpdateManyWithoutTeamNestedInput
 }
 
 export type TeamUncheckedUpdateWithoutOrganizationInput = {
@@ -507,6 +684,8 @@ export type TeamUncheckedUpdateWithoutOrganizationInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   members?: Prisma.TeamMemberUncheckedUpdateManyWithoutTeamNestedInput
+  objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutTeamNestedInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigUncheckedUpdateManyWithoutTeamNestedInput
 }
 
 export type TeamUncheckedUpdateManyWithoutOrganizationInput = {
@@ -523,10 +702,14 @@ export type TeamUncheckedUpdateManyWithoutOrganizationInput = {
 
 export type TeamCountOutputType = {
   members: number
+  objectives: number
+  cadenceConfigs: number
 }
 
 export type TeamCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   members?: boolean | TeamCountOutputTypeCountMembersArgs
+  objectives?: boolean | TeamCountOutputTypeCountObjectivesArgs
+  cadenceConfigs?: boolean | TeamCountOutputTypeCountCadenceConfigsArgs
 }
 
 /**
@@ -546,6 +729,20 @@ export type TeamCountOutputTypeCountMembersArgs<ExtArgs extends runtime.Types.Ex
   where?: Prisma.TeamMemberWhereInput
 }
 
+/**
+ * TeamCountOutputType without action
+ */
+export type TeamCountOutputTypeCountObjectivesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ObjectiveWhereInput
+}
+
+/**
+ * TeamCountOutputType without action
+ */
+export type TeamCountOutputTypeCountCadenceConfigsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.OkrCadenceConfigWhereInput
+}
+
 
 export type TeamSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -555,6 +752,8 @@ export type TeamSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   createdAt?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   members?: boolean | Prisma.Team$membersArgs<ExtArgs>
+  objectives?: boolean | Prisma.Team$objectivesArgs<ExtArgs>
+  cadenceConfigs?: boolean | Prisma.Team$cadenceConfigsArgs<ExtArgs>
   _count?: boolean | Prisma.TeamCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["team"]>
 
@@ -588,6 +787,8 @@ export type TeamOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = run
 export type TeamInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   members?: boolean | Prisma.Team$membersArgs<ExtArgs>
+  objectives?: boolean | Prisma.Team$objectivesArgs<ExtArgs>
+  cadenceConfigs?: boolean | Prisma.Team$cadenceConfigsArgs<ExtArgs>
   _count?: boolean | Prisma.TeamCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type TeamIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -602,6 +803,8 @@ export type $TeamPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   objects: {
     organization: Prisma.$OrganizationPayload<ExtArgs>
     members: Prisma.$TeamMemberPayload<ExtArgs>[]
+    objectives: Prisma.$ObjectivePayload<ExtArgs>[]
+    cadenceConfigs: Prisma.$OkrCadenceConfigPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1005,6 +1208,8 @@ export interface Prisma__TeamClient<T, Null = never, ExtArgs extends runtime.Typ
   readonly [Symbol.toStringTag]: "PrismaPromise"
   organization<T extends Prisma.OrganizationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrganizationDefaultArgs<ExtArgs>>): Prisma.Prisma__OrganizationClient<runtime.Types.Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   members<T extends Prisma.Team$membersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Team$membersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TeamMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  objectives<T extends Prisma.Team$objectivesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Team$objectivesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ObjectivePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  cadenceConfigs<T extends Prisma.Team$cadenceConfigsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Team$cadenceConfigsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OkrCadenceConfigPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1461,6 +1666,54 @@ export type Team$membersArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
   take?: number
   skip?: number
   distinct?: Prisma.TeamMemberScalarFieldEnum | Prisma.TeamMemberScalarFieldEnum[]
+}
+
+/**
+ * Team.objectives
+ */
+export type Team$objectivesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Objective
+   */
+  select?: Prisma.ObjectiveSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Objective
+   */
+  omit?: Prisma.ObjectiveOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ObjectiveInclude<ExtArgs> | null
+  where?: Prisma.ObjectiveWhereInput
+  orderBy?: Prisma.ObjectiveOrderByWithRelationInput | Prisma.ObjectiveOrderByWithRelationInput[]
+  cursor?: Prisma.ObjectiveWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ObjectiveScalarFieldEnum | Prisma.ObjectiveScalarFieldEnum[]
+}
+
+/**
+ * Team.cadenceConfigs
+ */
+export type Team$cadenceConfigsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the OkrCadenceConfig
+   */
+  select?: Prisma.OkrCadenceConfigSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the OkrCadenceConfig
+   */
+  omit?: Prisma.OkrCadenceConfigOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OkrCadenceConfigInclude<ExtArgs> | null
+  where?: Prisma.OkrCadenceConfigWhereInput
+  orderBy?: Prisma.OkrCadenceConfigOrderByWithRelationInput | Prisma.OkrCadenceConfigOrderByWithRelationInput[]
+  cursor?: Prisma.OkrCadenceConfigWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.OkrCadenceConfigScalarFieldEnum | Prisma.OkrCadenceConfigScalarFieldEnum[]
 }
 
 /**

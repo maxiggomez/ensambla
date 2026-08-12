@@ -5,7 +5,7 @@ import { toMeasurement, type KeyResultValues } from "./key-result";
 export const OBJECTIVE_LEVELS = ["Company", "Area", "Team", "Person"] as const;
 export type ObjectiveLevel = (typeof OBJECTIVE_LEVELS)[number];
 
-export type ObjectiveStatus = "Draft" | "Published";
+export type ObjectiveStatus = "Draft" | "Published" | "Closed" | "Archived";
 
 export function objectiveTitle(value: string): string {
   const trimmed = value.trim();

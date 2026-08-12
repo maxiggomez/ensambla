@@ -3,7 +3,9 @@ import { ApplicationError } from "../../../shared/errors";
 import { withTenantForUser } from "../../../shared/tenancy";
 import { requireActor } from "../../identity-org/application";
 import { assertPublishable } from "../domain/objective";
+import { assertMutableObjective } from "../domain/cycle-close";
 import { canEditObjective } from "../domain/objective-policy";
+import { insertAuditEvent } from "../infrastructure/audit-repo";
 import { keyResultValuesFromRow } from "../infrastructure/key-result-repo";
 import {
   findObjectiveWithKeyResults,
@@ -34,9 +36,17 @@ export async function publishObjective(
           "Role not allowed to publish this objective",
         );
       }
+      assertMutableObjective(objective.status);
 
       assertPublishable(objective.keyResults.map(keyResultValuesFromRow));
       await updateObjectiveStatus(tx, objective.id, "Published");
+      await insertAuditEvent(tx, {
+        organizationId: actor.organizationId,
+        actorMemberId: actor.id,
+        action: "OBJECTIVE_PUBLISHED",
+        entityType: "Objective",
+        entityId: objective.id,
+      });
     },
     client,
   );

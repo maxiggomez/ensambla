@@ -63,6 +63,11 @@ export const ModelName = {
   PillarObjective: 'PillarObjective',
   Objective: 'Objective',
   KeyResult: 'KeyResult',
+  OkrCycle: 'OkrCycle',
+  OkrCadenceConfig: 'OkrCadenceConfig',
+  CheckIn: 'CheckIn',
+  CheckInEvidence: 'CheckInEvidence',
+  OkrAuditEvent: 'OkrAuditEvent',
   Team: 'Team',
   TeamMember: 'TeamMember',
   Project: 'Project',
@@ -238,6 +243,13 @@ export const ObjectiveScalarFieldEnum = {
   level: 'level',
   status: 'status',
   ownerId: 'ownerId',
+  teamId: 'teamId',
+  parentObjectiveId: 'parentObjectiveId',
+  cycleId: 'cycleId',
+  sourceObjectiveId: 'sourceObjectiveId',
+  publishedAt: 'publishedAt',
+  closedAt: 'closedAt',
+  archivedAt: 'archivedAt',
   createdAt: 'createdAt'
 } as const
 
@@ -255,10 +267,84 @@ export const KeyResultScalarFieldEnum = {
   currentValue: 'currentValue',
   checkDone: 'checkDone',
   textState: 'textState',
+  grade: 'grade',
+  sourceKeyResultId: 'sourceKeyResultId',
   createdAt: 'createdAt'
 } as const
 
 export type KeyResultScalarFieldEnum = (typeof KeyResultScalarFieldEnum)[keyof typeof KeyResultScalarFieldEnum]
+
+
+export const OkrCycleScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  name: 'name',
+  startsAt: 'startsAt',
+  endsAt: 'endsAt',
+  createdAt: 'createdAt'
+} as const
+
+export type OkrCycleScalarFieldEnum = (typeof OkrCycleScalarFieldEnum)[keyof typeof OkrCycleScalarFieldEnum]
+
+
+export const OkrCadenceConfigScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  objectiveId: 'objectiveId',
+  teamId: 'teamId',
+  cadence: 'cadence',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type OkrCadenceConfigScalarFieldEnum = (typeof OkrCadenceConfigScalarFieldEnum)[keyof typeof OkrCadenceConfigScalarFieldEnum]
+
+
+export const CheckInScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  keyResultId: 'keyResultId',
+  actorMemberId: 'actorMemberId',
+  measurementType: 'measurementType',
+  numericValue: 'numericValue',
+  checkDone: 'checkDone',
+  textState: 'textState',
+  confidence: 'confidence',
+  comment: 'comment',
+  createdAt: 'createdAt'
+} as const
+
+export type CheckInScalarFieldEnum = (typeof CheckInScalarFieldEnum)[keyof typeof CheckInScalarFieldEnum]
+
+
+export const CheckInEvidenceScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  checkInId: 'checkInId',
+  kind: 'kind',
+  url: 'url',
+  fileName: 'fileName',
+  mediaType: 'mediaType',
+  sizeBytes: 'sizeBytes',
+  fileBytes: 'fileBytes',
+  createdAt: 'createdAt'
+} as const
+
+export type CheckInEvidenceScalarFieldEnum = (typeof CheckInEvidenceScalarFieldEnum)[keyof typeof CheckInEvidenceScalarFieldEnum]
+
+
+export const OkrAuditEventScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  actorMemberId: 'actorMemberId',
+  action: 'action',
+  entityType: 'entityType',
+  entityId: 'entityId',
+  metadata: 'metadata',
+  createdAt: 'createdAt'
+} as const
+
+export type OkrAuditEventScalarFieldEnum = (typeof OkrAuditEventScalarFieldEnum)[keyof typeof OkrAuditEventScalarFieldEnum]
 
 
 export const TeamScalarFieldEnum = {
@@ -402,6 +488,13 @@ export const SortOrder = {
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
+
+
 export const QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
@@ -416,4 +509,13 @@ export const NullsOrder = {
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 

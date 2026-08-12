@@ -33,6 +33,11 @@ model Organization {
   pillarObjectiveLinks PillarObjective[]
   objectives           Objective[]
   keyResults           KeyResult[]
+  okrCycles            OkrCycle[]
+  okrCadenceConfigs    OkrCadenceConfig[]
+  checkIns             CheckIn[]
+  checkInEvidence      CheckInEvidence[]
+  okrAuditEvents       OkrAuditEvent[]
   teams                Team[]
   teamMembers          TeamMember[]
   projects             Project[]
@@ -145,18 +150,20 @@ model PulseResponse {
 }
 
 model Member {
-  id              String       @id @default(uuid()) @db.Uuid
-  organizationId  String       @map("organization_id") @db.Uuid
-  organization    Organization @relation(fields: [organizationId], references: [id])
+  id              String          @id @default(uuid()) @db.Uuid
+  organizationId  String          @map("organization_id") @db.Uuid
+  organization    Organization    @relation(fields: [organizationId], references: [id])
   email           String
   name            String
   role            MemberRole
   // Identidad de auth (Clerk). Nullable: un invitado puede no haber logueado aún.
-  clerkUserId     String?      @map("clerk_user_id")
+  clerkUserId     String?         @map("clerk_user_id")
   // Insumo del staffing (skills-matrix); nullable: sin dato rankea último.
   seniority       Seniority?
-  createdAt       DateTime     @default(now()) @map("created_at") @db.Timestamptz(6)
+  createdAt       DateTime        @default(now()) @map("created_at") @db.Timestamptz(6)
   objectives      Objective[]
+  checkIns        CheckIn[]
+  okrAuditEvents  OkrAuditEvent[]
   teamMemberships TeamMember[]
   competencies    Competency[]
 
@@ -182,6 +189,25 @@ enum ObjectiveLevel {
 enum ObjectiveStatus {
   Draft
   Published
+  Closed
+  Archived
+}
+
+enum CheckInCadence {
+  Weekly
+  Biweekly
+  Monthly
+}
+
+enum EvidenceKind {
+  Link
+  File
+}
+
+enum KeyResultGrade {
+  Achieved
+  Partial
+  NotAchieved
 }
 
 enum MeasurementType {
@@ -199,20 +225,20 @@ enum TextState {
 }
 
 model NorthStar {
-  id              String          @id @default(uuid()) @db.Uuid
+  id              String           @id @default(uuid()) @db.Uuid
   // UNIQUE: exactamente una North Star por Organización.
-  organizationId  String          @unique @map("organization_id") @db.Uuid
-  organization    Organization    @relation(fields: [organizationId], references: [id])
+  organizationId  String           @unique @map("organization_id") @db.Uuid
+  organization    Organization     @relation(fields: [organizationId], references: [id])
   name            String
-  measurementType MeasurementType @map("measurement_type")
-  startValue      Decimal?        @map("start_value") @db.Decimal(20, 4)
-  targetValue     Decimal?        @map("target_value") @db.Decimal(20, 4)
-  currentValue    Decimal?        @map("current_value") @db.Decimal(20, 4)
-  checkDone       Boolean?        @map("check_done")
-  textState       TextState?      @map("text_state")
+  measurementType MeasurementType  @map("measurement_type")
+  startValue      Decimal?         @map("start_value") @db.Decimal(20, 4)
+  targetValue     Decimal?         @map("target_value") @db.Decimal(20, 4)
+  currentValue    Decimal?         @map("current_value") @db.Decimal(20, 4)
+  checkDone       Boolean?         @map("check_done")
+  textState       TextState?       @map("text_state")
   levers          NorthStarLever[]
-  createdAt       DateTime        @default(now()) @map("created_at") @db.Timestamptz(6)
-  updatedAt       DateTime        @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+  createdAt       DateTime         @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt       DateTime         @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
 
   @@map("north_star")
 }
@@ -241,29 +267,29 @@ model NorthStarLever {
 }
 
 model StrategicPillar {
-  id             String             @id @default(uuid()) @db.Uuid
-  organizationId String             @map("organization_id") @db.Uuid
-  organization   Organization       @relation(fields: [organizationId], references: [id])
+  id             String            @id @default(uuid()) @db.Uuid
+  organizationId String            @map("organization_id") @db.Uuid
+  organization   Organization      @relation(fields: [organizationId], references: [id])
   name           String
-  description    String?            @db.Text
+  description    String?           @db.Text
   objectiveLinks PillarObjective[]
-  createdAt      DateTime           @default(now()) @map("created_at") @db.Timestamptz(6)
+  createdAt      DateTime          @default(now()) @map("created_at") @db.Timestamptz(6)
 
   @@index([organizationId])
   @@map("strategic_pillar")
 }
 
 model PillarObjective {
-  id             String           @id @default(uuid()) @db.Uuid
+  id             String          @id @default(uuid()) @db.Uuid
   // organization_id propio (además del objective) para que la política RLS
   // no dependa de joins.
-  organizationId String           @map("organization_id") @db.Uuid
-  organization   Organization     @relation(fields: [organizationId], references: [id])
-  pillarId       String           @map("pillar_id") @db.Uuid
-  pillar         StrategicPillar  @relation(fields: [pillarId], references: [id])
-  objectiveId    String           @map("objective_id") @db.Uuid
-  objective      Objective        @relation(fields: [objectiveId], references: [id])
-  createdAt      DateTime         @default(now()) @map("created_at") @db.Timestamptz(6)
+  organizationId String          @map("organization_id") @db.Uuid
+  organization   Organization    @relation(fields: [organizationId], references: [id])
+  pillarId       String          @map("pillar_id") @db.Uuid
+  pillar         StrategicPillar @relation(fields: [pillarId], references: [id])
+  objectiveId    String          @map("objective_id") @db.Uuid
+  objective      Objective       @relation(fields: [objectiveId], references: [id])
+  createdAt      DateTime        @default(now()) @map("created_at") @db.Timestamptz(6)
 
   @@unique([pillarId, objectiveId])
   @@index([organizationId])
@@ -272,21 +298,39 @@ model PillarObjective {
 }
 
 model Objective {
-  id             String             @id @default(uuid()) @db.Uuid
-  organizationId String             @map("organization_id") @db.Uuid
-  organization   Organization       @relation(fields: [organizationId], references: [id])
-  title          String
-  level          ObjectiveLevel
-  status         ObjectiveStatus    @default(Draft)
-  ownerId        String             @map("owner_id") @db.Uuid
-  owner          Member             @relation(fields: [ownerId], references: [id])
-  keyResults     KeyResult[]
-  projectLinks   ProjectObjective[]
-  leverLinks     NorthStarLever[]
-  pillarLinks    PillarObjective[]
-  createdAt      DateTime           @default(now()) @map("created_at") @db.Timestamptz(6)
+  id                String             @id @default(uuid()) @db.Uuid
+  organizationId    String             @map("organization_id") @db.Uuid
+  organization      Organization       @relation(fields: [organizationId], references: [id])
+  title             String
+  level             ObjectiveLevel
+  status            ObjectiveStatus    @default(Draft)
+  ownerId           String             @map("owner_id") @db.Uuid
+  owner             Member             @relation(fields: [ownerId], references: [id])
+  teamId            String?            @map("team_id") @db.Uuid
+  team              Team?              @relation(fields: [teamId], references: [id])
+  parentObjectiveId String?            @map("parent_objective_id") @db.Uuid
+  parentObjective   Objective?         @relation("ObjectiveHierarchy", fields: [parentObjectiveId], references: [id])
+  childObjectives   Objective[]        @relation("ObjectiveHierarchy")
+  cycleId           String?            @map("cycle_id") @db.Uuid
+  cycle             OkrCycle?          @relation(fields: [cycleId], references: [id])
+  sourceObjectiveId String?            @map("source_objective_id") @db.Uuid
+  sourceObjective   Objective?         @relation("ObjectiveCarryOver", fields: [sourceObjectiveId], references: [id])
+  carriedObjectives Objective[]        @relation("ObjectiveCarryOver")
+  keyResults        KeyResult[]
+  cadenceConfigs    OkrCadenceConfig[]
+  projectLinks      ProjectObjective[]
+  leverLinks        NorthStarLever[]
+  pillarLinks       PillarObjective[]
+  publishedAt       DateTime?          @map("published_at") @db.Timestamptz(6)
+  closedAt          DateTime?          @map("closed_at") @db.Timestamptz(6)
+  archivedAt        DateTime?          @map("archived_at") @db.Timestamptz(6)
+  createdAt         DateTime           @default(now()) @map("created_at") @db.Timestamptz(6)
 
   @@index([organizationId])
+  @@index([teamId])
+  @@index([parentObjectiveId])
+  @@index([cycleId])
+  @@index([sourceObjectiveId])
   @@map("objective")
 }
 
@@ -305,12 +349,109 @@ model KeyResult {
   currentValue      Decimal?           @map("current_value") @db.Decimal(20, 4)
   checkDone         Boolean?           @map("check_done")
   textState         TextState?         @map("text_state")
+  grade             KeyResultGrade?
+  sourceKeyResultId String?            @map("source_key_result_id") @db.Uuid
+  sourceKeyResult   KeyResult?         @relation("KeyResultCarryOver", fields: [sourceKeyResultId], references: [id])
+  carriedKeyResults KeyResult[]        @relation("KeyResultCarryOver")
+  checkIns          CheckIn[]
   skillRequirements SkillRequirement[]
   createdAt         DateTime           @default(now()) @map("created_at") @db.Timestamptz(6)
 
   @@index([organizationId])
   @@index([objectiveId])
+  @@index([sourceKeyResultId])
   @@map("key_result")
+}
+
+model OkrCycle {
+  id             String       @id @default(uuid()) @db.Uuid
+  organizationId String       @map("organization_id") @db.Uuid
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  name           String
+  startsAt       DateTime     @map("starts_at") @db.Timestamptz(6)
+  endsAt         DateTime     @map("ends_at") @db.Timestamptz(6)
+  objectives     Objective[]
+  createdAt      DateTime     @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  @@unique([organizationId, name])
+  @@index([organizationId])
+  @@map("okr_cycle")
+}
+
+model OkrCadenceConfig {
+  id             String         @id @default(uuid()) @db.Uuid
+  organizationId String         @map("organization_id") @db.Uuid
+  organization   Organization   @relation(fields: [organizationId], references: [id])
+  objectiveId    String?        @map("objective_id") @db.Uuid
+  objective      Objective?     @relation(fields: [objectiveId], references: [id])
+  teamId         String?        @map("team_id") @db.Uuid
+  team           Team?          @relation(fields: [teamId], references: [id])
+  cadence        CheckInCadence
+  createdAt      DateTime       @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt      DateTime       @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  @@index([organizationId])
+  @@index([objectiveId])
+  @@index([teamId])
+  @@map("okr_cadence_config")
+}
+
+model CheckIn {
+  id              String            @id @default(uuid()) @db.Uuid
+  organizationId  String            @map("organization_id") @db.Uuid
+  organization    Organization      @relation(fields: [organizationId], references: [id])
+  keyResultId     String            @map("key_result_id") @db.Uuid
+  keyResult       KeyResult         @relation(fields: [keyResultId], references: [id])
+  actorMemberId   String            @map("actor_member_id") @db.Uuid
+  actorMember     Member            @relation(fields: [actorMemberId], references: [id])
+  measurementType MeasurementType   @map("measurement_type")
+  numericValue    Decimal?          @map("numeric_value") @db.Decimal(20, 4)
+  checkDone       Boolean?          @map("check_done")
+  textState       TextState?        @map("text_state")
+  confidence      Int
+  comment         String?           @db.Text
+  evidence        CheckInEvidence[]
+  createdAt       DateTime          @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  @@index([organizationId])
+  @@index([keyResultId, createdAt])
+  @@map("check_in")
+}
+
+model CheckInEvidence {
+  id             String       @id @default(uuid()) @db.Uuid
+  organizationId String       @map("organization_id") @db.Uuid
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  checkInId      String       @map("check_in_id") @db.Uuid
+  checkIn        CheckIn      @relation(fields: [checkInId], references: [id])
+  kind           EvidenceKind
+  url            String?
+  fileName       String?      @map("file_name")
+  mediaType      String?      @map("media_type")
+  sizeBytes      Int?         @map("size_bytes")
+  fileBytes      Bytes?       @map("file_bytes") @db.ByteA
+  createdAt      DateTime     @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  @@index([organizationId])
+  @@index([checkInId])
+  @@map("check_in_evidence")
+}
+
+model OkrAuditEvent {
+  id             String       @id @default(uuid()) @db.Uuid
+  organizationId String       @map("organization_id") @db.Uuid
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  actorMemberId  String       @map("actor_member_id") @db.Uuid
+  actorMember    Member       @relation(fields: [actorMemberId], references: [id])
+  action         String
+  entityType     String       @map("entity_type")
+  entityId       String       @map("entity_id") @db.Uuid
+  metadata       Json         @default("{}")
+  createdAt      DateTime     @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  @@index([organizationId, createdAt])
+  @@index([entityType, entityId])
+  @@map("okr_audit_event")
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -325,13 +466,15 @@ enum TeamRole {
 }
 
 model Team {
-  id             String       @id @default(uuid()) @db.Uuid
-  organizationId String       @map("organization_id") @db.Uuid
-  organization   Organization @relation(fields: [organizationId], references: [id])
+  id             String             @id @default(uuid()) @db.Uuid
+  organizationId String             @map("organization_id") @db.Uuid
+  organization   Organization       @relation(fields: [organizationId], references: [id])
   name           String
   description    String?
   members        TeamMember[]
-  createdAt      DateTime     @default(now()) @map("created_at") @db.Timestamptz(6)
+  objectives     Objective[]
+  cadenceConfigs OkrCadenceConfig[]
+  createdAt      DateTime           @default(now()) @map("created_at") @db.Timestamptz(6)
 
   @@index([organizationId])
   @@map("team")

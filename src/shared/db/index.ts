@@ -21,8 +21,16 @@ export type {
   NorthStarLeverModel as NorthStarLever,
   StrategicPillarModel as StrategicPillar,
   PillarObjectiveModel as PillarObjective,
+  OkrCycleModel as OkrCycle,
+  OkrCadenceConfigModel as OkrCadenceConfig,
+  CheckInModel as CheckIn,
+  CheckInEvidenceModel as CheckInEvidence,
+  OkrAuditEventModel as OkrAuditEvent,
 } from "./generated/models";
 export {
+  CheckInCadence,
+  EvidenceKind,
+  KeyResultGrade,
   MeasurementType,
   MemberRole,
   ObjectiveLevel,

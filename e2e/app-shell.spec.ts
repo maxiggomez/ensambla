@@ -20,8 +20,6 @@ const ALL_SECTIONS = [
 ] as const;
 
 const PLACEHOLDER_ROUTES: ReadonlyArray<readonly [string, string]> = [
-  ["Dashboard", "/dashboard"],
-  ["OKRs", "/okrs"],
   ["Equipos & Proyectos", "/equipos-y-proyectos"],
   ["Rituales", "/rituales"],
   ["Feedback & Carrera", "/feedback-y-carrera"],
@@ -74,6 +72,22 @@ test.describe.serial("app shell", () => {
       page.getByRole("heading", { name: "De dónde baja todo lo demás" }),
     ).toBeVisible();
     await expect(page.getByText("Visión, misión y valores")).toBeVisible();
+  });
+
+  test("Dashboard y OKRs muestran sus UIs reales dentro del shell", async ({ page }) => {
+    await signInAs(page, "dev_direccion");
+
+    await sidebar(page).getByRole("link", { name: "Dashboard" }).click();
+    await page.waitForURL("**/dashboard");
+    await expect(
+      page.getByRole("heading", { name: "El panorama de la organización" }),
+    ).toBeVisible();
+
+    await sidebar(page).getByRole("link", { name: "OKRs" }).click();
+    await page.waitForURL("**/okrs");
+    await expect(
+      page.getByRole("heading", { name: "Objetivos que bajan a resultados medibles" }),
+    ).toBeVisible();
   });
 
   test("Clima & eNPS y Miembros mantienen sus páginas live dentro del shell", async ({
