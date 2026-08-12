@@ -4,7 +4,9 @@ import { textStateSchema, type TextState } from "../../../shared/measurement";
 import { withTenantForUser } from "../../../shared/tenancy";
 import { requireActor } from "../../identity-org/application";
 import { toMeasurement, type KeyResultValues } from "../domain/key-result";
+import { assertMutableObjective } from "../domain/cycle-close";
 import { canEditObjective } from "../domain/objective-policy";
+import { insertAuditEvent } from "../infrastructure/audit-repo";
 import {
   findKeyResultWithObjective,
   keyResultValuesFromRow,
@@ -40,11 +42,19 @@ export async function updateKeyResultValue(
           "Role not allowed to update this key result",
         );
       }
+      assertMutableObjective(keyResult.objective.status);
 
       const updated = applyValue(keyResultValuesFromRow(keyResult), input.value);
       // Valida que los valores actualizados sigan formando un Measurement válido.
       toMeasurement(updated);
       await updateKeyResultCurrent(tx, keyResult.id, updated);
+      await insertAuditEvent(tx, {
+        organizationId: actor.organizationId,
+        actorMemberId: actor.id,
+        action: "KEY_RESULT_VALUE_UPDATED",
+        entityType: "KeyResult",
+        entityId: keyResult.id,
+      });
     },
     client,
   );

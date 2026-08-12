@@ -1,7 +1,16 @@
-import type { KeyResult, Member, Objective, TenantClient } from "../../../shared/db";
+import type {
+  KeyResult,
+  Member,
+  Objective,
+  PillarObjective,
+  TenantClient,
+} from "../../../shared/db";
 import type { ObjectiveLevel, ObjectiveStatus } from "../domain/objective";
 
-export type ObjectiveWithKeyResults = Objective & { keyResults: KeyResult[] };
+export type ObjectiveWithKeyResults = Objective & {
+  keyResults: KeyResult[];
+  pillarLinks: PillarObjective[];
+};
 
 export interface InsertObjectiveInput {
   id: string;
@@ -9,6 +18,9 @@ export interface InsertObjectiveInput {
   title: string;
   level: ObjectiveLevel;
   ownerId: string;
+  teamId?: string | null;
+  parentObjectiveId?: string | null;
+  cycleId?: string | null;
 }
 
 export async function insertObjective(
@@ -22,14 +34,17 @@ export function findObjectiveWithKeyResults(
   tx: TenantClient,
   id: string,
 ): Promise<ObjectiveWithKeyResults | null> {
-  return tx.objective.findUnique({ where: { id }, include: { keyResults: true } });
+  return tx.objective.findUnique({
+    where: { id },
+    include: { keyResults: true, pillarLinks: true },
+  });
 }
 
 export function listObjectivesWithKeyResults(
   tx: TenantClient,
 ): Promise<ObjectiveWithKeyResults[]> {
   return tx.objective.findMany({
-    include: { keyResults: true },
+    include: { keyResults: true, pillarLinks: true },
     orderBy: { createdAt: "asc" },
   });
 }
@@ -39,10 +54,22 @@ export async function updateObjectiveStatus(
   id: string,
   status: ObjectiveStatus,
 ): Promise<void> {
-  await tx.objective.update({ where: { id }, data: { status } });
+  await tx.objective.update({
+    where: { id },
+    data: {
+      status,
+      publishedAt: status === "Published" ? new Date() : undefined,
+      closedAt: status === "Closed" ? new Date() : undefined,
+      archivedAt: status === "Archived" ? new Date() : undefined,
+    },
+  });
 }
 
 /** Lookup RLS-scoped del owner: garantiza que el Member es del mismo tenant. */
 export function findOwnerMember(tx: TenantClient, memberId: string): Promise<Member | null> {
   return tx.member.findUnique({ where: { id: memberId } });
+}
+
+export function findCycle(tx: TenantClient, cycleId: string) {
+  return tx.okrCycle.findUnique({ where: { id: cycleId } });
 }

@@ -4,7 +4,7 @@ import { requireActor } from "../../identity-org/application";
 import { canViewObjective } from "../domain/objective-policy";
 import { listObjectivesWithKeyResults } from "../infrastructure/objective-repo";
 
-import { toObjectiveView, type ObjectiveView } from "./objective-view";
+import { toObjectiveView, type ActiveObjectiveView } from "./objective-view";
 
 export interface ListObjectivesInput {
   actorClerkUserId: string;
@@ -14,7 +14,7 @@ export interface ListObjectivesInput {
 export async function listObjectives(
   input: ListObjectivesInput,
   client: PrismaClient = prismaClient(),
-): Promise<ObjectiveView[]> {
+): Promise<ActiveObjectiveView[]> {
   return withTenantForUser(
     input.actorClerkUserId,
     async (tx) => {
@@ -24,7 +24,11 @@ export async function listObjectives(
         .filter((objective) =>
           canViewObjective(actor.role, objective.ownerId === actor.id, objective.status),
         )
-        .map(toObjectiveView);
+        .map(toObjectiveView)
+        .filter(
+          (objective): objective is ActiveObjectiveView =>
+            objective.status === "Draft" || objective.status === "Published",
+        );
     },
     client,
   );

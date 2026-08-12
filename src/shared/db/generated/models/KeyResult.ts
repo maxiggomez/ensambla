@@ -49,6 +49,8 @@ export type KeyResultMinAggregateOutputType = {
   currentValue: runtime.Decimal | null
   checkDone: boolean | null
   textState: $Enums.TextState | null
+  grade: $Enums.KeyResultGrade | null
+  sourceKeyResultId: string | null
   createdAt: Date | null
 }
 
@@ -63,6 +65,8 @@ export type KeyResultMaxAggregateOutputType = {
   currentValue: runtime.Decimal | null
   checkDone: boolean | null
   textState: $Enums.TextState | null
+  grade: $Enums.KeyResultGrade | null
+  sourceKeyResultId: string | null
   createdAt: Date | null
 }
 
@@ -77,6 +81,8 @@ export type KeyResultCountAggregateOutputType = {
   currentValue: number
   checkDone: number
   textState: number
+  grade: number
+  sourceKeyResultId: number
   createdAt: number
   _all: number
 }
@@ -105,6 +111,8 @@ export type KeyResultMinAggregateInputType = {
   currentValue?: true
   checkDone?: true
   textState?: true
+  grade?: true
+  sourceKeyResultId?: true
   createdAt?: true
 }
 
@@ -119,6 +127,8 @@ export type KeyResultMaxAggregateInputType = {
   currentValue?: true
   checkDone?: true
   textState?: true
+  grade?: true
+  sourceKeyResultId?: true
   createdAt?: true
 }
 
@@ -133,6 +143,8 @@ export type KeyResultCountAggregateInputType = {
   currentValue?: true
   checkDone?: true
   textState?: true
+  grade?: true
+  sourceKeyResultId?: true
   createdAt?: true
   _all?: true
 }
@@ -234,6 +246,8 @@ export type KeyResultGroupByOutputType = {
   currentValue: runtime.Decimal | null
   checkDone: boolean | null
   textState: $Enums.TextState | null
+  grade: $Enums.KeyResultGrade | null
+  sourceKeyResultId: string | null
   createdAt: Date
   _count: KeyResultCountAggregateOutputType | null
   _avg: KeyResultAvgAggregateOutputType | null
@@ -271,9 +285,14 @@ export type KeyResultWhereInput = {
   currentValue?: Prisma.DecimalNullableFilter<"KeyResult"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   checkDone?: Prisma.BoolNullableFilter<"KeyResult"> | boolean | null
   textState?: Prisma.EnumTextStateNullableFilter<"KeyResult"> | $Enums.TextState | null
+  grade?: Prisma.EnumKeyResultGradeNullableFilter<"KeyResult"> | $Enums.KeyResultGrade | null
+  sourceKeyResultId?: Prisma.UuidNullableFilter<"KeyResult"> | string | null
   createdAt?: Prisma.DateTimeFilter<"KeyResult"> | Date | string
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
   objective?: Prisma.XOR<Prisma.ObjectiveScalarRelationFilter, Prisma.ObjectiveWhereInput>
+  sourceKeyResult?: Prisma.XOR<Prisma.KeyResultNullableScalarRelationFilter, Prisma.KeyResultWhereInput> | null
+  carriedKeyResults?: Prisma.KeyResultListRelationFilter
+  checkIns?: Prisma.CheckInListRelationFilter
   skillRequirements?: Prisma.SkillRequirementListRelationFilter
 }
 
@@ -288,9 +307,14 @@ export type KeyResultOrderByWithRelationInput = {
   currentValue?: Prisma.SortOrderInput | Prisma.SortOrder
   checkDone?: Prisma.SortOrderInput | Prisma.SortOrder
   textState?: Prisma.SortOrderInput | Prisma.SortOrder
+  grade?: Prisma.SortOrderInput | Prisma.SortOrder
+  sourceKeyResultId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   organization?: Prisma.OrganizationOrderByWithRelationInput
   objective?: Prisma.ObjectiveOrderByWithRelationInput
+  sourceKeyResult?: Prisma.KeyResultOrderByWithRelationInput
+  carriedKeyResults?: Prisma.KeyResultOrderByRelationAggregateInput
+  checkIns?: Prisma.CheckInOrderByRelationAggregateInput
   skillRequirements?: Prisma.SkillRequirementOrderByRelationAggregateInput
 }
 
@@ -308,9 +332,14 @@ export type KeyResultWhereUniqueInput = Prisma.AtLeast<{
   currentValue?: Prisma.DecimalNullableFilter<"KeyResult"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   checkDone?: Prisma.BoolNullableFilter<"KeyResult"> | boolean | null
   textState?: Prisma.EnumTextStateNullableFilter<"KeyResult"> | $Enums.TextState | null
+  grade?: Prisma.EnumKeyResultGradeNullableFilter<"KeyResult"> | $Enums.KeyResultGrade | null
+  sourceKeyResultId?: Prisma.UuidNullableFilter<"KeyResult"> | string | null
   createdAt?: Prisma.DateTimeFilter<"KeyResult"> | Date | string
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
   objective?: Prisma.XOR<Prisma.ObjectiveScalarRelationFilter, Prisma.ObjectiveWhereInput>
+  sourceKeyResult?: Prisma.XOR<Prisma.KeyResultNullableScalarRelationFilter, Prisma.KeyResultWhereInput> | null
+  carriedKeyResults?: Prisma.KeyResultListRelationFilter
+  checkIns?: Prisma.CheckInListRelationFilter
   skillRequirements?: Prisma.SkillRequirementListRelationFilter
 }, "id">
 
@@ -325,6 +354,8 @@ export type KeyResultOrderByWithAggregationInput = {
   currentValue?: Prisma.SortOrderInput | Prisma.SortOrder
   checkDone?: Prisma.SortOrderInput | Prisma.SortOrder
   textState?: Prisma.SortOrderInput | Prisma.SortOrder
+  grade?: Prisma.SortOrderInput | Prisma.SortOrder
+  sourceKeyResultId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.KeyResultCountOrderByAggregateInput
   _avg?: Prisma.KeyResultAvgOrderByAggregateInput
@@ -347,6 +378,8 @@ export type KeyResultScalarWhereWithAggregatesInput = {
   currentValue?: Prisma.DecimalNullableWithAggregatesFilter<"KeyResult"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   checkDone?: Prisma.BoolNullableWithAggregatesFilter<"KeyResult"> | boolean | null
   textState?: Prisma.EnumTextStateNullableWithAggregatesFilter<"KeyResult"> | $Enums.TextState | null
+  grade?: Prisma.EnumKeyResultGradeNullableWithAggregatesFilter<"KeyResult"> | $Enums.KeyResultGrade | null
+  sourceKeyResultId?: Prisma.UuidNullableWithAggregatesFilter<"KeyResult"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"KeyResult"> | Date | string
 }
 
@@ -359,9 +392,13 @@ export type KeyResultCreateInput = {
   currentValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   checkDone?: boolean | null
   textState?: $Enums.TextState | null
+  grade?: $Enums.KeyResultGrade | null
   createdAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutKeyResultsInput
   objective: Prisma.ObjectiveCreateNestedOneWithoutKeyResultsInput
+  sourceKeyResult?: Prisma.KeyResultCreateNestedOneWithoutCarriedKeyResultsInput
+  carriedKeyResults?: Prisma.KeyResultCreateNestedManyWithoutSourceKeyResultInput
+  checkIns?: Prisma.CheckInCreateNestedManyWithoutKeyResultInput
   skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutKeyResultInput
 }
 
@@ -376,7 +413,11 @@ export type KeyResultUncheckedCreateInput = {
   currentValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   checkDone?: boolean | null
   textState?: $Enums.TextState | null
+  grade?: $Enums.KeyResultGrade | null
+  sourceKeyResultId?: string | null
   createdAt?: Date | string
+  carriedKeyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutSourceKeyResultInput
+  checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutKeyResultInput
   skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutKeyResultInput
 }
 
@@ -389,9 +430,13 @@ export type KeyResultUpdateInput = {
   currentValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   checkDone?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   textState?: Prisma.NullableEnumTextStateFieldUpdateOperationsInput | $Enums.TextState | null
+  grade?: Prisma.NullableEnumKeyResultGradeFieldUpdateOperationsInput | $Enums.KeyResultGrade | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutKeyResultsNestedInput
   objective?: Prisma.ObjectiveUpdateOneRequiredWithoutKeyResultsNestedInput
+  sourceKeyResult?: Prisma.KeyResultUpdateOneWithoutCarriedKeyResultsNestedInput
+  carriedKeyResults?: Prisma.KeyResultUpdateManyWithoutSourceKeyResultNestedInput
+  checkIns?: Prisma.CheckInUpdateManyWithoutKeyResultNestedInput
   skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutKeyResultNestedInput
 }
 
@@ -406,7 +451,11 @@ export type KeyResultUncheckedUpdateInput = {
   currentValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   checkDone?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   textState?: Prisma.NullableEnumTextStateFieldUpdateOperationsInput | $Enums.TextState | null
+  grade?: Prisma.NullableEnumKeyResultGradeFieldUpdateOperationsInput | $Enums.KeyResultGrade | null
+  sourceKeyResultId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  carriedKeyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutSourceKeyResultNestedInput
+  checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutKeyResultNestedInput
   skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutKeyResultNestedInput
 }
 
@@ -421,6 +470,8 @@ export type KeyResultCreateManyInput = {
   currentValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   checkDone?: boolean | null
   textState?: $Enums.TextState | null
+  grade?: $Enums.KeyResultGrade | null
+  sourceKeyResultId?: string | null
   createdAt?: Date | string
 }
 
@@ -433,6 +484,7 @@ export type KeyResultUpdateManyMutationInput = {
   currentValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   checkDone?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   textState?: Prisma.NullableEnumTextStateFieldUpdateOperationsInput | $Enums.TextState | null
+  grade?: Prisma.NullableEnumKeyResultGradeFieldUpdateOperationsInput | $Enums.KeyResultGrade | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -447,6 +499,8 @@ export type KeyResultUncheckedUpdateManyInput = {
   currentValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   checkDone?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   textState?: Prisma.NullableEnumTextStateFieldUpdateOperationsInput | $Enums.TextState | null
+  grade?: Prisma.NullableEnumKeyResultGradeFieldUpdateOperationsInput | $Enums.KeyResultGrade | null
+  sourceKeyResultId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -460,6 +514,11 @@ export type KeyResultOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
+export type KeyResultNullableScalarRelationFilter = {
+  is?: Prisma.KeyResultWhereInput | null
+  isNot?: Prisma.KeyResultWhereInput | null
+}
+
 export type KeyResultCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
@@ -471,6 +530,8 @@ export type KeyResultCountOrderByAggregateInput = {
   currentValue?: Prisma.SortOrder
   checkDone?: Prisma.SortOrder
   textState?: Prisma.SortOrder
+  grade?: Prisma.SortOrder
+  sourceKeyResultId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -491,6 +552,8 @@ export type KeyResultMaxOrderByAggregateInput = {
   currentValue?: Prisma.SortOrder
   checkDone?: Prisma.SortOrder
   textState?: Prisma.SortOrder
+  grade?: Prisma.SortOrder
+  sourceKeyResultId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -505,6 +568,8 @@ export type KeyResultMinOrderByAggregateInput = {
   currentValue?: Prisma.SortOrder
   checkDone?: Prisma.SortOrder
   textState?: Prisma.SortOrder
+  grade?: Prisma.SortOrder
+  sourceKeyResultId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -514,9 +579,9 @@ export type KeyResultSumOrderByAggregateInput = {
   currentValue?: Prisma.SortOrder
 }
 
-export type KeyResultNullableScalarRelationFilter = {
-  is?: Prisma.KeyResultWhereInput | null
-  isNot?: Prisma.KeyResultWhereInput | null
+export type KeyResultScalarRelationFilter = {
+  is?: Prisma.KeyResultWhereInput
+  isNot?: Prisma.KeyResultWhereInput
 }
 
 export type KeyResultCreateNestedManyWithoutOrganizationInput = {
@@ -603,6 +668,82 @@ export type KeyResultUncheckedUpdateManyWithoutObjectiveNestedInput = {
   deleteMany?: Prisma.KeyResultScalarWhereInput | Prisma.KeyResultScalarWhereInput[]
 }
 
+export type KeyResultCreateNestedOneWithoutCarriedKeyResultsInput = {
+  create?: Prisma.XOR<Prisma.KeyResultCreateWithoutCarriedKeyResultsInput, Prisma.KeyResultUncheckedCreateWithoutCarriedKeyResultsInput>
+  connectOrCreate?: Prisma.KeyResultCreateOrConnectWithoutCarriedKeyResultsInput
+  connect?: Prisma.KeyResultWhereUniqueInput
+}
+
+export type KeyResultCreateNestedManyWithoutSourceKeyResultInput = {
+  create?: Prisma.XOR<Prisma.KeyResultCreateWithoutSourceKeyResultInput, Prisma.KeyResultUncheckedCreateWithoutSourceKeyResultInput> | Prisma.KeyResultCreateWithoutSourceKeyResultInput[] | Prisma.KeyResultUncheckedCreateWithoutSourceKeyResultInput[]
+  connectOrCreate?: Prisma.KeyResultCreateOrConnectWithoutSourceKeyResultInput | Prisma.KeyResultCreateOrConnectWithoutSourceKeyResultInput[]
+  createMany?: Prisma.KeyResultCreateManySourceKeyResultInputEnvelope
+  connect?: Prisma.KeyResultWhereUniqueInput | Prisma.KeyResultWhereUniqueInput[]
+}
+
+export type KeyResultUncheckedCreateNestedManyWithoutSourceKeyResultInput = {
+  create?: Prisma.XOR<Prisma.KeyResultCreateWithoutSourceKeyResultInput, Prisma.KeyResultUncheckedCreateWithoutSourceKeyResultInput> | Prisma.KeyResultCreateWithoutSourceKeyResultInput[] | Prisma.KeyResultUncheckedCreateWithoutSourceKeyResultInput[]
+  connectOrCreate?: Prisma.KeyResultCreateOrConnectWithoutSourceKeyResultInput | Prisma.KeyResultCreateOrConnectWithoutSourceKeyResultInput[]
+  createMany?: Prisma.KeyResultCreateManySourceKeyResultInputEnvelope
+  connect?: Prisma.KeyResultWhereUniqueInput | Prisma.KeyResultWhereUniqueInput[]
+}
+
+export type NullableEnumKeyResultGradeFieldUpdateOperationsInput = {
+  set?: $Enums.KeyResultGrade | null
+}
+
+export type KeyResultUpdateOneWithoutCarriedKeyResultsNestedInput = {
+  create?: Prisma.XOR<Prisma.KeyResultCreateWithoutCarriedKeyResultsInput, Prisma.KeyResultUncheckedCreateWithoutCarriedKeyResultsInput>
+  connectOrCreate?: Prisma.KeyResultCreateOrConnectWithoutCarriedKeyResultsInput
+  upsert?: Prisma.KeyResultUpsertWithoutCarriedKeyResultsInput
+  disconnect?: Prisma.KeyResultWhereInput | boolean
+  delete?: Prisma.KeyResultWhereInput | boolean
+  connect?: Prisma.KeyResultWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.KeyResultUpdateToOneWithWhereWithoutCarriedKeyResultsInput, Prisma.KeyResultUpdateWithoutCarriedKeyResultsInput>, Prisma.KeyResultUncheckedUpdateWithoutCarriedKeyResultsInput>
+}
+
+export type KeyResultUpdateManyWithoutSourceKeyResultNestedInput = {
+  create?: Prisma.XOR<Prisma.KeyResultCreateWithoutSourceKeyResultInput, Prisma.KeyResultUncheckedCreateWithoutSourceKeyResultInput> | Prisma.KeyResultCreateWithoutSourceKeyResultInput[] | Prisma.KeyResultUncheckedCreateWithoutSourceKeyResultInput[]
+  connectOrCreate?: Prisma.KeyResultCreateOrConnectWithoutSourceKeyResultInput | Prisma.KeyResultCreateOrConnectWithoutSourceKeyResultInput[]
+  upsert?: Prisma.KeyResultUpsertWithWhereUniqueWithoutSourceKeyResultInput | Prisma.KeyResultUpsertWithWhereUniqueWithoutSourceKeyResultInput[]
+  createMany?: Prisma.KeyResultCreateManySourceKeyResultInputEnvelope
+  set?: Prisma.KeyResultWhereUniqueInput | Prisma.KeyResultWhereUniqueInput[]
+  disconnect?: Prisma.KeyResultWhereUniqueInput | Prisma.KeyResultWhereUniqueInput[]
+  delete?: Prisma.KeyResultWhereUniqueInput | Prisma.KeyResultWhereUniqueInput[]
+  connect?: Prisma.KeyResultWhereUniqueInput | Prisma.KeyResultWhereUniqueInput[]
+  update?: Prisma.KeyResultUpdateWithWhereUniqueWithoutSourceKeyResultInput | Prisma.KeyResultUpdateWithWhereUniqueWithoutSourceKeyResultInput[]
+  updateMany?: Prisma.KeyResultUpdateManyWithWhereWithoutSourceKeyResultInput | Prisma.KeyResultUpdateManyWithWhereWithoutSourceKeyResultInput[]
+  deleteMany?: Prisma.KeyResultScalarWhereInput | Prisma.KeyResultScalarWhereInput[]
+}
+
+export type KeyResultUncheckedUpdateManyWithoutSourceKeyResultNestedInput = {
+  create?: Prisma.XOR<Prisma.KeyResultCreateWithoutSourceKeyResultInput, Prisma.KeyResultUncheckedCreateWithoutSourceKeyResultInput> | Prisma.KeyResultCreateWithoutSourceKeyResultInput[] | Prisma.KeyResultUncheckedCreateWithoutSourceKeyResultInput[]
+  connectOrCreate?: Prisma.KeyResultCreateOrConnectWithoutSourceKeyResultInput | Prisma.KeyResultCreateOrConnectWithoutSourceKeyResultInput[]
+  upsert?: Prisma.KeyResultUpsertWithWhereUniqueWithoutSourceKeyResultInput | Prisma.KeyResultUpsertWithWhereUniqueWithoutSourceKeyResultInput[]
+  createMany?: Prisma.KeyResultCreateManySourceKeyResultInputEnvelope
+  set?: Prisma.KeyResultWhereUniqueInput | Prisma.KeyResultWhereUniqueInput[]
+  disconnect?: Prisma.KeyResultWhereUniqueInput | Prisma.KeyResultWhereUniqueInput[]
+  delete?: Prisma.KeyResultWhereUniqueInput | Prisma.KeyResultWhereUniqueInput[]
+  connect?: Prisma.KeyResultWhereUniqueInput | Prisma.KeyResultWhereUniqueInput[]
+  update?: Prisma.KeyResultUpdateWithWhereUniqueWithoutSourceKeyResultInput | Prisma.KeyResultUpdateWithWhereUniqueWithoutSourceKeyResultInput[]
+  updateMany?: Prisma.KeyResultUpdateManyWithWhereWithoutSourceKeyResultInput | Prisma.KeyResultUpdateManyWithWhereWithoutSourceKeyResultInput[]
+  deleteMany?: Prisma.KeyResultScalarWhereInput | Prisma.KeyResultScalarWhereInput[]
+}
+
+export type KeyResultCreateNestedOneWithoutCheckInsInput = {
+  create?: Prisma.XOR<Prisma.KeyResultCreateWithoutCheckInsInput, Prisma.KeyResultUncheckedCreateWithoutCheckInsInput>
+  connectOrCreate?: Prisma.KeyResultCreateOrConnectWithoutCheckInsInput
+  connect?: Prisma.KeyResultWhereUniqueInput
+}
+
+export type KeyResultUpdateOneRequiredWithoutCheckInsNestedInput = {
+  create?: Prisma.XOR<Prisma.KeyResultCreateWithoutCheckInsInput, Prisma.KeyResultUncheckedCreateWithoutCheckInsInput>
+  connectOrCreate?: Prisma.KeyResultCreateOrConnectWithoutCheckInsInput
+  upsert?: Prisma.KeyResultUpsertWithoutCheckInsInput
+  connect?: Prisma.KeyResultWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.KeyResultUpdateToOneWithWhereWithoutCheckInsInput, Prisma.KeyResultUpdateWithoutCheckInsInput>, Prisma.KeyResultUncheckedUpdateWithoutCheckInsInput>
+}
+
 export type KeyResultCreateNestedOneWithoutSkillRequirementsInput = {
   create?: Prisma.XOR<Prisma.KeyResultCreateWithoutSkillRequirementsInput, Prisma.KeyResultUncheckedCreateWithoutSkillRequirementsInput>
   connectOrCreate?: Prisma.KeyResultCreateOrConnectWithoutSkillRequirementsInput
@@ -628,8 +769,12 @@ export type KeyResultCreateWithoutOrganizationInput = {
   currentValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   checkDone?: boolean | null
   textState?: $Enums.TextState | null
+  grade?: $Enums.KeyResultGrade | null
   createdAt?: Date | string
   objective: Prisma.ObjectiveCreateNestedOneWithoutKeyResultsInput
+  sourceKeyResult?: Prisma.KeyResultCreateNestedOneWithoutCarriedKeyResultsInput
+  carriedKeyResults?: Prisma.KeyResultCreateNestedManyWithoutSourceKeyResultInput
+  checkIns?: Prisma.CheckInCreateNestedManyWithoutKeyResultInput
   skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutKeyResultInput
 }
 
@@ -643,7 +788,11 @@ export type KeyResultUncheckedCreateWithoutOrganizationInput = {
   currentValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   checkDone?: boolean | null
   textState?: $Enums.TextState | null
+  grade?: $Enums.KeyResultGrade | null
+  sourceKeyResultId?: string | null
   createdAt?: Date | string
+  carriedKeyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutSourceKeyResultInput
+  checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutKeyResultInput
   skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutKeyResultInput
 }
 
@@ -687,6 +836,8 @@ export type KeyResultScalarWhereInput = {
   currentValue?: Prisma.DecimalNullableFilter<"KeyResult"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   checkDone?: Prisma.BoolNullableFilter<"KeyResult"> | boolean | null
   textState?: Prisma.EnumTextStateNullableFilter<"KeyResult"> | $Enums.TextState | null
+  grade?: Prisma.EnumKeyResultGradeNullableFilter<"KeyResult"> | $Enums.KeyResultGrade | null
+  sourceKeyResultId?: Prisma.UuidNullableFilter<"KeyResult"> | string | null
   createdAt?: Prisma.DateTimeFilter<"KeyResult"> | Date | string
 }
 
@@ -699,8 +850,12 @@ export type KeyResultCreateWithoutObjectiveInput = {
   currentValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   checkDone?: boolean | null
   textState?: $Enums.TextState | null
+  grade?: $Enums.KeyResultGrade | null
   createdAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutKeyResultsInput
+  sourceKeyResult?: Prisma.KeyResultCreateNestedOneWithoutCarriedKeyResultsInput
+  carriedKeyResults?: Prisma.KeyResultCreateNestedManyWithoutSourceKeyResultInput
+  checkIns?: Prisma.CheckInCreateNestedManyWithoutKeyResultInput
   skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutKeyResultInput
 }
 
@@ -714,7 +869,11 @@ export type KeyResultUncheckedCreateWithoutObjectiveInput = {
   currentValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   checkDone?: boolean | null
   textState?: $Enums.TextState | null
+  grade?: $Enums.KeyResultGrade | null
+  sourceKeyResultId?: string | null
   createdAt?: Date | string
+  carriedKeyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutSourceKeyResultInput
+  checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutKeyResultInput
   skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutKeyResultInput
 }
 
@@ -744,6 +903,244 @@ export type KeyResultUpdateManyWithWhereWithoutObjectiveInput = {
   data: Prisma.XOR<Prisma.KeyResultUpdateManyMutationInput, Prisma.KeyResultUncheckedUpdateManyWithoutObjectiveInput>
 }
 
+export type KeyResultCreateWithoutCarriedKeyResultsInput = {
+  id?: string
+  title: string
+  measurementType: $Enums.MeasurementType
+  startValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  currentValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  checkDone?: boolean | null
+  textState?: $Enums.TextState | null
+  grade?: $Enums.KeyResultGrade | null
+  createdAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutKeyResultsInput
+  objective: Prisma.ObjectiveCreateNestedOneWithoutKeyResultsInput
+  sourceKeyResult?: Prisma.KeyResultCreateNestedOneWithoutCarriedKeyResultsInput
+  checkIns?: Prisma.CheckInCreateNestedManyWithoutKeyResultInput
+  skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutKeyResultInput
+}
+
+export type KeyResultUncheckedCreateWithoutCarriedKeyResultsInput = {
+  id?: string
+  organizationId: string
+  objectiveId: string
+  title: string
+  measurementType: $Enums.MeasurementType
+  startValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  currentValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  checkDone?: boolean | null
+  textState?: $Enums.TextState | null
+  grade?: $Enums.KeyResultGrade | null
+  sourceKeyResultId?: string | null
+  createdAt?: Date | string
+  checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutKeyResultInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutKeyResultInput
+}
+
+export type KeyResultCreateOrConnectWithoutCarriedKeyResultsInput = {
+  where: Prisma.KeyResultWhereUniqueInput
+  create: Prisma.XOR<Prisma.KeyResultCreateWithoutCarriedKeyResultsInput, Prisma.KeyResultUncheckedCreateWithoutCarriedKeyResultsInput>
+}
+
+export type KeyResultCreateWithoutSourceKeyResultInput = {
+  id?: string
+  title: string
+  measurementType: $Enums.MeasurementType
+  startValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  currentValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  checkDone?: boolean | null
+  textState?: $Enums.TextState | null
+  grade?: $Enums.KeyResultGrade | null
+  createdAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutKeyResultsInput
+  objective: Prisma.ObjectiveCreateNestedOneWithoutKeyResultsInput
+  carriedKeyResults?: Prisma.KeyResultCreateNestedManyWithoutSourceKeyResultInput
+  checkIns?: Prisma.CheckInCreateNestedManyWithoutKeyResultInput
+  skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutKeyResultInput
+}
+
+export type KeyResultUncheckedCreateWithoutSourceKeyResultInput = {
+  id?: string
+  organizationId: string
+  objectiveId: string
+  title: string
+  measurementType: $Enums.MeasurementType
+  startValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  currentValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  checkDone?: boolean | null
+  textState?: $Enums.TextState | null
+  grade?: $Enums.KeyResultGrade | null
+  createdAt?: Date | string
+  carriedKeyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutSourceKeyResultInput
+  checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutKeyResultInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutKeyResultInput
+}
+
+export type KeyResultCreateOrConnectWithoutSourceKeyResultInput = {
+  where: Prisma.KeyResultWhereUniqueInput
+  create: Prisma.XOR<Prisma.KeyResultCreateWithoutSourceKeyResultInput, Prisma.KeyResultUncheckedCreateWithoutSourceKeyResultInput>
+}
+
+export type KeyResultCreateManySourceKeyResultInputEnvelope = {
+  data: Prisma.KeyResultCreateManySourceKeyResultInput | Prisma.KeyResultCreateManySourceKeyResultInput[]
+  skipDuplicates?: boolean
+}
+
+export type KeyResultUpsertWithoutCarriedKeyResultsInput = {
+  update: Prisma.XOR<Prisma.KeyResultUpdateWithoutCarriedKeyResultsInput, Prisma.KeyResultUncheckedUpdateWithoutCarriedKeyResultsInput>
+  create: Prisma.XOR<Prisma.KeyResultCreateWithoutCarriedKeyResultsInput, Prisma.KeyResultUncheckedCreateWithoutCarriedKeyResultsInput>
+  where?: Prisma.KeyResultWhereInput
+}
+
+export type KeyResultUpdateToOneWithWhereWithoutCarriedKeyResultsInput = {
+  where?: Prisma.KeyResultWhereInput
+  data: Prisma.XOR<Prisma.KeyResultUpdateWithoutCarriedKeyResultsInput, Prisma.KeyResultUncheckedUpdateWithoutCarriedKeyResultsInput>
+}
+
+export type KeyResultUpdateWithoutCarriedKeyResultsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  measurementType?: Prisma.EnumMeasurementTypeFieldUpdateOperationsInput | $Enums.MeasurementType
+  startValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  currentValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  checkDone?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  textState?: Prisma.NullableEnumTextStateFieldUpdateOperationsInput | $Enums.TextState | null
+  grade?: Prisma.NullableEnumKeyResultGradeFieldUpdateOperationsInput | $Enums.KeyResultGrade | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutKeyResultsNestedInput
+  objective?: Prisma.ObjectiveUpdateOneRequiredWithoutKeyResultsNestedInput
+  sourceKeyResult?: Prisma.KeyResultUpdateOneWithoutCarriedKeyResultsNestedInput
+  checkIns?: Prisma.CheckInUpdateManyWithoutKeyResultNestedInput
+  skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutKeyResultNestedInput
+}
+
+export type KeyResultUncheckedUpdateWithoutCarriedKeyResultsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  objectiveId?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  measurementType?: Prisma.EnumMeasurementTypeFieldUpdateOperationsInput | $Enums.MeasurementType
+  startValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  currentValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  checkDone?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  textState?: Prisma.NullableEnumTextStateFieldUpdateOperationsInput | $Enums.TextState | null
+  grade?: Prisma.NullableEnumKeyResultGradeFieldUpdateOperationsInput | $Enums.KeyResultGrade | null
+  sourceKeyResultId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutKeyResultNestedInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutKeyResultNestedInput
+}
+
+export type KeyResultUpsertWithWhereUniqueWithoutSourceKeyResultInput = {
+  where: Prisma.KeyResultWhereUniqueInput
+  update: Prisma.XOR<Prisma.KeyResultUpdateWithoutSourceKeyResultInput, Prisma.KeyResultUncheckedUpdateWithoutSourceKeyResultInput>
+  create: Prisma.XOR<Prisma.KeyResultCreateWithoutSourceKeyResultInput, Prisma.KeyResultUncheckedCreateWithoutSourceKeyResultInput>
+}
+
+export type KeyResultUpdateWithWhereUniqueWithoutSourceKeyResultInput = {
+  where: Prisma.KeyResultWhereUniqueInput
+  data: Prisma.XOR<Prisma.KeyResultUpdateWithoutSourceKeyResultInput, Prisma.KeyResultUncheckedUpdateWithoutSourceKeyResultInput>
+}
+
+export type KeyResultUpdateManyWithWhereWithoutSourceKeyResultInput = {
+  where: Prisma.KeyResultScalarWhereInput
+  data: Prisma.XOR<Prisma.KeyResultUpdateManyMutationInput, Prisma.KeyResultUncheckedUpdateManyWithoutSourceKeyResultInput>
+}
+
+export type KeyResultCreateWithoutCheckInsInput = {
+  id?: string
+  title: string
+  measurementType: $Enums.MeasurementType
+  startValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  currentValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  checkDone?: boolean | null
+  textState?: $Enums.TextState | null
+  grade?: $Enums.KeyResultGrade | null
+  createdAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutKeyResultsInput
+  objective: Prisma.ObjectiveCreateNestedOneWithoutKeyResultsInput
+  sourceKeyResult?: Prisma.KeyResultCreateNestedOneWithoutCarriedKeyResultsInput
+  carriedKeyResults?: Prisma.KeyResultCreateNestedManyWithoutSourceKeyResultInput
+  skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutKeyResultInput
+}
+
+export type KeyResultUncheckedCreateWithoutCheckInsInput = {
+  id?: string
+  organizationId: string
+  objectiveId: string
+  title: string
+  measurementType: $Enums.MeasurementType
+  startValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  currentValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  checkDone?: boolean | null
+  textState?: $Enums.TextState | null
+  grade?: $Enums.KeyResultGrade | null
+  sourceKeyResultId?: string | null
+  createdAt?: Date | string
+  carriedKeyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutSourceKeyResultInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutKeyResultInput
+}
+
+export type KeyResultCreateOrConnectWithoutCheckInsInput = {
+  where: Prisma.KeyResultWhereUniqueInput
+  create: Prisma.XOR<Prisma.KeyResultCreateWithoutCheckInsInput, Prisma.KeyResultUncheckedCreateWithoutCheckInsInput>
+}
+
+export type KeyResultUpsertWithoutCheckInsInput = {
+  update: Prisma.XOR<Prisma.KeyResultUpdateWithoutCheckInsInput, Prisma.KeyResultUncheckedUpdateWithoutCheckInsInput>
+  create: Prisma.XOR<Prisma.KeyResultCreateWithoutCheckInsInput, Prisma.KeyResultUncheckedCreateWithoutCheckInsInput>
+  where?: Prisma.KeyResultWhereInput
+}
+
+export type KeyResultUpdateToOneWithWhereWithoutCheckInsInput = {
+  where?: Prisma.KeyResultWhereInput
+  data: Prisma.XOR<Prisma.KeyResultUpdateWithoutCheckInsInput, Prisma.KeyResultUncheckedUpdateWithoutCheckInsInput>
+}
+
+export type KeyResultUpdateWithoutCheckInsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  measurementType?: Prisma.EnumMeasurementTypeFieldUpdateOperationsInput | $Enums.MeasurementType
+  startValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  currentValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  checkDone?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  textState?: Prisma.NullableEnumTextStateFieldUpdateOperationsInput | $Enums.TextState | null
+  grade?: Prisma.NullableEnumKeyResultGradeFieldUpdateOperationsInput | $Enums.KeyResultGrade | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutKeyResultsNestedInput
+  objective?: Prisma.ObjectiveUpdateOneRequiredWithoutKeyResultsNestedInput
+  sourceKeyResult?: Prisma.KeyResultUpdateOneWithoutCarriedKeyResultsNestedInput
+  carriedKeyResults?: Prisma.KeyResultUpdateManyWithoutSourceKeyResultNestedInput
+  skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutKeyResultNestedInput
+}
+
+export type KeyResultUncheckedUpdateWithoutCheckInsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  objectiveId?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  measurementType?: Prisma.EnumMeasurementTypeFieldUpdateOperationsInput | $Enums.MeasurementType
+  startValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  currentValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  checkDone?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  textState?: Prisma.NullableEnumTextStateFieldUpdateOperationsInput | $Enums.TextState | null
+  grade?: Prisma.NullableEnumKeyResultGradeFieldUpdateOperationsInput | $Enums.KeyResultGrade | null
+  sourceKeyResultId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  carriedKeyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutSourceKeyResultNestedInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutKeyResultNestedInput
+}
+
 export type KeyResultCreateWithoutSkillRequirementsInput = {
   id?: string
   title: string
@@ -753,9 +1150,13 @@ export type KeyResultCreateWithoutSkillRequirementsInput = {
   currentValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   checkDone?: boolean | null
   textState?: $Enums.TextState | null
+  grade?: $Enums.KeyResultGrade | null
   createdAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutKeyResultsInput
   objective: Prisma.ObjectiveCreateNestedOneWithoutKeyResultsInput
+  sourceKeyResult?: Prisma.KeyResultCreateNestedOneWithoutCarriedKeyResultsInput
+  carriedKeyResults?: Prisma.KeyResultCreateNestedManyWithoutSourceKeyResultInput
+  checkIns?: Prisma.CheckInCreateNestedManyWithoutKeyResultInput
 }
 
 export type KeyResultUncheckedCreateWithoutSkillRequirementsInput = {
@@ -769,7 +1170,11 @@ export type KeyResultUncheckedCreateWithoutSkillRequirementsInput = {
   currentValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   checkDone?: boolean | null
   textState?: $Enums.TextState | null
+  grade?: $Enums.KeyResultGrade | null
+  sourceKeyResultId?: string | null
   createdAt?: Date | string
+  carriedKeyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutSourceKeyResultInput
+  checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutKeyResultInput
 }
 
 export type KeyResultCreateOrConnectWithoutSkillRequirementsInput = {
@@ -797,9 +1202,13 @@ export type KeyResultUpdateWithoutSkillRequirementsInput = {
   currentValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   checkDone?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   textState?: Prisma.NullableEnumTextStateFieldUpdateOperationsInput | $Enums.TextState | null
+  grade?: Prisma.NullableEnumKeyResultGradeFieldUpdateOperationsInput | $Enums.KeyResultGrade | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutKeyResultsNestedInput
   objective?: Prisma.ObjectiveUpdateOneRequiredWithoutKeyResultsNestedInput
+  sourceKeyResult?: Prisma.KeyResultUpdateOneWithoutCarriedKeyResultsNestedInput
+  carriedKeyResults?: Prisma.KeyResultUpdateManyWithoutSourceKeyResultNestedInput
+  checkIns?: Prisma.CheckInUpdateManyWithoutKeyResultNestedInput
 }
 
 export type KeyResultUncheckedUpdateWithoutSkillRequirementsInput = {
@@ -813,7 +1222,11 @@ export type KeyResultUncheckedUpdateWithoutSkillRequirementsInput = {
   currentValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   checkDone?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   textState?: Prisma.NullableEnumTextStateFieldUpdateOperationsInput | $Enums.TextState | null
+  grade?: Prisma.NullableEnumKeyResultGradeFieldUpdateOperationsInput | $Enums.KeyResultGrade | null
+  sourceKeyResultId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  carriedKeyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutSourceKeyResultNestedInput
+  checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutKeyResultNestedInput
 }
 
 export type KeyResultCreateManyOrganizationInput = {
@@ -826,6 +1239,8 @@ export type KeyResultCreateManyOrganizationInput = {
   currentValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   checkDone?: boolean | null
   textState?: $Enums.TextState | null
+  grade?: $Enums.KeyResultGrade | null
+  sourceKeyResultId?: string | null
   createdAt?: Date | string
 }
 
@@ -838,8 +1253,12 @@ export type KeyResultUpdateWithoutOrganizationInput = {
   currentValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   checkDone?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   textState?: Prisma.NullableEnumTextStateFieldUpdateOperationsInput | $Enums.TextState | null
+  grade?: Prisma.NullableEnumKeyResultGradeFieldUpdateOperationsInput | $Enums.KeyResultGrade | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   objective?: Prisma.ObjectiveUpdateOneRequiredWithoutKeyResultsNestedInput
+  sourceKeyResult?: Prisma.KeyResultUpdateOneWithoutCarriedKeyResultsNestedInput
+  carriedKeyResults?: Prisma.KeyResultUpdateManyWithoutSourceKeyResultNestedInput
+  checkIns?: Prisma.CheckInUpdateManyWithoutKeyResultNestedInput
   skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutKeyResultNestedInput
 }
 
@@ -853,7 +1272,11 @@ export type KeyResultUncheckedUpdateWithoutOrganizationInput = {
   currentValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   checkDone?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   textState?: Prisma.NullableEnumTextStateFieldUpdateOperationsInput | $Enums.TextState | null
+  grade?: Prisma.NullableEnumKeyResultGradeFieldUpdateOperationsInput | $Enums.KeyResultGrade | null
+  sourceKeyResultId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  carriedKeyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutSourceKeyResultNestedInput
+  checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutKeyResultNestedInput
   skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutKeyResultNestedInput
 }
 
@@ -867,6 +1290,8 @@ export type KeyResultUncheckedUpdateManyWithoutOrganizationInput = {
   currentValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   checkDone?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   textState?: Prisma.NullableEnumTextStateFieldUpdateOperationsInput | $Enums.TextState | null
+  grade?: Prisma.NullableEnumKeyResultGradeFieldUpdateOperationsInput | $Enums.KeyResultGrade | null
+  sourceKeyResultId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -880,6 +1305,8 @@ export type KeyResultCreateManyObjectiveInput = {
   currentValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   checkDone?: boolean | null
   textState?: $Enums.TextState | null
+  grade?: $Enums.KeyResultGrade | null
+  sourceKeyResultId?: string | null
   createdAt?: Date | string
 }
 
@@ -892,8 +1319,12 @@ export type KeyResultUpdateWithoutObjectiveInput = {
   currentValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   checkDone?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   textState?: Prisma.NullableEnumTextStateFieldUpdateOperationsInput | $Enums.TextState | null
+  grade?: Prisma.NullableEnumKeyResultGradeFieldUpdateOperationsInput | $Enums.KeyResultGrade | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutKeyResultsNestedInput
+  sourceKeyResult?: Prisma.KeyResultUpdateOneWithoutCarriedKeyResultsNestedInput
+  carriedKeyResults?: Prisma.KeyResultUpdateManyWithoutSourceKeyResultNestedInput
+  checkIns?: Prisma.CheckInUpdateManyWithoutKeyResultNestedInput
   skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutKeyResultNestedInput
 }
 
@@ -907,7 +1338,11 @@ export type KeyResultUncheckedUpdateWithoutObjectiveInput = {
   currentValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   checkDone?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   textState?: Prisma.NullableEnumTextStateFieldUpdateOperationsInput | $Enums.TextState | null
+  grade?: Prisma.NullableEnumKeyResultGradeFieldUpdateOperationsInput | $Enums.KeyResultGrade | null
+  sourceKeyResultId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  carriedKeyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutSourceKeyResultNestedInput
+  checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutKeyResultNestedInput
   skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutKeyResultNestedInput
 }
 
@@ -921,6 +1356,74 @@ export type KeyResultUncheckedUpdateManyWithoutObjectiveInput = {
   currentValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   checkDone?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   textState?: Prisma.NullableEnumTextStateFieldUpdateOperationsInput | $Enums.TextState | null
+  grade?: Prisma.NullableEnumKeyResultGradeFieldUpdateOperationsInput | $Enums.KeyResultGrade | null
+  sourceKeyResultId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type KeyResultCreateManySourceKeyResultInput = {
+  id?: string
+  organizationId: string
+  objectiveId: string
+  title: string
+  measurementType: $Enums.MeasurementType
+  startValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  currentValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  checkDone?: boolean | null
+  textState?: $Enums.TextState | null
+  grade?: $Enums.KeyResultGrade | null
+  createdAt?: Date | string
+}
+
+export type KeyResultUpdateWithoutSourceKeyResultInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  measurementType?: Prisma.EnumMeasurementTypeFieldUpdateOperationsInput | $Enums.MeasurementType
+  startValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  currentValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  checkDone?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  textState?: Prisma.NullableEnumTextStateFieldUpdateOperationsInput | $Enums.TextState | null
+  grade?: Prisma.NullableEnumKeyResultGradeFieldUpdateOperationsInput | $Enums.KeyResultGrade | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutKeyResultsNestedInput
+  objective?: Prisma.ObjectiveUpdateOneRequiredWithoutKeyResultsNestedInput
+  carriedKeyResults?: Prisma.KeyResultUpdateManyWithoutSourceKeyResultNestedInput
+  checkIns?: Prisma.CheckInUpdateManyWithoutKeyResultNestedInput
+  skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutKeyResultNestedInput
+}
+
+export type KeyResultUncheckedUpdateWithoutSourceKeyResultInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  objectiveId?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  measurementType?: Prisma.EnumMeasurementTypeFieldUpdateOperationsInput | $Enums.MeasurementType
+  startValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  currentValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  checkDone?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  textState?: Prisma.NullableEnumTextStateFieldUpdateOperationsInput | $Enums.TextState | null
+  grade?: Prisma.NullableEnumKeyResultGradeFieldUpdateOperationsInput | $Enums.KeyResultGrade | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  carriedKeyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutSourceKeyResultNestedInput
+  checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutKeyResultNestedInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutKeyResultNestedInput
+}
+
+export type KeyResultUncheckedUpdateManyWithoutSourceKeyResultInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  objectiveId?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  measurementType?: Prisma.EnumMeasurementTypeFieldUpdateOperationsInput | $Enums.MeasurementType
+  startValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  currentValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  checkDone?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  textState?: Prisma.NullableEnumTextStateFieldUpdateOperationsInput | $Enums.TextState | null
+  grade?: Prisma.NullableEnumKeyResultGradeFieldUpdateOperationsInput | $Enums.KeyResultGrade | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -930,10 +1433,14 @@ export type KeyResultUncheckedUpdateManyWithoutObjectiveInput = {
  */
 
 export type KeyResultCountOutputType = {
+  carriedKeyResults: number
+  checkIns: number
   skillRequirements: number
 }
 
 export type KeyResultCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  carriedKeyResults?: boolean | KeyResultCountOutputTypeCountCarriedKeyResultsArgs
+  checkIns?: boolean | KeyResultCountOutputTypeCountCheckInsArgs
   skillRequirements?: boolean | KeyResultCountOutputTypeCountSkillRequirementsArgs
 }
 
@@ -945,6 +1452,20 @@ export type KeyResultCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Ex
    * Select specific fields to fetch from the KeyResultCountOutputType
    */
   select?: Prisma.KeyResultCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * KeyResultCountOutputType without action
+ */
+export type KeyResultCountOutputTypeCountCarriedKeyResultsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.KeyResultWhereInput
+}
+
+/**
+ * KeyResultCountOutputType without action
+ */
+export type KeyResultCountOutputTypeCountCheckInsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CheckInWhereInput
 }
 
 /**
@@ -966,9 +1487,14 @@ export type KeyResultSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   currentValue?: boolean
   checkDone?: boolean
   textState?: boolean
+  grade?: boolean
+  sourceKeyResultId?: boolean
   createdAt?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   objective?: boolean | Prisma.ObjectiveDefaultArgs<ExtArgs>
+  sourceKeyResult?: boolean | Prisma.KeyResult$sourceKeyResultArgs<ExtArgs>
+  carriedKeyResults?: boolean | Prisma.KeyResult$carriedKeyResultsArgs<ExtArgs>
+  checkIns?: boolean | Prisma.KeyResult$checkInsArgs<ExtArgs>
   skillRequirements?: boolean | Prisma.KeyResult$skillRequirementsArgs<ExtArgs>
   _count?: boolean | Prisma.KeyResultCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["keyResult"]>
@@ -984,9 +1510,12 @@ export type KeyResultSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
   currentValue?: boolean
   checkDone?: boolean
   textState?: boolean
+  grade?: boolean
+  sourceKeyResultId?: boolean
   createdAt?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   objective?: boolean | Prisma.ObjectiveDefaultArgs<ExtArgs>
+  sourceKeyResult?: boolean | Prisma.KeyResult$sourceKeyResultArgs<ExtArgs>
 }, ExtArgs["result"]["keyResult"]>
 
 export type KeyResultSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1000,9 +1529,12 @@ export type KeyResultSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
   currentValue?: boolean
   checkDone?: boolean
   textState?: boolean
+  grade?: boolean
+  sourceKeyResultId?: boolean
   createdAt?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   objective?: boolean | Prisma.ObjectiveDefaultArgs<ExtArgs>
+  sourceKeyResult?: boolean | Prisma.KeyResult$sourceKeyResultArgs<ExtArgs>
 }, ExtArgs["result"]["keyResult"]>
 
 export type KeyResultSelectScalar = {
@@ -1016,23 +1548,30 @@ export type KeyResultSelectScalar = {
   currentValue?: boolean
   checkDone?: boolean
   textState?: boolean
+  grade?: boolean
+  sourceKeyResultId?: boolean
   createdAt?: boolean
 }
 
-export type KeyResultOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "objectiveId" | "title" | "measurementType" | "startValue" | "targetValue" | "currentValue" | "checkDone" | "textState" | "createdAt", ExtArgs["result"]["keyResult"]>
+export type KeyResultOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "objectiveId" | "title" | "measurementType" | "startValue" | "targetValue" | "currentValue" | "checkDone" | "textState" | "grade" | "sourceKeyResultId" | "createdAt", ExtArgs["result"]["keyResult"]>
 export type KeyResultInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   objective?: boolean | Prisma.ObjectiveDefaultArgs<ExtArgs>
+  sourceKeyResult?: boolean | Prisma.KeyResult$sourceKeyResultArgs<ExtArgs>
+  carriedKeyResults?: boolean | Prisma.KeyResult$carriedKeyResultsArgs<ExtArgs>
+  checkIns?: boolean | Prisma.KeyResult$checkInsArgs<ExtArgs>
   skillRequirements?: boolean | Prisma.KeyResult$skillRequirementsArgs<ExtArgs>
   _count?: boolean | Prisma.KeyResultCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type KeyResultIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   objective?: boolean | Prisma.ObjectiveDefaultArgs<ExtArgs>
+  sourceKeyResult?: boolean | Prisma.KeyResult$sourceKeyResultArgs<ExtArgs>
 }
 export type KeyResultIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   objective?: boolean | Prisma.ObjectiveDefaultArgs<ExtArgs>
+  sourceKeyResult?: boolean | Prisma.KeyResult$sourceKeyResultArgs<ExtArgs>
 }
 
 export type $KeyResultPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1040,6 +1579,9 @@ export type $KeyResultPayload<ExtArgs extends runtime.Types.Extensions.InternalA
   objects: {
     organization: Prisma.$OrganizationPayload<ExtArgs>
     objective: Prisma.$ObjectivePayload<ExtArgs>
+    sourceKeyResult: Prisma.$KeyResultPayload<ExtArgs> | null
+    carriedKeyResults: Prisma.$KeyResultPayload<ExtArgs>[]
+    checkIns: Prisma.$CheckInPayload<ExtArgs>[]
     skillRequirements: Prisma.$SkillRequirementPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -1053,6 +1595,8 @@ export type $KeyResultPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     currentValue: runtime.Decimal | null
     checkDone: boolean | null
     textState: $Enums.TextState | null
+    grade: $Enums.KeyResultGrade | null
+    sourceKeyResultId: string | null
     createdAt: Date
   }, ExtArgs["result"]["keyResult"]>
   composites: {}
@@ -1450,6 +1994,9 @@ export interface Prisma__KeyResultClient<T, Null = never, ExtArgs extends runtim
   readonly [Symbol.toStringTag]: "PrismaPromise"
   organization<T extends Prisma.OrganizationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrganizationDefaultArgs<ExtArgs>>): Prisma.Prisma__OrganizationClient<runtime.Types.Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   objective<T extends Prisma.ObjectiveDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ObjectiveDefaultArgs<ExtArgs>>): Prisma.Prisma__ObjectiveClient<runtime.Types.Result.GetResult<Prisma.$ObjectivePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  sourceKeyResult<T extends Prisma.KeyResult$sourceKeyResultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.KeyResult$sourceKeyResultArgs<ExtArgs>>): Prisma.Prisma__KeyResultClient<runtime.Types.Result.GetResult<Prisma.$KeyResultPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  carriedKeyResults<T extends Prisma.KeyResult$carriedKeyResultsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.KeyResult$carriedKeyResultsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$KeyResultPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  checkIns<T extends Prisma.KeyResult$checkInsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.KeyResult$checkInsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CheckInPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   skillRequirements<T extends Prisma.KeyResult$skillRequirementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.KeyResult$skillRequirementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SkillRequirementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1490,6 +2037,8 @@ export interface KeyResultFieldRefs {
   readonly currentValue: Prisma.FieldRef<"KeyResult", 'Decimal'>
   readonly checkDone: Prisma.FieldRef<"KeyResult", 'Boolean'>
   readonly textState: Prisma.FieldRef<"KeyResult", 'TextState'>
+  readonly grade: Prisma.FieldRef<"KeyResult", 'KeyResultGrade'>
+  readonly sourceKeyResultId: Prisma.FieldRef<"KeyResult", 'String'>
   readonly createdAt: Prisma.FieldRef<"KeyResult", 'DateTime'>
 }
     
@@ -1889,6 +2438,73 @@ export type KeyResultDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Int
    * Limit how many KeyResults to delete.
    */
   limit?: number
+}
+
+/**
+ * KeyResult.sourceKeyResult
+ */
+export type KeyResult$sourceKeyResultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the KeyResult
+   */
+  select?: Prisma.KeyResultSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the KeyResult
+   */
+  omit?: Prisma.KeyResultOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.KeyResultInclude<ExtArgs> | null
+  where?: Prisma.KeyResultWhereInput
+}
+
+/**
+ * KeyResult.carriedKeyResults
+ */
+export type KeyResult$carriedKeyResultsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the KeyResult
+   */
+  select?: Prisma.KeyResultSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the KeyResult
+   */
+  omit?: Prisma.KeyResultOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.KeyResultInclude<ExtArgs> | null
+  where?: Prisma.KeyResultWhereInput
+  orderBy?: Prisma.KeyResultOrderByWithRelationInput | Prisma.KeyResultOrderByWithRelationInput[]
+  cursor?: Prisma.KeyResultWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.KeyResultScalarFieldEnum | Prisma.KeyResultScalarFieldEnum[]
+}
+
+/**
+ * KeyResult.checkIns
+ */
+export type KeyResult$checkInsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CheckIn
+   */
+  select?: Prisma.CheckInSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CheckIn
+   */
+  omit?: Prisma.CheckInOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CheckInInclude<ExtArgs> | null
+  where?: Prisma.CheckInWhereInput
+  orderBy?: Prisma.CheckInOrderByWithRelationInput | Prisma.CheckInOrderByWithRelationInput[]
+  cursor?: Prisma.CheckInWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CheckInScalarFieldEnum | Prisma.CheckInScalarFieldEnum[]
 }
 
 /**

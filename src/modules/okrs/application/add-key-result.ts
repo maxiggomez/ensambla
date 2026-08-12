@@ -7,7 +7,9 @@ import { withTenantForUser } from "../../../shared/tenancy";
 import { requireActor } from "../../identity-org/application";
 import type { MeasurementKind } from "../domain/key-result";
 import { objectiveTitle } from "../domain/objective";
+import { assertMutableObjective } from "../domain/cycle-close";
 import { canEditObjective } from "../domain/objective-policy";
+import { insertAuditEvent } from "../infrastructure/audit-repo";
 import { insertKeyResult } from "../infrastructure/key-result-repo";
 import { findObjectiveWithKeyResults } from "../infrastructure/objective-repo";
 
@@ -44,6 +46,7 @@ export async function addKeyResult(
       if (!canEditObjective(actor.role, objective.ownerId === actor.id)) {
         throw new ApplicationError("okrs/forbidden", "Role not allowed to edit this objective");
       }
+      assertMutableObjective(objective.status);
 
       const keyResultId = randomUUID();
       await insertKeyResult(tx, {
@@ -57,6 +60,14 @@ export async function addKeyResult(
         currentValue: input.currentValue,
         checkDone: input.checkDone,
         textState: input.textState,
+      });
+      await insertAuditEvent(tx, {
+        organizationId: actor.organizationId,
+        actorMemberId: actor.id,
+        action: "KEY_RESULT_ADDED",
+        entityType: "KeyResult",
+        entityId: keyResultId,
+        metadata: { objectiveId: objective.id, measurementType: input.measurementType },
       });
       return { keyResultId };
     },

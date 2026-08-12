@@ -28,6 +28,7 @@ export interface InsertKeyResultInput extends KeyResultValues {
   organizationId: string;
   objectiveId: string;
   title: string;
+  sourceKeyResultId?: string | null;
 }
 
 export async function insertKeyResult(
@@ -46,6 +47,7 @@ export async function insertKeyResult(
       currentValue: input.currentValue ?? null,
       checkDone: input.checkDone ?? null,
       textState: input.textState == null ? null : columnFromTextState(input.textState),
+      sourceKeyResultId: input.sourceKeyResultId ?? null,
     },
   });
 }

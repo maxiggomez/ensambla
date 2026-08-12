@@ -1,5 +1,7 @@
 import type { MeasurementKind } from "../domain/key-result";
+import type { KeyResultGrade } from "../../../shared/db";
 import type { ObjectiveLevel, ObjectiveStatus } from "../domain/objective";
+import { isOrphan } from "../domain/alignment";
 import { keyResultProgress, objectiveProgress } from "../domain/roll-up";
 import { keyResultValuesFromRow } from "../infrastructure/key-result-repo";
 import type { ObjectiveWithKeyResults } from "../infrastructure/objective-repo";
@@ -9,6 +11,7 @@ export interface KeyResultView {
   title: string;
   measurementType: MeasurementKind;
   progress: number;
+  grade: KeyResultGrade | null;
 }
 
 export interface ObjectiveView {
@@ -17,10 +20,18 @@ export interface ObjectiveView {
   level: ObjectiveLevel;
   status: ObjectiveStatus;
   ownerId: string;
+  teamId: string | null;
+  parentObjectiveId: string | null;
+  cycleId: string | null;
+  isOrphan: boolean;
   /** 🔒 Derivado por roll-up (ADR-0004); nunca persistido ni editable. */
   progress: number;
   keyResults: KeyResultView[];
 }
+
+export type ActiveObjectiveView = ObjectiveView & {
+  status: "Draft" | "Published";
+};
 
 export function toObjectiveView(row: ObjectiveWithKeyResults): ObjectiveView {
   const keyResults = row.keyResults.map((keyResult) => ({
@@ -33,12 +44,20 @@ export function toObjectiveView(row: ObjectiveWithKeyResults): ObjectiveView {
     level: row.level,
     status: row.status,
     ownerId: row.ownerId,
+    teamId: row.teamId,
+    parentObjectiveId: row.parentObjectiveId,
+    cycleId: row.cycleId,
+    isOrphan: isOrphan({
+      parentObjectiveId: row.parentObjectiveId,
+      pillarIds: row.pillarLinks.map((link) => link.pillarId),
+    }),
     progress: objectiveProgress(keyResults.map((keyResult) => keyResult.values)),
     keyResults: keyResults.map(({ row: keyResultRow, values }) => ({
       id: keyResultRow.id,
       title: keyResultRow.title,
       measurementType: values.measurementType,
       progress: keyResultProgress(values),
+      grade: keyResultRow.grade,
     })),
   };
 }
