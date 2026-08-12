@@ -391,6 +391,9 @@ export const ModelName = {
   PulseResponse: 'PulseResponse',
   Member: 'Member',
   NorthStar: 'NorthStar',
+  NorthStarLever: 'NorthStarLever',
+  StrategicPillar: 'StrategicPillar',
+  PillarObjective: 'PillarObjective',
   Objective: 'Objective',
   KeyResult: 'KeyResult',
   Team: 'Team',
@@ -419,7 +422,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "organization" | "pulseSchedule" | "pulse" | "pulseParticipation" | "pulseResponse" | "member" | "northStar" | "objective" | "keyResult" | "team" | "teamMember" | "project" | "projectObjective" | "skill" | "competency" | "skillRequirement" | "ritual" | "ritualOccurrence" | "blocker" | "retrospective"
+    modelProps: "organization" | "pulseSchedule" | "pulse" | "pulseParticipation" | "pulseResponse" | "member" | "northStar" | "northStarLever" | "strategicPillar" | "pillarObjective" | "objective" | "keyResult" | "team" | "teamMember" | "project" | "projectObjective" | "skill" | "competency" | "skillRequirement" | "ritual" | "ritualOccurrence" | "blocker" | "retrospective"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -938,6 +941,228 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.NorthStarCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.NorthStarCountAggregateOutputType> | number
+        }
+      }
+    }
+    NorthStarLever: {
+      payload: Prisma.$NorthStarLeverPayload<ExtArgs>
+      fields: Prisma.NorthStarLeverFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.NorthStarLeverFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NorthStarLeverPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.NorthStarLeverFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NorthStarLeverPayload>
+        }
+        findFirst: {
+          args: Prisma.NorthStarLeverFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NorthStarLeverPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.NorthStarLeverFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NorthStarLeverPayload>
+        }
+        findMany: {
+          args: Prisma.NorthStarLeverFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NorthStarLeverPayload>[]
+        }
+        create: {
+          args: Prisma.NorthStarLeverCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NorthStarLeverPayload>
+        }
+        createMany: {
+          args: Prisma.NorthStarLeverCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.NorthStarLeverCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NorthStarLeverPayload>[]
+        }
+        delete: {
+          args: Prisma.NorthStarLeverDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NorthStarLeverPayload>
+        }
+        update: {
+          args: Prisma.NorthStarLeverUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NorthStarLeverPayload>
+        }
+        deleteMany: {
+          args: Prisma.NorthStarLeverDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.NorthStarLeverUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.NorthStarLeverUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NorthStarLeverPayload>[]
+        }
+        upsert: {
+          args: Prisma.NorthStarLeverUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NorthStarLeverPayload>
+        }
+        aggregate: {
+          args: Prisma.NorthStarLeverAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateNorthStarLever>
+        }
+        groupBy: {
+          args: Prisma.NorthStarLeverGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.NorthStarLeverGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.NorthStarLeverCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.NorthStarLeverCountAggregateOutputType> | number
+        }
+      }
+    }
+    StrategicPillar: {
+      payload: Prisma.$StrategicPillarPayload<ExtArgs>
+      fields: Prisma.StrategicPillarFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.StrategicPillarFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StrategicPillarPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.StrategicPillarFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StrategicPillarPayload>
+        }
+        findFirst: {
+          args: Prisma.StrategicPillarFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StrategicPillarPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.StrategicPillarFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StrategicPillarPayload>
+        }
+        findMany: {
+          args: Prisma.StrategicPillarFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StrategicPillarPayload>[]
+        }
+        create: {
+          args: Prisma.StrategicPillarCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StrategicPillarPayload>
+        }
+        createMany: {
+          args: Prisma.StrategicPillarCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.StrategicPillarCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StrategicPillarPayload>[]
+        }
+        delete: {
+          args: Prisma.StrategicPillarDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StrategicPillarPayload>
+        }
+        update: {
+          args: Prisma.StrategicPillarUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StrategicPillarPayload>
+        }
+        deleteMany: {
+          args: Prisma.StrategicPillarDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.StrategicPillarUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.StrategicPillarUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StrategicPillarPayload>[]
+        }
+        upsert: {
+          args: Prisma.StrategicPillarUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StrategicPillarPayload>
+        }
+        aggregate: {
+          args: Prisma.StrategicPillarAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateStrategicPillar>
+        }
+        groupBy: {
+          args: Prisma.StrategicPillarGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.StrategicPillarGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.StrategicPillarCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.StrategicPillarCountAggregateOutputType> | number
+        }
+      }
+    }
+    PillarObjective: {
+      payload: Prisma.$PillarObjectivePayload<ExtArgs>
+      fields: Prisma.PillarObjectiveFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.PillarObjectiveFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PillarObjectivePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.PillarObjectiveFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PillarObjectivePayload>
+        }
+        findFirst: {
+          args: Prisma.PillarObjectiveFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PillarObjectivePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.PillarObjectiveFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PillarObjectivePayload>
+        }
+        findMany: {
+          args: Prisma.PillarObjectiveFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PillarObjectivePayload>[]
+        }
+        create: {
+          args: Prisma.PillarObjectiveCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PillarObjectivePayload>
+        }
+        createMany: {
+          args: Prisma.PillarObjectiveCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.PillarObjectiveCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PillarObjectivePayload>[]
+        }
+        delete: {
+          args: Prisma.PillarObjectiveDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PillarObjectivePayload>
+        }
+        update: {
+          args: Prisma.PillarObjectiveUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PillarObjectivePayload>
+        }
+        deleteMany: {
+          args: Prisma.PillarObjectiveDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.PillarObjectiveUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.PillarObjectiveUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PillarObjectivePayload>[]
+        }
+        upsert: {
+          args: Prisma.PillarObjectiveUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PillarObjectivePayload>
+        }
+        aggregate: {
+          args: Prisma.PillarObjectiveAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePillarObjective>
+        }
+        groupBy: {
+          args: Prisma.PillarObjectiveGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PillarObjectiveGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.PillarObjectiveCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PillarObjectiveCountAggregateOutputType> | number
         }
       }
     }
@@ -1945,6 +2170,9 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 export const OrganizationScalarFieldEnum = {
   id: 'id',
   name: 'name',
+  vision: 'vision',
+  mission: 'mission',
+  values: 'values',
   createdAt: 'createdAt',
   enpsMinimumResponses: 'enpsMinimumResponses'
 } as const
@@ -2042,6 +2270,40 @@ export const NorthStarScalarFieldEnum = {
 } as const
 
 export type NorthStarScalarFieldEnum = (typeof NorthStarScalarFieldEnum)[keyof typeof NorthStarScalarFieldEnum]
+
+
+export const NorthStarLeverScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  northStarId: 'northStarId',
+  name: 'name',
+  objectiveId: 'objectiveId',
+  createdAt: 'createdAt'
+} as const
+
+export type NorthStarLeverScalarFieldEnum = (typeof NorthStarLeverScalarFieldEnum)[keyof typeof NorthStarLeverScalarFieldEnum]
+
+
+export const StrategicPillarScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  name: 'name',
+  description: 'description',
+  createdAt: 'createdAt'
+} as const
+
+export type StrategicPillarScalarFieldEnum = (typeof StrategicPillarScalarFieldEnum)[keyof typeof StrategicPillarScalarFieldEnum]
+
+
+export const PillarObjectiveScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  pillarId: 'pillarId',
+  objectiveId: 'objectiveId',
+  createdAt: 'createdAt'
+} as const
+
+export type PillarObjectiveScalarFieldEnum = (typeof PillarObjectiveScalarFieldEnum)[keyof typeof PillarObjectiveScalarFieldEnum]
 
 
 export const ObjectiveScalarFieldEnum = {
@@ -2626,6 +2888,9 @@ export type GlobalOmitConfig = {
   pulseResponse?: Prisma.PulseResponseOmit
   member?: Prisma.MemberOmit
   northStar?: Prisma.NorthStarOmit
+  northStarLever?: Prisma.NorthStarLeverOmit
+  strategicPillar?: Prisma.StrategicPillarOmit
+  pillarObjective?: Prisma.PillarObjectiveOmit
   objective?: Prisma.ObjectiveOmit
   keyResult?: Prisma.KeyResultOmit
   team?: Prisma.TeamOmit
