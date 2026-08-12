@@ -30,7 +30,10 @@ repo. Léelo antes de escribir cualquier línea.
 - **Idioma:** UI en español (LATAM); código y specs en inglés técnico; términos del
   lenguaje ubicuo tal cual (`Team`, `Objective`, `KeyResult`, `Measurement`, …).
 - **Definition of Done de un change:** todos sus Scenarios pasan como tests verdes + CI
-  en verde. No marcar tareas como hechas si algo falla.
+  en verde. No marcar tareas como hechas si algo falla. **El DoD no lo declara el agente:
+  lo declara el CI en verde sobre el PR.** Antes de decir "listo", pegá la salida literal de
+  `npm run typecheck` (0 errores) y `npm run test` (verde). Reportar "terminado" sin esa
+  evidencia no cierra el change — es una hipótesis hasta que el check pasa.
 
 ## Stack (ADR-0001)
 
@@ -73,14 +76,18 @@ propósito) y quedan fuera del sync.
 - **Pre-commit** (`.githooks/pre-commit`, habilitar con `scripts/setup-hooks.sh`):
   typecheck + lint + prettier sobre lo staged, anti-drift de skills y
   `openspec validate` si se tocó `openspec/`. Igual para todos los runtimes y
-  commits manuales. Bypass de emergencia: `git commit --no-verify`.
+  commits manuales. `git commit --no-verify` es un bypass acotado: **solo para commits
+  que no tocan código** (docs, notas). **Prohibido usarlo para cerrar tareas o changes**;
+  un slice que no compila no se commitea.
 - **CI** (`.github/workflows/ci.yml`): la batería completa. Verde = DoD.
 
 ### Hard rules del loop
 
 Nunca trabajar sobre `main` · nunca `git push` · nunca commit sin aprobación ·
 nunca tocar `.env`/secretos · nunca deshabilitar RLS ni saltear tests de
-invariantes 🔒 · nunca `any` sin justificación aprobada.
+invariantes 🔒 · nunca `any` sin justificación aprobada · nunca cerrar un change
+ni marcar DoD sin CI verde en el PR · nunca usar `--no-verify` para saltear
+typecheck/tests.
 
 ## Getting started
 
