@@ -58,7 +58,8 @@ system SHALL allow adding input levers each linkable to an Objective.
 
 The system SHALL allow creating strategic pillars that group one or more Objectives, and
 SHALL show the strategic map as the cascade Vision → North Star → Pillars → OKRs with the
-real progress of each Objective.
+real progress of each Objective. Reads issued within the same tenant transaction SHALL
+execute without overlapping queries on its database client.
 
 #### Scenario: Group objectives under a pillar
 - GIVEN a strategic pillar
@@ -69,3 +70,9 @@ real progress of each Objective.
 - GIVEN the strategic map
 - WHEN a user opens it
 - THEN the cascade Vision → North Star → Pillars → OKRs is shown with each Objective's progress
+
+#### Scenario: Strategic map transaction reads are serialized
+- GIVEN a member reading the strategic map inside their tenant context
+- WHEN the map loads strategy, North Star, pillars and levers
+- THEN each database query completes before the next query starts on that transaction
+- AND the cascade and derived Objective progress remain unchanged
