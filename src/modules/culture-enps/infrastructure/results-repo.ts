@@ -26,24 +26,24 @@ export async function getAggregateInputs(
   if (!pulse) {
     throw new ApplicationError("culture-enps/pulse-not-found", "Pulse not found");
   }
-  const [organization, recipientCount, rows] = await Promise.all([
-    tx.organization.findUniqueOrThrow({ where: { id: pulse.organizationId } }),
-    tx.pulseParticipation.count({ where: { pulseId } }),
-    tx.pulseResponse.findMany({
-      where: { pulseId },
-      select: {
-        measurementType: true,
-        startValue: true,
-        targetValue: true,
-        currentValue: true,
-        checkDone: true,
-        textState: true,
-        driver: true,
-        comment: true,
-      },
-      orderBy: { submittedAt: "asc" },
-    }),
-  ]);
+  const organization = await tx.organization.findUniqueOrThrow({
+    where: { id: pulse.organizationId },
+  });
+  const recipientCount = await tx.pulseParticipation.count({ where: { pulseId } });
+  const rows = await tx.pulseResponse.findMany({
+    where: { pulseId },
+    select: {
+      measurementType: true,
+      startValue: true,
+      targetValue: true,
+      currentValue: true,
+      checkDone: true,
+      textState: true,
+      driver: true,
+      comment: true,
+    },
+    orderBy: { submittedAt: "asc" },
+  });
   const responses = rows.map((row) => {
     const rating = measurementFromColumns({
       measurementType: row.measurementType,

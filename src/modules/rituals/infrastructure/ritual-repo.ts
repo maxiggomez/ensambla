@@ -28,10 +28,8 @@ export function findRitualById(tx: TenantClient, id: string): Promise<Ritual | n
 export async function listRitualsWithOccurrences(
   tx: TenantClient,
 ): Promise<RitualWithOccurrences[]> {
-  const [rituals, occurrences] = await Promise.all([
-    tx.ritual.findMany({ orderBy: { createdAt: "asc" } }),
-    tx.ritualOccurrence.findMany(),
-  ]);
+  const rituals = await tx.ritual.findMany({ orderBy: { createdAt: "asc" } });
+  const occurrences = await tx.ritualOccurrence.findMany();
   const occurrencesByRitual = new Map<string, RitualOccurrence[]>();
   for (const occurrence of occurrences) {
     const list = occurrencesByRitual.get(occurrence.ritualId);

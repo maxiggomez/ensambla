@@ -65,12 +65,10 @@ export async function getStrategicMap(
     input.actorClerkUserId,
     async (tx) => {
       const actor = await requireActor(tx, input.actorClerkUserId);
-      const [strategy, northStarRow, pillars, levers] = await Promise.all([
-        findStrategyStatements(tx, actor.organizationId),
-        findNorthStar(tx, actor.organizationId),
-        listPillarsWithLinks(tx, actor.organizationId),
-        listLevers(tx, actor.organizationId),
-      ]);
+      const strategy = await findStrategyStatements(tx, actor.organizationId);
+      const northStarRow = await findNorthStar(tx, actor.organizationId);
+      const pillars = await listPillarsWithLinks(tx, actor.organizationId);
+      const levers = await listLevers(tx, actor.organizationId);
 
       const byId = new Map(objectives.map((objective) => [objective.id, objective]));
 
