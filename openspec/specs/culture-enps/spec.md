@@ -11,8 +11,10 @@ Depende de `identity-org`. Se correlaciona con `teams-staffing` y `rituals`.
 
 ### Requirement: Launch a pulse
 
-The system SHALL allow Dirección to launch a pulse to the people in a defined scope and
-generate pulses according to a configured frequency.
+The system SHALL allow Dirección to launch a pulse to the people in an
+Organization or Team scope, SHALL deliver it to the people in that scope, and
+SHALL generate pulses according to a configured weekly, monthly, or quarterly
+frequency.
 
 #### Scenario: Launch a pulse
 - GIVEN a user with the Dirección role
@@ -26,9 +28,10 @@ generate pulses according to a configured frequency.
 
 ### Requirement: Respond anonymously
 
-The system SHALL store each PulseResponse anonymously and immutably, SHALL never allow
-viewing an individual response, and SHALL not show aggregated results for a group below a
-**configurable minimum N** of responses (set per Organization; default 4).
+The system SHALL store each PulseResponse anonymously and immutably, SHALL
+never allow viewing an individual response, and SHALL not show aggregated
+results for a group below a configurable minimum N of responses set per
+Organization, with a default and safe minimum of 4.
 
 #### Scenario: Anonymous immutable response
 - GIVEN a person responding to a pulse
