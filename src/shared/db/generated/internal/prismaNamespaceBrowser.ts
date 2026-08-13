@@ -63,6 +63,9 @@ export const ModelName = {
   PillarObjective: 'PillarObjective',
   Objective: 'Objective',
   KeyResult: 'KeyResult',
+  Hypothesis: 'Hypothesis',
+  Experiment: 'Experiment',
+  Learning: 'Learning',
   OkrCycle: 'OkrCycle',
   OkrCadenceConfig: 'OkrCadenceConfig',
   CheckIn: 'CheckIn',
@@ -273,6 +276,52 @@ export const KeyResultScalarFieldEnum = {
 } as const
 
 export type KeyResultScalarFieldEnum = (typeof KeyResultScalarFieldEnum)[keyof typeof KeyResultScalarFieldEnum]
+
+
+export const HypothesisScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  keyResultId: 'keyResultId',
+  objectiveId: 'objectiveId',
+  belief: 'belief',
+  expectedOutcome: 'expectedOutcome',
+  createdAt: 'createdAt'
+} as const
+
+export type HypothesisScalarFieldEnum = (typeof HypothesisScalarFieldEnum)[keyof typeof HypothesisScalarFieldEnum]
+
+
+export const ExperimentScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  hypothesisId: 'hypothesisId',
+  status: 'status',
+  measurementType: 'measurementType',
+  startValue: 'startValue',
+  targetValue: 'targetValue',
+  currentValue: 'currentValue',
+  checkDone: 'checkDone',
+  textState: 'textState',
+  cutoffAt: 'cutoffAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ExperimentScalarFieldEnum = (typeof ExperimentScalarFieldEnum)[keyof typeof ExperimentScalarFieldEnum]
+
+
+export const LearningScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  experimentId: 'experimentId',
+  believed: 'believed',
+  tested: 'tested',
+  learned: 'learned',
+  decision: 'decision',
+  createdAt: 'createdAt'
+} as const
+
+export type LearningScalarFieldEnum = (typeof LearningScalarFieldEnum)[keyof typeof LearningScalarFieldEnum]
 
 
 export const OkrCycleScalarFieldEnum = {

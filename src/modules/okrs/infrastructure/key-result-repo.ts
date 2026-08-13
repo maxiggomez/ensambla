@@ -59,6 +59,16 @@ export function findKeyResultWithObjective(
   return tx.keyResult.findUnique({ where: { id }, include: { objective: true } });
 }
 
+export function findKeyResultsWithObjectives(
+  tx: TenantClient,
+  ids: readonly string[],
+): Promise<(KeyResult & { objective: Objective })[]> {
+  return tx.keyResult.findMany({
+    where: { id: { in: [...ids] } },
+    include: { objective: true },
+  });
+}
+
 export async function updateKeyResultCurrent(
   tx: TenantClient,
   id: string,

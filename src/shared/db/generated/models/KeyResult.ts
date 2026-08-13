@@ -294,6 +294,7 @@ export type KeyResultWhereInput = {
   carriedKeyResults?: Prisma.KeyResultListRelationFilter
   checkIns?: Prisma.CheckInListRelationFilter
   skillRequirements?: Prisma.SkillRequirementListRelationFilter
+  hypotheses?: Prisma.HypothesisListRelationFilter
 }
 
 export type KeyResultOrderByWithRelationInput = {
@@ -316,10 +317,12 @@ export type KeyResultOrderByWithRelationInput = {
   carriedKeyResults?: Prisma.KeyResultOrderByRelationAggregateInput
   checkIns?: Prisma.CheckInOrderByRelationAggregateInput
   skillRequirements?: Prisma.SkillRequirementOrderByRelationAggregateInput
+  hypotheses?: Prisma.HypothesisOrderByRelationAggregateInput
 }
 
 export type KeyResultWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  organizationId_id?: Prisma.KeyResultOrganizationIdIdCompoundUniqueInput
   AND?: Prisma.KeyResultWhereInput | Prisma.KeyResultWhereInput[]
   OR?: Prisma.KeyResultWhereInput[]
   NOT?: Prisma.KeyResultWhereInput | Prisma.KeyResultWhereInput[]
@@ -341,7 +344,8 @@ export type KeyResultWhereUniqueInput = Prisma.AtLeast<{
   carriedKeyResults?: Prisma.KeyResultListRelationFilter
   checkIns?: Prisma.CheckInListRelationFilter
   skillRequirements?: Prisma.SkillRequirementListRelationFilter
-}, "id">
+  hypotheses?: Prisma.HypothesisListRelationFilter
+}, "id" | "organizationId_id">
 
 export type KeyResultOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -400,6 +404,7 @@ export type KeyResultCreateInput = {
   carriedKeyResults?: Prisma.KeyResultCreateNestedManyWithoutSourceKeyResultInput
   checkIns?: Prisma.CheckInCreateNestedManyWithoutKeyResultInput
   skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutKeyResultInput
+  hypotheses?: Prisma.HypothesisCreateNestedManyWithoutKeyResultInput
 }
 
 export type KeyResultUncheckedCreateInput = {
@@ -419,6 +424,7 @@ export type KeyResultUncheckedCreateInput = {
   carriedKeyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutSourceKeyResultInput
   checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutKeyResultInput
   skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutKeyResultInput
+  hypotheses?: Prisma.HypothesisUncheckedCreateNestedManyWithoutKeyResultInput
 }
 
 export type KeyResultUpdateInput = {
@@ -438,6 +444,7 @@ export type KeyResultUpdateInput = {
   carriedKeyResults?: Prisma.KeyResultUpdateManyWithoutSourceKeyResultNestedInput
   checkIns?: Prisma.CheckInUpdateManyWithoutKeyResultNestedInput
   skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutKeyResultNestedInput
+  hypotheses?: Prisma.HypothesisUpdateManyWithoutKeyResultNestedInput
 }
 
 export type KeyResultUncheckedUpdateInput = {
@@ -457,6 +464,7 @@ export type KeyResultUncheckedUpdateInput = {
   carriedKeyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutSourceKeyResultNestedInput
   checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutKeyResultNestedInput
   skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutKeyResultNestedInput
+  hypotheses?: Prisma.HypothesisUncheckedUpdateManyWithoutKeyResultNestedInput
 }
 
 export type KeyResultCreateManyInput = {
@@ -517,6 +525,11 @@ export type KeyResultOrderByRelationAggregateInput = {
 export type KeyResultNullableScalarRelationFilter = {
   is?: Prisma.KeyResultWhereInput | null
   isNot?: Prisma.KeyResultWhereInput | null
+}
+
+export type KeyResultOrganizationIdIdCompoundUniqueInput = {
+  organizationId: string
+  id: string
 }
 
 export type KeyResultCountOrderByAggregateInput = {
@@ -730,6 +743,20 @@ export type KeyResultUncheckedUpdateManyWithoutSourceKeyResultNestedInput = {
   deleteMany?: Prisma.KeyResultScalarWhereInput | Prisma.KeyResultScalarWhereInput[]
 }
 
+export type KeyResultCreateNestedOneWithoutHypothesesInput = {
+  create?: Prisma.XOR<Prisma.KeyResultCreateWithoutHypothesesInput, Prisma.KeyResultUncheckedCreateWithoutHypothesesInput>
+  connectOrCreate?: Prisma.KeyResultCreateOrConnectWithoutHypothesesInput
+  connect?: Prisma.KeyResultWhereUniqueInput
+}
+
+export type KeyResultUpdateOneRequiredWithoutHypothesesNestedInput = {
+  create?: Prisma.XOR<Prisma.KeyResultCreateWithoutHypothesesInput, Prisma.KeyResultUncheckedCreateWithoutHypothesesInput>
+  connectOrCreate?: Prisma.KeyResultCreateOrConnectWithoutHypothesesInput
+  upsert?: Prisma.KeyResultUpsertWithoutHypothesesInput
+  connect?: Prisma.KeyResultWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.KeyResultUpdateToOneWithWhereWithoutHypothesesInput, Prisma.KeyResultUpdateWithoutHypothesesInput>, Prisma.KeyResultUncheckedUpdateWithoutHypothesesInput>
+}
+
 export type KeyResultCreateNestedOneWithoutCheckInsInput = {
   create?: Prisma.XOR<Prisma.KeyResultCreateWithoutCheckInsInput, Prisma.KeyResultUncheckedCreateWithoutCheckInsInput>
   connectOrCreate?: Prisma.KeyResultCreateOrConnectWithoutCheckInsInput
@@ -776,6 +803,7 @@ export type KeyResultCreateWithoutOrganizationInput = {
   carriedKeyResults?: Prisma.KeyResultCreateNestedManyWithoutSourceKeyResultInput
   checkIns?: Prisma.CheckInCreateNestedManyWithoutKeyResultInput
   skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutKeyResultInput
+  hypotheses?: Prisma.HypothesisCreateNestedManyWithoutKeyResultInput
 }
 
 export type KeyResultUncheckedCreateWithoutOrganizationInput = {
@@ -794,6 +822,7 @@ export type KeyResultUncheckedCreateWithoutOrganizationInput = {
   carriedKeyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutSourceKeyResultInput
   checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutKeyResultInput
   skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutKeyResultInput
+  hypotheses?: Prisma.HypothesisUncheckedCreateNestedManyWithoutKeyResultInput
 }
 
 export type KeyResultCreateOrConnectWithoutOrganizationInput = {
@@ -857,6 +886,7 @@ export type KeyResultCreateWithoutObjectiveInput = {
   carriedKeyResults?: Prisma.KeyResultCreateNestedManyWithoutSourceKeyResultInput
   checkIns?: Prisma.CheckInCreateNestedManyWithoutKeyResultInput
   skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutKeyResultInput
+  hypotheses?: Prisma.HypothesisCreateNestedManyWithoutKeyResultInput
 }
 
 export type KeyResultUncheckedCreateWithoutObjectiveInput = {
@@ -875,6 +905,7 @@ export type KeyResultUncheckedCreateWithoutObjectiveInput = {
   carriedKeyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutSourceKeyResultInput
   checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutKeyResultInput
   skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutKeyResultInput
+  hypotheses?: Prisma.HypothesisUncheckedCreateNestedManyWithoutKeyResultInput
 }
 
 export type KeyResultCreateOrConnectWithoutObjectiveInput = {
@@ -919,6 +950,7 @@ export type KeyResultCreateWithoutCarriedKeyResultsInput = {
   sourceKeyResult?: Prisma.KeyResultCreateNestedOneWithoutCarriedKeyResultsInput
   checkIns?: Prisma.CheckInCreateNestedManyWithoutKeyResultInput
   skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutKeyResultInput
+  hypotheses?: Prisma.HypothesisCreateNestedManyWithoutKeyResultInput
 }
 
 export type KeyResultUncheckedCreateWithoutCarriedKeyResultsInput = {
@@ -937,6 +969,7 @@ export type KeyResultUncheckedCreateWithoutCarriedKeyResultsInput = {
   createdAt?: Date | string
   checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutKeyResultInput
   skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutKeyResultInput
+  hypotheses?: Prisma.HypothesisUncheckedCreateNestedManyWithoutKeyResultInput
 }
 
 export type KeyResultCreateOrConnectWithoutCarriedKeyResultsInput = {
@@ -960,6 +993,7 @@ export type KeyResultCreateWithoutSourceKeyResultInput = {
   carriedKeyResults?: Prisma.KeyResultCreateNestedManyWithoutSourceKeyResultInput
   checkIns?: Prisma.CheckInCreateNestedManyWithoutKeyResultInput
   skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutKeyResultInput
+  hypotheses?: Prisma.HypothesisCreateNestedManyWithoutKeyResultInput
 }
 
 export type KeyResultUncheckedCreateWithoutSourceKeyResultInput = {
@@ -978,6 +1012,7 @@ export type KeyResultUncheckedCreateWithoutSourceKeyResultInput = {
   carriedKeyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutSourceKeyResultInput
   checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutKeyResultInput
   skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutKeyResultInput
+  hypotheses?: Prisma.HypothesisUncheckedCreateNestedManyWithoutKeyResultInput
 }
 
 export type KeyResultCreateOrConnectWithoutSourceKeyResultInput = {
@@ -1017,6 +1052,7 @@ export type KeyResultUpdateWithoutCarriedKeyResultsInput = {
   sourceKeyResult?: Prisma.KeyResultUpdateOneWithoutCarriedKeyResultsNestedInput
   checkIns?: Prisma.CheckInUpdateManyWithoutKeyResultNestedInput
   skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutKeyResultNestedInput
+  hypotheses?: Prisma.HypothesisUpdateManyWithoutKeyResultNestedInput
 }
 
 export type KeyResultUncheckedUpdateWithoutCarriedKeyResultsInput = {
@@ -1035,6 +1071,7 @@ export type KeyResultUncheckedUpdateWithoutCarriedKeyResultsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutKeyResultNestedInput
   skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutKeyResultNestedInput
+  hypotheses?: Prisma.HypothesisUncheckedUpdateManyWithoutKeyResultNestedInput
 }
 
 export type KeyResultUpsertWithWhereUniqueWithoutSourceKeyResultInput = {
@@ -1053,6 +1090,98 @@ export type KeyResultUpdateManyWithWhereWithoutSourceKeyResultInput = {
   data: Prisma.XOR<Prisma.KeyResultUpdateManyMutationInput, Prisma.KeyResultUncheckedUpdateManyWithoutSourceKeyResultInput>
 }
 
+export type KeyResultCreateWithoutHypothesesInput = {
+  id?: string
+  title: string
+  measurementType: $Enums.MeasurementType
+  startValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  currentValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  checkDone?: boolean | null
+  textState?: $Enums.TextState | null
+  grade?: $Enums.KeyResultGrade | null
+  createdAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutKeyResultsInput
+  objective: Prisma.ObjectiveCreateNestedOneWithoutKeyResultsInput
+  sourceKeyResult?: Prisma.KeyResultCreateNestedOneWithoutCarriedKeyResultsInput
+  carriedKeyResults?: Prisma.KeyResultCreateNestedManyWithoutSourceKeyResultInput
+  checkIns?: Prisma.CheckInCreateNestedManyWithoutKeyResultInput
+  skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutKeyResultInput
+}
+
+export type KeyResultUncheckedCreateWithoutHypothesesInput = {
+  id?: string
+  organizationId: string
+  objectiveId: string
+  title: string
+  measurementType: $Enums.MeasurementType
+  startValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  currentValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  checkDone?: boolean | null
+  textState?: $Enums.TextState | null
+  grade?: $Enums.KeyResultGrade | null
+  sourceKeyResultId?: string | null
+  createdAt?: Date | string
+  carriedKeyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutSourceKeyResultInput
+  checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutKeyResultInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutKeyResultInput
+}
+
+export type KeyResultCreateOrConnectWithoutHypothesesInput = {
+  where: Prisma.KeyResultWhereUniqueInput
+  create: Prisma.XOR<Prisma.KeyResultCreateWithoutHypothesesInput, Prisma.KeyResultUncheckedCreateWithoutHypothesesInput>
+}
+
+export type KeyResultUpsertWithoutHypothesesInput = {
+  update: Prisma.XOR<Prisma.KeyResultUpdateWithoutHypothesesInput, Prisma.KeyResultUncheckedUpdateWithoutHypothesesInput>
+  create: Prisma.XOR<Prisma.KeyResultCreateWithoutHypothesesInput, Prisma.KeyResultUncheckedCreateWithoutHypothesesInput>
+  where?: Prisma.KeyResultWhereInput
+}
+
+export type KeyResultUpdateToOneWithWhereWithoutHypothesesInput = {
+  where?: Prisma.KeyResultWhereInput
+  data: Prisma.XOR<Prisma.KeyResultUpdateWithoutHypothesesInput, Prisma.KeyResultUncheckedUpdateWithoutHypothesesInput>
+}
+
+export type KeyResultUpdateWithoutHypothesesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  measurementType?: Prisma.EnumMeasurementTypeFieldUpdateOperationsInput | $Enums.MeasurementType
+  startValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  currentValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  checkDone?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  textState?: Prisma.NullableEnumTextStateFieldUpdateOperationsInput | $Enums.TextState | null
+  grade?: Prisma.NullableEnumKeyResultGradeFieldUpdateOperationsInput | $Enums.KeyResultGrade | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutKeyResultsNestedInput
+  objective?: Prisma.ObjectiveUpdateOneRequiredWithoutKeyResultsNestedInput
+  sourceKeyResult?: Prisma.KeyResultUpdateOneWithoutCarriedKeyResultsNestedInput
+  carriedKeyResults?: Prisma.KeyResultUpdateManyWithoutSourceKeyResultNestedInput
+  checkIns?: Prisma.CheckInUpdateManyWithoutKeyResultNestedInput
+  skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutKeyResultNestedInput
+}
+
+export type KeyResultUncheckedUpdateWithoutHypothesesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  objectiveId?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  measurementType?: Prisma.EnumMeasurementTypeFieldUpdateOperationsInput | $Enums.MeasurementType
+  startValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  currentValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  checkDone?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  textState?: Prisma.NullableEnumTextStateFieldUpdateOperationsInput | $Enums.TextState | null
+  grade?: Prisma.NullableEnumKeyResultGradeFieldUpdateOperationsInput | $Enums.KeyResultGrade | null
+  sourceKeyResultId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  carriedKeyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutSourceKeyResultNestedInput
+  checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutKeyResultNestedInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutKeyResultNestedInput
+}
+
 export type KeyResultCreateWithoutCheckInsInput = {
   id?: string
   title: string
@@ -1069,6 +1198,7 @@ export type KeyResultCreateWithoutCheckInsInput = {
   sourceKeyResult?: Prisma.KeyResultCreateNestedOneWithoutCarriedKeyResultsInput
   carriedKeyResults?: Prisma.KeyResultCreateNestedManyWithoutSourceKeyResultInput
   skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutKeyResultInput
+  hypotheses?: Prisma.HypothesisCreateNestedManyWithoutKeyResultInput
 }
 
 export type KeyResultUncheckedCreateWithoutCheckInsInput = {
@@ -1087,6 +1217,7 @@ export type KeyResultUncheckedCreateWithoutCheckInsInput = {
   createdAt?: Date | string
   carriedKeyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutSourceKeyResultInput
   skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutKeyResultInput
+  hypotheses?: Prisma.HypothesisUncheckedCreateNestedManyWithoutKeyResultInput
 }
 
 export type KeyResultCreateOrConnectWithoutCheckInsInput = {
@@ -1121,6 +1252,7 @@ export type KeyResultUpdateWithoutCheckInsInput = {
   sourceKeyResult?: Prisma.KeyResultUpdateOneWithoutCarriedKeyResultsNestedInput
   carriedKeyResults?: Prisma.KeyResultUpdateManyWithoutSourceKeyResultNestedInput
   skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutKeyResultNestedInput
+  hypotheses?: Prisma.HypothesisUpdateManyWithoutKeyResultNestedInput
 }
 
 export type KeyResultUncheckedUpdateWithoutCheckInsInput = {
@@ -1139,6 +1271,7 @@ export type KeyResultUncheckedUpdateWithoutCheckInsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   carriedKeyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutSourceKeyResultNestedInput
   skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutKeyResultNestedInput
+  hypotheses?: Prisma.HypothesisUncheckedUpdateManyWithoutKeyResultNestedInput
 }
 
 export type KeyResultCreateWithoutSkillRequirementsInput = {
@@ -1157,6 +1290,7 @@ export type KeyResultCreateWithoutSkillRequirementsInput = {
   sourceKeyResult?: Prisma.KeyResultCreateNestedOneWithoutCarriedKeyResultsInput
   carriedKeyResults?: Prisma.KeyResultCreateNestedManyWithoutSourceKeyResultInput
   checkIns?: Prisma.CheckInCreateNestedManyWithoutKeyResultInput
+  hypotheses?: Prisma.HypothesisCreateNestedManyWithoutKeyResultInput
 }
 
 export type KeyResultUncheckedCreateWithoutSkillRequirementsInput = {
@@ -1175,6 +1309,7 @@ export type KeyResultUncheckedCreateWithoutSkillRequirementsInput = {
   createdAt?: Date | string
   carriedKeyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutSourceKeyResultInput
   checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutKeyResultInput
+  hypotheses?: Prisma.HypothesisUncheckedCreateNestedManyWithoutKeyResultInput
 }
 
 export type KeyResultCreateOrConnectWithoutSkillRequirementsInput = {
@@ -1209,6 +1344,7 @@ export type KeyResultUpdateWithoutSkillRequirementsInput = {
   sourceKeyResult?: Prisma.KeyResultUpdateOneWithoutCarriedKeyResultsNestedInput
   carriedKeyResults?: Prisma.KeyResultUpdateManyWithoutSourceKeyResultNestedInput
   checkIns?: Prisma.CheckInUpdateManyWithoutKeyResultNestedInput
+  hypotheses?: Prisma.HypothesisUpdateManyWithoutKeyResultNestedInput
 }
 
 export type KeyResultUncheckedUpdateWithoutSkillRequirementsInput = {
@@ -1227,6 +1363,7 @@ export type KeyResultUncheckedUpdateWithoutSkillRequirementsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   carriedKeyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutSourceKeyResultNestedInput
   checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutKeyResultNestedInput
+  hypotheses?: Prisma.HypothesisUncheckedUpdateManyWithoutKeyResultNestedInput
 }
 
 export type KeyResultCreateManyOrganizationInput = {
@@ -1260,6 +1397,7 @@ export type KeyResultUpdateWithoutOrganizationInput = {
   carriedKeyResults?: Prisma.KeyResultUpdateManyWithoutSourceKeyResultNestedInput
   checkIns?: Prisma.CheckInUpdateManyWithoutKeyResultNestedInput
   skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutKeyResultNestedInput
+  hypotheses?: Prisma.HypothesisUpdateManyWithoutKeyResultNestedInput
 }
 
 export type KeyResultUncheckedUpdateWithoutOrganizationInput = {
@@ -1278,6 +1416,7 @@ export type KeyResultUncheckedUpdateWithoutOrganizationInput = {
   carriedKeyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutSourceKeyResultNestedInput
   checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutKeyResultNestedInput
   skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutKeyResultNestedInput
+  hypotheses?: Prisma.HypothesisUncheckedUpdateManyWithoutKeyResultNestedInput
 }
 
 export type KeyResultUncheckedUpdateManyWithoutOrganizationInput = {
@@ -1326,6 +1465,7 @@ export type KeyResultUpdateWithoutObjectiveInput = {
   carriedKeyResults?: Prisma.KeyResultUpdateManyWithoutSourceKeyResultNestedInput
   checkIns?: Prisma.CheckInUpdateManyWithoutKeyResultNestedInput
   skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutKeyResultNestedInput
+  hypotheses?: Prisma.HypothesisUpdateManyWithoutKeyResultNestedInput
 }
 
 export type KeyResultUncheckedUpdateWithoutObjectiveInput = {
@@ -1344,6 +1484,7 @@ export type KeyResultUncheckedUpdateWithoutObjectiveInput = {
   carriedKeyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutSourceKeyResultNestedInput
   checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutKeyResultNestedInput
   skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutKeyResultNestedInput
+  hypotheses?: Prisma.HypothesisUncheckedUpdateManyWithoutKeyResultNestedInput
 }
 
 export type KeyResultUncheckedUpdateManyWithoutObjectiveInput = {
@@ -1392,6 +1533,7 @@ export type KeyResultUpdateWithoutSourceKeyResultInput = {
   carriedKeyResults?: Prisma.KeyResultUpdateManyWithoutSourceKeyResultNestedInput
   checkIns?: Prisma.CheckInUpdateManyWithoutKeyResultNestedInput
   skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutKeyResultNestedInput
+  hypotheses?: Prisma.HypothesisUpdateManyWithoutKeyResultNestedInput
 }
 
 export type KeyResultUncheckedUpdateWithoutSourceKeyResultInput = {
@@ -1410,6 +1552,7 @@ export type KeyResultUncheckedUpdateWithoutSourceKeyResultInput = {
   carriedKeyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutSourceKeyResultNestedInput
   checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutKeyResultNestedInput
   skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutKeyResultNestedInput
+  hypotheses?: Prisma.HypothesisUncheckedUpdateManyWithoutKeyResultNestedInput
 }
 
 export type KeyResultUncheckedUpdateManyWithoutSourceKeyResultInput = {
@@ -1436,12 +1579,14 @@ export type KeyResultCountOutputType = {
   carriedKeyResults: number
   checkIns: number
   skillRequirements: number
+  hypotheses: number
 }
 
 export type KeyResultCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   carriedKeyResults?: boolean | KeyResultCountOutputTypeCountCarriedKeyResultsArgs
   checkIns?: boolean | KeyResultCountOutputTypeCountCheckInsArgs
   skillRequirements?: boolean | KeyResultCountOutputTypeCountSkillRequirementsArgs
+  hypotheses?: boolean | KeyResultCountOutputTypeCountHypothesesArgs
 }
 
 /**
@@ -1475,6 +1620,13 @@ export type KeyResultCountOutputTypeCountSkillRequirementsArgs<ExtArgs extends r
   where?: Prisma.SkillRequirementWhereInput
 }
 
+/**
+ * KeyResultCountOutputType without action
+ */
+export type KeyResultCountOutputTypeCountHypothesesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.HypothesisWhereInput
+}
+
 
 export type KeyResultSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1496,6 +1648,7 @@ export type KeyResultSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   carriedKeyResults?: boolean | Prisma.KeyResult$carriedKeyResultsArgs<ExtArgs>
   checkIns?: boolean | Prisma.KeyResult$checkInsArgs<ExtArgs>
   skillRequirements?: boolean | Prisma.KeyResult$skillRequirementsArgs<ExtArgs>
+  hypotheses?: boolean | Prisma.KeyResult$hypothesesArgs<ExtArgs>
   _count?: boolean | Prisma.KeyResultCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["keyResult"]>
 
@@ -1561,6 +1714,7 @@ export type KeyResultInclude<ExtArgs extends runtime.Types.Extensions.InternalAr
   carriedKeyResults?: boolean | Prisma.KeyResult$carriedKeyResultsArgs<ExtArgs>
   checkIns?: boolean | Prisma.KeyResult$checkInsArgs<ExtArgs>
   skillRequirements?: boolean | Prisma.KeyResult$skillRequirementsArgs<ExtArgs>
+  hypotheses?: boolean | Prisma.KeyResult$hypothesesArgs<ExtArgs>
   _count?: boolean | Prisma.KeyResultCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type KeyResultIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1583,6 +1737,7 @@ export type $KeyResultPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     carriedKeyResults: Prisma.$KeyResultPayload<ExtArgs>[]
     checkIns: Prisma.$CheckInPayload<ExtArgs>[]
     skillRequirements: Prisma.$SkillRequirementPayload<ExtArgs>[]
+    hypotheses: Prisma.$HypothesisPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1998,6 +2153,7 @@ export interface Prisma__KeyResultClient<T, Null = never, ExtArgs extends runtim
   carriedKeyResults<T extends Prisma.KeyResult$carriedKeyResultsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.KeyResult$carriedKeyResultsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$KeyResultPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   checkIns<T extends Prisma.KeyResult$checkInsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.KeyResult$checkInsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CheckInPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   skillRequirements<T extends Prisma.KeyResult$skillRequirementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.KeyResult$skillRequirementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SkillRequirementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  hypotheses<T extends Prisma.KeyResult$hypothesesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.KeyResult$hypothesesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$HypothesisPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2529,6 +2685,30 @@ export type KeyResult$skillRequirementsArgs<ExtArgs extends runtime.Types.Extens
   take?: number
   skip?: number
   distinct?: Prisma.SkillRequirementScalarFieldEnum | Prisma.SkillRequirementScalarFieldEnum[]
+}
+
+/**
+ * KeyResult.hypotheses
+ */
+export type KeyResult$hypothesesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Hypothesis
+   */
+  select?: Prisma.HypothesisSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Hypothesis
+   */
+  omit?: Prisma.HypothesisOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.HypothesisInclude<ExtArgs> | null
+  where?: Prisma.HypothesisWhereInput
+  orderBy?: Prisma.HypothesisOrderByWithRelationInput | Prisma.HypothesisOrderByWithRelationInput[]
+  cursor?: Prisma.HypothesisWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.HypothesisScalarFieldEnum | Prisma.HypothesisScalarFieldEnum[]
 }
 
 /**

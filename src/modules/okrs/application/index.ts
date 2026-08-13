@@ -30,6 +30,13 @@ export { carryOverKeyResult, type CarryOverKeyResultInput } from "./carry-over-k
 export { listOkrAudit, type OkrAuditEventView } from "./list-okr-audit";
 export { listOkrCycles, type OkrCycleView } from "./list-okr-cycles";
 export { listObjectiveHistory } from "./list-objective-history";
+export {
+  getKeyResultContext,
+  listKeyResultContexts,
+  type GetKeyResultContextInput,
+  type KeyResultContextView,
+  type ListKeyResultContextsInput,
+} from "./get-key-result-context";
 export type { ActiveObjectiveView, KeyResultView, ObjectiveView } from "./objective-view";
 export type { ObjectiveLevel, ObjectiveStatus } from "../domain/objective";
 export type { MeasurementKind } from "../domain/key-result";

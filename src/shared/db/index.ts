@@ -26,6 +26,9 @@ export type {
   CheckInModel as CheckIn,
   CheckInEvidenceModel as CheckInEvidence,
   OkrAuditEventModel as OkrAuditEvent,
+  HypothesisModel as Hypothesis,
+  ExperimentModel as Experiment,
+  LearningModel as Learning,
 } from "./generated/models";
 export {
   CheckInCadence,
@@ -38,4 +41,6 @@ export {
   RitualCadence,
   RitualOccurrenceStatus,
   BlockerStatus,
+  ExperimentStatus,
+  LearningDecision,
 } from "./generated/enums";
