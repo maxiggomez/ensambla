@@ -112,3 +112,16 @@ verde y no se hace commit sin aprobación explícita.
 - [x] 8.8 Review read-only con `mg-pr-review` (obligatorio por RLS 🔒); corregir
       y reverificar cualquier hallazgo bloqueante
 - [x] 8.9 Presentar DoD y pedir aprobación antes de commits; no push ni PR
+
+## 9. Compatibilidad del delta con OpenSpec latest
+
+- [x] 9.1 **Regresión roja**
+      `npx --yes @fission-ai/openspec@latest validate lean-experiments --type change --strict`
+      — los requirements `MODIFIED` omiten los Scenarios históricos
+      **Hypothesis linked to a key result**, **Hypothesis format** y
+      **Cannot close without decision**, por lo que el archive podría eliminarlos
+- [x] 9.2 Copiar los tres Scenarios históricos desde la spec principal a sus
+      requirements `MODIFIED`, conservando también los Scenarios ampliados
+- [x] 9.3 Ejecutar la validación dirigida y
+      `npx --yes @fission-ai/openspec@latest validate --all --strict` hasta verde;
+      verificar formato y diff, y completar review read-only

@@ -7,6 +7,18 @@ acting Member in the same Organization, SHALL record non-empty belief and expect
 fields that render as “We believe X → we expect Y”, and SHALL retain the linked Objective
 context.
 
+#### Scenario: Hypothesis linked to a key result
+
+- **GIVEN** a new hypothesis
+- **WHEN** it is created without a linked KeyResult
+- **THEN** the system rejects it
+
+#### Scenario: Hypothesis format
+
+- **GIVEN** a hypothesis
+- **WHEN** it is recorded
+- **THEN** it uses the form “We believe X → we expect Y”
+
 #### Scenario: Hypothesis requires a visible KeyResult
 
 - **GIVEN** an Organization Member creating a hypothesis
@@ -57,6 +69,12 @@ The system SHALL NOT move an experiment to Learned without non-empty Believed, T
 and Learned statements plus a persevere or pivot decision. It SHALL create one structured
 Learning for a successfully closed experiment and SHALL keep that Learning consultable in
 the Organization's library with its KeyResult and Objective links.
+
+#### Scenario: Cannot close without decision
+
+- **GIVEN** an experiment being closed
+- **WHEN** a learning or a decision is missing
+- **THEN** the system prevents closing it
 
 #### Scenario: Cannot close without structured learning and decision
 
