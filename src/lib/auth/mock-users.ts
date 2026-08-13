@@ -34,6 +34,12 @@ export const DEV_USERS: readonly MockDevUser[] = [
     name: "Colaborador Dev",
     role: "Colaborador",
   },
+  {
+    id: "dev_colaborador_2",
+    email: "colaborador-2@ensambla.dev",
+    name: "Colaborador Dos Dev",
+    role: "Colaborador",
+  },
 ];
 
 export function findMockUserById(id: string): MockDevUser | undefined {

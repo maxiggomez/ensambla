@@ -72,11 +72,11 @@ verde y no se hace commit sin aprobación explícita.
       segundo envío falla; SQL directo no puede actualizar ni borrar
 - [x] 5.2 Implementar `list-pending-pulses` y `submit-pulse-response` con claim
       atómico de participación + inserción anónima en la misma transacción
-- [ ] 5.3 **Test rojo estructural** `culture-enps-public-api.test.ts` + assertion
+- [x] 5.3 **Test rojo estructural** `culture-enps-public-api.test.ts` + assertion
       e2e de route inexistente — Scenario **No individual response access**:
       ninguna exportación, server action ni route permite leer una
       `PulseResponse`; el submit tampoco devuelve id o contenido persistido
-- [ ] 5.4 Cerrar la interfaz pública `application/index.ts` y las actions para
+- [x] 5.4 Cerrar la interfaz pública `application/index.ts` y las actions para
       exponer solo pendientes, submit y agregados; ejecutar 5.1/5.3 en verde
 
 ## 6. Umbral configurable y resultados
@@ -106,7 +106,7 @@ verde y no se hace commit sin aprobación explícita.
       bandeja de pulses, formulario 0–10 + driver/comentario + aviso de
       anonimato; panel Dirección para launch/schedule/N y resultados
       globales/Team suprimidos o visibles, usando shadcn/tokens Radar
-- [ ] 8.2 Test Playwright `e2e/culture-enps.spec.ts` — Scenarios **Launch a
+- [x] 8.2 Test Playwright `e2e/culture-enps.spec.ts` — Scenarios **Launch a
       pulse**, **Anonymous immutable response**, **Minimum N threshold** y
       **Compute eNPS**: Dirección lanza, destinatario responde sin recibir id,
       el panel oculta resultados bajo N y los muestra al alcanzar el umbral
@@ -119,9 +119,9 @@ verde y no se hace commit sin aprobación explícita.
 - [x] 9.2 `npm run lint` (incluye límites entre módulos)
 - [x] 9.3 `npm run format:check`
 - [x] 9.4 `npm run test` (unit + integración; todos los Scenarios verdes)
-- [ ] 9.5 `npm run test:e2e`
+- [x] 9.5 `npm run test:e2e:dev-auth`
 - [x] 9.6 `npm run build`
 - [x] 9.7 `openspec validate --all --strict`
 - [x] 9.8 Review read-only con `mg-pr-review` (obligatorio por RLS + anonimato 🔒);
       corregir y reverificar cualquier hallazgo bloqueante
-- [ ] 9.9 Presentar DoD y pedir aprobación antes de commits atómicos; no push ni PR
+- [x] 9.9 Presentar DoD y pedir aprobación antes de commits atómicos; no push ni PR

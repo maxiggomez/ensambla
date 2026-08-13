@@ -11,7 +11,9 @@ import {
 
 describe("mock dev users registry (1.1)", () => {
   it("exposes the preset users with dev ids, verified emails and full names", () => {
-    expect(DEV_USERS).toHaveLength(3);
+    expect(DEV_USERS).toHaveLength(4);
+    expect(new Set(DEV_USERS.map((user) => user.id)).size).toBe(4);
+    expect(new Set(DEV_USERS.map((user) => user.email)).size).toBe(4);
     for (const user of DEV_USERS) {
       expect(user.id).toMatch(/^dev_/);
       expect(mockUserAsClerkUser(user).id).toBe(user.id);
@@ -20,9 +22,9 @@ describe("mock dev users registry (1.1)", () => {
     }
   });
 
-  it("covers the three roles once each", () => {
+  it("covers every role and provides two collaborators for minimum-N flows", () => {
     const roles = DEV_USERS.map((user: MockDevUser) => user.role).sort();
-    expect(roles).toEqual(["Colaborador", "Direccion", "Lider"]);
+    expect(roles).toEqual(["Colaborador", "Colaborador", "Direccion", "Lider"]);
   });
 
   it("resolves a preset user by id and returns undefined for unknown ids", () => {
