@@ -12,9 +12,9 @@ if (fs.existsSync(".env.local")) {
 
 export default defineConfig({
   testDir: "./e2e",
-  // app-shell/strategy-northstar mock e2e corren contra el config dev-auth:
+  // Los e2e mock-only corren contra el config dev-auth:
   // el e2e con Clerk usa la identidad real y no necesita esos specs mock-only.
-  testIgnore: /(dev-auth|app-shell|strategy-northstar|okrs)\.spec\.ts/,
+  testIgnore: /(dev-auth|app-shell|strategy-northstar|okrs|culture-enps)\.spec\.ts/,
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
