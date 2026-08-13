@@ -94,6 +94,6 @@ verde y no se hace commit sin aprobación explícita.
 - [x] 8.5 `npm run test:e2e:dev-auth`
 - [x] 8.6 `npm run build`
 - [x] 8.7 `openspec validate --all --strict`
-- [ ] 8.8 Review read-only con `mg-pr-review` (obligatorio por RLS + tenancy 🔒);
+- [x] 8.8 Review read-only con `mg-pr-review` (obligatorio por RLS + tenancy 🔒);
       corregir y reverificar cualquier hallazgo bloqueante
-- [ ] 8.9 Presentar DoD y pedir aprobación antes de commits atómicos; no push ni PR
+- [x] 8.9 Presentar DoD y pedir aprobación antes de commits atómicos; no push ni PR
