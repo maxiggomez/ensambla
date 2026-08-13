@@ -267,6 +267,7 @@ export type ObjectiveWhereInput = {
   projectLinks?: Prisma.ProjectObjectiveListRelationFilter
   leverLinks?: Prisma.NorthStarLeverListRelationFilter
   pillarLinks?: Prisma.PillarObjectiveListRelationFilter
+  hypotheses?: Prisma.HypothesisListRelationFilter
 }
 
 export type ObjectiveOrderByWithRelationInput = {
@@ -297,10 +298,12 @@ export type ObjectiveOrderByWithRelationInput = {
   projectLinks?: Prisma.ProjectObjectiveOrderByRelationAggregateInput
   leverLinks?: Prisma.NorthStarLeverOrderByRelationAggregateInput
   pillarLinks?: Prisma.PillarObjectiveOrderByRelationAggregateInput
+  hypotheses?: Prisma.HypothesisOrderByRelationAggregateInput
 }
 
 export type ObjectiveWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  organizationId_id?: Prisma.ObjectiveOrganizationIdIdCompoundUniqueInput
   AND?: Prisma.ObjectiveWhereInput | Prisma.ObjectiveWhereInput[]
   OR?: Prisma.ObjectiveWhereInput[]
   NOT?: Prisma.ObjectiveWhereInput | Prisma.ObjectiveWhereInput[]
@@ -330,7 +333,8 @@ export type ObjectiveWhereUniqueInput = Prisma.AtLeast<{
   projectLinks?: Prisma.ProjectObjectiveListRelationFilter
   leverLinks?: Prisma.NorthStarLeverListRelationFilter
   pillarLinks?: Prisma.PillarObjectiveListRelationFilter
-}, "id">
+  hypotheses?: Prisma.HypothesisListRelationFilter
+}, "id" | "organizationId_id">
 
 export type ObjectiveOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -394,6 +398,7 @@ export type ObjectiveCreateInput = {
   projectLinks?: Prisma.ProjectObjectiveCreateNestedManyWithoutObjectiveInput
   leverLinks?: Prisma.NorthStarLeverCreateNestedManyWithoutObjectiveInput
   pillarLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutObjectiveInput
+  hypotheses?: Prisma.HypothesisCreateNestedManyWithoutObjectiveInput
 }
 
 export type ObjectiveUncheckedCreateInput = {
@@ -418,6 +423,7 @@ export type ObjectiveUncheckedCreateInput = {
   projectLinks?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutObjectiveInput
   leverLinks?: Prisma.NorthStarLeverUncheckedCreateNestedManyWithoutObjectiveInput
   pillarLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutObjectiveInput
+  hypotheses?: Prisma.HypothesisUncheckedCreateNestedManyWithoutObjectiveInput
 }
 
 export type ObjectiveUpdateInput = {
@@ -442,6 +448,7 @@ export type ObjectiveUpdateInput = {
   projectLinks?: Prisma.ProjectObjectiveUpdateManyWithoutObjectiveNestedInput
   leverLinks?: Prisma.NorthStarLeverUpdateManyWithoutObjectiveNestedInput
   pillarLinks?: Prisma.PillarObjectiveUpdateManyWithoutObjectiveNestedInput
+  hypotheses?: Prisma.HypothesisUpdateManyWithoutObjectiveNestedInput
 }
 
 export type ObjectiveUncheckedUpdateInput = {
@@ -466,6 +473,7 @@ export type ObjectiveUncheckedUpdateInput = {
   projectLinks?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutObjectiveNestedInput
   leverLinks?: Prisma.NorthStarLeverUncheckedUpdateManyWithoutObjectiveNestedInput
   pillarLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutObjectiveNestedInput
+  hypotheses?: Prisma.HypothesisUncheckedUpdateManyWithoutObjectiveNestedInput
 }
 
 export type ObjectiveCreateManyInput = {
@@ -531,6 +539,11 @@ export type ObjectiveNullableScalarRelationFilter = {
 export type ObjectiveScalarRelationFilter = {
   is?: Prisma.ObjectiveWhereInput
   isNot?: Prisma.ObjectiveWhereInput
+}
+
+export type ObjectiveOrganizationIdIdCompoundUniqueInput = {
+  organizationId: string
+  id: string
 }
 
 export type ObjectiveCountOrderByAggregateInput = {
@@ -836,6 +849,20 @@ export type ObjectiveUpdateOneRequiredWithoutKeyResultsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ObjectiveUpdateToOneWithWhereWithoutKeyResultsInput, Prisma.ObjectiveUpdateWithoutKeyResultsInput>, Prisma.ObjectiveUncheckedUpdateWithoutKeyResultsInput>
 }
 
+export type ObjectiveCreateNestedOneWithoutHypothesesInput = {
+  create?: Prisma.XOR<Prisma.ObjectiveCreateWithoutHypothesesInput, Prisma.ObjectiveUncheckedCreateWithoutHypothesesInput>
+  connectOrCreate?: Prisma.ObjectiveCreateOrConnectWithoutHypothesesInput
+  connect?: Prisma.ObjectiveWhereUniqueInput
+}
+
+export type ObjectiveUpdateOneRequiredWithoutHypothesesNestedInput = {
+  create?: Prisma.XOR<Prisma.ObjectiveCreateWithoutHypothesesInput, Prisma.ObjectiveUncheckedCreateWithoutHypothesesInput>
+  connectOrCreate?: Prisma.ObjectiveCreateOrConnectWithoutHypothesesInput
+  upsert?: Prisma.ObjectiveUpsertWithoutHypothesesInput
+  connect?: Prisma.ObjectiveWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ObjectiveUpdateToOneWithWhereWithoutHypothesesInput, Prisma.ObjectiveUpdateWithoutHypothesesInput>, Prisma.ObjectiveUncheckedUpdateWithoutHypothesesInput>
+}
+
 export type ObjectiveCreateNestedManyWithoutCycleInput = {
   create?: Prisma.XOR<Prisma.ObjectiveCreateWithoutCycleInput, Prisma.ObjectiveUncheckedCreateWithoutCycleInput> | Prisma.ObjectiveCreateWithoutCycleInput[] | Prisma.ObjectiveUncheckedCreateWithoutCycleInput[]
   connectOrCreate?: Prisma.ObjectiveCreateOrConnectWithoutCycleInput | Prisma.ObjectiveCreateOrConnectWithoutCycleInput[]
@@ -971,6 +998,7 @@ export type ObjectiveCreateWithoutOrganizationInput = {
   projectLinks?: Prisma.ProjectObjectiveCreateNestedManyWithoutObjectiveInput
   leverLinks?: Prisma.NorthStarLeverCreateNestedManyWithoutObjectiveInput
   pillarLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutObjectiveInput
+  hypotheses?: Prisma.HypothesisCreateNestedManyWithoutObjectiveInput
 }
 
 export type ObjectiveUncheckedCreateWithoutOrganizationInput = {
@@ -994,6 +1022,7 @@ export type ObjectiveUncheckedCreateWithoutOrganizationInput = {
   projectLinks?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutObjectiveInput
   leverLinks?: Prisma.NorthStarLeverUncheckedCreateNestedManyWithoutObjectiveInput
   pillarLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutObjectiveInput
+  hypotheses?: Prisma.HypothesisUncheckedCreateNestedManyWithoutObjectiveInput
 }
 
 export type ObjectiveCreateOrConnectWithoutOrganizationInput = {
@@ -1063,6 +1092,7 @@ export type ObjectiveCreateWithoutOwnerInput = {
   projectLinks?: Prisma.ProjectObjectiveCreateNestedManyWithoutObjectiveInput
   leverLinks?: Prisma.NorthStarLeverCreateNestedManyWithoutObjectiveInput
   pillarLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutObjectiveInput
+  hypotheses?: Prisma.HypothesisCreateNestedManyWithoutObjectiveInput
 }
 
 export type ObjectiveUncheckedCreateWithoutOwnerInput = {
@@ -1086,6 +1116,7 @@ export type ObjectiveUncheckedCreateWithoutOwnerInput = {
   projectLinks?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutObjectiveInput
   leverLinks?: Prisma.NorthStarLeverUncheckedCreateNestedManyWithoutObjectiveInput
   pillarLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutObjectiveInput
+  hypotheses?: Prisma.HypothesisUncheckedCreateNestedManyWithoutObjectiveInput
 }
 
 export type ObjectiveCreateOrConnectWithoutOwnerInput = {
@@ -1135,6 +1166,7 @@ export type ObjectiveCreateWithoutLeverLinksInput = {
   cadenceConfigs?: Prisma.OkrCadenceConfigCreateNestedManyWithoutObjectiveInput
   projectLinks?: Prisma.ProjectObjectiveCreateNestedManyWithoutObjectiveInput
   pillarLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutObjectiveInput
+  hypotheses?: Prisma.HypothesisCreateNestedManyWithoutObjectiveInput
 }
 
 export type ObjectiveUncheckedCreateWithoutLeverLinksInput = {
@@ -1158,6 +1190,7 @@ export type ObjectiveUncheckedCreateWithoutLeverLinksInput = {
   cadenceConfigs?: Prisma.OkrCadenceConfigUncheckedCreateNestedManyWithoutObjectiveInput
   projectLinks?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutObjectiveInput
   pillarLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutObjectiveInput
+  hypotheses?: Prisma.HypothesisUncheckedCreateNestedManyWithoutObjectiveInput
 }
 
 export type ObjectiveCreateOrConnectWithoutLeverLinksInput = {
@@ -1197,6 +1230,7 @@ export type ObjectiveUpdateWithoutLeverLinksInput = {
   cadenceConfigs?: Prisma.OkrCadenceConfigUpdateManyWithoutObjectiveNestedInput
   projectLinks?: Prisma.ProjectObjectiveUpdateManyWithoutObjectiveNestedInput
   pillarLinks?: Prisma.PillarObjectiveUpdateManyWithoutObjectiveNestedInput
+  hypotheses?: Prisma.HypothesisUpdateManyWithoutObjectiveNestedInput
 }
 
 export type ObjectiveUncheckedUpdateWithoutLeverLinksInput = {
@@ -1220,6 +1254,7 @@ export type ObjectiveUncheckedUpdateWithoutLeverLinksInput = {
   cadenceConfigs?: Prisma.OkrCadenceConfigUncheckedUpdateManyWithoutObjectiveNestedInput
   projectLinks?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutObjectiveNestedInput
   pillarLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutObjectiveNestedInput
+  hypotheses?: Prisma.HypothesisUncheckedUpdateManyWithoutObjectiveNestedInput
 }
 
 export type ObjectiveCreateWithoutPillarLinksInput = {
@@ -1243,6 +1278,7 @@ export type ObjectiveCreateWithoutPillarLinksInput = {
   cadenceConfigs?: Prisma.OkrCadenceConfigCreateNestedManyWithoutObjectiveInput
   projectLinks?: Prisma.ProjectObjectiveCreateNestedManyWithoutObjectiveInput
   leverLinks?: Prisma.NorthStarLeverCreateNestedManyWithoutObjectiveInput
+  hypotheses?: Prisma.HypothesisCreateNestedManyWithoutObjectiveInput
 }
 
 export type ObjectiveUncheckedCreateWithoutPillarLinksInput = {
@@ -1266,6 +1302,7 @@ export type ObjectiveUncheckedCreateWithoutPillarLinksInput = {
   cadenceConfigs?: Prisma.OkrCadenceConfigUncheckedCreateNestedManyWithoutObjectiveInput
   projectLinks?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutObjectiveInput
   leverLinks?: Prisma.NorthStarLeverUncheckedCreateNestedManyWithoutObjectiveInput
+  hypotheses?: Prisma.HypothesisUncheckedCreateNestedManyWithoutObjectiveInput
 }
 
 export type ObjectiveCreateOrConnectWithoutPillarLinksInput = {
@@ -1305,6 +1342,7 @@ export type ObjectiveUpdateWithoutPillarLinksInput = {
   cadenceConfigs?: Prisma.OkrCadenceConfigUpdateManyWithoutObjectiveNestedInput
   projectLinks?: Prisma.ProjectObjectiveUpdateManyWithoutObjectiveNestedInput
   leverLinks?: Prisma.NorthStarLeverUpdateManyWithoutObjectiveNestedInput
+  hypotheses?: Prisma.HypothesisUpdateManyWithoutObjectiveNestedInput
 }
 
 export type ObjectiveUncheckedUpdateWithoutPillarLinksInput = {
@@ -1328,6 +1366,7 @@ export type ObjectiveUncheckedUpdateWithoutPillarLinksInput = {
   cadenceConfigs?: Prisma.OkrCadenceConfigUncheckedUpdateManyWithoutObjectiveNestedInput
   projectLinks?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutObjectiveNestedInput
   leverLinks?: Prisma.NorthStarLeverUncheckedUpdateManyWithoutObjectiveNestedInput
+  hypotheses?: Prisma.HypothesisUncheckedUpdateManyWithoutObjectiveNestedInput
 }
 
 export type ObjectiveCreateWithoutChildObjectivesInput = {
@@ -1351,6 +1390,7 @@ export type ObjectiveCreateWithoutChildObjectivesInput = {
   projectLinks?: Prisma.ProjectObjectiveCreateNestedManyWithoutObjectiveInput
   leverLinks?: Prisma.NorthStarLeverCreateNestedManyWithoutObjectiveInput
   pillarLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutObjectiveInput
+  hypotheses?: Prisma.HypothesisCreateNestedManyWithoutObjectiveInput
 }
 
 export type ObjectiveUncheckedCreateWithoutChildObjectivesInput = {
@@ -1374,6 +1414,7 @@ export type ObjectiveUncheckedCreateWithoutChildObjectivesInput = {
   projectLinks?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutObjectiveInput
   leverLinks?: Prisma.NorthStarLeverUncheckedCreateNestedManyWithoutObjectiveInput
   pillarLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutObjectiveInput
+  hypotheses?: Prisma.HypothesisUncheckedCreateNestedManyWithoutObjectiveInput
 }
 
 export type ObjectiveCreateOrConnectWithoutChildObjectivesInput = {
@@ -1402,6 +1443,7 @@ export type ObjectiveCreateWithoutParentObjectiveInput = {
   projectLinks?: Prisma.ProjectObjectiveCreateNestedManyWithoutObjectiveInput
   leverLinks?: Prisma.NorthStarLeverCreateNestedManyWithoutObjectiveInput
   pillarLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutObjectiveInput
+  hypotheses?: Prisma.HypothesisCreateNestedManyWithoutObjectiveInput
 }
 
 export type ObjectiveUncheckedCreateWithoutParentObjectiveInput = {
@@ -1425,6 +1467,7 @@ export type ObjectiveUncheckedCreateWithoutParentObjectiveInput = {
   projectLinks?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutObjectiveInput
   leverLinks?: Prisma.NorthStarLeverUncheckedCreateNestedManyWithoutObjectiveInput
   pillarLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutObjectiveInput
+  hypotheses?: Prisma.HypothesisUncheckedCreateNestedManyWithoutObjectiveInput
 }
 
 export type ObjectiveCreateOrConnectWithoutParentObjectiveInput = {
@@ -1458,6 +1501,7 @@ export type ObjectiveCreateWithoutCarriedObjectivesInput = {
   projectLinks?: Prisma.ProjectObjectiveCreateNestedManyWithoutObjectiveInput
   leverLinks?: Prisma.NorthStarLeverCreateNestedManyWithoutObjectiveInput
   pillarLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutObjectiveInput
+  hypotheses?: Prisma.HypothesisCreateNestedManyWithoutObjectiveInput
 }
 
 export type ObjectiveUncheckedCreateWithoutCarriedObjectivesInput = {
@@ -1481,6 +1525,7 @@ export type ObjectiveUncheckedCreateWithoutCarriedObjectivesInput = {
   projectLinks?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutObjectiveInput
   leverLinks?: Prisma.NorthStarLeverUncheckedCreateNestedManyWithoutObjectiveInput
   pillarLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutObjectiveInput
+  hypotheses?: Prisma.HypothesisUncheckedCreateNestedManyWithoutObjectiveInput
 }
 
 export type ObjectiveCreateOrConnectWithoutCarriedObjectivesInput = {
@@ -1509,6 +1554,7 @@ export type ObjectiveCreateWithoutSourceObjectiveInput = {
   projectLinks?: Prisma.ProjectObjectiveCreateNestedManyWithoutObjectiveInput
   leverLinks?: Prisma.NorthStarLeverCreateNestedManyWithoutObjectiveInput
   pillarLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutObjectiveInput
+  hypotheses?: Prisma.HypothesisCreateNestedManyWithoutObjectiveInput
 }
 
 export type ObjectiveUncheckedCreateWithoutSourceObjectiveInput = {
@@ -1532,6 +1578,7 @@ export type ObjectiveUncheckedCreateWithoutSourceObjectiveInput = {
   projectLinks?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutObjectiveInput
   leverLinks?: Prisma.NorthStarLeverUncheckedCreateNestedManyWithoutObjectiveInput
   pillarLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutObjectiveInput
+  hypotheses?: Prisma.HypothesisUncheckedCreateNestedManyWithoutObjectiveInput
 }
 
 export type ObjectiveCreateOrConnectWithoutSourceObjectiveInput = {
@@ -1576,6 +1623,7 @@ export type ObjectiveUpdateWithoutChildObjectivesInput = {
   projectLinks?: Prisma.ProjectObjectiveUpdateManyWithoutObjectiveNestedInput
   leverLinks?: Prisma.NorthStarLeverUpdateManyWithoutObjectiveNestedInput
   pillarLinks?: Prisma.PillarObjectiveUpdateManyWithoutObjectiveNestedInput
+  hypotheses?: Prisma.HypothesisUpdateManyWithoutObjectiveNestedInput
 }
 
 export type ObjectiveUncheckedUpdateWithoutChildObjectivesInput = {
@@ -1599,6 +1647,7 @@ export type ObjectiveUncheckedUpdateWithoutChildObjectivesInput = {
   projectLinks?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutObjectiveNestedInput
   leverLinks?: Prisma.NorthStarLeverUncheckedUpdateManyWithoutObjectiveNestedInput
   pillarLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutObjectiveNestedInput
+  hypotheses?: Prisma.HypothesisUncheckedUpdateManyWithoutObjectiveNestedInput
 }
 
 export type ObjectiveUpsertWithWhereUniqueWithoutParentObjectiveInput = {
@@ -1649,6 +1698,7 @@ export type ObjectiveUpdateWithoutCarriedObjectivesInput = {
   projectLinks?: Prisma.ProjectObjectiveUpdateManyWithoutObjectiveNestedInput
   leverLinks?: Prisma.NorthStarLeverUpdateManyWithoutObjectiveNestedInput
   pillarLinks?: Prisma.PillarObjectiveUpdateManyWithoutObjectiveNestedInput
+  hypotheses?: Prisma.HypothesisUpdateManyWithoutObjectiveNestedInput
 }
 
 export type ObjectiveUncheckedUpdateWithoutCarriedObjectivesInput = {
@@ -1672,6 +1722,7 @@ export type ObjectiveUncheckedUpdateWithoutCarriedObjectivesInput = {
   projectLinks?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutObjectiveNestedInput
   leverLinks?: Prisma.NorthStarLeverUncheckedUpdateManyWithoutObjectiveNestedInput
   pillarLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutObjectiveNestedInput
+  hypotheses?: Prisma.HypothesisUncheckedUpdateManyWithoutObjectiveNestedInput
 }
 
 export type ObjectiveUpsertWithWhereUniqueWithoutSourceObjectiveInput = {
@@ -1711,6 +1762,7 @@ export type ObjectiveCreateWithoutKeyResultsInput = {
   projectLinks?: Prisma.ProjectObjectiveCreateNestedManyWithoutObjectiveInput
   leverLinks?: Prisma.NorthStarLeverCreateNestedManyWithoutObjectiveInput
   pillarLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutObjectiveInput
+  hypotheses?: Prisma.HypothesisCreateNestedManyWithoutObjectiveInput
 }
 
 export type ObjectiveUncheckedCreateWithoutKeyResultsInput = {
@@ -1734,6 +1786,7 @@ export type ObjectiveUncheckedCreateWithoutKeyResultsInput = {
   projectLinks?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutObjectiveInput
   leverLinks?: Prisma.NorthStarLeverUncheckedCreateNestedManyWithoutObjectiveInput
   pillarLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutObjectiveInput
+  hypotheses?: Prisma.HypothesisUncheckedCreateNestedManyWithoutObjectiveInput
 }
 
 export type ObjectiveCreateOrConnectWithoutKeyResultsInput = {
@@ -1773,6 +1826,7 @@ export type ObjectiveUpdateWithoutKeyResultsInput = {
   projectLinks?: Prisma.ProjectObjectiveUpdateManyWithoutObjectiveNestedInput
   leverLinks?: Prisma.NorthStarLeverUpdateManyWithoutObjectiveNestedInput
   pillarLinks?: Prisma.PillarObjectiveUpdateManyWithoutObjectiveNestedInput
+  hypotheses?: Prisma.HypothesisUpdateManyWithoutObjectiveNestedInput
 }
 
 export type ObjectiveUncheckedUpdateWithoutKeyResultsInput = {
@@ -1792,6 +1846,119 @@ export type ObjectiveUncheckedUpdateWithoutKeyResultsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   childObjectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutParentObjectiveNestedInput
   carriedObjectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutSourceObjectiveNestedInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigUncheckedUpdateManyWithoutObjectiveNestedInput
+  projectLinks?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutObjectiveNestedInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedUpdateManyWithoutObjectiveNestedInput
+  pillarLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutObjectiveNestedInput
+  hypotheses?: Prisma.HypothesisUncheckedUpdateManyWithoutObjectiveNestedInput
+}
+
+export type ObjectiveCreateWithoutHypothesesInput = {
+  id?: string
+  title: string
+  level: $Enums.ObjectiveLevel
+  status?: $Enums.ObjectiveStatus
+  publishedAt?: Date | string | null
+  closedAt?: Date | string | null
+  archivedAt?: Date | string | null
+  createdAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutObjectivesInput
+  owner: Prisma.MemberCreateNestedOneWithoutObjectivesInput
+  team?: Prisma.TeamCreateNestedOneWithoutObjectivesInput
+  parentObjective?: Prisma.ObjectiveCreateNestedOneWithoutChildObjectivesInput
+  childObjectives?: Prisma.ObjectiveCreateNestedManyWithoutParentObjectiveInput
+  cycle?: Prisma.OkrCycleCreateNestedOneWithoutObjectivesInput
+  sourceObjective?: Prisma.ObjectiveCreateNestedOneWithoutCarriedObjectivesInput
+  carriedObjectives?: Prisma.ObjectiveCreateNestedManyWithoutSourceObjectiveInput
+  keyResults?: Prisma.KeyResultCreateNestedManyWithoutObjectiveInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigCreateNestedManyWithoutObjectiveInput
+  projectLinks?: Prisma.ProjectObjectiveCreateNestedManyWithoutObjectiveInput
+  leverLinks?: Prisma.NorthStarLeverCreateNestedManyWithoutObjectiveInput
+  pillarLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutObjectiveInput
+}
+
+export type ObjectiveUncheckedCreateWithoutHypothesesInput = {
+  id?: string
+  organizationId: string
+  title: string
+  level: $Enums.ObjectiveLevel
+  status?: $Enums.ObjectiveStatus
+  ownerId: string
+  teamId?: string | null
+  parentObjectiveId?: string | null
+  cycleId?: string | null
+  sourceObjectiveId?: string | null
+  publishedAt?: Date | string | null
+  closedAt?: Date | string | null
+  archivedAt?: Date | string | null
+  createdAt?: Date | string
+  childObjectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutParentObjectiveInput
+  carriedObjectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutSourceObjectiveInput
+  keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutObjectiveInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigUncheckedCreateNestedManyWithoutObjectiveInput
+  projectLinks?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutObjectiveInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedCreateNestedManyWithoutObjectiveInput
+  pillarLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutObjectiveInput
+}
+
+export type ObjectiveCreateOrConnectWithoutHypothesesInput = {
+  where: Prisma.ObjectiveWhereUniqueInput
+  create: Prisma.XOR<Prisma.ObjectiveCreateWithoutHypothesesInput, Prisma.ObjectiveUncheckedCreateWithoutHypothesesInput>
+}
+
+export type ObjectiveUpsertWithoutHypothesesInput = {
+  update: Prisma.XOR<Prisma.ObjectiveUpdateWithoutHypothesesInput, Prisma.ObjectiveUncheckedUpdateWithoutHypothesesInput>
+  create: Prisma.XOR<Prisma.ObjectiveCreateWithoutHypothesesInput, Prisma.ObjectiveUncheckedCreateWithoutHypothesesInput>
+  where?: Prisma.ObjectiveWhereInput
+}
+
+export type ObjectiveUpdateToOneWithWhereWithoutHypothesesInput = {
+  where?: Prisma.ObjectiveWhereInput
+  data: Prisma.XOR<Prisma.ObjectiveUpdateWithoutHypothesesInput, Prisma.ObjectiveUncheckedUpdateWithoutHypothesesInput>
+}
+
+export type ObjectiveUpdateWithoutHypothesesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  level?: Prisma.EnumObjectiveLevelFieldUpdateOperationsInput | $Enums.ObjectiveLevel
+  status?: Prisma.EnumObjectiveStatusFieldUpdateOperationsInput | $Enums.ObjectiveStatus
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutObjectivesNestedInput
+  owner?: Prisma.MemberUpdateOneRequiredWithoutObjectivesNestedInput
+  team?: Prisma.TeamUpdateOneWithoutObjectivesNestedInput
+  parentObjective?: Prisma.ObjectiveUpdateOneWithoutChildObjectivesNestedInput
+  childObjectives?: Prisma.ObjectiveUpdateManyWithoutParentObjectiveNestedInput
+  cycle?: Prisma.OkrCycleUpdateOneWithoutObjectivesNestedInput
+  sourceObjective?: Prisma.ObjectiveUpdateOneWithoutCarriedObjectivesNestedInput
+  carriedObjectives?: Prisma.ObjectiveUpdateManyWithoutSourceObjectiveNestedInput
+  keyResults?: Prisma.KeyResultUpdateManyWithoutObjectiveNestedInput
+  cadenceConfigs?: Prisma.OkrCadenceConfigUpdateManyWithoutObjectiveNestedInput
+  projectLinks?: Prisma.ProjectObjectiveUpdateManyWithoutObjectiveNestedInput
+  leverLinks?: Prisma.NorthStarLeverUpdateManyWithoutObjectiveNestedInput
+  pillarLinks?: Prisma.PillarObjectiveUpdateManyWithoutObjectiveNestedInput
+}
+
+export type ObjectiveUncheckedUpdateWithoutHypothesesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  level?: Prisma.EnumObjectiveLevelFieldUpdateOperationsInput | $Enums.ObjectiveLevel
+  status?: Prisma.EnumObjectiveStatusFieldUpdateOperationsInput | $Enums.ObjectiveStatus
+  ownerId?: Prisma.StringFieldUpdateOperationsInput | string
+  teamId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentObjectiveId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cycleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceObjectiveId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  childObjectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutParentObjectiveNestedInput
+  carriedObjectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutSourceObjectiveNestedInput
+  keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutObjectiveNestedInput
   cadenceConfigs?: Prisma.OkrCadenceConfigUncheckedUpdateManyWithoutObjectiveNestedInput
   projectLinks?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutObjectiveNestedInput
   leverLinks?: Prisma.NorthStarLeverUncheckedUpdateManyWithoutObjectiveNestedInput
@@ -1819,6 +1986,7 @@ export type ObjectiveCreateWithoutCycleInput = {
   projectLinks?: Prisma.ProjectObjectiveCreateNestedManyWithoutObjectiveInput
   leverLinks?: Prisma.NorthStarLeverCreateNestedManyWithoutObjectiveInput
   pillarLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutObjectiveInput
+  hypotheses?: Prisma.HypothesisCreateNestedManyWithoutObjectiveInput
 }
 
 export type ObjectiveUncheckedCreateWithoutCycleInput = {
@@ -1842,6 +2010,7 @@ export type ObjectiveUncheckedCreateWithoutCycleInput = {
   projectLinks?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutObjectiveInput
   leverLinks?: Prisma.NorthStarLeverUncheckedCreateNestedManyWithoutObjectiveInput
   pillarLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutObjectiveInput
+  hypotheses?: Prisma.HypothesisUncheckedCreateNestedManyWithoutObjectiveInput
 }
 
 export type ObjectiveCreateOrConnectWithoutCycleInput = {
@@ -1891,6 +2060,7 @@ export type ObjectiveCreateWithoutCadenceConfigsInput = {
   projectLinks?: Prisma.ProjectObjectiveCreateNestedManyWithoutObjectiveInput
   leverLinks?: Prisma.NorthStarLeverCreateNestedManyWithoutObjectiveInput
   pillarLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutObjectiveInput
+  hypotheses?: Prisma.HypothesisCreateNestedManyWithoutObjectiveInput
 }
 
 export type ObjectiveUncheckedCreateWithoutCadenceConfigsInput = {
@@ -1914,6 +2084,7 @@ export type ObjectiveUncheckedCreateWithoutCadenceConfigsInput = {
   projectLinks?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutObjectiveInput
   leverLinks?: Prisma.NorthStarLeverUncheckedCreateNestedManyWithoutObjectiveInput
   pillarLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutObjectiveInput
+  hypotheses?: Prisma.HypothesisUncheckedCreateNestedManyWithoutObjectiveInput
 }
 
 export type ObjectiveCreateOrConnectWithoutCadenceConfigsInput = {
@@ -1953,6 +2124,7 @@ export type ObjectiveUpdateWithoutCadenceConfigsInput = {
   projectLinks?: Prisma.ProjectObjectiveUpdateManyWithoutObjectiveNestedInput
   leverLinks?: Prisma.NorthStarLeverUpdateManyWithoutObjectiveNestedInput
   pillarLinks?: Prisma.PillarObjectiveUpdateManyWithoutObjectiveNestedInput
+  hypotheses?: Prisma.HypothesisUpdateManyWithoutObjectiveNestedInput
 }
 
 export type ObjectiveUncheckedUpdateWithoutCadenceConfigsInput = {
@@ -1976,6 +2148,7 @@ export type ObjectiveUncheckedUpdateWithoutCadenceConfigsInput = {
   projectLinks?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutObjectiveNestedInput
   leverLinks?: Prisma.NorthStarLeverUncheckedUpdateManyWithoutObjectiveNestedInput
   pillarLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutObjectiveNestedInput
+  hypotheses?: Prisma.HypothesisUncheckedUpdateManyWithoutObjectiveNestedInput
 }
 
 export type ObjectiveCreateWithoutTeamInput = {
@@ -1999,6 +2172,7 @@ export type ObjectiveCreateWithoutTeamInput = {
   projectLinks?: Prisma.ProjectObjectiveCreateNestedManyWithoutObjectiveInput
   leverLinks?: Prisma.NorthStarLeverCreateNestedManyWithoutObjectiveInput
   pillarLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutObjectiveInput
+  hypotheses?: Prisma.HypothesisCreateNestedManyWithoutObjectiveInput
 }
 
 export type ObjectiveUncheckedCreateWithoutTeamInput = {
@@ -2022,6 +2196,7 @@ export type ObjectiveUncheckedCreateWithoutTeamInput = {
   projectLinks?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutObjectiveInput
   leverLinks?: Prisma.NorthStarLeverUncheckedCreateNestedManyWithoutObjectiveInput
   pillarLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutObjectiveInput
+  hypotheses?: Prisma.HypothesisUncheckedCreateNestedManyWithoutObjectiveInput
 }
 
 export type ObjectiveCreateOrConnectWithoutTeamInput = {
@@ -2071,6 +2246,7 @@ export type ObjectiveCreateWithoutProjectLinksInput = {
   cadenceConfigs?: Prisma.OkrCadenceConfigCreateNestedManyWithoutObjectiveInput
   leverLinks?: Prisma.NorthStarLeverCreateNestedManyWithoutObjectiveInput
   pillarLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutObjectiveInput
+  hypotheses?: Prisma.HypothesisCreateNestedManyWithoutObjectiveInput
 }
 
 export type ObjectiveUncheckedCreateWithoutProjectLinksInput = {
@@ -2094,6 +2270,7 @@ export type ObjectiveUncheckedCreateWithoutProjectLinksInput = {
   cadenceConfigs?: Prisma.OkrCadenceConfigUncheckedCreateNestedManyWithoutObjectiveInput
   leverLinks?: Prisma.NorthStarLeverUncheckedCreateNestedManyWithoutObjectiveInput
   pillarLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutObjectiveInput
+  hypotheses?: Prisma.HypothesisUncheckedCreateNestedManyWithoutObjectiveInput
 }
 
 export type ObjectiveCreateOrConnectWithoutProjectLinksInput = {
@@ -2133,6 +2310,7 @@ export type ObjectiveUpdateWithoutProjectLinksInput = {
   cadenceConfigs?: Prisma.OkrCadenceConfigUpdateManyWithoutObjectiveNestedInput
   leverLinks?: Prisma.NorthStarLeverUpdateManyWithoutObjectiveNestedInput
   pillarLinks?: Prisma.PillarObjectiveUpdateManyWithoutObjectiveNestedInput
+  hypotheses?: Prisma.HypothesisUpdateManyWithoutObjectiveNestedInput
 }
 
 export type ObjectiveUncheckedUpdateWithoutProjectLinksInput = {
@@ -2156,6 +2334,7 @@ export type ObjectiveUncheckedUpdateWithoutProjectLinksInput = {
   cadenceConfigs?: Prisma.OkrCadenceConfigUncheckedUpdateManyWithoutObjectiveNestedInput
   leverLinks?: Prisma.NorthStarLeverUncheckedUpdateManyWithoutObjectiveNestedInput
   pillarLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutObjectiveNestedInput
+  hypotheses?: Prisma.HypothesisUncheckedUpdateManyWithoutObjectiveNestedInput
 }
 
 export type ObjectiveCreateManyOrganizationInput = {
@@ -2195,6 +2374,7 @@ export type ObjectiveUpdateWithoutOrganizationInput = {
   projectLinks?: Prisma.ProjectObjectiveUpdateManyWithoutObjectiveNestedInput
   leverLinks?: Prisma.NorthStarLeverUpdateManyWithoutObjectiveNestedInput
   pillarLinks?: Prisma.PillarObjectiveUpdateManyWithoutObjectiveNestedInput
+  hypotheses?: Prisma.HypothesisUpdateManyWithoutObjectiveNestedInput
 }
 
 export type ObjectiveUncheckedUpdateWithoutOrganizationInput = {
@@ -2218,6 +2398,7 @@ export type ObjectiveUncheckedUpdateWithoutOrganizationInput = {
   projectLinks?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutObjectiveNestedInput
   leverLinks?: Prisma.NorthStarLeverUncheckedUpdateManyWithoutObjectiveNestedInput
   pillarLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutObjectiveNestedInput
+  hypotheses?: Prisma.HypothesisUncheckedUpdateManyWithoutObjectiveNestedInput
 }
 
 export type ObjectiveUncheckedUpdateManyWithoutOrganizationInput = {
@@ -2273,6 +2454,7 @@ export type ObjectiveUpdateWithoutOwnerInput = {
   projectLinks?: Prisma.ProjectObjectiveUpdateManyWithoutObjectiveNestedInput
   leverLinks?: Prisma.NorthStarLeverUpdateManyWithoutObjectiveNestedInput
   pillarLinks?: Prisma.PillarObjectiveUpdateManyWithoutObjectiveNestedInput
+  hypotheses?: Prisma.HypothesisUpdateManyWithoutObjectiveNestedInput
 }
 
 export type ObjectiveUncheckedUpdateWithoutOwnerInput = {
@@ -2296,6 +2478,7 @@ export type ObjectiveUncheckedUpdateWithoutOwnerInput = {
   projectLinks?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutObjectiveNestedInput
   leverLinks?: Prisma.NorthStarLeverUncheckedUpdateManyWithoutObjectiveNestedInput
   pillarLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutObjectiveNestedInput
+  hypotheses?: Prisma.HypothesisUncheckedUpdateManyWithoutObjectiveNestedInput
 }
 
 export type ObjectiveUncheckedUpdateManyWithoutOwnerInput = {
@@ -2367,6 +2550,7 @@ export type ObjectiveUpdateWithoutParentObjectiveInput = {
   projectLinks?: Prisma.ProjectObjectiveUpdateManyWithoutObjectiveNestedInput
   leverLinks?: Prisma.NorthStarLeverUpdateManyWithoutObjectiveNestedInput
   pillarLinks?: Prisma.PillarObjectiveUpdateManyWithoutObjectiveNestedInput
+  hypotheses?: Prisma.HypothesisUpdateManyWithoutObjectiveNestedInput
 }
 
 export type ObjectiveUncheckedUpdateWithoutParentObjectiveInput = {
@@ -2390,6 +2574,7 @@ export type ObjectiveUncheckedUpdateWithoutParentObjectiveInput = {
   projectLinks?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutObjectiveNestedInput
   leverLinks?: Prisma.NorthStarLeverUncheckedUpdateManyWithoutObjectiveNestedInput
   pillarLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutObjectiveNestedInput
+  hypotheses?: Prisma.HypothesisUncheckedUpdateManyWithoutObjectiveNestedInput
 }
 
 export type ObjectiveUncheckedUpdateManyWithoutParentObjectiveInput = {
@@ -2429,6 +2614,7 @@ export type ObjectiveUpdateWithoutSourceObjectiveInput = {
   projectLinks?: Prisma.ProjectObjectiveUpdateManyWithoutObjectiveNestedInput
   leverLinks?: Prisma.NorthStarLeverUpdateManyWithoutObjectiveNestedInput
   pillarLinks?: Prisma.PillarObjectiveUpdateManyWithoutObjectiveNestedInput
+  hypotheses?: Prisma.HypothesisUpdateManyWithoutObjectiveNestedInput
 }
 
 export type ObjectiveUncheckedUpdateWithoutSourceObjectiveInput = {
@@ -2452,6 +2638,7 @@ export type ObjectiveUncheckedUpdateWithoutSourceObjectiveInput = {
   projectLinks?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutObjectiveNestedInput
   leverLinks?: Prisma.NorthStarLeverUncheckedUpdateManyWithoutObjectiveNestedInput
   pillarLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutObjectiveNestedInput
+  hypotheses?: Prisma.HypothesisUncheckedUpdateManyWithoutObjectiveNestedInput
 }
 
 export type ObjectiveUncheckedUpdateManyWithoutSourceObjectiveInput = {
@@ -2507,6 +2694,7 @@ export type ObjectiveUpdateWithoutCycleInput = {
   projectLinks?: Prisma.ProjectObjectiveUpdateManyWithoutObjectiveNestedInput
   leverLinks?: Prisma.NorthStarLeverUpdateManyWithoutObjectiveNestedInput
   pillarLinks?: Prisma.PillarObjectiveUpdateManyWithoutObjectiveNestedInput
+  hypotheses?: Prisma.HypothesisUpdateManyWithoutObjectiveNestedInput
 }
 
 export type ObjectiveUncheckedUpdateWithoutCycleInput = {
@@ -2530,6 +2718,7 @@ export type ObjectiveUncheckedUpdateWithoutCycleInput = {
   projectLinks?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutObjectiveNestedInput
   leverLinks?: Prisma.NorthStarLeverUncheckedUpdateManyWithoutObjectiveNestedInput
   pillarLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutObjectiveNestedInput
+  hypotheses?: Prisma.HypothesisUncheckedUpdateManyWithoutObjectiveNestedInput
 }
 
 export type ObjectiveUncheckedUpdateManyWithoutCycleInput = {
@@ -2585,6 +2774,7 @@ export type ObjectiveUpdateWithoutTeamInput = {
   projectLinks?: Prisma.ProjectObjectiveUpdateManyWithoutObjectiveNestedInput
   leverLinks?: Prisma.NorthStarLeverUpdateManyWithoutObjectiveNestedInput
   pillarLinks?: Prisma.PillarObjectiveUpdateManyWithoutObjectiveNestedInput
+  hypotheses?: Prisma.HypothesisUpdateManyWithoutObjectiveNestedInput
 }
 
 export type ObjectiveUncheckedUpdateWithoutTeamInput = {
@@ -2608,6 +2798,7 @@ export type ObjectiveUncheckedUpdateWithoutTeamInput = {
   projectLinks?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutObjectiveNestedInput
   leverLinks?: Prisma.NorthStarLeverUncheckedUpdateManyWithoutObjectiveNestedInput
   pillarLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutObjectiveNestedInput
+  hypotheses?: Prisma.HypothesisUncheckedUpdateManyWithoutObjectiveNestedInput
 }
 
 export type ObjectiveUncheckedUpdateManyWithoutTeamInput = {
@@ -2639,6 +2830,7 @@ export type ObjectiveCountOutputType = {
   projectLinks: number
   leverLinks: number
   pillarLinks: number
+  hypotheses: number
 }
 
 export type ObjectiveCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2649,6 +2841,7 @@ export type ObjectiveCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensi
   projectLinks?: boolean | ObjectiveCountOutputTypeCountProjectLinksArgs
   leverLinks?: boolean | ObjectiveCountOutputTypeCountLeverLinksArgs
   pillarLinks?: boolean | ObjectiveCountOutputTypeCountPillarLinksArgs
+  hypotheses?: boolean | ObjectiveCountOutputTypeCountHypothesesArgs
 }
 
 /**
@@ -2710,6 +2903,13 @@ export type ObjectiveCountOutputTypeCountPillarLinksArgs<ExtArgs extends runtime
   where?: Prisma.PillarObjectiveWhereInput
 }
 
+/**
+ * ObjectiveCountOutputType without action
+ */
+export type ObjectiveCountOutputTypeCountHypothesesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.HypothesisWhereInput
+}
+
 
 export type ObjectiveSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -2739,6 +2939,7 @@ export type ObjectiveSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   projectLinks?: boolean | Prisma.Objective$projectLinksArgs<ExtArgs>
   leverLinks?: boolean | Prisma.Objective$leverLinksArgs<ExtArgs>
   pillarLinks?: boolean | Prisma.Objective$pillarLinksArgs<ExtArgs>
+  hypotheses?: boolean | Prisma.Objective$hypothesesArgs<ExtArgs>
   _count?: boolean | Prisma.ObjectiveCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["objective"]>
 
@@ -2820,6 +3021,7 @@ export type ObjectiveInclude<ExtArgs extends runtime.Types.Extensions.InternalAr
   projectLinks?: boolean | Prisma.Objective$projectLinksArgs<ExtArgs>
   leverLinks?: boolean | Prisma.Objective$leverLinksArgs<ExtArgs>
   pillarLinks?: boolean | Prisma.Objective$pillarLinksArgs<ExtArgs>
+  hypotheses?: boolean | Prisma.Objective$hypothesesArgs<ExtArgs>
   _count?: boolean | Prisma.ObjectiveCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ObjectiveIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2855,6 +3057,7 @@ export type $ObjectivePayload<ExtArgs extends runtime.Types.Extensions.InternalA
     projectLinks: Prisma.$ProjectObjectivePayload<ExtArgs>[]
     leverLinks: Prisma.$NorthStarLeverPayload<ExtArgs>[]
     pillarLinks: Prisma.$PillarObjectivePayload<ExtArgs>[]
+    hypotheses: Prisma.$HypothesisPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -3278,6 +3481,7 @@ export interface Prisma__ObjectiveClient<T, Null = never, ExtArgs extends runtim
   projectLinks<T extends Prisma.Objective$projectLinksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Objective$projectLinksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProjectObjectivePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   leverLinks<T extends Prisma.Objective$leverLinksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Objective$leverLinksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NorthStarLeverPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   pillarLinks<T extends Prisma.Objective$pillarLinksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Objective$pillarLinksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PillarObjectivePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  hypotheses<T extends Prisma.Objective$hypothesesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Objective$hypothesesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$HypothesisPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3963,6 +4167,30 @@ export type Objective$pillarLinksArgs<ExtArgs extends runtime.Types.Extensions.I
   take?: number
   skip?: number
   distinct?: Prisma.PillarObjectiveScalarFieldEnum | Prisma.PillarObjectiveScalarFieldEnum[]
+}
+
+/**
+ * Objective.hypotheses
+ */
+export type Objective$hypothesesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Hypothesis
+   */
+  select?: Prisma.HypothesisSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Hypothesis
+   */
+  omit?: Prisma.HypothesisOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.HypothesisInclude<ExtArgs> | null
+  where?: Prisma.HypothesisWhereInput
+  orderBy?: Prisma.HypothesisOrderByWithRelationInput | Prisma.HypothesisOrderByWithRelationInput[]
+  cursor?: Prisma.HypothesisWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.HypothesisScalarFieldEnum | Prisma.HypothesisScalarFieldEnum[]
 }
 
 /**

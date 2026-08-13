@@ -247,6 +247,9 @@ export type OrganizationWhereInput = {
   skills?: Prisma.SkillListRelationFilter
   competencies?: Prisma.CompetencyListRelationFilter
   skillRequirements?: Prisma.SkillRequirementListRelationFilter
+  hypotheses?: Prisma.HypothesisListRelationFilter
+  experiments?: Prisma.ExperimentListRelationFilter
+  learnings?: Prisma.LearningListRelationFilter
 }
 
 export type OrganizationOrderByWithRelationInput = {
@@ -276,6 +279,9 @@ export type OrganizationOrderByWithRelationInput = {
   skills?: Prisma.SkillOrderByRelationAggregateInput
   competencies?: Prisma.CompetencyOrderByRelationAggregateInput
   skillRequirements?: Prisma.SkillRequirementOrderByRelationAggregateInput
+  hypotheses?: Prisma.HypothesisOrderByRelationAggregateInput
+  experiments?: Prisma.ExperimentOrderByRelationAggregateInput
+  learnings?: Prisma.LearningOrderByRelationAggregateInput
 }
 
 export type OrganizationWhereUniqueInput = Prisma.AtLeast<{
@@ -308,6 +314,9 @@ export type OrganizationWhereUniqueInput = Prisma.AtLeast<{
   skills?: Prisma.SkillListRelationFilter
   competencies?: Prisma.CompetencyListRelationFilter
   skillRequirements?: Prisma.SkillRequirementListRelationFilter
+  hypotheses?: Prisma.HypothesisListRelationFilter
+  experiments?: Prisma.ExperimentListRelationFilter
+  learnings?: Prisma.LearningListRelationFilter
 }, "id">
 
 export type OrganizationOrderByWithAggregationInput = {
@@ -365,6 +374,9 @@ export type OrganizationCreateInput = {
   skills?: Prisma.SkillCreateNestedManyWithoutOrganizationInput
   competencies?: Prisma.CompetencyCreateNestedManyWithoutOrganizationInput
   skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutOrganizationInput
+  hypotheses?: Prisma.HypothesisCreateNestedManyWithoutOrganizationInput
+  experiments?: Prisma.ExperimentCreateNestedManyWithoutOrganizationInput
+  learnings?: Prisma.LearningCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateInput = {
@@ -394,6 +406,9 @@ export type OrganizationUncheckedCreateInput = {
   skills?: Prisma.SkillUncheckedCreateNestedManyWithoutOrganizationInput
   competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutOrganizationInput
   skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutOrganizationInput
+  hypotheses?: Prisma.HypothesisUncheckedCreateNestedManyWithoutOrganizationInput
+  experiments?: Prisma.ExperimentUncheckedCreateNestedManyWithoutOrganizationInput
+  learnings?: Prisma.LearningUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUpdateInput = {
@@ -423,6 +438,9 @@ export type OrganizationUpdateInput = {
   skills?: Prisma.SkillUpdateManyWithoutOrganizationNestedInput
   competencies?: Prisma.CompetencyUpdateManyWithoutOrganizationNestedInput
   skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutOrganizationNestedInput
+  hypotheses?: Prisma.HypothesisUpdateManyWithoutOrganizationNestedInput
+  experiments?: Prisma.ExperimentUpdateManyWithoutOrganizationNestedInput
+  learnings?: Prisma.LearningUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateInput = {
@@ -452,6 +470,9 @@ export type OrganizationUncheckedUpdateInput = {
   skills?: Prisma.SkillUncheckedUpdateManyWithoutOrganizationNestedInput
   competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutOrganizationNestedInput
   skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
+  hypotheses?: Prisma.HypothesisUncheckedUpdateManyWithoutOrganizationNestedInput
+  experiments?: Prisma.ExperimentUncheckedUpdateManyWithoutOrganizationNestedInput
+  learnings?: Prisma.LearningUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateManyInput = {
@@ -660,6 +681,48 @@ export type OrganizationUpdateOneRequiredWithoutKeyResultsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutKeyResultsInput, Prisma.OrganizationUpdateWithoutKeyResultsInput>, Prisma.OrganizationUncheckedUpdateWithoutKeyResultsInput>
 }
 
+export type OrganizationCreateNestedOneWithoutHypothesesInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutHypothesesInput, Prisma.OrganizationUncheckedCreateWithoutHypothesesInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutHypothesesInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutHypothesesNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutHypothesesInput, Prisma.OrganizationUncheckedCreateWithoutHypothesesInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutHypothesesInput
+  upsert?: Prisma.OrganizationUpsertWithoutHypothesesInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutHypothesesInput, Prisma.OrganizationUpdateWithoutHypothesesInput>, Prisma.OrganizationUncheckedUpdateWithoutHypothesesInput>
+}
+
+export type OrganizationCreateNestedOneWithoutExperimentsInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutExperimentsInput, Prisma.OrganizationUncheckedCreateWithoutExperimentsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutExperimentsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutExperimentsNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutExperimentsInput, Prisma.OrganizationUncheckedCreateWithoutExperimentsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutExperimentsInput
+  upsert?: Prisma.OrganizationUpsertWithoutExperimentsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutExperimentsInput, Prisma.OrganizationUpdateWithoutExperimentsInput>, Prisma.OrganizationUncheckedUpdateWithoutExperimentsInput>
+}
+
+export type OrganizationCreateNestedOneWithoutLearningsInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutLearningsInput, Prisma.OrganizationUncheckedCreateWithoutLearningsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutLearningsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutLearningsNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutLearningsInput, Prisma.OrganizationUncheckedCreateWithoutLearningsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutLearningsInput
+  upsert?: Prisma.OrganizationUpsertWithoutLearningsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutLearningsInput, Prisma.OrganizationUpdateWithoutLearningsInput>, Prisma.OrganizationUncheckedUpdateWithoutLearningsInput>
+}
+
 export type OrganizationCreateNestedOneWithoutOkrCyclesInput = {
   create?: Prisma.XOR<Prisma.OrganizationCreateWithoutOkrCyclesInput, Prisma.OrganizationUncheckedCreateWithoutOkrCyclesInput>
   connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutOkrCyclesInput
@@ -854,6 +917,9 @@ export type OrganizationCreateWithoutMembersInput = {
   skills?: Prisma.SkillCreateNestedManyWithoutOrganizationInput
   competencies?: Prisma.CompetencyCreateNestedManyWithoutOrganizationInput
   skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutOrganizationInput
+  hypotheses?: Prisma.HypothesisCreateNestedManyWithoutOrganizationInput
+  experiments?: Prisma.ExperimentCreateNestedManyWithoutOrganizationInput
+  learnings?: Prisma.LearningCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutMembersInput = {
@@ -882,6 +948,9 @@ export type OrganizationUncheckedCreateWithoutMembersInput = {
   skills?: Prisma.SkillUncheckedCreateNestedManyWithoutOrganizationInput
   competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutOrganizationInput
   skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutOrganizationInput
+  hypotheses?: Prisma.HypothesisUncheckedCreateNestedManyWithoutOrganizationInput
+  experiments?: Prisma.ExperimentUncheckedCreateNestedManyWithoutOrganizationInput
+  learnings?: Prisma.LearningUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutMembersInput = {
@@ -926,6 +995,9 @@ export type OrganizationUpdateWithoutMembersInput = {
   skills?: Prisma.SkillUpdateManyWithoutOrganizationNestedInput
   competencies?: Prisma.CompetencyUpdateManyWithoutOrganizationNestedInput
   skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutOrganizationNestedInput
+  hypotheses?: Prisma.HypothesisUpdateManyWithoutOrganizationNestedInput
+  experiments?: Prisma.ExperimentUpdateManyWithoutOrganizationNestedInput
+  learnings?: Prisma.LearningUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutMembersInput = {
@@ -954,6 +1026,9 @@ export type OrganizationUncheckedUpdateWithoutMembersInput = {
   skills?: Prisma.SkillUncheckedUpdateManyWithoutOrganizationNestedInput
   competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutOrganizationNestedInput
   skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
+  hypotheses?: Prisma.HypothesisUncheckedUpdateManyWithoutOrganizationNestedInput
+  experiments?: Prisma.ExperimentUncheckedUpdateManyWithoutOrganizationNestedInput
+  learnings?: Prisma.LearningUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutNorthStarInput = {
@@ -982,6 +1057,9 @@ export type OrganizationCreateWithoutNorthStarInput = {
   skills?: Prisma.SkillCreateNestedManyWithoutOrganizationInput
   competencies?: Prisma.CompetencyCreateNestedManyWithoutOrganizationInput
   skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutOrganizationInput
+  hypotheses?: Prisma.HypothesisCreateNestedManyWithoutOrganizationInput
+  experiments?: Prisma.ExperimentCreateNestedManyWithoutOrganizationInput
+  learnings?: Prisma.LearningCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutNorthStarInput = {
@@ -1010,6 +1088,9 @@ export type OrganizationUncheckedCreateWithoutNorthStarInput = {
   skills?: Prisma.SkillUncheckedCreateNestedManyWithoutOrganizationInput
   competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutOrganizationInput
   skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutOrganizationInput
+  hypotheses?: Prisma.HypothesisUncheckedCreateNestedManyWithoutOrganizationInput
+  experiments?: Prisma.ExperimentUncheckedCreateNestedManyWithoutOrganizationInput
+  learnings?: Prisma.LearningUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutNorthStarInput = {
@@ -1054,6 +1135,9 @@ export type OrganizationUpdateWithoutNorthStarInput = {
   skills?: Prisma.SkillUpdateManyWithoutOrganizationNestedInput
   competencies?: Prisma.CompetencyUpdateManyWithoutOrganizationNestedInput
   skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutOrganizationNestedInput
+  hypotheses?: Prisma.HypothesisUpdateManyWithoutOrganizationNestedInput
+  experiments?: Prisma.ExperimentUpdateManyWithoutOrganizationNestedInput
+  learnings?: Prisma.LearningUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutNorthStarInput = {
@@ -1082,6 +1166,9 @@ export type OrganizationUncheckedUpdateWithoutNorthStarInput = {
   skills?: Prisma.SkillUncheckedUpdateManyWithoutOrganizationNestedInput
   competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutOrganizationNestedInput
   skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
+  hypotheses?: Prisma.HypothesisUncheckedUpdateManyWithoutOrganizationNestedInput
+  experiments?: Prisma.ExperimentUncheckedUpdateManyWithoutOrganizationNestedInput
+  learnings?: Prisma.LearningUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutLeverLinksInput = {
@@ -1110,6 +1197,9 @@ export type OrganizationCreateWithoutLeverLinksInput = {
   skills?: Prisma.SkillCreateNestedManyWithoutOrganizationInput
   competencies?: Prisma.CompetencyCreateNestedManyWithoutOrganizationInput
   skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutOrganizationInput
+  hypotheses?: Prisma.HypothesisCreateNestedManyWithoutOrganizationInput
+  experiments?: Prisma.ExperimentCreateNestedManyWithoutOrganizationInput
+  learnings?: Prisma.LearningCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutLeverLinksInput = {
@@ -1138,6 +1228,9 @@ export type OrganizationUncheckedCreateWithoutLeverLinksInput = {
   skills?: Prisma.SkillUncheckedCreateNestedManyWithoutOrganizationInput
   competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutOrganizationInput
   skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutOrganizationInput
+  hypotheses?: Prisma.HypothesisUncheckedCreateNestedManyWithoutOrganizationInput
+  experiments?: Prisma.ExperimentUncheckedCreateNestedManyWithoutOrganizationInput
+  learnings?: Prisma.LearningUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutLeverLinksInput = {
@@ -1182,6 +1275,9 @@ export type OrganizationUpdateWithoutLeverLinksInput = {
   skills?: Prisma.SkillUpdateManyWithoutOrganizationNestedInput
   competencies?: Prisma.CompetencyUpdateManyWithoutOrganizationNestedInput
   skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutOrganizationNestedInput
+  hypotheses?: Prisma.HypothesisUpdateManyWithoutOrganizationNestedInput
+  experiments?: Prisma.ExperimentUpdateManyWithoutOrganizationNestedInput
+  learnings?: Prisma.LearningUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutLeverLinksInput = {
@@ -1210,6 +1306,9 @@ export type OrganizationUncheckedUpdateWithoutLeverLinksInput = {
   skills?: Prisma.SkillUncheckedUpdateManyWithoutOrganizationNestedInput
   competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutOrganizationNestedInput
   skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
+  hypotheses?: Prisma.HypothesisUncheckedUpdateManyWithoutOrganizationNestedInput
+  experiments?: Prisma.ExperimentUncheckedUpdateManyWithoutOrganizationNestedInput
+  learnings?: Prisma.LearningUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutPillarsInput = {
@@ -1238,6 +1337,9 @@ export type OrganizationCreateWithoutPillarsInput = {
   skills?: Prisma.SkillCreateNestedManyWithoutOrganizationInput
   competencies?: Prisma.CompetencyCreateNestedManyWithoutOrganizationInput
   skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutOrganizationInput
+  hypotheses?: Prisma.HypothesisCreateNestedManyWithoutOrganizationInput
+  experiments?: Prisma.ExperimentCreateNestedManyWithoutOrganizationInput
+  learnings?: Prisma.LearningCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutPillarsInput = {
@@ -1266,6 +1368,9 @@ export type OrganizationUncheckedCreateWithoutPillarsInput = {
   skills?: Prisma.SkillUncheckedCreateNestedManyWithoutOrganizationInput
   competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutOrganizationInput
   skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutOrganizationInput
+  hypotheses?: Prisma.HypothesisUncheckedCreateNestedManyWithoutOrganizationInput
+  experiments?: Prisma.ExperimentUncheckedCreateNestedManyWithoutOrganizationInput
+  learnings?: Prisma.LearningUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutPillarsInput = {
@@ -1310,6 +1415,9 @@ export type OrganizationUpdateWithoutPillarsInput = {
   skills?: Prisma.SkillUpdateManyWithoutOrganizationNestedInput
   competencies?: Prisma.CompetencyUpdateManyWithoutOrganizationNestedInput
   skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutOrganizationNestedInput
+  hypotheses?: Prisma.HypothesisUpdateManyWithoutOrganizationNestedInput
+  experiments?: Prisma.ExperimentUpdateManyWithoutOrganizationNestedInput
+  learnings?: Prisma.LearningUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutPillarsInput = {
@@ -1338,6 +1446,9 @@ export type OrganizationUncheckedUpdateWithoutPillarsInput = {
   skills?: Prisma.SkillUncheckedUpdateManyWithoutOrganizationNestedInput
   competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutOrganizationNestedInput
   skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
+  hypotheses?: Prisma.HypothesisUncheckedUpdateManyWithoutOrganizationNestedInput
+  experiments?: Prisma.ExperimentUncheckedUpdateManyWithoutOrganizationNestedInput
+  learnings?: Prisma.LearningUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutPillarObjectiveLinksInput = {
@@ -1366,6 +1477,9 @@ export type OrganizationCreateWithoutPillarObjectiveLinksInput = {
   skills?: Prisma.SkillCreateNestedManyWithoutOrganizationInput
   competencies?: Prisma.CompetencyCreateNestedManyWithoutOrganizationInput
   skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutOrganizationInput
+  hypotheses?: Prisma.HypothesisCreateNestedManyWithoutOrganizationInput
+  experiments?: Prisma.ExperimentCreateNestedManyWithoutOrganizationInput
+  learnings?: Prisma.LearningCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutPillarObjectiveLinksInput = {
@@ -1394,6 +1508,9 @@ export type OrganizationUncheckedCreateWithoutPillarObjectiveLinksInput = {
   skills?: Prisma.SkillUncheckedCreateNestedManyWithoutOrganizationInput
   competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutOrganizationInput
   skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutOrganizationInput
+  hypotheses?: Prisma.HypothesisUncheckedCreateNestedManyWithoutOrganizationInput
+  experiments?: Prisma.ExperimentUncheckedCreateNestedManyWithoutOrganizationInput
+  learnings?: Prisma.LearningUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutPillarObjectiveLinksInput = {
@@ -1438,6 +1555,9 @@ export type OrganizationUpdateWithoutPillarObjectiveLinksInput = {
   skills?: Prisma.SkillUpdateManyWithoutOrganizationNestedInput
   competencies?: Prisma.CompetencyUpdateManyWithoutOrganizationNestedInput
   skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutOrganizationNestedInput
+  hypotheses?: Prisma.HypothesisUpdateManyWithoutOrganizationNestedInput
+  experiments?: Prisma.ExperimentUpdateManyWithoutOrganizationNestedInput
+  learnings?: Prisma.LearningUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutPillarObjectiveLinksInput = {
@@ -1466,6 +1586,9 @@ export type OrganizationUncheckedUpdateWithoutPillarObjectiveLinksInput = {
   skills?: Prisma.SkillUncheckedUpdateManyWithoutOrganizationNestedInput
   competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutOrganizationNestedInput
   skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
+  hypotheses?: Prisma.HypothesisUncheckedUpdateManyWithoutOrganizationNestedInput
+  experiments?: Prisma.ExperimentUncheckedUpdateManyWithoutOrganizationNestedInput
+  learnings?: Prisma.LearningUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutObjectivesInput = {
@@ -1494,6 +1617,9 @@ export type OrganizationCreateWithoutObjectivesInput = {
   skills?: Prisma.SkillCreateNestedManyWithoutOrganizationInput
   competencies?: Prisma.CompetencyCreateNestedManyWithoutOrganizationInput
   skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutOrganizationInput
+  hypotheses?: Prisma.HypothesisCreateNestedManyWithoutOrganizationInput
+  experiments?: Prisma.ExperimentCreateNestedManyWithoutOrganizationInput
+  learnings?: Prisma.LearningCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutObjectivesInput = {
@@ -1522,6 +1648,9 @@ export type OrganizationUncheckedCreateWithoutObjectivesInput = {
   skills?: Prisma.SkillUncheckedCreateNestedManyWithoutOrganizationInput
   competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutOrganizationInput
   skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutOrganizationInput
+  hypotheses?: Prisma.HypothesisUncheckedCreateNestedManyWithoutOrganizationInput
+  experiments?: Prisma.ExperimentUncheckedCreateNestedManyWithoutOrganizationInput
+  learnings?: Prisma.LearningUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutObjectivesInput = {
@@ -1566,6 +1695,9 @@ export type OrganizationUpdateWithoutObjectivesInput = {
   skills?: Prisma.SkillUpdateManyWithoutOrganizationNestedInput
   competencies?: Prisma.CompetencyUpdateManyWithoutOrganizationNestedInput
   skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutOrganizationNestedInput
+  hypotheses?: Prisma.HypothesisUpdateManyWithoutOrganizationNestedInput
+  experiments?: Prisma.ExperimentUpdateManyWithoutOrganizationNestedInput
+  learnings?: Prisma.LearningUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutObjectivesInput = {
@@ -1594,6 +1726,9 @@ export type OrganizationUncheckedUpdateWithoutObjectivesInput = {
   skills?: Prisma.SkillUncheckedUpdateManyWithoutOrganizationNestedInput
   competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutOrganizationNestedInput
   skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
+  hypotheses?: Prisma.HypothesisUncheckedUpdateManyWithoutOrganizationNestedInput
+  experiments?: Prisma.ExperimentUncheckedUpdateManyWithoutOrganizationNestedInput
+  learnings?: Prisma.LearningUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutKeyResultsInput = {
@@ -1622,6 +1757,9 @@ export type OrganizationCreateWithoutKeyResultsInput = {
   skills?: Prisma.SkillCreateNestedManyWithoutOrganizationInput
   competencies?: Prisma.CompetencyCreateNestedManyWithoutOrganizationInput
   skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutOrganizationInput
+  hypotheses?: Prisma.HypothesisCreateNestedManyWithoutOrganizationInput
+  experiments?: Prisma.ExperimentCreateNestedManyWithoutOrganizationInput
+  learnings?: Prisma.LearningCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutKeyResultsInput = {
@@ -1650,6 +1788,9 @@ export type OrganizationUncheckedCreateWithoutKeyResultsInput = {
   skills?: Prisma.SkillUncheckedCreateNestedManyWithoutOrganizationInput
   competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutOrganizationInput
   skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutOrganizationInput
+  hypotheses?: Prisma.HypothesisUncheckedCreateNestedManyWithoutOrganizationInput
+  experiments?: Prisma.ExperimentUncheckedCreateNestedManyWithoutOrganizationInput
+  learnings?: Prisma.LearningUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutKeyResultsInput = {
@@ -1694,6 +1835,9 @@ export type OrganizationUpdateWithoutKeyResultsInput = {
   skills?: Prisma.SkillUpdateManyWithoutOrganizationNestedInput
   competencies?: Prisma.CompetencyUpdateManyWithoutOrganizationNestedInput
   skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutOrganizationNestedInput
+  hypotheses?: Prisma.HypothesisUpdateManyWithoutOrganizationNestedInput
+  experiments?: Prisma.ExperimentUpdateManyWithoutOrganizationNestedInput
+  learnings?: Prisma.LearningUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutKeyResultsInput = {
@@ -1722,6 +1866,429 @@ export type OrganizationUncheckedUpdateWithoutKeyResultsInput = {
   skills?: Prisma.SkillUncheckedUpdateManyWithoutOrganizationNestedInput
   competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutOrganizationNestedInput
   skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
+  hypotheses?: Prisma.HypothesisUncheckedUpdateManyWithoutOrganizationNestedInput
+  experiments?: Prisma.ExperimentUncheckedUpdateManyWithoutOrganizationNestedInput
+  learnings?: Prisma.LearningUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutHypothesesInput = {
+  id?: string
+  name: string
+  vision?: string | null
+  mission?: string | null
+  values?: Prisma.OrganizationCreatevaluesInput | string[]
+  createdAt?: Date | string
+  enpsMinimumResponses?: number
+  members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
+  northStar?: Prisma.NorthStarCreateNestedOneWithoutOrganizationInput
+  leverLinks?: Prisma.NorthStarLeverCreateNestedManyWithoutOrganizationInput
+  pillars?: Prisma.StrategicPillarCreateNestedManyWithoutOrganizationInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutOrganizationInput
+  objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
+  keyResults?: Prisma.KeyResultCreateNestedManyWithoutOrganizationInput
+  okrCycles?: Prisma.OkrCycleCreateNestedManyWithoutOrganizationInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigCreateNestedManyWithoutOrganizationInput
+  checkIns?: Prisma.CheckInCreateNestedManyWithoutOrganizationInput
+  checkInEvidence?: Prisma.CheckInEvidenceCreateNestedManyWithoutOrganizationInput
+  okrAuditEvents?: Prisma.OkrAuditEventCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
+  teamMembers?: Prisma.TeamMemberCreateNestedManyWithoutOrganizationInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutOrganizationInput
+  projectObjectives?: Prisma.ProjectObjectiveCreateNestedManyWithoutOrganizationInput
+  skills?: Prisma.SkillCreateNestedManyWithoutOrganizationInput
+  competencies?: Prisma.CompetencyCreateNestedManyWithoutOrganizationInput
+  skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutOrganizationInput
+  experiments?: Prisma.ExperimentCreateNestedManyWithoutOrganizationInput
+  learnings?: Prisma.LearningCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutHypothesesInput = {
+  id?: string
+  name: string
+  vision?: string | null
+  mission?: string | null
+  values?: Prisma.OrganizationCreatevaluesInput | string[]
+  createdAt?: Date | string
+  enpsMinimumResponses?: number
+  members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
+  northStar?: Prisma.NorthStarUncheckedCreateNestedOneWithoutOrganizationInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedCreateNestedManyWithoutOrganizationInput
+  pillars?: Prisma.StrategicPillarUncheckedCreateNestedManyWithoutOrganizationInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutOrganizationInput
+  okrCycles?: Prisma.OkrCycleUncheckedCreateNestedManyWithoutOrganizationInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUncheckedCreateNestedManyWithoutOrganizationInput
+  checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutOrganizationInput
+  checkInEvidence?: Prisma.CheckInEvidenceUncheckedCreateNestedManyWithoutOrganizationInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
+  teamMembers?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutOrganizationInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganizationInput
+  projectObjectives?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  skills?: Prisma.SkillUncheckedCreateNestedManyWithoutOrganizationInput
+  competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutOrganizationInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutOrganizationInput
+  experiments?: Prisma.ExperimentUncheckedCreateNestedManyWithoutOrganizationInput
+  learnings?: Prisma.LearningUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutHypothesesInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutHypothesesInput, Prisma.OrganizationUncheckedCreateWithoutHypothesesInput>
+}
+
+export type OrganizationUpsertWithoutHypothesesInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutHypothesesInput, Prisma.OrganizationUncheckedUpdateWithoutHypothesesInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutHypothesesInput, Prisma.OrganizationUncheckedCreateWithoutHypothesesInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutHypothesesInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutHypothesesInput, Prisma.OrganizationUncheckedUpdateWithoutHypothesesInput>
+}
+
+export type OrganizationUpdateWithoutHypothesesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mission?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  values?: Prisma.OrganizationUpdatevaluesInput | string[]
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
+  members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
+  northStar?: Prisma.NorthStarUpdateOneWithoutOrganizationNestedInput
+  leverLinks?: Prisma.NorthStarLeverUpdateManyWithoutOrganizationNestedInput
+  pillars?: Prisma.StrategicPillarUpdateManyWithoutOrganizationNestedInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUpdateManyWithoutOrganizationNestedInput
+  objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
+  keyResults?: Prisma.KeyResultUpdateManyWithoutOrganizationNestedInput
+  okrCycles?: Prisma.OkrCycleUpdateManyWithoutOrganizationNestedInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUpdateManyWithoutOrganizationNestedInput
+  checkIns?: Prisma.CheckInUpdateManyWithoutOrganizationNestedInput
+  checkInEvidence?: Prisma.CheckInEvidenceUpdateManyWithoutOrganizationNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
+  teamMembers?: Prisma.TeamMemberUpdateManyWithoutOrganizationNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutOrganizationNestedInput
+  projectObjectives?: Prisma.ProjectObjectiveUpdateManyWithoutOrganizationNestedInput
+  skills?: Prisma.SkillUpdateManyWithoutOrganizationNestedInput
+  competencies?: Prisma.CompetencyUpdateManyWithoutOrganizationNestedInput
+  skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutOrganizationNestedInput
+  experiments?: Prisma.ExperimentUpdateManyWithoutOrganizationNestedInput
+  learnings?: Prisma.LearningUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutHypothesesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mission?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  values?: Prisma.OrganizationUpdatevaluesInput | string[]
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
+  members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
+  northStar?: Prisma.NorthStarUncheckedUpdateOneWithoutOrganizationNestedInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedUpdateManyWithoutOrganizationNestedInput
+  pillars?: Prisma.StrategicPillarUncheckedUpdateManyWithoutOrganizationNestedInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrCycles?: Prisma.OkrCycleUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUncheckedUpdateManyWithoutOrganizationNestedInput
+  checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutOrganizationNestedInput
+  checkInEvidence?: Prisma.CheckInEvidenceUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
+  teamMembers?: Prisma.TeamMemberUncheckedUpdateManyWithoutOrganizationNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganizationNestedInput
+  projectObjectives?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  skills?: Prisma.SkillUncheckedUpdateManyWithoutOrganizationNestedInput
+  competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutOrganizationNestedInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
+  experiments?: Prisma.ExperimentUncheckedUpdateManyWithoutOrganizationNestedInput
+  learnings?: Prisma.LearningUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutExperimentsInput = {
+  id?: string
+  name: string
+  vision?: string | null
+  mission?: string | null
+  values?: Prisma.OrganizationCreatevaluesInput | string[]
+  createdAt?: Date | string
+  enpsMinimumResponses?: number
+  members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
+  northStar?: Prisma.NorthStarCreateNestedOneWithoutOrganizationInput
+  leverLinks?: Prisma.NorthStarLeverCreateNestedManyWithoutOrganizationInput
+  pillars?: Prisma.StrategicPillarCreateNestedManyWithoutOrganizationInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutOrganizationInput
+  objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
+  keyResults?: Prisma.KeyResultCreateNestedManyWithoutOrganizationInput
+  okrCycles?: Prisma.OkrCycleCreateNestedManyWithoutOrganizationInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigCreateNestedManyWithoutOrganizationInput
+  checkIns?: Prisma.CheckInCreateNestedManyWithoutOrganizationInput
+  checkInEvidence?: Prisma.CheckInEvidenceCreateNestedManyWithoutOrganizationInput
+  okrAuditEvents?: Prisma.OkrAuditEventCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
+  teamMembers?: Prisma.TeamMemberCreateNestedManyWithoutOrganizationInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutOrganizationInput
+  projectObjectives?: Prisma.ProjectObjectiveCreateNestedManyWithoutOrganizationInput
+  skills?: Prisma.SkillCreateNestedManyWithoutOrganizationInput
+  competencies?: Prisma.CompetencyCreateNestedManyWithoutOrganizationInput
+  skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutOrganizationInput
+  hypotheses?: Prisma.HypothesisCreateNestedManyWithoutOrganizationInput
+  learnings?: Prisma.LearningCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutExperimentsInput = {
+  id?: string
+  name: string
+  vision?: string | null
+  mission?: string | null
+  values?: Prisma.OrganizationCreatevaluesInput | string[]
+  createdAt?: Date | string
+  enpsMinimumResponses?: number
+  members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
+  northStar?: Prisma.NorthStarUncheckedCreateNestedOneWithoutOrganizationInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedCreateNestedManyWithoutOrganizationInput
+  pillars?: Prisma.StrategicPillarUncheckedCreateNestedManyWithoutOrganizationInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutOrganizationInput
+  okrCycles?: Prisma.OkrCycleUncheckedCreateNestedManyWithoutOrganizationInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUncheckedCreateNestedManyWithoutOrganizationInput
+  checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutOrganizationInput
+  checkInEvidence?: Prisma.CheckInEvidenceUncheckedCreateNestedManyWithoutOrganizationInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
+  teamMembers?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutOrganizationInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganizationInput
+  projectObjectives?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  skills?: Prisma.SkillUncheckedCreateNestedManyWithoutOrganizationInput
+  competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutOrganizationInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutOrganizationInput
+  hypotheses?: Prisma.HypothesisUncheckedCreateNestedManyWithoutOrganizationInput
+  learnings?: Prisma.LearningUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutExperimentsInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutExperimentsInput, Prisma.OrganizationUncheckedCreateWithoutExperimentsInput>
+}
+
+export type OrganizationUpsertWithoutExperimentsInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutExperimentsInput, Prisma.OrganizationUncheckedUpdateWithoutExperimentsInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutExperimentsInput, Prisma.OrganizationUncheckedCreateWithoutExperimentsInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutExperimentsInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutExperimentsInput, Prisma.OrganizationUncheckedUpdateWithoutExperimentsInput>
+}
+
+export type OrganizationUpdateWithoutExperimentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mission?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  values?: Prisma.OrganizationUpdatevaluesInput | string[]
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
+  members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
+  northStar?: Prisma.NorthStarUpdateOneWithoutOrganizationNestedInput
+  leverLinks?: Prisma.NorthStarLeverUpdateManyWithoutOrganizationNestedInput
+  pillars?: Prisma.StrategicPillarUpdateManyWithoutOrganizationNestedInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUpdateManyWithoutOrganizationNestedInput
+  objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
+  keyResults?: Prisma.KeyResultUpdateManyWithoutOrganizationNestedInput
+  okrCycles?: Prisma.OkrCycleUpdateManyWithoutOrganizationNestedInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUpdateManyWithoutOrganizationNestedInput
+  checkIns?: Prisma.CheckInUpdateManyWithoutOrganizationNestedInput
+  checkInEvidence?: Prisma.CheckInEvidenceUpdateManyWithoutOrganizationNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
+  teamMembers?: Prisma.TeamMemberUpdateManyWithoutOrganizationNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutOrganizationNestedInput
+  projectObjectives?: Prisma.ProjectObjectiveUpdateManyWithoutOrganizationNestedInput
+  skills?: Prisma.SkillUpdateManyWithoutOrganizationNestedInput
+  competencies?: Prisma.CompetencyUpdateManyWithoutOrganizationNestedInput
+  skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutOrganizationNestedInput
+  hypotheses?: Prisma.HypothesisUpdateManyWithoutOrganizationNestedInput
+  learnings?: Prisma.LearningUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutExperimentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mission?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  values?: Prisma.OrganizationUpdatevaluesInput | string[]
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
+  members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
+  northStar?: Prisma.NorthStarUncheckedUpdateOneWithoutOrganizationNestedInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedUpdateManyWithoutOrganizationNestedInput
+  pillars?: Prisma.StrategicPillarUncheckedUpdateManyWithoutOrganizationNestedInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrCycles?: Prisma.OkrCycleUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUncheckedUpdateManyWithoutOrganizationNestedInput
+  checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutOrganizationNestedInput
+  checkInEvidence?: Prisma.CheckInEvidenceUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
+  teamMembers?: Prisma.TeamMemberUncheckedUpdateManyWithoutOrganizationNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganizationNestedInput
+  projectObjectives?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  skills?: Prisma.SkillUncheckedUpdateManyWithoutOrganizationNestedInput
+  competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutOrganizationNestedInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
+  hypotheses?: Prisma.HypothesisUncheckedUpdateManyWithoutOrganizationNestedInput
+  learnings?: Prisma.LearningUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutLearningsInput = {
+  id?: string
+  name: string
+  vision?: string | null
+  mission?: string | null
+  values?: Prisma.OrganizationCreatevaluesInput | string[]
+  createdAt?: Date | string
+  enpsMinimumResponses?: number
+  members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
+  northStar?: Prisma.NorthStarCreateNestedOneWithoutOrganizationInput
+  leverLinks?: Prisma.NorthStarLeverCreateNestedManyWithoutOrganizationInput
+  pillars?: Prisma.StrategicPillarCreateNestedManyWithoutOrganizationInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutOrganizationInput
+  objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
+  keyResults?: Prisma.KeyResultCreateNestedManyWithoutOrganizationInput
+  okrCycles?: Prisma.OkrCycleCreateNestedManyWithoutOrganizationInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigCreateNestedManyWithoutOrganizationInput
+  checkIns?: Prisma.CheckInCreateNestedManyWithoutOrganizationInput
+  checkInEvidence?: Prisma.CheckInEvidenceCreateNestedManyWithoutOrganizationInput
+  okrAuditEvents?: Prisma.OkrAuditEventCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
+  teamMembers?: Prisma.TeamMemberCreateNestedManyWithoutOrganizationInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutOrganizationInput
+  projectObjectives?: Prisma.ProjectObjectiveCreateNestedManyWithoutOrganizationInput
+  skills?: Prisma.SkillCreateNestedManyWithoutOrganizationInput
+  competencies?: Prisma.CompetencyCreateNestedManyWithoutOrganizationInput
+  skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutOrganizationInput
+  hypotheses?: Prisma.HypothesisCreateNestedManyWithoutOrganizationInput
+  experiments?: Prisma.ExperimentCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutLearningsInput = {
+  id?: string
+  name: string
+  vision?: string | null
+  mission?: string | null
+  values?: Prisma.OrganizationCreatevaluesInput | string[]
+  createdAt?: Date | string
+  enpsMinimumResponses?: number
+  members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
+  northStar?: Prisma.NorthStarUncheckedCreateNestedOneWithoutOrganizationInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedCreateNestedManyWithoutOrganizationInput
+  pillars?: Prisma.StrategicPillarUncheckedCreateNestedManyWithoutOrganizationInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutOrganizationInput
+  okrCycles?: Prisma.OkrCycleUncheckedCreateNestedManyWithoutOrganizationInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUncheckedCreateNestedManyWithoutOrganizationInput
+  checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutOrganizationInput
+  checkInEvidence?: Prisma.CheckInEvidenceUncheckedCreateNestedManyWithoutOrganizationInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
+  teamMembers?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutOrganizationInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganizationInput
+  projectObjectives?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  skills?: Prisma.SkillUncheckedCreateNestedManyWithoutOrganizationInput
+  competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutOrganizationInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutOrganizationInput
+  hypotheses?: Prisma.HypothesisUncheckedCreateNestedManyWithoutOrganizationInput
+  experiments?: Prisma.ExperimentUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutLearningsInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutLearningsInput, Prisma.OrganizationUncheckedCreateWithoutLearningsInput>
+}
+
+export type OrganizationUpsertWithoutLearningsInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutLearningsInput, Prisma.OrganizationUncheckedUpdateWithoutLearningsInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutLearningsInput, Prisma.OrganizationUncheckedCreateWithoutLearningsInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutLearningsInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutLearningsInput, Prisma.OrganizationUncheckedUpdateWithoutLearningsInput>
+}
+
+export type OrganizationUpdateWithoutLearningsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mission?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  values?: Prisma.OrganizationUpdatevaluesInput | string[]
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
+  members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
+  northStar?: Prisma.NorthStarUpdateOneWithoutOrganizationNestedInput
+  leverLinks?: Prisma.NorthStarLeverUpdateManyWithoutOrganizationNestedInput
+  pillars?: Prisma.StrategicPillarUpdateManyWithoutOrganizationNestedInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUpdateManyWithoutOrganizationNestedInput
+  objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
+  keyResults?: Prisma.KeyResultUpdateManyWithoutOrganizationNestedInput
+  okrCycles?: Prisma.OkrCycleUpdateManyWithoutOrganizationNestedInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUpdateManyWithoutOrganizationNestedInput
+  checkIns?: Prisma.CheckInUpdateManyWithoutOrganizationNestedInput
+  checkInEvidence?: Prisma.CheckInEvidenceUpdateManyWithoutOrganizationNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
+  teamMembers?: Prisma.TeamMemberUpdateManyWithoutOrganizationNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutOrganizationNestedInput
+  projectObjectives?: Prisma.ProjectObjectiveUpdateManyWithoutOrganizationNestedInput
+  skills?: Prisma.SkillUpdateManyWithoutOrganizationNestedInput
+  competencies?: Prisma.CompetencyUpdateManyWithoutOrganizationNestedInput
+  skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutOrganizationNestedInput
+  hypotheses?: Prisma.HypothesisUpdateManyWithoutOrganizationNestedInput
+  experiments?: Prisma.ExperimentUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutLearningsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mission?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  values?: Prisma.OrganizationUpdatevaluesInput | string[]
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
+  members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
+  northStar?: Prisma.NorthStarUncheckedUpdateOneWithoutOrganizationNestedInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedUpdateManyWithoutOrganizationNestedInput
+  pillars?: Prisma.StrategicPillarUncheckedUpdateManyWithoutOrganizationNestedInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrCycles?: Prisma.OkrCycleUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUncheckedUpdateManyWithoutOrganizationNestedInput
+  checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutOrganizationNestedInput
+  checkInEvidence?: Prisma.CheckInEvidenceUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
+  teamMembers?: Prisma.TeamMemberUncheckedUpdateManyWithoutOrganizationNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganizationNestedInput
+  projectObjectives?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  skills?: Prisma.SkillUncheckedUpdateManyWithoutOrganizationNestedInput
+  competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutOrganizationNestedInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
+  hypotheses?: Prisma.HypothesisUncheckedUpdateManyWithoutOrganizationNestedInput
+  experiments?: Prisma.ExperimentUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutOkrCyclesInput = {
@@ -1750,6 +2317,9 @@ export type OrganizationCreateWithoutOkrCyclesInput = {
   skills?: Prisma.SkillCreateNestedManyWithoutOrganizationInput
   competencies?: Prisma.CompetencyCreateNestedManyWithoutOrganizationInput
   skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutOrganizationInput
+  hypotheses?: Prisma.HypothesisCreateNestedManyWithoutOrganizationInput
+  experiments?: Prisma.ExperimentCreateNestedManyWithoutOrganizationInput
+  learnings?: Prisma.LearningCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutOkrCyclesInput = {
@@ -1778,6 +2348,9 @@ export type OrganizationUncheckedCreateWithoutOkrCyclesInput = {
   skills?: Prisma.SkillUncheckedCreateNestedManyWithoutOrganizationInput
   competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutOrganizationInput
   skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutOrganizationInput
+  hypotheses?: Prisma.HypothesisUncheckedCreateNestedManyWithoutOrganizationInput
+  experiments?: Prisma.ExperimentUncheckedCreateNestedManyWithoutOrganizationInput
+  learnings?: Prisma.LearningUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutOkrCyclesInput = {
@@ -1822,6 +2395,9 @@ export type OrganizationUpdateWithoutOkrCyclesInput = {
   skills?: Prisma.SkillUpdateManyWithoutOrganizationNestedInput
   competencies?: Prisma.CompetencyUpdateManyWithoutOrganizationNestedInput
   skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutOrganizationNestedInput
+  hypotheses?: Prisma.HypothesisUpdateManyWithoutOrganizationNestedInput
+  experiments?: Prisma.ExperimentUpdateManyWithoutOrganizationNestedInput
+  learnings?: Prisma.LearningUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutOkrCyclesInput = {
@@ -1850,6 +2426,9 @@ export type OrganizationUncheckedUpdateWithoutOkrCyclesInput = {
   skills?: Prisma.SkillUncheckedUpdateManyWithoutOrganizationNestedInput
   competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutOrganizationNestedInput
   skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
+  hypotheses?: Prisma.HypothesisUncheckedUpdateManyWithoutOrganizationNestedInput
+  experiments?: Prisma.ExperimentUncheckedUpdateManyWithoutOrganizationNestedInput
+  learnings?: Prisma.LearningUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutOkrCadenceConfigsInput = {
@@ -1878,6 +2457,9 @@ export type OrganizationCreateWithoutOkrCadenceConfigsInput = {
   skills?: Prisma.SkillCreateNestedManyWithoutOrganizationInput
   competencies?: Prisma.CompetencyCreateNestedManyWithoutOrganizationInput
   skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutOrganizationInput
+  hypotheses?: Prisma.HypothesisCreateNestedManyWithoutOrganizationInput
+  experiments?: Prisma.ExperimentCreateNestedManyWithoutOrganizationInput
+  learnings?: Prisma.LearningCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutOkrCadenceConfigsInput = {
@@ -1906,6 +2488,9 @@ export type OrganizationUncheckedCreateWithoutOkrCadenceConfigsInput = {
   skills?: Prisma.SkillUncheckedCreateNestedManyWithoutOrganizationInput
   competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutOrganizationInput
   skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutOrganizationInput
+  hypotheses?: Prisma.HypothesisUncheckedCreateNestedManyWithoutOrganizationInput
+  experiments?: Prisma.ExperimentUncheckedCreateNestedManyWithoutOrganizationInput
+  learnings?: Prisma.LearningUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutOkrCadenceConfigsInput = {
@@ -1950,6 +2535,9 @@ export type OrganizationUpdateWithoutOkrCadenceConfigsInput = {
   skills?: Prisma.SkillUpdateManyWithoutOrganizationNestedInput
   competencies?: Prisma.CompetencyUpdateManyWithoutOrganizationNestedInput
   skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutOrganizationNestedInput
+  hypotheses?: Prisma.HypothesisUpdateManyWithoutOrganizationNestedInput
+  experiments?: Prisma.ExperimentUpdateManyWithoutOrganizationNestedInput
+  learnings?: Prisma.LearningUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutOkrCadenceConfigsInput = {
@@ -1978,6 +2566,9 @@ export type OrganizationUncheckedUpdateWithoutOkrCadenceConfigsInput = {
   skills?: Prisma.SkillUncheckedUpdateManyWithoutOrganizationNestedInput
   competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutOrganizationNestedInput
   skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
+  hypotheses?: Prisma.HypothesisUncheckedUpdateManyWithoutOrganizationNestedInput
+  experiments?: Prisma.ExperimentUncheckedUpdateManyWithoutOrganizationNestedInput
+  learnings?: Prisma.LearningUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutCheckInsInput = {
@@ -2006,6 +2597,9 @@ export type OrganizationCreateWithoutCheckInsInput = {
   skills?: Prisma.SkillCreateNestedManyWithoutOrganizationInput
   competencies?: Prisma.CompetencyCreateNestedManyWithoutOrganizationInput
   skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutOrganizationInput
+  hypotheses?: Prisma.HypothesisCreateNestedManyWithoutOrganizationInput
+  experiments?: Prisma.ExperimentCreateNestedManyWithoutOrganizationInput
+  learnings?: Prisma.LearningCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutCheckInsInput = {
@@ -2034,6 +2628,9 @@ export type OrganizationUncheckedCreateWithoutCheckInsInput = {
   skills?: Prisma.SkillUncheckedCreateNestedManyWithoutOrganizationInput
   competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutOrganizationInput
   skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutOrganizationInput
+  hypotheses?: Prisma.HypothesisUncheckedCreateNestedManyWithoutOrganizationInput
+  experiments?: Prisma.ExperimentUncheckedCreateNestedManyWithoutOrganizationInput
+  learnings?: Prisma.LearningUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutCheckInsInput = {
@@ -2078,6 +2675,9 @@ export type OrganizationUpdateWithoutCheckInsInput = {
   skills?: Prisma.SkillUpdateManyWithoutOrganizationNestedInput
   competencies?: Prisma.CompetencyUpdateManyWithoutOrganizationNestedInput
   skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutOrganizationNestedInput
+  hypotheses?: Prisma.HypothesisUpdateManyWithoutOrganizationNestedInput
+  experiments?: Prisma.ExperimentUpdateManyWithoutOrganizationNestedInput
+  learnings?: Prisma.LearningUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutCheckInsInput = {
@@ -2106,6 +2706,9 @@ export type OrganizationUncheckedUpdateWithoutCheckInsInput = {
   skills?: Prisma.SkillUncheckedUpdateManyWithoutOrganizationNestedInput
   competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutOrganizationNestedInput
   skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
+  hypotheses?: Prisma.HypothesisUncheckedUpdateManyWithoutOrganizationNestedInput
+  experiments?: Prisma.ExperimentUncheckedUpdateManyWithoutOrganizationNestedInput
+  learnings?: Prisma.LearningUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutCheckInEvidenceInput = {
@@ -2134,6 +2737,9 @@ export type OrganizationCreateWithoutCheckInEvidenceInput = {
   skills?: Prisma.SkillCreateNestedManyWithoutOrganizationInput
   competencies?: Prisma.CompetencyCreateNestedManyWithoutOrganizationInput
   skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutOrganizationInput
+  hypotheses?: Prisma.HypothesisCreateNestedManyWithoutOrganizationInput
+  experiments?: Prisma.ExperimentCreateNestedManyWithoutOrganizationInput
+  learnings?: Prisma.LearningCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutCheckInEvidenceInput = {
@@ -2162,6 +2768,9 @@ export type OrganizationUncheckedCreateWithoutCheckInEvidenceInput = {
   skills?: Prisma.SkillUncheckedCreateNestedManyWithoutOrganizationInput
   competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutOrganizationInput
   skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutOrganizationInput
+  hypotheses?: Prisma.HypothesisUncheckedCreateNestedManyWithoutOrganizationInput
+  experiments?: Prisma.ExperimentUncheckedCreateNestedManyWithoutOrganizationInput
+  learnings?: Prisma.LearningUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutCheckInEvidenceInput = {
@@ -2206,6 +2815,9 @@ export type OrganizationUpdateWithoutCheckInEvidenceInput = {
   skills?: Prisma.SkillUpdateManyWithoutOrganizationNestedInput
   competencies?: Prisma.CompetencyUpdateManyWithoutOrganizationNestedInput
   skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutOrganizationNestedInput
+  hypotheses?: Prisma.HypothesisUpdateManyWithoutOrganizationNestedInput
+  experiments?: Prisma.ExperimentUpdateManyWithoutOrganizationNestedInput
+  learnings?: Prisma.LearningUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutCheckInEvidenceInput = {
@@ -2234,6 +2846,9 @@ export type OrganizationUncheckedUpdateWithoutCheckInEvidenceInput = {
   skills?: Prisma.SkillUncheckedUpdateManyWithoutOrganizationNestedInput
   competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutOrganizationNestedInput
   skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
+  hypotheses?: Prisma.HypothesisUncheckedUpdateManyWithoutOrganizationNestedInput
+  experiments?: Prisma.ExperimentUncheckedUpdateManyWithoutOrganizationNestedInput
+  learnings?: Prisma.LearningUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutOkrAuditEventsInput = {
@@ -2262,6 +2877,9 @@ export type OrganizationCreateWithoutOkrAuditEventsInput = {
   skills?: Prisma.SkillCreateNestedManyWithoutOrganizationInput
   competencies?: Prisma.CompetencyCreateNestedManyWithoutOrganizationInput
   skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutOrganizationInput
+  hypotheses?: Prisma.HypothesisCreateNestedManyWithoutOrganizationInput
+  experiments?: Prisma.ExperimentCreateNestedManyWithoutOrganizationInput
+  learnings?: Prisma.LearningCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutOkrAuditEventsInput = {
@@ -2290,6 +2908,9 @@ export type OrganizationUncheckedCreateWithoutOkrAuditEventsInput = {
   skills?: Prisma.SkillUncheckedCreateNestedManyWithoutOrganizationInput
   competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutOrganizationInput
   skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutOrganizationInput
+  hypotheses?: Prisma.HypothesisUncheckedCreateNestedManyWithoutOrganizationInput
+  experiments?: Prisma.ExperimentUncheckedCreateNestedManyWithoutOrganizationInput
+  learnings?: Prisma.LearningUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutOkrAuditEventsInput = {
@@ -2334,6 +2955,9 @@ export type OrganizationUpdateWithoutOkrAuditEventsInput = {
   skills?: Prisma.SkillUpdateManyWithoutOrganizationNestedInput
   competencies?: Prisma.CompetencyUpdateManyWithoutOrganizationNestedInput
   skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutOrganizationNestedInput
+  hypotheses?: Prisma.HypothesisUpdateManyWithoutOrganizationNestedInput
+  experiments?: Prisma.ExperimentUpdateManyWithoutOrganizationNestedInput
+  learnings?: Prisma.LearningUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutOkrAuditEventsInput = {
@@ -2362,6 +2986,9 @@ export type OrganizationUncheckedUpdateWithoutOkrAuditEventsInput = {
   skills?: Prisma.SkillUncheckedUpdateManyWithoutOrganizationNestedInput
   competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutOrganizationNestedInput
   skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
+  hypotheses?: Prisma.HypothesisUncheckedUpdateManyWithoutOrganizationNestedInput
+  experiments?: Prisma.ExperimentUncheckedUpdateManyWithoutOrganizationNestedInput
+  learnings?: Prisma.LearningUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutTeamsInput = {
@@ -2390,6 +3017,9 @@ export type OrganizationCreateWithoutTeamsInput = {
   skills?: Prisma.SkillCreateNestedManyWithoutOrganizationInput
   competencies?: Prisma.CompetencyCreateNestedManyWithoutOrganizationInput
   skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutOrganizationInput
+  hypotheses?: Prisma.HypothesisCreateNestedManyWithoutOrganizationInput
+  experiments?: Prisma.ExperimentCreateNestedManyWithoutOrganizationInput
+  learnings?: Prisma.LearningCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutTeamsInput = {
@@ -2418,6 +3048,9 @@ export type OrganizationUncheckedCreateWithoutTeamsInput = {
   skills?: Prisma.SkillUncheckedCreateNestedManyWithoutOrganizationInput
   competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutOrganizationInput
   skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutOrganizationInput
+  hypotheses?: Prisma.HypothesisUncheckedCreateNestedManyWithoutOrganizationInput
+  experiments?: Prisma.ExperimentUncheckedCreateNestedManyWithoutOrganizationInput
+  learnings?: Prisma.LearningUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutTeamsInput = {
@@ -2462,6 +3095,9 @@ export type OrganizationUpdateWithoutTeamsInput = {
   skills?: Prisma.SkillUpdateManyWithoutOrganizationNestedInput
   competencies?: Prisma.CompetencyUpdateManyWithoutOrganizationNestedInput
   skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutOrganizationNestedInput
+  hypotheses?: Prisma.HypothesisUpdateManyWithoutOrganizationNestedInput
+  experiments?: Prisma.ExperimentUpdateManyWithoutOrganizationNestedInput
+  learnings?: Prisma.LearningUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutTeamsInput = {
@@ -2490,6 +3126,9 @@ export type OrganizationUncheckedUpdateWithoutTeamsInput = {
   skills?: Prisma.SkillUncheckedUpdateManyWithoutOrganizationNestedInput
   competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutOrganizationNestedInput
   skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
+  hypotheses?: Prisma.HypothesisUncheckedUpdateManyWithoutOrganizationNestedInput
+  experiments?: Prisma.ExperimentUncheckedUpdateManyWithoutOrganizationNestedInput
+  learnings?: Prisma.LearningUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutTeamMembersInput = {
@@ -2518,6 +3157,9 @@ export type OrganizationCreateWithoutTeamMembersInput = {
   skills?: Prisma.SkillCreateNestedManyWithoutOrganizationInput
   competencies?: Prisma.CompetencyCreateNestedManyWithoutOrganizationInput
   skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutOrganizationInput
+  hypotheses?: Prisma.HypothesisCreateNestedManyWithoutOrganizationInput
+  experiments?: Prisma.ExperimentCreateNestedManyWithoutOrganizationInput
+  learnings?: Prisma.LearningCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutTeamMembersInput = {
@@ -2546,6 +3188,9 @@ export type OrganizationUncheckedCreateWithoutTeamMembersInput = {
   skills?: Prisma.SkillUncheckedCreateNestedManyWithoutOrganizationInput
   competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutOrganizationInput
   skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutOrganizationInput
+  hypotheses?: Prisma.HypothesisUncheckedCreateNestedManyWithoutOrganizationInput
+  experiments?: Prisma.ExperimentUncheckedCreateNestedManyWithoutOrganizationInput
+  learnings?: Prisma.LearningUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutTeamMembersInput = {
@@ -2590,6 +3235,9 @@ export type OrganizationUpdateWithoutTeamMembersInput = {
   skills?: Prisma.SkillUpdateManyWithoutOrganizationNestedInput
   competencies?: Prisma.CompetencyUpdateManyWithoutOrganizationNestedInput
   skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutOrganizationNestedInput
+  hypotheses?: Prisma.HypothesisUpdateManyWithoutOrganizationNestedInput
+  experiments?: Prisma.ExperimentUpdateManyWithoutOrganizationNestedInput
+  learnings?: Prisma.LearningUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutTeamMembersInput = {
@@ -2618,6 +3266,9 @@ export type OrganizationUncheckedUpdateWithoutTeamMembersInput = {
   skills?: Prisma.SkillUncheckedUpdateManyWithoutOrganizationNestedInput
   competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutOrganizationNestedInput
   skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
+  hypotheses?: Prisma.HypothesisUncheckedUpdateManyWithoutOrganizationNestedInput
+  experiments?: Prisma.ExperimentUncheckedUpdateManyWithoutOrganizationNestedInput
+  learnings?: Prisma.LearningUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutProjectsInput = {
@@ -2646,6 +3297,9 @@ export type OrganizationCreateWithoutProjectsInput = {
   skills?: Prisma.SkillCreateNestedManyWithoutOrganizationInput
   competencies?: Prisma.CompetencyCreateNestedManyWithoutOrganizationInput
   skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutOrganizationInput
+  hypotheses?: Prisma.HypothesisCreateNestedManyWithoutOrganizationInput
+  experiments?: Prisma.ExperimentCreateNestedManyWithoutOrganizationInput
+  learnings?: Prisma.LearningCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutProjectsInput = {
@@ -2674,6 +3328,9 @@ export type OrganizationUncheckedCreateWithoutProjectsInput = {
   skills?: Prisma.SkillUncheckedCreateNestedManyWithoutOrganizationInput
   competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutOrganizationInput
   skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutOrganizationInput
+  hypotheses?: Prisma.HypothesisUncheckedCreateNestedManyWithoutOrganizationInput
+  experiments?: Prisma.ExperimentUncheckedCreateNestedManyWithoutOrganizationInput
+  learnings?: Prisma.LearningUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutProjectsInput = {
@@ -2718,6 +3375,9 @@ export type OrganizationUpdateWithoutProjectsInput = {
   skills?: Prisma.SkillUpdateManyWithoutOrganizationNestedInput
   competencies?: Prisma.CompetencyUpdateManyWithoutOrganizationNestedInput
   skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutOrganizationNestedInput
+  hypotheses?: Prisma.HypothesisUpdateManyWithoutOrganizationNestedInput
+  experiments?: Prisma.ExperimentUpdateManyWithoutOrganizationNestedInput
+  learnings?: Prisma.LearningUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutProjectsInput = {
@@ -2746,6 +3406,9 @@ export type OrganizationUncheckedUpdateWithoutProjectsInput = {
   skills?: Prisma.SkillUncheckedUpdateManyWithoutOrganizationNestedInput
   competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutOrganizationNestedInput
   skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
+  hypotheses?: Prisma.HypothesisUncheckedUpdateManyWithoutOrganizationNestedInput
+  experiments?: Prisma.ExperimentUncheckedUpdateManyWithoutOrganizationNestedInput
+  learnings?: Prisma.LearningUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutProjectObjectivesInput = {
@@ -2774,6 +3437,9 @@ export type OrganizationCreateWithoutProjectObjectivesInput = {
   skills?: Prisma.SkillCreateNestedManyWithoutOrganizationInput
   competencies?: Prisma.CompetencyCreateNestedManyWithoutOrganizationInput
   skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutOrganizationInput
+  hypotheses?: Prisma.HypothesisCreateNestedManyWithoutOrganizationInput
+  experiments?: Prisma.ExperimentCreateNestedManyWithoutOrganizationInput
+  learnings?: Prisma.LearningCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutProjectObjectivesInput = {
@@ -2802,6 +3468,9 @@ export type OrganizationUncheckedCreateWithoutProjectObjectivesInput = {
   skills?: Prisma.SkillUncheckedCreateNestedManyWithoutOrganizationInput
   competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutOrganizationInput
   skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutOrganizationInput
+  hypotheses?: Prisma.HypothesisUncheckedCreateNestedManyWithoutOrganizationInput
+  experiments?: Prisma.ExperimentUncheckedCreateNestedManyWithoutOrganizationInput
+  learnings?: Prisma.LearningUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutProjectObjectivesInput = {
@@ -2846,6 +3515,9 @@ export type OrganizationUpdateWithoutProjectObjectivesInput = {
   skills?: Prisma.SkillUpdateManyWithoutOrganizationNestedInput
   competencies?: Prisma.CompetencyUpdateManyWithoutOrganizationNestedInput
   skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutOrganizationNestedInput
+  hypotheses?: Prisma.HypothesisUpdateManyWithoutOrganizationNestedInput
+  experiments?: Prisma.ExperimentUpdateManyWithoutOrganizationNestedInput
+  learnings?: Prisma.LearningUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutProjectObjectivesInput = {
@@ -2874,6 +3546,9 @@ export type OrganizationUncheckedUpdateWithoutProjectObjectivesInput = {
   skills?: Prisma.SkillUncheckedUpdateManyWithoutOrganizationNestedInput
   competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutOrganizationNestedInput
   skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
+  hypotheses?: Prisma.HypothesisUncheckedUpdateManyWithoutOrganizationNestedInput
+  experiments?: Prisma.ExperimentUncheckedUpdateManyWithoutOrganizationNestedInput
+  learnings?: Prisma.LearningUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutSkillsInput = {
@@ -2902,6 +3577,9 @@ export type OrganizationCreateWithoutSkillsInput = {
   projectObjectives?: Prisma.ProjectObjectiveCreateNestedManyWithoutOrganizationInput
   competencies?: Prisma.CompetencyCreateNestedManyWithoutOrganizationInput
   skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutOrganizationInput
+  hypotheses?: Prisma.HypothesisCreateNestedManyWithoutOrganizationInput
+  experiments?: Prisma.ExperimentCreateNestedManyWithoutOrganizationInput
+  learnings?: Prisma.LearningCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutSkillsInput = {
@@ -2930,6 +3608,9 @@ export type OrganizationUncheckedCreateWithoutSkillsInput = {
   projectObjectives?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutOrganizationInput
   skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutOrganizationInput
+  hypotheses?: Prisma.HypothesisUncheckedCreateNestedManyWithoutOrganizationInput
+  experiments?: Prisma.ExperimentUncheckedCreateNestedManyWithoutOrganizationInput
+  learnings?: Prisma.LearningUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutSkillsInput = {
@@ -2974,6 +3655,9 @@ export type OrganizationUpdateWithoutSkillsInput = {
   projectObjectives?: Prisma.ProjectObjectiveUpdateManyWithoutOrganizationNestedInput
   competencies?: Prisma.CompetencyUpdateManyWithoutOrganizationNestedInput
   skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutOrganizationNestedInput
+  hypotheses?: Prisma.HypothesisUpdateManyWithoutOrganizationNestedInput
+  experiments?: Prisma.ExperimentUpdateManyWithoutOrganizationNestedInput
+  learnings?: Prisma.LearningUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutSkillsInput = {
@@ -3002,6 +3686,9 @@ export type OrganizationUncheckedUpdateWithoutSkillsInput = {
   projectObjectives?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutOrganizationNestedInput
   skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
+  hypotheses?: Prisma.HypothesisUncheckedUpdateManyWithoutOrganizationNestedInput
+  experiments?: Prisma.ExperimentUncheckedUpdateManyWithoutOrganizationNestedInput
+  learnings?: Prisma.LearningUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutCompetenciesInput = {
@@ -3030,6 +3717,9 @@ export type OrganizationCreateWithoutCompetenciesInput = {
   projectObjectives?: Prisma.ProjectObjectiveCreateNestedManyWithoutOrganizationInput
   skills?: Prisma.SkillCreateNestedManyWithoutOrganizationInput
   skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutOrganizationInput
+  hypotheses?: Prisma.HypothesisCreateNestedManyWithoutOrganizationInput
+  experiments?: Prisma.ExperimentCreateNestedManyWithoutOrganizationInput
+  learnings?: Prisma.LearningCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutCompetenciesInput = {
@@ -3058,6 +3748,9 @@ export type OrganizationUncheckedCreateWithoutCompetenciesInput = {
   projectObjectives?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   skills?: Prisma.SkillUncheckedCreateNestedManyWithoutOrganizationInput
   skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutOrganizationInput
+  hypotheses?: Prisma.HypothesisUncheckedCreateNestedManyWithoutOrganizationInput
+  experiments?: Prisma.ExperimentUncheckedCreateNestedManyWithoutOrganizationInput
+  learnings?: Prisma.LearningUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutCompetenciesInput = {
@@ -3102,6 +3795,9 @@ export type OrganizationUpdateWithoutCompetenciesInput = {
   projectObjectives?: Prisma.ProjectObjectiveUpdateManyWithoutOrganizationNestedInput
   skills?: Prisma.SkillUpdateManyWithoutOrganizationNestedInput
   skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutOrganizationNestedInput
+  hypotheses?: Prisma.HypothesisUpdateManyWithoutOrganizationNestedInput
+  experiments?: Prisma.ExperimentUpdateManyWithoutOrganizationNestedInput
+  learnings?: Prisma.LearningUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutCompetenciesInput = {
@@ -3130,6 +3826,9 @@ export type OrganizationUncheckedUpdateWithoutCompetenciesInput = {
   projectObjectives?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   skills?: Prisma.SkillUncheckedUpdateManyWithoutOrganizationNestedInput
   skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
+  hypotheses?: Prisma.HypothesisUncheckedUpdateManyWithoutOrganizationNestedInput
+  experiments?: Prisma.ExperimentUncheckedUpdateManyWithoutOrganizationNestedInput
+  learnings?: Prisma.LearningUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutSkillRequirementsInput = {
@@ -3158,6 +3857,9 @@ export type OrganizationCreateWithoutSkillRequirementsInput = {
   projectObjectives?: Prisma.ProjectObjectiveCreateNestedManyWithoutOrganizationInput
   skills?: Prisma.SkillCreateNestedManyWithoutOrganizationInput
   competencies?: Prisma.CompetencyCreateNestedManyWithoutOrganizationInput
+  hypotheses?: Prisma.HypothesisCreateNestedManyWithoutOrganizationInput
+  experiments?: Prisma.ExperimentCreateNestedManyWithoutOrganizationInput
+  learnings?: Prisma.LearningCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutSkillRequirementsInput = {
@@ -3186,6 +3888,9 @@ export type OrganizationUncheckedCreateWithoutSkillRequirementsInput = {
   projectObjectives?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
   skills?: Prisma.SkillUncheckedCreateNestedManyWithoutOrganizationInput
   competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutOrganizationInput
+  hypotheses?: Prisma.HypothesisUncheckedCreateNestedManyWithoutOrganizationInput
+  experiments?: Prisma.ExperimentUncheckedCreateNestedManyWithoutOrganizationInput
+  learnings?: Prisma.LearningUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutSkillRequirementsInput = {
@@ -3230,6 +3935,9 @@ export type OrganizationUpdateWithoutSkillRequirementsInput = {
   projectObjectives?: Prisma.ProjectObjectiveUpdateManyWithoutOrganizationNestedInput
   skills?: Prisma.SkillUpdateManyWithoutOrganizationNestedInput
   competencies?: Prisma.CompetencyUpdateManyWithoutOrganizationNestedInput
+  hypotheses?: Prisma.HypothesisUpdateManyWithoutOrganizationNestedInput
+  experiments?: Prisma.ExperimentUpdateManyWithoutOrganizationNestedInput
+  learnings?: Prisma.LearningUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutSkillRequirementsInput = {
@@ -3258,6 +3966,9 @@ export type OrganizationUncheckedUpdateWithoutSkillRequirementsInput = {
   projectObjectives?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
   skills?: Prisma.SkillUncheckedUpdateManyWithoutOrganizationNestedInput
   competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutOrganizationNestedInput
+  hypotheses?: Prisma.HypothesisUncheckedUpdateManyWithoutOrganizationNestedInput
+  experiments?: Prisma.ExperimentUncheckedUpdateManyWithoutOrganizationNestedInput
+  learnings?: Prisma.LearningUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 
@@ -3284,6 +3995,9 @@ export type OrganizationCountOutputType = {
   skills: number
   competencies: number
   skillRequirements: number
+  hypotheses: number
+  experiments: number
+  learnings: number
 }
 
 export type OrganizationCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3305,6 +4019,9 @@ export type OrganizationCountOutputTypeSelect<ExtArgs extends runtime.Types.Exte
   skills?: boolean | OrganizationCountOutputTypeCountSkillsArgs
   competencies?: boolean | OrganizationCountOutputTypeCountCompetenciesArgs
   skillRequirements?: boolean | OrganizationCountOutputTypeCountSkillRequirementsArgs
+  hypotheses?: boolean | OrganizationCountOutputTypeCountHypothesesArgs
+  experiments?: boolean | OrganizationCountOutputTypeCountExperimentsArgs
+  learnings?: boolean | OrganizationCountOutputTypeCountLearningsArgs
 }
 
 /**
@@ -3443,6 +4160,27 @@ export type OrganizationCountOutputTypeCountSkillRequirementsArgs<ExtArgs extend
   where?: Prisma.SkillRequirementWhereInput
 }
 
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountHypothesesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.HypothesisWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountExperimentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ExperimentWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountLearningsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.LearningWhereInput
+}
+
 
 export type OrganizationSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -3471,6 +4209,9 @@ export type OrganizationSelect<ExtArgs extends runtime.Types.Extensions.Internal
   skills?: boolean | Prisma.Organization$skillsArgs<ExtArgs>
   competencies?: boolean | Prisma.Organization$competenciesArgs<ExtArgs>
   skillRequirements?: boolean | Prisma.Organization$skillRequirementsArgs<ExtArgs>
+  hypotheses?: boolean | Prisma.Organization$hypothesesArgs<ExtArgs>
+  experiments?: boolean | Prisma.Organization$experimentsArgs<ExtArgs>
+  learnings?: boolean | Prisma.Organization$learningsArgs<ExtArgs>
   _count?: boolean | Prisma.OrganizationCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["organization"]>
 
@@ -3525,6 +4266,9 @@ export type OrganizationInclude<ExtArgs extends runtime.Types.Extensions.Interna
   skills?: boolean | Prisma.Organization$skillsArgs<ExtArgs>
   competencies?: boolean | Prisma.Organization$competenciesArgs<ExtArgs>
   skillRequirements?: boolean | Prisma.Organization$skillRequirementsArgs<ExtArgs>
+  hypotheses?: boolean | Prisma.Organization$hypothesesArgs<ExtArgs>
+  experiments?: boolean | Prisma.Organization$experimentsArgs<ExtArgs>
+  learnings?: boolean | Prisma.Organization$learningsArgs<ExtArgs>
   _count?: boolean | Prisma.OrganizationCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type OrganizationIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -3552,6 +4296,9 @@ export type $OrganizationPayload<ExtArgs extends runtime.Types.Extensions.Intern
     skills: Prisma.$SkillPayload<ExtArgs>[]
     competencies: Prisma.$CompetencyPayload<ExtArgs>[]
     skillRequirements: Prisma.$SkillRequirementPayload<ExtArgs>[]
+    hypotheses: Prisma.$HypothesisPayload<ExtArgs>[]
+    experiments: Prisma.$ExperimentPayload<ExtArgs>[]
+    learnings: Prisma.$LearningPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -3974,6 +4721,9 @@ export interface Prisma__OrganizationClient<T, Null = never, ExtArgs extends run
   skills<T extends Prisma.Organization$skillsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$skillsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SkillPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   competencies<T extends Prisma.Organization$competenciesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$competenciesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CompetencyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   skillRequirements<T extends Prisma.Organization$skillRequirementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$skillRequirementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SkillRequirementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  hypotheses<T extends Prisma.Organization$hypothesesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$hypothesesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$HypothesisPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  experiments<T extends Prisma.Organization$experimentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$experimentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ExperimentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  learnings<T extends Prisma.Organization$learningsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$learningsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LearningPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4851,6 +5601,78 @@ export type Organization$skillRequirementsArgs<ExtArgs extends runtime.Types.Ext
   take?: number
   skip?: number
   distinct?: Prisma.SkillRequirementScalarFieldEnum | Prisma.SkillRequirementScalarFieldEnum[]
+}
+
+/**
+ * Organization.hypotheses
+ */
+export type Organization$hypothesesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Hypothesis
+   */
+  select?: Prisma.HypothesisSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Hypothesis
+   */
+  omit?: Prisma.HypothesisOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.HypothesisInclude<ExtArgs> | null
+  where?: Prisma.HypothesisWhereInput
+  orderBy?: Prisma.HypothesisOrderByWithRelationInput | Prisma.HypothesisOrderByWithRelationInput[]
+  cursor?: Prisma.HypothesisWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.HypothesisScalarFieldEnum | Prisma.HypothesisScalarFieldEnum[]
+}
+
+/**
+ * Organization.experiments
+ */
+export type Organization$experimentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Experiment
+   */
+  select?: Prisma.ExperimentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Experiment
+   */
+  omit?: Prisma.ExperimentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ExperimentInclude<ExtArgs> | null
+  where?: Prisma.ExperimentWhereInput
+  orderBy?: Prisma.ExperimentOrderByWithRelationInput | Prisma.ExperimentOrderByWithRelationInput[]
+  cursor?: Prisma.ExperimentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ExperimentScalarFieldEnum | Prisma.ExperimentScalarFieldEnum[]
+}
+
+/**
+ * Organization.learnings
+ */
+export type Organization$learningsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Learning
+   */
+  select?: Prisma.LearningSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Learning
+   */
+  omit?: Prisma.LearningOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LearningInclude<ExtArgs> | null
+  where?: Prisma.LearningWhereInput
+  orderBy?: Prisma.LearningOrderByWithRelationInput | Prisma.LearningOrderByWithRelationInput[]
+  cursor?: Prisma.LearningWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.LearningScalarFieldEnum | Prisma.LearningScalarFieldEnum[]
 }
 
 /**

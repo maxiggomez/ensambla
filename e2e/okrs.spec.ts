@@ -20,7 +20,7 @@ test.describe.serial("OKR full-cycle workspace", () => {
 
     await page.getByLabel("Nombre del ciclo").fill("Q4 E2E");
     await page.getByLabel("Inicio").fill("2026-10-01");
-    await page.getByLabel("Fin").fill("2026-12-31");
+    await page.getByLabel("Fin", { exact: true }).fill("2026-12-31");
     await page.getByRole("button", { name: "Crear ciclo" }).click();
     await expect(page.getByRole("status")).toContainText("Ciclo creado");
 
@@ -68,7 +68,11 @@ test.describe.serial("OKR full-cycle workspace", () => {
     await expect(history.getByText("Expandir E2E")).toBeVisible();
     await history.getByRole("button", { name: "Archivar objetivo" }).click();
     await expect(page.getByRole("status")).toContainText("Objetivo archivado");
-    await expect(page.getByText("Solo lectura")).toBeVisible();
+    await expect(
+      history
+        .locator('[data-slot="card"]', { hasText: "Expandir E2E" })
+        .getByText(/Solo lectura/),
+    ).toBeVisible();
   });
 
   test("Colaborador recibe feedback al intentar crear un Objective de compañía", async ({

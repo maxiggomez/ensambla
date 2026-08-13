@@ -6,7 +6,8 @@ import { DEV_AUTH_APP_URL } from "./e2e/dev-auth-setup";
 // Clerk, así que no hay nada que propagar acá.
 export default defineConfig({
   testDir: "./e2e",
-  testMatch: /(dev-auth|app-shell|strategy-northstar|okrs|culture-enps)\.spec\.ts/,
+  testMatch:
+    /(dev-auth|app-shell|strategy-northstar|okrs|culture-enps|lean-experiments)\.spec\.ts/,
   fullyParallel: false,
   workers: 1,
   globalSetup: "./e2e/dev-auth-setup.ts",

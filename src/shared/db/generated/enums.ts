@@ -130,6 +130,24 @@ export const TextState = {
 export type TextState = (typeof TextState)[keyof typeof TextState]
 
 
+export const ExperimentStatus = {
+  Hypothesis: 'Hypothesis',
+  Building: 'Building',
+  Measuring: 'Measuring',
+  Learned: 'Learned'
+} as const
+
+export type ExperimentStatus = (typeof ExperimentStatus)[keyof typeof ExperimentStatus]
+
+
+export const LearningDecision = {
+  Persevere: 'Persevere',
+  Pivot: 'Pivot'
+} as const
+
+export type LearningDecision = (typeof LearningDecision)[keyof typeof LearningDecision]
+
+
 export const TeamRole = {
   Lead: 'Lead',
   Contributor: 'Contributor'
