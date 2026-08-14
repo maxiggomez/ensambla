@@ -164,6 +164,40 @@ export type IntWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedIntFilter<$PrismaModel>
 }
 
+export type EnumOnboardingSetupStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.OnboardingSetupStatus | Prisma.EnumOnboardingSetupStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.OnboardingSetupStatus[] | Prisma.ListEnumOnboardingSetupStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.OnboardingSetupStatus[] | Prisma.ListEnumOnboardingSetupStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumOnboardingSetupStatusFilter<$PrismaModel> | $Enums.OnboardingSetupStatus
+}
+
+export type EnumOnboardingSetupStepFilter<$PrismaModel = never> = {
+  equals?: $Enums.OnboardingSetupStep | Prisma.EnumOnboardingSetupStepFieldRefInput<$PrismaModel>
+  in?: $Enums.OnboardingSetupStep[] | Prisma.ListEnumOnboardingSetupStepFieldRefInput<$PrismaModel>
+  notIn?: $Enums.OnboardingSetupStep[] | Prisma.ListEnumOnboardingSetupStepFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumOnboardingSetupStepFilter<$PrismaModel> | $Enums.OnboardingSetupStep
+}
+
+export type EnumOnboardingSetupStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.OnboardingSetupStatus | Prisma.EnumOnboardingSetupStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.OnboardingSetupStatus[] | Prisma.ListEnumOnboardingSetupStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.OnboardingSetupStatus[] | Prisma.ListEnumOnboardingSetupStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumOnboardingSetupStatusWithAggregatesFilter<$PrismaModel> | $Enums.OnboardingSetupStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumOnboardingSetupStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumOnboardingSetupStatusFilter<$PrismaModel>
+}
+
+export type EnumOnboardingSetupStepWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.OnboardingSetupStep | Prisma.EnumOnboardingSetupStepFieldRefInput<$PrismaModel>
+  in?: $Enums.OnboardingSetupStep[] | Prisma.ListEnumOnboardingSetupStepFieldRefInput<$PrismaModel>
+  notIn?: $Enums.OnboardingSetupStep[] | Prisma.ListEnumOnboardingSetupStepFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumOnboardingSetupStepWithAggregatesFilter<$PrismaModel> | $Enums.OnboardingSetupStep
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumOnboardingSetupStepFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumOnboardingSetupStepFilter<$PrismaModel>
+}
+
 export type EnumPulseScopeFilter<$PrismaModel = never> = {
   equals?: $Enums.PulseScope | Prisma.EnumPulseScopeFieldRefInput<$PrismaModel>
   in?: $Enums.PulseScope[] | Prisma.ListEnumPulseScopeFieldRefInput<$PrismaModel>
@@ -941,6 +975,40 @@ export type NestedFloatFilter<$PrismaModel = never> = {
   gt?: number | Prisma.FloatFieldRefInput<$PrismaModel>
   gte?: number | Prisma.FloatFieldRefInput<$PrismaModel>
   not?: Prisma.NestedFloatFilter<$PrismaModel> | number
+}
+
+export type NestedEnumOnboardingSetupStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.OnboardingSetupStatus | Prisma.EnumOnboardingSetupStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.OnboardingSetupStatus[] | Prisma.ListEnumOnboardingSetupStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.OnboardingSetupStatus[] | Prisma.ListEnumOnboardingSetupStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumOnboardingSetupStatusFilter<$PrismaModel> | $Enums.OnboardingSetupStatus
+}
+
+export type NestedEnumOnboardingSetupStepFilter<$PrismaModel = never> = {
+  equals?: $Enums.OnboardingSetupStep | Prisma.EnumOnboardingSetupStepFieldRefInput<$PrismaModel>
+  in?: $Enums.OnboardingSetupStep[] | Prisma.ListEnumOnboardingSetupStepFieldRefInput<$PrismaModel>
+  notIn?: $Enums.OnboardingSetupStep[] | Prisma.ListEnumOnboardingSetupStepFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumOnboardingSetupStepFilter<$PrismaModel> | $Enums.OnboardingSetupStep
+}
+
+export type NestedEnumOnboardingSetupStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.OnboardingSetupStatus | Prisma.EnumOnboardingSetupStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.OnboardingSetupStatus[] | Prisma.ListEnumOnboardingSetupStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.OnboardingSetupStatus[] | Prisma.ListEnumOnboardingSetupStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumOnboardingSetupStatusWithAggregatesFilter<$PrismaModel> | $Enums.OnboardingSetupStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumOnboardingSetupStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumOnboardingSetupStatusFilter<$PrismaModel>
+}
+
+export type NestedEnumOnboardingSetupStepWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.OnboardingSetupStep | Prisma.EnumOnboardingSetupStepFieldRefInput<$PrismaModel>
+  in?: $Enums.OnboardingSetupStep[] | Prisma.ListEnumOnboardingSetupStepFieldRefInput<$PrismaModel>
+  notIn?: $Enums.OnboardingSetupStep[] | Prisma.ListEnumOnboardingSetupStepFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumOnboardingSetupStepWithAggregatesFilter<$PrismaModel> | $Enums.OnboardingSetupStep
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumOnboardingSetupStepFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumOnboardingSetupStepFilter<$PrismaModel>
 }
 
 export type NestedEnumPulseScopeFilter<$PrismaModel = never> = {

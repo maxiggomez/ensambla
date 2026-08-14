@@ -19,6 +19,17 @@ enum Seniority {
   Senior
 }
 
+enum OnboardingSetupStatus {
+  Pending
+  Completed
+  Skipped
+}
+
+enum OnboardingSetupStep {
+  CompanyProfile
+  Review
+}
+
 model Organization {
   id                   String             @id @default(uuid()) @db.Uuid
   name                 String
@@ -54,9 +65,25 @@ model Organization {
   growthPlans          GrowthPlan[]
   growthTargets        GrowthTarget[]
   growthEvidence       GrowthEvidence[]
+  onboardingSetup      OnboardingSetup?
   enpsMinimumResponses Int                @default(4) @map("enps_minimum_responses")
 
   @@map("organization")
+}
+
+model OnboardingSetup {
+  id             String                @id @default(uuid()) @db.Uuid
+  organizationId String                @unique @map("organization_id") @db.Uuid
+  organization   Organization          @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+  status         OnboardingSetupStatus @default(Pending)
+  currentStep    OnboardingSetupStep   @default(CompanyProfile) @map("current_step")
+  companyType    String?               @map("company_type")
+  industry       String?
+  createdAt      DateTime              @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt      DateTime              @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  @@index([status])
+  @@map("onboarding_setup")
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

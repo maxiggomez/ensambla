@@ -35,6 +35,7 @@ export type {
   GrowthPlanModel as GrowthPlan,
   GrowthTargetModel as GrowthTarget,
   GrowthEvidenceModel as GrowthEvidence,
+  OnboardingSetupModel as OnboardingSetup,
 } from "./generated/models";
 export {
   CheckInCadence,
@@ -52,4 +53,6 @@ export {
   ProjectStatus,
   FeedbackClassification,
   GrowthEvidenceSource,
+  OnboardingSetupStatus,
+  OnboardingSetupStep,
 } from "./generated/enums";
