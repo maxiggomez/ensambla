@@ -9,6 +9,13 @@ export {
   type TeamCapacityView,
 } from "./capacity-views";
 export { createProject, type CreateProjectInput } from "./create-project";
+export { closeProject, type CloseProjectInput } from "./close-project";
+export {
+  getProjectContext,
+  type GetProjectContextInput,
+  type ProjectContextView,
+} from "./get-project-context";
+export { listProjectContexts } from "./list-project-contexts";
 export {
   linkProjectToObjectives,
   type LinkProjectToObjectivesInput,

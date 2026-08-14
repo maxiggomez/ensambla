@@ -212,6 +212,13 @@ export type MemberWhereInput = {
   okrAuditEvents?: Prisma.OkrAuditEventListRelationFilter
   teamMemberships?: Prisma.TeamMemberListRelationFilter
   competencies?: Prisma.CompetencyListRelationFilter
+  feedbackAuthored?: Prisma.FeedbackListRelationFilter
+  feedbackReceived?: Prisma.FeedbackListRelationFilter
+  feedbackRequested?: Prisma.FeedbackRequestListRelationFilter
+  feedbackInbox?: Prisma.FeedbackRequestListRelationFilter
+  kudosGiven?: Prisma.KudoListRelationFilter
+  kudosReceived?: Prisma.KudoListRelationFilter
+  growthPlans?: Prisma.GrowthPlanListRelationFilter
 }
 
 export type MemberOrderByWithRelationInput = {
@@ -229,10 +236,18 @@ export type MemberOrderByWithRelationInput = {
   okrAuditEvents?: Prisma.OkrAuditEventOrderByRelationAggregateInput
   teamMemberships?: Prisma.TeamMemberOrderByRelationAggregateInput
   competencies?: Prisma.CompetencyOrderByRelationAggregateInput
+  feedbackAuthored?: Prisma.FeedbackOrderByRelationAggregateInput
+  feedbackReceived?: Prisma.FeedbackOrderByRelationAggregateInput
+  feedbackRequested?: Prisma.FeedbackRequestOrderByRelationAggregateInput
+  feedbackInbox?: Prisma.FeedbackRequestOrderByRelationAggregateInput
+  kudosGiven?: Prisma.KudoOrderByRelationAggregateInput
+  kudosReceived?: Prisma.KudoOrderByRelationAggregateInput
+  growthPlans?: Prisma.GrowthPlanOrderByRelationAggregateInput
 }
 
 export type MemberWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  organizationId_id?: Prisma.MemberOrganizationIdIdCompoundUniqueInput
   organizationId_email?: Prisma.MemberOrganizationIdEmailCompoundUniqueInput
   organizationId_clerkUserId?: Prisma.MemberOrganizationIdClerkUserIdCompoundUniqueInput
   AND?: Prisma.MemberWhereInput | Prisma.MemberWhereInput[]
@@ -251,7 +266,14 @@ export type MemberWhereUniqueInput = Prisma.AtLeast<{
   okrAuditEvents?: Prisma.OkrAuditEventListRelationFilter
   teamMemberships?: Prisma.TeamMemberListRelationFilter
   competencies?: Prisma.CompetencyListRelationFilter
-}, "id" | "organizationId_email" | "organizationId_clerkUserId">
+  feedbackAuthored?: Prisma.FeedbackListRelationFilter
+  feedbackReceived?: Prisma.FeedbackListRelationFilter
+  feedbackRequested?: Prisma.FeedbackRequestListRelationFilter
+  feedbackInbox?: Prisma.FeedbackRequestListRelationFilter
+  kudosGiven?: Prisma.KudoListRelationFilter
+  kudosReceived?: Prisma.KudoListRelationFilter
+  growthPlans?: Prisma.GrowthPlanListRelationFilter
+}, "id" | "organizationId_id" | "organizationId_email" | "organizationId_clerkUserId">
 
 export type MemberOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -295,6 +317,13 @@ export type MemberCreateInput = {
   okrAuditEvents?: Prisma.OkrAuditEventCreateNestedManyWithoutActorMemberInput
   teamMemberships?: Prisma.TeamMemberCreateNestedManyWithoutMemberInput
   competencies?: Prisma.CompetencyCreateNestedManyWithoutMemberInput
+  feedbackAuthored?: Prisma.FeedbackCreateNestedManyWithoutAuthorInput
+  feedbackReceived?: Prisma.FeedbackCreateNestedManyWithoutRecipientInput
+  feedbackRequested?: Prisma.FeedbackRequestCreateNestedManyWithoutRequesterInput
+  feedbackInbox?: Prisma.FeedbackRequestCreateNestedManyWithoutRequestedFromInput
+  kudosGiven?: Prisma.KudoCreateNestedManyWithoutGiverInput
+  kudosReceived?: Prisma.KudoCreateNestedManyWithoutRecipientInput
+  growthPlans?: Prisma.GrowthPlanCreateNestedManyWithoutMemberInput
 }
 
 export type MemberUncheckedCreateInput = {
@@ -311,6 +340,13 @@ export type MemberUncheckedCreateInput = {
   okrAuditEvents?: Prisma.OkrAuditEventUncheckedCreateNestedManyWithoutActorMemberInput
   teamMemberships?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutMemberInput
   competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutMemberInput
+  feedbackAuthored?: Prisma.FeedbackUncheckedCreateNestedManyWithoutAuthorInput
+  feedbackReceived?: Prisma.FeedbackUncheckedCreateNestedManyWithoutRecipientInput
+  feedbackRequested?: Prisma.FeedbackRequestUncheckedCreateNestedManyWithoutRequesterInput
+  feedbackInbox?: Prisma.FeedbackRequestUncheckedCreateNestedManyWithoutRequestedFromInput
+  kudosGiven?: Prisma.KudoUncheckedCreateNestedManyWithoutGiverInput
+  kudosReceived?: Prisma.KudoUncheckedCreateNestedManyWithoutRecipientInput
+  growthPlans?: Prisma.GrowthPlanUncheckedCreateNestedManyWithoutMemberInput
 }
 
 export type MemberUpdateInput = {
@@ -327,6 +363,13 @@ export type MemberUpdateInput = {
   okrAuditEvents?: Prisma.OkrAuditEventUpdateManyWithoutActorMemberNestedInput
   teamMemberships?: Prisma.TeamMemberUpdateManyWithoutMemberNestedInput
   competencies?: Prisma.CompetencyUpdateManyWithoutMemberNestedInput
+  feedbackAuthored?: Prisma.FeedbackUpdateManyWithoutAuthorNestedInput
+  feedbackReceived?: Prisma.FeedbackUpdateManyWithoutRecipientNestedInput
+  feedbackRequested?: Prisma.FeedbackRequestUpdateManyWithoutRequesterNestedInput
+  feedbackInbox?: Prisma.FeedbackRequestUpdateManyWithoutRequestedFromNestedInput
+  kudosGiven?: Prisma.KudoUpdateManyWithoutGiverNestedInput
+  kudosReceived?: Prisma.KudoUpdateManyWithoutRecipientNestedInput
+  growthPlans?: Prisma.GrowthPlanUpdateManyWithoutMemberNestedInput
 }
 
 export type MemberUncheckedUpdateInput = {
@@ -343,6 +386,13 @@ export type MemberUncheckedUpdateInput = {
   okrAuditEvents?: Prisma.OkrAuditEventUncheckedUpdateManyWithoutActorMemberNestedInput
   teamMemberships?: Prisma.TeamMemberUncheckedUpdateManyWithoutMemberNestedInput
   competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutMemberNestedInput
+  feedbackAuthored?: Prisma.FeedbackUncheckedUpdateManyWithoutAuthorNestedInput
+  feedbackReceived?: Prisma.FeedbackUncheckedUpdateManyWithoutRecipientNestedInput
+  feedbackRequested?: Prisma.FeedbackRequestUncheckedUpdateManyWithoutRequesterNestedInput
+  feedbackInbox?: Prisma.FeedbackRequestUncheckedUpdateManyWithoutRequestedFromNestedInput
+  kudosGiven?: Prisma.KudoUncheckedUpdateManyWithoutGiverNestedInput
+  kudosReceived?: Prisma.KudoUncheckedUpdateManyWithoutRecipientNestedInput
+  growthPlans?: Prisma.GrowthPlanUncheckedUpdateManyWithoutMemberNestedInput
 }
 
 export type MemberCreateManyInput = {
@@ -385,6 +435,11 @@ export type MemberListRelationFilter = {
 
 export type MemberOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
+}
+
+export type MemberOrganizationIdIdCompoundUniqueInput = {
+  organizationId: string
+  id: string
 }
 
 export type MemberOrganizationIdEmailCompoundUniqueInput = {
@@ -555,6 +610,104 @@ export type MemberUpdateOneRequiredWithoutCompetenciesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.MemberUpdateToOneWithWhereWithoutCompetenciesInput, Prisma.MemberUpdateWithoutCompetenciesInput>, Prisma.MemberUncheckedUpdateWithoutCompetenciesInput>
 }
 
+export type MemberCreateNestedOneWithoutFeedbackRequestedInput = {
+  create?: Prisma.XOR<Prisma.MemberCreateWithoutFeedbackRequestedInput, Prisma.MemberUncheckedCreateWithoutFeedbackRequestedInput>
+  connectOrCreate?: Prisma.MemberCreateOrConnectWithoutFeedbackRequestedInput
+  connect?: Prisma.MemberWhereUniqueInput
+}
+
+export type MemberCreateNestedOneWithoutFeedbackInboxInput = {
+  create?: Prisma.XOR<Prisma.MemberCreateWithoutFeedbackInboxInput, Prisma.MemberUncheckedCreateWithoutFeedbackInboxInput>
+  connectOrCreate?: Prisma.MemberCreateOrConnectWithoutFeedbackInboxInput
+  connect?: Prisma.MemberWhereUniqueInput
+}
+
+export type MemberUpdateOneRequiredWithoutFeedbackRequestedNestedInput = {
+  create?: Prisma.XOR<Prisma.MemberCreateWithoutFeedbackRequestedInput, Prisma.MemberUncheckedCreateWithoutFeedbackRequestedInput>
+  connectOrCreate?: Prisma.MemberCreateOrConnectWithoutFeedbackRequestedInput
+  upsert?: Prisma.MemberUpsertWithoutFeedbackRequestedInput
+  connect?: Prisma.MemberWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.MemberUpdateToOneWithWhereWithoutFeedbackRequestedInput, Prisma.MemberUpdateWithoutFeedbackRequestedInput>, Prisma.MemberUncheckedUpdateWithoutFeedbackRequestedInput>
+}
+
+export type MemberUpdateOneRequiredWithoutFeedbackInboxNestedInput = {
+  create?: Prisma.XOR<Prisma.MemberCreateWithoutFeedbackInboxInput, Prisma.MemberUncheckedCreateWithoutFeedbackInboxInput>
+  connectOrCreate?: Prisma.MemberCreateOrConnectWithoutFeedbackInboxInput
+  upsert?: Prisma.MemberUpsertWithoutFeedbackInboxInput
+  connect?: Prisma.MemberWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.MemberUpdateToOneWithWhereWithoutFeedbackInboxInput, Prisma.MemberUpdateWithoutFeedbackInboxInput>, Prisma.MemberUncheckedUpdateWithoutFeedbackInboxInput>
+}
+
+export type MemberCreateNestedOneWithoutFeedbackAuthoredInput = {
+  create?: Prisma.XOR<Prisma.MemberCreateWithoutFeedbackAuthoredInput, Prisma.MemberUncheckedCreateWithoutFeedbackAuthoredInput>
+  connectOrCreate?: Prisma.MemberCreateOrConnectWithoutFeedbackAuthoredInput
+  connect?: Prisma.MemberWhereUniqueInput
+}
+
+export type MemberCreateNestedOneWithoutFeedbackReceivedInput = {
+  create?: Prisma.XOR<Prisma.MemberCreateWithoutFeedbackReceivedInput, Prisma.MemberUncheckedCreateWithoutFeedbackReceivedInput>
+  connectOrCreate?: Prisma.MemberCreateOrConnectWithoutFeedbackReceivedInput
+  connect?: Prisma.MemberWhereUniqueInput
+}
+
+export type MemberUpdateOneRequiredWithoutFeedbackAuthoredNestedInput = {
+  create?: Prisma.XOR<Prisma.MemberCreateWithoutFeedbackAuthoredInput, Prisma.MemberUncheckedCreateWithoutFeedbackAuthoredInput>
+  connectOrCreate?: Prisma.MemberCreateOrConnectWithoutFeedbackAuthoredInput
+  upsert?: Prisma.MemberUpsertWithoutFeedbackAuthoredInput
+  connect?: Prisma.MemberWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.MemberUpdateToOneWithWhereWithoutFeedbackAuthoredInput, Prisma.MemberUpdateWithoutFeedbackAuthoredInput>, Prisma.MemberUncheckedUpdateWithoutFeedbackAuthoredInput>
+}
+
+export type MemberUpdateOneRequiredWithoutFeedbackReceivedNestedInput = {
+  create?: Prisma.XOR<Prisma.MemberCreateWithoutFeedbackReceivedInput, Prisma.MemberUncheckedCreateWithoutFeedbackReceivedInput>
+  connectOrCreate?: Prisma.MemberCreateOrConnectWithoutFeedbackReceivedInput
+  upsert?: Prisma.MemberUpsertWithoutFeedbackReceivedInput
+  connect?: Prisma.MemberWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.MemberUpdateToOneWithWhereWithoutFeedbackReceivedInput, Prisma.MemberUpdateWithoutFeedbackReceivedInput>, Prisma.MemberUncheckedUpdateWithoutFeedbackReceivedInput>
+}
+
+export type MemberCreateNestedOneWithoutKudosGivenInput = {
+  create?: Prisma.XOR<Prisma.MemberCreateWithoutKudosGivenInput, Prisma.MemberUncheckedCreateWithoutKudosGivenInput>
+  connectOrCreate?: Prisma.MemberCreateOrConnectWithoutKudosGivenInput
+  connect?: Prisma.MemberWhereUniqueInput
+}
+
+export type MemberCreateNestedOneWithoutKudosReceivedInput = {
+  create?: Prisma.XOR<Prisma.MemberCreateWithoutKudosReceivedInput, Prisma.MemberUncheckedCreateWithoutKudosReceivedInput>
+  connectOrCreate?: Prisma.MemberCreateOrConnectWithoutKudosReceivedInput
+  connect?: Prisma.MemberWhereUniqueInput
+}
+
+export type MemberUpdateOneRequiredWithoutKudosGivenNestedInput = {
+  create?: Prisma.XOR<Prisma.MemberCreateWithoutKudosGivenInput, Prisma.MemberUncheckedCreateWithoutKudosGivenInput>
+  connectOrCreate?: Prisma.MemberCreateOrConnectWithoutKudosGivenInput
+  upsert?: Prisma.MemberUpsertWithoutKudosGivenInput
+  connect?: Prisma.MemberWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.MemberUpdateToOneWithWhereWithoutKudosGivenInput, Prisma.MemberUpdateWithoutKudosGivenInput>, Prisma.MemberUncheckedUpdateWithoutKudosGivenInput>
+}
+
+export type MemberUpdateOneRequiredWithoutKudosReceivedNestedInput = {
+  create?: Prisma.XOR<Prisma.MemberCreateWithoutKudosReceivedInput, Prisma.MemberUncheckedCreateWithoutKudosReceivedInput>
+  connectOrCreate?: Prisma.MemberCreateOrConnectWithoutKudosReceivedInput
+  upsert?: Prisma.MemberUpsertWithoutKudosReceivedInput
+  connect?: Prisma.MemberWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.MemberUpdateToOneWithWhereWithoutKudosReceivedInput, Prisma.MemberUpdateWithoutKudosReceivedInput>, Prisma.MemberUncheckedUpdateWithoutKudosReceivedInput>
+}
+
+export type MemberCreateNestedOneWithoutGrowthPlansInput = {
+  create?: Prisma.XOR<Prisma.MemberCreateWithoutGrowthPlansInput, Prisma.MemberUncheckedCreateWithoutGrowthPlansInput>
+  connectOrCreate?: Prisma.MemberCreateOrConnectWithoutGrowthPlansInput
+  connect?: Prisma.MemberWhereUniqueInput
+}
+
+export type MemberUpdateOneRequiredWithoutGrowthPlansNestedInput = {
+  create?: Prisma.XOR<Prisma.MemberCreateWithoutGrowthPlansInput, Prisma.MemberUncheckedCreateWithoutGrowthPlansInput>
+  connectOrCreate?: Prisma.MemberCreateOrConnectWithoutGrowthPlansInput
+  upsert?: Prisma.MemberUpsertWithoutGrowthPlansInput
+  connect?: Prisma.MemberWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.MemberUpdateToOneWithWhereWithoutGrowthPlansInput, Prisma.MemberUpdateWithoutGrowthPlansInput>, Prisma.MemberUncheckedUpdateWithoutGrowthPlansInput>
+}
+
 export type MemberCreateWithoutOrganizationInput = {
   id?: string
   email: string
@@ -568,6 +721,13 @@ export type MemberCreateWithoutOrganizationInput = {
   okrAuditEvents?: Prisma.OkrAuditEventCreateNestedManyWithoutActorMemberInput
   teamMemberships?: Prisma.TeamMemberCreateNestedManyWithoutMemberInput
   competencies?: Prisma.CompetencyCreateNestedManyWithoutMemberInput
+  feedbackAuthored?: Prisma.FeedbackCreateNestedManyWithoutAuthorInput
+  feedbackReceived?: Prisma.FeedbackCreateNestedManyWithoutRecipientInput
+  feedbackRequested?: Prisma.FeedbackRequestCreateNestedManyWithoutRequesterInput
+  feedbackInbox?: Prisma.FeedbackRequestCreateNestedManyWithoutRequestedFromInput
+  kudosGiven?: Prisma.KudoCreateNestedManyWithoutGiverInput
+  kudosReceived?: Prisma.KudoCreateNestedManyWithoutRecipientInput
+  growthPlans?: Prisma.GrowthPlanCreateNestedManyWithoutMemberInput
 }
 
 export type MemberUncheckedCreateWithoutOrganizationInput = {
@@ -583,6 +743,13 @@ export type MemberUncheckedCreateWithoutOrganizationInput = {
   okrAuditEvents?: Prisma.OkrAuditEventUncheckedCreateNestedManyWithoutActorMemberInput
   teamMemberships?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutMemberInput
   competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutMemberInput
+  feedbackAuthored?: Prisma.FeedbackUncheckedCreateNestedManyWithoutAuthorInput
+  feedbackReceived?: Prisma.FeedbackUncheckedCreateNestedManyWithoutRecipientInput
+  feedbackRequested?: Prisma.FeedbackRequestUncheckedCreateNestedManyWithoutRequesterInput
+  feedbackInbox?: Prisma.FeedbackRequestUncheckedCreateNestedManyWithoutRequestedFromInput
+  kudosGiven?: Prisma.KudoUncheckedCreateNestedManyWithoutGiverInput
+  kudosReceived?: Prisma.KudoUncheckedCreateNestedManyWithoutRecipientInput
+  growthPlans?: Prisma.GrowthPlanUncheckedCreateNestedManyWithoutMemberInput
 }
 
 export type MemberCreateOrConnectWithoutOrganizationInput = {
@@ -638,6 +805,13 @@ export type MemberCreateWithoutObjectivesInput = {
   okrAuditEvents?: Prisma.OkrAuditEventCreateNestedManyWithoutActorMemberInput
   teamMemberships?: Prisma.TeamMemberCreateNestedManyWithoutMemberInput
   competencies?: Prisma.CompetencyCreateNestedManyWithoutMemberInput
+  feedbackAuthored?: Prisma.FeedbackCreateNestedManyWithoutAuthorInput
+  feedbackReceived?: Prisma.FeedbackCreateNestedManyWithoutRecipientInput
+  feedbackRequested?: Prisma.FeedbackRequestCreateNestedManyWithoutRequesterInput
+  feedbackInbox?: Prisma.FeedbackRequestCreateNestedManyWithoutRequestedFromInput
+  kudosGiven?: Prisma.KudoCreateNestedManyWithoutGiverInput
+  kudosReceived?: Prisma.KudoCreateNestedManyWithoutRecipientInput
+  growthPlans?: Prisma.GrowthPlanCreateNestedManyWithoutMemberInput
 }
 
 export type MemberUncheckedCreateWithoutObjectivesInput = {
@@ -653,6 +827,13 @@ export type MemberUncheckedCreateWithoutObjectivesInput = {
   okrAuditEvents?: Prisma.OkrAuditEventUncheckedCreateNestedManyWithoutActorMemberInput
   teamMemberships?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutMemberInput
   competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutMemberInput
+  feedbackAuthored?: Prisma.FeedbackUncheckedCreateNestedManyWithoutAuthorInput
+  feedbackReceived?: Prisma.FeedbackUncheckedCreateNestedManyWithoutRecipientInput
+  feedbackRequested?: Prisma.FeedbackRequestUncheckedCreateNestedManyWithoutRequesterInput
+  feedbackInbox?: Prisma.FeedbackRequestUncheckedCreateNestedManyWithoutRequestedFromInput
+  kudosGiven?: Prisma.KudoUncheckedCreateNestedManyWithoutGiverInput
+  kudosReceived?: Prisma.KudoUncheckedCreateNestedManyWithoutRecipientInput
+  growthPlans?: Prisma.GrowthPlanUncheckedCreateNestedManyWithoutMemberInput
 }
 
 export type MemberCreateOrConnectWithoutObjectivesInput = {
@@ -684,6 +865,13 @@ export type MemberUpdateWithoutObjectivesInput = {
   okrAuditEvents?: Prisma.OkrAuditEventUpdateManyWithoutActorMemberNestedInput
   teamMemberships?: Prisma.TeamMemberUpdateManyWithoutMemberNestedInput
   competencies?: Prisma.CompetencyUpdateManyWithoutMemberNestedInput
+  feedbackAuthored?: Prisma.FeedbackUpdateManyWithoutAuthorNestedInput
+  feedbackReceived?: Prisma.FeedbackUpdateManyWithoutRecipientNestedInput
+  feedbackRequested?: Prisma.FeedbackRequestUpdateManyWithoutRequesterNestedInput
+  feedbackInbox?: Prisma.FeedbackRequestUpdateManyWithoutRequestedFromNestedInput
+  kudosGiven?: Prisma.KudoUpdateManyWithoutGiverNestedInput
+  kudosReceived?: Prisma.KudoUpdateManyWithoutRecipientNestedInput
+  growthPlans?: Prisma.GrowthPlanUpdateManyWithoutMemberNestedInput
 }
 
 export type MemberUncheckedUpdateWithoutObjectivesInput = {
@@ -699,6 +887,13 @@ export type MemberUncheckedUpdateWithoutObjectivesInput = {
   okrAuditEvents?: Prisma.OkrAuditEventUncheckedUpdateManyWithoutActorMemberNestedInput
   teamMemberships?: Prisma.TeamMemberUncheckedUpdateManyWithoutMemberNestedInput
   competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutMemberNestedInput
+  feedbackAuthored?: Prisma.FeedbackUncheckedUpdateManyWithoutAuthorNestedInput
+  feedbackReceived?: Prisma.FeedbackUncheckedUpdateManyWithoutRecipientNestedInput
+  feedbackRequested?: Prisma.FeedbackRequestUncheckedUpdateManyWithoutRequesterNestedInput
+  feedbackInbox?: Prisma.FeedbackRequestUncheckedUpdateManyWithoutRequestedFromNestedInput
+  kudosGiven?: Prisma.KudoUncheckedUpdateManyWithoutGiverNestedInput
+  kudosReceived?: Prisma.KudoUncheckedUpdateManyWithoutRecipientNestedInput
+  growthPlans?: Prisma.GrowthPlanUncheckedUpdateManyWithoutMemberNestedInput
 }
 
 export type MemberCreateWithoutCheckInsInput = {
@@ -714,6 +909,13 @@ export type MemberCreateWithoutCheckInsInput = {
   okrAuditEvents?: Prisma.OkrAuditEventCreateNestedManyWithoutActorMemberInput
   teamMemberships?: Prisma.TeamMemberCreateNestedManyWithoutMemberInput
   competencies?: Prisma.CompetencyCreateNestedManyWithoutMemberInput
+  feedbackAuthored?: Prisma.FeedbackCreateNestedManyWithoutAuthorInput
+  feedbackReceived?: Prisma.FeedbackCreateNestedManyWithoutRecipientInput
+  feedbackRequested?: Prisma.FeedbackRequestCreateNestedManyWithoutRequesterInput
+  feedbackInbox?: Prisma.FeedbackRequestCreateNestedManyWithoutRequestedFromInput
+  kudosGiven?: Prisma.KudoCreateNestedManyWithoutGiverInput
+  kudosReceived?: Prisma.KudoCreateNestedManyWithoutRecipientInput
+  growthPlans?: Prisma.GrowthPlanCreateNestedManyWithoutMemberInput
 }
 
 export type MemberUncheckedCreateWithoutCheckInsInput = {
@@ -729,6 +931,13 @@ export type MemberUncheckedCreateWithoutCheckInsInput = {
   okrAuditEvents?: Prisma.OkrAuditEventUncheckedCreateNestedManyWithoutActorMemberInput
   teamMemberships?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutMemberInput
   competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutMemberInput
+  feedbackAuthored?: Prisma.FeedbackUncheckedCreateNestedManyWithoutAuthorInput
+  feedbackReceived?: Prisma.FeedbackUncheckedCreateNestedManyWithoutRecipientInput
+  feedbackRequested?: Prisma.FeedbackRequestUncheckedCreateNestedManyWithoutRequesterInput
+  feedbackInbox?: Prisma.FeedbackRequestUncheckedCreateNestedManyWithoutRequestedFromInput
+  kudosGiven?: Prisma.KudoUncheckedCreateNestedManyWithoutGiverInput
+  kudosReceived?: Prisma.KudoUncheckedCreateNestedManyWithoutRecipientInput
+  growthPlans?: Prisma.GrowthPlanUncheckedCreateNestedManyWithoutMemberInput
 }
 
 export type MemberCreateOrConnectWithoutCheckInsInput = {
@@ -760,6 +969,13 @@ export type MemberUpdateWithoutCheckInsInput = {
   okrAuditEvents?: Prisma.OkrAuditEventUpdateManyWithoutActorMemberNestedInput
   teamMemberships?: Prisma.TeamMemberUpdateManyWithoutMemberNestedInput
   competencies?: Prisma.CompetencyUpdateManyWithoutMemberNestedInput
+  feedbackAuthored?: Prisma.FeedbackUpdateManyWithoutAuthorNestedInput
+  feedbackReceived?: Prisma.FeedbackUpdateManyWithoutRecipientNestedInput
+  feedbackRequested?: Prisma.FeedbackRequestUpdateManyWithoutRequesterNestedInput
+  feedbackInbox?: Prisma.FeedbackRequestUpdateManyWithoutRequestedFromNestedInput
+  kudosGiven?: Prisma.KudoUpdateManyWithoutGiverNestedInput
+  kudosReceived?: Prisma.KudoUpdateManyWithoutRecipientNestedInput
+  growthPlans?: Prisma.GrowthPlanUpdateManyWithoutMemberNestedInput
 }
 
 export type MemberUncheckedUpdateWithoutCheckInsInput = {
@@ -775,6 +991,13 @@ export type MemberUncheckedUpdateWithoutCheckInsInput = {
   okrAuditEvents?: Prisma.OkrAuditEventUncheckedUpdateManyWithoutActorMemberNestedInput
   teamMemberships?: Prisma.TeamMemberUncheckedUpdateManyWithoutMemberNestedInput
   competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutMemberNestedInput
+  feedbackAuthored?: Prisma.FeedbackUncheckedUpdateManyWithoutAuthorNestedInput
+  feedbackReceived?: Prisma.FeedbackUncheckedUpdateManyWithoutRecipientNestedInput
+  feedbackRequested?: Prisma.FeedbackRequestUncheckedUpdateManyWithoutRequesterNestedInput
+  feedbackInbox?: Prisma.FeedbackRequestUncheckedUpdateManyWithoutRequestedFromNestedInput
+  kudosGiven?: Prisma.KudoUncheckedUpdateManyWithoutGiverNestedInput
+  kudosReceived?: Prisma.KudoUncheckedUpdateManyWithoutRecipientNestedInput
+  growthPlans?: Prisma.GrowthPlanUncheckedUpdateManyWithoutMemberNestedInput
 }
 
 export type MemberCreateWithoutOkrAuditEventsInput = {
@@ -790,6 +1013,13 @@ export type MemberCreateWithoutOkrAuditEventsInput = {
   checkIns?: Prisma.CheckInCreateNestedManyWithoutActorMemberInput
   teamMemberships?: Prisma.TeamMemberCreateNestedManyWithoutMemberInput
   competencies?: Prisma.CompetencyCreateNestedManyWithoutMemberInput
+  feedbackAuthored?: Prisma.FeedbackCreateNestedManyWithoutAuthorInput
+  feedbackReceived?: Prisma.FeedbackCreateNestedManyWithoutRecipientInput
+  feedbackRequested?: Prisma.FeedbackRequestCreateNestedManyWithoutRequesterInput
+  feedbackInbox?: Prisma.FeedbackRequestCreateNestedManyWithoutRequestedFromInput
+  kudosGiven?: Prisma.KudoCreateNestedManyWithoutGiverInput
+  kudosReceived?: Prisma.KudoCreateNestedManyWithoutRecipientInput
+  growthPlans?: Prisma.GrowthPlanCreateNestedManyWithoutMemberInput
 }
 
 export type MemberUncheckedCreateWithoutOkrAuditEventsInput = {
@@ -805,6 +1035,13 @@ export type MemberUncheckedCreateWithoutOkrAuditEventsInput = {
   checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutActorMemberInput
   teamMemberships?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutMemberInput
   competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutMemberInput
+  feedbackAuthored?: Prisma.FeedbackUncheckedCreateNestedManyWithoutAuthorInput
+  feedbackReceived?: Prisma.FeedbackUncheckedCreateNestedManyWithoutRecipientInput
+  feedbackRequested?: Prisma.FeedbackRequestUncheckedCreateNestedManyWithoutRequesterInput
+  feedbackInbox?: Prisma.FeedbackRequestUncheckedCreateNestedManyWithoutRequestedFromInput
+  kudosGiven?: Prisma.KudoUncheckedCreateNestedManyWithoutGiverInput
+  kudosReceived?: Prisma.KudoUncheckedCreateNestedManyWithoutRecipientInput
+  growthPlans?: Prisma.GrowthPlanUncheckedCreateNestedManyWithoutMemberInput
 }
 
 export type MemberCreateOrConnectWithoutOkrAuditEventsInput = {
@@ -836,6 +1073,13 @@ export type MemberUpdateWithoutOkrAuditEventsInput = {
   checkIns?: Prisma.CheckInUpdateManyWithoutActorMemberNestedInput
   teamMemberships?: Prisma.TeamMemberUpdateManyWithoutMemberNestedInput
   competencies?: Prisma.CompetencyUpdateManyWithoutMemberNestedInput
+  feedbackAuthored?: Prisma.FeedbackUpdateManyWithoutAuthorNestedInput
+  feedbackReceived?: Prisma.FeedbackUpdateManyWithoutRecipientNestedInput
+  feedbackRequested?: Prisma.FeedbackRequestUpdateManyWithoutRequesterNestedInput
+  feedbackInbox?: Prisma.FeedbackRequestUpdateManyWithoutRequestedFromNestedInput
+  kudosGiven?: Prisma.KudoUpdateManyWithoutGiverNestedInput
+  kudosReceived?: Prisma.KudoUpdateManyWithoutRecipientNestedInput
+  growthPlans?: Prisma.GrowthPlanUpdateManyWithoutMemberNestedInput
 }
 
 export type MemberUncheckedUpdateWithoutOkrAuditEventsInput = {
@@ -851,6 +1095,13 @@ export type MemberUncheckedUpdateWithoutOkrAuditEventsInput = {
   checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutActorMemberNestedInput
   teamMemberships?: Prisma.TeamMemberUncheckedUpdateManyWithoutMemberNestedInput
   competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutMemberNestedInput
+  feedbackAuthored?: Prisma.FeedbackUncheckedUpdateManyWithoutAuthorNestedInput
+  feedbackReceived?: Prisma.FeedbackUncheckedUpdateManyWithoutRecipientNestedInput
+  feedbackRequested?: Prisma.FeedbackRequestUncheckedUpdateManyWithoutRequesterNestedInput
+  feedbackInbox?: Prisma.FeedbackRequestUncheckedUpdateManyWithoutRequestedFromNestedInput
+  kudosGiven?: Prisma.KudoUncheckedUpdateManyWithoutGiverNestedInput
+  kudosReceived?: Prisma.KudoUncheckedUpdateManyWithoutRecipientNestedInput
+  growthPlans?: Prisma.GrowthPlanUncheckedUpdateManyWithoutMemberNestedInput
 }
 
 export type MemberCreateWithoutTeamMembershipsInput = {
@@ -866,6 +1117,13 @@ export type MemberCreateWithoutTeamMembershipsInput = {
   checkIns?: Prisma.CheckInCreateNestedManyWithoutActorMemberInput
   okrAuditEvents?: Prisma.OkrAuditEventCreateNestedManyWithoutActorMemberInput
   competencies?: Prisma.CompetencyCreateNestedManyWithoutMemberInput
+  feedbackAuthored?: Prisma.FeedbackCreateNestedManyWithoutAuthorInput
+  feedbackReceived?: Prisma.FeedbackCreateNestedManyWithoutRecipientInput
+  feedbackRequested?: Prisma.FeedbackRequestCreateNestedManyWithoutRequesterInput
+  feedbackInbox?: Prisma.FeedbackRequestCreateNestedManyWithoutRequestedFromInput
+  kudosGiven?: Prisma.KudoCreateNestedManyWithoutGiverInput
+  kudosReceived?: Prisma.KudoCreateNestedManyWithoutRecipientInput
+  growthPlans?: Prisma.GrowthPlanCreateNestedManyWithoutMemberInput
 }
 
 export type MemberUncheckedCreateWithoutTeamMembershipsInput = {
@@ -881,6 +1139,13 @@ export type MemberUncheckedCreateWithoutTeamMembershipsInput = {
   checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutActorMemberInput
   okrAuditEvents?: Prisma.OkrAuditEventUncheckedCreateNestedManyWithoutActorMemberInput
   competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutMemberInput
+  feedbackAuthored?: Prisma.FeedbackUncheckedCreateNestedManyWithoutAuthorInput
+  feedbackReceived?: Prisma.FeedbackUncheckedCreateNestedManyWithoutRecipientInput
+  feedbackRequested?: Prisma.FeedbackRequestUncheckedCreateNestedManyWithoutRequesterInput
+  feedbackInbox?: Prisma.FeedbackRequestUncheckedCreateNestedManyWithoutRequestedFromInput
+  kudosGiven?: Prisma.KudoUncheckedCreateNestedManyWithoutGiverInput
+  kudosReceived?: Prisma.KudoUncheckedCreateNestedManyWithoutRecipientInput
+  growthPlans?: Prisma.GrowthPlanUncheckedCreateNestedManyWithoutMemberInput
 }
 
 export type MemberCreateOrConnectWithoutTeamMembershipsInput = {
@@ -912,6 +1177,13 @@ export type MemberUpdateWithoutTeamMembershipsInput = {
   checkIns?: Prisma.CheckInUpdateManyWithoutActorMemberNestedInput
   okrAuditEvents?: Prisma.OkrAuditEventUpdateManyWithoutActorMemberNestedInput
   competencies?: Prisma.CompetencyUpdateManyWithoutMemberNestedInput
+  feedbackAuthored?: Prisma.FeedbackUpdateManyWithoutAuthorNestedInput
+  feedbackReceived?: Prisma.FeedbackUpdateManyWithoutRecipientNestedInput
+  feedbackRequested?: Prisma.FeedbackRequestUpdateManyWithoutRequesterNestedInput
+  feedbackInbox?: Prisma.FeedbackRequestUpdateManyWithoutRequestedFromNestedInput
+  kudosGiven?: Prisma.KudoUpdateManyWithoutGiverNestedInput
+  kudosReceived?: Prisma.KudoUpdateManyWithoutRecipientNestedInput
+  growthPlans?: Prisma.GrowthPlanUpdateManyWithoutMemberNestedInput
 }
 
 export type MemberUncheckedUpdateWithoutTeamMembershipsInput = {
@@ -927,6 +1199,13 @@ export type MemberUncheckedUpdateWithoutTeamMembershipsInput = {
   checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutActorMemberNestedInput
   okrAuditEvents?: Prisma.OkrAuditEventUncheckedUpdateManyWithoutActorMemberNestedInput
   competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutMemberNestedInput
+  feedbackAuthored?: Prisma.FeedbackUncheckedUpdateManyWithoutAuthorNestedInput
+  feedbackReceived?: Prisma.FeedbackUncheckedUpdateManyWithoutRecipientNestedInput
+  feedbackRequested?: Prisma.FeedbackRequestUncheckedUpdateManyWithoutRequesterNestedInput
+  feedbackInbox?: Prisma.FeedbackRequestUncheckedUpdateManyWithoutRequestedFromNestedInput
+  kudosGiven?: Prisma.KudoUncheckedUpdateManyWithoutGiverNestedInput
+  kudosReceived?: Prisma.KudoUncheckedUpdateManyWithoutRecipientNestedInput
+  growthPlans?: Prisma.GrowthPlanUncheckedUpdateManyWithoutMemberNestedInput
 }
 
 export type MemberCreateWithoutCompetenciesInput = {
@@ -942,6 +1221,13 @@ export type MemberCreateWithoutCompetenciesInput = {
   checkIns?: Prisma.CheckInCreateNestedManyWithoutActorMemberInput
   okrAuditEvents?: Prisma.OkrAuditEventCreateNestedManyWithoutActorMemberInput
   teamMemberships?: Prisma.TeamMemberCreateNestedManyWithoutMemberInput
+  feedbackAuthored?: Prisma.FeedbackCreateNestedManyWithoutAuthorInput
+  feedbackReceived?: Prisma.FeedbackCreateNestedManyWithoutRecipientInput
+  feedbackRequested?: Prisma.FeedbackRequestCreateNestedManyWithoutRequesterInput
+  feedbackInbox?: Prisma.FeedbackRequestCreateNestedManyWithoutRequestedFromInput
+  kudosGiven?: Prisma.KudoCreateNestedManyWithoutGiverInput
+  kudosReceived?: Prisma.KudoCreateNestedManyWithoutRecipientInput
+  growthPlans?: Prisma.GrowthPlanCreateNestedManyWithoutMemberInput
 }
 
 export type MemberUncheckedCreateWithoutCompetenciesInput = {
@@ -957,6 +1243,13 @@ export type MemberUncheckedCreateWithoutCompetenciesInput = {
   checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutActorMemberInput
   okrAuditEvents?: Prisma.OkrAuditEventUncheckedCreateNestedManyWithoutActorMemberInput
   teamMemberships?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutMemberInput
+  feedbackAuthored?: Prisma.FeedbackUncheckedCreateNestedManyWithoutAuthorInput
+  feedbackReceived?: Prisma.FeedbackUncheckedCreateNestedManyWithoutRecipientInput
+  feedbackRequested?: Prisma.FeedbackRequestUncheckedCreateNestedManyWithoutRequesterInput
+  feedbackInbox?: Prisma.FeedbackRequestUncheckedCreateNestedManyWithoutRequestedFromInput
+  kudosGiven?: Prisma.KudoUncheckedCreateNestedManyWithoutGiverInput
+  kudosReceived?: Prisma.KudoUncheckedCreateNestedManyWithoutRecipientInput
+  growthPlans?: Prisma.GrowthPlanUncheckedCreateNestedManyWithoutMemberInput
 }
 
 export type MemberCreateOrConnectWithoutCompetenciesInput = {
@@ -988,6 +1281,13 @@ export type MemberUpdateWithoutCompetenciesInput = {
   checkIns?: Prisma.CheckInUpdateManyWithoutActorMemberNestedInput
   okrAuditEvents?: Prisma.OkrAuditEventUpdateManyWithoutActorMemberNestedInput
   teamMemberships?: Prisma.TeamMemberUpdateManyWithoutMemberNestedInput
+  feedbackAuthored?: Prisma.FeedbackUpdateManyWithoutAuthorNestedInput
+  feedbackReceived?: Prisma.FeedbackUpdateManyWithoutRecipientNestedInput
+  feedbackRequested?: Prisma.FeedbackRequestUpdateManyWithoutRequesterNestedInput
+  feedbackInbox?: Prisma.FeedbackRequestUpdateManyWithoutRequestedFromNestedInput
+  kudosGiven?: Prisma.KudoUpdateManyWithoutGiverNestedInput
+  kudosReceived?: Prisma.KudoUpdateManyWithoutRecipientNestedInput
+  growthPlans?: Prisma.GrowthPlanUpdateManyWithoutMemberNestedInput
 }
 
 export type MemberUncheckedUpdateWithoutCompetenciesInput = {
@@ -1003,6 +1303,741 @@ export type MemberUncheckedUpdateWithoutCompetenciesInput = {
   checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutActorMemberNestedInput
   okrAuditEvents?: Prisma.OkrAuditEventUncheckedUpdateManyWithoutActorMemberNestedInput
   teamMemberships?: Prisma.TeamMemberUncheckedUpdateManyWithoutMemberNestedInput
+  feedbackAuthored?: Prisma.FeedbackUncheckedUpdateManyWithoutAuthorNestedInput
+  feedbackReceived?: Prisma.FeedbackUncheckedUpdateManyWithoutRecipientNestedInput
+  feedbackRequested?: Prisma.FeedbackRequestUncheckedUpdateManyWithoutRequesterNestedInput
+  feedbackInbox?: Prisma.FeedbackRequestUncheckedUpdateManyWithoutRequestedFromNestedInput
+  kudosGiven?: Prisma.KudoUncheckedUpdateManyWithoutGiverNestedInput
+  kudosReceived?: Prisma.KudoUncheckedUpdateManyWithoutRecipientNestedInput
+  growthPlans?: Prisma.GrowthPlanUncheckedUpdateManyWithoutMemberNestedInput
+}
+
+export type MemberCreateWithoutFeedbackRequestedInput = {
+  id?: string
+  email: string
+  name: string
+  role: $Enums.MemberRole
+  clerkUserId?: string | null
+  seniority?: $Enums.Seniority | null
+  createdAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutMembersInput
+  objectives?: Prisma.ObjectiveCreateNestedManyWithoutOwnerInput
+  checkIns?: Prisma.CheckInCreateNestedManyWithoutActorMemberInput
+  okrAuditEvents?: Prisma.OkrAuditEventCreateNestedManyWithoutActorMemberInput
+  teamMemberships?: Prisma.TeamMemberCreateNestedManyWithoutMemberInput
+  competencies?: Prisma.CompetencyCreateNestedManyWithoutMemberInput
+  feedbackAuthored?: Prisma.FeedbackCreateNestedManyWithoutAuthorInput
+  feedbackReceived?: Prisma.FeedbackCreateNestedManyWithoutRecipientInput
+  feedbackInbox?: Prisma.FeedbackRequestCreateNestedManyWithoutRequestedFromInput
+  kudosGiven?: Prisma.KudoCreateNestedManyWithoutGiverInput
+  kudosReceived?: Prisma.KudoCreateNestedManyWithoutRecipientInput
+  growthPlans?: Prisma.GrowthPlanCreateNestedManyWithoutMemberInput
+}
+
+export type MemberUncheckedCreateWithoutFeedbackRequestedInput = {
+  id?: string
+  organizationId: string
+  email: string
+  name: string
+  role: $Enums.MemberRole
+  clerkUserId?: string | null
+  seniority?: $Enums.Seniority | null
+  createdAt?: Date | string
+  objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOwnerInput
+  checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutActorMemberInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedCreateNestedManyWithoutActorMemberInput
+  teamMemberships?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutMemberInput
+  competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutMemberInput
+  feedbackAuthored?: Prisma.FeedbackUncheckedCreateNestedManyWithoutAuthorInput
+  feedbackReceived?: Prisma.FeedbackUncheckedCreateNestedManyWithoutRecipientInput
+  feedbackInbox?: Prisma.FeedbackRequestUncheckedCreateNestedManyWithoutRequestedFromInput
+  kudosGiven?: Prisma.KudoUncheckedCreateNestedManyWithoutGiverInput
+  kudosReceived?: Prisma.KudoUncheckedCreateNestedManyWithoutRecipientInput
+  growthPlans?: Prisma.GrowthPlanUncheckedCreateNestedManyWithoutMemberInput
+}
+
+export type MemberCreateOrConnectWithoutFeedbackRequestedInput = {
+  where: Prisma.MemberWhereUniqueInput
+  create: Prisma.XOR<Prisma.MemberCreateWithoutFeedbackRequestedInput, Prisma.MemberUncheckedCreateWithoutFeedbackRequestedInput>
+}
+
+export type MemberCreateWithoutFeedbackInboxInput = {
+  id?: string
+  email: string
+  name: string
+  role: $Enums.MemberRole
+  clerkUserId?: string | null
+  seniority?: $Enums.Seniority | null
+  createdAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutMembersInput
+  objectives?: Prisma.ObjectiveCreateNestedManyWithoutOwnerInput
+  checkIns?: Prisma.CheckInCreateNestedManyWithoutActorMemberInput
+  okrAuditEvents?: Prisma.OkrAuditEventCreateNestedManyWithoutActorMemberInput
+  teamMemberships?: Prisma.TeamMemberCreateNestedManyWithoutMemberInput
+  competencies?: Prisma.CompetencyCreateNestedManyWithoutMemberInput
+  feedbackAuthored?: Prisma.FeedbackCreateNestedManyWithoutAuthorInput
+  feedbackReceived?: Prisma.FeedbackCreateNestedManyWithoutRecipientInput
+  feedbackRequested?: Prisma.FeedbackRequestCreateNestedManyWithoutRequesterInput
+  kudosGiven?: Prisma.KudoCreateNestedManyWithoutGiverInput
+  kudosReceived?: Prisma.KudoCreateNestedManyWithoutRecipientInput
+  growthPlans?: Prisma.GrowthPlanCreateNestedManyWithoutMemberInput
+}
+
+export type MemberUncheckedCreateWithoutFeedbackInboxInput = {
+  id?: string
+  organizationId: string
+  email: string
+  name: string
+  role: $Enums.MemberRole
+  clerkUserId?: string | null
+  seniority?: $Enums.Seniority | null
+  createdAt?: Date | string
+  objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOwnerInput
+  checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutActorMemberInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedCreateNestedManyWithoutActorMemberInput
+  teamMemberships?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutMemberInput
+  competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutMemberInput
+  feedbackAuthored?: Prisma.FeedbackUncheckedCreateNestedManyWithoutAuthorInput
+  feedbackReceived?: Prisma.FeedbackUncheckedCreateNestedManyWithoutRecipientInput
+  feedbackRequested?: Prisma.FeedbackRequestUncheckedCreateNestedManyWithoutRequesterInput
+  kudosGiven?: Prisma.KudoUncheckedCreateNestedManyWithoutGiverInput
+  kudosReceived?: Prisma.KudoUncheckedCreateNestedManyWithoutRecipientInput
+  growthPlans?: Prisma.GrowthPlanUncheckedCreateNestedManyWithoutMemberInput
+}
+
+export type MemberCreateOrConnectWithoutFeedbackInboxInput = {
+  where: Prisma.MemberWhereUniqueInput
+  create: Prisma.XOR<Prisma.MemberCreateWithoutFeedbackInboxInput, Prisma.MemberUncheckedCreateWithoutFeedbackInboxInput>
+}
+
+export type MemberUpsertWithoutFeedbackRequestedInput = {
+  update: Prisma.XOR<Prisma.MemberUpdateWithoutFeedbackRequestedInput, Prisma.MemberUncheckedUpdateWithoutFeedbackRequestedInput>
+  create: Prisma.XOR<Prisma.MemberCreateWithoutFeedbackRequestedInput, Prisma.MemberUncheckedCreateWithoutFeedbackRequestedInput>
+  where?: Prisma.MemberWhereInput
+}
+
+export type MemberUpdateToOneWithWhereWithoutFeedbackRequestedInput = {
+  where?: Prisma.MemberWhereInput
+  data: Prisma.XOR<Prisma.MemberUpdateWithoutFeedbackRequestedInput, Prisma.MemberUncheckedUpdateWithoutFeedbackRequestedInput>
+}
+
+export type MemberUpdateWithoutFeedbackRequestedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumMemberRoleFieldUpdateOperationsInput | $Enums.MemberRole
+  clerkUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seniority?: Prisma.NullableEnumSeniorityFieldUpdateOperationsInput | $Enums.Seniority | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutMembersNestedInput
+  objectives?: Prisma.ObjectiveUpdateManyWithoutOwnerNestedInput
+  checkIns?: Prisma.CheckInUpdateManyWithoutActorMemberNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUpdateManyWithoutActorMemberNestedInput
+  teamMemberships?: Prisma.TeamMemberUpdateManyWithoutMemberNestedInput
+  competencies?: Prisma.CompetencyUpdateManyWithoutMemberNestedInput
+  feedbackAuthored?: Prisma.FeedbackUpdateManyWithoutAuthorNestedInput
+  feedbackReceived?: Prisma.FeedbackUpdateManyWithoutRecipientNestedInput
+  feedbackInbox?: Prisma.FeedbackRequestUpdateManyWithoutRequestedFromNestedInput
+  kudosGiven?: Prisma.KudoUpdateManyWithoutGiverNestedInput
+  kudosReceived?: Prisma.KudoUpdateManyWithoutRecipientNestedInput
+  growthPlans?: Prisma.GrowthPlanUpdateManyWithoutMemberNestedInput
+}
+
+export type MemberUncheckedUpdateWithoutFeedbackRequestedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumMemberRoleFieldUpdateOperationsInput | $Enums.MemberRole
+  clerkUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seniority?: Prisma.NullableEnumSeniorityFieldUpdateOperationsInput | $Enums.Seniority | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOwnerNestedInput
+  checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutActorMemberNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedUpdateManyWithoutActorMemberNestedInput
+  teamMemberships?: Prisma.TeamMemberUncheckedUpdateManyWithoutMemberNestedInput
+  competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutMemberNestedInput
+  feedbackAuthored?: Prisma.FeedbackUncheckedUpdateManyWithoutAuthorNestedInput
+  feedbackReceived?: Prisma.FeedbackUncheckedUpdateManyWithoutRecipientNestedInput
+  feedbackInbox?: Prisma.FeedbackRequestUncheckedUpdateManyWithoutRequestedFromNestedInput
+  kudosGiven?: Prisma.KudoUncheckedUpdateManyWithoutGiverNestedInput
+  kudosReceived?: Prisma.KudoUncheckedUpdateManyWithoutRecipientNestedInput
+  growthPlans?: Prisma.GrowthPlanUncheckedUpdateManyWithoutMemberNestedInput
+}
+
+export type MemberUpsertWithoutFeedbackInboxInput = {
+  update: Prisma.XOR<Prisma.MemberUpdateWithoutFeedbackInboxInput, Prisma.MemberUncheckedUpdateWithoutFeedbackInboxInput>
+  create: Prisma.XOR<Prisma.MemberCreateWithoutFeedbackInboxInput, Prisma.MemberUncheckedCreateWithoutFeedbackInboxInput>
+  where?: Prisma.MemberWhereInput
+}
+
+export type MemberUpdateToOneWithWhereWithoutFeedbackInboxInput = {
+  where?: Prisma.MemberWhereInput
+  data: Prisma.XOR<Prisma.MemberUpdateWithoutFeedbackInboxInput, Prisma.MemberUncheckedUpdateWithoutFeedbackInboxInput>
+}
+
+export type MemberUpdateWithoutFeedbackInboxInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumMemberRoleFieldUpdateOperationsInput | $Enums.MemberRole
+  clerkUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seniority?: Prisma.NullableEnumSeniorityFieldUpdateOperationsInput | $Enums.Seniority | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutMembersNestedInput
+  objectives?: Prisma.ObjectiveUpdateManyWithoutOwnerNestedInput
+  checkIns?: Prisma.CheckInUpdateManyWithoutActorMemberNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUpdateManyWithoutActorMemberNestedInput
+  teamMemberships?: Prisma.TeamMemberUpdateManyWithoutMemberNestedInput
+  competencies?: Prisma.CompetencyUpdateManyWithoutMemberNestedInput
+  feedbackAuthored?: Prisma.FeedbackUpdateManyWithoutAuthorNestedInput
+  feedbackReceived?: Prisma.FeedbackUpdateManyWithoutRecipientNestedInput
+  feedbackRequested?: Prisma.FeedbackRequestUpdateManyWithoutRequesterNestedInput
+  kudosGiven?: Prisma.KudoUpdateManyWithoutGiverNestedInput
+  kudosReceived?: Prisma.KudoUpdateManyWithoutRecipientNestedInput
+  growthPlans?: Prisma.GrowthPlanUpdateManyWithoutMemberNestedInput
+}
+
+export type MemberUncheckedUpdateWithoutFeedbackInboxInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumMemberRoleFieldUpdateOperationsInput | $Enums.MemberRole
+  clerkUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seniority?: Prisma.NullableEnumSeniorityFieldUpdateOperationsInput | $Enums.Seniority | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOwnerNestedInput
+  checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutActorMemberNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedUpdateManyWithoutActorMemberNestedInput
+  teamMemberships?: Prisma.TeamMemberUncheckedUpdateManyWithoutMemberNestedInput
+  competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutMemberNestedInput
+  feedbackAuthored?: Prisma.FeedbackUncheckedUpdateManyWithoutAuthorNestedInput
+  feedbackReceived?: Prisma.FeedbackUncheckedUpdateManyWithoutRecipientNestedInput
+  feedbackRequested?: Prisma.FeedbackRequestUncheckedUpdateManyWithoutRequesterNestedInput
+  kudosGiven?: Prisma.KudoUncheckedUpdateManyWithoutGiverNestedInput
+  kudosReceived?: Prisma.KudoUncheckedUpdateManyWithoutRecipientNestedInput
+  growthPlans?: Prisma.GrowthPlanUncheckedUpdateManyWithoutMemberNestedInput
+}
+
+export type MemberCreateWithoutFeedbackAuthoredInput = {
+  id?: string
+  email: string
+  name: string
+  role: $Enums.MemberRole
+  clerkUserId?: string | null
+  seniority?: $Enums.Seniority | null
+  createdAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutMembersInput
+  objectives?: Prisma.ObjectiveCreateNestedManyWithoutOwnerInput
+  checkIns?: Prisma.CheckInCreateNestedManyWithoutActorMemberInput
+  okrAuditEvents?: Prisma.OkrAuditEventCreateNestedManyWithoutActorMemberInput
+  teamMemberships?: Prisma.TeamMemberCreateNestedManyWithoutMemberInput
+  competencies?: Prisma.CompetencyCreateNestedManyWithoutMemberInput
+  feedbackReceived?: Prisma.FeedbackCreateNestedManyWithoutRecipientInput
+  feedbackRequested?: Prisma.FeedbackRequestCreateNestedManyWithoutRequesterInput
+  feedbackInbox?: Prisma.FeedbackRequestCreateNestedManyWithoutRequestedFromInput
+  kudosGiven?: Prisma.KudoCreateNestedManyWithoutGiverInput
+  kudosReceived?: Prisma.KudoCreateNestedManyWithoutRecipientInput
+  growthPlans?: Prisma.GrowthPlanCreateNestedManyWithoutMemberInput
+}
+
+export type MemberUncheckedCreateWithoutFeedbackAuthoredInput = {
+  id?: string
+  organizationId: string
+  email: string
+  name: string
+  role: $Enums.MemberRole
+  clerkUserId?: string | null
+  seniority?: $Enums.Seniority | null
+  createdAt?: Date | string
+  objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOwnerInput
+  checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutActorMemberInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedCreateNestedManyWithoutActorMemberInput
+  teamMemberships?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutMemberInput
+  competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutMemberInput
+  feedbackReceived?: Prisma.FeedbackUncheckedCreateNestedManyWithoutRecipientInput
+  feedbackRequested?: Prisma.FeedbackRequestUncheckedCreateNestedManyWithoutRequesterInput
+  feedbackInbox?: Prisma.FeedbackRequestUncheckedCreateNestedManyWithoutRequestedFromInput
+  kudosGiven?: Prisma.KudoUncheckedCreateNestedManyWithoutGiverInput
+  kudosReceived?: Prisma.KudoUncheckedCreateNestedManyWithoutRecipientInput
+  growthPlans?: Prisma.GrowthPlanUncheckedCreateNestedManyWithoutMemberInput
+}
+
+export type MemberCreateOrConnectWithoutFeedbackAuthoredInput = {
+  where: Prisma.MemberWhereUniqueInput
+  create: Prisma.XOR<Prisma.MemberCreateWithoutFeedbackAuthoredInput, Prisma.MemberUncheckedCreateWithoutFeedbackAuthoredInput>
+}
+
+export type MemberCreateWithoutFeedbackReceivedInput = {
+  id?: string
+  email: string
+  name: string
+  role: $Enums.MemberRole
+  clerkUserId?: string | null
+  seniority?: $Enums.Seniority | null
+  createdAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutMembersInput
+  objectives?: Prisma.ObjectiveCreateNestedManyWithoutOwnerInput
+  checkIns?: Prisma.CheckInCreateNestedManyWithoutActorMemberInput
+  okrAuditEvents?: Prisma.OkrAuditEventCreateNestedManyWithoutActorMemberInput
+  teamMemberships?: Prisma.TeamMemberCreateNestedManyWithoutMemberInput
+  competencies?: Prisma.CompetencyCreateNestedManyWithoutMemberInput
+  feedbackAuthored?: Prisma.FeedbackCreateNestedManyWithoutAuthorInput
+  feedbackRequested?: Prisma.FeedbackRequestCreateNestedManyWithoutRequesterInput
+  feedbackInbox?: Prisma.FeedbackRequestCreateNestedManyWithoutRequestedFromInput
+  kudosGiven?: Prisma.KudoCreateNestedManyWithoutGiverInput
+  kudosReceived?: Prisma.KudoCreateNestedManyWithoutRecipientInput
+  growthPlans?: Prisma.GrowthPlanCreateNestedManyWithoutMemberInput
+}
+
+export type MemberUncheckedCreateWithoutFeedbackReceivedInput = {
+  id?: string
+  organizationId: string
+  email: string
+  name: string
+  role: $Enums.MemberRole
+  clerkUserId?: string | null
+  seniority?: $Enums.Seniority | null
+  createdAt?: Date | string
+  objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOwnerInput
+  checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutActorMemberInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedCreateNestedManyWithoutActorMemberInput
+  teamMemberships?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutMemberInput
+  competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutMemberInput
+  feedbackAuthored?: Prisma.FeedbackUncheckedCreateNestedManyWithoutAuthorInput
+  feedbackRequested?: Prisma.FeedbackRequestUncheckedCreateNestedManyWithoutRequesterInput
+  feedbackInbox?: Prisma.FeedbackRequestUncheckedCreateNestedManyWithoutRequestedFromInput
+  kudosGiven?: Prisma.KudoUncheckedCreateNestedManyWithoutGiverInput
+  kudosReceived?: Prisma.KudoUncheckedCreateNestedManyWithoutRecipientInput
+  growthPlans?: Prisma.GrowthPlanUncheckedCreateNestedManyWithoutMemberInput
+}
+
+export type MemberCreateOrConnectWithoutFeedbackReceivedInput = {
+  where: Prisma.MemberWhereUniqueInput
+  create: Prisma.XOR<Prisma.MemberCreateWithoutFeedbackReceivedInput, Prisma.MemberUncheckedCreateWithoutFeedbackReceivedInput>
+}
+
+export type MemberUpsertWithoutFeedbackAuthoredInput = {
+  update: Prisma.XOR<Prisma.MemberUpdateWithoutFeedbackAuthoredInput, Prisma.MemberUncheckedUpdateWithoutFeedbackAuthoredInput>
+  create: Prisma.XOR<Prisma.MemberCreateWithoutFeedbackAuthoredInput, Prisma.MemberUncheckedCreateWithoutFeedbackAuthoredInput>
+  where?: Prisma.MemberWhereInput
+}
+
+export type MemberUpdateToOneWithWhereWithoutFeedbackAuthoredInput = {
+  where?: Prisma.MemberWhereInput
+  data: Prisma.XOR<Prisma.MemberUpdateWithoutFeedbackAuthoredInput, Prisma.MemberUncheckedUpdateWithoutFeedbackAuthoredInput>
+}
+
+export type MemberUpdateWithoutFeedbackAuthoredInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumMemberRoleFieldUpdateOperationsInput | $Enums.MemberRole
+  clerkUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seniority?: Prisma.NullableEnumSeniorityFieldUpdateOperationsInput | $Enums.Seniority | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutMembersNestedInput
+  objectives?: Prisma.ObjectiveUpdateManyWithoutOwnerNestedInput
+  checkIns?: Prisma.CheckInUpdateManyWithoutActorMemberNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUpdateManyWithoutActorMemberNestedInput
+  teamMemberships?: Prisma.TeamMemberUpdateManyWithoutMemberNestedInput
+  competencies?: Prisma.CompetencyUpdateManyWithoutMemberNestedInput
+  feedbackReceived?: Prisma.FeedbackUpdateManyWithoutRecipientNestedInput
+  feedbackRequested?: Prisma.FeedbackRequestUpdateManyWithoutRequesterNestedInput
+  feedbackInbox?: Prisma.FeedbackRequestUpdateManyWithoutRequestedFromNestedInput
+  kudosGiven?: Prisma.KudoUpdateManyWithoutGiverNestedInput
+  kudosReceived?: Prisma.KudoUpdateManyWithoutRecipientNestedInput
+  growthPlans?: Prisma.GrowthPlanUpdateManyWithoutMemberNestedInput
+}
+
+export type MemberUncheckedUpdateWithoutFeedbackAuthoredInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumMemberRoleFieldUpdateOperationsInput | $Enums.MemberRole
+  clerkUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seniority?: Prisma.NullableEnumSeniorityFieldUpdateOperationsInput | $Enums.Seniority | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOwnerNestedInput
+  checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutActorMemberNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedUpdateManyWithoutActorMemberNestedInput
+  teamMemberships?: Prisma.TeamMemberUncheckedUpdateManyWithoutMemberNestedInput
+  competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutMemberNestedInput
+  feedbackReceived?: Prisma.FeedbackUncheckedUpdateManyWithoutRecipientNestedInput
+  feedbackRequested?: Prisma.FeedbackRequestUncheckedUpdateManyWithoutRequesterNestedInput
+  feedbackInbox?: Prisma.FeedbackRequestUncheckedUpdateManyWithoutRequestedFromNestedInput
+  kudosGiven?: Prisma.KudoUncheckedUpdateManyWithoutGiverNestedInput
+  kudosReceived?: Prisma.KudoUncheckedUpdateManyWithoutRecipientNestedInput
+  growthPlans?: Prisma.GrowthPlanUncheckedUpdateManyWithoutMemberNestedInput
+}
+
+export type MemberUpsertWithoutFeedbackReceivedInput = {
+  update: Prisma.XOR<Prisma.MemberUpdateWithoutFeedbackReceivedInput, Prisma.MemberUncheckedUpdateWithoutFeedbackReceivedInput>
+  create: Prisma.XOR<Prisma.MemberCreateWithoutFeedbackReceivedInput, Prisma.MemberUncheckedCreateWithoutFeedbackReceivedInput>
+  where?: Prisma.MemberWhereInput
+}
+
+export type MemberUpdateToOneWithWhereWithoutFeedbackReceivedInput = {
+  where?: Prisma.MemberWhereInput
+  data: Prisma.XOR<Prisma.MemberUpdateWithoutFeedbackReceivedInput, Prisma.MemberUncheckedUpdateWithoutFeedbackReceivedInput>
+}
+
+export type MemberUpdateWithoutFeedbackReceivedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumMemberRoleFieldUpdateOperationsInput | $Enums.MemberRole
+  clerkUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seniority?: Prisma.NullableEnumSeniorityFieldUpdateOperationsInput | $Enums.Seniority | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutMembersNestedInput
+  objectives?: Prisma.ObjectiveUpdateManyWithoutOwnerNestedInput
+  checkIns?: Prisma.CheckInUpdateManyWithoutActorMemberNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUpdateManyWithoutActorMemberNestedInput
+  teamMemberships?: Prisma.TeamMemberUpdateManyWithoutMemberNestedInput
+  competencies?: Prisma.CompetencyUpdateManyWithoutMemberNestedInput
+  feedbackAuthored?: Prisma.FeedbackUpdateManyWithoutAuthorNestedInput
+  feedbackRequested?: Prisma.FeedbackRequestUpdateManyWithoutRequesterNestedInput
+  feedbackInbox?: Prisma.FeedbackRequestUpdateManyWithoutRequestedFromNestedInput
+  kudosGiven?: Prisma.KudoUpdateManyWithoutGiverNestedInput
+  kudosReceived?: Prisma.KudoUpdateManyWithoutRecipientNestedInput
+  growthPlans?: Prisma.GrowthPlanUpdateManyWithoutMemberNestedInput
+}
+
+export type MemberUncheckedUpdateWithoutFeedbackReceivedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumMemberRoleFieldUpdateOperationsInput | $Enums.MemberRole
+  clerkUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seniority?: Prisma.NullableEnumSeniorityFieldUpdateOperationsInput | $Enums.Seniority | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOwnerNestedInput
+  checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutActorMemberNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedUpdateManyWithoutActorMemberNestedInput
+  teamMemberships?: Prisma.TeamMemberUncheckedUpdateManyWithoutMemberNestedInput
+  competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutMemberNestedInput
+  feedbackAuthored?: Prisma.FeedbackUncheckedUpdateManyWithoutAuthorNestedInput
+  feedbackRequested?: Prisma.FeedbackRequestUncheckedUpdateManyWithoutRequesterNestedInput
+  feedbackInbox?: Prisma.FeedbackRequestUncheckedUpdateManyWithoutRequestedFromNestedInput
+  kudosGiven?: Prisma.KudoUncheckedUpdateManyWithoutGiverNestedInput
+  kudosReceived?: Prisma.KudoUncheckedUpdateManyWithoutRecipientNestedInput
+  growthPlans?: Prisma.GrowthPlanUncheckedUpdateManyWithoutMemberNestedInput
+}
+
+export type MemberCreateWithoutKudosGivenInput = {
+  id?: string
+  email: string
+  name: string
+  role: $Enums.MemberRole
+  clerkUserId?: string | null
+  seniority?: $Enums.Seniority | null
+  createdAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutMembersInput
+  objectives?: Prisma.ObjectiveCreateNestedManyWithoutOwnerInput
+  checkIns?: Prisma.CheckInCreateNestedManyWithoutActorMemberInput
+  okrAuditEvents?: Prisma.OkrAuditEventCreateNestedManyWithoutActorMemberInput
+  teamMemberships?: Prisma.TeamMemberCreateNestedManyWithoutMemberInput
+  competencies?: Prisma.CompetencyCreateNestedManyWithoutMemberInput
+  feedbackAuthored?: Prisma.FeedbackCreateNestedManyWithoutAuthorInput
+  feedbackReceived?: Prisma.FeedbackCreateNestedManyWithoutRecipientInput
+  feedbackRequested?: Prisma.FeedbackRequestCreateNestedManyWithoutRequesterInput
+  feedbackInbox?: Prisma.FeedbackRequestCreateNestedManyWithoutRequestedFromInput
+  kudosReceived?: Prisma.KudoCreateNestedManyWithoutRecipientInput
+  growthPlans?: Prisma.GrowthPlanCreateNestedManyWithoutMemberInput
+}
+
+export type MemberUncheckedCreateWithoutKudosGivenInput = {
+  id?: string
+  organizationId: string
+  email: string
+  name: string
+  role: $Enums.MemberRole
+  clerkUserId?: string | null
+  seniority?: $Enums.Seniority | null
+  createdAt?: Date | string
+  objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOwnerInput
+  checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutActorMemberInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedCreateNestedManyWithoutActorMemberInput
+  teamMemberships?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutMemberInput
+  competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutMemberInput
+  feedbackAuthored?: Prisma.FeedbackUncheckedCreateNestedManyWithoutAuthorInput
+  feedbackReceived?: Prisma.FeedbackUncheckedCreateNestedManyWithoutRecipientInput
+  feedbackRequested?: Prisma.FeedbackRequestUncheckedCreateNestedManyWithoutRequesterInput
+  feedbackInbox?: Prisma.FeedbackRequestUncheckedCreateNestedManyWithoutRequestedFromInput
+  kudosReceived?: Prisma.KudoUncheckedCreateNestedManyWithoutRecipientInput
+  growthPlans?: Prisma.GrowthPlanUncheckedCreateNestedManyWithoutMemberInput
+}
+
+export type MemberCreateOrConnectWithoutKudosGivenInput = {
+  where: Prisma.MemberWhereUniqueInput
+  create: Prisma.XOR<Prisma.MemberCreateWithoutKudosGivenInput, Prisma.MemberUncheckedCreateWithoutKudosGivenInput>
+}
+
+export type MemberCreateWithoutKudosReceivedInput = {
+  id?: string
+  email: string
+  name: string
+  role: $Enums.MemberRole
+  clerkUserId?: string | null
+  seniority?: $Enums.Seniority | null
+  createdAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutMembersInput
+  objectives?: Prisma.ObjectiveCreateNestedManyWithoutOwnerInput
+  checkIns?: Prisma.CheckInCreateNestedManyWithoutActorMemberInput
+  okrAuditEvents?: Prisma.OkrAuditEventCreateNestedManyWithoutActorMemberInput
+  teamMemberships?: Prisma.TeamMemberCreateNestedManyWithoutMemberInput
+  competencies?: Prisma.CompetencyCreateNestedManyWithoutMemberInput
+  feedbackAuthored?: Prisma.FeedbackCreateNestedManyWithoutAuthorInput
+  feedbackReceived?: Prisma.FeedbackCreateNestedManyWithoutRecipientInput
+  feedbackRequested?: Prisma.FeedbackRequestCreateNestedManyWithoutRequesterInput
+  feedbackInbox?: Prisma.FeedbackRequestCreateNestedManyWithoutRequestedFromInput
+  kudosGiven?: Prisma.KudoCreateNestedManyWithoutGiverInput
+  growthPlans?: Prisma.GrowthPlanCreateNestedManyWithoutMemberInput
+}
+
+export type MemberUncheckedCreateWithoutKudosReceivedInput = {
+  id?: string
+  organizationId: string
+  email: string
+  name: string
+  role: $Enums.MemberRole
+  clerkUserId?: string | null
+  seniority?: $Enums.Seniority | null
+  createdAt?: Date | string
+  objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOwnerInput
+  checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutActorMemberInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedCreateNestedManyWithoutActorMemberInput
+  teamMemberships?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutMemberInput
+  competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutMemberInput
+  feedbackAuthored?: Prisma.FeedbackUncheckedCreateNestedManyWithoutAuthorInput
+  feedbackReceived?: Prisma.FeedbackUncheckedCreateNestedManyWithoutRecipientInput
+  feedbackRequested?: Prisma.FeedbackRequestUncheckedCreateNestedManyWithoutRequesterInput
+  feedbackInbox?: Prisma.FeedbackRequestUncheckedCreateNestedManyWithoutRequestedFromInput
+  kudosGiven?: Prisma.KudoUncheckedCreateNestedManyWithoutGiverInput
+  growthPlans?: Prisma.GrowthPlanUncheckedCreateNestedManyWithoutMemberInput
+}
+
+export type MemberCreateOrConnectWithoutKudosReceivedInput = {
+  where: Prisma.MemberWhereUniqueInput
+  create: Prisma.XOR<Prisma.MemberCreateWithoutKudosReceivedInput, Prisma.MemberUncheckedCreateWithoutKudosReceivedInput>
+}
+
+export type MemberUpsertWithoutKudosGivenInput = {
+  update: Prisma.XOR<Prisma.MemberUpdateWithoutKudosGivenInput, Prisma.MemberUncheckedUpdateWithoutKudosGivenInput>
+  create: Prisma.XOR<Prisma.MemberCreateWithoutKudosGivenInput, Prisma.MemberUncheckedCreateWithoutKudosGivenInput>
+  where?: Prisma.MemberWhereInput
+}
+
+export type MemberUpdateToOneWithWhereWithoutKudosGivenInput = {
+  where?: Prisma.MemberWhereInput
+  data: Prisma.XOR<Prisma.MemberUpdateWithoutKudosGivenInput, Prisma.MemberUncheckedUpdateWithoutKudosGivenInput>
+}
+
+export type MemberUpdateWithoutKudosGivenInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumMemberRoleFieldUpdateOperationsInput | $Enums.MemberRole
+  clerkUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seniority?: Prisma.NullableEnumSeniorityFieldUpdateOperationsInput | $Enums.Seniority | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutMembersNestedInput
+  objectives?: Prisma.ObjectiveUpdateManyWithoutOwnerNestedInput
+  checkIns?: Prisma.CheckInUpdateManyWithoutActorMemberNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUpdateManyWithoutActorMemberNestedInput
+  teamMemberships?: Prisma.TeamMemberUpdateManyWithoutMemberNestedInput
+  competencies?: Prisma.CompetencyUpdateManyWithoutMemberNestedInput
+  feedbackAuthored?: Prisma.FeedbackUpdateManyWithoutAuthorNestedInput
+  feedbackReceived?: Prisma.FeedbackUpdateManyWithoutRecipientNestedInput
+  feedbackRequested?: Prisma.FeedbackRequestUpdateManyWithoutRequesterNestedInput
+  feedbackInbox?: Prisma.FeedbackRequestUpdateManyWithoutRequestedFromNestedInput
+  kudosReceived?: Prisma.KudoUpdateManyWithoutRecipientNestedInput
+  growthPlans?: Prisma.GrowthPlanUpdateManyWithoutMemberNestedInput
+}
+
+export type MemberUncheckedUpdateWithoutKudosGivenInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumMemberRoleFieldUpdateOperationsInput | $Enums.MemberRole
+  clerkUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seniority?: Prisma.NullableEnumSeniorityFieldUpdateOperationsInput | $Enums.Seniority | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOwnerNestedInput
+  checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutActorMemberNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedUpdateManyWithoutActorMemberNestedInput
+  teamMemberships?: Prisma.TeamMemberUncheckedUpdateManyWithoutMemberNestedInput
+  competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutMemberNestedInput
+  feedbackAuthored?: Prisma.FeedbackUncheckedUpdateManyWithoutAuthorNestedInput
+  feedbackReceived?: Prisma.FeedbackUncheckedUpdateManyWithoutRecipientNestedInput
+  feedbackRequested?: Prisma.FeedbackRequestUncheckedUpdateManyWithoutRequesterNestedInput
+  feedbackInbox?: Prisma.FeedbackRequestUncheckedUpdateManyWithoutRequestedFromNestedInput
+  kudosReceived?: Prisma.KudoUncheckedUpdateManyWithoutRecipientNestedInput
+  growthPlans?: Prisma.GrowthPlanUncheckedUpdateManyWithoutMemberNestedInput
+}
+
+export type MemberUpsertWithoutKudosReceivedInput = {
+  update: Prisma.XOR<Prisma.MemberUpdateWithoutKudosReceivedInput, Prisma.MemberUncheckedUpdateWithoutKudosReceivedInput>
+  create: Prisma.XOR<Prisma.MemberCreateWithoutKudosReceivedInput, Prisma.MemberUncheckedCreateWithoutKudosReceivedInput>
+  where?: Prisma.MemberWhereInput
+}
+
+export type MemberUpdateToOneWithWhereWithoutKudosReceivedInput = {
+  where?: Prisma.MemberWhereInput
+  data: Prisma.XOR<Prisma.MemberUpdateWithoutKudosReceivedInput, Prisma.MemberUncheckedUpdateWithoutKudosReceivedInput>
+}
+
+export type MemberUpdateWithoutKudosReceivedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumMemberRoleFieldUpdateOperationsInput | $Enums.MemberRole
+  clerkUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seniority?: Prisma.NullableEnumSeniorityFieldUpdateOperationsInput | $Enums.Seniority | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutMembersNestedInput
+  objectives?: Prisma.ObjectiveUpdateManyWithoutOwnerNestedInput
+  checkIns?: Prisma.CheckInUpdateManyWithoutActorMemberNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUpdateManyWithoutActorMemberNestedInput
+  teamMemberships?: Prisma.TeamMemberUpdateManyWithoutMemberNestedInput
+  competencies?: Prisma.CompetencyUpdateManyWithoutMemberNestedInput
+  feedbackAuthored?: Prisma.FeedbackUpdateManyWithoutAuthorNestedInput
+  feedbackReceived?: Prisma.FeedbackUpdateManyWithoutRecipientNestedInput
+  feedbackRequested?: Prisma.FeedbackRequestUpdateManyWithoutRequesterNestedInput
+  feedbackInbox?: Prisma.FeedbackRequestUpdateManyWithoutRequestedFromNestedInput
+  kudosGiven?: Prisma.KudoUpdateManyWithoutGiverNestedInput
+  growthPlans?: Prisma.GrowthPlanUpdateManyWithoutMemberNestedInput
+}
+
+export type MemberUncheckedUpdateWithoutKudosReceivedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumMemberRoleFieldUpdateOperationsInput | $Enums.MemberRole
+  clerkUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seniority?: Prisma.NullableEnumSeniorityFieldUpdateOperationsInput | $Enums.Seniority | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOwnerNestedInput
+  checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutActorMemberNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedUpdateManyWithoutActorMemberNestedInput
+  teamMemberships?: Prisma.TeamMemberUncheckedUpdateManyWithoutMemberNestedInput
+  competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutMemberNestedInput
+  feedbackAuthored?: Prisma.FeedbackUncheckedUpdateManyWithoutAuthorNestedInput
+  feedbackReceived?: Prisma.FeedbackUncheckedUpdateManyWithoutRecipientNestedInput
+  feedbackRequested?: Prisma.FeedbackRequestUncheckedUpdateManyWithoutRequesterNestedInput
+  feedbackInbox?: Prisma.FeedbackRequestUncheckedUpdateManyWithoutRequestedFromNestedInput
+  kudosGiven?: Prisma.KudoUncheckedUpdateManyWithoutGiverNestedInput
+  growthPlans?: Prisma.GrowthPlanUncheckedUpdateManyWithoutMemberNestedInput
+}
+
+export type MemberCreateWithoutGrowthPlansInput = {
+  id?: string
+  email: string
+  name: string
+  role: $Enums.MemberRole
+  clerkUserId?: string | null
+  seniority?: $Enums.Seniority | null
+  createdAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutMembersInput
+  objectives?: Prisma.ObjectiveCreateNestedManyWithoutOwnerInput
+  checkIns?: Prisma.CheckInCreateNestedManyWithoutActorMemberInput
+  okrAuditEvents?: Prisma.OkrAuditEventCreateNestedManyWithoutActorMemberInput
+  teamMemberships?: Prisma.TeamMemberCreateNestedManyWithoutMemberInput
+  competencies?: Prisma.CompetencyCreateNestedManyWithoutMemberInput
+  feedbackAuthored?: Prisma.FeedbackCreateNestedManyWithoutAuthorInput
+  feedbackReceived?: Prisma.FeedbackCreateNestedManyWithoutRecipientInput
+  feedbackRequested?: Prisma.FeedbackRequestCreateNestedManyWithoutRequesterInput
+  feedbackInbox?: Prisma.FeedbackRequestCreateNestedManyWithoutRequestedFromInput
+  kudosGiven?: Prisma.KudoCreateNestedManyWithoutGiverInput
+  kudosReceived?: Prisma.KudoCreateNestedManyWithoutRecipientInput
+}
+
+export type MemberUncheckedCreateWithoutGrowthPlansInput = {
+  id?: string
+  organizationId: string
+  email: string
+  name: string
+  role: $Enums.MemberRole
+  clerkUserId?: string | null
+  seniority?: $Enums.Seniority | null
+  createdAt?: Date | string
+  objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOwnerInput
+  checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutActorMemberInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedCreateNestedManyWithoutActorMemberInput
+  teamMemberships?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutMemberInput
+  competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutMemberInput
+  feedbackAuthored?: Prisma.FeedbackUncheckedCreateNestedManyWithoutAuthorInput
+  feedbackReceived?: Prisma.FeedbackUncheckedCreateNestedManyWithoutRecipientInput
+  feedbackRequested?: Prisma.FeedbackRequestUncheckedCreateNestedManyWithoutRequesterInput
+  feedbackInbox?: Prisma.FeedbackRequestUncheckedCreateNestedManyWithoutRequestedFromInput
+  kudosGiven?: Prisma.KudoUncheckedCreateNestedManyWithoutGiverInput
+  kudosReceived?: Prisma.KudoUncheckedCreateNestedManyWithoutRecipientInput
+}
+
+export type MemberCreateOrConnectWithoutGrowthPlansInput = {
+  where: Prisma.MemberWhereUniqueInput
+  create: Prisma.XOR<Prisma.MemberCreateWithoutGrowthPlansInput, Prisma.MemberUncheckedCreateWithoutGrowthPlansInput>
+}
+
+export type MemberUpsertWithoutGrowthPlansInput = {
+  update: Prisma.XOR<Prisma.MemberUpdateWithoutGrowthPlansInput, Prisma.MemberUncheckedUpdateWithoutGrowthPlansInput>
+  create: Prisma.XOR<Prisma.MemberCreateWithoutGrowthPlansInput, Prisma.MemberUncheckedCreateWithoutGrowthPlansInput>
+  where?: Prisma.MemberWhereInput
+}
+
+export type MemberUpdateToOneWithWhereWithoutGrowthPlansInput = {
+  where?: Prisma.MemberWhereInput
+  data: Prisma.XOR<Prisma.MemberUpdateWithoutGrowthPlansInput, Prisma.MemberUncheckedUpdateWithoutGrowthPlansInput>
+}
+
+export type MemberUpdateWithoutGrowthPlansInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumMemberRoleFieldUpdateOperationsInput | $Enums.MemberRole
+  clerkUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seniority?: Prisma.NullableEnumSeniorityFieldUpdateOperationsInput | $Enums.Seniority | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutMembersNestedInput
+  objectives?: Prisma.ObjectiveUpdateManyWithoutOwnerNestedInput
+  checkIns?: Prisma.CheckInUpdateManyWithoutActorMemberNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUpdateManyWithoutActorMemberNestedInput
+  teamMemberships?: Prisma.TeamMemberUpdateManyWithoutMemberNestedInput
+  competencies?: Prisma.CompetencyUpdateManyWithoutMemberNestedInput
+  feedbackAuthored?: Prisma.FeedbackUpdateManyWithoutAuthorNestedInput
+  feedbackReceived?: Prisma.FeedbackUpdateManyWithoutRecipientNestedInput
+  feedbackRequested?: Prisma.FeedbackRequestUpdateManyWithoutRequesterNestedInput
+  feedbackInbox?: Prisma.FeedbackRequestUpdateManyWithoutRequestedFromNestedInput
+  kudosGiven?: Prisma.KudoUpdateManyWithoutGiverNestedInput
+  kudosReceived?: Prisma.KudoUpdateManyWithoutRecipientNestedInput
+}
+
+export type MemberUncheckedUpdateWithoutGrowthPlansInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumMemberRoleFieldUpdateOperationsInput | $Enums.MemberRole
+  clerkUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seniority?: Prisma.NullableEnumSeniorityFieldUpdateOperationsInput | $Enums.Seniority | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOwnerNestedInput
+  checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutActorMemberNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedUpdateManyWithoutActorMemberNestedInput
+  teamMemberships?: Prisma.TeamMemberUncheckedUpdateManyWithoutMemberNestedInput
+  competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutMemberNestedInput
+  feedbackAuthored?: Prisma.FeedbackUncheckedUpdateManyWithoutAuthorNestedInput
+  feedbackReceived?: Prisma.FeedbackUncheckedUpdateManyWithoutRecipientNestedInput
+  feedbackRequested?: Prisma.FeedbackRequestUncheckedUpdateManyWithoutRequesterNestedInput
+  feedbackInbox?: Prisma.FeedbackRequestUncheckedUpdateManyWithoutRequestedFromNestedInput
+  kudosGiven?: Prisma.KudoUncheckedUpdateManyWithoutGiverNestedInput
+  kudosReceived?: Prisma.KudoUncheckedUpdateManyWithoutRecipientNestedInput
 }
 
 export type MemberCreateManyOrganizationInput = {
@@ -1028,6 +2063,13 @@ export type MemberUpdateWithoutOrganizationInput = {
   okrAuditEvents?: Prisma.OkrAuditEventUpdateManyWithoutActorMemberNestedInput
   teamMemberships?: Prisma.TeamMemberUpdateManyWithoutMemberNestedInput
   competencies?: Prisma.CompetencyUpdateManyWithoutMemberNestedInput
+  feedbackAuthored?: Prisma.FeedbackUpdateManyWithoutAuthorNestedInput
+  feedbackReceived?: Prisma.FeedbackUpdateManyWithoutRecipientNestedInput
+  feedbackRequested?: Prisma.FeedbackRequestUpdateManyWithoutRequesterNestedInput
+  feedbackInbox?: Prisma.FeedbackRequestUpdateManyWithoutRequestedFromNestedInput
+  kudosGiven?: Prisma.KudoUpdateManyWithoutGiverNestedInput
+  kudosReceived?: Prisma.KudoUpdateManyWithoutRecipientNestedInput
+  growthPlans?: Prisma.GrowthPlanUpdateManyWithoutMemberNestedInput
 }
 
 export type MemberUncheckedUpdateWithoutOrganizationInput = {
@@ -1043,6 +2085,13 @@ export type MemberUncheckedUpdateWithoutOrganizationInput = {
   okrAuditEvents?: Prisma.OkrAuditEventUncheckedUpdateManyWithoutActorMemberNestedInput
   teamMemberships?: Prisma.TeamMemberUncheckedUpdateManyWithoutMemberNestedInput
   competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutMemberNestedInput
+  feedbackAuthored?: Prisma.FeedbackUncheckedUpdateManyWithoutAuthorNestedInput
+  feedbackReceived?: Prisma.FeedbackUncheckedUpdateManyWithoutRecipientNestedInput
+  feedbackRequested?: Prisma.FeedbackRequestUncheckedUpdateManyWithoutRequesterNestedInput
+  feedbackInbox?: Prisma.FeedbackRequestUncheckedUpdateManyWithoutRequestedFromNestedInput
+  kudosGiven?: Prisma.KudoUncheckedUpdateManyWithoutGiverNestedInput
+  kudosReceived?: Prisma.KudoUncheckedUpdateManyWithoutRecipientNestedInput
+  growthPlans?: Prisma.GrowthPlanUncheckedUpdateManyWithoutMemberNestedInput
 }
 
 export type MemberUncheckedUpdateManyWithoutOrganizationInput = {
@@ -1066,6 +2115,13 @@ export type MemberCountOutputType = {
   okrAuditEvents: number
   teamMemberships: number
   competencies: number
+  feedbackAuthored: number
+  feedbackReceived: number
+  feedbackRequested: number
+  feedbackInbox: number
+  kudosGiven: number
+  kudosReceived: number
+  growthPlans: number
 }
 
 export type MemberCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1074,6 +2130,13 @@ export type MemberCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions
   okrAuditEvents?: boolean | MemberCountOutputTypeCountOkrAuditEventsArgs
   teamMemberships?: boolean | MemberCountOutputTypeCountTeamMembershipsArgs
   competencies?: boolean | MemberCountOutputTypeCountCompetenciesArgs
+  feedbackAuthored?: boolean | MemberCountOutputTypeCountFeedbackAuthoredArgs
+  feedbackReceived?: boolean | MemberCountOutputTypeCountFeedbackReceivedArgs
+  feedbackRequested?: boolean | MemberCountOutputTypeCountFeedbackRequestedArgs
+  feedbackInbox?: boolean | MemberCountOutputTypeCountFeedbackInboxArgs
+  kudosGiven?: boolean | MemberCountOutputTypeCountKudosGivenArgs
+  kudosReceived?: boolean | MemberCountOutputTypeCountKudosReceivedArgs
+  growthPlans?: boolean | MemberCountOutputTypeCountGrowthPlansArgs
 }
 
 /**
@@ -1121,6 +2184,55 @@ export type MemberCountOutputTypeCountCompetenciesArgs<ExtArgs extends runtime.T
   where?: Prisma.CompetencyWhereInput
 }
 
+/**
+ * MemberCountOutputType without action
+ */
+export type MemberCountOutputTypeCountFeedbackAuthoredArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.FeedbackWhereInput
+}
+
+/**
+ * MemberCountOutputType without action
+ */
+export type MemberCountOutputTypeCountFeedbackReceivedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.FeedbackWhereInput
+}
+
+/**
+ * MemberCountOutputType without action
+ */
+export type MemberCountOutputTypeCountFeedbackRequestedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.FeedbackRequestWhereInput
+}
+
+/**
+ * MemberCountOutputType without action
+ */
+export type MemberCountOutputTypeCountFeedbackInboxArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.FeedbackRequestWhereInput
+}
+
+/**
+ * MemberCountOutputType without action
+ */
+export type MemberCountOutputTypeCountKudosGivenArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.KudoWhereInput
+}
+
+/**
+ * MemberCountOutputType without action
+ */
+export type MemberCountOutputTypeCountKudosReceivedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.KudoWhereInput
+}
+
+/**
+ * MemberCountOutputType without action
+ */
+export type MemberCountOutputTypeCountGrowthPlansArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.GrowthPlanWhereInput
+}
+
 
 export type MemberSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1137,6 +2249,13 @@ export type MemberSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   okrAuditEvents?: boolean | Prisma.Member$okrAuditEventsArgs<ExtArgs>
   teamMemberships?: boolean | Prisma.Member$teamMembershipsArgs<ExtArgs>
   competencies?: boolean | Prisma.Member$competenciesArgs<ExtArgs>
+  feedbackAuthored?: boolean | Prisma.Member$feedbackAuthoredArgs<ExtArgs>
+  feedbackReceived?: boolean | Prisma.Member$feedbackReceivedArgs<ExtArgs>
+  feedbackRequested?: boolean | Prisma.Member$feedbackRequestedArgs<ExtArgs>
+  feedbackInbox?: boolean | Prisma.Member$feedbackInboxArgs<ExtArgs>
+  kudosGiven?: boolean | Prisma.Member$kudosGivenArgs<ExtArgs>
+  kudosReceived?: boolean | Prisma.Member$kudosReceivedArgs<ExtArgs>
+  growthPlans?: boolean | Prisma.Member$growthPlansArgs<ExtArgs>
   _count?: boolean | Prisma.MemberCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["member"]>
 
@@ -1183,6 +2302,13 @@ export type MemberInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   okrAuditEvents?: boolean | Prisma.Member$okrAuditEventsArgs<ExtArgs>
   teamMemberships?: boolean | Prisma.Member$teamMembershipsArgs<ExtArgs>
   competencies?: boolean | Prisma.Member$competenciesArgs<ExtArgs>
+  feedbackAuthored?: boolean | Prisma.Member$feedbackAuthoredArgs<ExtArgs>
+  feedbackReceived?: boolean | Prisma.Member$feedbackReceivedArgs<ExtArgs>
+  feedbackRequested?: boolean | Prisma.Member$feedbackRequestedArgs<ExtArgs>
+  feedbackInbox?: boolean | Prisma.Member$feedbackInboxArgs<ExtArgs>
+  kudosGiven?: boolean | Prisma.Member$kudosGivenArgs<ExtArgs>
+  kudosReceived?: boolean | Prisma.Member$kudosReceivedArgs<ExtArgs>
+  growthPlans?: boolean | Prisma.Member$growthPlansArgs<ExtArgs>
   _count?: boolean | Prisma.MemberCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type MemberIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1201,6 +2327,13 @@ export type $MemberPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     okrAuditEvents: Prisma.$OkrAuditEventPayload<ExtArgs>[]
     teamMemberships: Prisma.$TeamMemberPayload<ExtArgs>[]
     competencies: Prisma.$CompetencyPayload<ExtArgs>[]
+    feedbackAuthored: Prisma.$FeedbackPayload<ExtArgs>[]
+    feedbackReceived: Prisma.$FeedbackPayload<ExtArgs>[]
+    feedbackRequested: Prisma.$FeedbackRequestPayload<ExtArgs>[]
+    feedbackInbox: Prisma.$FeedbackRequestPayload<ExtArgs>[]
+    kudosGiven: Prisma.$KudoPayload<ExtArgs>[]
+    kudosReceived: Prisma.$KudoPayload<ExtArgs>[]
+    growthPlans: Prisma.$GrowthPlanPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1611,6 +2744,13 @@ export interface Prisma__MemberClient<T, Null = never, ExtArgs extends runtime.T
   okrAuditEvents<T extends Prisma.Member$okrAuditEventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Member$okrAuditEventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OkrAuditEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   teamMemberships<T extends Prisma.Member$teamMembershipsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Member$teamMembershipsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TeamMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   competencies<T extends Prisma.Member$competenciesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Member$competenciesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CompetencyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  feedbackAuthored<T extends Prisma.Member$feedbackAuthoredArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Member$feedbackAuthoredArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FeedbackPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  feedbackReceived<T extends Prisma.Member$feedbackReceivedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Member$feedbackReceivedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FeedbackPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  feedbackRequested<T extends Prisma.Member$feedbackRequestedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Member$feedbackRequestedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FeedbackRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  feedbackInbox<T extends Prisma.Member$feedbackInboxArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Member$feedbackInboxArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FeedbackRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  kudosGiven<T extends Prisma.Member$kudosGivenArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Member$kudosGivenArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$KudoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  kudosReceived<T extends Prisma.Member$kudosReceivedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Member$kudosReceivedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$KudoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  growthPlans<T extends Prisma.Member$growthPlansArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Member$growthPlansArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$GrowthPlanPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2166,6 +3306,174 @@ export type Member$competenciesArgs<ExtArgs extends runtime.Types.Extensions.Int
   take?: number
   skip?: number
   distinct?: Prisma.CompetencyScalarFieldEnum | Prisma.CompetencyScalarFieldEnum[]
+}
+
+/**
+ * Member.feedbackAuthored
+ */
+export type Member$feedbackAuthoredArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Feedback
+   */
+  select?: Prisma.FeedbackSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Feedback
+   */
+  omit?: Prisma.FeedbackOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FeedbackInclude<ExtArgs> | null
+  where?: Prisma.FeedbackWhereInput
+  orderBy?: Prisma.FeedbackOrderByWithRelationInput | Prisma.FeedbackOrderByWithRelationInput[]
+  cursor?: Prisma.FeedbackWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.FeedbackScalarFieldEnum | Prisma.FeedbackScalarFieldEnum[]
+}
+
+/**
+ * Member.feedbackReceived
+ */
+export type Member$feedbackReceivedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Feedback
+   */
+  select?: Prisma.FeedbackSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Feedback
+   */
+  omit?: Prisma.FeedbackOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FeedbackInclude<ExtArgs> | null
+  where?: Prisma.FeedbackWhereInput
+  orderBy?: Prisma.FeedbackOrderByWithRelationInput | Prisma.FeedbackOrderByWithRelationInput[]
+  cursor?: Prisma.FeedbackWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.FeedbackScalarFieldEnum | Prisma.FeedbackScalarFieldEnum[]
+}
+
+/**
+ * Member.feedbackRequested
+ */
+export type Member$feedbackRequestedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the FeedbackRequest
+   */
+  select?: Prisma.FeedbackRequestSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the FeedbackRequest
+   */
+  omit?: Prisma.FeedbackRequestOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FeedbackRequestInclude<ExtArgs> | null
+  where?: Prisma.FeedbackRequestWhereInput
+  orderBy?: Prisma.FeedbackRequestOrderByWithRelationInput | Prisma.FeedbackRequestOrderByWithRelationInput[]
+  cursor?: Prisma.FeedbackRequestWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.FeedbackRequestScalarFieldEnum | Prisma.FeedbackRequestScalarFieldEnum[]
+}
+
+/**
+ * Member.feedbackInbox
+ */
+export type Member$feedbackInboxArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the FeedbackRequest
+   */
+  select?: Prisma.FeedbackRequestSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the FeedbackRequest
+   */
+  omit?: Prisma.FeedbackRequestOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FeedbackRequestInclude<ExtArgs> | null
+  where?: Prisma.FeedbackRequestWhereInput
+  orderBy?: Prisma.FeedbackRequestOrderByWithRelationInput | Prisma.FeedbackRequestOrderByWithRelationInput[]
+  cursor?: Prisma.FeedbackRequestWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.FeedbackRequestScalarFieldEnum | Prisma.FeedbackRequestScalarFieldEnum[]
+}
+
+/**
+ * Member.kudosGiven
+ */
+export type Member$kudosGivenArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Kudo
+   */
+  select?: Prisma.KudoSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Kudo
+   */
+  omit?: Prisma.KudoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.KudoInclude<ExtArgs> | null
+  where?: Prisma.KudoWhereInput
+  orderBy?: Prisma.KudoOrderByWithRelationInput | Prisma.KudoOrderByWithRelationInput[]
+  cursor?: Prisma.KudoWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.KudoScalarFieldEnum | Prisma.KudoScalarFieldEnum[]
+}
+
+/**
+ * Member.kudosReceived
+ */
+export type Member$kudosReceivedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Kudo
+   */
+  select?: Prisma.KudoSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Kudo
+   */
+  omit?: Prisma.KudoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.KudoInclude<ExtArgs> | null
+  where?: Prisma.KudoWhereInput
+  orderBy?: Prisma.KudoOrderByWithRelationInput | Prisma.KudoOrderByWithRelationInput[]
+  cursor?: Prisma.KudoWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.KudoScalarFieldEnum | Prisma.KudoScalarFieldEnum[]
+}
+
+/**
+ * Member.growthPlans
+ */
+export type Member$growthPlansArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the GrowthPlan
+   */
+  select?: Prisma.GrowthPlanSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the GrowthPlan
+   */
+  omit?: Prisma.GrowthPlanOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.GrowthPlanInclude<ExtArgs> | null
+  where?: Prisma.GrowthPlanWhereInput
+  orderBy?: Prisma.GrowthPlanOrderByWithRelationInput | Prisma.GrowthPlanOrderByWithRelationInput[]
+  cursor?: Prisma.GrowthPlanWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.GrowthPlanScalarFieldEnum | Prisma.GrowthPlanScalarFieldEnum[]
 }
 
 /**

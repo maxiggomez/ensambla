@@ -1,5 +1,13 @@
 import { DEV_USERS } from "../src/lib/auth/mock-users";
 import { createOrganization, inviteMember } from "../src/modules/identity-org/application";
+import { listMembers } from "../src/modules/identity-org/application";
+import {
+  defineSkill,
+  getCompetencyMatrix,
+  setCompetency,
+} from "../src/modules/skills-matrix/application";
+import { defineStrategy } from "../src/modules/strategy-northstar/application";
+import { createProject, listProjectContexts } from "../src/modules/teams-staffing/application";
 import type { PrismaClient } from "../src/shared/db";
 import { prismaClient } from "../src/shared/db";
 import { linkMembershipsForUser } from "../src/shared/tenancy";
@@ -41,6 +49,45 @@ export async function seedDevData(prisma: PrismaClient): Promise<void> {
     // Pre-vincula el member a su id dev: el login mock resuelve el tenant de
     // inmediato, sin pasar por el flujo de primer login (F.1).
     await linkMembershipsForUser(member.id, member.email, prisma);
+  }
+
+  await defineStrategy(
+    { actorClerkUserId: direccion.id, values: ["Ownership", "Colaboración"] },
+    prisma,
+  );
+
+  const projects = await listProjectContexts({ actorClerkUserId: direccion.id }, prisma);
+  if (!projects.some((project) => project.name === "Proyecto Feedback E2E")) {
+    await createProject(
+      { actorClerkUserId: direccion.id, name: "Proyecto Feedback E2E" },
+      prisma,
+    );
+  }
+
+  let matrix = await getCompetencyMatrix({ actorClerkUserId: direccion.id }, prisma);
+  let communication = matrix.skills.find((skill) => skill.name === "Comunicación");
+  if (!communication) {
+    const created = await defineSkill(
+      { actorClerkUserId: direccion.id, name: "Comunicación" },
+      prisma,
+    );
+    communication = { skillId: created.skillId, name: "Comunicación" };
+  }
+  const members = await listMembers({ actorClerkUserId: direccion.id }, prisma);
+  const directionMember = members.find((member) => member.clerkUserId === direccion.id);
+  if (!directionMember) throw new Error("dev-auth-mock: falta el Member de Dirección");
+  matrix = await getCompetencyMatrix({ actorClerkUserId: direccion.id }, prisma);
+  const directionRow = matrix.rows.find((row) => row.memberId === directionMember.id);
+  if (directionRow?.levels[communication.skillId] !== 1) {
+    await setCompetency(
+      {
+        actorClerkUserId: direccion.id,
+        memberId: directionMember.id,
+        skillId: communication.skillId,
+        level: 1,
+      },
+      prisma,
+    );
   }
 }
 

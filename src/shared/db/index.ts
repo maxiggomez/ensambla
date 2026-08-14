@@ -29,6 +29,12 @@ export type {
   HypothesisModel as Hypothesis,
   ExperimentModel as Experiment,
   LearningModel as Learning,
+  FeedbackRequestModel as FeedbackRequest,
+  FeedbackModel as Feedback,
+  KudoModel as Kudo,
+  GrowthPlanModel as GrowthPlan,
+  GrowthTargetModel as GrowthTarget,
+  GrowthEvidenceModel as GrowthEvidence,
 } from "./generated/models";
 export {
   CheckInCadence,
@@ -43,4 +49,7 @@ export {
   BlockerStatus,
   ExperimentStatus,
   LearningDecision,
+  ProjectStatus,
+  FeedbackClassification,
+  GrowthEvidenceSource,
 } from "./generated/enums";

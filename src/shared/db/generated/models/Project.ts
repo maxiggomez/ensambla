@@ -28,6 +28,7 @@ export type ProjectMinAggregateOutputType = {
   id: string | null
   organizationId: string | null
   name: string | null
+  status: $Enums.ProjectStatus | null
   createdAt: Date | null
 }
 
@@ -35,6 +36,7 @@ export type ProjectMaxAggregateOutputType = {
   id: string | null
   organizationId: string | null
   name: string | null
+  status: $Enums.ProjectStatus | null
   createdAt: Date | null
 }
 
@@ -42,6 +44,7 @@ export type ProjectCountAggregateOutputType = {
   id: number
   organizationId: number
   name: number
+  status: number
   createdAt: number
   _all: number
 }
@@ -51,6 +54,7 @@ export type ProjectMinAggregateInputType = {
   id?: true
   organizationId?: true
   name?: true
+  status?: true
   createdAt?: true
 }
 
@@ -58,6 +62,7 @@ export type ProjectMaxAggregateInputType = {
   id?: true
   organizationId?: true
   name?: true
+  status?: true
   createdAt?: true
 }
 
@@ -65,6 +70,7 @@ export type ProjectCountAggregateInputType = {
   id?: true
   organizationId?: true
   name?: true
+  status?: true
   createdAt?: true
   _all?: true
 }
@@ -145,6 +151,7 @@ export type ProjectGroupByOutputType = {
   id: string
   organizationId: string
   name: string
+  status: $Enums.ProjectStatus
   createdAt: Date
   _count: ProjectCountAggregateOutputType | null
   _min: ProjectMinAggregateOutputType | null
@@ -173,39 +180,50 @@ export type ProjectWhereInput = {
   id?: Prisma.UuidFilter<"Project"> | string
   organizationId?: Prisma.UuidFilter<"Project"> | string
   name?: Prisma.StringFilter<"Project"> | string
+  status?: Prisma.EnumProjectStatusFilter<"Project"> | $Enums.ProjectStatus
   createdAt?: Prisma.DateTimeFilter<"Project"> | Date | string
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
   objectiveLinks?: Prisma.ProjectObjectiveListRelationFilter
   skillRequirements?: Prisma.SkillRequirementListRelationFilter
+  feedback?: Prisma.FeedbackListRelationFilter
+  growthEvidence?: Prisma.GrowthEvidenceListRelationFilter
 }
 
 export type ProjectOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   organization?: Prisma.OrganizationOrderByWithRelationInput
   objectiveLinks?: Prisma.ProjectObjectiveOrderByRelationAggregateInput
   skillRequirements?: Prisma.SkillRequirementOrderByRelationAggregateInput
+  feedback?: Prisma.FeedbackOrderByRelationAggregateInput
+  growthEvidence?: Prisma.GrowthEvidenceOrderByRelationAggregateInput
 }
 
 export type ProjectWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  organizationId_id?: Prisma.ProjectOrganizationIdIdCompoundUniqueInput
   AND?: Prisma.ProjectWhereInput | Prisma.ProjectWhereInput[]
   OR?: Prisma.ProjectWhereInput[]
   NOT?: Prisma.ProjectWhereInput | Prisma.ProjectWhereInput[]
   organizationId?: Prisma.UuidFilter<"Project"> | string
   name?: Prisma.StringFilter<"Project"> | string
+  status?: Prisma.EnumProjectStatusFilter<"Project"> | $Enums.ProjectStatus
   createdAt?: Prisma.DateTimeFilter<"Project"> | Date | string
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
   objectiveLinks?: Prisma.ProjectObjectiveListRelationFilter
   skillRequirements?: Prisma.SkillRequirementListRelationFilter
-}, "id">
+  feedback?: Prisma.FeedbackListRelationFilter
+  growthEvidence?: Prisma.GrowthEvidenceListRelationFilter
+}, "id" | "organizationId_id">
 
 export type ProjectOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.ProjectCountOrderByAggregateInput
   _max?: Prisma.ProjectMaxOrderByAggregateInput
@@ -219,55 +237,70 @@ export type ProjectScalarWhereWithAggregatesInput = {
   id?: Prisma.UuidWithAggregatesFilter<"Project"> | string
   organizationId?: Prisma.UuidWithAggregatesFilter<"Project"> | string
   name?: Prisma.StringWithAggregatesFilter<"Project"> | string
+  status?: Prisma.EnumProjectStatusWithAggregatesFilter<"Project"> | $Enums.ProjectStatus
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Project"> | Date | string
 }
 
 export type ProjectCreateInput = {
   id?: string
   name: string
+  status?: $Enums.ProjectStatus
   createdAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutProjectsInput
   objectiveLinks?: Prisma.ProjectObjectiveCreateNestedManyWithoutProjectInput
   skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutProjectInput
+  feedback?: Prisma.FeedbackCreateNestedManyWithoutProjectInput
+  growthEvidence?: Prisma.GrowthEvidenceCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectUncheckedCreateInput = {
   id?: string
   organizationId: string
   name: string
+  status?: $Enums.ProjectStatus
   createdAt?: Date | string
   objectiveLinks?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutProjectInput
   skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutProjectInput
+  feedback?: Prisma.FeedbackUncheckedCreateNestedManyWithoutProjectInput
+  growthEvidence?: Prisma.GrowthEvidenceUncheckedCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutProjectsNestedInput
   objectiveLinks?: Prisma.ProjectObjectiveUpdateManyWithoutProjectNestedInput
   skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutProjectNestedInput
+  feedback?: Prisma.FeedbackUpdateManyWithoutProjectNestedInput
+  growthEvidence?: Prisma.GrowthEvidenceUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   objectiveLinks?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutProjectNestedInput
   skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutProjectNestedInput
+  feedback?: Prisma.FeedbackUncheckedUpdateManyWithoutProjectNestedInput
+  growthEvidence?: Prisma.GrowthEvidenceUncheckedUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectCreateManyInput = {
   id?: string
   organizationId: string
   name: string
+  status?: $Enums.ProjectStatus
   createdAt?: Date | string
 }
 
 export type ProjectUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -275,6 +308,7 @@ export type ProjectUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -288,10 +322,16 @@ export type ProjectOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
+export type ProjectOrganizationIdIdCompoundUniqueInput = {
+  organizationId: string
+  id: string
+}
+
 export type ProjectCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -299,6 +339,7 @@ export type ProjectMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -306,6 +347,7 @@ export type ProjectMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -361,6 +403,10 @@ export type ProjectUncheckedUpdateManyWithoutOrganizationNestedInput = {
   deleteMany?: Prisma.ProjectScalarWhereInput | Prisma.ProjectScalarWhereInput[]
 }
 
+export type EnumProjectStatusFieldUpdateOperationsInput = {
+  set?: $Enums.ProjectStatus
+}
+
 export type ProjectCreateNestedOneWithoutObjectiveLinksInput = {
   create?: Prisma.XOR<Prisma.ProjectCreateWithoutObjectiveLinksInput, Prisma.ProjectUncheckedCreateWithoutObjectiveLinksInput>
   connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutObjectiveLinksInput
@@ -391,20 +437,58 @@ export type ProjectUpdateOneWithoutSkillRequirementsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ProjectUpdateToOneWithWhereWithoutSkillRequirementsInput, Prisma.ProjectUpdateWithoutSkillRequirementsInput>, Prisma.ProjectUncheckedUpdateWithoutSkillRequirementsInput>
 }
 
+export type ProjectCreateNestedOneWithoutFeedbackInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutFeedbackInput, Prisma.ProjectUncheckedCreateWithoutFeedbackInput>
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutFeedbackInput
+  connect?: Prisma.ProjectWhereUniqueInput
+}
+
+export type ProjectUpdateOneWithoutFeedbackNestedInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutFeedbackInput, Prisma.ProjectUncheckedCreateWithoutFeedbackInput>
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutFeedbackInput
+  upsert?: Prisma.ProjectUpsertWithoutFeedbackInput
+  disconnect?: Prisma.ProjectWhereInput | boolean
+  delete?: Prisma.ProjectWhereInput | boolean
+  connect?: Prisma.ProjectWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProjectUpdateToOneWithWhereWithoutFeedbackInput, Prisma.ProjectUpdateWithoutFeedbackInput>, Prisma.ProjectUncheckedUpdateWithoutFeedbackInput>
+}
+
+export type ProjectCreateNestedOneWithoutGrowthEvidenceInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutGrowthEvidenceInput, Prisma.ProjectUncheckedCreateWithoutGrowthEvidenceInput>
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutGrowthEvidenceInput
+  connect?: Prisma.ProjectWhereUniqueInput
+}
+
+export type ProjectUpdateOneWithoutGrowthEvidenceNestedInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutGrowthEvidenceInput, Prisma.ProjectUncheckedCreateWithoutGrowthEvidenceInput>
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutGrowthEvidenceInput
+  upsert?: Prisma.ProjectUpsertWithoutGrowthEvidenceInput
+  disconnect?: Prisma.ProjectWhereInput | boolean
+  delete?: Prisma.ProjectWhereInput | boolean
+  connect?: Prisma.ProjectWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProjectUpdateToOneWithWhereWithoutGrowthEvidenceInput, Prisma.ProjectUpdateWithoutGrowthEvidenceInput>, Prisma.ProjectUncheckedUpdateWithoutGrowthEvidenceInput>
+}
+
 export type ProjectCreateWithoutOrganizationInput = {
   id?: string
   name: string
+  status?: $Enums.ProjectStatus
   createdAt?: Date | string
   objectiveLinks?: Prisma.ProjectObjectiveCreateNestedManyWithoutProjectInput
   skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutProjectInput
+  feedback?: Prisma.FeedbackCreateNestedManyWithoutProjectInput
+  growthEvidence?: Prisma.GrowthEvidenceCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectUncheckedCreateWithoutOrganizationInput = {
   id?: string
   name: string
+  status?: $Enums.ProjectStatus
   createdAt?: Date | string
   objectiveLinks?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutProjectInput
   skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutProjectInput
+  feedback?: Prisma.FeedbackUncheckedCreateNestedManyWithoutProjectInput
+  growthEvidence?: Prisma.GrowthEvidenceUncheckedCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectCreateOrConnectWithoutOrganizationInput = {
@@ -440,23 +524,30 @@ export type ProjectScalarWhereInput = {
   id?: Prisma.UuidFilter<"Project"> | string
   organizationId?: Prisma.UuidFilter<"Project"> | string
   name?: Prisma.StringFilter<"Project"> | string
+  status?: Prisma.EnumProjectStatusFilter<"Project"> | $Enums.ProjectStatus
   createdAt?: Prisma.DateTimeFilter<"Project"> | Date | string
 }
 
 export type ProjectCreateWithoutObjectiveLinksInput = {
   id?: string
   name: string
+  status?: $Enums.ProjectStatus
   createdAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutProjectsInput
   skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutProjectInput
+  feedback?: Prisma.FeedbackCreateNestedManyWithoutProjectInput
+  growthEvidence?: Prisma.GrowthEvidenceCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectUncheckedCreateWithoutObjectiveLinksInput = {
   id?: string
   organizationId: string
   name: string
+  status?: $Enums.ProjectStatus
   createdAt?: Date | string
   skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutProjectInput
+  feedback?: Prisma.FeedbackUncheckedCreateNestedManyWithoutProjectInput
+  growthEvidence?: Prisma.GrowthEvidenceUncheckedCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectCreateOrConnectWithoutObjectiveLinksInput = {
@@ -478,33 +569,45 @@ export type ProjectUpdateToOneWithWhereWithoutObjectiveLinksInput = {
 export type ProjectUpdateWithoutObjectiveLinksInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutProjectsNestedInput
   skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutProjectNestedInput
+  feedback?: Prisma.FeedbackUpdateManyWithoutProjectNestedInput
+  growthEvidence?: Prisma.GrowthEvidenceUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateWithoutObjectiveLinksInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutProjectNestedInput
+  feedback?: Prisma.FeedbackUncheckedUpdateManyWithoutProjectNestedInput
+  growthEvidence?: Prisma.GrowthEvidenceUncheckedUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectCreateWithoutSkillRequirementsInput = {
   id?: string
   name: string
+  status?: $Enums.ProjectStatus
   createdAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutProjectsInput
   objectiveLinks?: Prisma.ProjectObjectiveCreateNestedManyWithoutProjectInput
+  feedback?: Prisma.FeedbackCreateNestedManyWithoutProjectInput
+  growthEvidence?: Prisma.GrowthEvidenceCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectUncheckedCreateWithoutSkillRequirementsInput = {
   id?: string
   organizationId: string
   name: string
+  status?: $Enums.ProjectStatus
   createdAt?: Date | string
   objectiveLinks?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutProjectInput
+  feedback?: Prisma.FeedbackUncheckedCreateNestedManyWithoutProjectInput
+  growthEvidence?: Prisma.GrowthEvidenceUncheckedCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectCreateOrConnectWithoutSkillRequirementsInput = {
@@ -526,44 +629,178 @@ export type ProjectUpdateToOneWithWhereWithoutSkillRequirementsInput = {
 export type ProjectUpdateWithoutSkillRequirementsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutProjectsNestedInput
   objectiveLinks?: Prisma.ProjectObjectiveUpdateManyWithoutProjectNestedInput
+  feedback?: Prisma.FeedbackUpdateManyWithoutProjectNestedInput
+  growthEvidence?: Prisma.GrowthEvidenceUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateWithoutSkillRequirementsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   objectiveLinks?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutProjectNestedInput
+  feedback?: Prisma.FeedbackUncheckedUpdateManyWithoutProjectNestedInput
+  growthEvidence?: Prisma.GrowthEvidenceUncheckedUpdateManyWithoutProjectNestedInput
+}
+
+export type ProjectCreateWithoutFeedbackInput = {
+  id?: string
+  name: string
+  status?: $Enums.ProjectStatus
+  createdAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutProjectsInput
+  objectiveLinks?: Prisma.ProjectObjectiveCreateNestedManyWithoutProjectInput
+  skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutProjectInput
+  growthEvidence?: Prisma.GrowthEvidenceCreateNestedManyWithoutProjectInput
+}
+
+export type ProjectUncheckedCreateWithoutFeedbackInput = {
+  id?: string
+  organizationId: string
+  name: string
+  status?: $Enums.ProjectStatus
+  createdAt?: Date | string
+  objectiveLinks?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutProjectInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutProjectInput
+  growthEvidence?: Prisma.GrowthEvidenceUncheckedCreateNestedManyWithoutProjectInput
+}
+
+export type ProjectCreateOrConnectWithoutFeedbackInput = {
+  where: Prisma.ProjectWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutFeedbackInput, Prisma.ProjectUncheckedCreateWithoutFeedbackInput>
+}
+
+export type ProjectUpsertWithoutFeedbackInput = {
+  update: Prisma.XOR<Prisma.ProjectUpdateWithoutFeedbackInput, Prisma.ProjectUncheckedUpdateWithoutFeedbackInput>
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutFeedbackInput, Prisma.ProjectUncheckedCreateWithoutFeedbackInput>
+  where?: Prisma.ProjectWhereInput
+}
+
+export type ProjectUpdateToOneWithWhereWithoutFeedbackInput = {
+  where?: Prisma.ProjectWhereInput
+  data: Prisma.XOR<Prisma.ProjectUpdateWithoutFeedbackInput, Prisma.ProjectUncheckedUpdateWithoutFeedbackInput>
+}
+
+export type ProjectUpdateWithoutFeedbackInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutProjectsNestedInput
+  objectiveLinks?: Prisma.ProjectObjectiveUpdateManyWithoutProjectNestedInput
+  skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutProjectNestedInput
+  growthEvidence?: Prisma.GrowthEvidenceUpdateManyWithoutProjectNestedInput
+}
+
+export type ProjectUncheckedUpdateWithoutFeedbackInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  objectiveLinks?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutProjectNestedInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutProjectNestedInput
+  growthEvidence?: Prisma.GrowthEvidenceUncheckedUpdateManyWithoutProjectNestedInput
+}
+
+export type ProjectCreateWithoutGrowthEvidenceInput = {
+  id?: string
+  name: string
+  status?: $Enums.ProjectStatus
+  createdAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutProjectsInput
+  objectiveLinks?: Prisma.ProjectObjectiveCreateNestedManyWithoutProjectInput
+  skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutProjectInput
+  feedback?: Prisma.FeedbackCreateNestedManyWithoutProjectInput
+}
+
+export type ProjectUncheckedCreateWithoutGrowthEvidenceInput = {
+  id?: string
+  organizationId: string
+  name: string
+  status?: $Enums.ProjectStatus
+  createdAt?: Date | string
+  objectiveLinks?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutProjectInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutProjectInput
+  feedback?: Prisma.FeedbackUncheckedCreateNestedManyWithoutProjectInput
+}
+
+export type ProjectCreateOrConnectWithoutGrowthEvidenceInput = {
+  where: Prisma.ProjectWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutGrowthEvidenceInput, Prisma.ProjectUncheckedCreateWithoutGrowthEvidenceInput>
+}
+
+export type ProjectUpsertWithoutGrowthEvidenceInput = {
+  update: Prisma.XOR<Prisma.ProjectUpdateWithoutGrowthEvidenceInput, Prisma.ProjectUncheckedUpdateWithoutGrowthEvidenceInput>
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutGrowthEvidenceInput, Prisma.ProjectUncheckedCreateWithoutGrowthEvidenceInput>
+  where?: Prisma.ProjectWhereInput
+}
+
+export type ProjectUpdateToOneWithWhereWithoutGrowthEvidenceInput = {
+  where?: Prisma.ProjectWhereInput
+  data: Prisma.XOR<Prisma.ProjectUpdateWithoutGrowthEvidenceInput, Prisma.ProjectUncheckedUpdateWithoutGrowthEvidenceInput>
+}
+
+export type ProjectUpdateWithoutGrowthEvidenceInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutProjectsNestedInput
+  objectiveLinks?: Prisma.ProjectObjectiveUpdateManyWithoutProjectNestedInput
+  skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutProjectNestedInput
+  feedback?: Prisma.FeedbackUpdateManyWithoutProjectNestedInput
+}
+
+export type ProjectUncheckedUpdateWithoutGrowthEvidenceInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  objectiveLinks?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutProjectNestedInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutProjectNestedInput
+  feedback?: Prisma.FeedbackUncheckedUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectCreateManyOrganizationInput = {
   id?: string
   name: string
+  status?: $Enums.ProjectStatus
   createdAt?: Date | string
 }
 
 export type ProjectUpdateWithoutOrganizationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   objectiveLinks?: Prisma.ProjectObjectiveUpdateManyWithoutProjectNestedInput
   skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutProjectNestedInput
+  feedback?: Prisma.FeedbackUpdateManyWithoutProjectNestedInput
+  growthEvidence?: Prisma.GrowthEvidenceUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateWithoutOrganizationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   objectiveLinks?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutProjectNestedInput
   skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutProjectNestedInput
+  feedback?: Prisma.FeedbackUncheckedUpdateManyWithoutProjectNestedInput
+  growthEvidence?: Prisma.GrowthEvidenceUncheckedUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateManyWithoutOrganizationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -575,11 +812,15 @@ export type ProjectUncheckedUpdateManyWithoutOrganizationInput = {
 export type ProjectCountOutputType = {
   objectiveLinks: number
   skillRequirements: number
+  feedback: number
+  growthEvidence: number
 }
 
 export type ProjectCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   objectiveLinks?: boolean | ProjectCountOutputTypeCountObjectiveLinksArgs
   skillRequirements?: boolean | ProjectCountOutputTypeCountSkillRequirementsArgs
+  feedback?: boolean | ProjectCountOutputTypeCountFeedbackArgs
+  growthEvidence?: boolean | ProjectCountOutputTypeCountGrowthEvidenceArgs
 }
 
 /**
@@ -606,15 +847,32 @@ export type ProjectCountOutputTypeCountSkillRequirementsArgs<ExtArgs extends run
   where?: Prisma.SkillRequirementWhereInput
 }
 
+/**
+ * ProjectCountOutputType without action
+ */
+export type ProjectCountOutputTypeCountFeedbackArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.FeedbackWhereInput
+}
+
+/**
+ * ProjectCountOutputType without action
+ */
+export type ProjectCountOutputTypeCountGrowthEvidenceArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.GrowthEvidenceWhereInput
+}
+
 
 export type ProjectSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   organizationId?: boolean
   name?: boolean
+  status?: boolean
   createdAt?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   objectiveLinks?: boolean | Prisma.Project$objectiveLinksArgs<ExtArgs>
   skillRequirements?: boolean | Prisma.Project$skillRequirementsArgs<ExtArgs>
+  feedback?: boolean | Prisma.Project$feedbackArgs<ExtArgs>
+  growthEvidence?: boolean | Prisma.Project$growthEvidenceArgs<ExtArgs>
   _count?: boolean | Prisma.ProjectCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["project"]>
 
@@ -622,6 +880,7 @@ export type ProjectSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   id?: boolean
   organizationId?: boolean
   name?: boolean
+  status?: boolean
   createdAt?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["project"]>
@@ -630,6 +889,7 @@ export type ProjectSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   id?: boolean
   organizationId?: boolean
   name?: boolean
+  status?: boolean
   createdAt?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["project"]>
@@ -638,14 +898,17 @@ export type ProjectSelectScalar = {
   id?: boolean
   organizationId?: boolean
   name?: boolean
+  status?: boolean
   createdAt?: boolean
 }
 
-export type ProjectOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "name" | "createdAt", ExtArgs["result"]["project"]>
+export type ProjectOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "name" | "status" | "createdAt", ExtArgs["result"]["project"]>
 export type ProjectInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   objectiveLinks?: boolean | Prisma.Project$objectiveLinksArgs<ExtArgs>
   skillRequirements?: boolean | Prisma.Project$skillRequirementsArgs<ExtArgs>
+  feedback?: boolean | Prisma.Project$feedbackArgs<ExtArgs>
+  growthEvidence?: boolean | Prisma.Project$growthEvidenceArgs<ExtArgs>
   _count?: boolean | Prisma.ProjectCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ProjectIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -661,11 +924,14 @@ export type $ProjectPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     organization: Prisma.$OrganizationPayload<ExtArgs>
     objectiveLinks: Prisma.$ProjectObjectivePayload<ExtArgs>[]
     skillRequirements: Prisma.$SkillRequirementPayload<ExtArgs>[]
+    feedback: Prisma.$FeedbackPayload<ExtArgs>[]
+    growthEvidence: Prisma.$GrowthEvidencePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     organizationId: string
     name: string
+    status: $Enums.ProjectStatus
     createdAt: Date
   }, ExtArgs["result"]["project"]>
   composites: {}
@@ -1064,6 +1330,8 @@ export interface Prisma__ProjectClient<T, Null = never, ExtArgs extends runtime.
   organization<T extends Prisma.OrganizationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrganizationDefaultArgs<ExtArgs>>): Prisma.Prisma__OrganizationClient<runtime.Types.Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   objectiveLinks<T extends Prisma.Project$objectiveLinksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$objectiveLinksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProjectObjectivePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   skillRequirements<T extends Prisma.Project$skillRequirementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$skillRequirementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SkillRequirementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  feedback<T extends Prisma.Project$feedbackArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$feedbackArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FeedbackPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  growthEvidence<T extends Prisma.Project$growthEvidenceArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$growthEvidenceArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$GrowthEvidencePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1096,6 +1364,7 @@ export interface ProjectFieldRefs {
   readonly id: Prisma.FieldRef<"Project", 'String'>
   readonly organizationId: Prisma.FieldRef<"Project", 'String'>
   readonly name: Prisma.FieldRef<"Project", 'String'>
+  readonly status: Prisma.FieldRef<"Project", 'ProjectStatus'>
   readonly createdAt: Prisma.FieldRef<"Project", 'DateTime'>
 }
     
@@ -1543,6 +1812,54 @@ export type Project$skillRequirementsArgs<ExtArgs extends runtime.Types.Extensio
   take?: number
   skip?: number
   distinct?: Prisma.SkillRequirementScalarFieldEnum | Prisma.SkillRequirementScalarFieldEnum[]
+}
+
+/**
+ * Project.feedback
+ */
+export type Project$feedbackArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Feedback
+   */
+  select?: Prisma.FeedbackSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Feedback
+   */
+  omit?: Prisma.FeedbackOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FeedbackInclude<ExtArgs> | null
+  where?: Prisma.FeedbackWhereInput
+  orderBy?: Prisma.FeedbackOrderByWithRelationInput | Prisma.FeedbackOrderByWithRelationInput[]
+  cursor?: Prisma.FeedbackWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.FeedbackScalarFieldEnum | Prisma.FeedbackScalarFieldEnum[]
+}
+
+/**
+ * Project.growthEvidence
+ */
+export type Project$growthEvidenceArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the GrowthEvidence
+   */
+  select?: Prisma.GrowthEvidenceSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the GrowthEvidence
+   */
+  omit?: Prisma.GrowthEvidenceOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.GrowthEvidenceInclude<ExtArgs> | null
+  where?: Prisma.GrowthEvidenceWhereInput
+  orderBy?: Prisma.GrowthEvidenceOrderByWithRelationInput | Prisma.GrowthEvidenceOrderByWithRelationInput[]
+  cursor?: Prisma.GrowthEvidenceWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.GrowthEvidenceScalarFieldEnum | Prisma.GrowthEvidenceScalarFieldEnum[]
 }
 
 /**

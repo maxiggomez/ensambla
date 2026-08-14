@@ -15,7 +15,7 @@ export default defineConfig({
   // Los e2e mock-only corren contra el config dev-auth:
   // el e2e con Clerk usa la identidad real y no necesita esos specs mock-only.
   testIgnore:
-    /(dev-auth|app-shell|strategy-northstar|okrs|culture-enps|lean-experiments)\.spec\.ts/,
+    /(dev-auth|app-shell|strategy-northstar|okrs|culture-enps|lean-experiments|feedback-growth)\.spec\.ts/,
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,

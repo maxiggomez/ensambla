@@ -19,6 +19,25 @@ export function findProjectById(tx: TenantClient, id: string): Promise<Project |
   return tx.project.findUnique({ where: { id } });
 }
 
+export function listProjects(tx: TenantClient): Promise<Project[]> {
+  return tx.project.findMany({ orderBy: { createdAt: "asc" } });
+}
+
+export async function closeProjectIfActive(
+  tx: TenantClient,
+  input: { organizationId: string; projectId: string },
+): Promise<boolean> {
+  const result = await tx.project.updateMany({
+    where: {
+      id: input.projectId,
+      organizationId: input.organizationId,
+      status: "Active",
+    },
+    data: { status: "Closed" },
+  });
+  return result.count === 1;
+}
+
 export function listProjectsWithLinks(tx: TenantClient): Promise<ProjectWithLinks[]> {
   return tx.project.findMany({
     include: { objectiveLinks: true },

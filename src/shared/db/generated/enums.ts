@@ -148,6 +148,30 @@ export const LearningDecision = {
 export type LearningDecision = (typeof LearningDecision)[keyof typeof LearningDecision]
 
 
+export const ProjectStatus = {
+  Active: 'Active',
+  Closed: 'Closed'
+} as const
+
+export type ProjectStatus = (typeof ProjectStatus)[keyof typeof ProjectStatus]
+
+
+export const FeedbackClassification = {
+  Strength: 'Strength',
+  Improvement: 'Improvement'
+} as const
+
+export type FeedbackClassification = (typeof FeedbackClassification)[keyof typeof FeedbackClassification]
+
+
+export const GrowthEvidenceSource = {
+  Feedback: 'Feedback',
+  Project: 'Project'
+} as const
+
+export type GrowthEvidenceSource = (typeof GrowthEvidenceSource)[keyof typeof GrowthEvidenceSource]
+
+
 export const TeamRole = {
   Lead: 'Lead',
   Contributor: 'Contributor'
