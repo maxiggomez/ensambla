@@ -9,6 +9,8 @@ const MOCK_AUTH_SPECS = [
   "strategy-northstar",
   "okrs",
   "culture-enps",
+  "lean-experiments",
+  "feedback-growth",
 ] as const;
 
 function configuredPattern(source: string, property: "testIgnore" | "testMatch"): RegExp {

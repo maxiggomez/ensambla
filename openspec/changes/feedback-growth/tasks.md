@@ -99,3 +99,17 @@ commit sin aprobación explícita.
 - [x] 8.8 Review read-only con `mg-pr-review` (obligatorio por privacidad y RLS 🔒);
       corregir y reverificar cualquier hallazgo bloqueante
 - [x] 8.9 Presentar DoD y pedir aprobación antes de commits; no push ni PR
+
+## 9. Corrección de routing Playwright en CI
+
+- [x] 9.1 **Test rojo de regresión**
+      `src/lib/auth/playwright-profile-routing.test.ts` — agregar `feedback-growth` al set
+      de specs mock-only y comprobar que queda excluido del perfil Clerk e incluido en
+      dev-auth
+- [x] 9.2 Ejecutar 9.1 y registrar RED porque `playwright.config.ts` todavía permite que
+      `feedback-growth.spec.ts` entre en la suite Clerk
+- [x] 9.3 Agregar `feedback-growth` al `testIgnore` del config estándar sin cambiar el
+      comportamiento del perfil dev-auth
+- [x] 9.4 Ejecutar 9.1 hasta verde y verificar el listado de tests de ambos perfiles
+- [x] 9.5 Repetir typecheck, lint, formato, Vitest dirigido, OpenSpec strict y review
+      read-only; presentar el DoD antes de cualquier commit

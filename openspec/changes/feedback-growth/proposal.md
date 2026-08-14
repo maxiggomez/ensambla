@@ -46,3 +46,5 @@ None.
 - The `/feedback-y-carrera` route gains forms, inboxes, activity, empty/loading/error states,
   and GrowthPlan views.
 - New domain, PostgreSQL integration, RLS, UI, and Playwright coverage.
+- Route the Feedback & Carrera Playwright scenario exclusively through the mock-auth profile;
+  the Clerk profile must ignore every spec that depends on the development user picker.

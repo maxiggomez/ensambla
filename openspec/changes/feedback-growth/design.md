@@ -115,6 +115,18 @@ activity, and own GrowthPlan. Server actions use Zod at the FormData boundary an
 public application cases. Explicit labelled forms and buttons remain keyboard accessible;
 empty, loading, error, and success feedback use existing Radar tokens and Spanish copy.
 
+### 9. Keep mock-auth E2E specs in one Playwright profile
+
+The Feedback & Carrera E2E flow signs in through the development user picker and therefore
+belongs exclusively to `playwright.dev-auth.config.ts`. The standard Clerk config SHALL
+ignore the same explicit mock-only spec set that the dev-auth config matches. A focused
+Vitest routing contract enumerates that shared set and fails when a new mock-only spec is
+added to one profile but omitted from the other.
+
+Inferring the auth profile from runtime page content was rejected because it lets a
+misrouted test wait for UI that can never exist and only reports the mismatch after the
+production server and browser have started.
+
 ## Risks / Trade-offs
 
 - **[Private Feedback could leak through an overly broad query]** → Keep participant filters
@@ -130,6 +142,8 @@ empty, loading, error, and success feedback use existing Radar tokens and Spanis
   four but treat a zero target as fully satisfied and exclude it from the division denominator.
 - **[Generated Prisma output creates a large diff]** → Regenerate with the repository's pinned
   Prisma version and keep source changes scoped through `.gitattributes` as already configured.
+- **[A mock-auth spec can accidentally enter the Clerk CI suite]** → Keep an explicit routing
+  contract test that checks exclusion from the standard config and inclusion in dev-auth.
 
 ## Migration Plan
 
