@@ -64,7 +64,11 @@ Playwright 21/21, and `mg-pr-review` APPROVED.
 
 - [x] 7.1 RED: preserve the CI failure showing that the identity E2E still waits for `/members`
   after Organization creation even though guided setup correctly remains pending at `/onboarding`
-- [ ] 7.2 GREEN: make the real-Clerk identity flow distinguish Organization creation, pending
+- [x] 7.2 GREEN: make the real-Clerk identity flow distinguish Organization creation, pending
   guided setup, and terminal retry states, then leave onboarding through its public Skip control
-- [ ] 7.3 VERIFY: run the directed identity/onboarding Playwright coverage, relevant static gates,
+- [x] 7.3 VERIFY: run the directed identity/onboarding Playwright coverage, relevant static gates,
   strict OpenSpec validation, and an updated read-only `mg-pr-review`
+
+Closure evidence: PR #30 CI passed the real-Clerk `npm run test:e2e` flow after the retry-safe
+identity/onboarding fix; local typecheck, lint, formatting, Playwright discovery, onboarding
+dev-auth 3/3, strict OpenSpec validation, and the focused review were green.
