@@ -81,3 +81,18 @@ export function listFeedbackRequestsForParticipant(tx: TenantClient, memberId: s
     orderBy: { createdAt: "desc" },
   });
 }
+
+/** Aggregate-only dashboard read: never selects private Feedback fields. */
+export function countFeedbackReceivedSince(
+  tx: TenantClient,
+  memberIds: readonly string[],
+  since: Date,
+): Promise<number> {
+  if (memberIds.length === 0) return Promise.resolve(0);
+  return tx.feedback.count({
+    where: {
+      recipientId: { in: [...memberIds] },
+      createdAt: { gte: since },
+    },
+  });
+}

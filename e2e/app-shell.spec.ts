@@ -80,7 +80,7 @@ test.describe.serial("app shell", () => {
     await sidebar(page).getByRole("link", { name: "Dashboard" }).click();
     await page.waitForURL("**/dashboard");
     await expect(
-      page.getByRole("heading", { name: "El panorama de la organización" }),
+      page.getByRole("heading", { name: "Panorama de la organización" }),
     ).toBeVisible();
 
     await sidebar(page).getByRole("link", { name: "OKRs" }).click();

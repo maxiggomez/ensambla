@@ -54,7 +54,9 @@ test.describe.serial("OKR full-cycle workspace", () => {
     await expect(page.getByText("En riesgo", { exact: true })).toBeVisible();
 
     await page.goto("/dashboard");
-    await expect(page.getByRole("heading", { name: "Key Results en riesgo" })).toBeVisible();
+    await expect(
+      page.getByRole("heading", { name: "Riesgos de desalineamiento" }),
+    ).toBeVisible();
     await expect(page.getByText("Clientes E2E")).toBeVisible();
 
     await page.goto("/okrs");

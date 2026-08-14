@@ -7,7 +7,7 @@ import { DEV_AUTH_APP_URL } from "./e2e/dev-auth-setup";
 export default defineConfig({
   testDir: "./e2e",
   testMatch:
-    /(dev-auth|app-shell|strategy-northstar|okrs|culture-enps|lean-experiments|feedback-growth)\.spec\.ts/,
+    /(dev-auth|app-shell|strategy-northstar|okrs|culture-enps|lean-experiments|feedback-growth|executive-dashboard)\.spec\.ts/,
   fullyParallel: false,
   workers: 1,
   globalSetup: "./e2e/dev-auth-setup.ts",
