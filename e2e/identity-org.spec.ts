@@ -26,22 +26,31 @@ async function signIn(page: Page): Promise<void> {
   });
 }
 
+async function ensureOrganizationAndLeavePendingSetup(page: Page): Promise<void> {
+  await page.goto("/onboarding");
+  await page.waitForURL(/\/(onboarding|members)/);
+  if (page.url().includes("/members")) return;
+
+  const organizationName = page.getByLabel("Nombre de la organización");
+  const skipSetup = page.getByRole("button", { name: "Saltar configuración" });
+  await expect(organizationName.or(skipSetup)).toBeVisible();
+
+  if (await organizationName.isVisible()) {
+    await organizationName.fill("Acme E2E");
+    await page.getByRole("button", { name: "Crear organización" }).click();
+    await expect(skipSetup).toBeVisible();
+  }
+
+  await skipSetup.click();
+  await page.waitForURL("**/members");
+}
+
 test.describe.serial("alta de organización e invitación de miembro", () => {
   test("un usuario autenticado crea su organización y queda como Dirección", async ({
     page,
   }) => {
     await signIn(page);
-
-    await page.goto("/onboarding");
-    // Retry-safe: si un retry llega con la org ya creada, /onboarding
-    // redirige a /members y la creación se da por cumplida.
-    await page.waitForURL(/\/(onboarding|members)/);
-    if (page.url().includes("/onboarding")) {
-      await page.getByLabel("Nombre de la organización").fill("Acme E2E");
-      await page.getByRole("button", { name: "Crear organización" }).click();
-    }
-
-    await page.waitForURL("**/members");
+    await ensureOrganizationAndLeavePendingSetup(page);
     const row = page.locator("li", { hasText: process.env.E2E_CLERK_USER_EMAIL! });
     await expect(row).toBeVisible();
     await expect(row).toContainText("Dirección");

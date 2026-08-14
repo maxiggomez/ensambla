@@ -385,6 +385,7 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 export const ModelName = {
   Organization: 'Organization',
+  OnboardingSetup: 'OnboardingSetup',
   PulseSchedule: 'PulseSchedule',
   Pulse: 'Pulse',
   PulseParticipation: 'PulseParticipation',
@@ -436,7 +437,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "organization" | "pulseSchedule" | "pulse" | "pulseParticipation" | "pulseResponse" | "member" | "northStar" | "northStarLever" | "strategicPillar" | "pillarObjective" | "objective" | "keyResult" | "hypothesis" | "experiment" | "learning" | "okrCycle" | "okrCadenceConfig" | "checkIn" | "checkInEvidence" | "okrAuditEvent" | "team" | "teamMember" | "project" | "projectObjective" | "skill" | "competency" | "skillRequirement" | "feedbackRequest" | "feedback" | "kudo" | "growthPlan" | "growthTarget" | "growthEvidence" | "ritual" | "ritualOccurrence" | "blocker" | "retrospective"
+    modelProps: "organization" | "onboardingSetup" | "pulseSchedule" | "pulse" | "pulseParticipation" | "pulseResponse" | "member" | "northStar" | "northStarLever" | "strategicPillar" | "pillarObjective" | "objective" | "keyResult" | "hypothesis" | "experiment" | "learning" | "okrCycle" | "okrCadenceConfig" | "checkIn" | "checkInEvidence" | "okrAuditEvent" | "team" | "teamMember" | "project" | "projectObjective" | "skill" | "competency" | "skillRequirement" | "feedbackRequest" | "feedback" | "kudo" | "growthPlan" | "growthTarget" | "growthEvidence" | "ritual" | "ritualOccurrence" | "blocker" | "retrospective"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -511,6 +512,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.OrganizationCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.OrganizationCountAggregateOutputType> | number
+        }
+      }
+    }
+    OnboardingSetup: {
+      payload: Prisma.$OnboardingSetupPayload<ExtArgs>
+      fields: Prisma.OnboardingSetupFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.OnboardingSetupFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OnboardingSetupPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.OnboardingSetupFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OnboardingSetupPayload>
+        }
+        findFirst: {
+          args: Prisma.OnboardingSetupFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OnboardingSetupPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.OnboardingSetupFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OnboardingSetupPayload>
+        }
+        findMany: {
+          args: Prisma.OnboardingSetupFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OnboardingSetupPayload>[]
+        }
+        create: {
+          args: Prisma.OnboardingSetupCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OnboardingSetupPayload>
+        }
+        createMany: {
+          args: Prisma.OnboardingSetupCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.OnboardingSetupCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OnboardingSetupPayload>[]
+        }
+        delete: {
+          args: Prisma.OnboardingSetupDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OnboardingSetupPayload>
+        }
+        update: {
+          args: Prisma.OnboardingSetupUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OnboardingSetupPayload>
+        }
+        deleteMany: {
+          args: Prisma.OnboardingSetupDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.OnboardingSetupUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.OnboardingSetupUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OnboardingSetupPayload>[]
+        }
+        upsert: {
+          args: Prisma.OnboardingSetupUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OnboardingSetupPayload>
+        }
+        aggregate: {
+          args: Prisma.OnboardingSetupAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateOnboardingSetup>
+        }
+        groupBy: {
+          args: Prisma.OnboardingSetupGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.OnboardingSetupGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.OnboardingSetupCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.OnboardingSetupCountAggregateOutputType> | number
         }
       }
     }
@@ -3230,6 +3305,20 @@ export const OrganizationScalarFieldEnum = {
 export type OrganizationScalarFieldEnum = (typeof OrganizationScalarFieldEnum)[keyof typeof OrganizationScalarFieldEnum]
 
 
+export const OnboardingSetupScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  status: 'status',
+  currentStep: 'currentStep',
+  companyType: 'companyType',
+  industry: 'industry',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type OnboardingSetupScalarFieldEnum = (typeof OnboardingSetupScalarFieldEnum)[keyof typeof OnboardingSetupScalarFieldEnum]
+
+
 export const PulseScheduleScalarFieldEnum = {
   id: 'id',
   organizationId: 'organizationId',
@@ -3818,6 +3907,34 @@ export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel,
 
 
 /**
+ * Reference to a field of type 'OnboardingSetupStatus'
+ */
+export type EnumOnboardingSetupStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'OnboardingSetupStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'OnboardingSetupStatus[]'
+ */
+export type ListEnumOnboardingSetupStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'OnboardingSetupStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'OnboardingSetupStep'
+ */
+export type EnumOnboardingSetupStepFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'OnboardingSetupStep'>
+    
+
+
+/**
+ * Reference to a field of type 'OnboardingSetupStep[]'
+ */
+export type ListEnumOnboardingSetupStepFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'OnboardingSetupStep[]'>
+    
+
+
+/**
  * Reference to a field of type 'PulseScope'
  */
 export type EnumPulseScopeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PulseScope'>
@@ -4298,6 +4415,7 @@ export type PrismaClientOptions = ({
 }
 export type GlobalOmitConfig = {
   organization?: Prisma.OrganizationOmit
+  onboardingSetup?: Prisma.OnboardingSetupOmit
   pulseSchedule?: Prisma.PulseScheduleOmit
   pulse?: Prisma.PulseOmit
   pulseParticipation?: Prisma.PulseParticipationOmit

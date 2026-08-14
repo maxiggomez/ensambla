@@ -23,6 +23,14 @@ export const DEV_USERS: readonly MockDevUser[] = [
     role: "Direccion",
   },
   {
+    // Dirección sin membership sembrada: permite probar el onboarding real
+    // desde Organization inexistente con un fixture aislado y reintentable.
+    id: "dev_onboarding",
+    email: "onboarding@ensambla.dev",
+    name: "Onboarding Dev",
+    role: "Direccion",
+  },
+  {
     id: "dev_lider",
     email: "lider@ensambla.dev",
     name: "Lider Dev",

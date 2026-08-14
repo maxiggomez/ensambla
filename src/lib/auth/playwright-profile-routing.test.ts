@@ -12,6 +12,7 @@ const MOCK_AUTH_SPECS = [
   "lean-experiments",
   "feedback-growth",
   "executive-dashboard",
+  "onboarding-setup",
 ] as const;
 
 function configuredPattern(source: string, property: "testIgnore" | "testMatch"): RegExp {

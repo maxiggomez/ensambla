@@ -52,6 +52,7 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   Organization: 'Organization',
+  OnboardingSetup: 'OnboardingSetup',
   PulseSchedule: 'PulseSchedule',
   Pulse: 'Pulse',
   PulseParticipation: 'PulseParticipation',
@@ -117,6 +118,20 @@ export const OrganizationScalarFieldEnum = {
 } as const
 
 export type OrganizationScalarFieldEnum = (typeof OrganizationScalarFieldEnum)[keyof typeof OrganizationScalarFieldEnum]
+
+
+export const OnboardingSetupScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  status: 'status',
+  currentStep: 'currentStep',
+  companyType: 'companyType',
+  industry: 'industry',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type OnboardingSetupScalarFieldEnum = (typeof OnboardingSetupScalarFieldEnum)[keyof typeof OnboardingSetupScalarFieldEnum]
 
 
 export const PulseScheduleScalarFieldEnum = {

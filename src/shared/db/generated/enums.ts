@@ -27,6 +27,23 @@ export const Seniority = {
 export type Seniority = (typeof Seniority)[keyof typeof Seniority]
 
 
+export const OnboardingSetupStatus = {
+  Pending: 'Pending',
+  Completed: 'Completed',
+  Skipped: 'Skipped'
+} as const
+
+export type OnboardingSetupStatus = (typeof OnboardingSetupStatus)[keyof typeof OnboardingSetupStatus]
+
+
+export const OnboardingSetupStep = {
+  CompanyProfile: 'CompanyProfile',
+  Review: 'Review'
+} as const
+
+export type OnboardingSetupStep = (typeof OnboardingSetupStep)[keyof typeof OnboardingSetupStep]
+
+
 export const PulseScope = {
   Organization: 'Organization',
   Team: 'Team'

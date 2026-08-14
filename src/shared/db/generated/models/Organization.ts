@@ -256,6 +256,7 @@ export type OrganizationWhereInput = {
   growthPlans?: Prisma.GrowthPlanListRelationFilter
   growthTargets?: Prisma.GrowthTargetListRelationFilter
   growthEvidence?: Prisma.GrowthEvidenceListRelationFilter
+  onboardingSetup?: Prisma.XOR<Prisma.OnboardingSetupNullableScalarRelationFilter, Prisma.OnboardingSetupWhereInput> | null
 }
 
 export type OrganizationOrderByWithRelationInput = {
@@ -294,6 +295,7 @@ export type OrganizationOrderByWithRelationInput = {
   growthPlans?: Prisma.GrowthPlanOrderByRelationAggregateInput
   growthTargets?: Prisma.GrowthTargetOrderByRelationAggregateInput
   growthEvidence?: Prisma.GrowthEvidenceOrderByRelationAggregateInput
+  onboardingSetup?: Prisma.OnboardingSetupOrderByWithRelationInput
 }
 
 export type OrganizationWhereUniqueInput = Prisma.AtLeast<{
@@ -335,6 +337,7 @@ export type OrganizationWhereUniqueInput = Prisma.AtLeast<{
   growthPlans?: Prisma.GrowthPlanListRelationFilter
   growthTargets?: Prisma.GrowthTargetListRelationFilter
   growthEvidence?: Prisma.GrowthEvidenceListRelationFilter
+  onboardingSetup?: Prisma.XOR<Prisma.OnboardingSetupNullableScalarRelationFilter, Prisma.OnboardingSetupWhereInput> | null
 }, "id">
 
 export type OrganizationOrderByWithAggregationInput = {
@@ -401,6 +404,7 @@ export type OrganizationCreateInput = {
   growthPlans?: Prisma.GrowthPlanCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateInput = {
@@ -439,6 +443,7 @@ export type OrganizationUncheckedCreateInput = {
   growthPlans?: Prisma.GrowthPlanUncheckedCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetUncheckedCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationUpdateInput = {
@@ -477,6 +482,7 @@ export type OrganizationUpdateInput = {
   growthPlans?: Prisma.GrowthPlanUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateInput = {
@@ -515,6 +521,7 @@ export type OrganizationUncheckedUpdateInput = {
   growthPlans?: Prisma.GrowthPlanUncheckedUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUncheckedUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateManyInput = {
@@ -623,6 +630,20 @@ export type IntFieldUpdateOperationsInput = {
   decrement?: number
   multiply?: number
   divide?: number
+}
+
+export type OrganizationCreateNestedOneWithoutOnboardingSetupInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutOnboardingSetupInput, Prisma.OrganizationUncheckedCreateWithoutOnboardingSetupInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutOnboardingSetupInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutOnboardingSetupNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutOnboardingSetupInput, Prisma.OrganizationUncheckedCreateWithoutOnboardingSetupInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutOnboardingSetupInput
+  upsert?: Prisma.OrganizationUpsertWithoutOnboardingSetupInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutOnboardingSetupInput, Prisma.OrganizationUpdateWithoutOnboardingSetupInput>, Prisma.OrganizationUncheckedUpdateWithoutOnboardingSetupInput>
 }
 
 export type OrganizationCreateNestedOneWithoutMembersInput = {
@@ -1017,6 +1038,174 @@ export type OrganizationUpdateOneRequiredWithoutGrowthEvidenceNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutGrowthEvidenceInput, Prisma.OrganizationUpdateWithoutGrowthEvidenceInput>, Prisma.OrganizationUncheckedUpdateWithoutGrowthEvidenceInput>
 }
 
+export type OrganizationCreateWithoutOnboardingSetupInput = {
+  id?: string
+  name: string
+  vision?: string | null
+  mission?: string | null
+  values?: Prisma.OrganizationCreatevaluesInput | string[]
+  createdAt?: Date | string
+  enpsMinimumResponses?: number
+  members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
+  northStar?: Prisma.NorthStarCreateNestedOneWithoutOrganizationInput
+  leverLinks?: Prisma.NorthStarLeverCreateNestedManyWithoutOrganizationInput
+  pillars?: Prisma.StrategicPillarCreateNestedManyWithoutOrganizationInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveCreateNestedManyWithoutOrganizationInput
+  objectives?: Prisma.ObjectiveCreateNestedManyWithoutOrganizationInput
+  keyResults?: Prisma.KeyResultCreateNestedManyWithoutOrganizationInput
+  okrCycles?: Prisma.OkrCycleCreateNestedManyWithoutOrganizationInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigCreateNestedManyWithoutOrganizationInput
+  checkIns?: Prisma.CheckInCreateNestedManyWithoutOrganizationInput
+  checkInEvidence?: Prisma.CheckInEvidenceCreateNestedManyWithoutOrganizationInput
+  okrAuditEvents?: Prisma.OkrAuditEventCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
+  teamMembers?: Prisma.TeamMemberCreateNestedManyWithoutOrganizationInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutOrganizationInput
+  projectObjectives?: Prisma.ProjectObjectiveCreateNestedManyWithoutOrganizationInput
+  skills?: Prisma.SkillCreateNestedManyWithoutOrganizationInput
+  competencies?: Prisma.CompetencyCreateNestedManyWithoutOrganizationInput
+  skillRequirements?: Prisma.SkillRequirementCreateNestedManyWithoutOrganizationInput
+  hypotheses?: Prisma.HypothesisCreateNestedManyWithoutOrganizationInput
+  experiments?: Prisma.ExperimentCreateNestedManyWithoutOrganizationInput
+  learnings?: Prisma.LearningCreateNestedManyWithoutOrganizationInput
+  feedbackRequests?: Prisma.FeedbackRequestCreateNestedManyWithoutOrganizationInput
+  feedback?: Prisma.FeedbackCreateNestedManyWithoutOrganizationInput
+  kudos?: Prisma.KudoCreateNestedManyWithoutOrganizationInput
+  growthPlans?: Prisma.GrowthPlanCreateNestedManyWithoutOrganizationInput
+  growthTargets?: Prisma.GrowthTargetCreateNestedManyWithoutOrganizationInput
+  growthEvidence?: Prisma.GrowthEvidenceCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutOnboardingSetupInput = {
+  id?: string
+  name: string
+  vision?: string | null
+  mission?: string | null
+  values?: Prisma.OrganizationCreatevaluesInput | string[]
+  createdAt?: Date | string
+  enpsMinimumResponses?: number
+  members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
+  northStar?: Prisma.NorthStarUncheckedCreateNestedOneWithoutOrganizationInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedCreateNestedManyWithoutOrganizationInput
+  pillars?: Prisma.StrategicPillarUncheckedCreateNestedManyWithoutOrganizationInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  objectives?: Prisma.ObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  keyResults?: Prisma.KeyResultUncheckedCreateNestedManyWithoutOrganizationInput
+  okrCycles?: Prisma.OkrCycleUncheckedCreateNestedManyWithoutOrganizationInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUncheckedCreateNestedManyWithoutOrganizationInput
+  checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutOrganizationInput
+  checkInEvidence?: Prisma.CheckInEvidenceUncheckedCreateNestedManyWithoutOrganizationInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
+  teamMembers?: Prisma.TeamMemberUncheckedCreateNestedManyWithoutOrganizationInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganizationInput
+  projectObjectives?: Prisma.ProjectObjectiveUncheckedCreateNestedManyWithoutOrganizationInput
+  skills?: Prisma.SkillUncheckedCreateNestedManyWithoutOrganizationInput
+  competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutOrganizationInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutOrganizationInput
+  hypotheses?: Prisma.HypothesisUncheckedCreateNestedManyWithoutOrganizationInput
+  experiments?: Prisma.ExperimentUncheckedCreateNestedManyWithoutOrganizationInput
+  learnings?: Prisma.LearningUncheckedCreateNestedManyWithoutOrganizationInput
+  feedbackRequests?: Prisma.FeedbackRequestUncheckedCreateNestedManyWithoutOrganizationInput
+  feedback?: Prisma.FeedbackUncheckedCreateNestedManyWithoutOrganizationInput
+  kudos?: Prisma.KudoUncheckedCreateNestedManyWithoutOrganizationInput
+  growthPlans?: Prisma.GrowthPlanUncheckedCreateNestedManyWithoutOrganizationInput
+  growthTargets?: Prisma.GrowthTargetUncheckedCreateNestedManyWithoutOrganizationInput
+  growthEvidence?: Prisma.GrowthEvidenceUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutOnboardingSetupInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutOnboardingSetupInput, Prisma.OrganizationUncheckedCreateWithoutOnboardingSetupInput>
+}
+
+export type OrganizationUpsertWithoutOnboardingSetupInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutOnboardingSetupInput, Prisma.OrganizationUncheckedUpdateWithoutOnboardingSetupInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutOnboardingSetupInput, Prisma.OrganizationUncheckedCreateWithoutOnboardingSetupInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutOnboardingSetupInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutOnboardingSetupInput, Prisma.OrganizationUncheckedUpdateWithoutOnboardingSetupInput>
+}
+
+export type OrganizationUpdateWithoutOnboardingSetupInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mission?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  values?: Prisma.OrganizationUpdatevaluesInput | string[]
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
+  members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
+  northStar?: Prisma.NorthStarUpdateOneWithoutOrganizationNestedInput
+  leverLinks?: Prisma.NorthStarLeverUpdateManyWithoutOrganizationNestedInput
+  pillars?: Prisma.StrategicPillarUpdateManyWithoutOrganizationNestedInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUpdateManyWithoutOrganizationNestedInput
+  objectives?: Prisma.ObjectiveUpdateManyWithoutOrganizationNestedInput
+  keyResults?: Prisma.KeyResultUpdateManyWithoutOrganizationNestedInput
+  okrCycles?: Prisma.OkrCycleUpdateManyWithoutOrganizationNestedInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUpdateManyWithoutOrganizationNestedInput
+  checkIns?: Prisma.CheckInUpdateManyWithoutOrganizationNestedInput
+  checkInEvidence?: Prisma.CheckInEvidenceUpdateManyWithoutOrganizationNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
+  teamMembers?: Prisma.TeamMemberUpdateManyWithoutOrganizationNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutOrganizationNestedInput
+  projectObjectives?: Prisma.ProjectObjectiveUpdateManyWithoutOrganizationNestedInput
+  skills?: Prisma.SkillUpdateManyWithoutOrganizationNestedInput
+  competencies?: Prisma.CompetencyUpdateManyWithoutOrganizationNestedInput
+  skillRequirements?: Prisma.SkillRequirementUpdateManyWithoutOrganizationNestedInput
+  hypotheses?: Prisma.HypothesisUpdateManyWithoutOrganizationNestedInput
+  experiments?: Prisma.ExperimentUpdateManyWithoutOrganizationNestedInput
+  learnings?: Prisma.LearningUpdateManyWithoutOrganizationNestedInput
+  feedbackRequests?: Prisma.FeedbackRequestUpdateManyWithoutOrganizationNestedInput
+  feedback?: Prisma.FeedbackUpdateManyWithoutOrganizationNestedInput
+  kudos?: Prisma.KudoUpdateManyWithoutOrganizationNestedInput
+  growthPlans?: Prisma.GrowthPlanUpdateManyWithoutOrganizationNestedInput
+  growthTargets?: Prisma.GrowthTargetUpdateManyWithoutOrganizationNestedInput
+  growthEvidence?: Prisma.GrowthEvidenceUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutOnboardingSetupInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mission?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  values?: Prisma.OrganizationUpdatevaluesInput | string[]
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enpsMinimumResponses?: Prisma.IntFieldUpdateOperationsInput | number
+  members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
+  northStar?: Prisma.NorthStarUncheckedUpdateOneWithoutOrganizationNestedInput
+  leverLinks?: Prisma.NorthStarLeverUncheckedUpdateManyWithoutOrganizationNestedInput
+  pillars?: Prisma.StrategicPillarUncheckedUpdateManyWithoutOrganizationNestedInput
+  pillarObjectiveLinks?: Prisma.PillarObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  objectives?: Prisma.ObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  keyResults?: Prisma.KeyResultUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrCycles?: Prisma.OkrCycleUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrCadenceConfigs?: Prisma.OkrCadenceConfigUncheckedUpdateManyWithoutOrganizationNestedInput
+  checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutOrganizationNestedInput
+  checkInEvidence?: Prisma.CheckInEvidenceUncheckedUpdateManyWithoutOrganizationNestedInput
+  okrAuditEvents?: Prisma.OkrAuditEventUncheckedUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
+  teamMembers?: Prisma.TeamMemberUncheckedUpdateManyWithoutOrganizationNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganizationNestedInput
+  projectObjectives?: Prisma.ProjectObjectiveUncheckedUpdateManyWithoutOrganizationNestedInput
+  skills?: Prisma.SkillUncheckedUpdateManyWithoutOrganizationNestedInput
+  competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutOrganizationNestedInput
+  skillRequirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
+  hypotheses?: Prisma.HypothesisUncheckedUpdateManyWithoutOrganizationNestedInput
+  experiments?: Prisma.ExperimentUncheckedUpdateManyWithoutOrganizationNestedInput
+  learnings?: Prisma.LearningUncheckedUpdateManyWithoutOrganizationNestedInput
+  feedbackRequests?: Prisma.FeedbackRequestUncheckedUpdateManyWithoutOrganizationNestedInput
+  feedback?: Prisma.FeedbackUncheckedUpdateManyWithoutOrganizationNestedInput
+  kudos?: Prisma.KudoUncheckedUpdateManyWithoutOrganizationNestedInput
+  growthPlans?: Prisma.GrowthPlanUncheckedUpdateManyWithoutOrganizationNestedInput
+  growthTargets?: Prisma.GrowthTargetUncheckedUpdateManyWithoutOrganizationNestedInput
+  growthEvidence?: Prisma.GrowthEvidenceUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
 export type OrganizationCreateWithoutMembersInput = {
   id?: string
   name: string
@@ -1052,6 +1241,7 @@ export type OrganizationCreateWithoutMembersInput = {
   growthPlans?: Prisma.GrowthPlanCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutMembersInput = {
@@ -1089,6 +1279,7 @@ export type OrganizationUncheckedCreateWithoutMembersInput = {
   growthPlans?: Prisma.GrowthPlanUncheckedCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetUncheckedCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutMembersInput = {
@@ -1142,6 +1333,7 @@ export type OrganizationUpdateWithoutMembersInput = {
   growthPlans?: Prisma.GrowthPlanUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutMembersInput = {
@@ -1179,6 +1371,7 @@ export type OrganizationUncheckedUpdateWithoutMembersInput = {
   growthPlans?: Prisma.GrowthPlanUncheckedUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUncheckedUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutNorthStarInput = {
@@ -1216,6 +1409,7 @@ export type OrganizationCreateWithoutNorthStarInput = {
   growthPlans?: Prisma.GrowthPlanCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutNorthStarInput = {
@@ -1253,6 +1447,7 @@ export type OrganizationUncheckedCreateWithoutNorthStarInput = {
   growthPlans?: Prisma.GrowthPlanUncheckedCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetUncheckedCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutNorthStarInput = {
@@ -1306,6 +1501,7 @@ export type OrganizationUpdateWithoutNorthStarInput = {
   growthPlans?: Prisma.GrowthPlanUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutNorthStarInput = {
@@ -1343,6 +1539,7 @@ export type OrganizationUncheckedUpdateWithoutNorthStarInput = {
   growthPlans?: Prisma.GrowthPlanUncheckedUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUncheckedUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutLeverLinksInput = {
@@ -1380,6 +1577,7 @@ export type OrganizationCreateWithoutLeverLinksInput = {
   growthPlans?: Prisma.GrowthPlanCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutLeverLinksInput = {
@@ -1417,6 +1615,7 @@ export type OrganizationUncheckedCreateWithoutLeverLinksInput = {
   growthPlans?: Prisma.GrowthPlanUncheckedCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetUncheckedCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutLeverLinksInput = {
@@ -1470,6 +1669,7 @@ export type OrganizationUpdateWithoutLeverLinksInput = {
   growthPlans?: Prisma.GrowthPlanUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutLeverLinksInput = {
@@ -1507,6 +1707,7 @@ export type OrganizationUncheckedUpdateWithoutLeverLinksInput = {
   growthPlans?: Prisma.GrowthPlanUncheckedUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUncheckedUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutPillarsInput = {
@@ -1544,6 +1745,7 @@ export type OrganizationCreateWithoutPillarsInput = {
   growthPlans?: Prisma.GrowthPlanCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutPillarsInput = {
@@ -1581,6 +1783,7 @@ export type OrganizationUncheckedCreateWithoutPillarsInput = {
   growthPlans?: Prisma.GrowthPlanUncheckedCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetUncheckedCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutPillarsInput = {
@@ -1634,6 +1837,7 @@ export type OrganizationUpdateWithoutPillarsInput = {
   growthPlans?: Prisma.GrowthPlanUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutPillarsInput = {
@@ -1671,6 +1875,7 @@ export type OrganizationUncheckedUpdateWithoutPillarsInput = {
   growthPlans?: Prisma.GrowthPlanUncheckedUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUncheckedUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutPillarObjectiveLinksInput = {
@@ -1708,6 +1913,7 @@ export type OrganizationCreateWithoutPillarObjectiveLinksInput = {
   growthPlans?: Prisma.GrowthPlanCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutPillarObjectiveLinksInput = {
@@ -1745,6 +1951,7 @@ export type OrganizationUncheckedCreateWithoutPillarObjectiveLinksInput = {
   growthPlans?: Prisma.GrowthPlanUncheckedCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetUncheckedCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutPillarObjectiveLinksInput = {
@@ -1798,6 +2005,7 @@ export type OrganizationUpdateWithoutPillarObjectiveLinksInput = {
   growthPlans?: Prisma.GrowthPlanUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutPillarObjectiveLinksInput = {
@@ -1835,6 +2043,7 @@ export type OrganizationUncheckedUpdateWithoutPillarObjectiveLinksInput = {
   growthPlans?: Prisma.GrowthPlanUncheckedUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUncheckedUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutObjectivesInput = {
@@ -1872,6 +2081,7 @@ export type OrganizationCreateWithoutObjectivesInput = {
   growthPlans?: Prisma.GrowthPlanCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutObjectivesInput = {
@@ -1909,6 +2119,7 @@ export type OrganizationUncheckedCreateWithoutObjectivesInput = {
   growthPlans?: Prisma.GrowthPlanUncheckedCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetUncheckedCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutObjectivesInput = {
@@ -1962,6 +2173,7 @@ export type OrganizationUpdateWithoutObjectivesInput = {
   growthPlans?: Prisma.GrowthPlanUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutObjectivesInput = {
@@ -1999,6 +2211,7 @@ export type OrganizationUncheckedUpdateWithoutObjectivesInput = {
   growthPlans?: Prisma.GrowthPlanUncheckedUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUncheckedUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutKeyResultsInput = {
@@ -2036,6 +2249,7 @@ export type OrganizationCreateWithoutKeyResultsInput = {
   growthPlans?: Prisma.GrowthPlanCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutKeyResultsInput = {
@@ -2073,6 +2287,7 @@ export type OrganizationUncheckedCreateWithoutKeyResultsInput = {
   growthPlans?: Prisma.GrowthPlanUncheckedCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetUncheckedCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutKeyResultsInput = {
@@ -2126,6 +2341,7 @@ export type OrganizationUpdateWithoutKeyResultsInput = {
   growthPlans?: Prisma.GrowthPlanUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutKeyResultsInput = {
@@ -2163,6 +2379,7 @@ export type OrganizationUncheckedUpdateWithoutKeyResultsInput = {
   growthPlans?: Prisma.GrowthPlanUncheckedUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUncheckedUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutHypothesesInput = {
@@ -2200,6 +2417,7 @@ export type OrganizationCreateWithoutHypothesesInput = {
   growthPlans?: Prisma.GrowthPlanCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutHypothesesInput = {
@@ -2237,6 +2455,7 @@ export type OrganizationUncheckedCreateWithoutHypothesesInput = {
   growthPlans?: Prisma.GrowthPlanUncheckedCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetUncheckedCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutHypothesesInput = {
@@ -2290,6 +2509,7 @@ export type OrganizationUpdateWithoutHypothesesInput = {
   growthPlans?: Prisma.GrowthPlanUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutHypothesesInput = {
@@ -2327,6 +2547,7 @@ export type OrganizationUncheckedUpdateWithoutHypothesesInput = {
   growthPlans?: Prisma.GrowthPlanUncheckedUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUncheckedUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutExperimentsInput = {
@@ -2364,6 +2585,7 @@ export type OrganizationCreateWithoutExperimentsInput = {
   growthPlans?: Prisma.GrowthPlanCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutExperimentsInput = {
@@ -2401,6 +2623,7 @@ export type OrganizationUncheckedCreateWithoutExperimentsInput = {
   growthPlans?: Prisma.GrowthPlanUncheckedCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetUncheckedCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutExperimentsInput = {
@@ -2454,6 +2677,7 @@ export type OrganizationUpdateWithoutExperimentsInput = {
   growthPlans?: Prisma.GrowthPlanUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutExperimentsInput = {
@@ -2491,6 +2715,7 @@ export type OrganizationUncheckedUpdateWithoutExperimentsInput = {
   growthPlans?: Prisma.GrowthPlanUncheckedUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUncheckedUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutLearningsInput = {
@@ -2528,6 +2753,7 @@ export type OrganizationCreateWithoutLearningsInput = {
   growthPlans?: Prisma.GrowthPlanCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutLearningsInput = {
@@ -2565,6 +2791,7 @@ export type OrganizationUncheckedCreateWithoutLearningsInput = {
   growthPlans?: Prisma.GrowthPlanUncheckedCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetUncheckedCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutLearningsInput = {
@@ -2618,6 +2845,7 @@ export type OrganizationUpdateWithoutLearningsInput = {
   growthPlans?: Prisma.GrowthPlanUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutLearningsInput = {
@@ -2655,6 +2883,7 @@ export type OrganizationUncheckedUpdateWithoutLearningsInput = {
   growthPlans?: Prisma.GrowthPlanUncheckedUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUncheckedUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutOkrCyclesInput = {
@@ -2692,6 +2921,7 @@ export type OrganizationCreateWithoutOkrCyclesInput = {
   growthPlans?: Prisma.GrowthPlanCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutOkrCyclesInput = {
@@ -2729,6 +2959,7 @@ export type OrganizationUncheckedCreateWithoutOkrCyclesInput = {
   growthPlans?: Prisma.GrowthPlanUncheckedCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetUncheckedCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutOkrCyclesInput = {
@@ -2782,6 +3013,7 @@ export type OrganizationUpdateWithoutOkrCyclesInput = {
   growthPlans?: Prisma.GrowthPlanUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutOkrCyclesInput = {
@@ -2819,6 +3051,7 @@ export type OrganizationUncheckedUpdateWithoutOkrCyclesInput = {
   growthPlans?: Prisma.GrowthPlanUncheckedUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUncheckedUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutOkrCadenceConfigsInput = {
@@ -2856,6 +3089,7 @@ export type OrganizationCreateWithoutOkrCadenceConfigsInput = {
   growthPlans?: Prisma.GrowthPlanCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutOkrCadenceConfigsInput = {
@@ -2893,6 +3127,7 @@ export type OrganizationUncheckedCreateWithoutOkrCadenceConfigsInput = {
   growthPlans?: Prisma.GrowthPlanUncheckedCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetUncheckedCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutOkrCadenceConfigsInput = {
@@ -2946,6 +3181,7 @@ export type OrganizationUpdateWithoutOkrCadenceConfigsInput = {
   growthPlans?: Prisma.GrowthPlanUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutOkrCadenceConfigsInput = {
@@ -2983,6 +3219,7 @@ export type OrganizationUncheckedUpdateWithoutOkrCadenceConfigsInput = {
   growthPlans?: Prisma.GrowthPlanUncheckedUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUncheckedUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutCheckInsInput = {
@@ -3020,6 +3257,7 @@ export type OrganizationCreateWithoutCheckInsInput = {
   growthPlans?: Prisma.GrowthPlanCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutCheckInsInput = {
@@ -3057,6 +3295,7 @@ export type OrganizationUncheckedCreateWithoutCheckInsInput = {
   growthPlans?: Prisma.GrowthPlanUncheckedCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetUncheckedCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutCheckInsInput = {
@@ -3110,6 +3349,7 @@ export type OrganizationUpdateWithoutCheckInsInput = {
   growthPlans?: Prisma.GrowthPlanUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutCheckInsInput = {
@@ -3147,6 +3387,7 @@ export type OrganizationUncheckedUpdateWithoutCheckInsInput = {
   growthPlans?: Prisma.GrowthPlanUncheckedUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUncheckedUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutCheckInEvidenceInput = {
@@ -3184,6 +3425,7 @@ export type OrganizationCreateWithoutCheckInEvidenceInput = {
   growthPlans?: Prisma.GrowthPlanCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutCheckInEvidenceInput = {
@@ -3221,6 +3463,7 @@ export type OrganizationUncheckedCreateWithoutCheckInEvidenceInput = {
   growthPlans?: Prisma.GrowthPlanUncheckedCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetUncheckedCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutCheckInEvidenceInput = {
@@ -3274,6 +3517,7 @@ export type OrganizationUpdateWithoutCheckInEvidenceInput = {
   growthPlans?: Prisma.GrowthPlanUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutCheckInEvidenceInput = {
@@ -3311,6 +3555,7 @@ export type OrganizationUncheckedUpdateWithoutCheckInEvidenceInput = {
   growthPlans?: Prisma.GrowthPlanUncheckedUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUncheckedUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutOkrAuditEventsInput = {
@@ -3348,6 +3593,7 @@ export type OrganizationCreateWithoutOkrAuditEventsInput = {
   growthPlans?: Prisma.GrowthPlanCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutOkrAuditEventsInput = {
@@ -3385,6 +3631,7 @@ export type OrganizationUncheckedCreateWithoutOkrAuditEventsInput = {
   growthPlans?: Prisma.GrowthPlanUncheckedCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetUncheckedCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutOkrAuditEventsInput = {
@@ -3438,6 +3685,7 @@ export type OrganizationUpdateWithoutOkrAuditEventsInput = {
   growthPlans?: Prisma.GrowthPlanUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutOkrAuditEventsInput = {
@@ -3475,6 +3723,7 @@ export type OrganizationUncheckedUpdateWithoutOkrAuditEventsInput = {
   growthPlans?: Prisma.GrowthPlanUncheckedUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUncheckedUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutTeamsInput = {
@@ -3512,6 +3761,7 @@ export type OrganizationCreateWithoutTeamsInput = {
   growthPlans?: Prisma.GrowthPlanCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutTeamsInput = {
@@ -3549,6 +3799,7 @@ export type OrganizationUncheckedCreateWithoutTeamsInput = {
   growthPlans?: Prisma.GrowthPlanUncheckedCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetUncheckedCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutTeamsInput = {
@@ -3602,6 +3853,7 @@ export type OrganizationUpdateWithoutTeamsInput = {
   growthPlans?: Prisma.GrowthPlanUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutTeamsInput = {
@@ -3639,6 +3891,7 @@ export type OrganizationUncheckedUpdateWithoutTeamsInput = {
   growthPlans?: Prisma.GrowthPlanUncheckedUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUncheckedUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutTeamMembersInput = {
@@ -3676,6 +3929,7 @@ export type OrganizationCreateWithoutTeamMembersInput = {
   growthPlans?: Prisma.GrowthPlanCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutTeamMembersInput = {
@@ -3713,6 +3967,7 @@ export type OrganizationUncheckedCreateWithoutTeamMembersInput = {
   growthPlans?: Prisma.GrowthPlanUncheckedCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetUncheckedCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutTeamMembersInput = {
@@ -3766,6 +4021,7 @@ export type OrganizationUpdateWithoutTeamMembersInput = {
   growthPlans?: Prisma.GrowthPlanUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutTeamMembersInput = {
@@ -3803,6 +4059,7 @@ export type OrganizationUncheckedUpdateWithoutTeamMembersInput = {
   growthPlans?: Prisma.GrowthPlanUncheckedUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUncheckedUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutProjectsInput = {
@@ -3840,6 +4097,7 @@ export type OrganizationCreateWithoutProjectsInput = {
   growthPlans?: Prisma.GrowthPlanCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutProjectsInput = {
@@ -3877,6 +4135,7 @@ export type OrganizationUncheckedCreateWithoutProjectsInput = {
   growthPlans?: Prisma.GrowthPlanUncheckedCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetUncheckedCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutProjectsInput = {
@@ -3930,6 +4189,7 @@ export type OrganizationUpdateWithoutProjectsInput = {
   growthPlans?: Prisma.GrowthPlanUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutProjectsInput = {
@@ -3967,6 +4227,7 @@ export type OrganizationUncheckedUpdateWithoutProjectsInput = {
   growthPlans?: Prisma.GrowthPlanUncheckedUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUncheckedUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutProjectObjectivesInput = {
@@ -4004,6 +4265,7 @@ export type OrganizationCreateWithoutProjectObjectivesInput = {
   growthPlans?: Prisma.GrowthPlanCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutProjectObjectivesInput = {
@@ -4041,6 +4303,7 @@ export type OrganizationUncheckedCreateWithoutProjectObjectivesInput = {
   growthPlans?: Prisma.GrowthPlanUncheckedCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetUncheckedCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutProjectObjectivesInput = {
@@ -4094,6 +4357,7 @@ export type OrganizationUpdateWithoutProjectObjectivesInput = {
   growthPlans?: Prisma.GrowthPlanUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutProjectObjectivesInput = {
@@ -4131,6 +4395,7 @@ export type OrganizationUncheckedUpdateWithoutProjectObjectivesInput = {
   growthPlans?: Prisma.GrowthPlanUncheckedUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUncheckedUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutSkillsInput = {
@@ -4168,6 +4433,7 @@ export type OrganizationCreateWithoutSkillsInput = {
   growthPlans?: Prisma.GrowthPlanCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutSkillsInput = {
@@ -4205,6 +4471,7 @@ export type OrganizationUncheckedCreateWithoutSkillsInput = {
   growthPlans?: Prisma.GrowthPlanUncheckedCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetUncheckedCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutSkillsInput = {
@@ -4258,6 +4525,7 @@ export type OrganizationUpdateWithoutSkillsInput = {
   growthPlans?: Prisma.GrowthPlanUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutSkillsInput = {
@@ -4295,6 +4563,7 @@ export type OrganizationUncheckedUpdateWithoutSkillsInput = {
   growthPlans?: Prisma.GrowthPlanUncheckedUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUncheckedUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutCompetenciesInput = {
@@ -4332,6 +4601,7 @@ export type OrganizationCreateWithoutCompetenciesInput = {
   growthPlans?: Prisma.GrowthPlanCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutCompetenciesInput = {
@@ -4369,6 +4639,7 @@ export type OrganizationUncheckedCreateWithoutCompetenciesInput = {
   growthPlans?: Prisma.GrowthPlanUncheckedCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetUncheckedCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutCompetenciesInput = {
@@ -4422,6 +4693,7 @@ export type OrganizationUpdateWithoutCompetenciesInput = {
   growthPlans?: Prisma.GrowthPlanUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutCompetenciesInput = {
@@ -4459,6 +4731,7 @@ export type OrganizationUncheckedUpdateWithoutCompetenciesInput = {
   growthPlans?: Prisma.GrowthPlanUncheckedUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUncheckedUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutSkillRequirementsInput = {
@@ -4496,6 +4769,7 @@ export type OrganizationCreateWithoutSkillRequirementsInput = {
   growthPlans?: Prisma.GrowthPlanCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutSkillRequirementsInput = {
@@ -4533,6 +4807,7 @@ export type OrganizationUncheckedCreateWithoutSkillRequirementsInput = {
   growthPlans?: Prisma.GrowthPlanUncheckedCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetUncheckedCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutSkillRequirementsInput = {
@@ -4586,6 +4861,7 @@ export type OrganizationUpdateWithoutSkillRequirementsInput = {
   growthPlans?: Prisma.GrowthPlanUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutSkillRequirementsInput = {
@@ -4623,6 +4899,7 @@ export type OrganizationUncheckedUpdateWithoutSkillRequirementsInput = {
   growthPlans?: Prisma.GrowthPlanUncheckedUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUncheckedUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutFeedbackRequestsInput = {
@@ -4660,6 +4937,7 @@ export type OrganizationCreateWithoutFeedbackRequestsInput = {
   growthPlans?: Prisma.GrowthPlanCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutFeedbackRequestsInput = {
@@ -4697,6 +4975,7 @@ export type OrganizationUncheckedCreateWithoutFeedbackRequestsInput = {
   growthPlans?: Prisma.GrowthPlanUncheckedCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetUncheckedCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutFeedbackRequestsInput = {
@@ -4750,6 +5029,7 @@ export type OrganizationUpdateWithoutFeedbackRequestsInput = {
   growthPlans?: Prisma.GrowthPlanUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutFeedbackRequestsInput = {
@@ -4787,6 +5067,7 @@ export type OrganizationUncheckedUpdateWithoutFeedbackRequestsInput = {
   growthPlans?: Prisma.GrowthPlanUncheckedUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUncheckedUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutFeedbackInput = {
@@ -4824,6 +5105,7 @@ export type OrganizationCreateWithoutFeedbackInput = {
   growthPlans?: Prisma.GrowthPlanCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutFeedbackInput = {
@@ -4861,6 +5143,7 @@ export type OrganizationUncheckedCreateWithoutFeedbackInput = {
   growthPlans?: Prisma.GrowthPlanUncheckedCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetUncheckedCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutFeedbackInput = {
@@ -4914,6 +5197,7 @@ export type OrganizationUpdateWithoutFeedbackInput = {
   growthPlans?: Prisma.GrowthPlanUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutFeedbackInput = {
@@ -4951,6 +5235,7 @@ export type OrganizationUncheckedUpdateWithoutFeedbackInput = {
   growthPlans?: Prisma.GrowthPlanUncheckedUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUncheckedUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutKudosInput = {
@@ -4988,6 +5273,7 @@ export type OrganizationCreateWithoutKudosInput = {
   growthPlans?: Prisma.GrowthPlanCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutKudosInput = {
@@ -5025,6 +5311,7 @@ export type OrganizationUncheckedCreateWithoutKudosInput = {
   growthPlans?: Prisma.GrowthPlanUncheckedCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetUncheckedCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutKudosInput = {
@@ -5078,6 +5365,7 @@ export type OrganizationUpdateWithoutKudosInput = {
   growthPlans?: Prisma.GrowthPlanUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutKudosInput = {
@@ -5115,6 +5403,7 @@ export type OrganizationUncheckedUpdateWithoutKudosInput = {
   growthPlans?: Prisma.GrowthPlanUncheckedUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUncheckedUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutGrowthPlansInput = {
@@ -5152,6 +5441,7 @@ export type OrganizationCreateWithoutGrowthPlansInput = {
   kudos?: Prisma.KudoCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutGrowthPlansInput = {
@@ -5189,6 +5479,7 @@ export type OrganizationUncheckedCreateWithoutGrowthPlansInput = {
   kudos?: Prisma.KudoUncheckedCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetUncheckedCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutGrowthPlansInput = {
@@ -5242,6 +5533,7 @@ export type OrganizationUpdateWithoutGrowthPlansInput = {
   kudos?: Prisma.KudoUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutGrowthPlansInput = {
@@ -5279,6 +5571,7 @@ export type OrganizationUncheckedUpdateWithoutGrowthPlansInput = {
   kudos?: Prisma.KudoUncheckedUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUncheckedUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutGrowthTargetsInput = {
@@ -5316,6 +5609,7 @@ export type OrganizationCreateWithoutGrowthTargetsInput = {
   kudos?: Prisma.KudoCreateNestedManyWithoutOrganizationInput
   growthPlans?: Prisma.GrowthPlanCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutGrowthTargetsInput = {
@@ -5353,6 +5647,7 @@ export type OrganizationUncheckedCreateWithoutGrowthTargetsInput = {
   kudos?: Prisma.KudoUncheckedCreateNestedManyWithoutOrganizationInput
   growthPlans?: Prisma.GrowthPlanUncheckedCreateNestedManyWithoutOrganizationInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutGrowthTargetsInput = {
@@ -5406,6 +5701,7 @@ export type OrganizationUpdateWithoutGrowthTargetsInput = {
   kudos?: Prisma.KudoUpdateManyWithoutOrganizationNestedInput
   growthPlans?: Prisma.GrowthPlanUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutGrowthTargetsInput = {
@@ -5443,6 +5739,7 @@ export type OrganizationUncheckedUpdateWithoutGrowthTargetsInput = {
   kudos?: Prisma.KudoUncheckedUpdateManyWithoutOrganizationNestedInput
   growthPlans?: Prisma.GrowthPlanUncheckedUpdateManyWithoutOrganizationNestedInput
   growthEvidence?: Prisma.GrowthEvidenceUncheckedUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutGrowthEvidenceInput = {
@@ -5480,6 +5777,7 @@ export type OrganizationCreateWithoutGrowthEvidenceInput = {
   kudos?: Prisma.KudoCreateNestedManyWithoutOrganizationInput
   growthPlans?: Prisma.GrowthPlanCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutGrowthEvidenceInput = {
@@ -5517,6 +5815,7 @@ export type OrganizationUncheckedCreateWithoutGrowthEvidenceInput = {
   kudos?: Prisma.KudoUncheckedCreateNestedManyWithoutOrganizationInput
   growthPlans?: Prisma.GrowthPlanUncheckedCreateNestedManyWithoutOrganizationInput
   growthTargets?: Prisma.GrowthTargetUncheckedCreateNestedManyWithoutOrganizationInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutGrowthEvidenceInput = {
@@ -5570,6 +5869,7 @@ export type OrganizationUpdateWithoutGrowthEvidenceInput = {
   kudos?: Prisma.KudoUpdateManyWithoutOrganizationNestedInput
   growthPlans?: Prisma.GrowthPlanUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutGrowthEvidenceInput = {
@@ -5607,6 +5907,7 @@ export type OrganizationUncheckedUpdateWithoutGrowthEvidenceInput = {
   kudos?: Prisma.KudoUncheckedUpdateManyWithoutOrganizationNestedInput
   growthPlans?: Prisma.GrowthPlanUncheckedUpdateManyWithoutOrganizationNestedInput
   growthTargets?: Prisma.GrowthTargetUncheckedUpdateManyWithoutOrganizationNestedInput
+  onboardingSetup?: Prisma.OnboardingSetupUncheckedUpdateOneWithoutOrganizationNestedInput
 }
 
 
@@ -5910,6 +6211,7 @@ export type OrganizationSelect<ExtArgs extends runtime.Types.Extensions.Internal
   growthPlans?: boolean | Prisma.Organization$growthPlansArgs<ExtArgs>
   growthTargets?: boolean | Prisma.Organization$growthTargetsArgs<ExtArgs>
   growthEvidence?: boolean | Prisma.Organization$growthEvidenceArgs<ExtArgs>
+  onboardingSetup?: boolean | Prisma.Organization$onboardingSetupArgs<ExtArgs>
   _count?: boolean | Prisma.OrganizationCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["organization"]>
 
@@ -5973,6 +6275,7 @@ export type OrganizationInclude<ExtArgs extends runtime.Types.Extensions.Interna
   growthPlans?: boolean | Prisma.Organization$growthPlansArgs<ExtArgs>
   growthTargets?: boolean | Prisma.Organization$growthTargetsArgs<ExtArgs>
   growthEvidence?: boolean | Prisma.Organization$growthEvidenceArgs<ExtArgs>
+  onboardingSetup?: boolean | Prisma.Organization$onboardingSetupArgs<ExtArgs>
   _count?: boolean | Prisma.OrganizationCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type OrganizationIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -6009,6 +6312,7 @@ export type $OrganizationPayload<ExtArgs extends runtime.Types.Extensions.Intern
     growthPlans: Prisma.$GrowthPlanPayload<ExtArgs>[]
     growthTargets: Prisma.$GrowthTargetPayload<ExtArgs>[]
     growthEvidence: Prisma.$GrowthEvidencePayload<ExtArgs>[]
+    onboardingSetup: Prisma.$OnboardingSetupPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -6440,6 +6744,7 @@ export interface Prisma__OrganizationClient<T, Null = never, ExtArgs extends run
   growthPlans<T extends Prisma.Organization$growthPlansArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$growthPlansArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$GrowthPlanPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   growthTargets<T extends Prisma.Organization$growthTargetsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$growthTargetsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$GrowthTargetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   growthEvidence<T extends Prisma.Organization$growthEvidenceArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$growthEvidenceArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$GrowthEvidencePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  onboardingSetup<T extends Prisma.Organization$onboardingSetupArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$onboardingSetupArgs<ExtArgs>>): Prisma.Prisma__OnboardingSetupClient<runtime.Types.Result.GetResult<Prisma.$OnboardingSetupPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7533,6 +7838,25 @@ export type Organization$growthEvidenceArgs<ExtArgs extends runtime.Types.Extens
   take?: number
   skip?: number
   distinct?: Prisma.GrowthEvidenceScalarFieldEnum | Prisma.GrowthEvidenceScalarFieldEnum[]
+}
+
+/**
+ * Organization.onboardingSetup
+ */
+export type Organization$onboardingSetupArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the OnboardingSetup
+   */
+  select?: Prisma.OnboardingSetupSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the OnboardingSetup
+   */
+  omit?: Prisma.OnboardingSetupOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OnboardingSetupInclude<ExtArgs> | null
+  where?: Prisma.OnboardingSetupWhereInput
 }
 
 /**

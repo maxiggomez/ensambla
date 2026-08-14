@@ -9,6 +9,7 @@
  * 🟢 You can import this file directly.
  */
 export type * from './models/Organization'
+export type * from './models/OnboardingSetup'
 export type * from './models/PulseSchedule'
 export type * from './models/Pulse'
 export type * from './models/PulseParticipation'
