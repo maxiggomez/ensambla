@@ -38,6 +38,12 @@ capacity risks SHALL be critical and precede retrospective and low-feedback atte
 ties SHALL use a deterministic kind and subject order. Every risk SHALL include a suggested
 action and SHALL disappear on the first dashboard request after its source condition is resolved.
 
+#### Scenario: Generate a risk alert
+
+- **GIVEN** a KeyResult without project/owner, a Team over capacity, an overdue retro, or a group with low feedback
+- **WHEN** risks are evaluated
+- **THEN** a prioritized risk alert is generated
+
 #### Scenario: Generate prioritized risk alerts
 
 - **GIVEN** a published KeyResult without a Project moving it, an over-capacity Team, a Team at retrospective risk, and a Team with low Feedback activity
