@@ -15,3 +15,9 @@ export {
 export { defineGrowthPlan, type DefineGrowthPlanInput } from "./define-growth-plan";
 export { getGrowthPlan, type GrowthPlanView, type GrowthEvidenceView } from "./get-growth-plan";
 export { addGrowthEvidence, type AddGrowthEvidenceInput } from "./add-growth-evidence";
+export {
+  getFeedbackHealth,
+  type FeedbackHealthGroupInput,
+  type FeedbackHealthView,
+  type GetFeedbackHealthInput,
+} from "./get-feedback-health";

@@ -24,7 +24,7 @@ describe("OKRs UI design-system contract", () => {
     expect(sources).toContain("Alineamiento");
     expect(sources).toContain("Cerrar ciclo");
     expect(sources).toContain("Historial archivado");
-    expect(sources).toContain("Key Results en riesgo");
+    expect(sources).toContain("Riesgos de desalineamiento");
   });
 
   it("provides empty, loading and error guidance", () => {
