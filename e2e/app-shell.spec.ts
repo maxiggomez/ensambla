@@ -22,7 +22,6 @@ const ALL_SECTIONS = [
 const PLACEHOLDER_ROUTES: ReadonlyArray<readonly [string, string]> = [
   ["Equipos & Proyectos", "/equipos-y-proyectos"],
   ["Rituales", "/rituales"],
-  ["Feedback & Carrera", "/feedback-y-carrera"],
   ["Skills & Staffing", "/skills-y-staffing"],
 ];
 
@@ -73,7 +72,7 @@ test.describe.serial("app shell", () => {
     await expect(page.getByText("Visión, misión y valores")).toBeVisible();
   });
 
-  test("Dashboard, OKRs y Motor Lean muestran sus UIs reales dentro del shell", async ({
+  test("Dashboard, OKRs, Feedback & Carrera y Motor Lean muestran sus UIs reales dentro del shell", async ({
     page,
   }) => {
     await signInAs(page, "dev_direccion");
@@ -88,6 +87,12 @@ test.describe.serial("app shell", () => {
     await page.waitForURL("**/okrs");
     await expect(
       page.getByRole("heading", { name: "Objetivos que bajan a resultados medibles" }),
+    ).toBeVisible();
+
+    await sidebar(page).getByRole("link", { name: "Feedback & Carrera" }).click();
+    await page.waitForURL("**/feedback-y-carrera");
+    await expect(
+      page.getByRole("heading", { name: "Crecer con señales del trabajo real" }),
     ).toBeVisible();
 
     await sidebar(page).getByRole("link", { name: "Motor Lean" }).click();

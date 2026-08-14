@@ -153,6 +153,36 @@ export type Competency = Prisma.CompetencyModel
  */
 export type SkillRequirement = Prisma.SkillRequirementModel
 /**
+ * Model FeedbackRequest
+ * 
+ */
+export type FeedbackRequest = Prisma.FeedbackRequestModel
+/**
+ * Model Feedback
+ * 
+ */
+export type Feedback = Prisma.FeedbackModel
+/**
+ * Model Kudo
+ * 
+ */
+export type Kudo = Prisma.KudoModel
+/**
+ * Model GrowthPlan
+ * 
+ */
+export type GrowthPlan = Prisma.GrowthPlanModel
+/**
+ * Model GrowthTarget
+ * 
+ */
+export type GrowthTarget = Prisma.GrowthTargetModel
+/**
+ * Model GrowthEvidence
+ * 
+ */
+export type GrowthEvidence = Prisma.GrowthEvidenceModel
+/**
  * Model Ritual
  * 
  */

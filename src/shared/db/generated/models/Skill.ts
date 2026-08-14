@@ -177,6 +177,7 @@ export type SkillWhereInput = {
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
   competencies?: Prisma.CompetencyListRelationFilter
   requirements?: Prisma.SkillRequirementListRelationFilter
+  growthTargets?: Prisma.GrowthTargetListRelationFilter
 }
 
 export type SkillOrderByWithRelationInput = {
@@ -187,10 +188,12 @@ export type SkillOrderByWithRelationInput = {
   organization?: Prisma.OrganizationOrderByWithRelationInput
   competencies?: Prisma.CompetencyOrderByRelationAggregateInput
   requirements?: Prisma.SkillRequirementOrderByRelationAggregateInput
+  growthTargets?: Prisma.GrowthTargetOrderByRelationAggregateInput
 }
 
 export type SkillWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  organizationId_id?: Prisma.SkillOrganizationIdIdCompoundUniqueInput
   organizationId_name?: Prisma.SkillOrganizationIdNameCompoundUniqueInput
   AND?: Prisma.SkillWhereInput | Prisma.SkillWhereInput[]
   OR?: Prisma.SkillWhereInput[]
@@ -201,7 +204,8 @@ export type SkillWhereUniqueInput = Prisma.AtLeast<{
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
   competencies?: Prisma.CompetencyListRelationFilter
   requirements?: Prisma.SkillRequirementListRelationFilter
-}, "id" | "organizationId_name">
+  growthTargets?: Prisma.GrowthTargetListRelationFilter
+}, "id" | "organizationId_id" | "organizationId_name">
 
 export type SkillOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -230,6 +234,7 @@ export type SkillCreateInput = {
   organization: Prisma.OrganizationCreateNestedOneWithoutSkillsInput
   competencies?: Prisma.CompetencyCreateNestedManyWithoutSkillInput
   requirements?: Prisma.SkillRequirementCreateNestedManyWithoutSkillInput
+  growthTargets?: Prisma.GrowthTargetCreateNestedManyWithoutSkillInput
 }
 
 export type SkillUncheckedCreateInput = {
@@ -239,6 +244,7 @@ export type SkillUncheckedCreateInput = {
   createdAt?: Date | string
   competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutSkillInput
   requirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutSkillInput
+  growthTargets?: Prisma.GrowthTargetUncheckedCreateNestedManyWithoutSkillInput
 }
 
 export type SkillUpdateInput = {
@@ -248,6 +254,7 @@ export type SkillUpdateInput = {
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutSkillsNestedInput
   competencies?: Prisma.CompetencyUpdateManyWithoutSkillNestedInput
   requirements?: Prisma.SkillRequirementUpdateManyWithoutSkillNestedInput
+  growthTargets?: Prisma.GrowthTargetUpdateManyWithoutSkillNestedInput
 }
 
 export type SkillUncheckedUpdateInput = {
@@ -257,6 +264,7 @@ export type SkillUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutSkillNestedInput
   requirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutSkillNestedInput
+  growthTargets?: Prisma.GrowthTargetUncheckedUpdateManyWithoutSkillNestedInput
 }
 
 export type SkillCreateManyInput = {
@@ -287,6 +295,11 @@ export type SkillListRelationFilter = {
 
 export type SkillOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
+}
+
+export type SkillOrganizationIdIdCompoundUniqueInput = {
+  organizationId: string
+  id: string
 }
 
 export type SkillOrganizationIdNameCompoundUniqueInput = {
@@ -390,12 +403,27 @@ export type SkillUpdateOneRequiredWithoutRequirementsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.SkillUpdateToOneWithWhereWithoutRequirementsInput, Prisma.SkillUpdateWithoutRequirementsInput>, Prisma.SkillUncheckedUpdateWithoutRequirementsInput>
 }
 
+export type SkillCreateNestedOneWithoutGrowthTargetsInput = {
+  create?: Prisma.XOR<Prisma.SkillCreateWithoutGrowthTargetsInput, Prisma.SkillUncheckedCreateWithoutGrowthTargetsInput>
+  connectOrCreate?: Prisma.SkillCreateOrConnectWithoutGrowthTargetsInput
+  connect?: Prisma.SkillWhereUniqueInput
+}
+
+export type SkillUpdateOneRequiredWithoutGrowthTargetsNestedInput = {
+  create?: Prisma.XOR<Prisma.SkillCreateWithoutGrowthTargetsInput, Prisma.SkillUncheckedCreateWithoutGrowthTargetsInput>
+  connectOrCreate?: Prisma.SkillCreateOrConnectWithoutGrowthTargetsInput
+  upsert?: Prisma.SkillUpsertWithoutGrowthTargetsInput
+  connect?: Prisma.SkillWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.SkillUpdateToOneWithWhereWithoutGrowthTargetsInput, Prisma.SkillUpdateWithoutGrowthTargetsInput>, Prisma.SkillUncheckedUpdateWithoutGrowthTargetsInput>
+}
+
 export type SkillCreateWithoutOrganizationInput = {
   id?: string
   name: string
   createdAt?: Date | string
   competencies?: Prisma.CompetencyCreateNestedManyWithoutSkillInput
   requirements?: Prisma.SkillRequirementCreateNestedManyWithoutSkillInput
+  growthTargets?: Prisma.GrowthTargetCreateNestedManyWithoutSkillInput
 }
 
 export type SkillUncheckedCreateWithoutOrganizationInput = {
@@ -404,6 +432,7 @@ export type SkillUncheckedCreateWithoutOrganizationInput = {
   createdAt?: Date | string
   competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutSkillInput
   requirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutSkillInput
+  growthTargets?: Prisma.GrowthTargetUncheckedCreateNestedManyWithoutSkillInput
 }
 
 export type SkillCreateOrConnectWithoutOrganizationInput = {
@@ -448,6 +477,7 @@ export type SkillCreateWithoutCompetenciesInput = {
   createdAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutSkillsInput
   requirements?: Prisma.SkillRequirementCreateNestedManyWithoutSkillInput
+  growthTargets?: Prisma.GrowthTargetCreateNestedManyWithoutSkillInput
 }
 
 export type SkillUncheckedCreateWithoutCompetenciesInput = {
@@ -456,6 +486,7 @@ export type SkillUncheckedCreateWithoutCompetenciesInput = {
   name: string
   createdAt?: Date | string
   requirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutSkillInput
+  growthTargets?: Prisma.GrowthTargetUncheckedCreateNestedManyWithoutSkillInput
 }
 
 export type SkillCreateOrConnectWithoutCompetenciesInput = {
@@ -480,6 +511,7 @@ export type SkillUpdateWithoutCompetenciesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutSkillsNestedInput
   requirements?: Prisma.SkillRequirementUpdateManyWithoutSkillNestedInput
+  growthTargets?: Prisma.GrowthTargetUpdateManyWithoutSkillNestedInput
 }
 
 export type SkillUncheckedUpdateWithoutCompetenciesInput = {
@@ -488,6 +520,7 @@ export type SkillUncheckedUpdateWithoutCompetenciesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   requirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutSkillNestedInput
+  growthTargets?: Prisma.GrowthTargetUncheckedUpdateManyWithoutSkillNestedInput
 }
 
 export type SkillCreateWithoutRequirementsInput = {
@@ -496,6 +529,7 @@ export type SkillCreateWithoutRequirementsInput = {
   createdAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutSkillsInput
   competencies?: Prisma.CompetencyCreateNestedManyWithoutSkillInput
+  growthTargets?: Prisma.GrowthTargetCreateNestedManyWithoutSkillInput
 }
 
 export type SkillUncheckedCreateWithoutRequirementsInput = {
@@ -504,6 +538,7 @@ export type SkillUncheckedCreateWithoutRequirementsInput = {
   name: string
   createdAt?: Date | string
   competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutSkillInput
+  growthTargets?: Prisma.GrowthTargetUncheckedCreateNestedManyWithoutSkillInput
 }
 
 export type SkillCreateOrConnectWithoutRequirementsInput = {
@@ -528,6 +563,7 @@ export type SkillUpdateWithoutRequirementsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutSkillsNestedInput
   competencies?: Prisma.CompetencyUpdateManyWithoutSkillNestedInput
+  growthTargets?: Prisma.GrowthTargetUpdateManyWithoutSkillNestedInput
 }
 
 export type SkillUncheckedUpdateWithoutRequirementsInput = {
@@ -536,6 +572,59 @@ export type SkillUncheckedUpdateWithoutRequirementsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutSkillNestedInput
+  growthTargets?: Prisma.GrowthTargetUncheckedUpdateManyWithoutSkillNestedInput
+}
+
+export type SkillCreateWithoutGrowthTargetsInput = {
+  id?: string
+  name: string
+  createdAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutSkillsInput
+  competencies?: Prisma.CompetencyCreateNestedManyWithoutSkillInput
+  requirements?: Prisma.SkillRequirementCreateNestedManyWithoutSkillInput
+}
+
+export type SkillUncheckedCreateWithoutGrowthTargetsInput = {
+  id?: string
+  organizationId: string
+  name: string
+  createdAt?: Date | string
+  competencies?: Prisma.CompetencyUncheckedCreateNestedManyWithoutSkillInput
+  requirements?: Prisma.SkillRequirementUncheckedCreateNestedManyWithoutSkillInput
+}
+
+export type SkillCreateOrConnectWithoutGrowthTargetsInput = {
+  where: Prisma.SkillWhereUniqueInput
+  create: Prisma.XOR<Prisma.SkillCreateWithoutGrowthTargetsInput, Prisma.SkillUncheckedCreateWithoutGrowthTargetsInput>
+}
+
+export type SkillUpsertWithoutGrowthTargetsInput = {
+  update: Prisma.XOR<Prisma.SkillUpdateWithoutGrowthTargetsInput, Prisma.SkillUncheckedUpdateWithoutGrowthTargetsInput>
+  create: Prisma.XOR<Prisma.SkillCreateWithoutGrowthTargetsInput, Prisma.SkillUncheckedCreateWithoutGrowthTargetsInput>
+  where?: Prisma.SkillWhereInput
+}
+
+export type SkillUpdateToOneWithWhereWithoutGrowthTargetsInput = {
+  where?: Prisma.SkillWhereInput
+  data: Prisma.XOR<Prisma.SkillUpdateWithoutGrowthTargetsInput, Prisma.SkillUncheckedUpdateWithoutGrowthTargetsInput>
+}
+
+export type SkillUpdateWithoutGrowthTargetsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutSkillsNestedInput
+  competencies?: Prisma.CompetencyUpdateManyWithoutSkillNestedInput
+  requirements?: Prisma.SkillRequirementUpdateManyWithoutSkillNestedInput
+}
+
+export type SkillUncheckedUpdateWithoutGrowthTargetsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutSkillNestedInput
+  requirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutSkillNestedInput
 }
 
 export type SkillCreateManyOrganizationInput = {
@@ -550,6 +639,7 @@ export type SkillUpdateWithoutOrganizationInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   competencies?: Prisma.CompetencyUpdateManyWithoutSkillNestedInput
   requirements?: Prisma.SkillRequirementUpdateManyWithoutSkillNestedInput
+  growthTargets?: Prisma.GrowthTargetUpdateManyWithoutSkillNestedInput
 }
 
 export type SkillUncheckedUpdateWithoutOrganizationInput = {
@@ -558,6 +648,7 @@ export type SkillUncheckedUpdateWithoutOrganizationInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   competencies?: Prisma.CompetencyUncheckedUpdateManyWithoutSkillNestedInput
   requirements?: Prisma.SkillRequirementUncheckedUpdateManyWithoutSkillNestedInput
+  growthTargets?: Prisma.GrowthTargetUncheckedUpdateManyWithoutSkillNestedInput
 }
 
 export type SkillUncheckedUpdateManyWithoutOrganizationInput = {
@@ -574,11 +665,13 @@ export type SkillUncheckedUpdateManyWithoutOrganizationInput = {
 export type SkillCountOutputType = {
   competencies: number
   requirements: number
+  growthTargets: number
 }
 
 export type SkillCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   competencies?: boolean | SkillCountOutputTypeCountCompetenciesArgs
   requirements?: boolean | SkillCountOutputTypeCountRequirementsArgs
+  growthTargets?: boolean | SkillCountOutputTypeCountGrowthTargetsArgs
 }
 
 /**
@@ -605,6 +698,13 @@ export type SkillCountOutputTypeCountRequirementsArgs<ExtArgs extends runtime.Ty
   where?: Prisma.SkillRequirementWhereInput
 }
 
+/**
+ * SkillCountOutputType without action
+ */
+export type SkillCountOutputTypeCountGrowthTargetsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.GrowthTargetWhereInput
+}
+
 
 export type SkillSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -614,6 +714,7 @@ export type SkillSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   competencies?: boolean | Prisma.Skill$competenciesArgs<ExtArgs>
   requirements?: boolean | Prisma.Skill$requirementsArgs<ExtArgs>
+  growthTargets?: boolean | Prisma.Skill$growthTargetsArgs<ExtArgs>
   _count?: boolean | Prisma.SkillCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["skill"]>
 
@@ -645,6 +746,7 @@ export type SkillInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   competencies?: boolean | Prisma.Skill$competenciesArgs<ExtArgs>
   requirements?: boolean | Prisma.Skill$requirementsArgs<ExtArgs>
+  growthTargets?: boolean | Prisma.Skill$growthTargetsArgs<ExtArgs>
   _count?: boolean | Prisma.SkillCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type SkillIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -660,6 +762,7 @@ export type $SkillPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     organization: Prisma.$OrganizationPayload<ExtArgs>
     competencies: Prisma.$CompetencyPayload<ExtArgs>[]
     requirements: Prisma.$SkillRequirementPayload<ExtArgs>[]
+    growthTargets: Prisma.$GrowthTargetPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1063,6 +1166,7 @@ export interface Prisma__SkillClient<T, Null = never, ExtArgs extends runtime.Ty
   organization<T extends Prisma.OrganizationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrganizationDefaultArgs<ExtArgs>>): Prisma.Prisma__OrganizationClient<runtime.Types.Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   competencies<T extends Prisma.Skill$competenciesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Skill$competenciesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CompetencyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   requirements<T extends Prisma.Skill$requirementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Skill$requirementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SkillRequirementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  growthTargets<T extends Prisma.Skill$growthTargetsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Skill$growthTargetsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$GrowthTargetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1542,6 +1646,30 @@ export type Skill$requirementsArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   distinct?: Prisma.SkillRequirementScalarFieldEnum | Prisma.SkillRequirementScalarFieldEnum[]
+}
+
+/**
+ * Skill.growthTargets
+ */
+export type Skill$growthTargetsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the GrowthTarget
+   */
+  select?: Prisma.GrowthTargetSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the GrowthTarget
+   */
+  omit?: Prisma.GrowthTargetOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.GrowthTargetInclude<ExtArgs> | null
+  where?: Prisma.GrowthTargetWhereInput
+  orderBy?: Prisma.GrowthTargetOrderByWithRelationInput | Prisma.GrowthTargetOrderByWithRelationInput[]
+  cursor?: Prisma.GrowthTargetWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.GrowthTargetScalarFieldEnum | Prisma.GrowthTargetScalarFieldEnum[]
 }
 
 /**

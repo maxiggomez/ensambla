@@ -411,6 +411,12 @@ export const ModelName = {
   Skill: 'Skill',
   Competency: 'Competency',
   SkillRequirement: 'SkillRequirement',
+  FeedbackRequest: 'FeedbackRequest',
+  Feedback: 'Feedback',
+  Kudo: 'Kudo',
+  GrowthPlan: 'GrowthPlan',
+  GrowthTarget: 'GrowthTarget',
+  GrowthEvidence: 'GrowthEvidence',
   Ritual: 'Ritual',
   RitualOccurrence: 'RitualOccurrence',
   Blocker: 'Blocker',
@@ -430,7 +436,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "organization" | "pulseSchedule" | "pulse" | "pulseParticipation" | "pulseResponse" | "member" | "northStar" | "northStarLever" | "strategicPillar" | "pillarObjective" | "objective" | "keyResult" | "hypothesis" | "experiment" | "learning" | "okrCycle" | "okrCadenceConfig" | "checkIn" | "checkInEvidence" | "okrAuditEvent" | "team" | "teamMember" | "project" | "projectObjective" | "skill" | "competency" | "skillRequirement" | "ritual" | "ritualOccurrence" | "blocker" | "retrospective"
+    modelProps: "organization" | "pulseSchedule" | "pulse" | "pulseParticipation" | "pulseResponse" | "member" | "northStar" | "northStarLever" | "strategicPillar" | "pillarObjective" | "objective" | "keyResult" | "hypothesis" | "experiment" | "learning" | "okrCycle" | "okrCadenceConfig" | "checkIn" | "checkInEvidence" | "okrAuditEvent" | "team" | "teamMember" | "project" | "projectObjective" | "skill" | "competency" | "skillRequirement" | "feedbackRequest" | "feedback" | "kudo" | "growthPlan" | "growthTarget" | "growthEvidence" | "ritual" | "ritualOccurrence" | "blocker" | "retrospective"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2432,6 +2438,450 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    FeedbackRequest: {
+      payload: Prisma.$FeedbackRequestPayload<ExtArgs>
+      fields: Prisma.FeedbackRequestFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.FeedbackRequestFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeedbackRequestPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.FeedbackRequestFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeedbackRequestPayload>
+        }
+        findFirst: {
+          args: Prisma.FeedbackRequestFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeedbackRequestPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.FeedbackRequestFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeedbackRequestPayload>
+        }
+        findMany: {
+          args: Prisma.FeedbackRequestFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeedbackRequestPayload>[]
+        }
+        create: {
+          args: Prisma.FeedbackRequestCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeedbackRequestPayload>
+        }
+        createMany: {
+          args: Prisma.FeedbackRequestCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.FeedbackRequestCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeedbackRequestPayload>[]
+        }
+        delete: {
+          args: Prisma.FeedbackRequestDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeedbackRequestPayload>
+        }
+        update: {
+          args: Prisma.FeedbackRequestUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeedbackRequestPayload>
+        }
+        deleteMany: {
+          args: Prisma.FeedbackRequestDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.FeedbackRequestUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.FeedbackRequestUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeedbackRequestPayload>[]
+        }
+        upsert: {
+          args: Prisma.FeedbackRequestUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeedbackRequestPayload>
+        }
+        aggregate: {
+          args: Prisma.FeedbackRequestAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateFeedbackRequest>
+        }
+        groupBy: {
+          args: Prisma.FeedbackRequestGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.FeedbackRequestGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.FeedbackRequestCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.FeedbackRequestCountAggregateOutputType> | number
+        }
+      }
+    }
+    Feedback: {
+      payload: Prisma.$FeedbackPayload<ExtArgs>
+      fields: Prisma.FeedbackFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.FeedbackFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeedbackPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.FeedbackFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeedbackPayload>
+        }
+        findFirst: {
+          args: Prisma.FeedbackFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeedbackPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.FeedbackFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeedbackPayload>
+        }
+        findMany: {
+          args: Prisma.FeedbackFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeedbackPayload>[]
+        }
+        create: {
+          args: Prisma.FeedbackCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeedbackPayload>
+        }
+        createMany: {
+          args: Prisma.FeedbackCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.FeedbackCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeedbackPayload>[]
+        }
+        delete: {
+          args: Prisma.FeedbackDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeedbackPayload>
+        }
+        update: {
+          args: Prisma.FeedbackUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeedbackPayload>
+        }
+        deleteMany: {
+          args: Prisma.FeedbackDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.FeedbackUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.FeedbackUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeedbackPayload>[]
+        }
+        upsert: {
+          args: Prisma.FeedbackUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeedbackPayload>
+        }
+        aggregate: {
+          args: Prisma.FeedbackAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateFeedback>
+        }
+        groupBy: {
+          args: Prisma.FeedbackGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.FeedbackGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.FeedbackCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.FeedbackCountAggregateOutputType> | number
+        }
+      }
+    }
+    Kudo: {
+      payload: Prisma.$KudoPayload<ExtArgs>
+      fields: Prisma.KudoFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.KudoFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KudoPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.KudoFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KudoPayload>
+        }
+        findFirst: {
+          args: Prisma.KudoFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KudoPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.KudoFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KudoPayload>
+        }
+        findMany: {
+          args: Prisma.KudoFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KudoPayload>[]
+        }
+        create: {
+          args: Prisma.KudoCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KudoPayload>
+        }
+        createMany: {
+          args: Prisma.KudoCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.KudoCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KudoPayload>[]
+        }
+        delete: {
+          args: Prisma.KudoDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KudoPayload>
+        }
+        update: {
+          args: Prisma.KudoUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KudoPayload>
+        }
+        deleteMany: {
+          args: Prisma.KudoDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.KudoUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.KudoUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KudoPayload>[]
+        }
+        upsert: {
+          args: Prisma.KudoUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KudoPayload>
+        }
+        aggregate: {
+          args: Prisma.KudoAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateKudo>
+        }
+        groupBy: {
+          args: Prisma.KudoGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.KudoGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.KudoCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.KudoCountAggregateOutputType> | number
+        }
+      }
+    }
+    GrowthPlan: {
+      payload: Prisma.$GrowthPlanPayload<ExtArgs>
+      fields: Prisma.GrowthPlanFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.GrowthPlanFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GrowthPlanPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.GrowthPlanFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GrowthPlanPayload>
+        }
+        findFirst: {
+          args: Prisma.GrowthPlanFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GrowthPlanPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.GrowthPlanFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GrowthPlanPayload>
+        }
+        findMany: {
+          args: Prisma.GrowthPlanFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GrowthPlanPayload>[]
+        }
+        create: {
+          args: Prisma.GrowthPlanCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GrowthPlanPayload>
+        }
+        createMany: {
+          args: Prisma.GrowthPlanCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.GrowthPlanCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GrowthPlanPayload>[]
+        }
+        delete: {
+          args: Prisma.GrowthPlanDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GrowthPlanPayload>
+        }
+        update: {
+          args: Prisma.GrowthPlanUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GrowthPlanPayload>
+        }
+        deleteMany: {
+          args: Prisma.GrowthPlanDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.GrowthPlanUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.GrowthPlanUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GrowthPlanPayload>[]
+        }
+        upsert: {
+          args: Prisma.GrowthPlanUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GrowthPlanPayload>
+        }
+        aggregate: {
+          args: Prisma.GrowthPlanAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateGrowthPlan>
+        }
+        groupBy: {
+          args: Prisma.GrowthPlanGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GrowthPlanGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.GrowthPlanCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GrowthPlanCountAggregateOutputType> | number
+        }
+      }
+    }
+    GrowthTarget: {
+      payload: Prisma.$GrowthTargetPayload<ExtArgs>
+      fields: Prisma.GrowthTargetFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.GrowthTargetFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GrowthTargetPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.GrowthTargetFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GrowthTargetPayload>
+        }
+        findFirst: {
+          args: Prisma.GrowthTargetFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GrowthTargetPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.GrowthTargetFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GrowthTargetPayload>
+        }
+        findMany: {
+          args: Prisma.GrowthTargetFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GrowthTargetPayload>[]
+        }
+        create: {
+          args: Prisma.GrowthTargetCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GrowthTargetPayload>
+        }
+        createMany: {
+          args: Prisma.GrowthTargetCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.GrowthTargetCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GrowthTargetPayload>[]
+        }
+        delete: {
+          args: Prisma.GrowthTargetDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GrowthTargetPayload>
+        }
+        update: {
+          args: Prisma.GrowthTargetUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GrowthTargetPayload>
+        }
+        deleteMany: {
+          args: Prisma.GrowthTargetDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.GrowthTargetUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.GrowthTargetUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GrowthTargetPayload>[]
+        }
+        upsert: {
+          args: Prisma.GrowthTargetUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GrowthTargetPayload>
+        }
+        aggregate: {
+          args: Prisma.GrowthTargetAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateGrowthTarget>
+        }
+        groupBy: {
+          args: Prisma.GrowthTargetGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GrowthTargetGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.GrowthTargetCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GrowthTargetCountAggregateOutputType> | number
+        }
+      }
+    }
+    GrowthEvidence: {
+      payload: Prisma.$GrowthEvidencePayload<ExtArgs>
+      fields: Prisma.GrowthEvidenceFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.GrowthEvidenceFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GrowthEvidencePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.GrowthEvidenceFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GrowthEvidencePayload>
+        }
+        findFirst: {
+          args: Prisma.GrowthEvidenceFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GrowthEvidencePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.GrowthEvidenceFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GrowthEvidencePayload>
+        }
+        findMany: {
+          args: Prisma.GrowthEvidenceFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GrowthEvidencePayload>[]
+        }
+        create: {
+          args: Prisma.GrowthEvidenceCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GrowthEvidencePayload>
+        }
+        createMany: {
+          args: Prisma.GrowthEvidenceCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.GrowthEvidenceCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GrowthEvidencePayload>[]
+        }
+        delete: {
+          args: Prisma.GrowthEvidenceDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GrowthEvidencePayload>
+        }
+        update: {
+          args: Prisma.GrowthEvidenceUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GrowthEvidencePayload>
+        }
+        deleteMany: {
+          args: Prisma.GrowthEvidenceDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.GrowthEvidenceUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.GrowthEvidenceUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GrowthEvidencePayload>[]
+        }
+        upsert: {
+          args: Prisma.GrowthEvidenceUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GrowthEvidencePayload>
+        }
+        aggregate: {
+          args: Prisma.GrowthEvidenceAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateGrowthEvidence>
+        }
+        groupBy: {
+          args: Prisma.GrowthEvidenceGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GrowthEvidenceGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.GrowthEvidenceCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GrowthEvidenceCountAggregateOutputType> | number
+        }
+      }
+    }
     Ritual: {
       payload: Prisma.$RitualPayload<ExtArgs>
       fields: Prisma.RitualFieldRefs
@@ -3091,6 +3541,7 @@ export const ProjectScalarFieldEnum = {
   id: 'id',
   organizationId: 'organizationId',
   name: 'name',
+  status: 'status',
   createdAt: 'createdAt'
 } as const
 
@@ -3141,6 +3592,88 @@ export const SkillRequirementScalarFieldEnum = {
 } as const
 
 export type SkillRequirementScalarFieldEnum = (typeof SkillRequirementScalarFieldEnum)[keyof typeof SkillRequirementScalarFieldEnum]
+
+
+export const FeedbackRequestScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  requesterId: 'requesterId',
+  requestedFromId: 'requestedFromId',
+  prompt: 'prompt',
+  createdAt: 'createdAt'
+} as const
+
+export type FeedbackRequestScalarFieldEnum = (typeof FeedbackRequestScalarFieldEnum)[keyof typeof FeedbackRequestScalarFieldEnum]
+
+
+export const FeedbackScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  authorId: 'authorId',
+  recipientId: 'recipientId',
+  body: 'body',
+  classification: 'classification',
+  projectId: 'projectId',
+  value: 'value',
+  requestId: 'requestId',
+  createdAt: 'createdAt'
+} as const
+
+export type FeedbackScalarFieldEnum = (typeof FeedbackScalarFieldEnum)[keyof typeof FeedbackScalarFieldEnum]
+
+
+export const KudoScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  giverId: 'giverId',
+  recipientId: 'recipientId',
+  message: 'message',
+  value: 'value',
+  objectiveId: 'objectiveId',
+  objectiveTitleSnapshot: 'objectiveTitleSnapshot',
+  keyResultId: 'keyResultId',
+  keyResultTitleSnapshot: 'keyResultTitleSnapshot',
+  createdAt: 'createdAt'
+} as const
+
+export type KudoScalarFieldEnum = (typeof KudoScalarFieldEnum)[keyof typeof KudoScalarFieldEnum]
+
+
+export const GrowthPlanScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  memberId: 'memberId',
+  nextMilestone: 'nextMilestone',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type GrowthPlanScalarFieldEnum = (typeof GrowthPlanScalarFieldEnum)[keyof typeof GrowthPlanScalarFieldEnum]
+
+
+export const GrowthTargetScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  growthPlanId: 'growthPlanId',
+  skillId: 'skillId',
+  targetLevel: 'targetLevel',
+  createdAt: 'createdAt'
+} as const
+
+export type GrowthTargetScalarFieldEnum = (typeof GrowthTargetScalarFieldEnum)[keyof typeof GrowthTargetScalarFieldEnum]
+
+
+export const GrowthEvidenceScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  growthPlanId: 'growthPlanId',
+  source: 'source',
+  feedbackId: 'feedbackId',
+  projectId: 'projectId',
+  createdAt: 'createdAt'
+} as const
+
+export type GrowthEvidenceScalarFieldEnum = (typeof GrowthEvidenceScalarFieldEnum)[keyof typeof GrowthEvidenceScalarFieldEnum]
 
 
 export const RitualScalarFieldEnum = {
@@ -3558,6 +4091,48 @@ export type ListEnumTeamRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$Pri
 
 
 /**
+ * Reference to a field of type 'ProjectStatus'
+ */
+export type EnumProjectStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ProjectStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'ProjectStatus[]'
+ */
+export type ListEnumProjectStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ProjectStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'FeedbackClassification'
+ */
+export type EnumFeedbackClassificationFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FeedbackClassification'>
+    
+
+
+/**
+ * Reference to a field of type 'FeedbackClassification[]'
+ */
+export type ListEnumFeedbackClassificationFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FeedbackClassification[]'>
+    
+
+
+/**
+ * Reference to a field of type 'GrowthEvidenceSource'
+ */
+export type EnumGrowthEvidenceSourceFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'GrowthEvidenceSource'>
+    
+
+
+/**
+ * Reference to a field of type 'GrowthEvidenceSource[]'
+ */
+export type ListEnumGrowthEvidenceSourceFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'GrowthEvidenceSource[]'>
+    
+
+
+/**
  * Reference to a field of type 'RitualCadence'
  */
 export type EnumRitualCadenceFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RitualCadence'>
@@ -3749,6 +4324,12 @@ export type GlobalOmitConfig = {
   skill?: Prisma.SkillOmit
   competency?: Prisma.CompetencyOmit
   skillRequirement?: Prisma.SkillRequirementOmit
+  feedbackRequest?: Prisma.FeedbackRequestOmit
+  feedback?: Prisma.FeedbackOmit
+  kudo?: Prisma.KudoOmit
+  growthPlan?: Prisma.GrowthPlanOmit
+  growthTarget?: Prisma.GrowthTargetOmit
+  growthEvidence?: Prisma.GrowthEvidenceOmit
   ritual?: Prisma.RitualOmit
   ritualOccurrence?: Prisma.RitualOccurrenceOmit
   blocker?: Prisma.BlockerOmit

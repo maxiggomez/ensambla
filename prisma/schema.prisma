@@ -48,6 +48,12 @@ model Organization {
   hypotheses           Hypothesis[]
   experiments          Experiment[]
   learnings            Learning[]
+  feedbackRequests     FeedbackRequest[]
+  feedback             Feedback[]
+  kudos                Kudo[]
+  growthPlans          GrowthPlan[]
+  growthTargets        GrowthTarget[]
+  growthEvidence       GrowthEvidence[]
   enpsMinimumResponses Int                @default(4) @map("enps_minimum_responses")
 
   @@map("organization")
@@ -153,23 +159,31 @@ model PulseResponse {
 }
 
 model Member {
-  id              String          @id @default(uuid()) @db.Uuid
-  organizationId  String          @map("organization_id") @db.Uuid
-  organization    Organization    @relation(fields: [organizationId], references: [id])
-  email           String
-  name            String
-  role            MemberRole
+  id                String            @id @default(uuid()) @db.Uuid
+  organizationId    String            @map("organization_id") @db.Uuid
+  organization      Organization      @relation(fields: [organizationId], references: [id])
+  email             String
+  name              String
+  role              MemberRole
   // Identidad de auth (Clerk). Nullable: un invitado puede no haber logueado aún.
-  clerkUserId     String?         @map("clerk_user_id")
+  clerkUserId       String?           @map("clerk_user_id")
   // Insumo del staffing (skills-matrix); nullable: sin dato rankea último.
-  seniority       Seniority?
-  createdAt       DateTime        @default(now()) @map("created_at") @db.Timestamptz(6)
-  objectives      Objective[]
-  checkIns        CheckIn[]
-  okrAuditEvents  OkrAuditEvent[]
-  teamMemberships TeamMember[]
-  competencies    Competency[]
+  seniority         Seniority?
+  createdAt         DateTime          @default(now()) @map("created_at") @db.Timestamptz(6)
+  objectives        Objective[]
+  checkIns          CheckIn[]
+  okrAuditEvents    OkrAuditEvent[]
+  teamMemberships   TeamMember[]
+  competencies      Competency[]
+  feedbackAuthored  Feedback[]        @relation("FeedbackAuthor")
+  feedbackReceived  Feedback[]        @relation("FeedbackRecipient")
+  feedbackRequested FeedbackRequest[] @relation("FeedbackRequester")
+  feedbackInbox     FeedbackRequest[] @relation("FeedbackRequestedFrom")
+  kudosGiven        Kudo[]            @relation("KudoGiver")
+  kudosReceived     Kudo[]            @relation("KudoRecipient")
+  growthPlans       GrowthPlan[]
 
+  @@unique([organizationId, id])
   @@unique([organizationId, email])
   @@unique([organizationId, clerkUserId])
   @@map("member")
@@ -237,6 +251,21 @@ enum ExperimentStatus {
 enum LearningDecision {
   Persevere
   Pivot
+}
+
+enum ProjectStatus {
+  Active
+  Closed
+}
+
+enum FeedbackClassification {
+  Strength
+  Improvement
+}
+
+enum GrowthEvidenceSource {
+  Feedback
+  Project
 }
 
 model NorthStar {
@@ -337,6 +366,7 @@ model Objective {
   leverLinks        NorthStarLever[]
   pillarLinks       PillarObjective[]
   hypotheses        Hypothesis[]
+  kudos             Kudo[]
   publishedAt       DateTime?          @map("published_at") @db.Timestamptz(6)
   closedAt          DateTime?          @map("closed_at") @db.Timestamptz(6)
   archivedAt        DateTime?          @map("archived_at") @db.Timestamptz(6)
@@ -373,6 +403,7 @@ model KeyResult {
   checkIns          CheckIn[]
   skillRequirements SkillRequirement[]
   hypotheses        Hypothesis[]
+  kudos             Kudo[]
   createdAt         DateTime           @default(now()) @map("created_at") @db.Timestamptz(6)
 
   @@unique([organizationId, id])
@@ -589,10 +620,14 @@ model Project {
   organizationId    String             @map("organization_id") @db.Uuid
   organization      Organization       @relation(fields: [organizationId], references: [id])
   name              String
+  status            ProjectStatus      @default(Active)
   objectiveLinks    ProjectObjective[]
   skillRequirements SkillRequirement[]
+  feedback          Feedback[]
+  growthEvidence    GrowthEvidence[]
   createdAt         DateTime           @default(now()) @map("created_at") @db.Timestamptz(6)
 
+  @@unique([organizationId, id])
   @@index([organizationId])
   @@map("project")
 }
@@ -627,8 +662,10 @@ model Skill {
   name           String
   competencies   Competency[]
   requirements   SkillRequirement[]
+  growthTargets  GrowthTarget[]
   createdAt      DateTime           @default(now()) @map("created_at") @db.Timestamptz(6)
 
+  @@unique([organizationId, id])
   @@unique([organizationId, name])
   @@map("skill")
 }
@@ -668,6 +705,133 @@ model SkillRequirement {
   @@unique([skillId, keyResultId])
   @@index([organizationId])
   @@map("skill_requirement")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// feedback-growth (change feedback-growth)
+// Private Feedback is participant-scoped in application reads; every table is
+// tenant-scoped with forced RLS and composite cross-context references.
+// ─────────────────────────────────────────────────────────────────────────────
+
+model FeedbackRequest {
+  id              String       @id @default(uuid()) @db.Uuid
+  organizationId  String       @map("organization_id") @db.Uuid
+  organization    Organization @relation(fields: [organizationId], references: [id])
+  requesterId     String       @map("requester_id") @db.Uuid
+  requester       Member       @relation("FeedbackRequester", fields: [organizationId, requesterId], references: [organizationId, id])
+  requestedFromId String       @map("requested_from_id") @db.Uuid
+  requestedFrom   Member       @relation("FeedbackRequestedFrom", fields: [organizationId, requestedFromId], references: [organizationId, id])
+  prompt          String       @db.Text
+  feedback        Feedback?
+  createdAt       DateTime     @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  @@unique([organizationId, id])
+  @@index([organizationId, requestedFromId])
+  @@index([organizationId, requesterId])
+  @@map("feedback_request")
+}
+
+model Feedback {
+  id             String                 @id @default(uuid()) @db.Uuid
+  organizationId String                 @map("organization_id") @db.Uuid
+  organization   Organization           @relation(fields: [organizationId], references: [id])
+  authorId       String                 @map("author_id") @db.Uuid
+  author         Member                 @relation("FeedbackAuthor", fields: [organizationId, authorId], references: [organizationId, id])
+  recipientId    String                 @map("recipient_id") @db.Uuid
+  recipient      Member                 @relation("FeedbackRecipient", fields: [organizationId, recipientId], references: [organizationId, id])
+  body           String                 @db.Text
+  classification FeedbackClassification
+  projectId      String?                @map("project_id") @db.Uuid
+  project        Project?               @relation(fields: [organizationId, projectId], references: [organizationId, id])
+  value          String?
+  requestId      String?                @unique @map("request_id") @db.Uuid
+  request        FeedbackRequest?       @relation(fields: [organizationId, requestId], references: [organizationId, id])
+  growthEvidence GrowthEvidence[]
+  createdAt      DateTime               @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  @@unique([organizationId, id])
+  @@unique([organizationId, requestId])
+  @@index([organizationId, authorId])
+  @@index([organizationId, recipientId])
+  @@index([projectId])
+  @@map("feedback")
+}
+
+model Kudo {
+  id                     String       @id @default(uuid()) @db.Uuid
+  organizationId         String       @map("organization_id") @db.Uuid
+  organization           Organization @relation(fields: [organizationId], references: [id])
+  giverId                String       @map("giver_id") @db.Uuid
+  giver                  Member       @relation("KudoGiver", fields: [organizationId, giverId], references: [organizationId, id])
+  recipientId            String       @map("recipient_id") @db.Uuid
+  recipient              Member       @relation("KudoRecipient", fields: [organizationId, recipientId], references: [organizationId, id])
+  message                String       @db.Text
+  value                  String
+  objectiveId            String?      @map("objective_id") @db.Uuid
+  objective              Objective?   @relation(fields: [organizationId, objectiveId], references: [organizationId, id])
+  objectiveTitleSnapshot String?      @map("objective_title_snapshot") @db.Text
+  keyResultId            String?      @map("key_result_id") @db.Uuid
+  keyResult              KeyResult?   @relation(fields: [organizationId, keyResultId], references: [organizationId, id])
+  keyResultTitleSnapshot String?      @map("key_result_title_snapshot") @db.Text
+  createdAt              DateTime     @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  @@index([organizationId, createdAt])
+  @@index([objectiveId])
+  @@index([keyResultId])
+  @@map("kudo")
+}
+
+model GrowthPlan {
+  id             String           @id @default(uuid()) @db.Uuid
+  organizationId String           @map("organization_id") @db.Uuid
+  organization   Organization     @relation(fields: [organizationId], references: [id])
+  memberId       String           @unique @map("member_id") @db.Uuid
+  member         Member           @relation(fields: [organizationId, memberId], references: [organizationId, id])
+  nextMilestone  String           @map("next_milestone") @db.Text
+  targets        GrowthTarget[]
+  evidence       GrowthEvidence[]
+  createdAt      DateTime         @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt      DateTime         @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  @@unique([organizationId, id])
+  @@index([organizationId])
+  @@map("growth_plan")
+}
+
+model GrowthTarget {
+  id             String       @id @default(uuid()) @db.Uuid
+  organizationId String       @map("organization_id") @db.Uuid
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  growthPlanId   String       @map("growth_plan_id") @db.Uuid
+  growthPlan     GrowthPlan   @relation(fields: [organizationId, growthPlanId], references: [organizationId, id])
+  skillId        String       @map("skill_id") @db.Uuid
+  skill          Skill        @relation(fields: [organizationId, skillId], references: [organizationId, id])
+  targetLevel    Int          @map("target_level")
+  createdAt      DateTime     @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  @@unique([growthPlanId, skillId])
+  @@index([organizationId])
+  @@index([skillId])
+  @@map("growth_target")
+}
+
+model GrowthEvidence {
+  id             String               @id @default(uuid()) @db.Uuid
+  organizationId String               @map("organization_id") @db.Uuid
+  organization   Organization         @relation(fields: [organizationId], references: [id])
+  growthPlanId   String               @map("growth_plan_id") @db.Uuid
+  growthPlan     GrowthPlan           @relation(fields: [organizationId, growthPlanId], references: [organizationId, id])
+  source         GrowthEvidenceSource
+  feedbackId     String?              @map("feedback_id") @db.Uuid
+  feedback       Feedback?            @relation(fields: [organizationId, feedbackId], references: [organizationId, id])
+  projectId      String?              @map("project_id") @db.Uuid
+  project        Project?             @relation(fields: [organizationId, projectId], references: [organizationId, id])
+  createdAt      DateTime             @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  @@unique([growthPlanId, feedbackId])
+  @@unique([growthPlanId, projectId])
+  @@index([organizationId])
+  @@map("growth_evidence")
 }
 
 enum RitualCadence {

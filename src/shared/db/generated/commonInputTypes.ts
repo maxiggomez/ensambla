@@ -680,6 +680,57 @@ export type EnumTeamRoleWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumTeamRoleFilter<$PrismaModel>
 }
 
+export type EnumProjectStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.ProjectStatus | Prisma.EnumProjectStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.ProjectStatus[] | Prisma.ListEnumProjectStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ProjectStatus[] | Prisma.ListEnumProjectStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumProjectStatusFilter<$PrismaModel> | $Enums.ProjectStatus
+}
+
+export type EnumProjectStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.ProjectStatus | Prisma.EnumProjectStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.ProjectStatus[] | Prisma.ListEnumProjectStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ProjectStatus[] | Prisma.ListEnumProjectStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumProjectStatusWithAggregatesFilter<$PrismaModel> | $Enums.ProjectStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumProjectStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumProjectStatusFilter<$PrismaModel>
+}
+
+export type EnumFeedbackClassificationFilter<$PrismaModel = never> = {
+  equals?: $Enums.FeedbackClassification | Prisma.EnumFeedbackClassificationFieldRefInput<$PrismaModel>
+  in?: $Enums.FeedbackClassification[] | Prisma.ListEnumFeedbackClassificationFieldRefInput<$PrismaModel>
+  notIn?: $Enums.FeedbackClassification[] | Prisma.ListEnumFeedbackClassificationFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumFeedbackClassificationFilter<$PrismaModel> | $Enums.FeedbackClassification
+}
+
+export type EnumFeedbackClassificationWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.FeedbackClassification | Prisma.EnumFeedbackClassificationFieldRefInput<$PrismaModel>
+  in?: $Enums.FeedbackClassification[] | Prisma.ListEnumFeedbackClassificationFieldRefInput<$PrismaModel>
+  notIn?: $Enums.FeedbackClassification[] | Prisma.ListEnumFeedbackClassificationFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumFeedbackClassificationWithAggregatesFilter<$PrismaModel> | $Enums.FeedbackClassification
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumFeedbackClassificationFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumFeedbackClassificationFilter<$PrismaModel>
+}
+
+export type EnumGrowthEvidenceSourceFilter<$PrismaModel = never> = {
+  equals?: $Enums.GrowthEvidenceSource | Prisma.EnumGrowthEvidenceSourceFieldRefInput<$PrismaModel>
+  in?: $Enums.GrowthEvidenceSource[] | Prisma.ListEnumGrowthEvidenceSourceFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GrowthEvidenceSource[] | Prisma.ListEnumGrowthEvidenceSourceFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGrowthEvidenceSourceFilter<$PrismaModel> | $Enums.GrowthEvidenceSource
+}
+
+export type EnumGrowthEvidenceSourceWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.GrowthEvidenceSource | Prisma.EnumGrowthEvidenceSourceFieldRefInput<$PrismaModel>
+  in?: $Enums.GrowthEvidenceSource[] | Prisma.ListEnumGrowthEvidenceSourceFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GrowthEvidenceSource[] | Prisma.ListEnumGrowthEvidenceSourceFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGrowthEvidenceSourceWithAggregatesFilter<$PrismaModel> | $Enums.GrowthEvidenceSource
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumGrowthEvidenceSourceFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumGrowthEvidenceSourceFilter<$PrismaModel>
+}
+
 export type EnumRitualCadenceFilter<$PrismaModel = never> = {
   equals?: $Enums.RitualCadence | Prisma.EnumRitualCadenceFieldRefInput<$PrismaModel>
   in?: $Enums.RitualCadence[] | Prisma.ListEnumRitualCadenceFieldRefInput<$PrismaModel>
@@ -1377,6 +1428,57 @@ export type NestedEnumTeamRoleWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumTeamRoleFilter<$PrismaModel>
   _max?: Prisma.NestedEnumTeamRoleFilter<$PrismaModel>
+}
+
+export type NestedEnumProjectStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.ProjectStatus | Prisma.EnumProjectStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.ProjectStatus[] | Prisma.ListEnumProjectStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ProjectStatus[] | Prisma.ListEnumProjectStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumProjectStatusFilter<$PrismaModel> | $Enums.ProjectStatus
+}
+
+export type NestedEnumProjectStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.ProjectStatus | Prisma.EnumProjectStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.ProjectStatus[] | Prisma.ListEnumProjectStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ProjectStatus[] | Prisma.ListEnumProjectStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumProjectStatusWithAggregatesFilter<$PrismaModel> | $Enums.ProjectStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumProjectStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumProjectStatusFilter<$PrismaModel>
+}
+
+export type NestedEnumFeedbackClassificationFilter<$PrismaModel = never> = {
+  equals?: $Enums.FeedbackClassification | Prisma.EnumFeedbackClassificationFieldRefInput<$PrismaModel>
+  in?: $Enums.FeedbackClassification[] | Prisma.ListEnumFeedbackClassificationFieldRefInput<$PrismaModel>
+  notIn?: $Enums.FeedbackClassification[] | Prisma.ListEnumFeedbackClassificationFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumFeedbackClassificationFilter<$PrismaModel> | $Enums.FeedbackClassification
+}
+
+export type NestedEnumFeedbackClassificationWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.FeedbackClassification | Prisma.EnumFeedbackClassificationFieldRefInput<$PrismaModel>
+  in?: $Enums.FeedbackClassification[] | Prisma.ListEnumFeedbackClassificationFieldRefInput<$PrismaModel>
+  notIn?: $Enums.FeedbackClassification[] | Prisma.ListEnumFeedbackClassificationFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumFeedbackClassificationWithAggregatesFilter<$PrismaModel> | $Enums.FeedbackClassification
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumFeedbackClassificationFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumFeedbackClassificationFilter<$PrismaModel>
+}
+
+export type NestedEnumGrowthEvidenceSourceFilter<$PrismaModel = never> = {
+  equals?: $Enums.GrowthEvidenceSource | Prisma.EnumGrowthEvidenceSourceFieldRefInput<$PrismaModel>
+  in?: $Enums.GrowthEvidenceSource[] | Prisma.ListEnumGrowthEvidenceSourceFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GrowthEvidenceSource[] | Prisma.ListEnumGrowthEvidenceSourceFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGrowthEvidenceSourceFilter<$PrismaModel> | $Enums.GrowthEvidenceSource
+}
+
+export type NestedEnumGrowthEvidenceSourceWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.GrowthEvidenceSource | Prisma.EnumGrowthEvidenceSourceFieldRefInput<$PrismaModel>
+  in?: $Enums.GrowthEvidenceSource[] | Prisma.ListEnumGrowthEvidenceSourceFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GrowthEvidenceSource[] | Prisma.ListEnumGrowthEvidenceSourceFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGrowthEvidenceSourceWithAggregatesFilter<$PrismaModel> | $Enums.GrowthEvidenceSource
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumGrowthEvidenceSourceFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumGrowthEvidenceSourceFilter<$PrismaModel>
 }
 
 export type NestedEnumRitualCadenceFilter<$PrismaModel = never> = {

@@ -78,6 +78,12 @@ export const ModelName = {
   Skill: 'Skill',
   Competency: 'Competency',
   SkillRequirement: 'SkillRequirement',
+  FeedbackRequest: 'FeedbackRequest',
+  Feedback: 'Feedback',
+  Kudo: 'Kudo',
+  GrowthPlan: 'GrowthPlan',
+  GrowthTarget: 'GrowthTarget',
+  GrowthEvidence: 'GrowthEvidence',
   Ritual: 'Ritual',
   RitualOccurrence: 'RitualOccurrence',
   Blocker: 'Blocker',
@@ -424,6 +430,7 @@ export const ProjectScalarFieldEnum = {
   id: 'id',
   organizationId: 'organizationId',
   name: 'name',
+  status: 'status',
   createdAt: 'createdAt'
 } as const
 
@@ -474,6 +481,88 @@ export const SkillRequirementScalarFieldEnum = {
 } as const
 
 export type SkillRequirementScalarFieldEnum = (typeof SkillRequirementScalarFieldEnum)[keyof typeof SkillRequirementScalarFieldEnum]
+
+
+export const FeedbackRequestScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  requesterId: 'requesterId',
+  requestedFromId: 'requestedFromId',
+  prompt: 'prompt',
+  createdAt: 'createdAt'
+} as const
+
+export type FeedbackRequestScalarFieldEnum = (typeof FeedbackRequestScalarFieldEnum)[keyof typeof FeedbackRequestScalarFieldEnum]
+
+
+export const FeedbackScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  authorId: 'authorId',
+  recipientId: 'recipientId',
+  body: 'body',
+  classification: 'classification',
+  projectId: 'projectId',
+  value: 'value',
+  requestId: 'requestId',
+  createdAt: 'createdAt'
+} as const
+
+export type FeedbackScalarFieldEnum = (typeof FeedbackScalarFieldEnum)[keyof typeof FeedbackScalarFieldEnum]
+
+
+export const KudoScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  giverId: 'giverId',
+  recipientId: 'recipientId',
+  message: 'message',
+  value: 'value',
+  objectiveId: 'objectiveId',
+  objectiveTitleSnapshot: 'objectiveTitleSnapshot',
+  keyResultId: 'keyResultId',
+  keyResultTitleSnapshot: 'keyResultTitleSnapshot',
+  createdAt: 'createdAt'
+} as const
+
+export type KudoScalarFieldEnum = (typeof KudoScalarFieldEnum)[keyof typeof KudoScalarFieldEnum]
+
+
+export const GrowthPlanScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  memberId: 'memberId',
+  nextMilestone: 'nextMilestone',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type GrowthPlanScalarFieldEnum = (typeof GrowthPlanScalarFieldEnum)[keyof typeof GrowthPlanScalarFieldEnum]
+
+
+export const GrowthTargetScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  growthPlanId: 'growthPlanId',
+  skillId: 'skillId',
+  targetLevel: 'targetLevel',
+  createdAt: 'createdAt'
+} as const
+
+export type GrowthTargetScalarFieldEnum = (typeof GrowthTargetScalarFieldEnum)[keyof typeof GrowthTargetScalarFieldEnum]
+
+
+export const GrowthEvidenceScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  growthPlanId: 'growthPlanId',
+  source: 'source',
+  feedbackId: 'feedbackId',
+  projectId: 'projectId',
+  createdAt: 'createdAt'
+} as const
+
+export type GrowthEvidenceScalarFieldEnum = (typeof GrowthEvidenceScalarFieldEnum)[keyof typeof GrowthEvidenceScalarFieldEnum]
 
 
 export const RitualScalarFieldEnum = {
