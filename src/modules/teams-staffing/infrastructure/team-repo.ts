@@ -18,8 +18,20 @@ export function findTeamById(tx: TenantClient, id: string): Promise<Team | null>
   return tx.team.findUnique({ where: { id } });
 }
 
+export async function updateTeamDetails(
+  tx: TenantClient,
+  id: string,
+  input: { name: string; description: string | null },
+): Promise<void> {
+  await tx.team.update({ where: { id }, data: input });
+}
+
 export function listTeamsWithMembers(tx: TenantClient): Promise<TeamWithMembers[]> {
   return tx.team.findMany({ include: { members: true }, orderBy: { createdAt: "asc" } });
+}
+
+export function countTeams(tx: TenantClient): Promise<number> {
+  return tx.team.count();
 }
 
 export function listAllAssignments(tx: TenantClient): Promise<TeamMember[]> {

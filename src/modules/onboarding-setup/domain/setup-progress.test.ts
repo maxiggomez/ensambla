@@ -3,6 +3,7 @@ import { describe, expect, it } from "vitest";
 import { DomainError } from "../../../shared/errors";
 
 import {
+  applySetupTemplate,
   backToCompanyProfile,
   completeSetup,
   initialSetupProgress,
@@ -17,6 +18,7 @@ describe("OnboardingSetup progress", () => {
       currentStep: "CompanyProfile",
       companyType: null,
       industry: null,
+      appliedTemplateKey: null,
     });
   });
 
@@ -31,6 +33,7 @@ describe("OnboardingSetup progress", () => {
       currentStep: "Review",
       companyType: "Servicios profesionales",
       industry: "Tecnología",
+      appliedTemplateKey: null,
     });
   });
 
@@ -64,9 +67,41 @@ describe("OnboardingSetup progress", () => {
       industry: "Finanzas",
     });
 
-    expect(completeSetup(review)).toEqual({ ...review, status: "Completed" });
+    expect(completeSetup(review)).toEqual({
+      ...review,
+      status: "Completed",
+      appliedTemplateKey: null,
+    });
     expect(() => completeSetup(initialSetupProgress())).toThrowError(
       expect.objectContaining({ code: "onboarding-setup/invalid-transition" }),
+    );
+  });
+
+  it("applies a template from review and records its stable key", () => {
+    const review = saveCompanyProfile(initialSetupProgress(), {
+      companyType: "Producto",
+      industry: "Tecnología",
+    });
+
+    expect(applySetupTemplate(review, "saas-product")).toEqual({
+      ...review,
+      status: "Completed",
+      appliedTemplateKey: "saas-product",
+    });
+  });
+
+  it("treats the same applied template as an idempotent terminal retry", () => {
+    const applied = applySetupTemplate(
+      saveCompanyProfile(initialSetupProgress(), {
+        companyType: "Producto",
+        industry: "Tecnología",
+      }),
+      "saas-product",
+    );
+
+    expect(applySetupTemplate(applied, "saas-product")).toBe(applied);
+    expect(() => applySetupTemplate(applied, "services-agency")).toThrowError(
+      expect.objectContaining({ code: "onboarding-setup/template-already-applied" }),
     );
   });
 
@@ -76,6 +111,7 @@ describe("OnboardingSetup progress", () => {
       currentStep: "CompanyProfile",
       companyType: null,
       industry: null,
+      appliedTemplateKey: null,
     });
   });
 

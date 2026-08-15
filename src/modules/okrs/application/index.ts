@@ -1,6 +1,7 @@
 // Public interface of the okrs module (ADR-0002: cross-module access goes
 // only through application/).
 export { createObjective, type CreateObjectiveInput } from "./create-objective";
+export { updateObjectiveTitle, type UpdateObjectiveTitleInput } from "./update-objective-title";
 export { addKeyResult, type AddKeyResultInput } from "./add-key-result";
 export { publishObjective, type PublishObjectiveInput } from "./publish-objective";
 export {
@@ -41,3 +42,8 @@ export type { ActiveObjectiveView, KeyResultView, ObjectiveView } from "./object
 export type { ObjectiveLevel, ObjectiveStatus } from "../domain/objective";
 export type { MeasurementKind } from "../domain/key-result";
 export { MAX_EVIDENCE_FILE_BYTES } from "../domain/check-in";
+export {
+  isTemplateOkrTargetEmpty,
+  materializeTemplateOkrs,
+  type TemplateObjectiveInput,
+} from "./materialize-template-okrs";

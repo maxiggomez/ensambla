@@ -30,12 +30,14 @@ export async function compareAndSetSetup(
       currentStep: expected.currentStep,
       companyType: expected.companyType,
       industry: expected.industry,
+      appliedTemplateKey: expected.appliedTemplateKey,
     },
     data: {
       status: progress.status,
       currentStep: progress.currentStep,
       companyType: progress.companyType,
       industry: progress.industry,
+      appliedTemplateKey: progress.appliedTemplateKey,
     },
   });
   if (changed.count !== 1) return null;

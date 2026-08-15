@@ -10,6 +10,7 @@ import { startEphemeralPostgres } from "./postgres";
  */
 export interface TestDatabase {
   prisma: PrismaClient;
+  admin: PrismaClient;
   stop: () => Promise<void>;
 }
 
@@ -31,7 +32,6 @@ export async function startMigratedTestDatabase(): Promise<TestDatabase> {
   await admin.$executeRawUnsafe(
     `GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO ensambla_app`,
   );
-  await admin.$disconnect();
 
   const appUri = new URL(pg.connectionUri);
   appUri.username = "ensambla_app";
@@ -40,8 +40,10 @@ export async function startMigratedTestDatabase(): Promise<TestDatabase> {
 
   return {
     prisma,
+    admin,
     stop: async () => {
       await prisma.$disconnect();
+      await admin.$disconnect();
       await pg.stop();
     },
   };

@@ -1,6 +1,7 @@
 // Public interface of the teams-staffing module (ADR-0002: cross-module
 // access goes only through application/).
 export { createTeam, type CreateTeamInput } from "./create-team";
+export { updateTeam, type UpdateTeamInput } from "./update-team";
 export { assignTeamMember, type AssignTeamMemberInput } from "./assign-team-member";
 export {
   listMemberLoads,
@@ -24,3 +25,7 @@ export { evaluateAlignment, type EvaluateAlignmentInput } from "./evaluate-align
 export type { TeamRole } from "../domain/team-role";
 export type { AlignmentAlerts } from "../domain/alignment";
 export { listTeamAssignments, type TeamAssignmentView } from "./list-team-assignments";
+export {
+  isTemplateTeamTargetEmpty,
+  materializeTemplateTeams,
+} from "./materialize-template-teams";

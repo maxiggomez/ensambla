@@ -1,6 +1,7 @@
 import { getCurrentUser } from "@/lib/auth";
 import {
   getOnboardingSetupAccess,
+  getOnboardingTemplateOptions,
   startOnboardingSetup,
 } from "@/modules/onboarding-setup/application";
 import { redirect } from "next/navigation";
@@ -31,9 +32,16 @@ export default async function OnboardingPage() {
     if (!access.canMutate) redirect("/members");
     const setup = access.setup ?? (await startOnboardingSetup({ actorClerkUserId: user.id }));
     if (setup.status !== "Pending") redirect("/members");
+    const templateOptions =
+      setup.currentStep === "Review" && setup.companyType && setup.industry
+        ? getOnboardingTemplateOptions({
+            companyType: setup.companyType,
+            industry: setup.industry,
+          })
+        : null;
     return (
       <main className="mx-auto flex min-h-screen w-full max-w-3xl items-center p-6">
-        <GuidedSetupForm setup={setup} />
+        <GuidedSetupForm setup={setup} templateOptions={templateOptions} />
       </main>
     );
   }

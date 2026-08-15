@@ -13,9 +13,13 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import type { OnboardingSetupView } from "@/modules/onboarding-setup/application";
+import type {
+  OnboardingSetupView,
+  OnboardingTemplateOptions,
+} from "@/modules/onboarding-setup/application";
 
 import {
+  applyOnboardingTemplateAction,
   backOnboardingAction,
   completeOnboardingAction,
   saveCompanyProfileAction,
@@ -116,7 +120,83 @@ function CompanyProfileStep({ setup }: { setup: OnboardingSetupView }) {
   );
 }
 
-function ReviewStep({ setup }: { setup: OnboardingSetupView }) {
+function TemplateCard({
+  template,
+  recommended,
+}: {
+  template: OnboardingTemplateOptions["templates"][number];
+  recommended: boolean;
+}) {
+  const [state, action, pending] = useActionState(applyOnboardingTemplateAction, {});
+  return (
+    <Card className={recommended ? "border-brand shadow-sm" : "shadow-sm"}>
+      <CardHeader>
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <CardTitle>{template.name}</CardTitle>
+          {recommended ? (
+            <span className="rounded-full bg-brand-soft px-2.5 py-1 text-xs font-bold text-foreground">
+              Template recomendado
+            </span>
+          ) : null}
+        </div>
+        <CardDescription>{template.description}</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <details className="rounded-xl border border-border p-3">
+          <summary className="cursor-pointer font-semibold">Ver estructura</summary>
+          <div className="mt-4 grid gap-4 text-sm sm:grid-cols-2">
+            <div>
+              <h3 className="font-bold">Teams</h3>
+              <ul className="mt-1 list-disc space-y-1 pl-5 text-muted-foreground">
+                {template.teams.map((team) => (
+                  <li key={team}>{team}</li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-bold">North Star</h3>
+              <p className="mt-1 text-muted-foreground">{template.northStar.name}</p>
+            </div>
+            <div>
+              <h3 className="font-bold">Objectives y Key Results</h3>
+              <ul className="mt-1 list-disc space-y-1 pl-5 text-muted-foreground">
+                {template.objectives.map((objective) => (
+                  <li key={objective.title}>
+                    <span className="font-medium text-foreground">{objective.title}</span>
+                    <ul className="mt-1 list-[circle] space-y-1 pl-5">
+                      {objective.keyResults.map((keyResult) => (
+                        <li key={keyResult.title}>{keyResult.title}</li>
+                      ))}
+                    </ul>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-bold">Skills</h3>
+              <p className="mt-1 text-muted-foreground">{template.skills.join(", ")}</p>
+            </div>
+          </div>
+          <form action={action} className="mt-5 space-y-3">
+            <input type="hidden" name="templateKey" value={template.key} />
+            <Button type="submit" disabled={pending}>
+              {pending ? "Aplicando…" : "Aplicar template"}
+            </Button>
+            <FormError state={state} />
+          </form>
+        </details>
+      </CardContent>
+    </Card>
+  );
+}
+
+function ReviewStep({
+  setup,
+  templateOptions,
+}: {
+  setup: OnboardingSetupView;
+  templateOptions: OnboardingTemplateOptions;
+}) {
   const [backState, backAction, backing] = useActionState(backOnboardingAction, {});
   const [completeState, completeAction, completing] = useActionState(
     completeOnboardingAction,
@@ -131,7 +211,7 @@ function ReviewStep({ setup }: { setup: OnboardingSetupView }) {
             <h1 className="text-2xl">Revisá tu configuración</h1>
           </CardTitle>
           <CardDescription>
-            Todavía no aplicaremos templates ni importaremos registros.
+            Elegí una base editable para empezar o finalizá sin aplicar un template.
           </CardDescription>
         </div>
       </CardHeader>
@@ -146,6 +226,25 @@ function ReviewStep({ setup }: { setup: OnboardingSetupView }) {
             <dd className="mt-1 font-semibold">{setup.industry}</dd>
           </div>
         </dl>
+        <section className="space-y-3" aria-labelledby="templates-heading">
+          <div>
+            <h2 id="templates-heading" className="text-lg font-bold">
+              Templates para tu organización
+            </h2>
+            <p className="text-sm text-muted-foreground">
+              Revisá la estructura antes de confirmar. La vista previa no guarda cambios.
+            </p>
+          </div>
+          <div className="grid gap-4">
+            {templateOptions.templates.map((template) => (
+              <TemplateCard
+                key={template.key}
+                template={template}
+                recommended={template.key === templateOptions.recommendedKey}
+              />
+            ))}
+          </div>
+        </section>
         <FormError state={backState.error ? backState : completeState} />
         <div className="flex flex-wrap gap-3">
           <form action={backAction}>
@@ -155,7 +254,7 @@ function ReviewStep({ setup }: { setup: OnboardingSetupView }) {
           </form>
           <form action={completeAction}>
             <Button type="submit" size="lg" disabled={backing || completing}>
-              {completing ? "Finalizando…" : "Finalizar configuración"}
+              {completing ? "Finalizando…" : "Finalizar sin template"}
             </Button>
           </form>
         </div>
@@ -167,10 +266,22 @@ function ReviewStep({ setup }: { setup: OnboardingSetupView }) {
   );
 }
 
-export function GuidedSetupForm({ setup }: { setup: OnboardingSetupView }) {
-  return setup.currentStep === "CompanyProfile" ? (
-    <CompanyProfileStep setup={setup} />
-  ) : (
-    <ReviewStep setup={setup} />
-  );
+export function GuidedSetupForm({
+  setup,
+  templateOptions,
+}: {
+  setup: OnboardingSetupView;
+  templateOptions: OnboardingTemplateOptions | null;
+}) {
+  if (setup.currentStep === "CompanyProfile") {
+    return <CompanyProfileStep setup={setup} />;
+  }
+  if (!templateOptions) {
+    return (
+      <p role="alert" className="rounded-lg bg-risk-soft px-3 py-2 text-sm text-risk">
+        No pudimos recomendar templates para esta configuración.
+      </p>
+    );
+  }
+  return <ReviewStep setup={setup} templateOptions={templateOptions} />;
 }

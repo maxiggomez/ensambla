@@ -3312,6 +3312,7 @@ export const OnboardingSetupScalarFieldEnum = {
   currentStep: 'currentStep',
   companyType: 'companyType',
   industry: 'industry',
+  appliedTemplateKey: 'appliedTemplateKey',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const

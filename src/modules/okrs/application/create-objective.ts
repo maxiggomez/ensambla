@@ -1,7 +1,12 @@
 import { randomUUID } from "node:crypto";
 
-import { prismaClient, type PrismaClient } from "../../../shared/db";
+import {
+  prismaClient,
+  tryAcquireOrganizationStructureLock,
+  type PrismaClient,
+} from "../../../shared/db";
 import { ApplicationError } from "../../../shared/errors";
+import { organizationId } from "../../../shared/ids";
 import { withTenantForUser } from "../../../shared/tenancy";
 import { requireActor } from "../../identity-org/application";
 import { listTeamAssignments } from "../../teams-staffing/application";
@@ -45,6 +50,14 @@ export async function createObjective(
         throw new ApplicationError(
           "okrs/forbidden",
           `Role not allowed to create a ${input.level}-level objective`,
+        );
+      }
+      if (
+        !(await tryAcquireOrganizationStructureLock(tx, organizationId(actor.organizationId)))
+      ) {
+        throw new ApplicationError(
+          "okrs/structure-busy",
+          "Organization structure is being changed concurrently",
         );
       }
       // Lookup RLS-scoped: un ownerMemberId de otro tenant no existe acá.

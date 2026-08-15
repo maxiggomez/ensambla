@@ -1,7 +1,12 @@
 import { randomUUID } from "node:crypto";
 
-import { prismaClient, type PrismaClient } from "../../../shared/db";
+import {
+  prismaClient,
+  tryAcquireOrganizationStructureLock,
+  type PrismaClient,
+} from "../../../shared/db";
 import { ApplicationError } from "../../../shared/errors";
+import { organizationId } from "../../../shared/ids";
 import { withTenantForUser } from "../../../shared/tenancy";
 import { requireActor } from "../../identity-org/application";
 import { skillName } from "../domain/skill";
@@ -27,6 +32,14 @@ export async function defineSkill(
         throw new ApplicationError(
           "skills-matrix/forbidden",
           "Role not allowed to define skills",
+        );
+      }
+      if (
+        !(await tryAcquireOrganizationStructureLock(tx, organizationId(actor.organizationId)))
+      ) {
+        throw new ApplicationError(
+          "skills-matrix/structure-busy",
+          "Organization structure is being changed concurrently",
         );
       }
       const skillId = randomUUID();

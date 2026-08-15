@@ -49,6 +49,10 @@ export function listObjectivesWithKeyResults(
   });
 }
 
+export function countObjectives(tx: TenantClient): Promise<number> {
+  return tx.objective.count();
+}
+
 export async function updateObjectiveStatus(
   tx: TenantClient,
   id: string,
@@ -63,6 +67,14 @@ export async function updateObjectiveStatus(
       archivedAt: status === "Archived" ? new Date() : undefined,
     },
   });
+}
+
+export async function updateObjectiveTitle(
+  tx: TenantClient,
+  id: string,
+  title: string,
+): Promise<void> {
+  await tx.objective.update({ where: { id }, data: { title } });
 }
 
 /** Lookup RLS-scoped del owner: garantiza que el Member es del mismo tenant. */

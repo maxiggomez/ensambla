@@ -1,7 +1,12 @@
 import { randomUUID } from "node:crypto";
 
-import { prismaClient, type PrismaClient } from "../../../shared/db";
+import {
+  prismaClient,
+  tryAcquireOrganizationStructureLock,
+  type PrismaClient,
+} from "../../../shared/db";
 import { ApplicationError } from "../../../shared/errors";
+import { organizationId } from "../../../shared/ids";
 import { withTenantForUser } from "../../../shared/tenancy";
 import { requireActor } from "../../identity-org/application";
 import { teamDescription, teamName } from "../domain/team";
@@ -29,6 +34,14 @@ export async function createTeam(
         throw new ApplicationError(
           "teams-staffing/forbidden",
           "Role not allowed to create teams",
+        );
+      }
+      if (
+        !(await tryAcquireOrganizationStructureLock(tx, organizationId(actor.organizationId)))
+      ) {
+        throw new ApplicationError(
+          "teams-staffing/structure-busy",
+          "Organization structure is being changed concurrently",
         );
       }
       const teamId = randomUUID();

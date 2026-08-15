@@ -36,3 +36,7 @@ export function findNorthStar(
 ): Promise<NorthStar | null> {
   return tx.northStar.findUnique({ where: { organizationId } });
 }
+
+export async function countNorthStars(tx: TenantClient): Promise<number> {
+  return tx.northStar.count();
+}

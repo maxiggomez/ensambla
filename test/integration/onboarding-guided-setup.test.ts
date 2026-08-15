@@ -46,6 +46,7 @@ describe("onboarding guided setup", () => {
       currentStep: "CompanyProfile",
       companyType: null,
       industry: null,
+      appliedTemplateKey: null,
     });
     expect(retry).toEqual(first);
     await expect(
@@ -164,6 +165,35 @@ describe("onboarding guided setup", () => {
     expect(changed.filter(Boolean)).toHaveLength(1);
   });
 
+  it("compare-and-sets the applied template identity with setup completion", async () => {
+    const fixture = await createOnboardingFixture(db.prisma, "setup_template_cas");
+    await startOnboardingSetup({ actorClerkUserId: fixture.direccionClerkUserId }, db.prisma);
+    const expected = await saveOnboardingCompanyProfile(
+      {
+        actorClerkUserId: fixture.direccionClerkUserId,
+        companyType: "Producto",
+        industry: "Tecnología",
+      },
+      db.prisma,
+    );
+
+    const changed = await withTenant(
+      fixture.organizationId,
+      (tx) =>
+        compareAndSetSetup(tx, fixture.organizationId, expected, {
+          ...expected,
+          status: "Completed",
+          appliedTemplateKey: "saas-product",
+        }),
+      db.prisma,
+    );
+
+    expect(changed).toMatchObject({
+      status: "Completed",
+      appliedTemplateKey: "saas-product",
+    });
+  });
+
   it("skips to an empty configurable application", async () => {
     const fixture = await createOnboardingFixture(db.prisma, "setup_skip");
     await startOnboardingSetup({ actorClerkUserId: fixture.direccionClerkUserId }, db.prisma);
@@ -175,6 +205,7 @@ describe("onboarding guided setup", () => {
       currentStep: "CompanyProfile",
       companyType: null,
       industry: null,
+      appliedTemplateKey: null,
     });
 
     expect(
@@ -228,6 +259,7 @@ describe("onboarding guided setup", () => {
         currentStep: "CompanyProfile",
         companyType: null,
         industry: null,
+        appliedTemplateKey: null,
       },
     });
   });
@@ -253,6 +285,7 @@ describe("onboarding guided setup", () => {
       currentStep: "CompanyProfile",
       companyType: null,
       industry: null,
+      appliedTemplateKey: null,
     });
     expect(
       await withTenant(

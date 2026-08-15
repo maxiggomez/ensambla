@@ -1,5 +1,7 @@
 import { DomainError } from "../../../shared/errors";
 
+import type { OnboardingTemplateKey } from "./template-catalog";
+
 export type OnboardingSetupStatus = "Pending" | "Completed" | "Skipped";
 export type OnboardingSetupStep = "CompanyProfile" | "Review";
 
@@ -8,6 +10,7 @@ export interface OnboardingSetupProgress {
   currentStep: OnboardingSetupStep;
   companyType: string | null;
   industry: string | null;
+  appliedTemplateKey: OnboardingTemplateKey | null;
 }
 
 export interface CompanyProfileInput {
@@ -21,6 +24,7 @@ export function initialSetupProgress(): OnboardingSetupProgress {
     currentStep: "CompanyProfile",
     companyType: null,
     industry: null,
+    appliedTemplateKey: null,
   };
 }
 
@@ -75,7 +79,30 @@ export function completeSetup(progress: OnboardingSetupProgress): OnboardingSetu
       "Setup can be completed only from review with a valid profile",
     );
   }
-  return { ...progress, status: "Completed" };
+  return { ...progress, status: "Completed", appliedTemplateKey: null };
+}
+
+export function applySetupTemplate(
+  progress: OnboardingSetupProgress,
+  templateKey: OnboardingTemplateKey,
+): OnboardingSetupProgress {
+  if (progress.status === "Completed" && progress.appliedTemplateKey === templateKey) {
+    return progress;
+  }
+  if (progress.status === "Completed" && progress.appliedTemplateKey !== null) {
+    throw new DomainError(
+      "onboarding-setup/template-already-applied",
+      "A different onboarding template was already applied",
+    );
+  }
+  assertPending(progress);
+  if (progress.currentStep !== "Review" || !progress.companyType || !progress.industry) {
+    throw new DomainError(
+      "onboarding-setup/invalid-transition",
+      "A template can be applied only from review with a valid profile",
+    );
+  }
+  return { ...progress, status: "Completed", appliedTemplateKey: templateKey };
 }
 
 export function skipSetup(progress: OnboardingSetupProgress): OnboardingSetupProgress {
