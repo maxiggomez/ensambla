@@ -40,12 +40,46 @@ test.describe.serial("guided onboarding setup", () => {
     await expect(page.getByLabel("Industria")).toHaveValue("Tecnología");
 
     await page.getByRole("button", { name: "Continuar" }).click();
-    await page.getByRole("button", { name: "Finalizar configuración" }).click();
+    await page.getByRole("button", { name: "Finalizar sin template" }).click();
     await page.waitForURL("**/members");
     runFixture("assert-empty");
 
     await page.goto("/onboarding");
     await page.waitForURL("**/members");
+  });
+
+  test("profile → recommendation → write-free preview → applied editable content", async ({
+    page,
+  }) => {
+    await enterAsNewDirection(page);
+    await createOrganization(page, "Onboarding Template E2E");
+
+    await page.getByLabel("Tipo de empresa").fill("Producto");
+    await page.getByLabel("Industria").fill("Tecnología");
+    await page.getByRole("button", { name: "Continuar" }).click();
+
+    const recommended = page
+      .getByText("SaaS de Producto", { exact: true })
+      .locator("xpath=ancestor::*[@data-slot='card'][1]");
+    await expect(recommended.getByText("Template recomendado")).toBeVisible();
+    await recommended.getByText("Ver estructura").click();
+    await expect(recommended.getByText("Pymes activas que renuevan y crecen")).toBeVisible();
+    await expect(recommended.getByText("Aumentar la adopción del producto")).toBeVisible();
+    await expect(
+      recommended.getByText("Lograr 70% de activación de nuevas cuentas"),
+    ).toBeVisible();
+    runFixture("assert-empty");
+
+    await recommended.getByRole("button", { name: "Aplicar template" }).click();
+    await page.waitForURL("**/members");
+    runFixture("assert-template");
+
+    await page.goto("/norte-estrategico");
+    await expect(
+      page
+        .getByRole("region", { name: "North Star" })
+        .getByText("Pymes activas que renuevan y crecen"),
+    ).toBeVisible();
   });
 
   test("Skip enters an empty app and does not force onboarding later", async ({ page }) => {
@@ -72,7 +106,7 @@ test.describe.serial("guided onboarding setup", () => {
   });
 });
 
-function runFixture(action: "cleanup" | "assert-empty"): void {
+function runFixture(action: "cleanup" | "assert-empty" | "assert-template"): void {
   execFileSync("npx", ["tsx", "e2e/onboarding-setup-fixture.ts", action], {
     cwd: process.cwd(),
     env: { ...process.env, DATABASE_URL: DEV_AUTH_APP_URL },

@@ -1,5 +1,10 @@
-import { prismaClient, type PrismaClient } from "../../../shared/db";
+import {
+  prismaClient,
+  tryAcquireOrganizationStructureLock,
+  type PrismaClient,
+} from "../../../shared/db";
 import { ApplicationError } from "../../../shared/errors";
+import { organizationId } from "../../../shared/ids";
 import { measurementToColumns } from "../../../shared/measurement";
 import { withTenantForUser } from "../../../shared/tenancy";
 import { canEditOrganization, requireActor } from "../../identity-org/application";
@@ -27,6 +32,14 @@ export async function defineNorthStar(
         throw new ApplicationError(
           "strategy-northstar/forbidden",
           "Only Dirección can define the North Star",
+        );
+      }
+      if (
+        !(await tryAcquireOrganizationStructureLock(tx, organizationId(actor.organizationId)))
+      ) {
+        throw new ApplicationError(
+          "strategy-northstar/structure-busy",
+          "Organization structure is being changed concurrently",
         );
       }
       await upsertNorthStar(tx, {

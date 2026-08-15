@@ -1,5 +1,9 @@
 export { createPrismaClient, prismaClient } from "./client";
 export { withTenant, type TenantClient } from "./with-tenant";
+export {
+  acquireOrganizationStructureLock,
+  tryAcquireOrganizationStructureLock,
+} from "./organization-structure-lock";
 export type { Prisma, PrismaClient } from "./generated/client";
 export type {
   KeyResultModel as KeyResult,

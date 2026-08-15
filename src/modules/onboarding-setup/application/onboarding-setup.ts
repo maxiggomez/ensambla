@@ -10,6 +10,10 @@ import {
   type OnboardingSetupProgress,
 } from "../domain/setup-progress";
 import {
+  isOnboardingTemplateKey,
+  type OnboardingTemplateKey,
+} from "../domain/template-catalog";
+import {
   compareAndSetSetup,
   findSetup,
   upsertInitialSetup,
@@ -31,17 +35,29 @@ export interface OnboardingSetupAccess {
   setup: OnboardingSetupView | null;
 }
 
-function viewOf(row: {
+export function setupViewOf(row: {
   status: OnboardingSetupProgress["status"];
   currentStep: OnboardingSetupProgress["currentStep"];
   companyType: string | null;
   industry: string | null;
+  appliedTemplateKey: string | null;
 }): OnboardingSetupView {
+  let appliedTemplateKey: OnboardingTemplateKey | null = null;
+  if (row.appliedTemplateKey !== null) {
+    if (!isOnboardingTemplateKey(row.appliedTemplateKey)) {
+      throw new ApplicationError(
+        "onboarding-setup/invalid-template-key",
+        "Persisted onboarding template key is invalid",
+      );
+    }
+    appliedTemplateKey = row.appliedTemplateKey;
+  }
   return {
     status: row.status,
     currentStep: row.currentStep,
     companyType: row.companyType,
     industry: row.industry,
+    appliedTemplateKey,
   };
 }
 
@@ -78,7 +94,7 @@ async function withDirectionSetup(
       if (!canEditOrganization(actor.role)) throw forbidden();
       const row = await findSetup(tx, actor.organizationId);
       if (!row) throw missingSetup();
-      const current = viewOf(row);
+      const current = setupViewOf(row);
       const changed = await compareAndSetSetup(
         tx,
         actor.organizationId,
@@ -86,7 +102,7 @@ async function withDirectionSetup(
         mutate(current),
       );
       if (!changed) throw staleSetup();
-      return viewOf(changed);
+      return setupViewOf(changed);
     },
     client,
   );
@@ -103,7 +119,7 @@ export async function getOnboardingSetupAccess(
       const row = await findSetup(tx, actor.organizationId);
       return {
         canMutate: canEditOrganization(actor.role),
-        setup: row ? viewOf(row) : null,
+        setup: row ? setupViewOf(row) : null,
       };
     },
     client,
@@ -119,7 +135,7 @@ export async function getOnboardingSetup(
     async (tx) => {
       const actor = await requireActor(tx, input.actorClerkUserId);
       const row = await findSetup(tx, actor.organizationId);
-      return row ? viewOf(row) : null;
+      return row ? setupViewOf(row) : null;
     },
     client,
   );
@@ -134,7 +150,7 @@ export async function startOnboardingSetup(
     async (tx) => {
       const actor = await requireActor(tx, input.actorClerkUserId);
       if (!canEditOrganization(actor.role)) throw forbidden();
-      return viewOf(await upsertInitialSetup(tx, actor.organizationId));
+      return setupViewOf(await upsertInitialSetup(tx, actor.organizationId));
     },
     client,
   );

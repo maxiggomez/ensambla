@@ -24,7 +24,7 @@ describe("guided onboarding UI", () => {
     expect(form).toContain('defaultValue={setup.industry ?? ""}');
     expect(form).toContain("Volver");
     expect(form).toContain("Saltar configuración");
-    expect(form).toContain("Finalizar configuración");
+    expect(form).toContain("Finalizar sin template");
     expect(form).toContain('role="alert"');
   });
 
@@ -43,5 +43,32 @@ describe("guided onboarding UI", () => {
     expect(loading).toContain("animate-pulse");
     expect(error).toContain("No pudimos cargar la configuración");
     expect(error).toContain("Intentar de nuevo");
+  });
+
+  it("renders recommendation cards with an accessible write-free preview", () => {
+    const page = source("page.tsx");
+    const form = source("guided-setup-form.tsx");
+
+    expect(page).toContain("getOnboardingTemplateOptions");
+    expect(page).toContain("templateOptions");
+    expect(form).toContain("Template recomendado");
+    expect(form).toContain("Ver estructura");
+    expect(form).toContain("Teams");
+    expect(form).toContain("North Star");
+    expect(form).toContain("Objectives y Key Results");
+    expect(form).toContain("objective.keyResults.map");
+    expect(form).toContain("Skills");
+  });
+
+  it("requires explicit application and preserves finish-without-template states", () => {
+    const actions = source("actions.ts");
+    const form = source("guided-setup-form.tsx");
+
+    expect(actions).toContain("onboardingTemplateSchema.parse");
+    expect(actions).toContain("applyOnboardingTemplate");
+    expect(form).toContain("Aplicar template");
+    expect(form).toContain("Aplicando…");
+    expect(form).toContain("Finalizar sin template");
+    expect(form).toContain('role="alert"');
   });
 });

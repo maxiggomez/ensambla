@@ -61,16 +61,41 @@ describe("onboarding-setup schema invariants 🔒", () => {
         'onboarding_setup_pkey',
         'onboarding_setup_organization_id_key',
         'onboarding_setup_organization_id_fkey',
-        'onboarding_setup_profile_valid'
+        'onboarding_setup_profile_valid',
+        'onboarding_setup_applied_template_valid'
       )
       ORDER BY conname
     `;
     expect(constraints.map((row) => row.constraintName)).toEqual([
+      "onboarding_setup_applied_template_valid",
       "onboarding_setup_organization_id_fkey",
       "onboarding_setup_organization_id_key",
       "onboarding_setup_pkey",
       "onboarding_setup_profile_valid",
     ]);
+  });
+
+  it("stores only known applied templates on completed setup", async () => {
+    const columns = await db.prisma.$queryRaw<Array<{ dataType: string; nullable: string }>>`
+      SELECT data_type AS "dataType", is_nullable AS nullable
+      FROM information_schema.columns
+      WHERE table_schema = 'public'
+        AND table_name = 'onboarding_setup'
+        AND column_name = 'applied_template_key'
+    `;
+
+    expect(columns).toEqual([{ dataType: "text", nullable: "YES" }]);
+
+    const definition = await db.prisma.$queryRaw<Array<{ definition: string }>>`
+      SELECT pg_get_constraintdef(oid) AS definition
+      FROM pg_constraint
+      WHERE conname = 'onboarding_setup_applied_template_valid'
+    `;
+    expect(definition).toHaveLength(1);
+    expect(definition[0]?.definition).toContain("status = 'Completed'");
+    expect(definition[0]?.definition).toContain("saas-product");
+    expect(definition[0]?.definition).toContain("services-agency");
+    expect(definition[0]?.definition).toContain("commerce-retail");
   });
 
   it("uses typed status and step defaults and grants the application role access", async () => {
@@ -148,9 +173,14 @@ describe("onboarding-setup schema invariants 🔒", () => {
         stdio: "pipe",
       });
 
-      await expect(
-        admin.onboardingSetup.findUnique({ where: { organizationId } }),
-      ).resolves.toMatchObject({ status: "Skipped", currentStep: "CompanyProfile" });
+      const backfilled = await admin.$queryRawUnsafe<
+        Array<{ status: string; currentStep: string }>
+      >(
+        `SELECT status::text, current_step::text AS "currentStep"
+         FROM onboarding_setup WHERE organization_id = $1::uuid`,
+        organizationId,
+      );
+      expect(backfilled).toEqual([{ status: "Skipped", currentStep: "CompanyProfile" }]);
       const grants = await admin.$queryRaw<{ privilege: string }[]>`
         SELECT privilege_type AS privilege
         FROM information_schema.role_table_grants

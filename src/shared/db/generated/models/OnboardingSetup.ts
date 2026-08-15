@@ -31,6 +31,7 @@ export type OnboardingSetupMinAggregateOutputType = {
   currentStep: $Enums.OnboardingSetupStep | null
   companyType: string | null
   industry: string | null
+  appliedTemplateKey: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -42,6 +43,7 @@ export type OnboardingSetupMaxAggregateOutputType = {
   currentStep: $Enums.OnboardingSetupStep | null
   companyType: string | null
   industry: string | null
+  appliedTemplateKey: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -53,6 +55,7 @@ export type OnboardingSetupCountAggregateOutputType = {
   currentStep: number
   companyType: number
   industry: number
+  appliedTemplateKey: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -66,6 +69,7 @@ export type OnboardingSetupMinAggregateInputType = {
   currentStep?: true
   companyType?: true
   industry?: true
+  appliedTemplateKey?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -77,6 +81,7 @@ export type OnboardingSetupMaxAggregateInputType = {
   currentStep?: true
   companyType?: true
   industry?: true
+  appliedTemplateKey?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -88,6 +93,7 @@ export type OnboardingSetupCountAggregateInputType = {
   currentStep?: true
   companyType?: true
   industry?: true
+  appliedTemplateKey?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -172,6 +178,7 @@ export type OnboardingSetupGroupByOutputType = {
   currentStep: $Enums.OnboardingSetupStep
   companyType: string | null
   industry: string | null
+  appliedTemplateKey: string | null
   createdAt: Date
   updatedAt: Date
   _count: OnboardingSetupCountAggregateOutputType | null
@@ -204,6 +211,7 @@ export type OnboardingSetupWhereInput = {
   currentStep?: Prisma.EnumOnboardingSetupStepFilter<"OnboardingSetup"> | $Enums.OnboardingSetupStep
   companyType?: Prisma.StringNullableFilter<"OnboardingSetup"> | string | null
   industry?: Prisma.StringNullableFilter<"OnboardingSetup"> | string | null
+  appliedTemplateKey?: Prisma.StringNullableFilter<"OnboardingSetup"> | string | null
   createdAt?: Prisma.DateTimeFilter<"OnboardingSetup"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"OnboardingSetup"> | Date | string
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
@@ -216,6 +224,7 @@ export type OnboardingSetupOrderByWithRelationInput = {
   currentStep?: Prisma.SortOrder
   companyType?: Prisma.SortOrderInput | Prisma.SortOrder
   industry?: Prisma.SortOrderInput | Prisma.SortOrder
+  appliedTemplateKey?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   organization?: Prisma.OrganizationOrderByWithRelationInput
@@ -231,6 +240,7 @@ export type OnboardingSetupWhereUniqueInput = Prisma.AtLeast<{
   currentStep?: Prisma.EnumOnboardingSetupStepFilter<"OnboardingSetup"> | $Enums.OnboardingSetupStep
   companyType?: Prisma.StringNullableFilter<"OnboardingSetup"> | string | null
   industry?: Prisma.StringNullableFilter<"OnboardingSetup"> | string | null
+  appliedTemplateKey?: Prisma.StringNullableFilter<"OnboardingSetup"> | string | null
   createdAt?: Prisma.DateTimeFilter<"OnboardingSetup"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"OnboardingSetup"> | Date | string
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
@@ -243,6 +253,7 @@ export type OnboardingSetupOrderByWithAggregationInput = {
   currentStep?: Prisma.SortOrder
   companyType?: Prisma.SortOrderInput | Prisma.SortOrder
   industry?: Prisma.SortOrderInput | Prisma.SortOrder
+  appliedTemplateKey?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.OnboardingSetupCountOrderByAggregateInput
@@ -260,6 +271,7 @@ export type OnboardingSetupScalarWhereWithAggregatesInput = {
   currentStep?: Prisma.EnumOnboardingSetupStepWithAggregatesFilter<"OnboardingSetup"> | $Enums.OnboardingSetupStep
   companyType?: Prisma.StringNullableWithAggregatesFilter<"OnboardingSetup"> | string | null
   industry?: Prisma.StringNullableWithAggregatesFilter<"OnboardingSetup"> | string | null
+  appliedTemplateKey?: Prisma.StringNullableWithAggregatesFilter<"OnboardingSetup"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"OnboardingSetup"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"OnboardingSetup"> | Date | string
 }
@@ -270,6 +282,7 @@ export type OnboardingSetupCreateInput = {
   currentStep?: $Enums.OnboardingSetupStep
   companyType?: string | null
   industry?: string | null
+  appliedTemplateKey?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutOnboardingSetupInput
@@ -282,6 +295,7 @@ export type OnboardingSetupUncheckedCreateInput = {
   currentStep?: $Enums.OnboardingSetupStep
   companyType?: string | null
   industry?: string | null
+  appliedTemplateKey?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -292,6 +306,7 @@ export type OnboardingSetupUpdateInput = {
   currentStep?: Prisma.EnumOnboardingSetupStepFieldUpdateOperationsInput | $Enums.OnboardingSetupStep
   companyType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  appliedTemplateKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutOnboardingSetupNestedInput
@@ -304,6 +319,7 @@ export type OnboardingSetupUncheckedUpdateInput = {
   currentStep?: Prisma.EnumOnboardingSetupStepFieldUpdateOperationsInput | $Enums.OnboardingSetupStep
   companyType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  appliedTemplateKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -315,6 +331,7 @@ export type OnboardingSetupCreateManyInput = {
   currentStep?: $Enums.OnboardingSetupStep
   companyType?: string | null
   industry?: string | null
+  appliedTemplateKey?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -325,6 +342,7 @@ export type OnboardingSetupUpdateManyMutationInput = {
   currentStep?: Prisma.EnumOnboardingSetupStepFieldUpdateOperationsInput | $Enums.OnboardingSetupStep
   companyType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  appliedTemplateKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -336,6 +354,7 @@ export type OnboardingSetupUncheckedUpdateManyInput = {
   currentStep?: Prisma.EnumOnboardingSetupStepFieldUpdateOperationsInput | $Enums.OnboardingSetupStep
   companyType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  appliedTemplateKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -352,6 +371,7 @@ export type OnboardingSetupCountOrderByAggregateInput = {
   currentStep?: Prisma.SortOrder
   companyType?: Prisma.SortOrder
   industry?: Prisma.SortOrder
+  appliedTemplateKey?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -363,6 +383,7 @@ export type OnboardingSetupMaxOrderByAggregateInput = {
   currentStep?: Prisma.SortOrder
   companyType?: Prisma.SortOrder
   industry?: Prisma.SortOrder
+  appliedTemplateKey?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -374,6 +395,7 @@ export type OnboardingSetupMinOrderByAggregateInput = {
   currentStep?: Prisma.SortOrder
   companyType?: Prisma.SortOrder
   industry?: Prisma.SortOrder
+  appliedTemplateKey?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -424,6 +446,7 @@ export type OnboardingSetupCreateWithoutOrganizationInput = {
   currentStep?: $Enums.OnboardingSetupStep
   companyType?: string | null
   industry?: string | null
+  appliedTemplateKey?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -434,6 +457,7 @@ export type OnboardingSetupUncheckedCreateWithoutOrganizationInput = {
   currentStep?: $Enums.OnboardingSetupStep
   companyType?: string | null
   industry?: string | null
+  appliedTemplateKey?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -460,6 +484,7 @@ export type OnboardingSetupUpdateWithoutOrganizationInput = {
   currentStep?: Prisma.EnumOnboardingSetupStepFieldUpdateOperationsInput | $Enums.OnboardingSetupStep
   companyType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  appliedTemplateKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -470,6 +495,7 @@ export type OnboardingSetupUncheckedUpdateWithoutOrganizationInput = {
   currentStep?: Prisma.EnumOnboardingSetupStepFieldUpdateOperationsInput | $Enums.OnboardingSetupStep
   companyType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  appliedTemplateKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -483,6 +509,7 @@ export type OnboardingSetupSelect<ExtArgs extends runtime.Types.Extensions.Inter
   currentStep?: boolean
   companyType?: boolean
   industry?: boolean
+  appliedTemplateKey?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
@@ -495,6 +522,7 @@ export type OnboardingSetupSelectCreateManyAndReturn<ExtArgs extends runtime.Typ
   currentStep?: boolean
   companyType?: boolean
   industry?: boolean
+  appliedTemplateKey?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
@@ -507,6 +535,7 @@ export type OnboardingSetupSelectUpdateManyAndReturn<ExtArgs extends runtime.Typ
   currentStep?: boolean
   companyType?: boolean
   industry?: boolean
+  appliedTemplateKey?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
@@ -519,11 +548,12 @@ export type OnboardingSetupSelectScalar = {
   currentStep?: boolean
   companyType?: boolean
   industry?: boolean
+  appliedTemplateKey?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type OnboardingSetupOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "status" | "currentStep" | "companyType" | "industry" | "createdAt" | "updatedAt", ExtArgs["result"]["onboardingSetup"]>
+export type OnboardingSetupOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "status" | "currentStep" | "companyType" | "industry" | "appliedTemplateKey" | "createdAt" | "updatedAt", ExtArgs["result"]["onboardingSetup"]>
 export type OnboardingSetupInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
 }
@@ -546,6 +576,7 @@ export type $OnboardingSetupPayload<ExtArgs extends runtime.Types.Extensions.Int
     currentStep: $Enums.OnboardingSetupStep
     companyType: string | null
     industry: string | null
+    appliedTemplateKey: string | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["onboardingSetup"]>
@@ -978,6 +1009,7 @@ export interface OnboardingSetupFieldRefs {
   readonly currentStep: Prisma.FieldRef<"OnboardingSetup", 'OnboardingSetupStep'>
   readonly companyType: Prisma.FieldRef<"OnboardingSetup", 'String'>
   readonly industry: Prisma.FieldRef<"OnboardingSetup", 'String'>
+  readonly appliedTemplateKey: Prisma.FieldRef<"OnboardingSetup", 'String'>
   readonly createdAt: Prisma.FieldRef<"OnboardingSetup", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"OnboardingSetup", 'DateTime'>
 }

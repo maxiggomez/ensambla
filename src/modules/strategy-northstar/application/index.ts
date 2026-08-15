@@ -18,3 +18,7 @@ export {
   type GetStrategicMapInput,
   type StrategicMapView,
 } from "./get-strategic-map";
+export {
+  isTemplateNorthStarTargetEmpty,
+  materializeTemplateNorthStar,
+} from "./materialize-template-north-star";
