@@ -30,6 +30,6 @@
 ## 5. Objective verification and review
 
 - [x] 5.1 Run focused domain, integration, migration/RLS, component, and Playwright suites and record green evidence for every delta scenario
-- [ ] 5.2 Run OpenSpec strict validation, generated-client drift check, typecheck, module-boundary lint, formatting, production build, full unit/integration suite, and full E2E suite
+- [x] 5.2 Run OpenSpec strict validation, generated-client drift check, typecheck, module-boundary lint, formatting, production build, full unit/integration suite, and full E2E suite
 - [x] 5.3 Run `mg-pr-review` read-only against the delta, invariants, ADRs, and project conventions; resolve every blocking finding and rerun affected checks
 - [x] 5.4 Present the final diff and verification evidence for explicit commit approval without pushing
