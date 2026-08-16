@@ -19,10 +19,10 @@ const ALL_SECTIONS = [
   "Miembros",
 ] as const;
 
-const PLACEHOLDER_ROUTES: ReadonlyArray<readonly [string, string]> = [
-  ["Equipos & Proyectos", "/equipos-y-proyectos"],
-  ["Rituales", "/rituales"],
-  ["Skills & Staffing", "/skills-y-staffing"],
+const LIVE_ROUTES: ReadonlyArray<readonly [string, string, string]> = [
+  ["Equipos & Proyectos", "/equipos-y-proyectos", "Trabajo por equipos hacia los objetivos"],
+  ["Rituales", "/rituales", "Rituales y blockers"],
+  ["Skills & Staffing", "/skills-y-staffing", "Competencias y staffing alineados"],
 ];
 
 async function signInAs(page: Page, devUserId: string): Promise<void> {
@@ -48,16 +48,16 @@ test.describe.serial("app shell", () => {
     }
   });
 
-  test("cada sección navega a su ruta y las capabilities sin UI muestran placeholder", async ({
+  test("Equipos & Proyectos, Rituales y Skills & Staffing muestran sus UIs reales", async ({
     page,
   }) => {
     await signInAs(page, "dev_direccion");
 
-    for (const [label, path] of PLACEHOLDER_ROUTES) {
+    for (const [label, path, heading] of LIVE_ROUTES) {
       await sidebar(page).getByRole("link", { name: label }).click();
       await page.waitForURL(`**${path}`);
-      await expect(page.getByTestId("under-construction")).toBeVisible();
-      await expect(page.getByRole("heading", { name: label })).toBeVisible();
+      await expect(page.getByTestId("under-construction")).toHaveCount(0);
+      await expect(page.getByRole("heading", { name: heading, exact: true })).toBeVisible();
     }
   });
 
