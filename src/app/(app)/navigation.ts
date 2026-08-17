@@ -34,7 +34,7 @@ export const NAV_SECTIONS: readonly NavSection[] = [
     label: "Equipos & Proyectos",
     href: "/equipos-y-proyectos",
     icon: "users",
-    scope: "management",
+    scope: "all",
   },
   {
     key: "rituales",
@@ -69,7 +69,7 @@ export const NAV_SECTIONS: readonly NavSection[] = [
     label: "Skills & Staffing",
     href: "/skills-y-staffing",
     icon: "grid-2x2",
-    scope: "management",
+    scope: "all",
   },
   {
     key: "miembros",

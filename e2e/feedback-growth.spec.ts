@@ -63,7 +63,7 @@ test("request → private Feedback → public Kudo → GrowthPlan evidence", asy
   await kudoForm.getByLabel("Mensaje").fill("Gracias por sostener la coordinación del equipo.");
   await kudoForm.getByLabel("Valor demostrado").selectOption({ label: "Ownership" });
   await kudoForm
-    .getByLabel("Objective (opcional)")
+    .getByLabel("Objetivo (opcional)")
     .selectOption({ label: "Crecimiento Feedback E2E" });
   await kudoForm.getByRole("button", { name: "Publicar reconocimiento" }).click();
   await expect(

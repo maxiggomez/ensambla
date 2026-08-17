@@ -132,10 +132,30 @@ test.describe.serial("app shell", () => {
     await expect(sidebar(page).getByRole("link", { name: "Dashboard" })).toBeVisible();
     await expect(sidebar(page).getByRole("link", { name: "OKRs" })).toBeVisible();
     await expect(sidebar(page).getByRole("link", { name: "Clima & eNPS" })).toBeVisible();
+    await expect(
+      sidebar(page).getByRole("link", { name: "Equipos & Proyectos" }),
+    ).toBeVisible();
+    await expect(sidebar(page).getByRole("link", { name: "Skills & Staffing" })).toBeVisible();
 
-    await expect(sidebar(page).getByRole("link", { name: "Equipos & Proyectos" })).toBeHidden();
-    await expect(sidebar(page).getByRole("link", { name: "Skills & Staffing" })).toBeHidden();
     await expect(sidebar(page).getByRole("link", { name: "Miembros" })).toBeHidden();
+  });
+
+  test("Colaborador lee Equipos y Skills sin controles de gestión", async ({ page }) => {
+    await signInAs(page, "dev_colaborador");
+
+    await sidebar(page).getByRole("link", { name: "Equipos & Proyectos" }).click();
+    await page.waitForURL("**/equipos-y-proyectos");
+    await expect(
+      page.getByRole("heading", { name: "Trabajo por equipos hacia los objetivos" }),
+    ).toBeVisible();
+    await expect(page.getByRole("button", { name: "Crear equipo" })).toHaveCount(0);
+
+    await sidebar(page).getByRole("link", { name: "Skills & Staffing" }).click();
+    await page.waitForURL("**/skills-y-staffing");
+    await expect(
+      page.getByRole("heading", { name: "Competencias y staffing alineados" }),
+    ).toBeVisible();
+    await expect(page.getByRole("button", { name: "Definir skill" })).toHaveCount(0);
   });
 
   test("el shell muestra la identidad y permite cambiar usuario en modo mock", async ({

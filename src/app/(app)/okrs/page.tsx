@@ -123,7 +123,7 @@ export default async function OkrsPage({
         </h2>
         <Card>
           <CardHeader>
-            <CardTitle>Nuevo Objective</CardTitle>
+            <CardTitle>Nuevo Objetivo</CardTitle>
             <CardDescription>
               Queda en borrador hasta tener al menos un Key Result válido.
             </CardDescription>

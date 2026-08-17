@@ -158,7 +158,7 @@ function TemplateCard({
               <p className="mt-1 text-muted-foreground">{template.northStar.name}</p>
             </div>
             <div>
-              <h3 className="font-bold">Objectives y Key Results</h3>
+              <h3 className="font-bold">Objetivos y Key Results</h3>
               <ul className="mt-1 list-disc space-y-1 pl-5 text-muted-foreground">
                 {template.objectives.map((objective) => (
                   <li key={objective.title}>

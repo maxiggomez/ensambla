@@ -39,11 +39,18 @@ describe("app-shell role-based navigation (🔒)", () => {
     }
   });
 
-  it("management-only sections are Equipos & Proyectos, Skills & Staffing and Miembros", () => {
+  it("Colaborador navigates the read-only Teams and Skills sections", () => {
+    const keys = sectionsForRole("Colaborador").map((section) => section.key);
+    expect(keys).toContain("equipos-y-proyectos");
+    expect(keys).toContain("skills-y-staffing");
+    expect(keys).not.toContain("miembros");
+  });
+
+  it("management-only sections are only Miembros", () => {
     const keys = NAV_SECTIONS.filter((section) => section.scope === "management")
       .map((section) => section.key)
       .sort();
-    expect(keys).toEqual(["equipos-y-proyectos", "miembros", "skills-y-staffing"]);
+    expect(keys).toEqual(["miembros"]);
   });
 
   it("every product role resolves to a non-empty navigation", () => {
