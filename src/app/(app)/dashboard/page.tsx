@@ -18,13 +18,13 @@ export default async function DashboardPage() {
   const dashboard = await getDashboard({ actorClerkUserId: user.id });
 
   return (
-    <div className="flex flex-col gap-7">
+    <main className="mx-auto flex w-full max-w-[1180px] flex-col gap-10 px-6 py-10 md:px-10">
       {dashboard.role === "Colaborador" ? (
         <CollaboratorDashboard dashboard={dashboard} />
       ) : (
         <OrganizationDashboard dashboard={dashboard} />
       )}
-    </div>
+    </main>
   );
 }
 
