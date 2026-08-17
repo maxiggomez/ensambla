@@ -1,9 +1,10 @@
 import { requireActor } from "../../identity-org/application";
+import { evaluateLearningRisks } from "../../rituals/application";
 import { listTeamCapacities } from "../../teams-staffing/application";
 import { prismaClient, type PrismaClient } from "../../../shared/db";
 import { ApplicationError } from "../../../shared/errors";
 import { withTenantForUser } from "../../../shared/tenancy";
-import { correlateTeamEnps, type EnpsCapacityCorrelation } from "../domain/correlation";
+import { correlateTeamEnps, type EnpsOperationalCorrelation } from "../domain/correlation";
 import type { VisibleEnpsResult } from "../domain/enps";
 import { listTeamPulseIds } from "../infrastructure/pulse-repo";
 
@@ -17,7 +18,7 @@ export interface AnalyzeTeamEnpsInput {
 export async function analyzeTeamEnps(
   input: AnalyzeTeamEnpsInput,
   client: PrismaClient = prismaClient(),
-): Promise<{ teamId: string; correlations: EnpsCapacityCorrelation[] }> {
+): Promise<{ teamId: string; correlations: EnpsOperationalCorrelation[] }> {
   const pulseIds = await withTenantForUser(
     input.actorClerkUserId,
     async (tx) => {
@@ -45,6 +46,10 @@ export async function analyzeTeamEnps(
   if (!team) {
     throw new ApplicationError("culture-enps/team-not-found", "Team not found");
   }
+  const [retroRisk] = await evaluateLearningRisks(
+    { actorClerkUserId: input.actorClerkUserId, teamIds: [input.teamId] },
+    client,
+  );
   return {
     teamId: input.teamId,
     correlations: correlateTeamEnps({
@@ -55,6 +60,7 @@ export async function analyzeTeamEnps(
           type: "over_capacity",
           capacity: { type: "percentage", start: 0, target: 100, current: team.capacity },
         },
+        { type: "overdue_retro", overdue: retroRisk?.atRisk ?? false },
       ],
     }),
   };

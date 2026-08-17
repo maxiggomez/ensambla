@@ -14,6 +14,7 @@ export {
 } from "./configure-minimum-responses";
 export { getEnpsResults, type EnpsResultsView } from "./get-enps-results";
 export { analyzeTeamEnps, type AnalyzeTeamEnpsInput } from "./analyze-team-enps";
+export type { EnpsOperationalCorrelation } from "../domain/correlation";
 export { listPulseResults } from "./list-pulse-results";
 export { getCultureEnpsSettings } from "./get-culture-enps-settings";
 export { DRIVERS, type Driver } from "../domain/driver";

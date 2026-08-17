@@ -33,6 +33,49 @@ describe("Team eNPS operational correlation", () => {
     ]);
   });
 
+  it("reports a coincidence when eNPS falls and the Team is overdue a retrospective", () => {
+    expect(
+      correlateTeamEnps({
+        previous: enps(35),
+        current: enps(9),
+        signals: [{ type: "overdue_retro", overdue: true }],
+      }),
+    ).toEqual([
+      {
+        type: "enps_drop_with_overdue_retro",
+        relationship: "coincidence",
+        enpsChange: { type: "integer", start: -200, target: 0, current: -26 },
+        overdueRetro: true,
+      },
+    ]);
+  });
+
+  it("reports capacity and overdue-retro correlations when both signals coincide", () => {
+    expect(
+      correlateTeamEnps({
+        previous: enps(35),
+        current: enps(9),
+        signals: [
+          { type: "over_capacity", capacity: capacity(118) },
+          { type: "overdue_retro", overdue: true },
+        ],
+      }),
+    ).toEqual([
+      {
+        type: "enps_drop_with_over_capacity",
+        relationship: "coincidence",
+        enpsChange: { type: "integer", start: -200, target: 0, current: -26 },
+        capacity: capacity(118),
+      },
+      {
+        type: "enps_drop_with_overdue_retro",
+        relationship: "coincidence",
+        enpsChange: { type: "integer", start: -200, target: 0, current: -26 },
+        overdueRetro: true,
+      },
+    ]);
+  });
+
   it("does not report a correlation without a fall or without overload", () => {
     expect(
       correlateTeamEnps({
@@ -46,6 +89,23 @@ describe("Team eNPS operational correlation", () => {
         previous: enps(35),
         current: enps(9),
         signals: [{ type: "over_capacity", capacity: capacity(100) }],
+      }),
+    ).toEqual([]);
+  });
+
+  it("does not report an overdue-retro correlation without a fall or without the retro risk", () => {
+    expect(
+      correlateTeamEnps({
+        previous: enps(9),
+        current: enps(12),
+        signals: [{ type: "overdue_retro", overdue: true }],
+      }),
+    ).toEqual([]);
+    expect(
+      correlateTeamEnps({
+        previous: enps(35),
+        current: enps(9),
+        signals: [{ type: "overdue_retro", overdue: false }],
       }),
     ).toEqual([]);
   });
