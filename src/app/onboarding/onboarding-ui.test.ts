@@ -55,7 +55,7 @@ describe("guided onboarding UI", () => {
     expect(form).toContain("Ver estructura");
     expect(form).toContain("Teams");
     expect(form).toContain("North Star");
-    expect(form).toContain("Objectives y Key Results");
+    expect(form).toContain("Objetivos y Key Results");
     expect(form).toContain("objective.keyResults.map");
     expect(form).toContain("Skills");
   });

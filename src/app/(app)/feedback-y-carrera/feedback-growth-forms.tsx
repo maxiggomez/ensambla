@@ -172,18 +172,18 @@ export function GiveKudoForm({
             <option key={value}>{value}</option>
           ))}
         </select>
-        <Label htmlFor="kudo-objective">Objective (opcional)</Label>
+        <Label htmlFor="kudo-objective">Objetivo (opcional)</Label>
         <select id="kudo-objective" name="objectiveId" className={controlClass}>
-          <option value="">Sin Objective</option>
+          <option value="">Sin objetivo</option>
           {objectives.map((objective) => (
             <option key={objective.id} value={objective.id}>
               {objective.label}
             </option>
           ))}
         </select>
-        <Label htmlFor="kudo-key-result">KeyResult (opcional)</Label>
+        <Label htmlFor="kudo-key-result">Key Result (opcional)</Label>
         <select id="kudo-key-result" name="keyResultId" className={controlClass}>
-          <option value="">Sin KeyResult</option>
+          <option value="">Sin Key Result</option>
           {keyResults.map((keyResult) => (
             <option key={keyResult.id} value={keyResult.id}>
               {keyResult.label}
