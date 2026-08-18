@@ -23,6 +23,13 @@ export default defineConfig({
           hookTimeout: 120_000,
         },
       },
+      {
+        extends: true,
+        test: {
+          name: "eslint-rules",
+          include: ["tools/eslint/**/*.test.mjs"],
+        },
+      },
     ],
   },
 });

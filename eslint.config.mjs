@@ -4,6 +4,8 @@ import nextTs from "eslint-config-next/typescript";
 import boundaries from "eslint-plugin-boundaries";
 import prettier from "eslint-config-prettier";
 
+import pageContainerRule from "./tools/eslint/page-container.mjs";
+
 const eslintConfig = defineConfig([
   ...nextVitals,
   ...nextTs,
@@ -194,6 +196,14 @@ const eslintConfig = defineConfig([
   },
   // Prettier: desactiva reglas de formato que colisionan.
   prettier,
+  // Contenedor de página estándar (design-system, spec 'Consistent page
+  // container'): toda page.tsx del shell debe tener root <main> con el
+  // contrato de padding/centrado (mx-auto w-full px-6 py-10 md:px-10).
+  {
+    files: ["src/app/(app)/**/page.tsx"],
+    plugins: { ensambla: { rules: { "page-container": pageContainerRule } } },
+    rules: { "ensambla/page-container": "error" },
+  },
   // Override default ignores of eslint-config-next.
   globalIgnores([
     // Default ignores of eslint-config-next:
