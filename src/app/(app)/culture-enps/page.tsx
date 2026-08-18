@@ -51,7 +51,7 @@ export default async function CultureEnpsPage() {
     : [[], null, []];
 
   return (
-    <main className="mx-auto flex min-h-screen w-full max-w-6xl flex-col gap-6 p-6 md:p-10">
+    <main className="mx-auto flex min-h-screen w-full max-w-6xl flex-col gap-6 px-6 py-10 md:px-10">
       <header className="max-w-3xl space-y-3">
         <p className="flex items-center gap-3 text-xs font-extrabold tracking-[0.13em] uppercase before:h-1 before:w-7 before:bg-brand-2">
           Clima &amp; eNPS

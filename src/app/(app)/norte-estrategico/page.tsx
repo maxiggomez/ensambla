@@ -54,7 +54,7 @@ export default async function NorteEstrategicoPage() {
   const northStar = map.northStar;
 
   return (
-    <div className="flex flex-col gap-6">
+    <main className="mx-auto flex w-full max-w-[1180px] flex-col gap-10 px-6 py-10 md:px-10">
       <header className="max-w-3xl space-y-3">
         <p className="flex items-center gap-3 text-xs font-extrabold tracking-[0.13em] uppercase before:h-1 before:w-7 before:bg-brand-2">
           Norte estratégico
@@ -222,7 +222,7 @@ export default async function NorteEstrategicoPage() {
         </div>
         <StrategicMap map={map} />
       </section>
-    </div>
+    </main>
   );
 }
 

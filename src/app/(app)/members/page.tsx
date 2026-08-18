@@ -60,7 +60,7 @@ export default async function MembersPage() {
   const showInviteForm = actor ? canManageMembers(actor.role as Role) : false;
 
   return (
-    <main className="mx-auto flex min-h-screen w-full max-w-3xl flex-col gap-6 p-6">
+    <main className="mx-auto flex min-h-screen w-full max-w-3xl flex-col gap-6 px-6 py-10 md:px-10">
       <Card>
         <CardHeader>
           <CardTitle>Miembros</CardTitle>
