@@ -1,10 +1,11 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useEntityCreateDrawerClose } from "@/components/entity-create-drawer";
 
 import {
   assignTeamMemberAction,
@@ -32,35 +33,65 @@ function FormFeedback({ state }: { state: TeamsFormState }) {
   );
 }
 
+function TeamFormFields({
+  team,
+  idBase = "team",
+}: {
+  team?: { teamId: string; name: string; description: string | null };
+  idBase?: string;
+}) {
+  return (
+    <fieldset className="space-y-3">
+      {team ? (
+        <legend className="sr-only">Editar equipo</legend>
+      ) : (
+        <legend className="sr-only">Crear equipo</legend>
+      )}
+      {team ? <Input name="teamId" type="hidden" value={team.teamId} /> : null}
+      <Label htmlFor={`${idBase}-name`}>Nombre del equipo</Label>
+      <Input
+        id={`${idBase}-name`}
+        name="name"
+        defaultValue={team?.name}
+        required
+        maxLength={80}
+      />
+      <Label htmlFor={`${idBase}-description`}>Descripción</Label>
+      <Input
+        id={`${idBase}-description`}
+        name="description"
+        defaultValue={team?.description ?? ""}
+        maxLength={240}
+      />
+    </fieldset>
+  );
+}
+
 export function TeamForm({
   team,
 }: {
-  team?: { teamId: string; name: string; description: string | null };
+  team: { teamId: string; name: string; description: string | null };
 }) {
-  const [state, action, pending] = useActionState(
-    team ? updateTeamAction : createTeamAction,
-    initial,
-  );
+  const [state, action, pending] = useActionState(updateTeamAction, initial);
   return (
     <form action={action} className="space-y-3">
-      <fieldset className="space-y-3">
-        {team ? (
-          <legend className="sr-only">Editar equipo</legend>
-        ) : (
-          <legend className="sr-only">Crear equipo</legend>
-        )}
-        {team ? <Input name="teamId" type="hidden" value={team.teamId} /> : null}
-        <Label htmlFor="team-name">Nombre del equipo</Label>
-        <Input id="team-name" name="name" defaultValue={team?.name} required maxLength={80} />
-        <Label htmlFor="team-description">Descripción</Label>
-        <Input
-          id="team-description"
-          name="description"
-          defaultValue={team?.description ?? ""}
-          maxLength={240}
-        />
-      </fieldset>
-      <Button disabled={pending}>{team ? "Guardar cambios" : "Crear equipo"}</Button>
+      <TeamFormFields team={team} />
+      <Button disabled={pending}>Guardar cambios</Button>
+      <FormFeedback state={state} />
+    </form>
+  );
+}
+
+export function CreateTeamForm() {
+  const [state, action, pending] = useActionState(createTeamAction, initial);
+  const close = useEntityCreateDrawerClose();
+  useEffect(() => {
+    if (state.success) close();
+  }, [state.success, close]);
+  return (
+    <form action={action} className="space-y-3">
+      <TeamFormFields idBase="create-team" />
+      <Button disabled={pending}>Crear equipo</Button>
       <FormFeedback state={state} />
     </form>
   );
@@ -126,6 +157,10 @@ export function AssignMemberForm({
 
 export function ProjectForm() {
   const [state, action, pending] = useActionState(createProjectAction, initial);
+  const close = useEntityCreateDrawerClose();
+  useEffect(() => {
+    if (state.success) close();
+  }, [state.success, close]);
   return (
     <form action={action} className="space-y-3">
       <fieldset className="space-y-3">

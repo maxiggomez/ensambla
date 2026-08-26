@@ -12,9 +12,11 @@ test("hypothesis → building → measuring → structured learning library", as
   await signInAsDirection(page);
 
   await page.goto("/okrs");
-  await page.getByLabel("Título").fill("Activación Lean E2E");
-  await page.getByLabel("Nivel", { exact: true }).selectOption("Company");
-  await page.getByRole("button", { name: "Crear objetivo" }).click();
+  await page.getByRole("button", { name: "+ Nuevo objetivo" }).click();
+  const objectiveDrawer = page.getByRole("dialog");
+  await objectiveDrawer.getByLabel("Título").fill("Activación Lean E2E");
+  await objectiveDrawer.getByLabel("Nivel", { exact: true }).selectOption("Company");
+  await objectiveDrawer.getByRole("button", { name: "Crear objetivo" }).click();
   await expect(page.getByRole("status")).toContainText("Objetivo creado");
   await page.getByLabel("Nuevo Key Result").fill("Usuarios activados Lean E2E");
   await page.getByLabel("Tipo de medición").selectOption("percentage");

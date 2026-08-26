@@ -148,14 +148,15 @@ test.describe.serial("app shell", () => {
     await expect(
       page.getByRole("heading", { name: "Trabajo por equipos hacia los objetivos" }),
     ).toBeVisible();
-    await expect(page.getByRole("button", { name: "Crear equipo" })).toHaveCount(0);
+    await expect(page.getByRole("button", { name: "+ Nuevo equipo" })).toHaveCount(0);
+    await expect(page.getByRole("button", { name: "+ Nuevo proyecto" })).toHaveCount(0);
 
     await sidebar(page).getByRole("link", { name: "Skills & Staffing" }).click();
     await page.waitForURL("**/skills-y-staffing");
     await expect(
       page.getByRole("heading", { name: "Competencias y staffing alineados" }),
     ).toBeVisible();
-    await expect(page.getByRole("button", { name: "Definir skill" })).toHaveCount(0);
+    await expect(page.getByRole("button", { name: "+ Nueva skill" })).toHaveCount(0);
   });
 
   test("el shell muestra la identidad y permite cambiar usuario en modo mock", async ({

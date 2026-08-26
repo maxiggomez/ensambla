@@ -1,10 +1,11 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useEntityCreateDrawerClose } from "@/components/entity-create-drawer";
 
 import {
   addSkillRequirementAction,
@@ -33,6 +34,10 @@ function FormFeedback({ state }: { state: SkillsFormState }) {
 
 export function DefineSkillForm() {
   const [state, action, pending] = useActionState(defineSkillAction, initial);
+  const close = useEntityCreateDrawerClose();
+  useEffect(() => {
+    if (state.success) close();
+  }, [state.success, close]);
   return (
     <form action={action} className="space-y-3">
       <fieldset className="space-y-3">

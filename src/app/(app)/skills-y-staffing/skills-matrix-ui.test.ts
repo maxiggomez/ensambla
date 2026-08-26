@@ -42,4 +42,12 @@ describe("Skills & Staffing UI design-system contract", () => {
     expect(actions).toContain("addSkillRequirement");
     expect(actions).not.toContain('from "./domain');
   });
+
+  it("triggers skill creation from a drawer next to the catalog title", () => {
+    const page = readFileSync(join(__dirname, "page.tsx"), "utf8");
+    expect(page).toContain("<EntityCreateDrawer");
+    expect(page).toContain('triggerLabel="+ Nueva skill"');
+    expect(page).toContain('title="Definir skill"');
+    expect(page).not.toMatch(/<CardContent>[^<>]*<DefineSkillForm/);
+  });
 });

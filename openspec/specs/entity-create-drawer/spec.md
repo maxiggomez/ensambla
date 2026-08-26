@@ -1,5 +1,8 @@
-## ADDED Requirements
+# entity-create-drawer Specification
 
+## Purpose
+TBD - created by archiving change entity-create-drawer. Update Purpose after archive.
+## Requirements
 ### Requirement: Reusable entity-create drawer
 The system SHALL provide a reusable overlay drawer component for entity-creation forms, anchored to the right edge of the viewport, spanning the full viewport height, with a scrim that dims the underlying page while open.
 
@@ -26,6 +29,14 @@ Each page that offers entity creation SHALL trigger the drawer from a "+ Nuevo/a
 - **WHEN** the drawer is closed
 - **THEN** the page does not render a persistent form card next to the list, and the list/catalog occupies the space previously shared with that card
 
+#### Scenario: Team, project and ceremony creation pages adopt the drawer
+- **WHEN** the Equipos & Proyectos page (temps and projects) or the Rituales page (ceremonies) renders an entity-creation affordance
+- **THEN** that affordance is a "+ Nuevo/a `<entidad>`" button next to the corresponding section title that opens the shared drawer, and the always-visible creation card is removed from those sections
+
+#### Scenario: Inline editing keeps the inline form
+- **WHEN** a form component is also used to edit an existing entity inside its own card (e.g. `TeamForm` editing a Team, with no "new entity" semantics)
+- **THEN** that editing usage stays in its inline layout and only the dedicated creation entry point of the same component uses the drawer
+
 ### Requirement: Drawer keyboard and focus behavior
 The drawer SHALL trap keyboard focus within the panel while open, close on `Escape`, close when the scrim is clicked, and return focus to the triggering button when closed.
 
@@ -51,3 +62,4 @@ The drawer SHALL host each migrated form unchanged in validation, submission, an
 #### Scenario: Validation errors keep the drawer open
 - **WHEN** a hosted form's server action returns a validation error
 - **THEN** the drawer stays open and displays the error next to the relevant field, exactly as it did in the previous inline-card layout
+

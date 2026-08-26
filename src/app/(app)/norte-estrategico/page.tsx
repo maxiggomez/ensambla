@@ -18,6 +18,7 @@ import { verifiedEmail } from "../../../lib/verified-email";
 import { linkMembershipsForUser } from "../../../shared/tenancy";
 import type { Measurement } from "../../../shared/measurement";
 
+import { EntityCreateDrawer } from "../../../components/entity-create-drawer";
 import { NorthStarForm } from "./north-star-form";
 import { StrategyForm } from "./strategy-form";
 import { LeverForm } from "./lever-form";
@@ -119,9 +120,16 @@ export default async function NorteEstrategicoPage() {
       </section>
 
       <section aria-labelledby="northstar-title" className="space-y-4">
-        <h2 id="northstar-title" className="text-2xl">
-          North Star
-        </h2>
+        <div className="flex flex-wrap items-end justify-between gap-3">
+          <h2 id="northstar-title" className="text-2xl">
+            North Star
+          </h2>
+          {isDirection && !northStar ? (
+            <EntityCreateDrawer triggerLabel="+ Nueva North Star" title="Definir North Star">
+              <NorthStarForm />
+            </EntityCreateDrawer>
+          ) : null}
+        </div>
         <Card>
           <CardHeader>
             <CardTitle>La métrica que define el rumbo</CardTitle>
@@ -151,7 +159,19 @@ export default async function NorteEstrategicoPage() {
                 </p>
 
                 <div>
-                  <h3 className="mb-2 font-bold">Input levers</h3>
+                  <h3 className="mb-2 flex flex-wrap items-center justify-between gap-3 font-bold">
+                    <span>Input levers</span>
+                    {isDirection ? (
+                      <EntityCreateDrawer triggerLabel="+ Nuevo lever" title="Nuevo lever">
+                        <LeverForm
+                          objectives={objectives.map((objective) => ({
+                            id: objective.id,
+                            title: objective.title,
+                          }))}
+                        />
+                      </EntityCreateDrawer>
+                    ) : null}
+                  </h3>
                   {northStar.levers.length === 0 ? (
                     <p className="text-sm text-muted-foreground">
                       Todavía no hay levers. Agregá las palancas que mueven la North Star.
@@ -176,20 +196,11 @@ export default async function NorteEstrategicoPage() {
                     </ul>
                   )}
                 </div>
-
-                {isDirection ? (
-                  <div className="border-t border-border pt-4">
-                    <LeverForm
-                      objectives={objectives.map((objective) => ({
-                        id: objective.id,
-                        title: objective.title,
-                      }))}
-                    />
-                  </div>
-                ) : null}
               </div>
             ) : isDirection ? (
-              <NorthStarForm />
+              <p className="text-sm text-muted-foreground">
+                Todavía no hay North Star. Usá “+ Nueva North Star” para definirla.
+              </p>
             ) : (
               <p className="text-sm text-muted-foreground">
                 La organización todavía no definió su North Star.

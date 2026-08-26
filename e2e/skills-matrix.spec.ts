@@ -16,10 +16,13 @@ test("Dirección define skills, registra competencias y seniority", async ({ pag
     page.getByRole("heading", { name: "Competencias y staffing alineados" }),
   ).toBeVisible();
 
-  const skillForm = page.locator("form", { hasText: "Definir skill" });
-  await skillForm.getByLabel("Nombre de la skill").fill("E2E Negociación");
-  await skillForm.getByRole("button", { name: "Definir skill" }).click();
-  await expect(skillForm.getByText("Skill creada.")).toBeVisible();
+  await page.getByRole("button", { name: "+ Nueva skill" }).click();
+  const skillDrawer = page.getByRole("dialog");
+  await expect(skillDrawer).toBeVisible();
+  await skillDrawer.getByLabel("Nombre de la skill").fill("E2E Negociación");
+  await skillDrawer.getByRole("button", { name: "Definir skill" }).click();
+  await expect(skillDrawer).toBeHidden();
+  await expect(page.getByText("E2E Negociación", { exact: true }).first()).toBeVisible();
 
   const matrix = page.locator("section", { hasText: "Matriz de competencias" });
   const row = matrix.locator("tr", { hasText: "Ceo Dev" });
@@ -31,6 +34,36 @@ test("Dirección define skills, registra competencias y seniority", async ({ pag
   await seniorityForm.getByLabel("Seniority").selectOption("Senior");
   await seniorityForm.getByRole("button", { name: "Guardar seniority" }).click();
   await expect(seniorityForm.getByText("Seniority guardada.")).toBeVisible();
+});
+
+test("el drawer de alta cierra con Escape, con el scrim y devuelve el foco", async ({
+  page,
+}) => {
+  await signInAs(page, "dev_direccion");
+  await page.goto("/skills-y-staffing");
+  const trigger = page.getByRole("button", { name: "+ Nueva skill" });
+  const drawer = page.getByRole("dialog");
+
+  await trigger.click();
+  await expect(drawer).toBeVisible();
+  await page.keyboard.press("Escape");
+  await expect(drawer).toBeHidden();
+  await expect(trigger).toBeFocused();
+
+  await trigger.click();
+  await expect(drawer).toBeVisible();
+  await page.mouse.click(10, 10);
+  await expect(drawer).toBeHidden();
+  await expect(trigger).toBeFocused();
+
+  await trigger.click();
+  await expect(drawer).toBeVisible();
+  await drawer.getByLabel("Nombre de la skill").focus();
+  await page.keyboard.press("Tab");
+  const focusInside = await drawer.evaluate(() =>
+    Boolean(document.activeElement?.closest('[role="dialog"]')),
+  );
+  expect(focusInside).toBe(true);
 });
 
 test("Líder registra competencias pero no ve el control de seniority", async ({ page }) => {
@@ -52,8 +85,28 @@ test("Colaborador ve la matriz en sólo lectura", async ({ page }) => {
   const matrix = page.locator("section", { hasText: "Matriz de competencias" });
   await expect(matrix).toBeVisible();
   await expect(page.getByRole("columnheader", { name: "Comunicación" })).toBeVisible();
-  await expect(page.getByRole("button", { name: "Definir skill" })).toHaveCount(0);
+  await expect(page.getByRole("button", { name: "+ Nueva skill" })).toHaveCount(0);
   await expect(page.getByRole("button", { name: "Guardar seniority" })).toHaveCount(0);
+});
+
+test("un error de servidor mantiene el drawer abierto con el error junto al campo", async ({
+  page,
+}) => {
+  await signInAs(page, "dev_direccion");
+  await page.goto("/skills-y-staffing");
+  const trigger = page.getByRole("button", { name: "+ Nueva skill" });
+  const drawer = page.getByRole("dialog");
+
+  await trigger.click();
+  await expect(drawer).toBeVisible();
+  await drawer.getByLabel("Nombre de la skill").evaluate((el) => {
+    const input = el as HTMLInputElement;
+    input.removeAttribute("required");
+    input.value = "";
+  });
+  await drawer.getByRole("button", { name: "Definir skill" }).click();
+  await expect(drawer).toBeVisible();
+  await expect(drawer.getByRole("status")).toContainText(/./);
 });
 
 test("sugerencias de staffing para una necesidad", async ({ page }) => {
@@ -81,9 +134,11 @@ test("gaps: registrar requisito y ver el riesgo bus factor", async ({ page }) =>
   await expect(ceoRow.getByLabel(/Nivel Comunicación/)).toHaveValue("3");
 
   await page.goto("/okrs");
-  await page.getByLabel("Título").fill("E2E Gap Bus");
-  await page.getByLabel("Nivel", { exact: true }).selectOption("Company");
-  await page.getByRole("button", { name: "Crear objetivo" }).click();
+  await page.getByRole("button", { name: "+ Nuevo objetivo" }).click();
+  const objectiveDrawer = page.getByRole("dialog");
+  await objectiveDrawer.getByLabel("Título").fill("E2E Gap Bus");
+  await objectiveDrawer.getByLabel("Nivel", { exact: true }).selectOption("Company");
+  await objectiveDrawer.getByRole("button", { name: "Crear objetivo" }).click();
   await expect(page.getByRole("status")).toContainText("Objetivo creado");
   const objectiveCard = page
     .locator('[data-slot="card"]')

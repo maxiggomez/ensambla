@@ -34,6 +34,13 @@ describe("Rituals UI design-system contract", () => {
     expect(sources).not.toMatch(/rgb\(/i);
   });
 
+  it("adopts the entity-create drawer for ceremony creation", () => {
+    expect(sources).toContain("+ Nueva ceremonia");
+    expect(sources).toContain("EntityCreateDrawer");
+    expect(sources).not.toMatch(/CardTitle>Crear ceremonia/);
+    expect(sources).toContain('role="status"');
+  });
+
   it("consumes the public application contracts without re-implementing them", () => {
     const actions = readFileSync(join(__dirname, "actions.ts"), "utf8");
     expect(actions).toContain("createRitual");
