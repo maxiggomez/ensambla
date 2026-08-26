@@ -15,6 +15,7 @@ import {
 import { listTeamCapacities } from "@/modules/teams-staffing/application";
 import { ApplicationError } from "@/shared/errors";
 import { linkMembershipsForUser } from "@/shared/tenancy";
+import { EntityCreateDrawer } from "@/components/entity-create-drawer";
 
 import {
   CreateRitualForm,
@@ -108,14 +109,9 @@ export default async function RitualesPage() {
             </p>
           </div>
           {canManageRituals ? (
-            <Card className="w-full max-w-sm">
-              <CardHeader>
-                <CardTitle>Crear ceremonia</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CreateRitualForm teams={teamOptions} />
-              </CardContent>
-            </Card>
+            <EntityCreateDrawer triggerLabel="+ Nueva ceremonia" title="Crear ceremonia">
+              <CreateRitualForm teams={teamOptions} />
+            </EntityCreateDrawer>
           ) : null}
         </div>
         {rituals.length === 0 ? (

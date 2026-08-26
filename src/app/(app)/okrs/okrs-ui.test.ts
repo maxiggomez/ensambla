@@ -45,4 +45,14 @@ describe("OKRs UI design-system contract", () => {
     expect(actions).toContain("MAX_EVIDENCE_FILE_BYTES,");
     expect(actions).not.toContain("const MAX_EVIDENCE_FILE_BYTES");
   });
+
+  it("triggers cycle and objective creation from drawers next to their list titles", () => {
+    const page = readFileSync(join(__dirname, "page.tsx"), "utf8");
+    expect(page).toContain("<EntityCreateDrawer");
+    expect(page).toContain('triggerLabel="+ Nuevo ciclo"');
+    expect(page).toContain('title="Nuevo ciclo"');
+    expect(page).toContain('triggerLabel="+ Nuevo objetivo"');
+    expect(page).toContain('title="Nuevo Objetivo"');
+    expect(page).not.toMatch(/<h2[^>]*>Crear objetivo<\/h2>/);
+  });
 });

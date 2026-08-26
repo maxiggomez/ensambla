@@ -1,10 +1,11 @@
 "use client";
 
-import { useActionState, useState } from "react";
+import { useActionState, useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useEntityCreateDrawerClose } from "@/components/entity-create-drawer";
 
 import { defineNorthStarAction } from "./actions";
 import { FormFeedback } from "./form-feedback";
@@ -22,6 +23,11 @@ const KIND_LABELS: Record<MeasurementKind, string> = {
 export function NorthStarForm() {
   const [state, action, pending] = useActionState(defineNorthStarAction, {});
   const [kind, setKind] = useState<MeasurementKind>("percentage");
+  const close = useEntityCreateDrawerClose();
+
+  useEffect(() => {
+    if (state.success) close();
+  }, [state.success, close]);
 
   return (
     <form action={action} className="space-y-3">

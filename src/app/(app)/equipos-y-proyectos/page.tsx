@@ -15,10 +15,12 @@ import {
 } from "@/modules/teams-staffing/application";
 import { ApplicationError } from "@/shared/errors";
 import { linkMembershipsForUser } from "@/shared/tenancy";
+import { EntityCreateDrawer } from "@/components/entity-create-drawer";
 
 import {
   AssignMemberForm,
   CloseProjectForm,
+  CreateTeamForm,
   LinkObjectiveForm,
   ProjectForm,
   TeamForm,
@@ -131,14 +133,9 @@ export default async function EquiposYProyectosPage() {
             </p>
           </div>
           {canCreateTeam ? (
-            <Card className="w-full max-w-sm">
-              <CardHeader>
-                <CardTitle>Crear equipo</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <TeamForm />
-              </CardContent>
-            </Card>
+            <EntityCreateDrawer triggerLabel="+ Nuevo equipo" title="Crear equipo">
+              <CreateTeamForm />
+            </EntityCreateDrawer>
           ) : null}
         </div>
 
@@ -221,14 +218,9 @@ export default async function EquiposYProyectosPage() {
             </p>
           </div>
           {canManageProjects ? (
-            <Card className="w-full max-w-sm">
-              <CardHeader>
-                <CardTitle>Crear proyecto</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ProjectForm />
-              </CardContent>
-            </Card>
+            <EntityCreateDrawer triggerLabel="+ Nuevo proyecto" title="Crear proyecto">
+              <ProjectForm />
+            </EntityCreateDrawer>
           ) : null}
         </div>
 

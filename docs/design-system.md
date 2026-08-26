@@ -128,6 +128,7 @@ todo token nuevo se agrega ahí. Ningún componente hardcodea hex.
 | Tabla (matriz, previews) | `Table` |
 | Avatar / iniciales | `Avatar` |
 | Modal / confirmaciones | `Dialog` / `AlertDialog` |
+| **Drawer de alta de entidades** | **`EntityCreateDrawer` (sobre `Sheet`)** |
 | Toast | `Sonner` |
 | Input / textarea | `Input` / `Textarea` |
 | Tooltip | `Tooltip` |
@@ -158,6 +159,25 @@ todo token nuevo se agrega ahí. Ningún componente hardcodea hex.
 - **Live Preview Panel** — panel oscuro que se puebla en vivo (onboarding).
 - **Wizard Progress Spine** — barra de pasos con estados done/active/pending.
 - **Risk/Alert Item** — ícono + título + detalle, tonal por severidad.
+
+### Drawer de alta de entidades (`EntityCreateDrawer`)
+
+El alta de entidades (skill, objetivo, ciclo, North Star, lever, equipo,
+proyecto, ceremonia, …) se dispara
+desde un **botón "+ Nuevo/a `<entidad>`" junto al título de la lista/catálogo**
+y se resuelve en un **panel lateral overlay** construido sobre `Sheet`
+(componente `src/components/entity-create-drawer.tsx` + primitivo
+`src/components/ui/sheet.tsx`, ambos reutilizables):
+
+- Panel derecho, altura completa, con scrim que atenúa el fondo.
+- Layout estándar: header (título + descripción opcional + botón cerrar),
+  body scrollable (`overflow-y-auto`) con el formulario, footer con "Cancelar".
+- El formulario conserva sus server actions y validación; tras un submit
+  exitoso que devuelve estado (`useActionState`), la página cierra el drawer
+  vía `useEntityCreateDrawerClose()`. Formularios cuyo server action
+  redirige (p. ej. `createObjectiveAction`) cierran por la propia redirección.
+- No reemplaza `Dialog`/`AlertDialog` (confirmaciones y modales centrados);
+  es el mecanismo estándar **solo** para altas frente a una lista.
 
 ---
 

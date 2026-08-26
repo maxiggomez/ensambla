@@ -26,6 +26,14 @@ Each page that offers entity creation SHALL trigger the drawer from a "+ Nuevo/a
 - **WHEN** the drawer is closed
 - **THEN** the page does not render a persistent form card next to the list, and the list/catalog occupies the space previously shared with that card
 
+#### Scenario: Team, project and ceremony creation pages adopt the drawer
+- **WHEN** the Equipos & Proyectos page (temps and projects) or the Rituales page (ceremonies) renders an entity-creation affordance
+- **THEN** that affordance is a "+ Nuevo/a `<entidad>`" button next to the corresponding section title that opens the shared drawer, and the always-visible creation card is removed from those sections
+
+#### Scenario: Inline editing keeps the inline form
+- **WHEN** a form component is also used to edit an existing entity inside its own card (e.g. `TeamForm` editing a Team, with no "new entity" semantics)
+- **THEN** that editing usage stays in its inline layout and only the dedicated creation entry point of the same component uses the drawer
+
 ### Requirement: Drawer keyboard and focus behavior
 The drawer SHALL trap keyboard focus within the panel while open, close on `Escape`, close when the scrim is clicked, and return focus to the triggering button when closed.
 

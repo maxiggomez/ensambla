@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
+import { EntityCreateDrawer } from "@/components/entity-create-drawer";
 import { getCurrentUser } from "@/lib/auth";
 import { verifiedEmail } from "@/lib/verified-email";
 import { listMembers } from "@/modules/identity-org/application";
@@ -171,14 +172,9 @@ export default async function SkillsYStaffingPage({
             </p>
           </div>
           {canManageSkills ? (
-            <Card className="w-full max-w-xs">
-              <CardHeader>
-                <CardTitle>Definir skill</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <DefineSkillForm />
-              </CardContent>
-            </Card>
+            <EntityCreateDrawer triggerLabel="+ Nueva skill" title="Definir skill">
+              <DefineSkillForm />
+            </EntityCreateDrawer>
           ) : null}
         </div>
         {matrix.skills.length === 0 ? (

@@ -9,10 +9,12 @@ async function signInAs(page: Page, devUserId: string): Promise<void> {
 
 async function createTeam(page: Page, name: string): Promise<void> {
   await page.goto("/equipos-y-proyectos");
-  const teamForm = page.locator("form", { hasText: "Crear equipo" }).first();
-  await teamForm.getByLabel("Nombre del equipo").fill(name);
-  await teamForm.getByRole("button", { name: "Crear equipo" }).click();
-  await expect(teamForm.getByText("Equipo creado.")).toBeVisible();
+  await page.getByRole("button", { name: "+ Nuevo equipo" }).click();
+  const teamDrawer = page.getByRole("dialog");
+  await teamDrawer.getByLabel("Nombre del equipo").fill(name);
+  await teamDrawer.getByRole("button", { name: "Crear equipo" }).click();
+  await expect(teamDrawer).toBeHidden();
+  await expect(page.getByTestId(`team-card-${name}`)).toBeVisible();
 }
 
 test("Dirección crea una ceremonia, la evalúa como vencida y la marca realizada", async ({
@@ -27,15 +29,17 @@ test("Dirección crea una ceremonia, la evalúa como vencida y la marca realizad
   await page.goto("/rituales");
   await expect(page.getByRole("heading", { name: "Rituales y blockers" })).toBeVisible();
 
-  const ritualForm = page.locator("form", { hasText: "Crear ceremonia" }).first();
-  await ritualForm.getByLabel("Team").selectOption({ label: teamName });
-  await ritualForm.getByLabel("Nombre").fill("Weekly Sync");
-  await ritualForm.getByLabel("Cadencia").selectOption("Weekly");
-  await ritualForm.getByLabel("Fecha de inicio").fill("2026-08-01");
-  await ritualForm.getByRole("button", { name: "Crear ceremonia" }).click();
-  await expect(ritualForm.getByText("Ceremonia creada.")).toBeVisible();
+  await page.getByRole("button", { name: "+ Nueva ceremonia" }).click();
+  const ceremonyDrawer = page.getByRole("dialog");
+  await ceremonyDrawer.getByLabel("Team").selectOption({ label: teamName });
+  await ceremonyDrawer.getByLabel("Nombre").fill("Weekly Sync");
+  await ceremonyDrawer.getByLabel("Cadencia").selectOption("Weekly");
+  await ceremonyDrawer.getByLabel("Fecha de inicio").fill("2026-08-01");
+  await ceremonyDrawer.getByRole("button", { name: "Crear ceremonia" }).click();
+  await expect(ceremonyDrawer).toBeHidden();
 
   const ritualCard = page.locator("section").filter({ hasText: "Weekly Sync" }).last();
+  await expect(ritualCard).toBeVisible();
   await ritualCard.getByRole("button", { name: "Generar fechas" }).click();
   await expect(ritualCard.getByText("Ocurrencias generadas.")).toBeVisible();
   await ritualCard.getByRole("button", { name: "Evaluar estado" }).click();
@@ -54,9 +58,11 @@ test("Dirección registra y resuelve un Blocker vinculado a un Objective", async
 
   await page.goto("/okrs");
   const objectiveTitle = `E2E Blocker Obj ${Date.now()}`;
-  await page.getByLabel("Título").fill(objectiveTitle);
-  await page.getByLabel("Nivel", { exact: true }).selectOption("Company");
-  await page.getByRole("button", { name: "Crear objetivo" }).click();
+  await page.getByRole("button", { name: "+ Nuevo objetivo" }).click();
+  const objectiveDrawer = page.getByRole("dialog");
+  await objectiveDrawer.getByLabel("Título").fill(objectiveTitle);
+  await objectiveDrawer.getByLabel("Nivel", { exact: true }).selectOption("Company");
+  await objectiveDrawer.getByRole("button", { name: "Crear objetivo" }).click();
   await expect(page.getByRole("status")).toContainText("Objetivo creado");
   const objectiveCard = page
     .locator('[data-slot="card"]')

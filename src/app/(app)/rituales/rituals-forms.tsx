@@ -1,10 +1,11 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useEntityCreateDrawerClose } from "@/components/entity-create-drawer";
 
 import {
   createRitualAction,
@@ -52,6 +53,10 @@ function TeamSelect({ id, options }: { id: string; options: Option[] }) {
 
 export function CreateRitualForm({ teams }: { teams: Option[] }) {
   const [state, action, pending] = useActionState(createRitualAction, initial);
+  const close = useEntityCreateDrawerClose();
+  useEffect(() => {
+    if (state.success) close();
+  }, [state.success, close]);
   return (
     <form action={action} className="space-y-3">
       <fieldset className="space-y-3">

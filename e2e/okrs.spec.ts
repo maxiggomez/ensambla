@@ -18,16 +18,22 @@ test.describe.serial("OKR full-cycle workspace", () => {
       page.getByRole("heading", { name: "Objetivos que bajan a resultados medibles" }),
     ).toBeVisible();
 
-    await page.getByLabel("Nombre del ciclo").fill("Q4 E2E");
-    await page.getByLabel("Inicio").fill("2026-10-01");
-    await page.getByLabel("Fin", { exact: true }).fill("2026-12-31");
-    await page.getByRole("button", { name: "Crear ciclo" }).click();
+    await page.getByRole("button", { name: "+ Nuevo ciclo" }).click();
+    const cycleDrawer = page.getByRole("dialog");
+    await cycleDrawer.getByLabel("Nombre del ciclo").fill("Q4 E2E");
+    await cycleDrawer.getByLabel("Inicio").fill("2026-10-01");
+    await cycleDrawer.getByLabel("Fin", { exact: true }).fill("2026-12-31");
+    await cycleDrawer.getByRole("button", { name: "Crear ciclo" }).click();
     await expect(page.getByRole("status")).toContainText("Ciclo creado");
 
-    await page.getByLabel("Título").fill("Expandir E2E");
-    await page.getByLabel("Nivel", { exact: true }).selectOption("Company");
-    await page.getByLabel("Ciclo", { exact: true }).selectOption({ label: "Q4 E2E" });
-    await page.getByRole("button", { name: "Crear objetivo" }).click();
+    await page.getByRole("button", { name: "+ Nuevo objetivo" }).click();
+    const objectiveDrawer = page.getByRole("dialog");
+    await objectiveDrawer.getByLabel("Título").fill("Expandir E2E");
+    await objectiveDrawer.getByLabel("Nivel", { exact: true }).selectOption("Company");
+    await objectiveDrawer
+      .getByLabel("Ciclo", { exact: true })
+      .selectOption({ label: "Q4 E2E" });
+    await objectiveDrawer.getByRole("button", { name: "Crear objetivo" }).click();
     await expect(page.getByRole("status")).toContainText("Objetivo creado");
 
     await page.getByLabel("Nuevo Key Result").fill("Clientes E2E");
@@ -82,9 +88,11 @@ test.describe.serial("OKR full-cycle workspace", () => {
   }) => {
     await signInAs(page, "dev_colaborador");
     await page.goto("/okrs");
-    await page.getByLabel("Título").fill("No autorizado E2E");
-    await page.getByLabel("Nivel", { exact: true }).selectOption("Company");
-    await page.getByRole("button", { name: "Crear objetivo" }).click();
+    await page.getByRole("button", { name: "+ Nuevo objetivo" }).click();
+    const colaboradorDrawer = page.getByRole("dialog");
+    await colaboradorDrawer.getByLabel("Título").fill("No autorizado E2E");
+    await colaboradorDrawer.getByLabel("Nivel", { exact: true }).selectOption("Company");
+    await colaboradorDrawer.getByRole("button", { name: "Crear objetivo" }).click();
     await expect(page.getByRole("alert").filter({ hasText: "No tenés permiso" })).toBeVisible();
   });
 });

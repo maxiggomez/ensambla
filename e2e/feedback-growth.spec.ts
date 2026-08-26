@@ -12,9 +12,11 @@ test("request → private Feedback → public Kudo → GrowthPlan evidence", asy
   await signInAs(page, "dev_direccion");
 
   await page.goto("/okrs");
-  await page.getByLabel("Título").fill("Crecimiento Feedback E2E");
-  await page.getByLabel("Nivel", { exact: true }).selectOption("Company");
-  await page.getByRole("button", { name: "Crear objetivo" }).click();
+  await page.getByRole("button", { name: "+ Nuevo objetivo" }).click();
+  const objectiveDrawer = page.getByRole("dialog");
+  await objectiveDrawer.getByLabel("Título").fill("Crecimiento Feedback E2E");
+  await objectiveDrawer.getByLabel("Nivel", { exact: true }).selectOption("Company");
+  await objectiveDrawer.getByRole("button", { name: "Crear objetivo" }).click();
   await page.getByLabel("Nuevo Key Result").fill("Mejorar conversaciones de desarrollo");
   await page.getByLabel("Tipo de medición").selectOption("percentage");
   await page.getByLabel("Valor inicial").fill("0");

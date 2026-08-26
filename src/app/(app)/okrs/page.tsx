@@ -24,6 +24,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { EntityCreateDrawer } from "@/components/entity-create-drawer";
 
 import {
   ArchiveObjectiveForm,
@@ -106,38 +107,19 @@ export default async function OkrsPage({
 
       {isDirection ? (
         <section aria-labelledby="cycle-title" className="space-y-3">
-          <h2 id="cycle-title" className="text-2xl">
-            Ciclos
-          </h2>
-          <Card>
-            <CardContent>
+          <div className="flex flex-wrap items-end justify-between gap-3">
+            <h2 id="cycle-title" className="text-2xl">
+              Ciclos
+            </h2>
+            <EntityCreateDrawer triggerLabel="+ Nuevo ciclo" title="Nuevo ciclo">
               <CreateCycleForm />
-            </CardContent>
-          </Card>
+            </EntityCreateDrawer>
+          </div>
+          <p className="text-sm text-muted-foreground">
+            Los ciclos agrupan los objetivos con su período de ejecución.
+          </p>
         </section>
       ) : null}
-
-      <section aria-labelledby="create-objective-title" className="space-y-3">
-        <h2 id="create-objective-title" className="text-2xl">
-          Crear objetivo
-        </h2>
-        <Card>
-          <CardHeader>
-            <CardTitle>Nuevo Objetivo</CardTitle>
-            <CardDescription>
-              Queda en borrador hasta tener al menos un Key Result válido.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <CreateObjectiveForm
-              members={members.map((member) => ({ id: member.id, name: member.name }))}
-              teams={teams.map((team) => ({ id: team.teamId, name: team.name }))}
-              cycles={cycles}
-              objectives={objectives}
-            />
-          </CardContent>
-        </Card>
-      </section>
 
       <section aria-labelledby="active-objectives-title" className="space-y-3">
         <div className="flex flex-wrap items-end justify-between gap-2">
@@ -149,11 +131,25 @@ export default async function OkrsPage({
               {objectives.length} visibles · {reminders.length} check-ins vencidos
             </p>
           </div>
-          {risks.length > 0 ? (
-            <Badge variant="risk">{risks.length} KR en riesgo</Badge>
-          ) : (
-            <Badge variant="ok">Sin riesgos críticos</Badge>
-          )}
+          <div className="flex items-center gap-2">
+            <EntityCreateDrawer
+              triggerLabel="+ Nuevo objetivo"
+              title="Nuevo Objetivo"
+              description="Queda en borrador hasta tener al menos un Key Result válido."
+            >
+              <CreateObjectiveForm
+                members={members.map((member) => ({ id: member.id, name: member.name }))}
+                teams={teams.map((team) => ({ id: team.teamId, name: team.name }))}
+                cycles={cycles}
+                objectives={objectives}
+              />
+            </EntityCreateDrawer>
+            {risks.length > 0 ? (
+              <Badge variant="risk">{risks.length} KR en riesgo</Badge>
+            ) : (
+              <Badge variant="ok">Sin riesgos críticos</Badge>
+            )}
+          </div>
         </div>
         {objectives.length === 0 ? (
           <Card>

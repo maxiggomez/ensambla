@@ -20,13 +20,16 @@ test("Dirección administra equipos, miembros y proyectos", async ({ page }) => 
     page.getByRole("heading", { name: "Trabajo por equipos hacia los objetivos" }),
   ).toBeVisible();
 
-  const teamForm = page.locator("form", { hasText: "Crear equipo" });
-  await teamForm.getByLabel("Nombre del equipo").fill(TEAM_NAME);
-  await teamForm.getByLabel("Descripción").fill("Ventas y cuentas clave");
-  await teamForm.getByRole("button", { name: "Crear equipo" }).click();
-  await expect(page.getByText("Equipo creado.")).toBeVisible();
-
+  await page.getByRole("button", { name: "+ Nuevo equipo" }).click();
+  const teamDrawer = page.getByRole("dialog");
+  await teamDrawer.getByLabel("Nombre del equipo").fill(TEAM_NAME);
+  await teamDrawer.getByLabel("Descripción").fill("Ventas y cuentas clave");
+  await teamDrawer.getByRole("button", { name: "Crear equipo" }).click();
+  await expect(teamDrawer).toBeHidden();
   const teamCard = page.getByTestId(`team-card-${TEAM_NAME}`);
+  await expect(teamCard).toBeVisible();
+  await expect(teamCard.getByRole("heading", { name: "Editar equipo" })).toBeVisible();
+  await expect(teamCard.getByRole("button", { name: "Guardar cambios" })).toBeVisible();
   const assignForm = teamCard.locator("form", { hasText: "Asignar miembro" });
   await assignForm.getByLabel("Persona").selectOption({ label: "Colaborador Dev" });
   await assignForm.getByLabel("Rol").selectOption({ label: "Contributor" });
@@ -38,19 +41,23 @@ test("Dirección administra equipos, miembros y proyectos", async ({ page }) => 
   await expect(memberRow).toContainText("50%");
   await expect(teamCard.getByText(/Capacidad del equipo · 50%/)).toBeVisible();
 
-  const projectForm = page.locator("form", { hasText: "Crear proyecto" });
-  await projectForm.getByLabel("Nombre del proyecto").fill(PROJECT_NAME);
-  await projectForm.getByRole("button", { name: "Crear proyecto" }).click();
-  await expect(projectForm.getByText("Proyecto creado.")).toBeVisible();
+  await page.getByRole("button", { name: "+ Nuevo proyecto" }).click();
+  const projectDrawer = page.getByRole("dialog");
+  await projectDrawer.getByLabel("Nombre del proyecto").fill(PROJECT_NAME);
+  await projectDrawer.getByRole("button", { name: "Crear proyecto" }).click();
+  await expect(projectDrawer).toBeHidden();
+  const projectCard = page.getByTestId(`project-card-${PROJECT_NAME}`);
+  await expect(projectCard).toBeVisible();
 
   await page.goto("/okrs");
-  await page.getByLabel("Título").fill(OBJECTIVE_TITLE);
-  await page.getByLabel("Nivel", { exact: true }).selectOption("Company");
-  await page.getByRole("button", { name: "Crear objetivo" }).click();
+  await page.getByRole("button", { name: "+ Nuevo objetivo" }).click();
+  const objectiveDrawer = page.getByRole("dialog");
+  await objectiveDrawer.getByLabel("Título").fill(OBJECTIVE_TITLE);
+  await objectiveDrawer.getByLabel("Nivel", { exact: true }).selectOption("Company");
+  await objectiveDrawer.getByRole("button", { name: "Crear objetivo" }).click();
   await expect(page.getByRole("status")).toContainText("Objetivo creado");
 
   await page.goto("/equipos-y-proyectos");
-  const projectCard = page.getByTestId(`project-card-${PROJECT_NAME}`);
   await projectCard.getByLabel("Vincular a un objetivo").selectOption(OBJECTIVE_TITLE);
   await projectCard.getByRole("button", { name: "Vincular" }).click();
   await expect(projectCard.getByText("Objetivo vinculado.")).toBeVisible();
@@ -65,15 +72,19 @@ test("las alertas de alineamiento se muestran", async ({ page }) => {
   await signInAs(page, "dev_direccion");
 
   await page.goto("/equipos-y-proyectos");
-  const projectForm = page.locator("form", { hasText: "Crear proyecto" });
-  await projectForm.getByLabel("Nombre del proyecto").fill("E2E Proyecto Aislado");
-  await projectForm.getByRole("button", { name: "Crear proyecto" }).click();
-  await expect(projectForm.getByText("Proyecto creado.")).toBeVisible();
+  await page.getByRole("button", { name: "+ Nuevo proyecto" }).click();
+  const isolatedDrawer = page.getByRole("dialog");
+  await isolatedDrawer.getByLabel("Nombre del proyecto").fill("E2E Proyecto Aislado");
+  await isolatedDrawer.getByRole("button", { name: "Crear proyecto" }).click();
+  await expect(isolatedDrawer).toBeHidden();
+  await expect(page.getByTestId("project-card-E2E Proyecto Aislado")).toBeVisible();
 
   await page.goto("/okrs");
-  await page.getByLabel("Título").fill("E2E KR Sin Proyecto");
-  await page.getByLabel("Nivel", { exact: true }).selectOption("Company");
-  await page.getByRole("button", { name: "Crear objetivo" }).click();
+  await page.getByRole("button", { name: "+ Nuevo objetivo" }).click();
+  const objectiveDrawer = page.getByRole("dialog");
+  await objectiveDrawer.getByLabel("Título").fill("E2E KR Sin Proyecto");
+  await objectiveDrawer.getByLabel("Nivel", { exact: true }).selectOption("Company");
+  await objectiveDrawer.getByRole("button", { name: "Crear objetivo" }).click();
   await expect(page.getByRole("status")).toContainText("Objetivo creado");
   const objectiveCard = page
     .locator('[data-slot="card"]')
@@ -101,7 +112,7 @@ test("Colaborador ve equipos y proyectos en sólo lectura", async ({ page }) => 
     page.getByRole("heading", { name: "Trabajo por equipos hacia los objetivos" }),
   ).toBeVisible();
   await expect(page.getByText("E2E Equipo Comercial")).toBeVisible();
-  await expect(page.getByRole("button", { name: "Crear equipo" })).toHaveCount(0);
-  await expect(page.getByRole("button", { name: "Crear proyecto" })).toHaveCount(0);
+  await expect(page.getByRole("button", { name: "+ Nuevo equipo" })).toHaveCount(0);
+  await expect(page.getByRole("button", { name: "+ Nuevo proyecto" })).toHaveCount(0);
   await expect(page.getByText("Asignar miembro", { exact: false })).toHaveCount(0);
 });
