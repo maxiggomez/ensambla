@@ -15,7 +15,11 @@ export interface LearningRiskView {
  * retro, o nunca, ⇒ riesgo). El flag nunca se persiste.
  */
 export async function evaluateLearningRisks(
-  input: { actorClerkUserId: string; teamIds: readonly string[] },
+  input: {
+    actorClerkUserId: string;
+    teamIds: readonly string[];
+    now?: Date;
+  },
   client: PrismaClient = prismaClient(),
 ): Promise<LearningRiskView[]> {
   return withTenantForUser(
@@ -30,7 +34,7 @@ export async function evaluateLearningRisks(
           lastRetroByTeam.set(retro.teamId, retro.heldAt);
         }
       }
-      const now = new Date();
+      const now = input.now ?? new Date();
       return input.teamIds.map((teamId) => ({
         teamId,
         atRisk: evaluateRetroRisk({

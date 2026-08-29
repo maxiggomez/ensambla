@@ -235,7 +235,7 @@ describe("falling Team eNPS correlated with an overdue retrospective", () => {
     await createAnsweredPulse([10, 0, 0, 0], new Date("2026-10-01T09:00:00Z"));
 
     const analysis = await analyzeTeamEnps(
-      { actorClerkUserId: "retro_direction", teamId },
+      { actorClerkUserId: "retro_direction", teamId, now: new Date("2026-08-12T09:00:00Z") },
       db.prisma,
     );
     expect(analysis.correlations.map((correlation) => correlation.type)).not.toContain(
