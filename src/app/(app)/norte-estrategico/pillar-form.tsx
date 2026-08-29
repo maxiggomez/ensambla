@@ -1,10 +1,11 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useEntityCreateDrawerClose } from "@/components/entity-create-drawer";
 
 import { assignObjectiveToPillarAction, createStrategicPillarAction } from "./actions";
 import { FormFeedback } from "./form-feedback";
@@ -14,6 +15,12 @@ type ObjectiveOption = { id: string; title: string };
 
 export function PillarForm() {
   const [state, action, pending] = useActionState(createStrategicPillarAction, {});
+  const close = useEntityCreateDrawerClose();
+
+  useEffect(() => {
+    if (state.success) close();
+  }, [state.success, close]);
+
   return (
     <form action={action} className="space-y-3">
       <div className="space-y-2">
@@ -40,6 +47,12 @@ export function AssignForm({
   objectives: ObjectiveOption[];
 }) {
   const [state, action, pending] = useActionState(assignObjectiveToPillarAction, {});
+  const close = useEntityCreateDrawerClose();
+
+  useEffect(() => {
+    if (state.success) close();
+  }, [state.success, close]);
+
   return (
     <form action={action} className="space-y-3">
       <div className="space-y-2">

@@ -37,6 +37,15 @@ Each page that offers entity creation SHALL trigger the drawer from a "+ Nuevo/a
 - **WHEN** a form component is also used to edit an existing entity inside its own card (e.g. `TeamForm` editing a Team, with no "new entity" semantics)
 - **THEN** that editing usage stays in its inline layout and only the dedicated creation entry point of the same component uses the drawer
 
+#### Scenario: Strategic pillar creation and assignment adopt the drawer
+- **GIVEN** the Norte Estratégico page with the Mapa estratégico title
+- **WHEN** Dirección clicks the "+ Nuevo pilar" trigger next to the title
+- **THEN** the entity-create drawer opens with the pillar creation form
+- **AND** while the drawer is closed no always-visible pillar-creation form is rendered next to the map
+- **AND** Dirección can create a pillar and close the drawer on success
+- **AND** Dirección can open a "+ Asignar objetivo" trigger next to the title to assign an existing Objective to a pillar, closing the drawer on success
+- **AND** the previously always-visible inline pillar-creation and assignment forms are removed
+
 ### Requirement: Drawer keyboard and focus behavior
 The drawer SHALL trap keyboard focus within the panel while open, close on `Escape`, close when the scrim is clicked, and return focus to the triggering button when closed.
 

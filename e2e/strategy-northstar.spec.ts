@@ -24,8 +24,6 @@ async function switchUser(page: Page, devUserId: string): Promise<void> {
 }
 
 const strategyForm = (page: Page) => page.locator("form", { hasText: "Visión" });
-const pillarForm = (page: Page) => page.locator("form", { hasText: "Nombre del pilar" });
-
 test("Dirección define la estrategia y la cascada; Líder lee sin formularios de edición", async ({
   page,
 }) => {
@@ -62,13 +60,19 @@ test("Dirección define la estrategia y la cascada; Líder lee sin formularios d
   await leverDrawer.getByRole("button", { name: "Agregar lever" }).click();
   await expect(page.getByText("Leads calificados").first()).toBeVisible();
 
-  // Scenario Group objectives under a pillar + cascada visible
-  await page.getByLabel("Nombre del pilar").fill("Crecimiento");
-  await page.getByRole("button", { name: "Crear pilar" }).click();
-  await expect(pillarForm(page).getByRole("status")).toContainText("Pilar creado.");
+  // Scenario Group objectives under a pillar + cascada visible (drawer de alta)
+  await expect(page.getByRole("button", { name: "+ Nuevo pilar" })).toBeVisible();
+  await page.getByRole("button", { name: "+ Nuevo pilar" }).click();
+  const pillarDrawer = page.getByRole("dialog");
+  await pillarDrawer.getByLabel("Nombre del pilar").fill("Crecimiento");
+  await pillarDrawer.getByRole("button", { name: "Crear pilar" }).click();
+  await expect(pillarDrawer).toBeHidden();
   await expect(page.getByText("Sin objetivos visibles.").first()).toBeVisible();
   await expect(page.getByText("Sin pilar", { exact: true })).toBeHidden();
   await expect(page.getByText(/Definí la North Star/)).toBeHidden();
+
+  // Asignar objetivo a un pilar: trigger de drawer visible junto al mapa
+  await expect(page.getByRole("button", { name: "+ Asignar objetivo" })).toBeVisible();
 
   // Líder lee la estrategia y el mapa sin formularios de edición
   await switchUser(page, "dev_lider");
@@ -82,5 +86,7 @@ test("Dirección define la estrategia y la cascada; Líder lee sin formularios d
   await expect(page.getByRole("button", { name: "Guardar estrategia" })).toBeHidden();
   await expect(page.getByRole("button", { name: "+ Nueva North Star" })).toBeHidden();
   await expect(page.getByRole("button", { name: "+ Nuevo lever" })).toBeHidden();
+  await expect(page.getByRole("button", { name: "+ Nuevo pilar" })).toBeHidden();
+  await expect(page.getByRole("button", { name: "+ Asignar objetivo" })).toBeHidden();
   await expect(page.getByRole("button", { name: "Crear pilar" })).toBeHidden();
 });
