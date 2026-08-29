@@ -42,4 +42,19 @@ describe("Norte Estratégico UI design-system contract", () => {
     expect(page).toContain("<NorthStarForm");
     expect(page).toContain("<LeverForm");
   });
+
+  it("triggers pillar creation and objective assignment from drawers next to the map title", () => {
+    const page = readFileSync(join(__dirname, "page.tsx"), "utf8");
+    expect(page).toContain('triggerLabel="+ Nuevo pilar"');
+    expect(page).toContain('title="Nuevo pilar"');
+    expect(page).toContain('triggerLabel="+ Asignar objetivo"');
+    expect(page).toContain("<PillarForm");
+    expect(page).toContain("<AssignForm");
+  });
+
+  it("keeps pillar forms drawer-aware so they close on success", () => {
+    const pillar = readFileSync(join(__dirname, "pillar-form.tsx"), "utf8");
+    expect(pillar).toContain("useEntityCreateDrawerClose()");
+    expect(pillar).toContain("if (state.success) close()");
+  });
 });

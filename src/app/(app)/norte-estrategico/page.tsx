@@ -217,17 +217,24 @@ export default async function NorteEstrategicoPage() {
           </h2>
           {isDirection ? (
             <div className="flex flex-wrap gap-3">
-              <PillarForm />
-              <AssignForm
-                pillars={map.pillars.map((pillar) => ({
-                  id: pillar.id,
-                  name: pillar.name,
-                }))}
-                objectives={objectives.map((objective) => ({
-                  id: objective.id,
-                  title: objective.title,
-                }))}
-              />
+              <EntityCreateDrawer triggerLabel="+ Nuevo pilar" title="Nuevo pilar">
+                <PillarForm />
+              </EntityCreateDrawer>
+              <EntityCreateDrawer
+                triggerLabel="+ Asignar objetivo"
+                title="Asignar objetivo a un pilar"
+              >
+                <AssignForm
+                  pillars={map.pillars.map((pillar) => ({
+                    id: pillar.id,
+                    name: pillar.name,
+                  }))}
+                  objectives={objectives.map((objective) => ({
+                    id: objective.id,
+                    title: objective.title,
+                  }))}
+                />
+              </EntityCreateDrawer>
             </div>
           ) : null}
         </div>

@@ -1,7 +1,15 @@
 # entity-create-drawer Specification
 
 ## Purpose
-TBD - created by archiving change entity-create-drawer. Update Purpose after archive.
+
+El alta de entidades (skill, objetivo, ciclo, North Star, lever, pilar, equipo,
+proyecto, ceremonia, …) se dispara desde un botón "+ Nuevo/a `<entidad>`" junto al
+título de la lista/catálogo y se resuelve en un panel lateral overlay reusable
+(`EntityCreateDrawer`, sobre el primitivo `Sheet` de shadcn/ui): panel derecho de altura
+completa, con scrim que atenúa el fondo, header/body scrollable/footer fijos, y
+comportamiento de teclado y foco accesible. Define el contrato visual y de interacción
+que todas las páginas usan para el alta de entidades, reemplazando los formularios
+'always-visible' al costado de las listas.
 ## Requirements
 ### Requirement: Reusable entity-create drawer
 The system SHALL provide a reusable overlay drawer component for entity-creation forms, anchored to the right edge of the viewport, spanning the full viewport height, with a scrim that dims the underlying page while open.
@@ -36,6 +44,15 @@ Each page that offers entity creation SHALL trigger the drawer from a "+ Nuevo/a
 #### Scenario: Inline editing keeps the inline form
 - **WHEN** a form component is also used to edit an existing entity inside its own card (e.g. `TeamForm` editing a Team, with no "new entity" semantics)
 - **THEN** that editing usage stays in its inline layout and only the dedicated creation entry point of the same component uses the drawer
+
+#### Scenario: Strategic pillar creation and assignment adopt the drawer
+- **GIVEN** the Norte Estratégico page with the Mapa estratégico title
+- **WHEN** Dirección clicks the "+ Nuevo pilar" trigger next to the title
+- **THEN** the entity-create drawer opens with the pillar creation form
+- **AND** while the drawer is closed no always-visible pillar-creation form is rendered next to the map
+- **AND** Dirección can create a pillar and close the drawer on success
+- **AND** Dirección can open a "+ Asignar objetivo" trigger next to the title to assign an existing Objective to a pillar, closing the drawer on success
+- **AND** the previously always-visible inline pillar-creation and assignment forms are removed
 
 ### Requirement: Drawer keyboard and focus behavior
 The drawer SHALL trap keyboard focus within the panel while open, close on `Escape`, close when the scrim is clicked, and return focus to the triggering button when closed.

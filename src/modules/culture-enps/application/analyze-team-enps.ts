@@ -13,6 +13,7 @@ import { getEnpsResults } from "./get-enps-results";
 export interface AnalyzeTeamEnpsInput {
   actorClerkUserId: string;
   teamId: string;
+  now?: Date;
 }
 
 export async function analyzeTeamEnps(
@@ -47,7 +48,7 @@ export async function analyzeTeamEnps(
     throw new ApplicationError("culture-enps/team-not-found", "Team not found");
   }
   const [retroRisk] = await evaluateLearningRisks(
-    { actorClerkUserId: input.actorClerkUserId, teamIds: [input.teamId] },
+    { actorClerkUserId: input.actorClerkUserId, teamIds: [input.teamId], now: input.now },
     client,
   );
   return {
