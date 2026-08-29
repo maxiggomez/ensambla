@@ -1,7 +1,15 @@
 # entity-create-drawer Specification
 
 ## Purpose
-TBD - created by archiving change entity-create-drawer. Update Purpose after archive.
+
+El alta de entidades (skill, objetivo, ciclo, North Star, lever, pilar, equipo,
+proyecto, ceremonia, …) se dispara desde un botón "+ Nuevo/a `<entidad>`" junto al
+título de la lista/catálogo y se resuelve en un panel lateral overlay reusable
+(`EntityCreateDrawer`, sobre el primitivo `Sheet` de shadcn/ui): panel derecho de altura
+completa, con scrim que atenúa el fondo, header/body scrollable/footer fijos, y
+comportamiento de teclado y foco accesible. Define el contrato visual y de interacción
+que todas las páginas usan para el alta de entidades, reemplazando los formularios
+'always-visible' al costado de las listas.
 ## Requirements
 ### Requirement: Reusable entity-create drawer
 The system SHALL provide a reusable overlay drawer component for entity-creation forms, anchored to the right edge of the viewport, spanning the full viewport height, with a scrim that dims the underlying page while open.
