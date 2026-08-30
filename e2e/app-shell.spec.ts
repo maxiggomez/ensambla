@@ -69,6 +69,7 @@ test.describe.serial("app shell", () => {
     await expect(
       page.getByRole("heading", { name: "De dónde baja todo lo demás" }),
     ).toBeVisible();
+    await page.getByRole("button", { name: "Estrategia" }).click();
     await expect(page.getByText("Visión, misión y valores")).toBeVisible();
   });
 

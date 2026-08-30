@@ -75,10 +75,9 @@ test.describe.serial("guided onboarding setup", () => {
     runFixture("assert-template");
 
     await page.goto("/norte-estrategico");
+    await page.getByRole("button", { name: "North Star", exact: true }).click();
     await expect(
-      page
-        .getByRole("region", { name: "North Star" })
-        .getByText("Pymes activas que renuevan y crecen"),
+      page.locator("#north-star-content").getByText("Pymes activas que renuevan y crecen"),
     ).toBeVisible();
   });
 

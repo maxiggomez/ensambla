@@ -2,10 +2,10 @@
 
 import { useActionState, useEffect } from "react";
 
+import { useEntityCreateDrawerClose } from "@/components/entity-create-drawer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useEntityCreateDrawerClose } from "@/components/entity-create-drawer";
 
 import { assignObjectiveToPillarAction, createStrategicPillarAction } from "./actions";
 import { FormFeedback } from "./form-feedback";
@@ -16,11 +16,9 @@ type ObjectiveOption = { id: string; title: string };
 export function PillarForm() {
   const [state, action, pending] = useActionState(createStrategicPillarAction, {});
   const close = useEntityCreateDrawerClose();
-
   useEffect(() => {
     if (state.success) close();
   }, [state.success, close]);
-
   return (
     <form action={action} className="space-y-3">
       <div className="space-y-2">
@@ -32,7 +30,7 @@ export function PillarForm() {
         <Input id="pillar-description" name="description" />
       </div>
       <FormFeedback state={state} />
-      <Button variant="outline" type="submit" disabled={pending}>
+      <Button type="submit" disabled={pending}>
         {pending ? "Creando…" : "Crear pilar"}
       </Button>
     </form>
@@ -48,11 +46,9 @@ export function AssignForm({
 }) {
   const [state, action, pending] = useActionState(assignObjectiveToPillarAction, {});
   const close = useEntityCreateDrawerClose();
-
   useEffect(() => {
     if (state.success) close();
   }, [state.success, close]);
-
   return (
     <form action={action} className="space-y-3">
       <div className="space-y-2">
@@ -88,7 +84,7 @@ export function AssignForm({
         </select>
       </div>
       <FormFeedback state={state} />
-      <Button variant="outline" type="submit" disabled={pending}>
+      <Button type="submit" disabled={pending}>
         {pending ? "Asignando…" : "Asignar al pilar"}
       </Button>
     </form>

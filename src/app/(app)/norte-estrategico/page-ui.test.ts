@@ -5,6 +5,9 @@ import { describe, expect, it } from "vitest";
 
 const UI_FILES = [
   "page.tsx",
+  "strategy-map.tsx",
+  "strategic-mindmap.tsx",
+  "collapsible-section.tsx",
   "north-star-form.tsx",
   "lever-form.tsx",
   "strategy-form.tsx",
@@ -43,13 +46,26 @@ describe("Norte Estratégico UI design-system contract", () => {
     expect(page).toContain("<LeverForm");
   });
 
-  it("triggers pillar creation and objective assignment from drawers next to the map title", () => {
+  it("places the read-only map before the collapsed detail group", () => {
     const page = readFileSync(join(__dirname, "page.tsx"), "utf8");
-    expect(page).toContain('triggerLabel="+ Nuevo pilar"');
-    expect(page).toContain('title="Nuevo pilar"');
-    expect(page).toContain('triggerLabel="+ Asignar objetivo"');
-    expect(page).toContain("<PillarForm");
-    expect(page).toContain("<AssignForm");
+    const mapPosition = page.indexOf("<StrategicMap");
+    const detailsPosition = page.indexOf("<StrategyDetailSections");
+
+    expect(mapPosition).toBeGreaterThan(-1);
+    expect(detailsPosition).toBeGreaterThan(mapPosition);
+    expect(page.slice(mapPosition, detailsPosition)).not.toContain("<PillarForm");
+    expect(page.slice(mapPosition, detailsPosition)).not.toContain("<AssignForm");
+  });
+
+  it("opens pillar creation and assignment from the primary green drawer triggers", () => {
+    const page = readFileSync(join(__dirname, "page.tsx"), "utf8");
+
+    expect(page).toMatch(
+      /<EntityCreateDrawer[\s\S]*?triggerLabel="\+ Nuevo pilar"[\s\S]*?<PillarForm \/>[\s\S]*?<\/EntityCreateDrawer>/,
+    );
+    expect(page).toMatch(
+      /<EntityCreateDrawer[\s\S]*?triggerLabel="Asignar objetivo"[\s\S]*?<AssignForm[\s\S]*?<\/EntityCreateDrawer>/,
+    );
   });
 
   it("keeps pillar forms drawer-aware so they close on success", () => {
