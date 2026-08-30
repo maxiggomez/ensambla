@@ -33,7 +33,17 @@ test("Dirección define la estrategia y la cascada; Líder lee sin formularios d
     page.getByRole("heading", { name: "De dónde baja todo lo demás" }),
   ).toBeVisible();
 
+  const mapSection = page.getByRole("region", { name: "Mapa estratégico", exact: true });
+  const detailSection = page.getByRole("region", { name: "Detalle estratégico" });
+  await expect(mapSection).toBeVisible();
+  await expect(detailSection.getByRole("button", { name: "Estrategia" })).toHaveAttribute(
+    "aria-expanded",
+    "false",
+  );
+  await expect(page.getByRole("button", { name: "Guardar estrategia" })).toBeHidden();
+
   // Scenario Define strategy statements
+  await detailSection.getByRole("button", { name: "Estrategia" }).click();
   await page.getByLabel("Visión").fill("Ser la referencia de gestión ágil");
   await page.getByLabel("Misión").fill("Alinear equipos con el rumbo");
   await page.getByLabel("Valores").fill("Claridad\nAutonomía");
@@ -42,6 +52,7 @@ test("Dirección define la estrategia y la cascada; Líder lee sin formularios d
   await expect(page.getByText("Claridad", { exact: true })).toBeVisible();
 
   // North Star tipada (Measurement percentage)
+  await detailSection.getByRole("button", { name: "North Star" }).click();
   await page.getByRole("button", { name: "+ Nueva North Star" }).click();
   const northStarDrawer = page.getByRole("dialog");
   await northStarDrawer.getByLabel("Nombre de la North Star").fill("ARR");
@@ -61,32 +72,68 @@ test("Dirección define la estrategia y la cascada; Líder lee sin formularios d
   await expect(page.getByText("Leads calificados").first()).toBeVisible();
 
   // Scenario Group objectives under a pillar + cascada visible (drawer de alta)
+  await detailSection.getByRole("button", { name: "Pilares" }).click();
   await expect(page.getByRole("button", { name: "+ Nuevo pilar" })).toBeVisible();
   await page.getByRole("button", { name: "+ Nuevo pilar" }).click();
   const pillarDrawer = page.getByRole("dialog");
   await pillarDrawer.getByLabel("Nombre del pilar").fill("Crecimiento");
   await pillarDrawer.getByRole("button", { name: "Crear pilar" }).click();
   await expect(pillarDrawer).toBeHidden();
-  await expect(page.getByText("Sin objetivos visibles.").first()).toBeVisible();
+  await expect(page.getByText("Sin objetivos asignados").first()).toBeVisible();
   await expect(page.getByText("Sin pilar", { exact: true })).toBeHidden();
-  await expect(page.getByText(/Definí la North Star/)).toBeHidden();
 
-  // Asignar objetivo a un pilar: trigger de drawer visible junto al mapa
-  await expect(page.getByRole("button", { name: "+ Asignar objetivo" })).toBeVisible();
+  // El nodo North Star controla sus ramas y los controles globales preservan la cima.
+  await expect(mapSection.getByText("Crecimiento", { exact: true })).toBeVisible();
+  await mapSection.getByRole("button", { name: "Contraer North Star" }).click();
+  await expect(mapSection.getByText("Crecimiento", { exact: true })).toBeHidden();
+  await expect(
+    mapSection.getByRole("button", { name: "Expandir North Star, 1 hijo oculto" }),
+  ).toBeVisible();
+  await mapSection.getByRole("button", { name: "Expandir North Star, 1 hijo oculto" }).click();
+  await expect(mapSection.getByText("Crecimiento", { exact: true })).toBeVisible();
+  await mapSection.getByRole("button", { name: "Contraer todo" }).click();
+  await expect(mapSection.getByText("ARR", { exact: true })).toBeVisible();
+  await expect(mapSection.getByText("Crecimiento", { exact: true })).toBeHidden();
+  await mapSection.getByRole("button", { name: "Expandir todo" }).click();
+  await expect(mapSection.getByText("Crecimiento", { exact: true })).toBeVisible();
+
+  // Asignar objetivo a un pilar: trigger de drawer visible dentro del detalle.
+  await expect(page.getByRole("button", { name: "Asignar objetivo" })).toBeVisible();
 
   // Líder lee la estrategia y el mapa sin formularios de edición
   await switchUser(page, "dev_lider");
   await page.goto("/norte-estrategico");
-  await expect(page.getByText("Ser la referencia de gestión ágil").first()).toBeVisible();
-  await expect(page.getByText("ARR", { exact: true }).first()).toBeVisible();
+  const leaderMap = page.getByRole("region", { name: "Mapa estratégico", exact: true });
+  const leaderDetails = page.getByRole("region", { name: "Detalle estratégico" });
+  await expect(leaderMap.getByText("Ser la referencia de gestión ágil")).toBeVisible();
+  await expect(leaderMap.getByText("ARR", { exact: true })).toBeVisible();
   await expect(page.getByText("42%", { exact: true }).first()).toBeVisible();
+  await leaderDetails.getByRole("button", { name: "Expandir todo" }).click();
   await expect(page.getByText("Leads calificados").first()).toBeVisible();
-  await expect(page.getByText("Sin objetivos visibles.").first()).toBeVisible();
+  await expect(page.getByText("Sin objetivos asignados").first()).toBeVisible();
 
   await expect(page.getByRole("button", { name: "Guardar estrategia" })).toBeHidden();
   await expect(page.getByRole("button", { name: "+ Nueva North Star" })).toBeHidden();
   await expect(page.getByRole("button", { name: "+ Nuevo lever" })).toBeHidden();
   await expect(page.getByRole("button", { name: "+ Nuevo pilar" })).toBeHidden();
-  await expect(page.getByRole("button", { name: "+ Asignar objetivo" })).toBeHidden();
+  await expect(page.getByRole("button", { name: "Asignar objetivo" })).toBeHidden();
   await expect(page.getByRole("button", { name: "Crear pilar" })).toBeHidden();
+
+  // Scenario View/Navigate the strategic map as a mind map
+  const mapRegion = page.getByRole("region", { name: "Mapa estratégico interactivo" });
+  await expect(mapRegion).toBeVisible();
+  await expect(mapRegion.getByText("Visión", { exact: true })).toBeVisible();
+  await expect(mapRegion.getByText("North Star", { exact: true })).toBeVisible();
+  await expect(mapRegion.getByText("Crecimiento", { exact: true })).toBeVisible();
+
+  for (const width of [900, 390]) {
+    await page.setViewportSize({ width, height: 844 });
+    await expect(page.getByText(/Desplazá horizontalmente/)).toBeVisible();
+    await expect
+      .poll(() => mapRegion.evaluate((element) => element.scrollWidth > element.clientWidth))
+      .toBe(true);
+    await expect
+      .poll(() => page.evaluate(() => document.body.scrollWidth <= window.innerWidth))
+      .toBe(true);
+  }
 });

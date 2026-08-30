@@ -159,6 +159,16 @@ todo token nuevo se agrega ahí. Ningún componente hardcodea hex.
 - **Live Preview Panel** — panel oscuro que se puebla en vivo (onboarding).
 - **Wizard Progress Spine** — barra de pasos con estados done/active/pending.
 - **Risk/Alert Item** — ícono + título + detalle, tonal por severidad.
+- **Strategy Mindmap** — árbol de lectura izquierda→derecha con nodos de ancho fijo,
+  conectores CSS y scroll horizontal contenido. Visión y North Star forman la cima;
+  pilares y objetivos se expanden por nodo. Cada toggle usa `aria-expanded`, anuncia
+  hijos ocultos y conserva foco visible. Los controles globales del mapa no ejecutan
+  altas ni edición. El progreso siempre combina porcentaje, barra y estado textual:
+  `≥70` en curso, `40–69` atención, `<40` en riesgo.
+- **Collapsible section** — panel de detalle con un `button` que ocupa todo el header,
+  chevron, `aria-expanded` y `aria-controls`. Arranca cerrado salvo requerimiento
+  explícito. Un grupo puede ofrecer sus propios controles “Expandir todo” y
+  “Contraer todo”; estos no controlan otros grupos de la página.
 
 ### Drawer de alta de entidades (`EntityCreateDrawer`)
 
